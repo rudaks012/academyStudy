@@ -9,6 +9,8 @@ public class BooleanExample {
 		boolean isTeenager = false;
 		
 		
+		
+		
 		if(isOk) {
 			isTeenager = true;
 		}
