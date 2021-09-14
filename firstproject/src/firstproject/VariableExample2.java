@@ -8,20 +8,22 @@ public class VariableExample2 {
 		int age1 = 28;
 		String name = "안경만";
 		boolean isOk = true;
+	
 		
-		
-		if(age > age1) {
+		if(age1 > age) {
 			System.out.println(name +"은 "+ "25세 이상입니다." );
 		}
-		boolean isOk1 = false;
-		if(age < age1) {
+	
+		if(age1 < age) {
 			System.out.println(name + "은" + "25세 이하입니다");
 		}
+		
+		boolean isOk1 = false;
 		// age < 나이 => 이름은 25세 이상입니다.
 		
 		//age > 나이 => 이름은25세 이하입니다.
-	
 		System.out.println("end of program.");
+	
 	}
 
 
