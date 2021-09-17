@@ -47,7 +47,7 @@ public class FriendExample {
 					if (fr != null) {
 						fr.showInfo();
 					}
-				}
+				} 
 			} else if (menu == 4) {
 				System.out.println("친구 이름을 수정하세요");
 				String search = readStr("수정할 이름을 입력하세요.[변경안할려면 엔터]");
