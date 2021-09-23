@@ -38,6 +38,8 @@ System.out.println("===============m1 =============");
 //		m3.name = "박길동";
 		m3.setName("박길동");
 		m3.showInfo();
+		
+		
 
 //		
 	}
