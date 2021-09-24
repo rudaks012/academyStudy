@@ -54,7 +54,7 @@ public class FriendExe {
 		}
 		System.out.println("프로그램이 끝났습니다.");
 	}
-
+ 
 	private void addfriend() {
 		// 친구, 학교친구, 회사친구
 		System.out.println("1. 친구 2.학교친구 3.회사친구");
@@ -79,7 +79,7 @@ public class FriendExe {
 				break;
 			}
 		}
-		System.out.println("등록 성공."); 
+		System.out.println("등록 성공.");
 
 	}
 
@@ -131,7 +131,6 @@ public class FriendExe {
 
 //			if (name.equals("") == false && phone.equals("") == false) {
 //				if (friends[i].getName().indexOf(name) != -1 && friends[i].getPhone().indexOf(phone) != -1) {
-//
 //				}
 //				// 둘 다 입력을 받았다는 얘기
 //				// 밑에 부분ㅇ니 들어오면 된다.
@@ -139,7 +138,6 @@ public class FriendExe {
 //				if (friends[i].getPhone().indexOf(phone) != -1) {
 //					System.out.println(friends[i].toString());
 //				}
-//					
 //			}
 //				 else if (name.equals("") == false && phone.equals("") == true) {
 //					if (friends[i].getName().indexOf(name) != -1) {
