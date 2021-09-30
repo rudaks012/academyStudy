@@ -3,18 +3,20 @@ package FriendManual;
 import java.util.Scanner;
 
 public class FriendFormat {
+	
 	private Scanner scn = new Scanner(System.in);
 	public Friend[] friends = new Friend[100];
-	Friend[] schoolFriends = new SchoolFriend[100];	
+	Friend[] schoolFriends = new SchoolFriend[100];
 	Friend[] comFriends = new ComFriend[100];
-	
-	
-//	friends[0] = new Friend("안경만","010-4886-1663","대구광역시");	
-//	friends[1] = new friend();
-//	friends[2] = new Friend("아나고","012-3456-789","광역시","회사동료");
-//	friends[3] = new Friend("소불고기","123-456-789","서울","학교친구");
-//	friends[4] = new Friend("제육","789-456-123","서울","회사동료");
 
+public FriendFormat(){
+	friends[0] = new SchoolFriend("안경만", "010-4886-1663", "대구광역시", "학교친구");
+	friends[1] = new ComFriend("아나고", "012-3456-789", "광역시", "회사동료");
+	friends[2] = new SchoolFriend("소불고기", "123-456-789", "서울", "학교친구");
+	friends[3] = new ComFriend("제육", "789-456-123", "서울", "회사동료");
+	
+	
+}
 
 	private void mainmenu() {
 		System.out.println("==========================================");
@@ -25,23 +27,24 @@ public class FriendFormat {
 	}
 
 	private void firstmenu() {
+
 		System.out.println("=======친구 등록 메뉴=========");
 		System.out.println("등록할 친구를 이름을 입력하세요");
 		String name = scn.nextLine();
 		scn.nextLine();
 		System.out.println("등록할 친구를 번호를 입력하세요");
-
 		String tel = scn.nextLine();
 		System.out.println("등록할 친구의 주소를 입력하세요");
 		String address = scn.nextLine();
-		System.out.println("학교친구 인가(1)? 회사동료 인가(2)?");
-
+		System.out.println("학교친구");
+		String school = scn.nextLine();
+		String com = scn.nextLine();
 		int menu = scn.nextInt();
 
 		if (menu == 1) {
 			for (int i = 0; i < friends.length; i++) {
 				if (friends[i] == null) {
-					friends[i] = new SchoolFriend();
+					friends[i] = new SchoolFriend(name, tel, address, school);
 				}
 
 			}
@@ -49,7 +52,7 @@ public class FriendFormat {
 		} else if (menu == 2) {
 			for (int i = 0; i < friends.length; i++) {
 				if (friends[i] == null) {
-					friends[i] = new ComFriend();
+					friends[i] = new ComFriend(name, tel, address, com);
 				}
 			}
 
@@ -63,7 +66,7 @@ public class FriendFormat {
 		String name;
 		String tel;
 		String address;
-		
+		String 
 
 	}
 
@@ -79,6 +82,7 @@ public class FriendFormat {
 
 	private void whilemenu() {
 		boolean b = false;
+
 		do {
 			mainmenu();
 			int key = scn.nextInt(); // 입력받은것
