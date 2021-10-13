@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.home.prj.member.service.MemberMapper">
+	<select id="memberSelectList"
+		resultType= "co.home.prj.member.service.MemberVO">
+		select * from member
+	</select>
+
+	<select id="memberSelect"
+		resultType="co.home.prj.member.service.MemberVO">
+		select * from member
+		where id = #{id}  <!-- 로그인 시 추가해서 검색한다. -->
+	</select>
+		<select id = "memberLogin"
+		parameterType="co.home.prj.member.service.MemberVO"
+		resultType="co.home.prj.member.service.MemberVO">
+		select * from member
+		where id = #{id}
+			<if test="password != null and password !=''">
+			and password = #{password}
+			</if>
+		</select>
+
+	<insert id="memberInsert"
+		parameterType="co.home.prj.member.service.MemberVO">
+		insert into member(id,name,password,tel,address)
+		values(#{id},#{name},#{password},#{tel},#{address})
+
+	</insert>
+
+	<update id="memberUpdate"
+		parameterType="co.home.prj.member.service.MemberVO">
+		update member set name = #{name},password = #{password},
+		tel = #{tel}, address = #{address} , author = #{author}
+		where id =
+		#{id}
+	</update>
+	<delete id="memberDelete"
+		parameterType="co.home.prj.member.service.MemberVO">
+		delete from member where id = #{id}
+	</delete>
+	
+</mapper>
