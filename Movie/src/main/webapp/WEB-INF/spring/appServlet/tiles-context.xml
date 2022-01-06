@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+      <tiles-definitions>
+      
+      <!-- admin layout -->
+ 	<definition name="alayout-tiles" template="/WEB-INF/views/layout/adminLayout.jsp">
+	    <put-attribute name="atitle" value="admintitle-----" />
+	    <put-attribute name="aheader" value="/WEB-INF/views/layout/adminHeader.jsp"/>
+	    <put-attribute name="asidebar" value="/WEB-INF/views/layout/adminSidebar.jsp" />
+	    <put-attribute name="abody" value="" />
+	    <put-attribute name="afooter" value="/WEB-INF/views/layout/adminFooter.jsp"/>
+  	</definition>
+  	
+   <definition name="admin/*" extends="alayout-tiles">
+   		<put-attribute name="abody" value="/WEB-INF/views/admin/{1}.jsp"/>
+   </definition>
+      
+      <!-- user layout -->
+     <definition name="ulayout-tiles" template="/WEB-INF/views/layout/userLayout.jsp">
+		<put-attribute name="utitle" value="usertitle-----" />
+		<put-attribute name="uheader" value="/WEB-INF/views/layout/userHeader.jsp" />
+		<put-attribute name="usidebar" value="/WEB-INF/views/layout/userSidebar.jsp" />
+		<put-attribute name="ubody" value="" />
+		<put-attribute name="ufooter" value="/WEB-INF/views/layout/userFooter.jsp" />
+	</definition>  
+	
+	<definition name="*/*" extends="ulayout-tiles">
+		<put-attribute name="ubody" value="/WEB-INF/views/{1}/{2}.jsp" />
+		
+	</definition>   
+	
+	
+	 	
+      </tiles-definitions>
