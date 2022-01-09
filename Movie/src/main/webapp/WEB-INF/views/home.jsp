@@ -23,7 +23,7 @@ function ajaxdbtest(){
 
 <P>  The time on the server is ${serverTime}. </P>
 <button type="button" onclick="location='junhome.do'">태준</button>
-<button type="button" onclick="location='userhome.do'">경만</button>
+<button type="button" onclick="location='userhome.do'">rud</button>
 <button type="button" onclick="location='aramhome.do'">아람</button>
 <button type="button" onclick="location='ohhome.do'">영오</button>
 <button type="button" onclick="location='adminhome.do'">재의</button>
