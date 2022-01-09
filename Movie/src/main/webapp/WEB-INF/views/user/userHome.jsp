@@ -444,7 +444,7 @@ html {
                                 <h4 data-swiper-parallax-duration="600" data-swiper-parallax="-100" data-swiper-parallax-opacity="0.5">We are Creative</h4>
                                 <h2 data-swiper-parallax-duration="600" data-swiper-parallax="-200" data-swiper-parallax-opacity="0.5">Photographer</h2>
                                 <p data-swiper-parallax-duration="600" data-swiper-parallax="-300" data-swiper-parallax-opacity="0.5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus dolores quam atque sit ipsa
-                                     수정한번해봄</p>
+                                     수정두번째 해봄</p>
                                 <a data-swiper-parallax-duration="600" data-swiper-parallax="-400" data-swiper-parallax-opacity="1" href="#">Read More
                                     <i class="fa fa-long-arrow-right"></i>
                                 </a>
