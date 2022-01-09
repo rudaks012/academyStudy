@@ -9,12 +9,7 @@
 <title>Insert title here</title>
  <!-- all css here -->
  <link rel="shortcut icon" href="/static/pc/images/favicon.ico" />
-  		<link rel="stylesheet" href="/static/pc/dist/megabox.min.css" media="all" />
      		<!-- Global site tag (gtag.js) - Google Analytics -->
-		    <script src="/static/pc/dist/megabox.api.min.js"></script>
-			<script src="/static/mb/js/lozad.min.js"></script>
-			<script src="/js/common/dist/megabox.common.min.js"></script>
-     		<script src="/js/netfunnel/dist/megabox.netfunnel.min.js"></script>
  
  
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -59,7 +54,6 @@
     <script src="assets/js/jquery.zoomslider.min.js"></script>
     <script src="assets/js/jquery.firefly.js"></script>
     <!-- google map -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBO_5h890WNShs_YLGivCBfs2U89qXR-7Y&callback=initMap"></script>
     <script src="assets/js/scripts.js"></script>
     
      <!-- jquery latest version -->
