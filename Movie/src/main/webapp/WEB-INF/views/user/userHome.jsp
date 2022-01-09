@@ -19,6 +19,83 @@
     border-radius: 10px;
 }
 
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: 1em;
+    line-height: 1.15;
+}
+.theater-box .theater-place>ul>li {
+    float: left;
+    width: 136px;
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid #e0e0e0;
+    border-width: 0 1px 1px 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+li {
+    text-align: -webkit-match-parent;
+}
+ol, ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.theater-box .theater-place>ul>li.on>button {
+    color: #fff;
+    background-color: black;
+}
+.theater-box .theater-place>ul>li>button {
+    display: block;
+    width: 100%;
+    height: 48px;
+    background: 0 0;
+    border: none;
+}
+[type=button], [type=reset], [type=submit], button {
+    -webkit-appearance: button;
+}
+button {
+    cursor: pointer;
+    letter-spacing: -.5px;
+    font-weight: 400;
+    font-family: NanumBarunGothic,Dotum,'돋움',sans-serif;
+}
+button, select {
+    text-transform: none;
+}
+button, input {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: 1em;
+    line-height: 1.15;
+}
+.theater-box .theater-list ul li a {
+    color: #444;
+   
+}
+a:link {
+    color: #444;
+    text-decoration: none;
+}
+a {
+    background-color: transparent;
+}
+* {
+    box-sizing: border-box;
+}
+사용자 에이전트 스타일시트
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
 button {
     appearance: auto;
     -webkit-writing-mode: horizontal-tb !important;
@@ -52,11 +129,25 @@ button {
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial;
 }
-button, input, optgroup, select, textarea {
-    margin: 0;
-    font-family: inherit;
-    font-size: 1em;
-    line-height: 1.15;
+<!-- -------------------------------- -->
+.theater-box .theater-place>ul>li.on .theater-list {
+    display: block;
+}
+.theater-box .theater-list {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 48px;
+    width: 100%;
+    min-height: 85px;
+    padding: 30px 0;
+}
+* {
+    box-sizing: border-box;
+}
+사용자 에이전트 스타일시트
+div {
+    display: block;
 }
 .theater-box .theater-place>ul>li {
     float: left;
@@ -68,6 +159,7 @@ button, input, optgroup, select, textarea {
     text-align: center;
     box-sizing: border-box;
 }
+사용자 에이전트 스타일시트
 li {
     text-align: -webkit-match-parent;
 }
@@ -76,6 +168,267 @@ ol, ul {
     margin: 0;
     padding: 0;
 }
+사용자 에이전트 스타일시트
+ul {
+    list-style-type: disc;
+}
+body {
+    overflow: auto;
+    overflow-y: scroll;
+    letter-spacing: 0;
+    line-height: 1.5;
+    font-size: 15px;
+    color: #444;
+    font-weight: 400;
+    font-family: NanumBarunGothic,Dotum,'돋움',sans-serif;
+}
+.theater-box .theater-place>ul>li.on .theater-list {
+    display: block;
+}
+.theater-box .theater-list {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 48px;
+    width: 100%;
+    min-height: 85px;
+    padding: 30px 0;
+}
+* {
+    box-sizing: border-box;
+}
+사용자 에이전트 스타일시트
+div {
+    display: block;
+}
+.theater-box .theater-place>ul>li {
+    float: left;
+    width: 136px;
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid #e0e0e0;
+    border-width: 0 1px 1px 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+사용자 에이전트 스타일시트
+li {
+    text-align: -webkit-match-parent;
+}
+ol, ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+사용자 에이전트 스타일시트
+ul {
+    list-style-type: disc;
+}
+body {
+    overflow: auto;
+    overflow-y: scroll;
+    letter-spacing: 0;
+    line-height: 1.5;
+    font-size: 15px;
+    color: #444;
+    font-weight: 400;
+    font-family: NanumBarunGothic,Dotum,'돋움',sans-serif;
+}
+.theater-box .theater-place>ul>li.on .theater-list {
+    display: block;
+}
+.theater-box .theater-list {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 48px;
+    width: 100%;
+    min-height: 85px;
+    padding: 30px 0;
+}
+* {
+    box-sizing: border-box;
+}
+사용자 에이전트 스타일시트
+div {
+    display: block;
+}
+.theater-box .theater-place>ul>li {
+    float: left;
+    width: 136px;
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid #e0e0e0;
+    border-width: 0 1px 1px 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+사용자 에이전트 스타일시트
+li {
+    text-align: -webkit-match-parent;
+}
+ol, ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+사용자 에이전트 스타일시트
+ul {
+    list-style-type: disc;
+}
+body {
+    overflow: auto;
+    overflow-y: scroll;
+    letter-spacing: 0;
+    line-height: 1.5;
+    font-size: 15px;
+    color: #444;
+    font-weight: 400;
+    font-family: NanumBarunGothic,Dotum,'돋움',sans-serif;
+}
+
+<!-- ------------------------- -->
+
+<!-- -------------li--------------- -->
+.theater-box .theater-list ul li a {
+    color: #444;
+}
+a:link {
+    color: #444;
+    text-decoration: none;
+}
+a {
+    background-color: transparent;
+}
+* {
+    box-sizing: border-box;
+}
+사용자 에이전트 스타일시트
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.theater-box .theater-list ul li {
+    position: relative;
+    float: left;
+    width: 25%;
+    line-height: 26px;
+    text-align: left;
+    padding-left: 40px;
+}
+사용자 에이전트 스타일시트
+li {
+    text-align: -webkit-match-parent;
+}
+ol, ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+사용자 에이전트 스타일시트
+ul ul {
+    list-style-type: circle;
+}
+사용자 에이전트 스타일시트
+ul {
+    list-style-type: disc;
+}
+.theater-box .theater-place>ul>li {
+    float: left;
+    width: 136px;
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid #e0e0e0;
+    border-width: 0 1px 1px 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+사용자 에이전트 스타일시트
+li {
+    text-align: -webkit-match-parent;
+}
+사용자 에이전트 스타일시트
+ul {
+    list-style-type: disc;
+}
+body {
+    overflow: auto;
+    overflow-y: scroll;
+    letter-spacing: 0;
+    line-height: 1.5;
+    font-size: 15px;
+    color: #444;
+    font-weight: 400;
+    font-family: NanumBarunGothic,Dotum,'돋움',sans-serif;
+}
+<!-- ----------------------------- -->
+
+.theater-box .theater-list ul {
+    overflow: hidden;
+    width: 100%;
+}
+ol, ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+사용자 에이전트 스타일시트
+ul ul {
+    list-style-type: circle;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+사용자 에이전트 스타일시트
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.theater-box .theater-place>ul>li {
+    float: left;
+    width: 136px;
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid #e0e0e0;
+    border-width: 0 1px 1px 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+사용자 에이전트 스타일시트
+li {
+    text-align: -webkit-match-parent;
+}
+사용자 에이전트 스타일시트
+ul {
+    list-style-type: disc;
+}
+body {
+    overflow: auto;
+    overflow-y: scroll;
+    letter-spacing: 0;
+    line-height: 1.5;
+    font-size: 15px;
+    color: #444;
+    font-weight: 400;
+    font-family: NanumBarunGothic,Dotum,'돋움',sans-serif;
+}
+html {
+    -webkit-text-size-adjust: 100%;
+}
+.theater-box .theater-list ul:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
 
 </style>
 </head>
@@ -549,17 +902,21 @@ ol, ul {
 	
 </body>
 	<script >
-$('.sel-city').on('click', function() {
 
-	$("div.theater-place li.on").removeClass('on');
-	$(this).parent().addClass('on');
 
-	var _h1 = $('.user-theater').outerHeight();
-	var _h2 = $('.theater-place').outerHeight();
-	var _h0 = $("div.theater-place li.on .theater-list").outerHeight();
-	var _hAll = _h0 + _h1 + _h2;
+		// 전체극장 > 지역 선택
+		$('.sel-city').on('click', function() {
 
-	$('.theater-box').outerHeight(_hAll);
-});
+			$("div.theater-place li.on").removeClass('on');
+			$(this).parent().addClass('on');
+
+			var _h1 = $('.user-theater').outerHeight();
+			var _h2 = $('.theater-place').outerHeight();
+			var _h0 = $("div.theater-place li.on .theater-list").outerHeight();
+			var _hAll = _h0 + _h1 + _h2;
+
+			$('.theater-box').outerHeight(_hAll);
+		});
+		
 </script>
 </html>
