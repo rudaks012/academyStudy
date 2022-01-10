@@ -9,7 +9,7 @@
 <body>
 	<div align="center">
 		<div>
-			<h2>아람</h2>
+			<h2>아람131313131</h2>
 		</div>
 	</div>
 </body>
