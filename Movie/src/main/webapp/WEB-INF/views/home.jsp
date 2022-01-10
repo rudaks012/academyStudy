@@ -18,15 +18,14 @@ function ajaxdbtest(){
 }
 </script>
 <h1>
-	Hello world!  
+	Hello 94 Friends!
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
-<button type="button" onclick="location='junhome.do'">태준</button>
-<button type="button" onclick="location='userhome.do'">rud</button>
-<button type="button" onclick="location='aramhome.do'">아람</button>
-<button type="button" onclick="location='ohhome.do'">영오</button>
-<button type="button" onclick="location='adminhome.do'">재의</button>
+<button type="button" onclick="location='junhome.do'">JOON</button>
+<button type="button" onclick="location='userhome.do'">MAN</button>
+<button type="button" onclick="location='aramhome.do'">ARAM</button>
+<button type="button" onclick="location='ohhome.do'">OH</button>
+<button type="button" onclick="location='adminhome.do'">HA</button>
 <button type="button" onclick="ajaxdbtest()">ajaxdbtest</button>
 </body>
 </html>

@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	header{
+		margin-bottom: 100px;
+	}
+</style>
 </head>
 <body>
  <!-- header area start -->
@@ -54,6 +59,7 @@
         </div>
     </header>
     <!-- header area end -->
+
 	
 </body>
 </html>
