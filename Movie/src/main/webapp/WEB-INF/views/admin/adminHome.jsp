@@ -9,7 +9,7 @@
 <body>
 <div align="center">
 		<div>
-			<h2>재의</h2>
+			<h2>재의1313131313</h2>
 		</div>
 	</div>
 </body>
