@@ -434,47 +434,7 @@ html {
 </head>
 <body>
 	   <!-- slider area start -->
-    <section class="photography-slider swiper-container" id="home">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide ph-slider-item" style="background: url(assets/images/slider/photography-bg1.jpg) center/cover no-repeat">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <div class="ph-slider-content">
-                                <h4 data-swiper-parallax-duration="600" data-swiper-parallax="-100" data-swiper-parallax-opacity="0.5">We are Creative</h4>
-                                <h2 data-swiper-parallax-duration="600" data-swiper-parallax="-200" data-swiper-parallax-opacity="0.5">Photographer</h2>
-                                <p data-swiper-parallax-duration="600" data-swiper-parallax="-300" data-swiper-parallax-opacity="0.5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus dolores quam atque sit ipsa
-                                     수정두번째 해봄</p>
-                                <a data-swiper-parallax-duration="600" data-swiper-parallax="-400" data-swiper-parallax-opacity="1" href="#">Read More
-                                    <i class="fa fa-long-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide ph-slider-item" style="background: url(assets/images/slider/photography-bg2.jpg) center/cover no-repeat">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <div class="ph-slider-content">
-                                <h4 data-swiper-parallax-duration="600" data-swiper-parallax="-100" data-swiper-parallax-opacity="0.5">We are Creative</h4>
-                                <h2 data-swiper-parallax-duration="600" data-swiper-parallax="-200" data-swiper-parallax-opacity="0.5">Photographer</h2>
-                                <p data-swiper-parallax-duration="600" data-swiper-parallax="-300" data-swiper-parallax-opacity="0.5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus dolores quam atque sit ipsa
-                                    voluptatum cupiditate illo obcaecati dolorum modi.</p>
-                                <a data-swiper-parallax-duration="600" data-swiper-parallax="-400" data-swiper-parallax-opacity="1" href="#">Read More
-                                    <i class="fa fa-long-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ph-button-prev"></div>
-        <div class="ph-button-next"></div>
-        <div class="ph-pagination"></div>
-    </section>
+    
     <!-- slider area end -->
     
     
@@ -503,8 +463,16 @@ html {
     </section>
     <!-- fs-about area end -->
     
-    
-	<div class="theater-box" style="height: 344px;">
+   
+	
+    <!-- whatisdo area strat -->
+    <section class="work-area pb--80" id="work">
+        <div class="container">
+        
+            <div class="portfolio-menu">
+                <h2>전체 극장</h2>
+            </div>
+            <div class="theater-box" style="height: 344px;">
 		<div class="theater-place">
 			<ul>
 
@@ -644,176 +612,21 @@ html {
 
 	</div>
 	
-	
-	
-    <!-- whatisdo area strat -->
-    <section class="work-area pb--80" id="work">
-        <div class="container">
-            <div class="portfolio-menu">
-                <h2>Our work</h2>
-                <div class="prt-menu">
-                    <button class="active" data-filter="*">All</button>
-                    <button data-filter=".wedding">Wedding</button>
-                    <button data-filter=".music">Music</button>
-                    <button data-filter=".fashion">Fashion</button>
-                </div>
-            </div>
-            <div class="work-masonary row" id="container">
-                <div class="wrk-item wedding col-md-4">
-                    <div class="work-item">
-                        <a class="expand-img" href="assets/images/gallery/photography/img1.jpg">
-                            <img src="assets/images/gallery/photography/img1.jpg" alt="image">
-                        </a>
-                        <div class="info">
-                            <h4>Wedding Photo</h4>
-                            <span>02,Jun 2018</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrk-item music col-md-4">
-                    <div class="work-item">
-                        <a class="expand-img" href="assets/images/gallery/photography/img2.jpg">
-                            <img src="assets/images/gallery/photography/img2.jpg" alt="image">
-                        </a>
-                        <div class="info">
-                            <h4>Wedding Photo</h4>
-                            <span>02,Jun 2018</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrk-item wedding col-md-4">
-                    <div class="work-item">
-                        <a class="expand-img" href="assets/images/gallery/photography/img3.jpg">
-                            <img src="assets/images/gallery/photography/img3.jpg" alt="image">
-                        </a>
-                        <div class="info">
-                            <h4>Wedding Photo</h4>
-                            <span>02,Jun 2018</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrk-item wedding col-md-4">
-                    <div class="work-item">
-                        <a class="expand-img" href="assets/images/gallery/photography/img4.jpg">
-                            <img src="assets/images/gallery/photography/img4.jpg" alt="image">
-                        </a>
-                        <div class="info">
-                            <h4>Wedding Photo</h4>
-                            <span>02,Jun 2018</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrk-item fashion col-md-4">
-                    <div class="work-item">
-                        <a class="expand-img" href="assets/images/gallery/photography/img5.jpg">
-                            <img src="assets/images/gallery/photography/img5.jpg" alt="image">
-                        </a>
-                        <div class="info">
-                            <h4>Wedding Photo</h4>
-                            <span>02,Jun 2018</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrk-item wedding col-md-4">
-                    <div class="work-item">
-                        <a class="expand-img" href="assets/images/gallery/photography/img1.jpg">
-                            <img src="assets/images/gallery/photography/img6.jpg" alt="image">
-                        </a>
-                        <div class="info">
-                            <h4>Wedding Photo</h4>
-                            <span>02,Jun 2018</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrk-item music col-md-4">
-                    <div class="work-item">
-                        <a class="expand-img" href="assets/images/gallery/photography/img2.jpg">
-                            <img src="assets/images/gallery/photography/img7.jpg" alt="image">
-                        </a>
-                        <div class="info">
-                            <h4>Wedding Photo</h4>
-                            <span>02,Jun 2018</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrk-item wedding col-md-4">
-                    <div class="work-item">
-                        <a class="expand-img" href="assets/images/gallery/photography/img3.jpg">
-                            <img src="assets/images/gallery/photography/img8.jpg" alt="image">
-                        </a>
-                        <div class="info">
-                            <h4>Wedding Photo</h4>
-                            <span>02,Jun 2018</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrk-item fashion col-md-4">
-                    <div class="work-item">
-                        <a class="expand-img" href="assets/images/gallery/photography/img4.jpg">
-                            <img src="assets/images/gallery/photography/img9.jpg" alt="image">
-                        </a>
-                        <div class="info">
-                            <h4>Wedding Photo</h4>
-                            <span>02,Jun 2018</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
         </div>
     </section>
+    
     <!-- whatisdo area end -->
 
     <!-- testimonial area start -->
-    <section class="testimonial-area bg-gray pos-rel ptb--100" id="testimonial">
-        <div class="container">
-            <div class="tst-title">
-                <h2>Testimonial</h2>
-                <p>what people says about Lavaland</p>
-            </div>
-            <div class="row">
-                <div class="col-xl-10">
-                    <div class="testimonials-carousel swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="tst-item swiper-slide">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ducimus sed eum excepturi
-                                    impedit, illo accusantium debitis vel error explicabo libero expedita, maiores iusto
-                                    ab?
-                                </p>
-                                <strong>Lincoln Skiles
-                                    <span> / Developer</span>
-                                </strong>
-                            </div>
-                            <div class="tst-item swiper-slide">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ducimus illo accusantium
-                                    debitis vel error explicabo libero expedita, maiores iusto ab?</p>
-                                <strong>Abdullah Wilderman
-                                    <span> / Strategist</span>
-                                </strong>
-                            </div>
-                            <div class="tst-item swiper-slide">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque eum excepturi impedit,
-                                    illo accusantium debitis vel error explicabo libero expedita, maiores iusto ab?</p>
-                                <strong>Baron Kshlerin
-                                    <span> / Administrator</span>
-                                </strong>
-                            </div>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="right-thumb">
-                <img src="assets/images/testimonial/tst-yoga-right-thumb2.png" alt="image">
-            </div>
-        </div>
-    </section>
+   
     <!-- testimonial area end -->
     <!-- feature blog area start -->
     <section class="feature-blog pt--100" id="blog">
         <div class="container">
             <div class="section-title">
-                <span>Read</span>
-                <h2>Our Letest News</h2>
+                <span>주의</span>
+                <h2>영화 포스터</h2>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6">

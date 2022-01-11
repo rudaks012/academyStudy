@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import co.yedam.Movie.conn.dbtestVO;
+import co.yedam.Movie.comm.dbtestVO;
 import co.yedam.Movie.dbtest.Service.dbtestService;
 import co.yedam.Movie.movieservice.MovieService;
 import co.yedam.Movie.movieservice.MovieVO;
@@ -29,7 +29,7 @@ public class HomeController {
 
 	@RequestMapping("/userhome.do")
 	public String userhome() {
-		return "user/userHome";
+		return "user/MovieCenter";
 	}
 
 	@RequestMapping("/adminhome.do")

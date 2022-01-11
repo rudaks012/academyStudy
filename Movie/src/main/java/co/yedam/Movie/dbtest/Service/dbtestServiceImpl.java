@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import co.yedam.Movie.conn.dbtestVO;
+import co.yedam.Movie.comm.dbtestVO;
 
 @Repository("dbtestDao")
 public class dbtestServiceImpl implements dbtestService {

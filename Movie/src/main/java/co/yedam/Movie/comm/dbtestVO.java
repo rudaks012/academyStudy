@@ -1,4 +1,4 @@
-package co.yedam.Movie.conn;
+package co.yedam.Movie.comm;
 
 import lombok.Getter;
 import lombok.Setter;
