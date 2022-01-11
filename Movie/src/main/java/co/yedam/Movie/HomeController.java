@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.yedam.Movie.conn.dbtestVO;
 import co.yedam.Movie.dbtest.Service.dbtestService;
+import co.yedam.Movie.movieservice.MovieService;
+import co.yedam.Movie.movieservice.MovieVO;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
 	private dbtestService dbtestDao; 
+	@Autowired
+	private MovieService movieDao;
 	
 		
 	@RequestMapping("/home.do")
@@ -37,7 +41,17 @@ public class HomeController {
 		return "aram/aramHome";
 	}
 	@RequestMapping("/junhome.do")
-	public String junhome() {
+	public String junhome(Model model) {
+		List<MovieVO> movie = movieDao.movieSelectList();
+		for (int i = 0; i < movie.size(); i++) {
+			String date = movie.get(i).getOpendate();
+			if (date.length() > 10) {
+				date = date.substring(0, 10);
+				movie.get(i).setOpendate(date);
+			}
+		}
+		model.addAttribute("movie", movie);
+		
 		return "jun/junHome";
 	}
 	@RequestMapping("/ohhome.do")
