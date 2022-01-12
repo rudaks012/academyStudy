@@ -3,7 +3,7 @@
 <mapper namespace="co.yedam.Movie.dbtest.Service.dbtestMapper">
 	
 	<select id="testSelect"
-	resultType="co.yedam.Movie.conn.dbtestVO">
+	resultType="co.yedam.Movie.comm.dbtestVO">
 	select * from test
 	</select>
 </mapper>
