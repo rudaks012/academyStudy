@@ -212,8 +212,6 @@ button:active, button:focus {
 							id="onoffspan">개봉작만</span>
 					</button>
 					&nbsp;&nbsp;&nbsp;<span>${fn:length(movie)}개의 영화가 검색되었습니다.</span>
-					<button onclick="getToggleBtnState('buttonID');">값을 보려면
-						여기를 눌러주세요</button>
 					<div class="searchdiv">
 						<button type="button" id="searchbtn" name="searchbtn"
 							class="searchbtn">
@@ -320,7 +318,6 @@ button:active, button:focus {
 		$('#onbtn').click(function() {
 			var onoffimg = document.getElementById("onbtnimg");
 			onoffimg.src = "resources/icons/offbtn.png";
-			alert("바귐?");
 		});
 	</script>
 </body>
