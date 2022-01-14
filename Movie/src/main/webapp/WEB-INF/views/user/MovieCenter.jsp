@@ -33,7 +33,7 @@ ul.tabs li {
 	cursor: pointer;
 	border: rgb(235, 235, 235) solid 1px;
 	border-bottom: rgb(80, 51, 150) solid 1px;
-	width: 220px;
+	width: 500px;
 	height: 40px;
 	font-size: 15px;
 	text-align: center;

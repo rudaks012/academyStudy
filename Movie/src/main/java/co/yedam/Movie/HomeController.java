@@ -29,7 +29,7 @@ public class HomeController {
 
 	@RequestMapping("/userhome.do")
 	public String userhome() {
-		return "user/MovieCenter";
+		return "user/userHome";
 	}
 
 	@RequestMapping("/adminhome.do")
