@@ -26,7 +26,7 @@
 </head>
 <body>
 	<div class="wrap">
-		<div id="title"><p>빠른예매</p></div>
+		<div id="title"><p>빠른예매1321123</p></div>
 		
 		<table class="ticket_tb">	
 			<tr id="first_tr">
