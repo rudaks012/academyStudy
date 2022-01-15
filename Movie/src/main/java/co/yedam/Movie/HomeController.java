@@ -8,10 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.yedam.Movie.comm.MovieVO;
 import co.yedam.Movie.comm.dbtestVO;
 import co.yedam.Movie.dbtest.Service.dbtestService;
-import co.yedam.Movie.movieservice.MovieService;
-import co.yedam.Movie.movieservice.MovieVO;
+import co.yedam.Movie.taejoon.service.MovieService;
 
 @Controller
 public class HomeController {

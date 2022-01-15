@@ -211,7 +211,7 @@ button:active, button:focus {
 						<img src="resources/icons/offbtn.png" id="offbtnimg">&nbsp;<span
 							id="onoffspan">개봉작만</span>
 					</button>
-					&nbsp;&nbsp;&nbsp;<span>${fn:length(movie)}개의 영화가 검색되었습니다.</span>
+					&nbsp;&nbsp;&nbsp;<span>${fn:length(movie)}개의 영화가 검색되었습니다.dd</span>
 					<div class="searchdiv">
 						<button type="button" id="searchbtn" name="searchbtn"
 							class="searchbtn">
@@ -248,7 +248,7 @@ button:active, button:focus {
 							</div>
 							<div class="tit-area">
 								<c:choose>
-									<c:when test="${movie.grade eq 'all' }">
+									<c:when test="${movie.grade eq 'ALL' }">
 										<img src="resources/icons/allgrade.png" id="gradeimg"
 											class="gradeimg">
 									</c:when>
