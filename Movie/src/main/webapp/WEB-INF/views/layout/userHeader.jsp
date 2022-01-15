@@ -147,7 +147,7 @@ ul {
 					<div class="menu2">
 						<ul class="sub">
 							<li><a href="userhome.do">전체극장</a></li>
-							<li><a href="#">특별관</a></li>
+							<li><a href="moviecenter.do">극장상세</a></li>
 						</ul>
 					</div></li>
 				<li class="mainimg"><img src="resources/icons/mainimg.PNG"
