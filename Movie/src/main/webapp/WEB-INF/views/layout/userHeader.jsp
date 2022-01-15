@@ -47,6 +47,7 @@ ul {
 #bottomheader {
 	height: 75px;
 	width: 100%;
+	margin: 0 auto;
 }
 
 #menu1 ul {
@@ -57,7 +58,7 @@ ul {
 }
 
 #menu1 .main>li {
-	float: left;
+	display: inline-block;
 	width: 11%;
 	height: 30px;
 	line-height: 60px;
