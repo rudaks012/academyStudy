@@ -7,5 +7,6 @@
 		SELECT * FROM MOVIE
 		ORDER BY RATE DESC
 	</select>
+	
 
 </mapper>

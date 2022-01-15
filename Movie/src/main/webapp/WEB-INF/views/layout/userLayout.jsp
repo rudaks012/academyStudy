@@ -85,6 +85,7 @@
 				<td width="80%"><tiles:insertAttribute name="ubody" />
 			</tr>
 			<tr>
+			<td colspan ="2"><tiles:insertAttribute name="ufooter"/></td>
 			</tr>
 		</table>
 	</div>

@@ -196,6 +196,7 @@ h2.tit.small {
     background-image: url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-parking.png);
     position: relative;
     top: 100px;
+    left: 30px;
 }
 .parking-info .parking-section .icon-box .ico-parking-confirm {
     width: 70px;
@@ -203,6 +204,7 @@ h2.tit.small {
     background-image: url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-confirm.png);
     position: relative;
     top: 80px;
+    left: 30px;
 }
 .parking-info .parking-section .icon-box .ico-cash {
     width: 70px;
@@ -210,6 +212,7 @@ h2.tit.small {
     background-image: url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-cash.png);
     position: relative;
     top: 80px;
+    left: 30px;
 }
 .dot-list>li:before {
     content: '';
@@ -246,12 +249,14 @@ ul {
     width: 67px;
     height: 70px;
     background-image: url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-bus.png);
+    
 }
 .public-transportation .transportation-section .icon-box .ico-metro {
     width: 58px;
     height: 70px;
     background-image: url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-metro.png);
 }
+
 .public-transportation .transportation-section {
     position: relative;
     padding: 30px 0 0 0;
@@ -263,6 +268,20 @@ ul {
     width: 150px;
     text-align: center;
 }
+.public-transportation .transportation-section .info {
+    padding-left: 150px;
+}
+.parking-info {
+    padding: 0 0 30px 0;
+    border: 1px solid #d8d9db;
+    border-radius: 10px;
+}
+.public-transportation {
+    padding: 0 0 30px 0;
+    border: 1px solid #d8d9db;
+    border-radius: 10px;
+}
+
 </style>
 </head>
 
@@ -281,7 +300,7 @@ ul {
 				<li class="tab-city" data-tab="citys6">부산</li>
 				<li class="tab-city" data-tab="citys7">광주</li>
 				<li class="tab-city" data-tab="citys8">강원</li>
-				<hr class="one">
+				<hr class="one"></hr>
 
 				<div id=citys1 class="tab-content city">서울데이터</div>
 				<div id=citys2 class="tab-content city">경기데이터</div>
@@ -302,7 +321,7 @@ ul {
 			<li class="tab-link" data-tab="tab-3" id="special">관람료</li>
 		</ul>
 		<br>
-		
+		<div id="tab-1" class="tab-content current">
 		<div class="theater-info-text mt40">
 		<p class="big">
 			메가박스가 대구 지역 최초로 고화질 영상과 생생한 사운드를 선사하는 기술 특화관 MX관<br>전 좌석 가죽시트와 JBL사운드에서 즐기는 일반관으로 총 6개의 상영관을 오픈합니다.
@@ -408,6 +427,7 @@ ul {
 					</ul>
 				</div>
 			</div>
+			</div>
 			<hr class="one">
 			<h3 class="tit small mt30">대중교통</h3>
 			<div class="public-transportation">
@@ -451,9 +471,35 @@ ul {
 		<!-- 대중교통 정보가 없는 경우 -->
 		
 	</div>
+	    <!-- contact area start -->
+    <div class="contact-area bg-gray ptb--100">
+        <div class="container">
+            <div class="section-title">
+                <span>Find Us</span>
+                <h2>Contact</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-content">
+                        <ul>
+                            <li>
+                                <i class="fa fa-map-marker"></i>Race Event BeFaster, UK, 2292 Peachtree Rd NW</li>
+                            <li>
+                                <i class="fa fa-phone"></i>+1 123 456 8798</li>
+                            <li>
+                                <i class="fa fa-envelope"></i>user@gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="google_map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact area end -->
 			
-		
-	</div>
+	
 	
 		</div>
 		

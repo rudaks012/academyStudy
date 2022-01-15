@@ -11,7 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.yedam.Movie.comm.MovieVO;
 import co.yedam.Movie.comm.dbtestVO;
 import co.yedam.Movie.dbtest.Service.dbtestService;
+<<<<<<< Updated upstream
 import co.yedam.Movie.taejoon.service.MovieService;
+=======
+import co.yedam.Movie.man.service.MoviePostService;
+import co.yedam.Movie.movieservice.MovieService;
+import co.yedam.Movie.movieservice.MovieVO;
+>>>>>>> Stashed changes
 
 @Controller
 public class HomeController {
@@ -20,6 +26,8 @@ public class HomeController {
 	private dbtestService dbtestDao; 
 	@Autowired
 	private MovieService movieDao;
+	@Autowired
+	private MoviePostService moviePostDao;
 	
 		
 	@RequestMapping("/home.do")
@@ -28,7 +36,20 @@ public class HomeController {
 	}
 
 	@RequestMapping("/userhome.do")
-	public String userhome() {
+	public String userhome(Model model) {
+		System.out.println("homecheck");
+		List<MovieVO> movie = moviePostDao.moviePostSelectList();
+		System.out.println("postlist");
+				for (int i = 0; i < movie.size(); i++) {
+					String date = movie.get(i).getOpendate();
+					if(date.length() > 10) {
+						date = date.substring(0, 10);
+						movie.get(i).setOpendate(date);
+					}
+					model.addAttribute("movie", movie);
+					
+				}
+		
 		return "user/userHome";
 	}
 

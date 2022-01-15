@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -428,6 +430,61 @@ html {
     clear: both;
     content: '';
 }
+.pt--100 {
+    padding-top: 1px !important;
+}
+.table-wrap {
+    position: relative;
+    border-top: 1px solid #555;
+        margin-left: 20%;
+    margin-right: 20%;
+}
+.board-list>thead>tr>th {
+    height: 45px;
+    padding: 3px 10px;
+    color: #222;
+    border: 1px solid #eaeaea;
+    border-width: 0 0 1px 0;
+    background-color: #f2f4f5;
+    text-align: center;
+}
+.board-list>tbody>tr>td, .board-list>tbody>tr>th {
+    height: 45px;
+    padding: 10px;
+    border: 1px solid #eaeaea;
+    border-width: 0 0 1px 0;
+    text-align: center;
+}
+.board-list {
+    line-height: 1.3;
+}
+.board-list {
+    width: 100%;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    border: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+}
+.tit-util .tit {
+    float: left;
+    padding: 0!important;
+    line-height: 1.1;
+}
+h3.tit {
+    margin: 0;
+    padding: 0 0 16px 0;
+    font-size: 1.6em;
+    font-weight: 400;
+    color: #503396;
+    line-height: 1.1;
+     margin-left: 20%;
+}
+
 
 
 </style>
@@ -440,6 +497,7 @@ html {
     
     
      <!-- fs-about area start -->
+     <div id="contents" class="no-padding location-fixed">
     <section class="fs-about-area ptb--100" id="about">
         <div class="container">
             <div class="row">
@@ -629,90 +687,116 @@ html {
                 <h2>영화 포스터</h2>
             </div>
             <div class="row">
+            <c:forEach items="${movie }" var="movie" >
+		
                 <div class="col-lg-4 col-md-6">
                     <div class="single-blog">
                         <div class="blog-content">
-                            <h2>
-                                <a href="blog.html">Everyday it provides me with exactly what I need</a>
-                            </h2>
-                            <span>June 18, 2017</span>
+                            <span>${movie.mtitle }</span>
+                            <span>개봉일 ${movie.opendate }</span>
                         </div>
                         <div class="blog-thumb">
-                            <img src="assets/images/blog/photography-blog/photography-blog-img1.jpg" alt="">
-                            <a href="blog.html" class="read-more">Read More
+                            <img src="resources/movieposter/${movie.filename }" alt="">
+                            <a href="blog.html" class="read-more">바로 가기
                                 <i class="fa fa-long-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog">
-                        <div class="blog-content">
-                            <h2>
-                                <a href="blog.html">Everyday it provides me with exactly what I need</a>
-                            </h2>
-                            <span>June 18, 2017</span>
-                        </div>
-                        <div class="blog-thumb">
-                            <img src="assets/images/blog/photography-blog/photography-blog-img2.jpg" alt="">
-                            <a href="blog.html" class="read-more">Read More
-                                <i class="fa fa-long-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog">
-                        <div class="blog-content">
-                            <h2>
-                                <a href="blog.html">Everyday it provides me with exactly what I need</a>
-                            </h2>
-                            <span>June 18, 2017</span>
-                        </div>
-                        <div class="blog-thumb">
-                            <img src="assets/images/blog/photography-blog/photography-blog-img3.jpg" alt="">
-                            <a href="blog.html" class="read-more">Read More
-                                <i class="fa fa-long-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
+                
             </div>
+             <br>
+    <br>
+    <br>
+    <br>
+    <br>
         </div>
     </section>
+    
+  
     <!-- feature blog area end -->
+      <h3 class="tit">극장 공지사항</h3>
+    <div class="table-wrap">
+				<table class="board-list">
+					<colgroup>
+						<col style="width:150px;">
+						<col>
+						<col style="width:150px;">
+						<col style="width:120px;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">극장</th>
+							<th scope="col">제목</th>
+							<th scope="col">지역</th>
+							<th scope="col">등록일</th>
+						</tr>
+					</thead>
+					<tbody>
+									<tr>
+										<td>코엑스</td>
+										<th scope="row">
+											<a href="/support/notice/detail?artiNo=10472&amp;bbsNo=9" title="[코엑스지점] 스타필드 코엑스몰 일부 출입문&nbsp;폐쇄&nbsp;안내 상세보기">
+												[코엑스지점] 스타필드 코엑스몰 일부 출입문&nbsp;폐쇄&nbsp;안내
+											</a>
+										</th>
+										<td>서울</td>
+										<td>2022.01.10</td>
+									</tr>
+									<tr>
+										<td>킨텍스</td>
+										<th scope="row">
+											<a href="/support/notice/detail?artiNo=10471&amp;bbsNo=9" title="[킨텍스]영화관 내 백화점 연결통로 이동 통제 안내 상세보기">
+												[킨텍스]영화관 내 백화점 연결통로 이동 통제 안내
+											</a>
+										</th>
+										<td>경기</td>
+										<td>2022.01.07</td>
+									</tr>
+									<tr>
+										<td>안성스타필드</td>
+										<th scope="row">
+											<a href="/support/notice/detail?artiNo=10470&amp;bbsNo=9" title="[안성스타필드] 스타필드 운영시간 外 주차 및 도보 출입구 안내 상세보기">
+												[안성스타필드] 스타필드 운영시간 外 주차 및 도보 출입구 안내
+											</a>
+										</th>
+										<td>경기</td>
+										<td>2022.01.06</td>
+									</tr>
+									<tr>
+										<td>목동</td>
+										<th scope="row">
+											<a href="/support/notice/detail?artiNo=10465&amp;bbsNo=9" title="[목동] 12월 26일 순간정전으로 인한 상영중단 및 취소 안내  상세보기">
+												[목동] 12월 26일 순간정전으로 인한 상영중단 및 취소 안내 
+											</a>
+										</th>
+										<td>서울</td>
+										<td>2021.12.27</td>
+									</tr>
+									<tr>
+										<td>목동</td>
+										<th scope="row">
+											<a href="/support/notice/detail?artiNo=10464&amp;bbsNo=9" title="[목동] 12월 25일 순간정전으로 인한 상영중단 및 취소 안내  상세보기">
+												[목동] 12월 25일 순간정전으로 인한 상영중단 및 취소 안내 
+											</a>
+										</th>
+										<td>서울</td>
+										<td>2021.12.26</td>
+									</tr>
+					</tbody>
+				</table>
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
 
-    <!-- contact area start -->
-    <div class="contact-area bg-gray ptb--100">
-        <div class="container">
-            <div class="section-title">
-                <span>Find Us</span>
-                <h2>Contact</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="contact-content">
-                        <ul>
-                            <li>
-                                <i class="fa fa-map-marker"></i>Race Event BeFaster, UK, 2292 Peachtree Rd NW</li>
-                            <li>
-                                <i class="fa fa-phone"></i>+1 123 456 8798</li>
-                            <li>
-                                <i class="fa fa-envelope"></i>user@gmail.com</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div id="google_map"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- contact area end -->
+   
     
     
 	
-	
+	</div>
 </body>
 	<script >
 
