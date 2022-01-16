@@ -33,9 +33,11 @@
 	
 	<definition name="*/*" extends="ulayout-tiles">
 		<put-attribute name="ubody" value="/WEB-INF/views/{1}/{2}.jsp" />
-		
 	</definition>   
 	
+	<definition name="views/*" extends="ulayout-tiles">
+		<put-attribute name="ubody" value="/WEB-INF/views/{1}.jsp" />
+	</definition>   
 	
 	 	
       </tiles-definitions>
