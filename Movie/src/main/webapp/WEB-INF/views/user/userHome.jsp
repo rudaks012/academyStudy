@@ -484,6 +484,18 @@ h3.tit {
     line-height: 1.1;
      margin-left: 20%;
 }
+.accordion-list ul li div.title:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 21px;
+    width: 12px;
+    height: 7px;
+    margin: 0;
+    padding: 0;
+    background: url(https://img.megabox.co.kr/static/pc/images/common/bg/bg-arr-accordion-down.png) no-repeat center;
+}
 
 
 
@@ -718,6 +730,7 @@ h3.tit {
     <!-- feature blog area end -->
       <h3 class="tit">극장 공지사항</h3>
     <div class="table-wrap">
+   
 				<table class="board-list">
 					<colgroup>
 						<col style="width:150px;">
@@ -727,63 +740,25 @@ h3.tit {
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col">극장</th>
+							<th scope="col">번호</th>
 							<th scope="col">제목</th>
-							<th scope="col">지역</th>
-							<th scope="col">등록일</th>
+							<th scope="col">작성일자</th>
 						</tr>
 					</thead>
+						
 					<tbody>
+				 <c:forEach items="${notice }" var="notice" >
 									<tr>
-										<td>코엑스</td>
+										<td>${notice.nocode }</td>
 										<th scope="row">
-											<a href="/support/notice/detail?artiNo=10472&amp;bbsNo=9" title="[코엑스지점] 스타필드 코엑스몰 일부 출입문&nbsp;폐쇄&nbsp;안내 상세보기">
-												[코엑스지점] 스타필드 코엑스몰 일부 출입문&nbsp;폐쇄&nbsp;안내
+											<a href="/support/notice/detail?artiNo=10472&amp;bbsNo=9" title="${notice.notitle } 상세보기">
+												${notice.notitle }
 											</a>
 										</th>
-										<td>서울</td>
-										<td>2022.01.10</td>
+										<td>${notice.nodate }</td>
 									</tr>
-									<tr>
-										<td>킨텍스</td>
-										<th scope="row">
-											<a href="/support/notice/detail?artiNo=10471&amp;bbsNo=9" title="[킨텍스]영화관 내 백화점 연결통로 이동 통제 안내 상세보기">
-												[킨텍스]영화관 내 백화점 연결통로 이동 통제 안내
-											</a>
-										</th>
-										<td>경기</td>
-										<td>2022.01.07</td>
-									</tr>
-									<tr>
-										<td>안성스타필드</td>
-										<th scope="row">
-											<a href="/support/notice/detail?artiNo=10470&amp;bbsNo=9" title="[안성스타필드] 스타필드 운영시간 外 주차 및 도보 출입구 안내 상세보기">
-												[안성스타필드] 스타필드 운영시간 外 주차 및 도보 출입구 안내
-											</a>
-										</th>
-										<td>경기</td>
-										<td>2022.01.06</td>
-									</tr>
-									<tr>
-										<td>목동</td>
-										<th scope="row">
-											<a href="/support/notice/detail?artiNo=10465&amp;bbsNo=9" title="[목동] 12월 26일 순간정전으로 인한 상영중단 및 취소 안내  상세보기">
-												[목동] 12월 26일 순간정전으로 인한 상영중단 및 취소 안내 
-											</a>
-										</th>
-										<td>서울</td>
-										<td>2021.12.27</td>
-									</tr>
-									<tr>
-										<td>목동</td>
-										<th scope="row">
-											<a href="/support/notice/detail?artiNo=10464&amp;bbsNo=9" title="[목동] 12월 25일 순간정전으로 인한 상영중단 및 취소 안내  상세보기">
-												[목동] 12월 25일 순간정전으로 인한 상영중단 및 취소 안내 
-											</a>
-										</th>
-										<td>서울</td>
-										<td>2021.12.26</td>
-									</tr>
+									
+				</c:forEach>
 					</tbody>
 				</table>
 				<br>

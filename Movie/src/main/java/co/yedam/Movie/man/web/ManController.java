@@ -8,12 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.yedam.Movie.comm.MovieVO;
+import co.yedam.Movie.comm.NoticeVO;
 import co.yedam.Movie.man.service.MoviePostService;
+import co.yedam.Movie.man.service.NoticeService;
 
 @Controller
 public class ManController {
 	@Autowired
 	private MoviePostService moviePostDao;
+	@Autowired
+	private NoticeService noticeDao;
 	
 	@RequestMapping("/userhome.do")
 	public String userhome(Model model) {
@@ -27,11 +31,20 @@ public class ManController {
 						movie.get(i).setOpendate(date);
 					}
 					model.addAttribute("movie", movie);
-					
 				}
+				List<NoticeVO> notice = noticeDao.noticeSelectList();
+				System.out.println("공지사항");
+				model.addAttribute("notice",notice);
 		
 		return "user/userHome";
 	}
+//	@RequestMapping("/userhome.do")
+//	public String userhome1(Model model) {
+//		System.out.println("공지사항확인");
+//		
+//		
+//		return "user/userHome";
+//	}
 	@RequestMapping("/moviecenter.do")
 	public String moviecenter() {
 		return "user/MovieCenter";

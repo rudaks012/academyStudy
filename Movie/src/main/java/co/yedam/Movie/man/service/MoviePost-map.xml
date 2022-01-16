@@ -3,8 +3,6 @@
 <mapper namespace="co.yedam.Movie.man.service.MoviePostMapper">
 	<select id="moviePostSelectList"
 		resultType="co.yedam.Movie.comm.MovieVO">
-	
-		
 		SELECT a.*
 		FROM(select * from movie order by opendate desc) a
 		<![CDATA[WHERE rownum<=3]]>
