@@ -121,8 +121,8 @@ ul {
 					href="#">멤버십</a></span>
 			</div>
 			<div id="topheader_right">
-				<span><a href="#">로그인</a></span>&nbsp;&nbsp;&nbsp; <span><a
-					href="#">회원가입</a></span>&nbsp;&nbsp;&nbsp; <span><a href="#">빠른예매</a></span>
+				<span><a href="loginForm.do">로그인</a></span>&nbsp;&nbsp;&nbsp; <span><a
+					href="joinForm.do">회원가입</a></span>&nbsp;&nbsp;&nbsp; <span><a href="#">빠른예매</a></span>
 					&nbsp;&nbsp;&nbsp;<span><a href="home.do">[!!!메인화면!!!]</a></span>
 			</div>
 		</div>
