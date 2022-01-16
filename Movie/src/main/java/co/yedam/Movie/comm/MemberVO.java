@@ -1,8 +1,10 @@
-package co.yedam.Movie.memberService;
+package co.yedam.Movie.comm;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Setter
 public class MemberVO {
@@ -14,6 +16,7 @@ public class MemberVO {
 	private String memGrade;
 	private String memStatus;
 	private String memAge;
+	private String author;
 	
 	
 }

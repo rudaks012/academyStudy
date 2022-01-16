@@ -1,33 +1,215 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="js/jquery-3.6.0.min.js"></script>
+<!-- plugins:css -->
+<link rel="stylesheet"
+	href="resources/admin/vendors/feather/feather.css">
+<link rel="stylesheet"
+	href="resources/admin/vendors/ti-icons/css/themify-icons.css">
+<link rel="stylesheet"
+	href="resources/admin/vendors/css/vendor.bundle.base.css">
+<!-- endinject -->
+<!-- Plugin css for this page -->
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet"
+	href="resources/admin/css/vertical-layout-light/style.css">
+<!-- endinject -->
+<link rel="shortcut icon" href="resources/admin/images/favicon.png" />
+<link rel="stylesheet"
+	href="resources/admin/vendors/mdi/css/materialdesignicons.min.css">
+
+
+    
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css"
+	rel="stylesheet" />
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
- function loginChk(){
-	 var id = $("#exampleInputEmail1").val();
-	 var password = $("#exampleInputPassword1").val();
-	 console.log(id+" "+password)
- }
+
+
+	function loginChk() {
+		
+		removesrc()
+		loginChkin()
+	
+	}
+	
+	function loginChkin(){
+		var id = $("#exampleInputEmail1").val();
+		var password = $("#exampleInputPassword1").val();
+		$.ajax({
+			url : 'ajaxLogin.do',
+
+			data : {
+				memId : id,
+				memPassword : password
+			},
+			success : function(data) {
+				console.log(data)
+				if (data.msg == "Yes") {
+					var author = data.author
+					var name = data.name
+					console.log(author)
+					successalert(author, name);
+				} else {
+					falsealert(1)
+				}
+
+			},
+			error : function() {
+				falsealert(2)
+			}
+		})
+	}
+
+	function successalert(author, name) {
+		if (author == "admin") {
+			swal({
+				icon : 'success',
+				title : author + '계정으로 로그인 되었습니다.',
+				text : '관리자 페이지로 이동하겠습니다.',
+				value : true,
+
+			}).then(function(value) {
+				location.href = "adminhome.do"
+			})
+		} else if (author == "USER") {
+			swal({
+				icon : 'success',
+				title : name + '님 환영합니다.',
+				text : '',
+				value : true,
+			}).then(function(value) {
+				location.href = "userhome.do"
+			})
+		} else {
+			alert("에러임")
+		}
+	}
+	function falsealert(val) {
+		var msg;
+		if (val == 1) {
+			msg = '아이디 혹은 비밀번호가 일치하지 않습니다.'
+		} else if (val == 2) {
+			msg = '오류가 발생했습니다. 관리자에게 문의하세요.'
+		}
+		swal({
+			icon : "warning",
+			dangerMode : true,
+			title : '',
+			text : msg,
+		})
+	}
+	function passwordFind() {
+		swal({
+			text : "아이디를 입력해주세요!",
+			closeOnClickOutside : false,
+			content : "input",
+			buttons : [ "cancle", "YES" ],
+		}).then(function(id) {
+			if (!id) {
+				passwordFind();
+			}
+			return $.ajax({
+				url : "ajaxpasswordfindidchk.do",
+				data : {
+					memId : id,
+				},
+				success : function(data) {
+
+				}
+			})
+		}).then(function(result) {
+			console.log(result)
+		})
+
+	}
+	function inputsrc(){
+		$("#hiddeninput").append($("<script>").attr("src", "https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"));
+	}
+	
+	function removesrc(){
+		$("#hiddeninput").children("script").remove();
+        location.reload();
+	}
+	
+	
+	function idFind() {
+		inputsrc();
+		
+		
+		idfindchk();
+		
+			
+	
+
+	}
+	
+	function idfindchk(){
+		swal({
+			title : "아이디 찾기",
+			text : "이름을 입력해주세요!",
+			type : "input",
+			showCancelButton : true,
+			confirmButtonText : "CONFIRM",
+			cancelButtonText : "CANCEL",
+			closeOnConfirm : false,
+			closeOnCancel : true
+		},
+
+		function(inputValue) {
+			if (inputValue === false) {
+
+			} else {
+
+				$.ajax({
+					url : "ajaxidfindchk.do",
+					data : {
+						memName : inputValue,
+					},
+					success : function(data) {
+						if (data != "No") {
+							swal(inputValue + "님의 ID는 " + data + "입니다.")
+						} else {
+							console.log("no")
+							swal("일치하는 정보가 없습니다.")
+						}
+
+					}
+				})
+
+			}
+		});
+	}
+	
+	
+	
+	function mmm() {
+		$.ajax({
+			url : "mailsend.do",
+			success : function(data) {
+				console.log(data)
+			}
+		})
+	}
+	
+	
 </script>
+
+
 </head>
 <body>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="resources/admin/vendors/feather/feather.css">
-  <link rel="stylesheet" href="resources/admin/vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="resources/admin/vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="resources/admin/css/vertical-layout-light/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="resources/admin/images/favicon.png" />
-  <link rel="stylesheet" href="resources/admin/vendors/mdi/css/materialdesignicons.min.css">
-  
+	<button type="button" onclick="mmm()"></button>
+	<input type="hidden" id="hiddeninput">
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div class="content-wrapper d-flex align-items-center auth px-0">
@@ -61,20 +243,24 @@
 								</div>
 								<div class="mt-2"></div>
 								<div class="mt-1">
-									<a href="#" style="margin-right: .5em; margin-left: .5em; font-size: 1.2rem;"
-										class="auth-link text-black">아이디 찾기</a> <a href="#" style="font-size: 1.2rem;"
+									<a href="javascript:idFind()"
+										style="margin-right: .5em; margin-left: .5em; font-size: 1.2rem;"
+										class="auth-link text-black">아이디 찾기</a> <a
+										href="javascript:passwordFind()" style="font-size: 1.2rem;"
 										class="auth-link text-black">비밀번호 찾기</a>
 								</div>
 								<div class="mt-2"></div>
 
 
 								<div class="mb-2">
-									<button type="button" style="background-color: yellowgreen; font-size: 1.4rem;"
+									<button type="button"
+										style="background-color: yellowgreen; font-size: 1.4rem;"
 										class="btn btn-block btn-facebook auth-form-btn">네이버
 										로그인</button>
 								</div>
 								<div class="mb-2">
-									<button type="button" style="background-color: gold; font-size: 1.4rem;"
+									<button type="button"
+										style="background-color: gold; font-size: 1.4rem;"
 										class="btn btn-block btn-facebook auth-form-btn">카카오
 										로그인</button>
 								</div>
@@ -85,7 +271,8 @@
 										class="auth-link text-black">회원가입</a>
 								</div>
 								<div style="position: absolute; left: 35.8em; bottom: 1.4rem;">
-									<button type="button" style="width: 6em;" onclick="location.href='home.do'"
+									<button type="button" style="width: 6em;"
+										onclick="location.href='home.do'"
 										class="btn btn-inverse-primary btn-rounded btn-icon">
 										<i style="font-size: 1.7rem" class="ti-home"></i>
 									</button>
@@ -94,24 +281,23 @@
 							</form>
 						</div>
 					</div>
-				</div>	
+				</div>
 			</div>
-			<!-- content-wrapper ends -->
+
 		</div>
-		<!-- page-body-wrapper ends -->
+
 	</div>
-	<!-- container-scroller -->
-	<!-- plugins:js -->
+
+
 	<script src="resources/admin/vendors/js/vendor.bundle.base.js"></script>
-	<!-- endinject -->
-	<!-- Plugin js for this page -->
-	<!-- End plugin js for this page -->
-	<!-- inject:js -->
+
 	<script src="resources/admin/js/off-canvas.js"></script>
 	<script src="resources/admin/js/hoverable-collapse.js"></script>
 	<script src="resources/admin/js/template.js"></script>
 	<script src="resources/admin/js/settings.js"></script>
 	<script src="resources/admin/js/todolist.js"></script>
-	<!-- endinject -->
+
 </body>
+
+
 </html>

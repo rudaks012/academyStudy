@@ -39,19 +39,17 @@
 
 			<tiles:insertAttribute name="aheader" />
 			<tiles:insertAttribute name="asidebar" />
-		<div class="main-panel">
+			<div class="main-panel">
 				<tiles:insertAttribute name="abody" />
 				<tiles:insertAttribute name="afooter" />
-		</div>
+			</div>
 		</div>
 
 	</div>
 
-
-	<!-- plugins:js -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="resources/admin/vendors/js/vendor.bundle.base.js"></script>
-	<!-- endinject -->
-	<!-- Plugin js for this page -->
+
 	<script src="resources/admin/vendors/chart.js/Chart.min.js"></script>
 	<script
 		src="resources/admin/vendors/datatables.net/jquery.dataTables.js"></script>
@@ -59,15 +57,13 @@
 		src="resources/admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 	<script src="resources/admin/js/dataTables.select.min.js"></script>
 
-	<!-- End plugin js for this page -->
-	<!-- inject:js -->
+
 	<script src="resources/admin/js/off-canvas.js"></script>
 	<script src="resources/admin/js/hoverable-collapse.js"></script>
 	<script src="resources/admin/js/template.js"></script>
 	<script src="resources/admin/js/settings.js"></script>
 	<script src="resources/admin/js/todolist.js"></script>
-	<!-- endinject -->
-	<!-- Custom js for this page-->
+
 	<script src="resources/admin/js/dashboard.js"></script>
 	<script src="resources/admin/js/Chart.roundedBarCharts.js"></script>
 	<!-- End custom js for this page-->

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.Movie.Jay.service.MemberMapper">
+	<select id="memeberLogin"
+		resultType="co.yedam.Movie.comm.MemberVO">
+		SELECT * FROM MEMBER
+		WHERE MEMID = #{memId}
+		AND MEMPASSWORD = #{memPassword}
+		AND MEMSTATUS != 'D'
+	</select>
+	
+	<select id="memberPasswordFindIdChk"
+	resultType="co.yedam.Movie.comm.MemberVO">
+		SELECT * FROM MEMBER
+		WHERE MEMID = #{memId}
+	</select>
+	
+	<select id="memberIdFindChk"
+	resultType="co.yedam.Movie.comm.MemberVO">
+		SELECT * FROM MEMBER
+		WHERE MEMNAME = #{memName}
+	</select>
+</mapper>
