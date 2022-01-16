@@ -17,6 +17,10 @@
    <definition name="admin/*" extends="alayout-tiles">
    		<put-attribute name="abody" value="/WEB-INF/views/admin/{1}.jsp"/>
    </definition>
+   
+   <definition name="oh/*" extends="alayout-tiles">
+   		<put-attribute name="abody" value="/WEB-INF/views/oh/{1}.jsp"/>
+   </definition>
       
       <!-- user layout -->
      <definition name="ulayout-tiles" template="/WEB-INF/views/layout/userLayout.jsp">
