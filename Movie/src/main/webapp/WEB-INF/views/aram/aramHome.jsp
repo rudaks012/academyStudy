@@ -12,33 +12,23 @@
 <style>
 	.wrap{
 		width: 1200px;
+		height: 700px;
 		margin: 0 auto;
 	}
-	li{
-		cursor: pointer;
-	}
 	.ticket_tb{
-		 width: 1200px;
+		 width: 1100px;
+		 height: 630px;
 		 border: 1px solid lightgray;
 	}
-	#title p{
-		font-size: 27px;
-		color: black;
-		margin-bottom: 15px;
-	}
-	#first_tr{
-		border-top: 1px solid black;
-		border-bottom: 1px solid lightgray;
-	}
 	 .swiper {
-        width: 100%;
-        height: 100%;
-      }
+        width: 950px;
+  		height: 35px;
+	}
 
       .swiper-slide {
         text-align: center;
-        font-size: 18px;
-        background: #fff;
+        font-size: 14px;
+       	color: black;
 
         /* Center slide text vertically */
         display: -webkit-box;
@@ -53,19 +43,31 @@
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
-      }
+	}
 
       @media (max-width: 760px) {
         .swiper-button-next {
           right: 20px;
-          transform: rotate(90deg);
+          transform: rotate(90deg);     
         }
-
         .swiper-button-prev {
           left: 20px;
           transform: rotate(90deg);
         }
-      }
+	}
+      li{
+		cursor: pointer;
+	}
+	#title p{
+		font-size: 27px;
+		color: black;
+		margin-bottom: 15px;
+	}
+	#first_tr{
+		border-top: 1px solid black;
+		border-bottom: 1px solid lightgray;
+		height: 40px;
+	}
 </style>
 </head>
 <body>
@@ -75,11 +77,30 @@
 		<table class="ticket_tb">	
 			<tr id="first_tr">
 				<td colspan="3">
-					날짜 슬라이드
-					 
+					<div class="swiper">
+				      <div class="swiper-wrapper">      
+				        <div class="swiper-slide">17*월</div>
+				        <div class="swiper-slide">18*화</div>
+				        <div class="swiper-slide">19*수</div>
+				        <div class="swiper-slide">20*목</div>
+				        <div class="swiper-slide">21*금</div>
+				        <div class="swiper-slide">22*토</div>
+				        <div class="swiper-slide">23*일</div>
+				        <div class="swiper-slide">24*일</div>
+				        <div class="swiper-slide">25*일</div>
+				        <div class="swiper-slide">26*일</div>
+				        <div class="swiper-slide">27*일</div>
+				        <div class="swiper-slide">28*일</div>
+				        <div class="swiper-slide">29*일</div>
+				        <div class="swiper-slide">30*일</div>
+				        <div class="swiper-slide">31*일</div>
+				      </div>
+				      <div class="swiper-button-next"></div> 
+				      <div class="swiper-button-prev"></div>
+				    </div>
 				</td>
 				<td>
-					달력아이콘
+					<input type="date">
 				</td>
 			</tr>
 			
@@ -139,38 +160,12 @@
 				</td>
 			</tr>
 		</table>
-	<br>
-	<br>
-	<h2>⋆ ₊ ﾟ   ☽ * ₊ ⋆ 슬라이드 테스트 ⋆ ₊ ﾟ   ☽ * ₊ ⋆</h2>
-	<br>
-	 
-	<div class="swiper">
-				      <div class="swiper-wrapper">
-				        <div class="swiper-slide">16*내일</div>
-				        <div class="swiper-slide">17*월</div>
-				        <div class="swiper-slide">18*화</div>
-				        <div class="swiper-slide">19*수</div>
-				        <div class="swiper-slide">20*목</div>
-				        <div class="swiper-slide">21*금</div>
-				        <div class="swiper-slide">22*토</div>
-				        <div class="swiper-slide">23*일</div>
-				        <div class="swiper-slide">24*일</div>
-				        <div class="swiper-slide">25*일</div>
-				        <div class="swiper-slide">26*일</div>
-				        <div class="swiper-slide">27*일</div>
-				        <div class="swiper-slide">28*일</div>
-				        <div class="swiper-slide">29*일</div>
-				        <div class="swiper-slide">30*일</div>
-				        <div class="swiper-slide">31*일</div>
-				      </div>
-				      <div class="swiper-button-next"></div> 
-				      <div class="swiper-button-prev"></div>
-				    </div>
+	
  </div> <!-- end of wrap -->
 	
 	 <script>
       var swiper = new Swiper('.swiper', {
-        slidesPerView: 7,
+        slidesPerView: 10,
         direction: getDirection(),
         navigation: {
           nextEl: '.swiper-button-next',
