@@ -1,4 +1,4 @@
-package co.yedam.Movie.dbtest.Service;
+package co.yedam.Movie.dbtest.service;
 
 import java.util.List;
 

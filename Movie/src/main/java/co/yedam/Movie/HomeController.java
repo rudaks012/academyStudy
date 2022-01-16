@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.yedam.Movie.comm.MovieVO;
 import co.yedam.Movie.comm.dbtestVO;
-import co.yedam.Movie.dbtest.Service.dbtestService;
+import co.yedam.Movie.dbtest.service.dbtestService;
 import co.yedam.Movie.taejoon.service.MovieService;
 import co.yedam.Movie.man.service.MoviePostService;
 
