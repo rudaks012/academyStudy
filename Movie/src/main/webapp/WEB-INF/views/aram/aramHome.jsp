@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +31,7 @@
         text-align: center;
         font-size: 14px;
        	color: black;
+       	cursor: pointer;
 
         /* Center slide text vertically */
         display: -webkit-box;
@@ -71,6 +74,11 @@
 </style>
 </head>
 <body>
+<jsp:useBean id="today" class="java.util.Date" />
+<fmt:formatDate var="now" value="${today}" pattern="yyMMdd" />
+<fmt:parseDate var="bdate" value="${board.bdate2}" pattern="yyMMdd" />
+<fmt:formatDate var="bdate" value="${bdate}" pattern="yyMMdd" />
+
 	<div class="wrap">
 		<div id="title"><p>빠른예매</p></div>
 		
@@ -79,21 +87,20 @@
 				<td colspan="3">
 					<div class="swiper">
 				      <div class="swiper-wrapper">      
-				        <div class="swiper-slide">17*월</div>
-				        <div class="swiper-slide">18*화</div>
-				        <div class="swiper-slide">19*수</div>
-				        <div class="swiper-slide">20*목</div>
-				        <div class="swiper-slide">21*금</div>
-				        <div class="swiper-slide">22*토</div>
-				        <div class="swiper-slide">23*일</div>
-				        <div class="swiper-slide">24*일</div>
-				        <div class="swiper-slide">25*일</div>
-				        <div class="swiper-slide">26*일</div>
-				        <div class="swiper-slide">27*일</div>
-				        <div class="swiper-slide">28*일</div>
-				        <div class="swiper-slide">29*일</div>
-				        <div class="swiper-slide">30*일</div>
-				        <div class="swiper-slide">31*일</div>
+				        <div class="swiper-slide">${bdate= now}</div>
+				        <div class="swiper-slide">${bdate= now+1}</div>
+				        <div class="swiper-slide">${bdate= now+2}</div>
+				        <div class="swiper-slide">${bdate= now+3}</div>
+				        <div class="swiper-slide">${bdate= now+4}</div>
+				        <div class="swiper-slide">${bdate= now+5}</div>
+				        <div class="swiper-slide">${bdate= now+6}</div>
+				        <div class="swiper-slide">${bdate= now+7}</div>
+				        <div class="swiper-slide">${bdate= now+8}</div>
+				        <div class="swiper-slide">${bdate= now+9}</div>
+				        <div class="swiper-slide">${bdate= now+10}</div>
+				        <div class="swiper-slide">${bdate= now+11}</div>
+				        <div class="swiper-slide">${bdate= now+12}</div>
+				        <div class="swiper-slide">${bdate= now+13}</div>
 				      </div>
 				      <div class="swiper-button-next"></div> 
 				      <div class="swiper-button-prev"></div>
