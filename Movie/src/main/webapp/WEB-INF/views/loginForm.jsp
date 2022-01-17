@@ -25,7 +25,7 @@
 	href="resources/admin/vendors/mdi/css/materialdesignicons.min.css">
 
 
-    
+
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css"
 	rel="stylesheet" />
@@ -36,14 +36,8 @@
 <script type="text/javascript">
 
 
+
 	function loginChk() {
-		
-		removesrc()
-		loginChkin()
-	
-	}
-	
-	function loginChkin(){
 		var id = $("#exampleInputEmail1").val();
 		var password = $("#exampleInputPassword1").val();
 		$.ajax({
@@ -133,28 +127,23 @@
 		})
 
 	}
-	function inputsrc(){
-		$("#hiddeninput").append($("<script>").attr("src", "https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"));
-	}
-	
-	function removesrc(){
-		$("#hiddeninput").children("script").remove();
-        location.reload();
-	}
-	
-	
-	function idFind() {
-		inputsrc();
-		
-		
-		idfindchk();
-		
-			
-	
+	function inputsrc() {
+		$("#hiddeninput")
+				.append(
+						$("<script>")
+								.attr("src",
+										"https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"));
 
 	}
-	
-	function idfindchk(){
+
+	function idFind() {
+		inputsrc();
+		setTimeout(function() {
+			idfindchk();
+		}, 10)
+	}
+
+	function idfindchk() {
 		swal({
 			title : "아이디 찾기",
 			text : "이름을 입력해주세요!",
@@ -178,21 +167,28 @@
 					},
 					success : function(data) {
 						if (data != "No") {
-							swal(inputValue + "님의 ID는 " + data + "입니다.")
+							swal(inputValue + "님의 ID는 ", data + "입니다.", "success");
+							setTimeout(function(){
+								location.reload();
+							},1500)
+
 						} else {
 							console.log("no")
-							swal("일치하는 정보가 없습니다.")
+							swal("일치하는 정보가 없습니다.", "", "error")
+							setTimeout(function(){
+								location.reload();
+							},1500)
+
 						}
 
 					}
 				})
 
 			}
+						
 		});
 	}
-	
-	
-	
+
 	function mmm() {
 		$.ajax({
 			url : "mailsend.do",
@@ -201,15 +197,16 @@
 			}
 		})
 	}
-	
-	
 </script>
 
 
 </head>
 <body>
-	<button type="button" onclick="mmm()"></button>
-	<input type="hidden" id="hiddeninput">
+
+<!-- 	<button type="button" onclick="mmm()"></button> -->
+	<div id="hiddendiv">
+		<input type="hidden" id="hiddeninput" value="0">
+	</div>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div class="content-wrapper d-flex align-items-center auth px-0">
