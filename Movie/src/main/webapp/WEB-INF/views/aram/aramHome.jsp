@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -113,6 +114,7 @@
 			
 			<tr>
 				<td>
+				
 					영화
 				</td>
 				<td colspan="2">
@@ -126,10 +128,12 @@
 			<tr>
 				<td rowspan="2">
 					<ul>
+					<!-- <c:forEach items="${movies}" var="movie"> -->
 						<li>씽2게더</li>
 						<li>스파이더맨:노 웨이 홈</li>
 						<li>경관의 피</li>
 						<li>킹스맨: 퍼스트 에이전트</li>
+					<!-- </c:forEach> -->
 					</ul>
 				</td>
 				<td rowspan="2">
