@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
         /* @import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css'); */
         @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 100;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');}
@@ -118,56 +119,62 @@
     <div id="con">
     <div id="login">
     <div id="login_form"><!--로그인 폼-->
-    <form>
+    <form id="joinFrm" name="joinFrm" action="joinFrm.do">
         <h3 class="login" style="letter-spacing:-1px;">회 원 가 입</h3>
         <hr>
         <!-- <span>ID</span> -->
         <p style="text-align: left; font-size:12px; color:#666">이메일을 입력하세요.</p>
-        <input type="text" placeholder="아이디" class="size" id="id" name="id">
+        <input type="text" placeholder="아이디" class="size" name="memId">
         <p></p>
         </label><!--아이디-->
 
         <p style="text-align: left; font-size:12px; color:#666">이름을 입력하세요.</p>
-        <input type="text" placeholder="이름" class="size" id="name" name="name">
+        <input type="text" placeholder="이름" class="size" name="memName">
         <p></p>
         </label><!--아이디-->
-
-
         <label>
         <!-- <span>PW</span> -->
         <p style="text-align: left; font-size:12px; color:#666">패스워드를 입력하세요. </p>
-        <input type="password" placeholder="비밀번호" class="size" id="password" name="password">
+        <input type="password" placeholder="비밀번호" class="size" id="pw1" name="memPassword">
         </label><!--비밀번호-->
 
         <label>
             <!-- <span>PW</span> -->
             <p style="text-align: left; font-size:12px; color:#666"> </p>
-            <input type="password" placeholder="비밀번호 확인" class="size" id="cpassword" name="cpassword">
+            <input type="password" placeholder="비밀번호 확인" class="size" id="pw2">
         </label><!--비밀번호 확인-->
 
          <label>
                 <!-- <span>PW</span> -->
             <p style="text-align: left; font-size:12px; color:#666">주소를 입력하세요.</p>
-                <input type="text" placeholder="주소" class="size">
+                <input type="text" placeholder="주소" class="size" name="memAddress">
         </label> 
         <label>
             <!-- <span>PW</span> -->
         <p style="text-align: left; font-size:12px; color:#666">전화번호를 입력하세요.</p>
-            <input type="text" placeholder="전화번호" class="size">
+            <input type="text" placeholder="전화번호" class="size" name="memTel">
     </label> 
-
     <label>
         <!-- <span>PW</span> -->
         <p style="text-align: left; font-size:12px; color:#666">나이를 입력하세요.</p>
-        <input type="text" placeholder="나이" class="size">
-    </label> 
-
-
-    <br>
-        <p>
-            <input type="submit" value="Create Acoout" class="btn">
-            
-        </p>
+        <input type="text" placeholder="나이" class="size" name="memAge">
+    </label> <br>
+             <div>
+				<input type="button" value="회원가입 신청" class="btn" onclick="checkPW()">
+			</div>
+			<script>
+		function checkPW() {
+				var pw1 = $("#pw1").val();
+				var pw2 = $("#pw2").val();
+			if (pw1 != pw2 || pw1 ==""){
+				alert("비밀번호가 일치하지 않습니다 다시 입력해 주세요.");
+			     $("#pw2").text("");
+			} else if ($("#pw1").val() == $("#pw2").val()) {
+				$("#joinFrm").submit();
+			}
+								
+	}
+</script>
     </form>
     <p class="find">
         <span><a href="signin.html" >로그인 페이지로 이동</a></span>
@@ -175,6 +182,5 @@
     </div>
     <div>
     </div><!--con-->
-
 </body>
 </html>
