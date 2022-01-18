@@ -420,6 +420,13 @@ a:-webkit-any-link {
 	padding: 30px 0 0 0;
 	text-align: center;
 }
+
+.accordion-list ul li div.content {
+	padding: 30px 20px;
+	box-sizing: border-box;
+	border-bottom: 1px solid #eaeaea;
+	background-color: #f2f4f5;
+}
 </style>
 </head>
 
@@ -1186,7 +1193,7 @@ a:-webkit-any-link {
 				$("#" + tab_id).addClass('current1');
 			});
 		});
-		
+
 		// 극장 정보(Tab01) > 소식 조회
 		function fn_noticeList() {
 
@@ -1199,10 +1206,12 @@ a:-webkit-any-link {
 			options.url = "/on/oh/ohc/Brch/noticeList.do";
 
 			// 파라메터
-			options.paramData = {'brchNo' : '7011'};
+			options.paramData = {
+				'brchNo' : '7011'
+			};
 
 			// 그리기
-			options.successCallBack = function( data, textStatus, jqXHR ){
+			options.successCallBack = function(data, textStatus, jqXHR) {
 
 				var html = '';
 
@@ -1213,30 +1222,39 @@ a:-webkit-any-link {
 				}
 
 				// 내용 생성
-				$.each(data.list, function(i, param) {
-					var artiCn = "";
-					//param.cls = (i==0)? 'on' : '';
+				$
+						.each(
+								data.list,
+								function(i, param) {
+									var artiCn = "";
+									//param.cls = (i==0)? 'on' : '';
 
-					html += '<li>';
-					html += '<div class="title ">';
-					html += '	<a href="" title="'+ param.artiTitle +'">';
-					html += '		<div class="cont-tit">'+ param.artiTitle   +'</div>';
-					html += '		<p class="cont-admin">'+ param.cate2Nm     +'</p>';
-					html += '		<p class="cont-date">' + param.fstRegDtStr +'</p>';
-					html += '	</a>';
-					html += '</div>';
-					if(param.artiCn != null){
-						artiCn = $.parseHTML(param.artiCn)[0].textContent
-					}
-					html += '<div class="content" style="display:none">'+ artiCn +'</div>';
-					html += '</li>';
-				});
+									html += '<li>';
+									html += '<div class="title ">';
+									html += '	<a href="" title="'+ param.artiTitle +'">';
+									html += '		<div class="cont-tit">'
+											+ param.artiTitle + '</div>';
+									html += '		<p class="cont-admin">'
+											+ param.cate2Nm + '</p>';
+									html += '		<p class="cont-date">'
+											+ param.fstRegDtStr + '</p>';
+									html += '	</a>';
+									html += '</div>';
+									if (param.artiCn != null) {
+										artiCn = $.parseHTML(param.artiCn)[0].textContent
+									}
+									html += '<div class="content" style="display:none">'
+											+ artiCn + '</div>';
+									html += '</li>';
+								});
 
 				// 게시글 노출
 				$('#tab01 .accordion-list ul').html(html);
 
 				// 아코디언 이벤트 연결
-				mbThToggle.init({target:'accordion-list'});
+				mbThToggle.init({
+					target : 'accordion-list'
+				});
 			};
 
 			// page 이벤트 연결
