@@ -37,7 +37,14 @@ public class HomeController {
 		return "admin/adminHome";
 	}
 	@RequestMapping("/aramhome.do")
-	public String aramhome() {
+	public String aramhome(Model model) {
+		List<MovieVO> movies = movieDao.movieSelectList();
+		
+		if(movies == null) {
+			System.out.println("null임");
+		}
+		model.addAttribute("movies", movies);
+				
 		return "aram/aramHome";
 	}
 	@RequestMapping("/junhome.do")
