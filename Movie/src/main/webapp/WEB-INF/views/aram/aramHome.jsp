@@ -126,15 +126,17 @@
 			</tr>
 			
 			<tr>
+			
 				<td rowspan="2">
+				<!-- <c:forEach items="${movies}" var="movie"> -->
 					<ul>
-					<!-- <c:forEach items="${movies}" var="movie"> -->
 						<li>씽2게더</li>
 						<li>스파이더맨:노 웨이 홈</li>
 						<li>경관의 피</li>
 						<li>킹스맨: 퍼스트 에이전트</li>
-					<!-- </c:forEach> -->
+					
 					</ul>
+					<!-- </c:forEach> -->
 				</td>
 				<td rowspan="2">
 					<ul>
