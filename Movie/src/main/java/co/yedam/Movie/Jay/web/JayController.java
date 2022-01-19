@@ -105,6 +105,28 @@ public class JayController {
 		mailSender.send(message);
 		return "Yes";
 	}
+	
+	@RequestMapping("/passwordupdate.do")
+	public String passwordupdate(MemberVO vo, Model model) {
+		System.out.println("dd");
+		System.out.println(vo.getMemId());
+		vo = memberDao.memberSelect(vo);
+		model.addAttribute("id", vo.getMemId());
+		model.addAttribute("name", vo.getMemName());
+		return "admin/passwordupdate";
+		
+	}
+	
+	@RequestMapping("/formpasswordupdate.do")
+	public String formpasswordupdate(MemberVO vo) {
+		System.out.println(vo.getMemPassword());
+		System.out.println(vo.getMemId());
+		int n = memberDao.formpasswordupdate(vo);
+		System.out.println(n);
+		return "admin/adminHome";
+		
+	}
+	
 
 
 }
