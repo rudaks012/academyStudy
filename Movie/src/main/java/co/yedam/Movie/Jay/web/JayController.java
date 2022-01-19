@@ -63,19 +63,6 @@ public class JayController {
 		return "admin/adminHome";
 	}
 	
-	@RequestMapping("/ajaxpasswordfindidchk.do")
-	@ResponseBody
-	public String ajaxpasswordfindidchk(MemberVO vo) {
-		System.out.println(vo.getMemId());
-		vo = memberDao.memberPasswordFindIdChk(vo);
-		if(vo ==null) {
-			System.out.println("no");
-			return "No";
-		}else {
-			System.out.println(vo.toString());
-			return "Yes";
-		}
-	}
 	
 	@RequestMapping("/ajaxidfindchk.do")
 	@ResponseBody
@@ -89,18 +76,35 @@ public class JayController {
 		}
 	}
 	
-	//메일 연습
-	@RequestMapping("/mailsend.do")
-	public String mailsend() throws MessagingException {
+	@RequestMapping("/ajaxpasswordfindidnamechk.do")
+	@ResponseBody
+	public String ajaxpasswordfindidnamechk(MemberVO vo) {
+		System.out.println(vo.getMemId());
+		System.out.println(vo.getMemName());
+		vo = memberDao.memberPasswordFindIdNameChk(vo);
+		if( vo== null) {
+			System.out.println("null");
+			return "No";
+		}else {
+			return "Yes";
+		}
+	}
+	
+	@RequestMapping("/ajaxemailconfirm.do")
+	@ResponseBody
+	public String ajaxemailconfirm(int randomnum, String email, String name) throws MessagingException {
+		System.out.println(randomnum+"  "+ email+"  "+ name);
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-		
 		messageHelper.setFrom("yedammovie@gmail.com");
-		messageHelper.setTo("ha3310@naver.com");
-		messageHelper.setSubject("메일전송test");
-		messageHelper.setText("내용test");
+		messageHelper.setTo(email);
+		String subjectval = "안녕하세요 Yedam 입니다. "+ name + "님 요청하신 인증 번호 입니다.";
+		String textval = "3분 이내로 인증번호(6자리)를 입력해 주세요.\n 인증번호는 || "+ randomnum+" || 입니다.";
+		messageHelper.setSubject(subjectval);
+		messageHelper.setText(textval);
 		mailSender.send(message);
-		return "??";
+		return "Yes";
 	}
+
 
 }

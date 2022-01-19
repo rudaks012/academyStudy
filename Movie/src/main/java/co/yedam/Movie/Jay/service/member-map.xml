@@ -9,10 +9,11 @@
 		AND MEMSTATUS != 'D'
 	</select>
 	
-	<select id="memberPasswordFindIdChk"
+	<select id="memberPasswordFindIdNameChk"
 	resultType="co.yedam.Movie.comm.MemberVO">
 		SELECT * FROM MEMBER
 		WHERE MEMID = #{memId}
+		AND MEMNAME = #{memName}
 	</select>
 	
 	<select id="memberIdFindChk"

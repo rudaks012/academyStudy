@@ -19,16 +19,17 @@ public class MemberServiceImpl implements MemberService {
 		return map.memeberLogin(vo);
 	}
 
-	@Override
-	public MemberVO memberPasswordFindIdChk(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return map.memberPasswordFindIdChk(vo);
-	}
 
 	@Override
 	public MemberVO memberIdFindChk(MemberVO vo) {
 		// TODO Auto-generated method stub
 		return map.memberIdFindChk(vo);
+	}
+
+	@Override
+	public MemberVO memberPasswordFindIdNameChk(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return map.memberPasswordFindIdNameChk(vo);
 	}
 
 }
