@@ -347,7 +347,7 @@
 	<div class="modal">
 
 		<div class="modal_body">
-			<form>
+			
 				<div class="modal_content_title_img">
 					<img src="resources/icons/mainimg.PNG" alt="">
 				</div>
@@ -376,16 +376,18 @@
 						<button id="email_confirmBtn" type="button" class="modal_content_bydy_email_confirmBtn" onclick="resultconfirmBtn()" disabled="disabled">인증확인</button>
 					</div>
 					
-					<button type="submit" id="passwordupdate" class="submitBtn"disabled="disabled">비밀번호 변경하기</button>
-					<button type="submit" class="cancelBtn">취소</button>
+					<button type="button" id="passwordupdate" class="submitBtn"disabled="disabled" onclick="passwordupdatef()">비밀번호 변경하기</button>
+					<button type="button" class="cancelBtn">취소</button>
 					
 				</div>
-			</form>
+			
 		</div>
 
 	</div>
 	<script type="text/javascript">
-	
+		
+		
+		
 		function resultconfirmBtn(){
 				let confirmval = $("#email_confirminput").val();
 				let randomnum =  $("#hiddenrandomnum").val();
@@ -642,8 +644,6 @@
 
 			});
 		}
-
-		//
 		const body = document.querySelector('body');
 		const modal = document.querySelector('.modal');
 		const cancelBtn = document.querySelector('.cancelBtn');
@@ -669,7 +669,7 @@
 			}
 		});
 
-		//
+		
 		function startcountdown(duration, element) {
 
 			let secremaining = duration;
@@ -688,6 +688,7 @@
 					requesthide()
 					alert("입력시간이 초과 되었습니다.\n다시 요청 바랍니다.")
 					clearInterval(countinterval);
+					$("#email_confirminput").val('');
 				}
 			}, 1000)
 		}
@@ -707,6 +708,28 @@
 					+ timeformat(inputsecval);
 
 			startcountdown(--duration, element);
+		}
+		
+		function passwordupdatef(){
+			console.log("dfdf")
+			let idinputval = $("#idinput").val();
+			console.log("idinputval"+idinputval)
+			let formtag = $("<form>");
+		
+			let inputtag = $("<input>");
+			
+			inputtag.attr({
+				type : "hidden",
+				name : "memId",
+				value : idinputval
+			});
+			formtag.append(inputtag);
+			formtag.attr({
+				action : "passwordupdate.do",
+				method : "post"
+			})
+			formtag.appendTo(document.body);
+			formtag.submit();
 		}
 
 	</script>

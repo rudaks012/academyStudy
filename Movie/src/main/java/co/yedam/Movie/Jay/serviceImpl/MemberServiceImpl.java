@@ -32,4 +32,21 @@ public class MemberServiceImpl implements MemberService {
 		return map.memberPasswordFindIdNameChk(vo);
 	}
 
+
+	@Override
+	public MemberVO memberSelect(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return map.memberSelect(vo);
+	}
+
+
+	@Override
+	public int formpasswordupdate(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return map.formpasswordupdate(vo);
+	}
+
+
+	
+
 }
