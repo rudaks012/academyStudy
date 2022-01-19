@@ -312,19 +312,20 @@ ul {
 	border-radius: 10px;
 }
 
-.accordion-list ul li div.title:before {
+.imgbut {
 	content: '';
 	display: block;
 	position: absolute;
 	right: 20px;
 	top: 21px;
-	width: 12px;
-	height: 7px;
+	width: 40px;
+	height: 30px;
 	margin: 0;
 	padding: 0;
 	background:
 		url(https://img.megabox.co.kr/static/pc/images/common/bg/bg-arr-accordion-down.png)
 		no-repeat center;
+		border: 0;
 }
 
 .accordion-list ul li div.title div.cont-tit {
@@ -651,14 +652,31 @@ a:-webkit-any-link {
 				<div class="accordion-list">
 					<ul>
 						<li><div class="title "> 
-						<button type="button" name="imgbut" id="imgbut" value="check" class="imgbut"></button>
+						<button type="button" name="imgbut" id="imgbut" value="check" class="imgbut" ></button>
 								<a href="" title="지점 임시 휴점 안내">
 									<div class="cont-tit">지점 임시 휴점 안내</div>
 									<p class="cont-admin">대구신세계(동대구)</p>
 									<p class="cont-date">2020.07.03</p>
 								</a>
 							</div>
-							<div class="content" style="display: block">
+							<div class="content" style="display: none">
+								안녕하세요<br> 메가박스&nbsp;대구신세계점입니다.<br> <br>
+								대구신세계점&nbsp;건물 내&nbsp;코로나19 확진자 방문이 확인되어<br> 지점&nbsp;임시 휴점을
+								하고자 합니다.<br> <br> - 일자: 2020년 07월 03일(금)<br> - 일정
+								변경 시 추후 공지 예정<br> <br> 7월 3일자로 사전 예매하신 입장권은 자동 취소될
+								예정입니다.<br> <br> 안전한 관람환경 조성을 위한 조치로,<br> 지점 전
+								구역으로 위생 강화 및 점검을 진행하도록 하겠습니다.<br> <br> 고객님의 많은 양해
+								부탁드립니다.<br> <br> 감사합니다.
+							</div></li>
+							<li><div class="title "> 
+						<button type="button" name="imgbut" id="imgbut" value="check" class="imgbut" ></button>
+								<a href="" title="지점 임시 휴점 안내">
+									<div class="cont-tit">지점 임시 휴점 안내</div>
+									<p class="cont-admin">대구신세계(동대구)</p>
+									<p class="cont-date">2020.07.03</p>
+								</a>
+							</div>
+							<div class="content" style="display: none">
 								안녕하세요<br> 메가박스&nbsp;대구신세계점입니다.<br> <br>
 								대구신세계점&nbsp;건물 내&nbsp;코로나19 확진자 방문이 확인되어<br> 지점&nbsp;임시 휴점을
 								하고자 합니다.<br> <br> - 일자: 2020년 07월 03일(금)<br> - 일정
@@ -1033,7 +1051,18 @@ a:-webkit-any-link {
 				$("#" + tab_id).addClass('current1');
 			});
 		});
-
+		
+		$(document).ready(function() {
+			$('.imgbut').click(function() {
+			var btn_id = $(this).attr('')
+			$('.title').addClass('on');
+			$('.content').removeAttr("style")
+			$('.content').style('display', 'block');
+			
+			$('.content').removeClass('on')
+			
+			});
+		});
 		
 	</script>
 </body>
