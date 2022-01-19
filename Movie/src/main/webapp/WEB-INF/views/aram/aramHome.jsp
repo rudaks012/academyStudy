@@ -128,26 +128,19 @@
 			<tr>
 			
 				<td rowspan="2">
-				<!-- <c:forEach items="${movies}" var="movie"> -->
+				 <c:forEach items="${movies}" var="movie">
 					<ul>
-						<li>씽2게더</li>
-						<li>스파이더맨:노 웨이 홈</li>
-						<li>경관의 피</li>
-						<li>킹스맨: 퍼스트 에이전트</li>
-					
+						<li>${movie.mtitle }</li>
 					</ul>
-					<!-- </c:forEach> -->
+					 </c:forEach> 
 				</td>
 				<td rowspan="2">
+				 <c:forEach items="${cinema }" var="cinema">
 					<ul>
-						<li>서울(18)</li>
-						<li>경기(27)</li>
-						<li>인천(5)</li>
-						<li>대전/충청/세종(16)</li>
-						<li>부산/대구/경상(20)</li>
-						<li>광주/전라(9)</li>
-						<li>강원(4)</li>
+						<li>${cinema.cinArea }(${cinema.count})</li>
+						
 					</ul>
+					</c:forEach>
 				</td>
 				<td rowspan="2">
 					<ul>
