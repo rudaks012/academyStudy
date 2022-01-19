@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.yedam.Movie.aram.service.CinemaService;
+import co.yedam.Movie.comm.CinemaVO;
 import co.yedam.Movie.comm.MovieVO;
 import co.yedam.Movie.comm.dbtestVO;
 import co.yedam.Movie.dbtest.service.dbtestService;
@@ -23,6 +25,8 @@ public class HomeController {
 	private MovieService movieDao;
 	@Autowired
 	private MoviePostService moviePostDao;
+	@Autowired
+	private CinemaService cinemaDao;
 	
 		
 	@RequestMapping("/home.do")
@@ -39,11 +43,10 @@ public class HomeController {
 	@RequestMapping("/aramhome.do")
 	public String aramhome(Model model) {
 		List<MovieVO> movies = movieDao.movieSelectList();
+		List<CinemaVO> cinema = cinemaDao.cinemaAreaList();
 		
-		if(movies == null) {
-			System.out.println("null임");
-		}
 		model.addAttribute("movies", movies);
+		model.addAttribute("cinema", cinema);
 				
 		return "aram/aramHome";
 	}
