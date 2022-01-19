@@ -312,7 +312,7 @@ ul {
 	border-radius: 10px;
 }
 
-.accordion-list ul li div.title:after {
+.accordion-list ul li div.title:before {
 	content: '';
 	display: block;
 	position: absolute;
@@ -650,14 +650,15 @@ a:-webkit-any-link {
 				<!-- accordion-list -->
 				<div class="accordion-list">
 					<ul>
-						<li><div class="title ">
+						<li><div class="title "> 
+						<button type="button" name="imgbut" id="imgbut" value="check" class="imgbut"></button>
 								<a href="" title="지점 임시 휴점 안내">
 									<div class="cont-tit">지점 임시 휴점 안내</div>
 									<p class="cont-admin">대구신세계(동대구)</p>
 									<p class="cont-date">2020.07.03</p>
 								</a>
 							</div>
-							<div class="content" style="display: none">
+							<div class="content" style="display: block">
 								안녕하세요<br> 메가박스&nbsp;대구신세계점입니다.<br> <br>
 								대구신세계점&nbsp;건물 내&nbsp;코로나19 확진자 방문이 확인되어<br> 지점&nbsp;임시 휴점을
 								하고자 합니다.<br> <br> - 일자: 2020년 07월 03일(금)<br> - 일정
@@ -665,167 +666,6 @@ a:-webkit-any-link {
 								예정입니다.<br> <br> 안전한 관람환경 조성을 위한 조치로,<br> 지점 전
 								구역으로 위생 강화 및 점검을 진행하도록 하겠습니다.<br> <br> 고객님의 많은 양해
 								부탁드립니다.<br> <br> 감사합니다.
-							</div></li>
-						<li><div class="title ">
-								<a href="" title="[대구 신세계] 운영시간 임시 조정 안내(2/27부)">
-									<div class="cont-tit">[대구 신세계] 운영시간 임시 조정 안내(2/27부)</div>
-									<p class="cont-admin">대구신세계(동대구)</p>
-									<p class="cont-date">2020.02.26</p>
-								</a>
-							</div>
-							<div class="content" style="display: none">
-								안녕하세요.<br> 메가박스 대구 신세계지점입니다.<br> <br> 코로나19 확산에
-								따른 예방차원으로 운영시간을 임시 조정하오니 이용에 참고부탁드립니다.<br> <br> 조정 일시
-								: 2020년 02월 27일 목요일 부터<br> 운영 시간 : 14시 이후 ~ 20시 경<br>
-								<br> 지속적인 방역와 소독관리를 통해 안전한 관람 환경 조성에 최선을 다하겠습니다.<br> <br>
-								감사합니다.
-							</div></li>
-						<li><div class="title ">
-								<a href="" title="[대구신세계] 5/16 합동 소방 훈련 진행 안내">
-									<div class="cont-tit">[대구신세계] 5/16 합동 소방 훈련 진행 안내</div>
-									<p class="cont-admin">대구신세계(동대구)</p>
-									<p class="cont-date">2018.05.15</p>
-								</a>
-							</div>
-							<div class="content" style="display: none">
-								<p>안녕하세요,</p>
-
-								<p>메가박스 대구신세계지점입니다.</p>
-
-								<p>&nbsp;</p>
-
-								<p>화재 대응 체계 구축을 목적으로 합동 소방 훈련이 진행됩니다.</p>
-
-								<p>훈련시간 동안 사이렌 및 안내방송을 실시하오니&nbsp;고객 여러분의&nbsp;양해 부탁드립니다.</p>
-
-								<p>&nbsp;</p>
-
-								<p>1. 일시: 5/16(수) / 13:50 ~ 14:20 (30분간)</p>
-
-								<p>2. 장소: 메가박스 대구신세계지점</p>
-
-								<p>3. 주관: 대구 동부소방서 대응구조과 &nbsp;&nbsp;</p>
-
-								<p>4. 참여 기관: 대구 소방안전본부, 동구청, 동부경찰서</p>
-
-								<p>&nbsp;</p>
-
-								<p>항상 메가박스를 이용해주셔서 감사합니다.</p>
-							</div></li>
-						<li><div class="title ">
-								<a href="" title="'동대구지점 ▶ 대구신세계지점' 극장 명칭 변경 안내">
-									<div class="cont-tit">'동대구지점 ▶ 대구신세계지점' 극장 명칭 변경 안내</div>
-									<p class="cont-admin">대구신세계(동대구)</p>
-									<p class="cont-date">2017.11.16</p>
-								</a>
-							</div>
-							<div class="content" style="display: none">
-								<p>&nbsp;</p>
-
-								<p>
-									안녕하세요.<br> 메가박스 대구신세계지점 입니다.
-								</p>
-
-								<p>&nbsp;</p>
-
-								<p>그동안 메가박스 동대구지점을 방문해주신 고객님들께 감사의 말씀 드립니다.</p>
-
-								<p>&nbsp;</p>
-
-								<p>오픈 1주년을 맞이하여&nbsp;더 나은 메가박스로 거듭나고자</p>
-
-								<p>지점명이 ‘동대구'지점에서 '대구신세계’지점으로 변경되었습니다.</p>
-
-								<p>&nbsp;</p>
-
-								<p>새롭게 변경된 명칭만큼, 더 새롭고 편안한 서비스를 제공하는</p>
-
-								<p>메가박스 대구신세계지점이 되겠습니다.</p>
-
-								<p>&nbsp;</p>
-
-								<p>감사합니다.</p>
-
-								<p>&nbsp;</p>
-							</div></li>
-						<li><div class="title ">
-								<a href="" title="클래식 소사이어티 상영작 변경 안내">
-									<div class="cont-tit">클래식 소사이어티 상영작 변경 안내</div>
-									<p class="cont-admin">대구신세계(동대구)</p>
-									<p class="cont-date">2017.09.11</p>
-								</a>
-							</div>
-							<div class="content" style="display: none">
-								<p>
-									<span style="font-family: 메가박스 라이프;">안녕하십니까, 메가박스
-										동대구점입니다.</span>
-								</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;">저희 동대구점을 찾아주시는
-										고객님들께 양해 말씀 드립니다.</span>
-								</p>
-
-								<p>&nbsp;</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;">기술적&nbsp;오류로 인하여</span>
-								</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;">2017년 9월 2일 ~ 2017년
-										10월 3일까지</span>
-								</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;">매주 화요일, 토요일 14시에
-										예정되었던 메트오페라&lt;이도메네오&gt;가</span>
-								</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;">메가박스 동대구점에서는 상영이
-										불가하게 되었습니다.</span>
-								</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;">기대하셨을 고객님들께 불편을 드려
-										대단히 죄송합니다.</span>
-								</p>
-
-								<p>&nbsp;</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;">메트오페라&lt;이도메네오&gt;대신
-										동일한 &nbsp;시간에</span>
-								</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;"><strong>메트오페라
-											2017 시즌 첫 작품인&lt;돈 지오반니&gt; 상영 예정</strong>이오니</span>
-								</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;">고객님들의 많은 사랑과 관심
-										부탁드리겠습니다.</span>
-								</p>
-
-								<p>&nbsp;</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;">앞으로도 고객님들께 좋은 작품을
-										보여드릴 수 있도록</span>
-								</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;">노력하는 메가박스 동대구점이
-										되겠습니다.</span>
-								</p>
-
-								<p>&nbsp;</p>
-
-								<p>
-									<span style="font-family: 메가박스 라이프;">감사합니다.</span>
-								</p>
 							</div></li>
 					</ul>
 				</div>
@@ -1194,72 +1034,7 @@ a:-webkit-any-link {
 			});
 		});
 
-		// 극장 정보(Tab01) > 소식 조회
-		function fn_noticeList() {
-
-			var options = {};
-
-			// 페이징할 기본 SIZE 기본값 10
-			options.recordCountPerPage = 5;
-
-			// 호출 URL
-			options.url = "/on/oh/ohc/Brch/noticeList.do";
-
-			// 파라메터
-			options.paramData = {
-				'brchNo' : '7011'
-			};
-
-			// 그리기
-			options.successCallBack = function(data, textStatus, jqXHR) {
-
-				var html = '';
-
-				// 값이 없으면 소식 영역 삭제
-				if (data.list == undefined || data.list.length == 0) {
-					$('#brchNoti').remove();
-					return;
-				}
-
-				// 내용 생성
-				$
-						.each(
-								data.list,
-								function(i, param) {
-									var artiCn = "";
-									//param.cls = (i==0)? 'on' : '';
-
-									html += '<li>';
-									html += '<div class="title ">';
-									html += '	<a href="" title="'+ param.artiTitle +'">';
-									html += '		<div class="cont-tit">'
-											+ param.artiTitle + '</div>';
-									html += '		<p class="cont-admin">'
-											+ param.cate2Nm + '</p>';
-									html += '		<p class="cont-date">'
-											+ param.fstRegDtStr + '</p>';
-									html += '	</a>';
-									html += '</div>';
-									if (param.artiCn != null) {
-										artiCn = $.parseHTML(param.artiCn)[0].textContent
-									}
-									html += '<div class="content" style="display:none">'
-											+ artiCn + '</div>';
-									html += '</li>';
-								});
-
-				// 게시글 노출
-				$('#tab01 .accordion-list ul').html(html);
-
-				// 아코디언 이벤트 연결
-				mbThToggle.init({
-					target : 'accordion-list'
-				});
-			};
-
-			// page 이벤트 연결
-			gfn_setPage(options);
-		}
+		
 	</script>
 </body>
 
