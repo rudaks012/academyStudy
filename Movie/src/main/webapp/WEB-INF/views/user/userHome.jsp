@@ -610,7 +610,7 @@ h3.tit {
 								<span>IS MY</span> PASSION
 							</h3>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-								Eligendi veritatis eius, illum impedit id vita11e!</p>
+								Eligendi veritatis eius, illum impedit id vita11e11!</p>
 							<a class="take-me" href="#contact">An Request</a>
 						</div>
 					</div>
