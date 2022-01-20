@@ -312,123 +312,81 @@ ul {
 	border-radius: 10px;
 }
 
-.imgbut {
-	content: '';
-	display: block;
-	position: absolute;
-	right: 20px;
-	top: 21px;
-	width: 40px;
-	height: 30px;
-	margin: 0;
-	padding: 0;
-	background:
-		url(https://img.megabox.co.kr/static/pc/images/common/bg/bg-arr-accordion-down.png)
-		no-repeat center;
-		border: 0;
+h2.tit.small {
+    padding: 0 0 16px 0;
+    font-size: 1.4666em;
+    color: #503396;
 }
+<!-- 여기 수정 -- >
+   .acul,
+        .acli {
+            list-style: none;
+        }
 
-.accordion-list ul li div.title div.cont-tit {
-	width: 800px;
-	text-align: left;
-	float: left;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	padding-right: 30px;
-}
+        .noticecon {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            
+        }
 
-.accordion-list a {
-	text-decoration: none;
-	display: inline-block;
-	color: #444;
-}
+        .acul {
+            width: 1000px;
+        }
 
-a:link {
-	color: #444;
-	text-decoration: none;
-}
+        .acli {
+            border-bottom: 1px solid #eee;
+        }
 
-사용자 에이전트 스타일시트
-a:-webkit-any-link {
-	color: -webkit-link;
-	cursor: pointer;
-}
+        .acul li a {
+            display: block;
+            width: 93%;
+            height: 50px;
+            line-height: 50px;
+            text-decoration: none;
+            color: black;
+            margin-left: 3.5%;
+        }
+        .acul li button {
+            display: block;
+            width: 93%;
+            height: 50px;
+            line-height: 50px;
+            text-decoration: none;
+            color: black;
+            margin-left: 3.5%;
+        }
 
-.accordion-list ul li div.title {
-	position: relative;
-	box-sizing: border-box;
-	border-bottom: 1px solid #eaeaea;
-	font-weight: 400;
-}
+        .acul .acli.on {
+            background-color: red;
+        }
 
-.accordion-list {
-	border-top: 1px solid #555;
-}
+        .content {
+            display: none;
+            background-color: rgb(242, 244, 245);
+        }
 
-.accordion-list ul li div.title a {
-	display: block;
-	width: 100%;
-	padding: 15px px 0 15px 20px;
-	overflow: hidden;
-}
+        .liarea {
+            width: 250px;
+            float: right;
+        }
 
-.accordion-list a {
-	text-decoration: none;
-	display: inline-block;
-	color: #444;
-}
+        .acli:first-child {
+            border-top: 1px solid black;
+        }
 
-.pagination .active {
-	color: #fff;
-	background-color: #01738b;
-	border-color: #01738b;
-}
+        .acdate {
+            margin-left: 50px;
+        }
 
-.pagination .control, .pagination a, .pagination strong {
-	display: inline-block;
-	position: relative;
-	min-width: 32px;
-	height: 32px;
-	margin: 0;
-	padding: 0 8px;
-	border: 1px solid #ebebeb;
-	text-decoration: none;
-	line-height: 30px;
-	color: #333;
-	font-weight: 400;
-	vertical-align: middle;
-	border-radius: 4px;
-}
+        .accimg {
+            float: right;
+            margin-top: 20px;
+        }
+    </style>
 
-.accordion-list ul li div.title a {
-	display: block;
-	width: 100%;
-	padding: 15px 0 15px 20px;
-	overflow: hidden;
-}
 
-.accordion-list a {
-	text-decoration: none;
-	display: inline-block;
-	color: #444;
-}
-
-.pagination {
-	clear: both;
-	position: relative;
-	margin: 0 auto;
-	padding: 30px 0 0 0;
-	text-align: center;
-}
-
-.accordion-list ul li div.content {
-	padding: 30px 20px;
-	box-sizing: border-box;
-	border-bottom: 1px solid #eaeaea;
-	background-color: #f2f4f5;
-}
-</style>
 </head>
 
 <body>
@@ -644,50 +602,60 @@ a:-webkit-any-link {
 				<!-- 대중교통 정보가 없는 경우 -->
 
 			</div>
+			<br><br>
+			<h2 class="tit small mt70">공지사항</h2>
 
-			<div id="brchNoti">
-				<h2 class="tit small mt70">공지사항</h2>
+			<div class="noticecon">
+				<ul class="acul">
+					<li class="acli"><a href="javascript:void(0)">지점 임시 휴점 안내
+							<div class="liarea">
+								<span class="actitle">지점</span> <span class="acdate">2021.
+									01. 20</span> <img
+									src=https://img.megabox.co.kr/static/pc/images/common/bg/bg-arr-accordion-down.png
+									class="accimg">
+							</div>
+					</a>
+						<div class="content">
+							안녕하세요<br> 메가박스&nbsp;대구신세계점입니다.<br> <br>
+							대구신세계점&nbsp;건물 내&nbsp;코로나19 확진자 방문이 확인되어<br> 지점&nbsp;임시 휴점을
+							하고자 합니다.<br> <br> - 일자: 2020년 07월 03일(금)<br> - 일정
+							변경 시 추후 공지 예정<br> <br> 7월 3일자로 사전 예매하신 입장권은 자동 취소될
+							예정입니다.<br> <br> 안전한 관람환경 조성을 위한 조치로,<br> 지점 전 구역으로
+							위생 강화 및 점검을 진행하도록 하겠습니다.<br> <br> 고객님의 많은 양해 부탁드립니다.<br>
+							<br> 감사합니다.
 
-				<!-- accordion-list -->
-				<div class="accordion-list">
-					<ul>
-						<li><div class="title "> 
-						<button type="button" name="imgbut" id="imgbut" value="check" class="imgbut" ></button>
-								<a href="" title="지점 임시 휴점 안내">
-									<div class="cont-tit">지점 임시 휴점 안내</div>
-									<p class="cont-admin">대구신세계(동대구)</p>
-									<p class="cont-date">2020.07.03</p>
-								</a>
+						</div></li>
+					<li class="acli"><a href="javascript:void(0)">코로나 방역대책 안내
+							<div class="liarea">
+								<span class="actitle">지점</span> <span class="acdate">2021.
+									01. 20</span> <img
+									src=https://img.megabox.co.kr/static/pc/images/common/bg/bg-arr-accordion-down.png
+									class="accimg">
 							</div>
-							<div class="content" style="display: none">
-								안녕하세요<br> 메가박스&nbsp;대구신세계점입니다.<br> <br>
-								대구신세계점&nbsp;건물 내&nbsp;코로나19 확진자 방문이 확인되어<br> 지점&nbsp;임시 휴점을
-								하고자 합니다.<br> <br> - 일자: 2020년 07월 03일(금)<br> - 일정
-								변경 시 추후 공지 예정<br> <br> 7월 3일자로 사전 예매하신 입장권은 자동 취소될
-								예정입니다.<br> <br> 안전한 관람환경 조성을 위한 조치로,<br> 지점 전
-								구역으로 위생 강화 및 점검을 진행하도록 하겠습니다.<br> <br> 고객님의 많은 양해
-								부탁드립니다.<br> <br> 감사합니다.
-							</div></li>
-							<li><div class="title "> 
-						<button type="button" name="imgbut" id="imgbut" value="check" class="imgbut" ></button>
-								<a href="" title="지점 임시 휴점 안내">
-									<div class="cont-tit">지점 임시 휴점 안내</div>
-									<p class="cont-admin">대구신세계(동대구)</p>
-									<p class="cont-date">2020.07.03</p>
-								</a>
+					</a>
+						<div class="content">첫번째 공지사항 내용입니다.</div></li>
+					<li class="acli"><a href="javascript:void(0)">이벤트 안내
+							<div class="liarea">
+								<span class="actitle">지점</span> <span class="acdate">2021.
+									01. 20</span> <img
+									src=https://img.megabox.co.kr/static/pc/images/common/bg/bg-arr-accordion-down.png
+									class="accimg">
 							</div>
-							<div class="content" style="display: none">
-								안녕하세요<br> 메가박스&nbsp;대구신세계점입니다.<br> <br>
-								대구신세계점&nbsp;건물 내&nbsp;코로나19 확진자 방문이 확인되어<br> 지점&nbsp;임시 휴점을
-								하고자 합니다.<br> <br> - 일자: 2020년 07월 03일(금)<br> - 일정
-								변경 시 추후 공지 예정<br> <br> 7월 3일자로 사전 예매하신 입장권은 자동 취소될
-								예정입니다.<br> <br> 안전한 관람환경 조성을 위한 조치로,<br> 지점 전
-								구역으로 위생 강화 및 점검을 진행하도록 하겠습니다.<br> <br> 고객님의 많은 양해
-								부탁드립니다.<br> <br> 감사합니다.
-							</div></li>
-					</ul>
-				</div>
-				<!--// accordion-list -->
+					</a>
+						<div class="content">첫번째 공지사항 내용입니다.</div></li>
+					<li class="acli"><a href="javascript:void(0)">극장 내 취식 안내
+							<div class="liarea">
+								<span class="actitle">지점</span> <span class="acdate">2021.
+									01. 20</span> <img
+									src=https://img.megabox.co.kr/static/pc/images/common/bg/bg-arr-accordion-down.png
+									class="accimg">
+							</div>
+					</a>
+						<div class="content">첫번째 공지사항 내용입니다.</div></li>
+				</ul>
+			</div>
+
+			<!--// accordion-list -->
 
 				<!-- pagination -->
 				<nav class="pagination">
@@ -697,29 +665,6 @@ a:-webkit-any-link {
 				<!--// pagination -->
 			</div>
 			<!-- contact area start -->
-			<div class="contact-area bg-gray ptb--100">
-				<div class="container">
-					<div class="section-title">
-						<span>Find Us</span>
-						<h2>Contact</h2>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="contact-content">
-								<ul>
-									<li><i class="fa fa-map-marker"></i>Race Event BeFaster,
-										UK, 2292 Peachtree Rd NW</li>
-									<li><i class="fa fa-phone"></i>+1 123 456 8798</li>
-									<li><i class="fa fa-envelope"></i>user@gmail.com</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div id="google_map"></div>
-						</div>
-					</div>
-				</div>
-			</div>
 			<!-- contact area end -->
 
 
@@ -1024,7 +969,8 @@ a:-webkit-any-link {
 			<br> <br> 관람가격 및 시간대 운영은 극장마다 상이할 수 있으며, 상기 가격은 메가박스
 			대구신세계(동대구)점에 한하여 적용됩니다.
 		</div>
-	</div>
+		
+		
 
 
 	<script>
@@ -1063,6 +1009,30 @@ a:-webkit-any-link {
 			
 			});
 		});
+		
+		   
+        $('.acli').click(function () {
+            $('.content').slideUp();
+            if ($(this).children('.content').is(':hidden')) {
+                $(this).children('.content').slideDown();
+            } else {
+                $(this).children('.content').slideUp();
+            }
+        });
+
+
+        
+      /*  $('.acli').click(function () {
+            $('.content').slideUp();
+            if ($(this).children('.content').is(':hidden')) {
+                $(this).children('.content').attr('class', 'contents');
+                $('.contents').css('background-color', 'rgb(242, 244, 245)');
+            } else if ($(this).children('.contents')) {
+                $(this).children('.contents').attr('class', 'content');
+            }
+     });  */ 
+        
+
 		
 	</script>
 </body>
