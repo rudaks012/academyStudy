@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.yedam.Movie.Jay.service.MemberService;
 import co.yedam.Movie.comm.MemberVO;
+import co.yedam.Movie.taejoon.service.MovieService;
 
 @Controller("movieJayController")
 public class JayController {
@@ -33,6 +34,8 @@ public class JayController {
 	@Autowired
 	private JavaMailSender mail;
 	
+	@Autowired
+	private MovieService movieDao;
 	
 	
 	@RequestMapping("/loginForm.do")
@@ -133,6 +136,16 @@ public class JayController {
 		
 	}
 	
+	@RequestMapping("/movieList.do")
+	public String movieList(Model model) {
+		model.addAttribute("movies", movieDao.movieSelectList());
+		return "admin/movieList";
+	}
+	
+	@RequestMapping("/movieinsert.do")
+	public String movieinsert() {
+		return "admin/movieinsert";
+	}
 
 
 }

@@ -42,18 +42,21 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+               <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-movie" aria-expanded="false" aria-controls="ui-movie">
               <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">영화관리</span>
+              <span class="menu-title">영화 관리</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="form-elements">
+            <div class="collapse" id="ui-movie">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="#">Basic Elements</a></li>
+                <li class="nav-item"> <a class="nav-link" href="movieList.do">영화 리스트</a></li>
+                <li class="nav-item"> <a class="nav-link" href="movieinsert.do">영화 등록</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#">Typography</a></li>
               </ul>
             </div>
           </li>
+          
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
               <i class="icon-bar-graph menu-icon"></i>
