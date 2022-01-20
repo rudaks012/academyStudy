@@ -40,7 +40,9 @@
 			<tiles:insertAttribute name="aheader" />
 			<tiles:insertAttribute name="asidebar" />
 			<div class="main-panel">
+			  <div class="content-wrapper">
 				<tiles:insertAttribute name="abody" />
+			  </div>
 				<tiles:insertAttribute name="afooter" />
 			</div>
 		</div>

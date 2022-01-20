@@ -8,9 +8,9 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
+
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMailMessage;
+
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +25,10 @@ import co.yedam.Movie.comm.MemberVO;
 public class JayController {
 	
 	@Autowired
-	private MemberService memberDao;
+	private MemberService memDao;
 	
 	@Autowired
-	private JavaMailSender mailSender;
+	private JavaMailSender mail;
 	
 	@RequestMapping("/loginForm.do")
 	public String loginForm() {
@@ -40,7 +40,7 @@ public class JayController {
 	@ResponseBody
 	public HashMap<String, String> ajaxLogin(Model model,MemberVO vo, HttpSession session) {
 		HashMap<String, String> map = new HashMap<String, String>();
-		vo = memberDao.memeberLogin(vo);
+		vo = memDao.memeberLogin(vo);
 	
 		if(vo == null) {
 			System.out.println("null");
@@ -67,7 +67,7 @@ public class JayController {
 	@RequestMapping("/ajaxidfindchk.do")
 	@ResponseBody
 	public String ajaxidfindchk(MemberVO vo) {
-		vo = memberDao.memberIdFindChk(vo);
+		vo = memDao.memberIdFindChk(vo);
 		if(vo == null) {
 			System.out.println("null");
 			return "No";
@@ -81,7 +81,7 @@ public class JayController {
 	public String ajaxpasswordfindidnamechk(MemberVO vo) {
 		System.out.println(vo.getMemId());
 		System.out.println(vo.getMemName());
-		vo = memberDao.memberPasswordFindIdNameChk(vo);
+		vo = memDao.memberPasswordFindIdNameChk(vo);
 		if( vo== null) {
 			System.out.println("null");
 			return "No";
@@ -94,7 +94,7 @@ public class JayController {
 	@ResponseBody
 	public String ajaxemailconfirm(int randomnum, String email, String name) throws MessagingException {
 		System.out.println(randomnum+"  "+ email+"  "+ name);
-		MimeMessage message = mailSender.createMimeMessage();
+		MimeMessage message = mail.createMimeMessage();
 		MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 		messageHelper.setFrom("yedammovie@gmail.com");
 		messageHelper.setTo(email);
@@ -102,7 +102,7 @@ public class JayController {
 		String textval = "3분 이내로 인증번호(6자리)를 입력해 주세요.\n 인증번호는 || "+ randomnum+" || 입니다.";
 		messageHelper.setSubject(subjectval);
 		messageHelper.setText(textval);
-		mailSender.send(message);
+		mail.send(message);
 		return "Yes";
 	}
 	
@@ -110,7 +110,7 @@ public class JayController {
 	public String passwordupdate(MemberVO vo, Model model) {
 		System.out.println("dd");
 		System.out.println(vo.getMemId());
-		vo = memberDao.memberSelect(vo);
+		vo = memDao.memberSelect(vo);
 		model.addAttribute("id", vo.getMemId());
 		model.addAttribute("name", vo.getMemName());
 		return "admin/passwordupdate";
@@ -121,7 +121,7 @@ public class JayController {
 	public String formpasswordupdate(MemberVO vo) {
 		System.out.println(vo.getMemPassword());
 		System.out.println(vo.getMemId());
-		int n = memberDao.formpasswordupdate(vo);
+		int n = memDao.formpasswordupdate(vo);
 		System.out.println(n);
 		return "admin/adminHome";
 		

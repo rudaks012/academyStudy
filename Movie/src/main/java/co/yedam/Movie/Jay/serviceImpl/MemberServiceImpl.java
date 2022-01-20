@@ -7,7 +7,7 @@ import co.yedam.Movie.Jay.service.MemberMapper;
 import co.yedam.Movie.Jay.service.MemberService;
 import co.yedam.Movie.comm.MemberVO;
 
-@Repository("memberDao")
+@Repository("memDao")
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
