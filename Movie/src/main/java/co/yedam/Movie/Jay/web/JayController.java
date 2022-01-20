@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.yedam.Movie.Jay.service.MemberService;
 import co.yedam.Movie.comm.MemberVO;
 
-@Controller
+@Controller("movieJayController")
 public class JayController {
+	
+	//수정
+	
 	
 	@Autowired
 	private MemberService memDao;
@@ -30,11 +33,14 @@ public class JayController {
 	@Autowired
 	private JavaMailSender mail;
 	
+	
+	
 	@RequestMapping("/loginForm.do")
 	public String loginForm() {
 
 		return "loginForm";
 	}
+	
 	
 	@RequestMapping("/ajaxLogin.do")
 	@ResponseBody
