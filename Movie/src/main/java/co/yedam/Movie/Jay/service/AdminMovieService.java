@@ -1,0 +1,9 @@
+package co.yedam.Movie.Jay.service;
+
+import java.util.List;
+
+import co.yedam.Movie.comm.MovieVO;
+
+public interface AdminMovieService {
+	List<MovieVO> adminMovieSelectList(); // 영화 목록 전체 조회
+}

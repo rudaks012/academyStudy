@@ -29,16 +29,15 @@
 									</div>
 								</th>
 								<th>poster</th>
-								<th>mcode</th>
+								
 								<th>mtitle</th>
 								<th>opendate</th>
-								<th>grade</th>
+							
 								<th>rate</th>
-								<th>dolby</th>
-								<th>mx</th>
+							
 								<th>likeit</th>
 
-								<th>filename</th>
+							
 								<th></th>
 							</tr>
 						</thead>
@@ -54,10 +53,10 @@
 										</div></td>
 									<td class="py-1"><img
 										src="movieposter/${movie.pfilename }" alt="image" /></td>
-									<td>${movie.mcode }</td>
-									<td>${movie.mtitle }</td>
+									
+									<td><a href="javascript:movietitle('${movie.mcode})">${movie.mtitle }</a></td>
 									<td>${movie.opendate }</td>
-									<td>${movie.grade }</td>
+								
 									<td>
 										<div>${movie.rate }</div>
 										<div class="progress">
@@ -66,11 +65,10 @@
 												aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
 									</td>
-									<td>${movie.dolby }</td>
-									<td>${movie.mx }</td>
+							
 									<td>${movie.likeit }</td>
 
-									<td>${movie.filename }</td>
+						
 									<td align="center">
 
 										<button type="button" class="btn btn-inverse-info btn-fw"
@@ -91,6 +89,10 @@
 				chkd[i].checked = e.target.checked;
 			}
 		})
+		
+		function movietitle(mcode){
+// 			$.ajax()
+		}
 	</script>
 </body>
 </html>
