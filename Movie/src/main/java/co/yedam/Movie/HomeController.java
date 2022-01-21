@@ -13,8 +13,8 @@ import co.yedam.Movie.comm.CinemaVO;
 import co.yedam.Movie.comm.MovieVO;
 import co.yedam.Movie.comm.dbtestVO;
 import co.yedam.Movie.dbtest.service.dbtestService;
-import co.yedam.Movie.taejoon.service.MovieService;
 import co.yedam.Movie.man.service.MoviePostService;
+import co.yedam.Movie.taejoon.service.MovieService;
 
 @Controller
 public class HomeController {
