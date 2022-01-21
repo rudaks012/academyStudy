@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 
@@ -604,27 +606,23 @@ h2.tit.small {
 			</div>
 			<br><br>
 			<h2 class="tit small mt70">공지사항</h2>
-
+		
 			<div class="noticecon">
+		
 				<ul class="acul">
-					<li class="acli"><a href="javascript:void(0)">지점 임시 휴점 안내
+				<c:forEach items="${notice }" var="notice">
+					<li class="acli"><a href="javascript:void(0)">${notice.notitle }
 							<div class="liarea">
-								<span class="actitle">지점</span> <span class="acdate">2021.
-									01. 20</span> <img
+								<span class="actitle">${notice.nocode }</span> <span class="acdate">${notice.nodate }</span> <img
 									src=https://img.megabox.co.kr/static/pc/images/common/bg/bg-arr-accordion-down.png
 									class="accimg">
 							</div>
 					</a>
 						<div class="content">
-							안녕하세요<br> 메가박스&nbsp;대구신세계점입니다.<br> <br>
-							대구신세계점&nbsp;건물 내&nbsp;코로나19 확진자 방문이 확인되어<br> 지점&nbsp;임시 휴점을
-							하고자 합니다.<br> <br> - 일자: 2020년 07월 03일(금)<br> - 일정
-							변경 시 추후 공지 예정<br> <br> 7월 3일자로 사전 예매하신 입장권은 자동 취소될
-							예정입니다.<br> <br> 안전한 관람환경 조성을 위한 조치로,<br> 지점 전 구역으로
-							위생 강화 및 점검을 진행하도록 하겠습니다.<br> <br> 고객님의 많은 양해 부탁드립니다.<br>
-							<br> 감사합니다.
+							<span>${notice.nosubject }</span>
 
 						</div></li>
+						</c:forEach>
 					<li class="acli"><a href="javascript:void(0)">코로나 방역대책 안내
 							<div class="liarea">
 								<span class="actitle">지점</span> <span class="acdate">2021.
@@ -633,6 +631,7 @@ h2.tit.small {
 									class="accimg">
 							</div>
 					</a>
+					
 						<div class="content">첫번째 공지사항 내용입니다.</div></li>
 					<li class="acli"><a href="javascript:void(0)">이벤트 안내
 							<div class="liarea">

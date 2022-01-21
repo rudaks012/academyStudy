@@ -35,9 +35,17 @@ public class ManController {
 				List<NoticeVO> notice = noticeDao.noticeSelectList();
 				System.out.println("공지사항");
 				model.addAttribute("notice",notice);
-		
+				
+				
+				
 		return "user/userHome";
 	}
+	
+//	@RequestMapping("/noticelist.do")
+//	public String noticelist(Model model) {
+//		System.out.println("noticelist");
+//		return
+//	}
 //	@RequestMapping("/userhome.do")
 //	public String userhome1(Model model) {
 //		System.out.println("공지사항확인");
@@ -46,7 +54,10 @@ public class ManController {
 //		return "user/userHome";
 //	}
 	@RequestMapping("/moviecenter.do")
-	public String moviecenter() {
+	public String moviecenter(Model model) {
+		List<NoticeVO> notice = noticeDao.noticeSelectList();
+		System.out.println("공지사항");
+		model.addAttribute("notice",notice);
 		return "user/MovieCenter";
 	}
 	
