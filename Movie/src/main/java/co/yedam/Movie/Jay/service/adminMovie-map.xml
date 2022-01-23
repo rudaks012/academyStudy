@@ -7,4 +7,16 @@
 	SELECT * FROM MOVIE
 	ORDER BY OPENDATE DESC
 	</select>
+	
+	<insert id="adminMovieInsert" 
+	parameterType="co.yedam.Movie.comm.MovieVO">
+	INSERT INTO MOVIE
+	VALUES(#{mcode},#{mtitle},#{opendate},#{grade},#{rate},#{dolby},#{mx},#{likeit},#{comments},#{filename},#{pfilename})
+	</insert>
+	
+	<select id="adminMovieSelect"
+	resultType="co.yedam.Movie.comm.MovieVO">
+	SELECT * FROM MOVIE
+	WHERE MCODE = #{mcode}
+	</select>
 </mapper>

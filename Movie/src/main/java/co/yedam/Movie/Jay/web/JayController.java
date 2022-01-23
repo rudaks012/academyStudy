@@ -1,7 +1,10 @@
 package co.yedam.Movie.Jay.web;
 
 
+import java.io.File;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.UUID;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -14,12 +17,16 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import co.yedam.Movie.Jay.service.AdminMovieService;
 import co.yedam.Movie.Jay.service.MemberService;
 import co.yedam.Movie.comm.MemberVO;
+import co.yedam.Movie.comm.MovieVO;
+import co.yedam.Movie.man.service.NoticeService;
 import co.yedam.Movie.taejoon.service.MovieService;
 
 @Controller("movieJayController")
@@ -37,6 +44,8 @@ public class JayController {
 	@Autowired
 	private AdminMovieService adminMovieDao;
 	
+	@Autowired
+	String saveDirectory;
 	
 	@RequestMapping("/loginForm.do")
 	public String loginForm() {
@@ -142,10 +151,51 @@ public class JayController {
 		return "admin/movieList";
 	}
 	
-	@RequestMapping("/movieinsert.do")
+	@RequestMapping("/movieinputForm.do")
 	public String movieinsert() {
-		return "admin/movieinsert";
+		return "admin/movieinputForm";
 	}
-
+	
+	@RequestMapping("/movieinsert.do")
+	public String movieinsert(MovieVO vo, MultipartFile file) {
+		
+		String fileName = file.getOriginalFilename();
+		String pfileName = getRandomString(16);
+		pfileName = pfileName + fileName.substring(fileName.lastIndexOf("."));
+		File target = new File(saveDirectory, pfileName);
+		vo.setFilename(fileName);
+		vo.setPfilename(pfileName);
+		
+		if(! new File(saveDirectory).exists()){
+			new File(saveDirectory).mkdir();
+		}
+		try {
+			FileCopyUtils.copy(file.getBytes(), target);
+			adminMovieDao.adminMovieInsert(vo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:movieList.do";
+	}
+	
+	private static String getRandomString(int length){
+		  StringBuffer sb = new StringBuffer();
+		  Random random = new Random();
+		 
+		  for (int i=1 ; i<=length ; i++){
+			  sb.append((char) ((int) (random.nextInt(26)) + 65));
+			  if(i%4==0 && i!=16) {
+				  sb.append("-");
+			  }
+		  }
+		  return sb.toString();
+		}
+	
+	@RequestMapping("/adminMovieSelect.do")
+	@ResponseBody
+	public MovieVO adminMovieSelect(MovieVO vo, Model model) {
+		return adminMovieDao.adminMovieSelect(vo);
+	}
 
 }
