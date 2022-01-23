@@ -20,4 +20,9 @@ public class CinemaServiceImpl implements CinemaService {
 		return map.cinemaAreaList();
 	}
 
+	@Override
+	public List<CinemaVO> cinemaSelectList(CinemaVO vo) {
+		return map.cinemaSelectList(vo);
+	}
+
 }
