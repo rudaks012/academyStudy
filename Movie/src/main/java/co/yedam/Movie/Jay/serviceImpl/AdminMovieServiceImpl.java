@@ -22,4 +22,19 @@ public class AdminMovieServiceImpl implements AdminMovieService {
 		return map.adminMovieSelectList();
 	}
 
+
+	@Override
+	public int adminMovieInsert(MovieVO vo) {
+		// TODO Auto-generated method stub
+		return map.adminMovieInsert(vo);
+	}
+
+
+	@Override
+	public MovieVO adminMovieSelect(MovieVO vo) {
+		// TODO Auto-generated method stub
+		return map.adminMovieSelect(vo);
+	}
+
+
 }
