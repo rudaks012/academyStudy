@@ -8,5 +8,11 @@
 		GROUP BY CINAREA
 		HAVING COUNT(*) > 1
 	</select>
+	
+	<select id="cinemaSelectList" resultType="co.yedam.Movie.comm.CinemaVO">
+		SELECT CINNAME 
+		FROM CINEMA 
+		WHERE CINAREA = #{cinArea}
+	</select>
 
 </mapper>

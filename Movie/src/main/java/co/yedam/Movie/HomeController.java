@@ -2,6 +2,8 @@ package co.yedam.Movie;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +26,6 @@ public class HomeController {
 	@Autowired
 	private MovieService movieDao;
 	@Autowired
-	private MoviePostService moviePostDao;
-	@Autowired
 	private CinemaService cinemaDao;
 	
 		
@@ -40,6 +40,7 @@ public class HomeController {
 	public String adminhome() {
 		return "admin/adminHome";
 	}
+
 	@RequestMapping("/aramhome.do")
 	public String aramhome(Model model) {
 		List<MovieVO> movies = movieDao.movieSelectList();
@@ -47,9 +48,20 @@ public class HomeController {
 		
 		model.addAttribute("movies", movies);
 		model.addAttribute("cinema", cinema);
-				
+		
 		return "aram/aramHome";
 	}
+	@ResponseBody
+	@RequestMapping("/ajaxCinemaName.do")
+	public List<CinemaVO> ajaxCinemaName(HttpServletRequest request) {
+		CinemaVO vo = new CinemaVO();
+		String area = request.getParameter("param");
+		vo.setCinArea(area);
+		List<CinemaVO> cinema2 = cinemaDao.cinemaSelectList(vo);
+		
+		return cinema2;
+	}
+	
 	@RequestMapping("/junhome.do")
 	public String junhome(Model model) {
 		List<MovieVO> movie = movieDao.movieSelectList();

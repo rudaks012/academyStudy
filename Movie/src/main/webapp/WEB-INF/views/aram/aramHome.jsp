@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -9,30 +8,49 @@
 <meta charset="UTF-8">
 <title>예매</title>
 <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-
+</head>
 <style>
-	.wrap{
+	.inner-wrap{
 		width: 1200px;
-		height: 700px;
 		margin: 0 auto;
 	}
-	.ticket_tb{
-		 width: 1100px;
-		 height: 630px;
-		 border: 1px solid lightgray;
+	#page-title{
+		border-bottom: 1px solid black;	
+	}
+	h2.tit{
+	    letter-spacing: -1px;
+	    margin-block-start: 0.93em;
+	    margin-block-end: 0.93em;
+	    margin-inline-start: 0px;
+	    margin-inline-end: 0px;
+	}
+	.quick-reserve{
+		width: 1100px;
+		height: 580px;
+	    margin: 0 auto;
+	    padding: 0;
+	    border-bottom: 1px solid lightgray;
+	}
+	.quick-reserve .movie-choice, .cinema-choice, .timetable{
+		float: left;
+	}
+	.date-wrap{
+		height: 35px;
+		border: 1px solid lightgray;	
 	}
 	 .swiper {
-        width: 950px;
-  		height: 35px;
+        width: 1100px;
+  		height: 30px;
 	}
 
       .swiper-slide {
+      	width: 80px;
+      	margin: 1px 6px 1px 6px;
         text-align: center;
         font-size: 14px;
        	color: black;
-       	cursor: pointer;
 
         /* Center slide text vertically */
         display: -webkit-box;
@@ -48,8 +66,8 @@
         -webkit-align-items: center;
         align-items: center;
 	}
-
-      @media (max-width: 760px) {
+	
+	 @media (max-width: 760px) {
         .swiper-button-next {
           right: 20px;
           transform: rotate(90deg);     
@@ -59,119 +77,149 @@
           transform: rotate(90deg);
         }
 	}
-      li{
+	.movie-choice{
+		border-left: 1px solid lightgray;
+		padding: 0 20px 17px 20px;
+		width: 230px;
+		height: 545px;
+		
+	}
+	.gradeimg {
+		width: 20px;
+		height: 20px;
+		border-radius: 70%;
+	}
+	#movie-btn, #cinema-btn{
+		width: 140px;
+		height: 22px;
+		font-size: 0.9em;
+		text-align: left;
+		margin-bottom: 5px;
+		border: 0;
+		outline: 0;
+		background: white;
+		letter-spacing: 0;
 		cursor: pointer;
 	}
-	#title p{
-		font-size: 27px;
-		color: black;
-		margin-bottom: 15px;
+	#movie-btn:focus, #cinema-btn:focus{
+		background-color: lightgray;
 	}
-	#first_tr{
-		border-top: 1px solid black;
-		border-bottom: 1px solid lightgray;
-		height: 40px;
+	.cinema-choice{
+		width: 400px;
+		height: 545px;
+		border-left: 1px solid lightgray;
+		border-right: 1px solid lightgray;
+		padding: 0 20px 17px 20px;
 	}
+	.cinema-choice div{
+		width: 155px;
+		float: left;
+	}
+	.cinema-area{
+		border-right: 1px solid lightgray;
+	}
+	.timetable{
+		width: 470px;
+		height: 545px;
+		border-right: 1px solid lightgray;
+		padding: 0 20px 17px 20px;
+	}
+	.cinname-btn{
+		border: 0;
+		outline: 0;
+		background: white;
+		width: 140px;
+		height: 22px;
+		font-size: 0.9em;
+		margin: 1px 7px 1px 7px;
+		text-align: left;
+	}
+	
 </style>
-</head>
-<body>
-<jsp:useBean id="today" class="java.util.Date" />
-<fmt:formatDate var="now" value="${today}" pattern="yyMMdd" />
-<fmt:parseDate var="bdate" value="${board.bdate2}" pattern="yyMMdd" />
-<fmt:formatDate var="bdate" value="${bdate}" pattern="yyMMdd" />
 
-	<div class="wrap">
-		<div id="title"><p>빠른예매</p></div>
+
+<body>
+	<div class="inner-wrap">
+		<div id="page-title"><h2 class="tit">빠른예매</h2></div>
 		
-		<table class="ticket_tb">	
-			<tr id="first_tr">
-				<td colspan="3">
-					<div class="swiper">
+		<div class="quick-reserve">
+			<div class="date-wrap">
+				<div class="swiper">
 				      <div class="swiper-wrapper">      
-				        <div class="swiper-slide">${bdate= now}</div>
-				        <div class="swiper-slide">${bdate= now+1}</div>
-				        <div class="swiper-slide">${bdate= now+2}</div>
-				        <div class="swiper-slide">${bdate= now+3}</div>
-				        <div class="swiper-slide">${bdate= now+4}</div>
-				        <div class="swiper-slide">${bdate= now+5}</div>
-				        <div class="swiper-slide">${bdate= now+6}</div>
-				        <div class="swiper-slide">${bdate= now+7}</div>
-				        <div class="swiper-slide">${bdate= now+8}</div>
-				        <div class="swiper-slide">${bdate= now+9}</div>
-				        <div class="swiper-slide">${bdate= now+10}</div>
-				        <div class="swiper-slide">${bdate= now+11}</div>
-				        <div class="swiper-slide">${bdate= now+12}</div>
-				        <div class="swiper-slide">${bdate= now+13}</div>
+				        <div class="swiper-slide">
+				       
+				        </div>
 				      </div>
 				      <div class="swiper-button-next"></div> 
 				      <div class="swiper-button-prev"></div>
 				    </div>
-				</td>
-				<td>
-					<input type="date">
-				</td>
-			</tr>
+			</div> <!-- end of date-wrap -->
 			
-			<tr>
-				<td>
-				
-					영화
-				</td>
-				<td colspan="2">
-					극장
-				</td>
-				<td>
-					시간
-				</td>
-			</tr>
-			
-			<tr>
-			
-				<td rowspan="2">
-				 <c:forEach items="${movies}" var="movie">
+			<div class="movie-choice">
+				<br><h4>영화</h4><br>
+				<c:forEach items="${movies}" var="movie">
 					<ul>
-						<li>${movie.mtitle }</li>
+						<li>
+							<c:choose>
+									<c:when test="${movie.grade eq 'ALL' }">
+										<img src="resources/icons/allgrade.png" id="gradeimg"
+											class="gradeimg">
+									</c:when>
+									<c:when test="${movie.grade eq '12' }">
+										<img src="resources/icons/12grade.png" id="gradeimg"
+											class="gradeimg">
+									</c:when>
+									<c:when test="${movie.grade eq '15' }">
+										<img src="resources/icons/15grade.png" id="gradeimg"
+											class="gradeimg">
+									</c:when>
+									<c:when test="${movie.grade eq '18' }">
+										<img src="resources/icons/18grade.png" id="gradeimg"
+											class="gradeimg">
+									</c:when>
+								</c:choose>
+							<button id="movie-btn">
+								
+								<span>${movie.mtitle }</span>
+							</button>
+						</li>
 					</ul>
 					 </c:forEach> 
-				</td>
-				<td rowspan="2">
-				 <c:forEach items="${cinema }" var="cinema">
-					<ul>
-						<li>${cinema.cinArea }(${cinema.count})</li>
-						
-					</ul>
-					</c:forEach>
-				</td>
-				<td rowspan="2">
-					<ul>
-						<li>영화관 이름</li>
-						<li>영화관 이름</li>
-						<li>영화관 이름</li>
-						<li>영화관 이름</li>
-						<li>영화관 이름</li>
-					</ul>
-				</td>
-				<td>
-					시간 슬라이드
-				</td>
-			</tr>
+			</div> <!-- end of movie-choice -->
 			
-			<tr>
-				<td>
-					<ul>
-						<li>선택된 영화 상영시간표 및 정보</li>
-						<li>선택된 영화 상영시간표 및 정보</li>
-						<li>선택된 영화 상영시간표 및 정보</li>
-					</ul>
-				</td>
-			</tr>
-		</table>
+			<div class="cinema-choice">
+				<br><h4>극장</h4><br>
+				<div class="cinema-area">
+					<c:forEach items="${cinema }" var="cinema">
+						<ul>
+							<li>
+								<button id="cinema-btn">
+									<span onclick="cinemafn('${cinema.cinArea}')">${cinema.cinArea }(${cinema.count})</span>
+								</button>
+							</li>	
+						</ul>
+					</c:forEach>
+				</div>
+				<div class="cinema-name">
+					
+				</div>
+			
+			</div> <!-- end of cinema-choice -->
+			<div class="timetable">
+				<br><h4>시간</h4><br>
+			</div> <!-- end of timetable -->
+		
+		
+		</div> <!-- end of quick-reserve -->
+		
 	
- </div> <!-- end of wrap -->
 	
+ </div> <!-- end of inner-wrap -->
+	
+
 	 <script>
       var swiper = new Swiper('.swiper', {
-        slidesPerView: 10,
+        slidesPerView: 14,
         direction: getDirection(),
         navigation: {
           nextEl: '.swiper-button-next',
@@ -189,6 +237,53 @@
         var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
 
         return direction;
+      }
+      
+      
+      let date = new Date();
+      let parent = $(".swiper-wrapper");
+      $(".swiper-slide").text(date.getDate()+'일');
+      
+      for(let i=0; i<14; i++){
+    	 date.setDate(date.getDate() + 1);
+    	 
+    	 let div = $("<div>");
+    	 div.appendTo(parent);
+    	 
+    	 div.text(date.getDate() + '일').addClass("swiper-slide");
+    	 
+      }
+      
+      
+      
+      function cinemafn(cinarea){
+    	  $.ajax({
+    		  url : "ajaxCinemaName.do",
+    		  type : "post",
+    		  data : {"param":cinarea},
+    		  dataType : "json",
+    		  success : function(data){
+    			  let div = $(".cinema-name");
+    			  div.children("ul").remove();
+    			  let ul = $("<ul>");
+    			  ul.appendTo(div);
+    			  
+    			 data.forEach(function(val, index){
+    				  let li = $("<li>");
+    				  let button = $("<button>").addClass("cinname-btn");
+	       			  let span = $("<span>");
+	       			  li.appendTo(ul);
+	       			  button.appendTo(li);
+	       			  span.appendTo(button);
+	       		
+	       			  span.text(val.cinName);
+    			 }) 
+    			$(".cinema-name")
+    		  },
+    		  error : function(){
+    			  alert("에러");
+    		  }
+    	  })	  
       }
     </script>
 </body>
