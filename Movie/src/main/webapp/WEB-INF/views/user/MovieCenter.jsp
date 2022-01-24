@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 
@@ -315,78 +315,78 @@ ul {
 }
 
 h2.tit.small {
-    padding: 0 0 16px 0;
-    font-size: 1.4666em;
-    color: #503396;
+	padding: 0 0 16px 0;
+	font-size: 1.4666em;
+	color: #503396;
 }
-<!-- 여기 수정 -- >
-   .acul,
-        .acli {
-            list-style: none;
-        }
 
-        .noticecon {
-            display: block;
-            justify-content: center;
-            align-items: center;
-            height: 300px;
-            
-        }
+<!--
+여기 수정 -->.acul, .acli {
+	list-style: none;
+}
 
-        .acul {
-            width: 1000px;
-        }
+.noticecon {
+	display: block;
+	justify-content: center;
+	align-items: center;
+	height: 300px;
+}
 
-        .acli {
-            border-bottom: 1px solid #eee;
-        }
+.acul {
+	width: 1000px;
+}
 
-        .acul li a {
-            display: block;
-            width: 93%;
-            height: 50px;
-            line-height: 50px;
-            text-decoration: none;
-            color: black;
-            margin-left: 3.5%;
-        }
-        .acul li button {
-            display: block;
-            width: 93%;
-            height: 50px;
-            line-height: 50px;
-            text-decoration: none;
-            color: black;
-            margin-left: 3.5%;
-        }
+.acli {
+	border-bottom: 1px solid #eee;
+}
 
-        .acul .acli.on {
-            background-color: red;
-        }
+.acul li a {
+	display: block;
+	width: 93%;
+	height: 50px;
+	line-height: 50px;
+	text-decoration: none;
+	color: black;
+	margin-left: 3.5%;
+}
 
-        .content {
-            display: none;
-            background-color: rgb(242, 244, 245);
-        }
+.acul li button {
+	display: block;
+	width: 93%;
+	height: 50px;
+	line-height: 50px;
+	text-decoration: none;
+	color: black;
+	margin-left: 3.5%;
+}
 
-        .liarea {
-            width: 250px;
-            float: right;
-        }
+.acul .acli.on {
+	background-color: red;
+}
 
-        .acli:first-child {
-            border-top: 1px solid black;
-        }
+.content {
+	display: none;
+	background-color: rgb(242, 244, 245);
+}
 
-        .acdate {
-            margin-left: 50px;
-        }
+.liarea {
+	width: 250px;
+	float: right;
+}
 
-        .accimg {
-            float: right;
-            margin-top: 20px;
-        }
-    </style>
+.acli:first-child {
+	border-top: 1px solid black;
+}
+
+.acdate {
+	margin-left: 50px;
+}
+
+.accimg {
+	float: right;
+	margin-top: 20px;
+}
+</style>
 
 
 </head>
@@ -604,25 +604,27 @@ h2.tit.small {
 				<!-- 대중교통 정보가 없는 경우 -->
 
 			</div>
-			<br><br>
+			<br>
+			<br>
 			<h2 class="tit small mt70">공지사항</h2>
-		
-			<div class="noticecon">
-		
-				<ul class="acul">
-				<c:forEach items="${notice }" var="notice">
-					<li class="acli"><a href="javascript:void(0)">${notice.notitle }
-							<div class="liarea">
-								<span class="actitle">${notice.nocode }</span> <span class="acdate">${notice.nodate }</span> <img
-									src=https://img.megabox.co.kr/static/pc/images/common/bg/bg-arr-accordion-down.png
-									class="accimg">
-							</div>
-					</a>
-						<div class="content">
-							<span>${notice.nosubject }</span>
 
-						</div></li>
-						</c:forEach>
+			<div class="noticecon">
+
+				<ul class="acul">
+					<c:forEach items="${notice }" var="notice">
+						<li class="acli"><a href="javascript:void(0)">${notice.notitle }
+								<div class="liarea">
+									<span class="actitle">${notice.nocode }</span> <span
+										class="acdate">${notice.nodate }</span> <img
+										src=https://img.megabox.co.kr/static/pc/images/common/bg/bg-arr-accordion-down.png
+										class="accimg">
+								</div>
+						</a>
+							<div class="content">
+								<span>${notice.nosubject }</span>
+
+							</div></li>
+					</c:forEach>
 					<li class="acli"><a href="javascript:void(0)">코로나 방역대책 안내
 							<div class="liarea">
 								<span class="actitle">지점</span> <span class="acdate">2021.
@@ -631,7 +633,7 @@ h2.tit.small {
 									class="accimg">
 							</div>
 					</a>
-					
+
 						<div class="content">첫번째 공지사항 내용입니다.</div></li>
 					<li class="acli"><a href="javascript:void(0)">이벤트 안내
 							<div class="liarea">
@@ -656,23 +658,24 @@ h2.tit.small {
 
 			<!--// accordion-list -->
 
-				<!-- pagination -->
-				<nav class="pagination">
-					<strong class="active">1</strong> <a title="2페이지보기"
-						href="javascript:void(0)" pagenum="2">2</a>
-				</nav>
-				<!--// pagination -->
-			</div>
-			<!-- contact area start -->
-			<!-- contact area end -->
-
-
-
+			<!-- pagination -->
+			<nav class="pagination">
+				<strong class="active">1</strong> <a title="2페이지보기"
+					href="javascript:void(0)" pagenum="2">2</a>
+			</nav>
+			<!--// pagination -->
 		</div>
+		<!-- contact area start -->
+		<!-- contact area end -->
+
+
+
+
 
 		<div id="tab-2" class="tab-content">
 			<p>상영시간표</p>
 		</div>
+
 		<div id="tab-3" class="tab-content">
 			<a href="" class="ir">관람료 탭 화면 입니다.</a>
 			<h2 class="tit small">영화관람료</h2>
@@ -968,8 +971,8 @@ h2.tit.small {
 			<br> <br> 관람가격 및 시간대 운영은 극장마다 상이할 수 있으며, 상기 가격은 메가박스
 			대구신세계(동대구)점에 한하여 적용됩니다.
 		</div>
-		
-		
+	</div>
+
 
 
 	<script>
@@ -996,43 +999,38 @@ h2.tit.small {
 				$("#" + tab_id).addClass('current1');
 			});
 		});
-		
+
 		$(document).ready(function() {
 			$('.imgbut').click(function() {
-			var btn_id = $(this).attr('')
-			$('.title').addClass('on');
-			$('.content').removeAttr("style")
-			$('.content').style('display', 'block');
-			
-			$('.content').removeClass('on')
-			
+				var btn_id = $(this).attr('')
+				$('.title').addClass('on');
+				$('.content').removeAttr("style")
+				$('.content').style('display', 'block');
+
+				$('.content').removeClass('on')
+
 			});
 		});
-		
-		   
-        $('.acli').click(function () {
-            $('.content').slideUp();
-            if ($(this).children('.content').is(':hidden')) {
-                $(this).children('.content').slideDown();
-            } else {
-                $(this).children('.content').slideUp();
-            }
-        });
 
+		//슬라이드 업 //
+		$('.acli').click(function() {
+			$('.content').slideUp();
+			if ($(this).children('.content').is(':hidden')) {
+				$(this).children('.content').slideDown();
+			} else {
+				$(this).children('.content').slideUp();
+			}
+		});
 
-        
-      /*  $('.acli').click(function () {
-            $('.content').slideUp();
-            if ($(this).children('.content').is(':hidden')) {
-                $(this).children('.content').attr('class', 'contents');
-                $('.contents').css('background-color', 'rgb(242, 244, 245)');
-            } else if ($(this).children('.contents')) {
-                $(this).children('.contents').attr('class', 'content');
-            }
-     });  */ 
-        
-
-		
+		/*  $('.acli').click(function () {
+		      $('.content').slideUp();
+		      if ($(this).children('.content').is(':hidden')) {
+		          $(this).children('.content').attr('class', 'contents');
+		          $('.contents').css('background-color', 'rgb(242, 244, 245)');
+		      } else if ($(this).children('.contents')) {
+		          $(this).children('.contents').attr('class', 'content');
+		      }
+		});  */
 	</script>
 </body>
 

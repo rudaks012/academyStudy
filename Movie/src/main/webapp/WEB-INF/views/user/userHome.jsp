@@ -150,7 +150,9 @@ button {
 
 <!--
 --------------------------------
+
  
+
 -->
 .theater-box .theater-place>ul>li.on .theater-list {
 	display: block;
@@ -337,11 +339,15 @@ body {
 
 <!--
 -------------------------
+
  
+
 -->
 <!--
 -------------li---------------
+
  
+
 -->
 .theater-box .theater-list ul li a {
 	color: #444;
@@ -431,7 +437,9 @@ body {
 
 <!--
 -----------------------------
+
  
+
 -->
 .theater-box .theater-list ul {
 	overflow: hidden;
