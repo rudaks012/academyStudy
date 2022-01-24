@@ -52,7 +52,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="movieList.do">영화 리스트</a></li>
                 <li class="nav-item"> <a class="nav-link" href="movieinputForm.do">영화 등록</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Typography</a></li>
+                <li class="nav-item"> <a class="nav-link" href="imgtestjsp.do">Typography</a></li>
               </ul>
             </div>
           </li>

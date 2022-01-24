@@ -37,4 +37,11 @@ public class AdminMovieServiceImpl implements AdminMovieService {
 	}
 
 
+	@Override
+	public int adminMovieUpdate(MovieVO vo) {
+		// TODO Auto-generated method stub
+		return map.adminMovieUpdate(vo);
+	}
+
+
 }

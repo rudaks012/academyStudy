@@ -117,7 +117,7 @@
 			<div class="card">
 				<div class="card-body">
 					<h4 class="card-title">Movie 상세정보</h4>
-					<form class="form-sample" action="#" method="post"
+					<form class="form-sample" action="adminMovieUpdate.do" method="post"
 						enctype="multipart/form-data">
 
 						<div class="row">
@@ -273,11 +273,14 @@
 			var tableEl = $('#tableEl');
 			var tr = tableEl.find('tbody tr');
 			var trtotal = tr.length;
+			
+			if(trtotal == 0) return;
 			var pagetotal = Math.ceil(trtotal / pagenumber);
 			var pageGroup = Math.ceil(currentPage / pageCount);
 			var last = pageGroup * pageCount;
-			if (last > pagetotal)
+			if (last > pagetotal){				
 				last = pagetotal;
+			}
 			var first;
 			if (last % pageCount == 0) {
 				first = last - (pageCount - 1);
