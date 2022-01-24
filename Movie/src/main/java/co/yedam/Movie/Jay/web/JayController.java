@@ -1,13 +1,20 @@
 package co.yedam.Movie.Jay.web;
 
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +27,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.yedam.Movie.Jay.service.AdminMovieService;
@@ -185,7 +193,7 @@ public class JayController {
 		 
 		  for (int i=1 ; i<=length ; i++){
 			  sb.append((char) ((int) (random.nextInt(26)) + 65));
-			  if(i%4==0 && i!=16) {
+			  if(i%4==0 && i!=length) {
 				  sb.append("-");
 			  }
 		  }
@@ -197,5 +205,37 @@ public class JayController {
 	public MovieVO adminMovieSelect(MovieVO vo, Model model) {
 		return adminMovieDao.adminMovieSelect(vo);
 	}
+	
+	@RequestMapping("/adminMovieUpdate.do")
+	public String adminMovieUpdate(MovieVO vo, Model model) {
+		model.addAttribute("movies", adminMovieDao.adminMovieSelectList());
+		adminMovieDao.adminMovieUpdate(vo);
+		
+		return "admin/movieList";
+	}
+	
+	@RequestMapping("/imgtestjsp.do")
+	public String imgtestjsp() {
+		return "admin/imgtest";
+	}
+	@RequestMapping("/imgtest.do")
+	public void imgtest(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("imgage/jpeg");
+		ServletOutputStream out = resp.getOutputStream();
+		
+		FileInputStream fis = new FileInputStream("C:\\project\\Movie\\Movie\\src\\main\\webapp\\resources\\movieposter\\DMLV-VVCQ-POUE-PVZZ.jpg");
+		
+		//
+		BufferedInputStream bis =  new BufferedInputStream(fis);
+		BufferedOutputStream bos = new BufferedOutputStream(out);
+		
+		int readBytes  = 0;
+		while((readBytes = bis.read())!= -1) {
+			bos.write(readBytes);
+		}
+		bis.close();
+		bos.close();
+	}
+	
 
 }

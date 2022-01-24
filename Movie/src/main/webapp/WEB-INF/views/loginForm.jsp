@@ -626,14 +626,14 @@
 										"success");
 								setTimeout(function() {
 									location.reload();
-								}, 1500)
+								}, 2000)
 
 							} else {
 								console.log("no")
 								swal("일치하는 정보가 없습니다.", "", "error")
 								setTimeout(function() {
 									location.reload();
-								}, 1500)
+								}, 2000)
 
 							}
 

@@ -7,5 +7,6 @@ import co.yedam.Movie.comm.MovieVO;
 public interface AdminMovieMapper {
 	List<MovieVO> adminMovieSelectList(); // 영화 목록 전체 조회
 	int adminMovieInsert(MovieVO vo);
-	MovieVO adminMovieSelect(MovieVO vo); // 영화 한건 찾기 
+	MovieVO adminMovieSelect(MovieVO vo); // 영화 한건 찾기
+	int adminMovieUpdate(MovieVO vo); // 영화 업데이트
 }

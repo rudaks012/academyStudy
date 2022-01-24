@@ -34,4 +34,6 @@
 		MEMPASSWORD = #{memPassword}
 		WHERE MEMID = #{memId}
 	</update>
+	
+	
 </mapper>
