@@ -247,11 +247,11 @@
 	font-weight: 1000;
 }
 
-#email_confirminput[type=text]:disabled{
+#email_confirminput[type=text]:disabled {
 	background: rgb(192, 191, 191);
 }
 
-#countdown{
+#countdown {
 	color: red;
 }
 </style>
@@ -262,8 +262,8 @@
 <body>
 
 	<div id="hiddendiv">
-		<input type="hidden" id="hiddenrandomnum" value="">
-		<input type="hidden" id="hiddeninput" value="0">
+		<input type="hidden" id="hiddenrandomnum" value=""> <input
+			type="hidden" id="hiddeninput" value="0">
 	</div>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -301,24 +301,23 @@
 									<a href="javascript:idFind()"
 										style="margin-right: .5em; margin-left: .5em; font-size: 1.2rem;"
 										class="auth-link text-black">아이디 찾기</a> <a
-										id="passwordfindbtn" href="#"
-										style="font-size: 1.2rem;" class="auth-link text-black">비밀번호
-										찾기</a>
+										id="passwordfindbtn" href="#" style="font-size: 1.2rem;"
+										class="auth-link text-black">비밀번호 찾기</a>
 								</div>
 								<div class="mt-2"></div>
 
 
 								<div class="mb-2">
-									<button type="button"
+									<a href=""
 										style="background-color: yellowgreen; font-size: 1.4rem;"
 										class="btn btn-block btn-facebook auth-form-btn">네이버
-										로그인</button>
+										로그인</a>
 								</div>
 								<div class="mb-2">
-									<button type="button"
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=3f1f202997e3b37e832aa0c1983ea15a&redirect_uri=http://localhost/Movie/kakaologin.do&response_type=code"
+										
 										style="background-color: gold; font-size: 1.4rem;"
-										class="btn btn-block btn-facebook auth-form-btn">카카오
-										로그인</button>
+										class="btn btn-block btn-facebook auth-form-btn">카카오 로그인</a>
 								</div>
 								<div class="mt-2"></div>
 								<div class="mt-1">
@@ -347,148 +346,162 @@
 	<div class="modal">
 
 		<div class="modal_body">
-			
-				<div class="modal_content_title_img">
-					<img src="resources/icons/mainimg.PNG" alt="">
-				</div>
-				<div class="modal_content_title">비밀번호 찾기</div>
-				<div class="modal_content_body_title">
-					email로 찾기 <span class="underline"></span>
-				</div>
-				<div class="modal_content_body">
-					<div class="modal_content_body_id">
-						아이디 <input type="email" id="idinput" name="idinput" class="modal_content_body_id_input">
-					</div>
-					<div class="modal_content_body_name">
-						이름 <input type="text" id="nameinput" name="nameinput" class="modal_content_body_id_input">
-					</div>
-					<div class="modal_content_body_email">
-						메일 <input type="email" id="emailinput" class="modal_content_body_id_input">
-						<button type="button" onclick="requestBtn()" class="modal_content_bydy_email_confirmBtn">인증요청</button>
-					</div>
-					<div class="modal_content_body_email_confirm">
-						인증번호
-						<div class="modal_content_body_email_input_box">
-							<input id="email_confirminput"type="text" class="modal_content_body_email_input" disabled="disabled">
-							<span id="countdown" class="countdouwntext">03:00</span>
-						</div>
 
-						<button id="email_confirmBtn" type="button" class="modal_content_bydy_email_confirmBtn" onclick="resultconfirmBtn()" disabled="disabled">인증확인</button>
-					</div>
-					
-					<button type="button" id="passwordupdate" class="submitBtn"disabled="disabled" onclick="passwordupdatef()">비밀번호 변경하기</button>
-					<button type="button" class="cancelBtn">취소</button>
-					
+			<div class="modal_content_title_img">
+				<img src="resources/icons/mainimg.PNG" alt="">
+			</div>
+			<div class="modal_content_title">비밀번호 찾기</div>
+			<div class="modal_content_body_title">
+				email로 찾기 <span class="underline"></span>
+			</div>
+			<div class="modal_content_body">
+				<div class="modal_content_body_id">
+					아이디 <input type="email" id="idinput" name="idinput"
+						class="modal_content_body_id_input">
 				</div>
-			
+				<div class="modal_content_body_name">
+					이름 <input type="text" id="nameinput" name="nameinput"
+						class="modal_content_body_id_input">
+				</div>
+				<div class="modal_content_body_email">
+					메일 <input type="email" id="emailinput"
+						class="modal_content_body_id_input">
+					<button type="button" onclick="requestBtn()"
+						class="modal_content_bydy_email_confirmBtn">인증요청</button>
+				</div>
+				<div class="modal_content_body_email_confirm">
+					인증번호
+					<div class="modal_content_body_email_input_box">
+						<input id="email_confirminput" type="text"
+							class="modal_content_body_email_input" disabled="disabled">
+						<span id="countdown" class="countdouwntext">03:00</span>
+					</div>
+
+					<button id="email_confirmBtn" type="button"
+						class="modal_content_bydy_email_confirmBtn"
+						onclick="resultconfirmBtn()" disabled="disabled">인증확인</button>
+				</div>
+
+				<button type="button" id="passwordupdate" class="submitBtn"
+					disabled="disabled" onclick="passwordupdatef()">비밀번호 변경하기</button>
+				<button type="button" class="cancelBtn">취소</button>
+
+			</div>
+
 		</div>
 
 	</div>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script type="text/javascript">
-		
-		
-		
-		function resultconfirmBtn(){
-				let confirmval = $("#email_confirminput").val();
-				let randomnum =  $("#hiddenrandomnum").val();
-				
-				if(confirmval == randomnum){
-					swal({
-						icon : 'success',
-						title : '',
-						text : '인증이 완료 되었습니다! 비밀번호 변경 버튼을 눌러 비밀번호를 변경하세요.'
-						})
-						$("#passwordupdate").attr("disabled", false);
-				}else{
-					swal({
-						icon : 'error',
-						title : '인증번호를 다시 확인하세요!',
-						text : ''
-						})
-					
-				}			
-			}				
-		
-		
-		
-		
-		function requesthide(){
+		function kakaologin(){
+// 			location.href="";
+// 			$.ajax({
+// 				url : 'kakaologin.do',
+// 				type : 'get',
+// 				async: false,
+// 				dataType: 'text',
+// 				success : function(data){
+// 					location.href = data;
+// 				}
+// 			})
+		}
+
+		function resultconfirmBtn() {
+			let confirmval = $("#email_confirminput").val();
+			let randomnum = $("#hiddenrandomnum").val();
+
+			if (confirmval == randomnum) {
+				swal({
+					icon : 'success',
+					title : '',
+					text : '인증이 완료 되었습니다! 비밀번호 변경 버튼을 눌러 비밀번호를 변경하세요.'
+				})
+				$("#passwordupdate").attr("disabled", false);
+			} else {
+				swal({
+					icon : 'error',
+					title : '인증번호를 다시 확인하세요!',
+					text : ''
+				})
+
+			}
+		}
+
+		function requesthide() {
 			$("#email_confirmBtn").attr("disabled", true);
 			$("#email_confirminput").attr("disabled", true);
 			$("#passwordupdate").attr("disabled", true);
 		}
-			
-		
-		function requestBtn(){
-			
-			if(emailinput.value == ""){
+
+		function requestBtn() {
+
+			if (emailinput.value == "") {
 				swal({
 					icon : 'error',
 					title : 'email을 입력하세요.',
 					text : ''
-					})
-			}else{
+				})
+			} else {
 				let result = passwordfindidnamechk()
-				
-				if(result){
-				
+
+				if (result) {
+
 					let randomnum = Math.floor(Math.random() * 1000000);
 					let inputemail = $("#emailinput").val();
 					let nameinput = $("#nameinput").val();
-				
-					let result = ajaxemailconfirm(randomnum, inputemail, nameinput);
-					
+
+					let result = ajaxemailconfirm(randomnum, inputemail,
+							nameinput);
+
 					swal({
 						icon : 'warning',
 						title : '',
 						text : '3분 이내로 인증번호(6자리)를 입력해 주세요.'
-						})
-					
+					})
+
 					$("#email_confirmBtn").attr("disabled", false);
 					$("#email_confirminput").attr("disabled", false);
 					inputcountdownval();
-					
-					if(result){
+
+					if (result) {
 						$("#hiddenrandomnum").val(randomnum);
 					}
-				
-					
-					
-				}else{
+
+				} else {
 					swal({
 						icon : 'error',
 						title : '',
 						text : '아이디 또는 이름을 확인해주세요. 일치하는 정보X'
-						})
+					})
 				}
-				
+
 			}
 		}
-				
-		function ajaxemailconfirm(randomnum, email, name){
-				let resultval = false;
-				$.ajax({
-					url : 'ajaxemailconfirm.do',
-					type : 'post',
-					async : false,
-					data : {
-						randomnum : randomnum,
-						email : email,
-						name : name
-					},
-					success : function(data){
-						
-						if(data == "Yes"){
-							resultval = true;
-						}else{
-							resultval = false;
-						}
+
+		function ajaxemailconfirm(randomnum, email, name) {
+			let resultval = false;
+			$.ajax({
+				url : 'ajaxemailconfirm.do',
+				type : 'post',
+				async : false,
+				data : {
+					randomnum : randomnum,
+					email : email,
+					name : name
+				},
+				success : function(data) {
+
+					if (data == "Yes") {
+						resultval = true;
+					} else {
+						resultval = false;
 					}
-				})
-				return resultval;
+				}
+			})
+			return resultval;
 		}
-		
-		function passwordfindidnamechk(){
+
+		function passwordfindidnamechk() {
 			let idinput = $("#idinput").val();
 			let nameinput = $("#nameinput").val();
 			var resultval = false;
@@ -500,21 +513,21 @@
 					memId : idinput,
 					memName : nameinput
 				},
-				success : function(data){
-					
-					if(data == "Yes"){
+				success : function(data) {
+
+					if (data == "Yes") {
 						resultval = true;
-				
-					}else{
+
+					} else {
 						resultval = false;
-						
+
 					}
-					
+
 				}
 			})
 			return resultval;
 		}
-	
+
 		function loginChk() {
 			var id = $("#exampleInputEmail1").val();
 			var password = $("#exampleInputPassword1").val();
@@ -581,7 +594,7 @@
 				text : msg,
 			})
 		}
-		
+
 		function inputsrc() {
 			$("#hiddeninput")
 					.append(
@@ -651,7 +664,7 @@
 
 		passwordfindbtn.addEventListener('click', function() {
 			requesthide();
-			
+
 			modal.classList.toggle('show');
 
 			if (modal.classList.contains('show')) {
@@ -669,7 +682,6 @@
 			}
 		});
 
-		
 		function startcountdown(duration, element) {
 
 			let secremaining = duration;
@@ -709,15 +721,15 @@
 
 			startcountdown(--duration, element);
 		}
-		
-		function passwordupdatef(){
-			console.log("dfdf")
+
+		function passwordupdatef() {
+
 			let idinputval = $("#idinput").val();
-			console.log("idinputval"+idinputval)
+			console.log("idinputval" + idinputval)
 			let formtag = $("<form>");
-		
+
 			let inputtag = $("<input>");
-			
+
 			inputtag.attr({
 				type : "hidden",
 				name : "memId",
@@ -731,7 +743,6 @@
 			formtag.appendTo(document.body);
 			formtag.submit();
 		}
-
 	</script>
 
 	<script src="resources/admin/vendors/js/vendor.bundle.base.js"></script>

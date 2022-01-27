@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.UUID;
+
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -26,16 +26,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import co.yedam.Movie.Jay.service.AdminMovieService;
+import co.yedam.Movie.Jay.service.KakaoLoginApiService;
 import co.yedam.Movie.Jay.service.MemberService;
 import co.yedam.Movie.comm.MemberVO;
 import co.yedam.Movie.comm.MovieVO;
 import co.yedam.Movie.man.service.NoticeService;
 import co.yedam.Movie.taejoon.service.MovieService;
+
+
 
 @Controller("movieJayController")
 public class JayController {
@@ -55,11 +59,42 @@ public class JayController {
 	@Autowired
 	String saveDirectory;
 	
+	@Autowired
+	private KakaoLoginApiService kakao;
+	
 	@RequestMapping("/loginForm.do")
 	public String loginForm() {
-
 		return "loginForm";
 	}
+	@RequestMapping("/kakaologin.do")
+	public String kakaologin(@RequestParam String code, HttpSession session) {
+		String access_Token = kakao.getAccessToken(code);
+		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
+		System.out.println("controller access_token : " + access_Token);
+		System.out.println(code);
+		if(userInfo.get("email") != null) {
+			System.out.println("email : "+userInfo.get("email"));
+			System.out.println("nickname : "+ userInfo.get("nickname"));
+//			session.setAttribute("userId", userInfo.get("email"));
+//			session.setAttribute("access_Token", access_Token);
+		}
+		
+		return "redirect:loginForm.do";
+	}
+	
+	@RequestMapping("/kakaologout.do")
+	public String kakaologout(HttpSession session) {
+		kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+		session.removeAttribute("access_Token");
+		session.removeAttribute("userId");
+		
+		return "loginForm";
+	}
+	@RequestMapping("/naverlogin.do")
+	public String naverlogin() {
+		return null;
+	}
+	
 	
 	
 	@RequestMapping("/ajaxLogin.do")
@@ -237,5 +272,5 @@ public class JayController {
 		bos.close();
 	}
 	
-
+	
 }
