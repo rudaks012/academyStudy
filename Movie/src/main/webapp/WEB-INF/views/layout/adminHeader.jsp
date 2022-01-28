@@ -26,7 +26,7 @@
 
 		}).then(function(value) {
 			if(value){
-				location.href = "logout.do"
+				location.href = "remove.do"
 			}
 			
 		})

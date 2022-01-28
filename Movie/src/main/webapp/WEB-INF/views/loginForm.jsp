@@ -308,7 +308,7 @@
 
 
 								<div class="mb-2">
-									<a href=""
+									<a href="javascript:naverlogin()"
 										style="background-color: yellowgreen; font-size: 1.4rem;"
 										class="btn btn-block btn-facebook auth-form-btn">네이버
 										로그인</a>
@@ -393,17 +393,17 @@
 	</div>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script type="text/javascript">
-		function kakaologin(){
-// 			location.href="";
-// 			$.ajax({
-// 				url : 'kakaologin.do',
-// 				type : 'get',
-// 				async: false,
-// 				dataType: 'text',
-// 				success : function(data){
-// 					location.href = data;
-// 				}
-// 			})
+		function naverlogin(){
+
+			$.ajax({
+				url : 'naverlogin.do',
+				type : 'get',
+				async: false,
+				dataType: 'text',
+				success : function(data){
+					location.href = data;
+				}
+			})
 		}
 
 		function resultconfirmBtn() {
