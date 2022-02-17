@@ -6,7 +6,10 @@
 	<title>Home</title>
 </head>
 <body>
-<script src="js/jquery-3.6.0.min.js"></script>
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
 <script type="text/javascript">
 
 function ajaxdbtest(){
