@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	구매자 페이지 구현
+	구매자 페이지 구현1212
 </body>
 </html>
