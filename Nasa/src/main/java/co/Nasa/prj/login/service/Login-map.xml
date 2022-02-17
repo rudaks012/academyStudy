@@ -6,10 +6,10 @@
 	</select>
 	<select id="selectbuyer" resultType="co.Nasa.prj.login.service.LoginVO">
 	select * from buyer
-	where id=#{id} and password = #{password}
+	where B_EMAIL=#{id} and B_PASSWORD = #{password}
 	</select>
 		<select id="selectbuyerId" resultType="co.Nasa.prj.login.service.LoginVO">
-			SELECT * FROM buyer WHERE id = #{id}
+			SELECT * FROM buyer WHERE B_EMAIL = #{id}
 	</select>
 	
 </mapper>
