@@ -6,10 +6,10 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<script type="text/javascript">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script type="text/javascript">
 		function login() {
 			var id = document.querySelector('#id');
 			var pw = document.querySelector('#pw');
@@ -24,161 +24,164 @@
 
 		}
 	</script>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+	rel="stylesheet">
+<script src="https://kit.fontawesome.com/53a8c415f1.js"
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	<style>
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-			font-family: "Noto Sans KR", sans-serif;
-		}
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Noto Sans KR", sans-serif;
+}
 
-		body {
-			max-width: 100%;
-			height: auto;
-			background-image: url('resources/image/login.PNG');
-			background-repeat: no-repeat;
-			background-size: cover;
-		}
+body {
+	max-width: 100%;
+	height: auto;
+	background-image: url('resources/image/login.PNG');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 
-		a {
-			text-decoration: none;
-			color: black;
-		}
+a {
+	text-decoration: none;
+	color: black;
+}
 
-		li {
-			list-style: none;
-		}
+li {
+	list-style: none;
+}
 
-		.wrap {
-			top: 30px;
-			width: 100%;
-			height: 100vh;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			background: rgba(0, 0, 0, 0.1);
-		}
+.wrap {
+	top: 30px;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.1);
+}
 
-		.login {
-			position: absolute;
-			width: 30%;
-			height: 600px;
-			background: rgba(204, 191, 191, 0.753);
-			border-radius: 20px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: column;
-		}
+.login {
+	position: absolute;
+	width: 30%;
+	height: 600px;
+	background: rgba(204, 191, 191, 0.753);
+	border-radius: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
 
-		h2 {
-			color: white;
-			top: 20px;
-			white-space: nowrap;
-			font-size: 2em;
-			width: 100%;
-		}
+h2 {
+	color: white;
+	top: 20px;
+	white-space: nowrap;
+	font-size: 2em;
+	width: 100%;
+}
 
-		h4 {
-			color: rgb(65, 64, 64);
-			top: 20px;
-			white-space: nowrap;
-		}
+h4 {
+	color: rgb(65, 64, 64);
+	top: 20px;
+	white-space: nowrap;
+}
 
-		.login_id {
-			margin-top: 20px;
-			width: 80%;
-		}
+.login_id {
+	margin-top: 20px;
+	width: 80%;
+}
 
-		.login_id input {
-			width: 100%;
-			height: 50px;
-			border-radius: 30px;
-			margin-top: 10px;
-			padding: 0px 20px;
-			border: 1px solid lightgray;
-			outline: none;
-		}
+.login_id input {
+	width: 100%;
+	height: 50px;
+	border-radius: 30px;
+	margin-top: 10px;
+	padding: 0px 20px;
+	border: 1px solid lightgray;
+	outline: none;
+}
 
-		.login_pw {
-			margin-top: 20px;
-			width: 80%;
-		}
+.login_pw {
+	margin-top: 20px;
+	width: 80%;
+}
 
-		.login_pw input {
-			width: 100%;
-			height: 50px;
-			border-radius: 30px;
-			margin-top: 10px;
-			padding: 0px 20px;
-			border: 1px solid lightgray;
-			outline: none;
-		}
+.login_pw input {
+	width: 100%;
+	height: 50px;
+	border-radius: 30px;
+	margin-top: 10px;
+	padding: 0px 20px;
+	border: 1px solid lightgray;
+	outline: none;
+}
 
-		.submit {
-			margin-top: 50px;
-			width: 80%;
-		}
+.submit {
+	margin-top: 50px;
+	width: 80%;
+}
 
-		#loginfo {
-			width: 40%;
-			height: 40px;
-			border: 0;
-			outline: none;
-			border-radius: 40px;
-			background: linear-gradient(to left, rgba(96, 187, 247, 0.349),
-					rgba(154, 252, 192, 0.404));
-			color: white;
-			font-size: 1.2em;
-			letter-spacing: 2px;
-		}
+#loginfo {
+	width: 40%;
+	height: 40px;
+	border: 0;
+	outline: none;
+	border-radius: 40px;
+	background: linear-gradient(to left, rgba(96, 187, 247, 0.349),
+		rgba(154, 252, 192, 0.404));
+	color: white;
+	font-size: 1.2em;
+	letter-spacing: 2px;
+}
 
-		#userinsert {
-			width: 40%;
-			height: 40px;
-			border: 0;
-			outline: none;
-			border-radius: 40px;
-			background: linear-gradient(to left, rgba(96, 187, 247, 0.349),
-					rgba(154, 252, 192, 0.404));
-			color: white;
-			font-size: 1.2em;
-			letter-spacing: 2px;
-		}
+#userinsert {
+	width: 40%;
+	height: 40px;
+	border: 0;
+	outline: none;
+	border-radius: 40px;
+	background: linear-gradient(to left, rgba(96, 187, 247, 0.349),
+		rgba(154, 252, 192, 0.404));
+	color: white;
+	font-size: 1.2em;
+	letter-spacing: 2px;
+}
 
-		#kakao {
-			border: 0;
-			width: 100%;
-			height: 0px;
-			display: inline-block;
-		}
+#kakao {
+	border: 0;
+	width: 100%;
+	height: 0px;
+	display: inline-block;
+}
 
-		.kakao-img {
-			width: 100%;
-		}
+.kakao-img {
+	width: 100%;
+}
 
-		#Mainpage {
-			border: 0;
-			width: 300px;
-			height: 40px;
-				border: 0;
-			outline: none;
-			border-radius: 40px;
-			background: linear-gradient(to left, rgba(96, 187, 247, 0.349),
-					rgba(154, 252, 192, 0.404));
-			color: white;
-			font-size: 1.2em;
-			letter-spacing: 2px;
-		}
+#Mainpage {
+	border: 0;
+	width: 300px;
+	height: 40px;
+	border: 0;
+	outline: none;
+	border-radius: 40px;
+	background: linear-gradient(to left, rgba(96, 187, 247, 0.349),
+		rgba(154, 252, 192, 0.404));
+	color: white;
+	font-size: 1.2em;
+	letter-spacing: 2px;
+}
 
-		.mainpage {
-			width: 100%;
-		}
-	</style>
+.mainpage {
+	width: 100%;
+}
+</style>
 </head>
 
 
@@ -192,42 +195,53 @@
 				<div class="login_sns"></div>
 				<div class="login_id">
 					<h4>ID</h4>
-					<input type="ID" name="id" id="id" placeholder="ID" required="required">
+					<input type="ID" name="id" id="id" placeholder="ID"
+						required="required">
 				</div>
 				<div class="login_pw">
 					<h4>Password</h4>
-					<input type="password" name="pw" id="pw" placeholder="Password" required="required">
+					<input type="password" name="pw" id="pw" placeholder="Password"
+						required="required">
 				</div>
 				<div class="submit">
-					<input type="submit" value="로그인" id="loginfo" onclick="login()" style="float: left;">
-					<input type="button" value="회원가입" id="userinsert" onclick="location.href='#'" style="float: right;">
-					<br>
-					<br> <br>
+					<input type="submit" value="로그인" id="loginfo" onclick="login()"
+						style="float: left;"> <input type="button" value="회원가입"
+						id="userinsert" onclick="location.href='#'" style="float: right;">
+					<br> <br> <br>
 				</div>
 				<div>
-				<input type="button" value="Main" id="Mainpage" onclick="location.href='#'">
-					
-			
+					<input type="button" value="Main" id="Mainpage"
+						onclick="location.href='#'">
+
+
 				</div>
 				<br>
 				<div>
 					<button type="button" id="kakao" onclick=kakaoLogin()>카카오
-				
+
 					</button>
-						<div id="naverIdLogin">네이버</div>
+					<button type="button" id="naverLogin" name="naverLogin"
+						onclick="location.href='${url }'">
+						
+						
+						<span id="loginSpan">Naver ID로 로그인</span>
+					</button>
 					
+				
+
 				</div>
 			</div>
 		</div>
 	</form>
-	<form action="kakaologin.do" method="post" name="login_frm" class="login_frm">
+	<form action="kakaologin.do" method="post" name="login_frm"
+		class="login_frm">
 		<div class="form-group row" id="kakaologin">
 			<div class="kakaobtn">
-				<input type="hidden" name="kakaoemail" id="kakaoemail" />
-				<input type="hidden" name="kakaoname" id="kakaoname" />
-				<input type="hidden" name="kakaobirth" id="kakaobirth" />
-				<input type="hidden" name="accesstoken" id="accesstoken" />
-				
+				<input type="hidden" name="kakaoemail" id="kakaoemail" /> <input
+					type="hidden" name="kakaoname" id="kakaoname" /> <input
+					type="hidden" name="kakaobirth" id="kakaobirth" /> <input
+					type="hidden" name="accesstoken" id="accesstoken" />
+
 			</div>
 		</div>
 		<!-- <input type="text" name="kakaoemail" id="kakaoemail" value="" /> -->
@@ -239,6 +253,8 @@
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
+
+
 	// 카카오로그인
 	window.Kakao.init("f7385fb73ea9711440f35e5c4448ec66");
 
@@ -256,6 +272,7 @@
 						const accesstoken = authObj.access_token;
 	
 						console.log(email);
+						
 						console.log(name);
 						console.log(birth);
 						console.log(accesstoken);
@@ -274,57 +291,12 @@
 	//네이버로그인
 	
 	</script>
-	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8">
+<script
+	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
+	charset="utf-8">
 	</script>
-	  <script type="text/javascript">
+<script type="text/javascript">
 	  
-	  const naverLogin = new naver.LoginWithNaverId(
-	   {
-	    clientId: "riJLl1UIQ4mX1mfheZmQ",
-	    callbackUrl: "http://localhost/Nasa/go_admin.do",
-	    loginButton: {color: "green", type: 2, height: 40}
-	    }
-	   );
-	  
-
-	    naverLogin.init();
-	    naverLogin.getLoginStatus(function (status) {
-	      if (status) {
-	          const nickName=naverLogin.user.getNickName();
-	          const age=naverLogin.user.getAge();
-	          const birthday=naverLogin.user.getBirthday();
-
-	          if(nickName===null||nickName===undefined ){
-	            alert("별명이 필요합니다. 정보제공을 동의해주세요.");
-	            naverLogin.reprompt();
-	            return ;  
-	         }else{
-	          setLoginStatus();
-	         }
-		}
-	    });
-	    console.log(naverLogin);
-
-	    function setLoginStatus(){
-	    
-	      const message_area=document.getElementById('message');
-	      message_area.innerHTML=`
-	      <h3> Login 성공 </h3>
-	      <div>user Nickname : ${naverLogin.user.nickname}</div>
-	      <div>user Age(범위) : ${naverLogin.user.age}</div>
-	      <div>user Birthday : ${naverLogin.user.birthday}</div>
-	      `;
-	     
-	      const button_area=document.getElementById('button_area');
-	      button_area.innerHTML="<button id='btn_logout'>로그아웃</button>";
-
-	      const logout=document.getElementById('btn_logout');
-	      logout.addEventListener('click',(e)=>{
-	        naverLogin.logout();
-		location.replace("http://localhost");
-	      })
-	    }
-	   
 
 	  </script>
 

@@ -37,5 +37,7 @@
 	</beans:bean>
 				
 	<context:component-scan base-package="co.Nasa.prj" />
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+<beans:bean class="co.Nasa.prj.login.service.NaverLoginBO" id="naverLoginBO"/>
 	
 </beans:beans>

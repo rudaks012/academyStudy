@@ -30,9 +30,10 @@ public class AhController {
 	}
 	@RequestMapping("/Login.do")
 	public String login() {
-		System.out.println("login1");
+		System.out.println("login페이지접속");
 		return "Login";
 	}
+	//로그인 체크
 	@RequestMapping("/main.do")
 	public String main(HttpServletResponse response,HttpSession session, @RequestParam("id") String id, @RequestParam("pw") String password, Model model) throws IOException {
 		String path = "";
