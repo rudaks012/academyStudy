@@ -6,6 +6,18 @@
 	<title>Home</title>
 </head>
 <body>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+function ajaxdbtest(){
+	$.ajax({
+		url : "ajaxdbtest.do",
+		success : function(data){
+			console.log(data)
+		}
+	})
+}
+</script>
 	nasaaa
 	
 	<div>
@@ -16,6 +28,9 @@
 	</div>
 	<div>
 		<button onclick="location.href='go_admin.do'">관리자 페이지</button>
+	</div>
+	<div>
+	<button type="button" onclick="ajaxdbtest()">ajaxdbtest</button>
 	</div>
 </body>
 </html>
