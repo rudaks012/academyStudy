@@ -17,32 +17,30 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/{1}.jsp" />
 	</definition>
 	
-	<!-- 판매자 링크 -->
-	<definition name="Nasaseller.project" template="/WEB-INF/views/tiles/seller/layout.jsp">
+	<!-- 사용자 링크 -->
+	<definition name="Nasauser.project" template="/WEB-INF/views/tiles/user/layout.jsp">
 		<put-attribute name="title" value="Nasa seller" />
-		<put-attribute name="header" value="/WEB-INF/views/tiles/seller/header.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/views/tiles/seller/menu.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/views/tiles/seller/footer.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/user/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/tiles/user/menu.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/user/footer.jsp" />
 		<put-attribute name="body" value="" />
 	</definition>
 
+	<!-- 사용자 -->
+	<definition name="user/*" extends="Nasauser.project">
+		<put-attribute name="body" value="/WEB-INF/views/user/{1}.jsp" />
+	</definition>
+	
 	<!-- 판매자 -->
-	<definition name="seller/*" extends="Nasaseller.project">
+	<definition name="seller/*" extends="Nasauser.project">
 		<put-attribute name="body" value="/WEB-INF/views/seller/{1}.jsp" />
 	</definition>
 	
-	<!-- 구매자 페이지 링크 -->
-	<definition name="Nasabuyer.project" template="/WEB-INF/views/tiles/buyer/layout.jsp">
-		<put-attribute name="title" value="Nasa" />
-		<put-attribute name="header" value="/WEB-INF/views/tiles/buyer/header.jsp" />
-		<put-attribute name="body" value="" />
-		<put-attribute name="menu" value="/WEB-INF/views/tiles/buyer/footer.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/views/tiles/buyer/footer.jsp" />
-	</definition>
-
-	<!-- 구매자 페이지 -->
-	<definition name="buyer/*" extends="Nasabuyer.project">
+	<!-- 구매자 -->
+	<definition name="buyer/*" extends="Nasauser.project">
 		<put-attribute name="body" value="/WEB-INF/views/buyer/{1}.jsp" />
 	</definition>
+	
+	
 	
 </tiles-definitions>
