@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.Nasa.prj.login.service.LoginMapper">
+	<select id="selectListbuyer" resultType="co.Nasa.prj.login.service.LoginVO">
+		select * from buyer
+	</select>
+	<select id="selectbuyer" resultType="co.Nasa.prj.login.service.LoginVO">
+	select * from buyer
+	where id=#{id} and password = #{password}
+	</select>
+		<select id="selectbuyerId" resultType="co.Nasa.prj.login.service.LoginVO">
+			SELECT * FROM buyer WHERE id = #{id}
+	</select>
+	
+</mapper>
