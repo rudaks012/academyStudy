@@ -47,7 +47,7 @@ public class AhController {
 			session.setAttribute("password", vo.getB_password());
 			session.setAttribute("status", vo.getToken());
 			
-			path = "dbTest";
+			path = "buyer/buyerHome";
 		}if(path =="" ) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
