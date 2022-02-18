@@ -21,7 +21,6 @@
 	<definition name="Nasauser.project" template="/WEB-INF/views/tiles/user/layout.jsp">
 		<put-attribute name="title" value="Nasa seller" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/user/header.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/views/tiles/user/menu.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/user/footer.jsp" />
 		<put-attribute name="body" value="" />
 	</definition>
