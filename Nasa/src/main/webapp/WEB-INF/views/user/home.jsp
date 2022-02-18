@@ -13,6 +13,9 @@
                     <div class="col-xl-8 col-lg-9">
                         <div class="hero-cap text-center pt-50 pb-20">
                             <h2>Our Listing</h2>
+                            <div>
+		
+	</div>
                         </div>
                         <!--Hero form -->
                         <form action="#" class="search-box search-box2">
