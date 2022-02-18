@@ -10,48 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-#container {
-	width: 100%;
-	margin: 0px auto;
-	text-align: center;
-	border: 0px solid #bcbcbc;
-}
 
-#header {
-	padding: 5px;
-	margin-bottom: 5px;
-	border: 0px solid #bcbcbc;
-	background-color: lightgreen;
-}
-
-#sidebar-left {
-	width: 15%;
-	height: 700px;
-	padding: 5px;
-	margin-right: 5px;
-	margin-bottom: 5px;
-	float: left;
-	background-color: yellow;
-	border: 0px solid #bcbcbc;
-	font-size: 10px;
-}
-
-#content {
-	width: 75%;
-	padding: 5px;
-	margin-right: 5px;
-	float: left;
-	border: 0px solid #bcbcbc;
-}
-
-#footer {
-	clear: both;
-	padding: 5px;
-	border: 0px solid #bcbcbc;
-	background-color: lightblue;
-}
-</style>
 <title><tiles:insertAttribute name="title" /></title>
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -66,49 +25,47 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-	<div id="container">
-		<div id="header">
+
+
 			<tiles:insertAttribute name="header" />
-		</div>
-		<div id="sidebar-left">
-			<tiles:insertAttribute name="menu" />
-		</div>
-		<div id="content">
+
 			<tiles:insertAttribute name="body" />
-		</div>
-		<div id="footer">
+
 			<tiles:insertAttribute name="footer" />
-		</div>
-	</div>
-	<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+
+	<!-- JS here -->
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
 		<!-- Jquery, Popper, Bootstrap -->
-		<script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
 	    <!-- Jquery Mobile Menu -->
-        <script src="assets/js/jquery.slicknav.min.js"></script>
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
 
 		<!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/slick.min.js"></script>
-		<!-- One Page Animated-HeadLin -->
-        <script src="assets/js/wow.min.js"></script>
-		<script src="assets/js/animated.headline.js"></script>
-        <script src="assets/js/jquery.magnific-popup.js"></script>
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+		<!-- One Page, Animated-HeadLin -->
+        <script src="./assets/js/wow.min.js"></script>
+		<script src="./assets/js/animated.headline.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
 
 		<!-- Nice-select, sticky -->
-        <script src="assets/js/jquery.nice-select.min.js"></script>
-		<script src="assets/js/jquery.sticky.js"></script>
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+		<script src="./assets/js/jquery.sticky.js"></script>
         
         <!-- contact js -->
-        <script src="assets/js/contact.js"></script>
-        <script src="assets/js/jquery.form.js"></script>
-        <script src="assets/js/jquery.validate.min.js"></script>
-        <script src="assets/js/mail-script.js"></script>
-        <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
         
 		<!-- Jquery Plugins, main Jquery -->	
-        <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
+        
+        
 </body>
 </html>
