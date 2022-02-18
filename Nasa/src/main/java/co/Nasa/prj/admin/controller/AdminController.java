@@ -18,7 +18,7 @@ public class AdminController {
 	
 	@RequestMapping("/go_admin.do")
 	public String go_admin() {
-		return "admin/adminHome";
+		return "admin/manageBuyer";
 	}
 	@RequestMapping("/ajaxdbtest.do")
 	@ResponseBody
