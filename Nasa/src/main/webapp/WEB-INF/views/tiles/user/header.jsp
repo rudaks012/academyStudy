@@ -26,7 +26,7 @@
                                         <ul id="navigation">
                                         	<li><a href="goSellerMypage.do">판매자마패</a>
                                         	<li><a href="goBuyerMypage.do">구매자마페</a></li>                                                                                                                                     
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="go_admin.do">관리자</a></li>
                                             <li><a href="about.html">About</a></li>
                                             <li><a href="catagori.html">Catagories</a></li>
                                             <li><a href="listing.html">Listing</a></li>
