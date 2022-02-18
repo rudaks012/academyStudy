@@ -16,7 +16,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                  <a href="index.html"><img src="resources/user/assets/img/mainroket.png" alt=""></a>
+                                  <a href="home.do"><img src="resources/user/assets/img/mainroket.png" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-8">
@@ -26,7 +26,7 @@
                                         <ul id="navigation">
                                         	<li><a href="goSellerMypage.do">판매자마페</a></li>
                                         	<li><a href="goBuyerMypage.do">구매자마페</a></li>                                                                                                                                     
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="go_admin.do">관리자</a></li>
                                             <li><a href="about.html">About</a></li>
                                             <li><a href="catagori.html">Catagories</a></li>
                                             <li><a href="listing.html">Listing</a></li>
@@ -40,9 +40,13 @@
                                             </li>
                                             <li><a href="contact.html">Contact</a></li>
                                             <li class="add-list"><a href="listing_details.html"><i class="ti-plus"></i> add Listing</a></li>
-                                            <li class="login"><a href="#">
+                                            <li class="login"><a href="Login.do">
+        
                                                 <i class="ti-user"></i> Sign in or Register</a>
                                             </li>
+                                                                                <div>
+		<button onclick="location.href='ckeditor.do'">시케이데에에에</button>
+	</div>
                                         </ul>
                                     </nav>
                                 </div>
