@@ -20,6 +20,10 @@ public class AdminController {
 	public String go_admin() {
 		return "admin/manageBuyer";
 	}
+	@RequestMapping("/manage_seller.do")
+	public String manage_seller() {
+		return "admin/manageSeller";
+	}
 	@RequestMapping("/ajaxdbtest.do")
 	@ResponseBody
 	public List<dbtestVO> ajaxdbtest() {
