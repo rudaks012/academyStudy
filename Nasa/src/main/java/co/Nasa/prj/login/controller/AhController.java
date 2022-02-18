@@ -35,7 +35,7 @@ public class AhController {
 		// dbTest
 		model.addAttribute("Hosts", LoginDao.selectListbuyer());
 		
-		return "Login";
+		return "user/Login";
 	}
 	@RequestMapping("/Login.do")
 	public String login(Model model, HttpSession session) {
@@ -43,7 +43,7 @@ public class AhController {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		System.out.println("네이버" + naverAuthUrl);
 		model.addAttribute("url", naverAuthUrl);
-		return "Login";
+		return "user/Login";
 	}
 	//로그인 체크
 	@RequestMapping("/main.do")
@@ -66,7 +66,7 @@ public class AhController {
 			PrintWriter out = response.getWriter();
 			out.print("<script>alert('로그인 정보를 확인해주세요.');</script>");
 			out.flush();
-			return "Login";
+			return "user/Login";
 		}else {
 			return path;
 		}

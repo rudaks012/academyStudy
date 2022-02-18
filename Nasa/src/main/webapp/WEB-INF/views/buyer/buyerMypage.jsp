@@ -423,12 +423,12 @@ Remove or comment-out the code block below to see how the browser will fall-back
             </div>
 
             <div class="row justify-content-center">
-            <div class="blog_right_sidebar col-8" style="margin-top: 30px;">
+            <div class="blog_right_sidebar col-6" style="margin-top: 30px;">
               <aside class="single_sidebar_widget post_category_widget">
                  <h4 class="widget_title">MYPAGE MENU</h4>
                  <ul class="list cat-list">
                     <li>
-                       <a href="#" class="d-flex">
+                       <a href="buyHistory.do" class="d-flex">
                           <p>구매내역</p>
                           
                        </a>
