@@ -30,6 +30,9 @@ function ajaxdbtest(){
 		<button onclick="location.href='go_admin.do'">관리자 페이지</button>
 	</div>
 	<div>
+		<button onclick="location.href='Login.do'">로그인</button>
+	</div>
+	<div>
 	<button type="button" onclick="ajaxdbtest()">ajaxdbtest12</button>
 	</div>
 </body>

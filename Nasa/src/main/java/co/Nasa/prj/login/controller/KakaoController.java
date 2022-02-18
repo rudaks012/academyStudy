@@ -1,5 +1,7 @@
 package co.Nasa.prj.login.controller;
 
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,12 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 import co.Nasa.prj.login.service.LoginService;
 import co.Nasa.prj.login.service.LoginVO;
 
 @Controller
 public class KakaoController {
 	@Autowired private LoginService LoginDao;
+	
+
+	
 	
 	@RequestMapping("/kakaologin.do")
 	public String userController(HttpServletRequest request, HttpSession session, Model model) {
@@ -60,7 +66,7 @@ public class KakaoController {
 		    System.out.println("회원이 아닌경우");
 		   
 		    // 회원가입창으로 이동
-		    ViewPage = "dbTest";
+		    ViewPage = "admin/adminHome";
 
 		} else { // 이미 카카오로 로그인한 적이 있을 때 (최초 1회 로그인때 회원가입된 상태)
 		    // id, nick, profile을 가져와서
@@ -81,9 +87,12 @@ public class KakaoController {
 		    System.out.println("kakaoid : " + userTo.getB_email());
 		    System.out.println("nick : " + userTo.getToken());
 //		    System.out.println("profile : " + userTo.getGimg());
-		    
-		    ViewPage = "dbTest";
+		    //메인페이지
+		    ViewPage = "buyerHome";
 		}
 		return ViewPage;
 	}
+	
+	
+	
 }
