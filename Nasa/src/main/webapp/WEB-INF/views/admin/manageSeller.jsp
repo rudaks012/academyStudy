@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-7 align-self-center">
                         <div class="mb-5 ">
-                            <h6>회원관리 <i class="fas fa-chevron-right mx-2"></i>구매자관리</h6>
+                            <h6><i class="far fa-user mr-2"></i>회원관리 <i class="fas fa-chevron-right mx-2"></i>판매자관리</h6>
                         </div>
                         <ul class="list-style-none d-flex">
                             <li class="mr-1">총 회원수 <span class="text-danger mx-1">3</span>명</li>
@@ -38,6 +38,30 @@
                                     <tr>
                                         <th class="align-middle table-primary">아이디</th>
                                         <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
+                                        <th class="align-middle table-primary">등급</th>
+                                        <td>
+                                          
+                                            <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
+                                                <div class="custom-control custom-radio mr-3 ">
+                                                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input mr-5">
+                                                    <label class="custom-control-label" for="customRadio1">별</label>
+                                                </div>
+                                                <div class="custom-control custom-radio mx-3">
+                                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input mr-5">
+                                                    <label class="custom-control-label" for="customRadio2">달</label>
+                                                </div>
+                                                <div class="custom-control custom-radio mx-3">
+                                                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                                                    <label class="custom-control-label" for="customRadio3">지구</label>
+                                                </div>
+                                                <div class="custom-control custom-radio mx-3">
+                                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
+                                                    <label class="custom-control-label" for="customRadio4">해</label>
+                                                </div>
+                                                
+                                            </div>
+                                        
+                                        </td>
                                         <th class="align-middle table-primary">닉네임</th>
                                         <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
                                     </tr>
@@ -224,25 +248,24 @@
                                         <tr>
                                             <th class="table-primary align-middle">등급</th>
                                             <td colspan="3">
-                                                <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
-	                                                <div class="custom-control custom-radio mr-3 ">
-	                                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input mr-5">
-	                                                    <label class="custom-control-label" for="customRadio4">별</label>
-	                                                </div>
-	                                                <div class="custom-control custom-radio mx-3">
-	                                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input mr-5">
-	                                                    <label class="custom-control-label" for="customRadio2">달</label>
-	                                                </div>
-	                                                <div class="custom-control custom-radio mx-3">
-	                                                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-	                                                    <label class="custom-control-label" for="customRadio3">지구</label>
-	                                                </div>
-	                                                <div class="custom-control custom-radio mx-3">
-	                                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
-	                                                    <label class="custom-control-label" for="customRadio4">해</label>
-	                                                </div>
-	                                                
-	                                            </div>
+                                                <div class="d-flex " >
+                                                    <div class="form-check form-check-inline mx-3">
+                                                        <input class="form-check-input mx-2" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                                        <label class="form-check-label" for="inlineRadio1">별</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mx-3">
+                                                        <input class="form-check-input mx-2" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                        <label class="form-check-label" for="inlineRadio1">달</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mx-3">
+                                                        <input class="form-check-input mx-2" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                        <label class="form-check-label" for="inlineRadio1">지구</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mx-3">
+                                                        <input class="form-check-input mx-2" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                        <label class="form-check-label" for="inlineRadio1">해</label>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
