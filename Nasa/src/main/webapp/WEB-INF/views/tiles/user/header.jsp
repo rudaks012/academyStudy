@@ -41,11 +41,12 @@
                                             <li><a href="contact.html">Contact</a></li>
                                             <li class="add-list"><a href="listing_details.html"><i class="ti-plus"></i> add Listing</a></li>
                                             <li class="login"><a href="Login.do">
-                                            <div>
-		<button onclick="location.href='ckeditor.do'">로그인</button>
-	</div>
+        
                                                 <i class="ti-user"></i> Sign in or Register</a>
                                             </li>
+                                                                                <div>
+		<button onclick="location.href='ckeditor.do'">시케이데에에에</button>
+	</div>
                                         </ul>
                                     </nav>
                                 </div>
