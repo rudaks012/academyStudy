@@ -26,4 +26,8 @@ public class AdminController {
 		List<dbtestVO> list = dbtestDao.testSelect();
 		return list;
 	}
+	@RequestMapping("/ckeditor.do")
+	public String go_cheditor() {
+		return "CKEditor";
+	}
 }
