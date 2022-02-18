@@ -15,11 +15,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import co.Nasa.prj.login.service.LoginService;
 import co.Nasa.prj.login.service.LoginVO;
+import co.Nasa.prj.login.service.NaverLoginBO;
 
 @Controller
 public class AhController {
+	
+	@Autowired private LoginService LoginDao;
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
+	private String apiResult = null;
+	
 	@Autowired
-	LoginService LoginDao;
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
 	
 	@RequestMapping(value = "/join.do")
 	public String join(Model model) {
@@ -29,8 +38,11 @@ public class AhController {
 		return "Login";
 	}
 	@RequestMapping("/Login.do")
-	public String login() {
+	public String login(Model model, HttpSession session) {
 		System.out.println("login페이지접속");
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		System.out.println("네이버" + naverAuthUrl);
+		model.addAttribute("url", naverAuthUrl);
 		return "Login";
 	}
 	//로그인 체크
