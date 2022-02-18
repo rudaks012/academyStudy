@@ -25,11 +25,13 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
+	<header>
 
 			<tiles:insertAttribute name="header" />
-
+	</header>
+	<main>
 			<tiles:insertAttribute name="body" />
+	</main>
 
 			<tiles:insertAttribute name="footer" />
 
