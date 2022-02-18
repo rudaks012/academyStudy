@@ -9,4 +9,14 @@ public class BuyerController {
 	public String go_buyer() {
 		return "buyer/buyerHome";
 	}
+	
+	@RequestMapping("/go_buyerReportHistory.do")
+	public String go_buyerReportHistory() {
+		return "buyer/reportHistory";
+	}
+	
+	@RequestMapping("/go_buyHistory.do")
+	public String go_buyHistory() {
+		return "buyer/buyHistory";
+	}
 }
