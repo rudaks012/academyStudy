@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-7 align-self-center">
                         <div class="mb-5 ">
-                            <h6><i class="far fa-user mr-2"></i>회원관리 <i class="fas fa-chevron-right mx-2"></i>판매자관리</h6>
+                            <h6><i  class=" far fa-user mr-1"></i>회원관리 <i class="fas fa-chevron-right mx-2"></i>판매자관리</h6>
                         </div>
                         <ul class="list-style-none d-flex">
                             <li class="mr-1">총 회원수 <span class="text-danger mx-1">3</span>명</li>
@@ -30,38 +30,16 @@
                 <!-- *************************************************************** -->
                 <!-- Start First Cards -->
                 <!-- *************************************************************** -->
+                    <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
+                           회원검색
+                     </h5>
                     <div class="card mb-4">
-                        <h5 class="card-header my-3 p-3 text-white bg-dark" style="border-radius: 5px;">회원검색</h5>
                         <div class="card-body">
                             <table class="table caption-top table-bordered  text-center">
                                 <tbody>
                                     <tr>
                                         <th class="align-middle table-primary">아이디</th>
                                         <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
-                                        <th class="align-middle table-primary">등급</th>
-                                        <td>
-                                          
-                                            <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
-                                                <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input mr-5">
-                                                    <label class="custom-control-label" for="customRadio1">별</label>
-                                                </div>
-                                                <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input mr-5">
-                                                    <label class="custom-control-label" for="customRadio2">달</label>
-                                                </div>
-                                                <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-                                                    <label class="custom-control-label" for="customRadio3">지구</label>
-                                                </div>
-                                                <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
-                                                    <label class="custom-control-label" for="customRadio4">해</label>
-                                                </div>
-                                                
-                                            </div>
-                                        
-                                        </td>
                                         <th class="align-middle table-primary">닉네임</th>
                                         <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
                                     </tr>
@@ -97,6 +75,24 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <tr>
+                                    	<th class="align-middle table-primary">1차 카테고리</th>
+                                    	<td>
+                                    		<select class="custom-select  form-control custom-shadow ">
+				                                <option selected="">선택</option>
+				                                <option value="1">July 19</option>
+				                                <option value="2">Jun 19</option>
+				                            </select>
+                                    	</td>
+                                    	<th class="align-middle table-primary">2차 카테고리</th>
+                                    	<td>
+                                    		<select class="custom-select  form-control custom-shadow" disabled>
+				                                <option selected="">선택</option>
+				                                <option value="1">July 19</option>
+				                                <option value="2">Jun 19</option>
+				                            </select>
+                                    	</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         <style>
@@ -115,10 +111,10 @@
                 
                 <div class="row my-5">
                 	<div class="col-5">
+                	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
+                            회원조회
+                        </h5>
                 	    <div class="card">
-                            <h5 class="card-header my-3 p-3 text-white bg-dark" style="border-radius: 5px;">
-                                회원조회
-                            </h5>
                             <div class="card-body">
                                 <div class=" mb-3">총 <span class="mx-1 text-danger">50</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
@@ -126,7 +122,7 @@
 		                         	<tr>
 		                         		<th>멤버코드</th>
 		                         		<th>아이디</th>
-		                         		<th>이름</th>       		
+		                         		<th>분류</th>       		
 		                         		<th>등급</th>
 		                         	</tr>
 		                         </thead>
@@ -134,13 +130,13 @@
 		                             <tr>
 		                                <td>2222</td>
 		                                <td>2222</td>
-		                                <td>3333</td>
+		                                <td>개인</td>
 		                                <td>지구</td>
 		                             </tr>
                                      <tr>
 		                                <td></td>
 		                                <td></td>
-		                                <td></td>
+		                                <td>기업</td>
 		                                <td></td>
 		                             </tr>
                                      <tr>
@@ -219,10 +215,12 @@
                			</div>
                 	</div>
                 	<div class="col-7">
+                           <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
+                            상세조회
+                        </h5>
                 	    <div class="card">
-                           <h5 class="card-header my-3 p-3 text-white bg-dark" style="border-radius: 5px;">회원상세조회</h5>
                            <div class="d-flex justify-content-end mr-4">
-                                <button class="btn btn-outline-danger">저장</button>
+                                <button class="btn btn-outline-danger mt-3">저장</button>
                             </div>
 		                   <div class="card-body">
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
@@ -243,29 +241,30 @@
                                             <th class="table-primary align-middle">연락처</th>
                                             <td><input class="form-control custom-shadow" id="" name="" value="1234-1234" type="text" disabled></td>
                                             <th class="table-primary align-middle">구분</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="블랙리스트" type="text" disabled></td>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="기업" type="text" disabled></td>
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">등급</th>
                                             <td colspan="3">
-                                                <div class="d-flex " >
-                                                    <div class="form-check form-check-inline mx-3">
-                                                        <input class="form-check-input mx-2" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                                                        <label class="form-check-label" for="inlineRadio1">별</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline mx-3">
-                                                        <input class="form-check-input mx-2" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                        <label class="form-check-label" for="inlineRadio1">달</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline mx-3">
-                                                        <input class="form-check-input mx-2" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                        <label class="form-check-label" for="inlineRadio1">지구</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline mx-3">
-                                                        <input class="form-check-input mx-2" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                        <label class="form-check-label" for="inlineRadio1">해</label>
-                                                    </div>
-                                                </div>
+                                                <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
+	                                                <div class="custom-control custom-radio mr-3 ">
+	                                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input mr-5">
+	                                                    <label class="custom-control-label" for="customRadio4">별</label>
+	                                                </div>
+	                                                <div class="custom-control custom-radio mx-3">
+	                                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input mr-5">
+	                                                    <label class="custom-control-label" for="customRadio2">달</label>
+	                                                </div>
+	                                                <div class="custom-control custom-radio mx-3">
+	                                                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+	                                                    <label class="custom-control-label" for="customRadio3">지구</label>
+	                                                </div>
+	                                                <div class="custom-control custom-radio mx-3">
+	                                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
+	                                                    <label class="custom-control-label" for="customRadio4">해</label>
+	                                                </div>
+	                                                
+	                                            </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -294,13 +293,74 @@
                			</div>
                 	</div>
                 </div>
+			
+			<div class="row">
+				<div class="col-12">
+				<h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
+                            서비스내역
+                 </h5>
+					<div class="card">
+		                   <div class="card-body">
+                            <table class="table caption-top table-bordered thead-light  text-center">		                        
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>1차카테고리</th>
+                                        <th>2차카테고리</th>
+                                        <th>서비스명</th>
+                                        <th>유효기간</th>
+                                        <th>구매자아이디</th>
+                                        <th>가격</th>
+                                        <th>결제날짜</th>
+                                        <th>결제상태</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                       <td>123</td>
+                                       <td>123</td>
+                                       <td>13</td>
+                                       <td>55555</td>
+                                       <td>6666</td>
+                                       <td>7777</td>
+                                       <td>8888</td>
+                                    </tr>                                   
+                               </tbody>
+                            </table>
 
+                            <div class="d-flex justify-content-center mt-5">
+                                <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item">
+                                                <a class="page-link" href="javascript:void(0)" aria-label="Previous">
+                                                    <span aria-hidden="true">«</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="javascript:void(0)" aria-label="Next">
+                                                    <span aria-hidden="true">»</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                            </div>
+		
+			                     
+		                   </div>
+                	</div>
+                </div>
+				</div>
+		
 
 
              <div class="row mt-5">
                  <div class="col-12">      
-                        <div class="my-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
-                            구매내역
+                        <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
+                            판매내역
                             <div class="mr-5">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input mx-3" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
@@ -319,20 +379,23 @@
                                     <label class="form-check-label" for="inlineRadio1">1년</label>
                                 </div>
                             </div>
-                        </div>
+                        </h5>
+                        
+                        
+                        
                     
                 	    <div class="card">
 		                   <div class="card-body">
                             <table class="table caption-top table-bordered thead-light  text-center">		                        
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>서비스코드</th>
+                                        <th>1차카테고리</th>
+                                        <th>2차카테고리</th>
                                         <th>서비스명</th>
-                                        <th>판매자아이디</th>
-                                        <th>서비스일정</th>
-                                        <th>서비스구분</th>
-                                        <th>결제금액</th>
-                                        <th>결제일자</th>
+                                        <th>유효기간</th>
+                                        <th>구매자아이디</th>
+                                        <th>가격</th>
+                                        <th>결제날짜</th>
                                         <th>결제상태</th>
                                     </tr>
                                 </thead>
@@ -379,8 +442,9 @@
                            </div>
                 	</div>
                 </div>
-                 </div>
-             </div>
+              </div>
+              
+             
             
                 
                
