@@ -38,13 +38,13 @@
                                             class="hide-menu"> 판매자 관리
                                         </span></a>
                                 </li>
-                                <li class="sidebar-item"><a href="form-checkbox-radio.html" class="sidebar-link"><span
-                                            class="hide-menu"> Checkboxes &
-                                            Radios
-                                        </span></a>
-                                </li>
                             </ul>
                         </li>
+                        
+                           <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="report_inquiry.do"
+                                aria-expanded="false"><i class=" far fa-bell mr-1"></i><span
+                                    class="hide-menu">신고관리</span></a></li>
+                        
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
                                     class="hide-menu">Tables </span></a>
