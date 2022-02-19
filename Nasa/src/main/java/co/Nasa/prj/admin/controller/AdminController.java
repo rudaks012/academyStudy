@@ -34,4 +34,8 @@ public class AdminController {
 	public String go_cheditor() {
 		return "CKEditor";
 	}
+	@RequestMapping("/chatting.do")
+	public String go_chatting() {
+		return "Chatting";
+	}
 }
