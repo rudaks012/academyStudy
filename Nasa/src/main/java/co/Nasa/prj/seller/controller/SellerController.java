@@ -25,4 +25,14 @@ public class SellerController {
 	public String sellerReview() {
 		return "seller/sellerReview";
 	}
+	
+	@RequestMapping("/sellerPromotion.do")
+	public String sellerPromotion() {
+		return "seller/sellerPromotion";
+	}
+	
+	@RequestMapping("/promotionInsert.do")
+	public String promotionInsert() {
+		return "seller/promotionInsert";
+	}
 }
