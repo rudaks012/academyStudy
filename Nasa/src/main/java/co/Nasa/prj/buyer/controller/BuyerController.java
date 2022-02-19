@@ -17,4 +17,16 @@ public class BuyerController {
 		return "buyer/buyHistory";
 	}
 	
+	// 보유 쿠폰 페이지로 이동
+	@RequestMapping("/buyerCoupons.do")
+	public String buyerCoupons() {
+		return "buyer/buyerCoupons";
+	}
+	
+	// 위시 리스트 페이지로 이동
+	@RequestMapping("/wishlist.do")
+	public String wishlist() {
+		return "buyer/wishlist";
+	}
+	
 }

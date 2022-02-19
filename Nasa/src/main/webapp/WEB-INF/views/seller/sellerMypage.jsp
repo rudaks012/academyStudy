@@ -85,7 +85,7 @@
                        </a>
                     </li>
                     <li>
-                       <a href="#" class="d-flex">
+                       <a href="sellerPromotion.do" class="d-flex">
                           <p>프로모션관리</p>
                        </a>
                     </li>

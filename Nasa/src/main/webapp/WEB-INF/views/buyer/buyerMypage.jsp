@@ -440,13 +440,13 @@ Remove or comment-out the code block below to see how the browser will fall-back
                        </a>
                     </li>
                     <li>
-                       <a href="#" class="d-flex">
+                       <a href="buyerCoupons.do" class="d-flex">
                           <p>보유쿠폰</p>
                           
                        </a>
                     </li>
                     <li>
-                       <a href="#" class="d-flex">
+                       <a href="wishlist.do" class="d-flex">
                           <p>위시리스트</p>
                           
                        </a>
