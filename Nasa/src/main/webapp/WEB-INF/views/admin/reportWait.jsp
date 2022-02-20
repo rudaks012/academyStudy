@@ -88,13 +88,13 @@
                             <div class="card-body">
                             	<ul class="nav nav-tabs mb-3">
                                     <li class="nav-item">
-                                        <a href="report_inquiry.do"  class="nav-link  active">
+                                        <a href="report_inquiry.do"  class="nav-link ">
                                             <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
                                             <span class="d-none d-lg-block">신고목록</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="report_wait.do"  class="nav-link">
+                                        <a href="report_wait.do"  class="nav-link active">
                                             <i class="mdi mdi-account-circle d-lg-none d-block mr-1"></i>
                                             <span class="d-none d-lg-block">신고대기</span>
                                         </a>

@@ -88,7 +88,7 @@
                             <div class="card-body">
                             	<ul class="nav nav-tabs mb-3">
                                     <li class="nav-item">
-                                        <a href="report_inquiry.do"  class="nav-link  active">
+                                        <a href="report_inquiry.do"  class="nav-link ">
                                             <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
                                             <span class="d-none d-lg-block">신고목록</span>
                                         </a>
@@ -106,7 +106,7 @@
                                         </a>
                                     </li>
                                      <li class="nav-item">
-                                        <a href="report_refuse.do" class="nav-link">
+                                        <a href="report_refuse.do" class="nav-link  active">
                                             <i class="mdi mdi-settings-outline d-lg-none d-block mr-1"></i>
                                             <span class="d-none d-lg-block">신고반려</span>
                                         </a>
@@ -223,11 +223,7 @@
                             신고 상세조회
                         </h5>
                 	    <div class="card">
-                           <div class="d-flex justify-content-end mr-4">
-                                <button class="btn btn-outline-primary mr-3 mt-3">승인</button>
-                                <button class="btn btn-outline-dark  mt-3" data-toggle="modal" data-target="#refuse-report-modal">반려</button>
-                                
-                            </div>
+                           
 		                   <div class="card-body">
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
@@ -244,9 +240,9 @@
                                             <td><input class="form-control custom-shadow " id="" name="" value="악성댓글" type="text" disabled ></td>
                                         </tr>
                                         <tr>
-                                            <th width="18%" class="table-danger align-middle">피신고자</th>
+                                            <th width="18%" class="table-primary align-middle">피신고자</th>
                                             <td ><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
-                                            <th width="18%" class="table-danger align-middle">신고횟수</th>
+                                            <th width="18%" class="table-primary align-middle">신고횟수</th>
                                             <td>
                                                <div class="col-6 p-0 d-flex align-items-center">
                                             	<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="10" type="text" disabled >회</td>
@@ -271,7 +267,26 @@
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">첨부파일</th>
                                             <td colspan="3">해당없음</td>
-                                            
+                                        </tr>
+                                        <tr>
+                                            <th width="23%" class="table-danger align-middle">신고반려일자</th>
+                                            <td colspan="3">2021-02-18</td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="4" class="table-danger align-middle">신고반려사유</th>
+                                        </tr>
+                                        <tr>
+											<td colspan="4" height="300px">
+												dddddddddddddd
+												ddddddddddd
+												dddddddddddd
+												dddddddddddddd
+												ddddddddddddddddd<br>
+												ddddddddd<br>
+												dddddddd<br>
+												dddd<br>
+											
+											</td>                                        
                                         </tr>
                                     </tbody>
                                 </table>
