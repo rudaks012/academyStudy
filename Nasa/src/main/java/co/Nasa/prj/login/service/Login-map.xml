@@ -11,5 +11,8 @@
 		<select id="selectbuyerId" resultType="co.Nasa.prj.login.service.LoginVO">
 			SELECT * FROM buyer WHERE B_EMAIL = #{b_email}
 	</select>
+	<select id="readMemberInfo" resultType="co.Nasa.prj.login.service.LoginVO">
+		SELECT * FROM buyer WHERE B_EMAIL=#{B_EMAIL}
+	</select>
 	
 </mapper>

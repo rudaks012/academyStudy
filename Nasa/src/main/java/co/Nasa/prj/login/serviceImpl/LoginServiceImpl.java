@@ -32,4 +32,12 @@ public class LoginServiceImpl implements LoginService {
 		// TODO Auto-generated method stub
 		return map.selectbuyerId(vo);
 	}
+
+	@Override
+	public LoginVO readMemberInfo(String b_email) {
+		// TODO Auto-generated method stub
+		return map.readMemberInfo(b_email);
+	}
+
+
 }

@@ -13,13 +13,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.Nasa.prj.chatting.controller.ChatSession;
 import co.Nasa.prj.login.service.LoginService;
 import co.Nasa.prj.login.service.LoginVO;
 import co.Nasa.prj.login.service.NaverLoginBO;
 
 @Controller
 public class AhController {
-	
+	   @Autowired
+	    private ChatSession cSession;
 	@Autowired private LoginService LoginDao;
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
@@ -59,8 +61,8 @@ public class AhController {
 			session.setAttribute("id", vo.getB_email());
 			session.setAttribute("password", vo.getB_password());
 			session.setAttribute("status", vo.getToken());
-			
-			path = "buyer/buyerHome";
+			cSession.addLoginUser(vo.getB_email());
+			path = "user/home";
 		}if(path =="" ) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

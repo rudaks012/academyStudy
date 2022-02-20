@@ -1,16 +1,19 @@
 package co.Nasa.prj.chatting.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -19,20 +22,37 @@ import com.google.gson.JsonIOException;
 
 import co.Nasa.prj.chatting.service.ChatMessage;
 import co.Nasa.prj.chatting.service.ChatRoom;
-import co.Nasa.prj.chatting.service.ChatService;
+import co.Nasa.prj.chatting.serviceImpl.ChatServiceImpl;
+import co.Nasa.prj.login.service.LoginService;
+ 
  
 @Controller
 public class ChatController {
-    
     @Autowired
-    ChatService cService;
+    private ChatServiceImpl cService;
     
 //    @Autowired
-//    ProductService pService;
+//    private LoginService serviceDao;
+//    
+//    @Autowired
+//    private ProductService pService;
     
-    @Autowired
-    private ChatSession cSession;
-    
+    @RequestMapping(value = "/chatting.do", method = RequestMethod.GET)
+    public String viewChat(HttpSession session, Model model) {
+    	
+    	System.out.println("!!!!!");
+    	System.out.println(session.getAttribute("id"));
+//    	System.out.println(principal.getName());
+    	
+    	if(session.getAttribute("id")!= null) {
+    		model.addAttribute("loginMember", session.getAttribute("id"));
+    		
+    		return "Chatting";
+    	}
+    	else 
+    		return "user/home";
+    }
+
     /**
      * 해당 채팅방의 채팅 메세지 불러오기
      * @param roomId
@@ -41,22 +61,35 @@ public class ChatController {
      * @throws JsonIOException
      * @throws IOException
      */
-    @RequestMapping(value="{roomId}.do")
-    public void messageList(@PathVariable String roomId, String userEmail, Model model, HttpServletResponse response) throws JsonIOException, IOException {
-        
-        List<ChatMessage> mList = cService.messageList(roomId);
+    @RequestMapping(value="{roomid}.do")
+    public void messageList(@PathVariable String roomid, String userid, Model model, HttpServletResponse response) throws /*JsonIOException,*/ IOException {
+        List<ChatMessage> mList = cService.messageList(roomid);
         response.setContentType("application/json; charset=utf-8");
- 
+        
         // 안읽은 메세지의 숫자 0으로 바뀌기
         ChatMessage message = new ChatMessage();
-        message.setEmail(userEmail);
-        message.setRoomId(roomId);
+        message.setSentid(userid);
+        message.setRoomid(roomid);
         cService.updateCount(message);
         
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
         gson.toJson(mList,response.getWriter());
     }
     
+    @ResponseBody
+    @RequestMapping(value="{chat_delete_roomid}_delete.do")
+    public String chatDelete(@PathVariable String chat_delete_roomid, HttpServletResponse response) throws /*JsonIOException,*/ IOException {
+    	System.out.println("가져온 방:::::::"+chat_delete_roomid);
+    	int chatDelete = cService.chatroomDelete(chat_delete_roomid);
+    	System.out.println(chatDelete==1 ? "채팅방이 삭제되었습니다." : "삭제 실패");
+    	String suc;
+    	if(chatDelete ==1) {
+    		 suc = "success";
+    	}else {
+    		suc = "fail";
+    	}
+    	return suc;
+    }
     /**
      * 채팅 방이 없을 때 생성
      * @param room
@@ -66,15 +99,25 @@ public class ChatController {
      */
     @ResponseBody
     @RequestMapping("createChat.do")
-    public String createChat(ChatRoom room, String userName, String userEmail, String masterNickname){
+    public String createChat(ChatRoom room, String userid, int  pno, Model model){
         
-//        UserMaster m = pService.getProductDetail(masterNickname);
+    	// 상품번호로 등록한 판매자의 아이디/닉네임 가져오기 
+    	System.out.println("상품번호 :::"+pno);
+//        ProductDTO p = pService.getRow(pno);
+//        MemberDTO m =  mService.readMemberInfo(p.getUserid());
+//        System.out.println("로그인한 아이디 :::::"+userid+"상품 판매하는 아이디:::"+m.getUserid());
+        // 자신과 대화하려고 할때 
+//        System.out.println(userid.equals(m.getUserid()));
+       
+//        if(userid.equals(m.getUserid())) {
+//        	return "nochat";
+//        }
         
-        room.setUserEmail(userEmail);
-        room.setUserName(userName);
-//        room.setMasterEmail(m.getEmail());
-//        room.setMasterName(m.getmNickname());
-//        room.setMasterPic(m.getmProPicRe());
+        // 채팅방DTO에 값 저장 
+        room.setUserid(userid);
+//        room.setUsernickname(mService.readMemberInfo(userid).getNickname());
+//        room.setMasterid(m.getUserid());
+//        room.setMasternickname(m.getNickname());
  
         ChatRoom exist  = cService.searchChatRoom(room);
         
@@ -84,15 +127,17 @@ public class ChatController {
             int result = cService.createChat(room);
             if(result == 1) {
                 System.out.println("방 만들었다!!");
-                return "new";
+                String room_id =cService.searchChatRoom(room).getRoomid(); 
+                return room_id;
             }else {
-                return "fail";
+                return "failRoom";
             }
         }
         // DB에 방이 있을 때
         else{
             System.out.println("방이 있다!!");
-            return "exist";
+            String room_id =cService.searchChatRoom(room).getRoomid(); 
+            return room_id;
         }
     }
     
@@ -105,12 +150,13 @@ public class ChatController {
      * @throws IOException
      */
     @RequestMapping("chatRoomList.do")
-    public void createChat(ChatRoom room, ChatMessage message, String userEmail, HttpServletResponse response) throws JsonIOException, IOException{
-        List<ChatRoom> cList = cService.chatRoomList(userEmail);
+    public void createChat(ChatMessage message, String userid, HttpServletResponse response) throws JsonIOException, IOException{
+        System.out.println("로그인한 아이디 불러줘 ::"+userid);
+    	List<ChatRoom> cList = cService.chatRoomList(userid);
         
         for(int i = 0; i < cList.size(); i++) {
-            message.setRoomId(cList.get(i).getRoomId());
-            message.setEmail(userEmail);
+            message.setRoomid(cList.get(i).getRoomid());
+            message.setSentid(userid);
             int count = cService.selectUnReadCount(message);
             cList.get(i).setUnReadCount(count);
         }
@@ -121,10 +167,10 @@ public class ChatController {
         gson.toJson(cList,response.getWriter());
     }
     
+    
     @RequestMapping("chatSession.do")
-    public void chatSession( HttpServletResponse response) throws JsonIOException, IOException{
-        
-        ArrayList<String> chatSessionList = cSession.getLoginUser();
+    public void chatSession(HttpServletResponse response) throws JsonIOException, IOException{
+        ArrayList<String> chatSessionList = ChatSession.getLoginUser(); // 현재 로그인된 유저들을 불러서 저장
         
         response.setContentType("application/json; charset=utf-8");
  

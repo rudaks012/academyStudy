@@ -6,4 +6,5 @@ public interface LoginMapper {
 	public List<LoginVO> selectListbuyer();
 	LoginVO selectbuyer(LoginVO vo);
 	LoginVO selectbuyerId(LoginVO vo);
+	public LoginVO readMemberInfo(String b_email);
 }
