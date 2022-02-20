@@ -9,23 +9,12 @@
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="index.html"
                                 aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
                                     class="hide-menu">Dashboard</span></a></li>
-                        <li class="list-divider"></li>
-                        <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>
+                       
 
-                        <li class="sidebar-item"> <a class="sidebar-link" href="ticket-list.html"
-                                aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
-                                    class="hide-menu">Ticket List
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-chat.html"
-                                aria-expanded="false"><i data-feather="message-square" class="feather-icon"></i><span
-                                    class="hide-menu">Chat</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-calendar.html"
-                                aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
-                                    class="hide-menu">Calendar</span></a></li>
+                    
 
                         <li class="list-divider"></li>
-                        <li class="nav-small-cap"><span class="hide-menu">Components</span></li>
+                        <li class="nav-small-cap"><span class="hide-menu">관리메뉴</span></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i  class=" far fa-user"></i><span
                                     class="hide-menu">회원관리 </span></a>
@@ -36,6 +25,20 @@
                                 </li>
                                 <li class="sidebar-item"><a href="manage_seller.do" class="sidebar-link"><span
                                             class="hide-menu"> 판매자 관리
+                                        </span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        	<li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i  class=" far fa-star"></i><span
+                                    class="hide-menu">서비스관리 </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item"><a href="manage_service.do" class="sidebar-link"><span
+                                            class="hide-menu"> 일반서비스 관리
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                            class="hide-menu"> 파워서비스 관리
                                         </span></a>
                                 </li>
                             </ul>
