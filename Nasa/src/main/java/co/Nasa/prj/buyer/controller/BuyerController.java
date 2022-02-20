@@ -29,4 +29,9 @@ public class BuyerController {
 		return "buyer/wishlist";
 	}
 	
+	// 구매자 정보 수정 페이지로 이동
+	@RequestMapping("/buyerUpdate.do")
+	public String buyerUpdate() {
+		return "buyer/buyerUpdate";
+	}
 }
