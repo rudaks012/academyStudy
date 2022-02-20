@@ -398,7 +398,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
           
                   <h1 class="profile-user-name">IT 구매자</h1>
           
-                  <button class="bttn profile-edit-bttn" style="height: 30px; font-size: 15px;">정보 수정</button>
+                  <a href="buyerUpdate.do" class="bttn profile-edit-bttn" style="height: 30px; font-size: 15px;">계정 설정</a>
         
           
                 </div>
