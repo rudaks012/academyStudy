@@ -29,6 +29,7 @@
                                 </li>
                             </ul>
                         </li>
+                        
                         	<li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i  class=" far fa-star"></i><span
                                     class="hide-menu">서비스관리 </span></a>
@@ -43,10 +44,22 @@
                                 </li>
                             </ul>
                         </li>
+                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="manage_promotion.do"
+                                aria-expanded="false"><i class=" fas fa-gift"></i><span
+                                    class="hide-menu">프로모션관리</span></a></li>
                         
-                           <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="report_inquiry.do"
+                          <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="report_inquiry.do"
                                 aria-expanded="false"><i class=" far fa-bell mr-1"></i><span
                                     class="hide-menu">신고관리</span></a></li>
+                                    
+                                    
+                          <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="manage_notice.do"
+                                aria-expanded="false"><i class=" icon-pin"></i><span
+                                    class="hide-menu">공지사항관리</span></a></li>
+                        
+                        
+                        
+                        
                         
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span

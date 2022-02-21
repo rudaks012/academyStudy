@@ -58,10 +58,7 @@ public class SellerController {
 	public String sellerPersonjoin() {
 		return "seller/sellerPersonjoin";
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> 25eb00ac3fc79683a2222068216c88fba0ec553a
 	
 	// 기업 판매자 회원가입
 	@RequestMapping("/sellerCompanyjoin.do")

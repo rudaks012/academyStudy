@@ -50,11 +50,11 @@
                                         <td>
                                             <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                 <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio1" name="person" class="custom-control-input mr-5">
                                                     <label class="custom-control-label" for="customRadio1">개인</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio2" name="person" class="custom-control-input mr-5">
                                                     <label class="custom-control-label" for="customRadio2">기업</label>
                                                 </div>
                                                 
@@ -90,11 +90,11 @@
                                         <td>
                                             <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                 <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="onlineRadio" name="customRadio" class="custom-control-input mr-5">
+                                                    <input type="radio" id="onlineRadio" name="online" class="custom-control-input mr-5">
                                                     <label class="custom-control-label" for="onlineRadio">온라인</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="offlineRadio" name="customRadio" class="custom-control-input mr-5">
+                                                    <input type="radio" id="offlineRadio" name="online" class="custom-control-input mr-5">
                                                     <label class="custom-control-label" for="offlineRadio">오프라인</label>
                                                 </div>
                                                 

@@ -18,11 +18,11 @@ public class AdminController {
 	
 	@RequestMapping("/go_admin.do")
 	public String go_admin() {
-		return "admin/manageBuyer";
+		return "admin/member/manageBuyer";
 	}
 	@RequestMapping("/manage_seller.do")
 	public String manage_seller() {
-		return "admin/manageSeller";
+		return "admin/member/manageSeller";
 	}
 	@RequestMapping("/ajaxdbtest.do")
 	@ResponseBody
