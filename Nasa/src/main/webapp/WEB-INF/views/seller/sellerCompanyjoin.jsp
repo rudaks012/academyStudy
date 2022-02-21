@@ -5,27 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-
-    input[type="checkbox"] {
-        width: 30px;
-        height: 30px;
-    }
-
-    .seller-category {
-        font-size: 23px;
-    }
-    
-</style>
 </head>
-<body>	
-    <!-- Hero Start-->
-	<div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
+<body>
+	<!-- Hero Start-->
+	<div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center">
 	    <div class="container">
 	        <div class="row">
 	            <div class="col-xl-12">
 	                <div class="hero-cap text-center pt-50">
-	                    <h2>개인 판매자 회원가입</h2>
+	                    <h2>기업 판매자 회원가입</h2>
 	                </div>
 	            </div>
 	        </div>
@@ -34,7 +22,49 @@
 	<!--Hero End -->
 	
 	<!-- ================ contact section start ================= -->
-	<!-- 1단계 -->
+    <!-- 1단계 -->
+	<section class="contact-section">
+	    <div class="container">
+	        <div class="row d-flex justify-content-center align-items-center">
+	            <div>
+                    <div class="section-tittle text-center mb-80">
+                        <h1>기업 판매자<br> 사업자등록번호를 인증해주세요.</h1>
+                    </div>
+	            	<form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+	                    <div class="row d-flex justify-content-center align-items-center">
+	                        <div class="col-sm-8">                                    
+	                            <div class="form-group">
+	                                상호명<input class="form-control valid" type="text" placeholder="등록된 상호명을 입력해주세요">
+	                            </div>
+	                        </div>	                       
+	                        <div class="col-sm-8">
+	                            <div class="form-group">
+	                                사업자등록번호<div class="d-flex">
+	                                    <input class="form-control valid" type="number" placeholder="숫자만 입력">                                            
+	                                    <input type="button" value="확인" class="genric-btn primary radius" style="float: right;">
+	                                    </div>
+	                            </div>
+	                        </div>	                        	                        
+	                    </div>                            
+	                </form>
+	                <br>
+	                <br>
+	                <div class="form-group mt-3 d-flex justify-content-center align-items-center">
+	                	<div>
+	                		<button type="button" class="genric-btn primary-border e-large">이전</button>&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="genric-btn primary e-large">다음</button>
+                        </div>	                    
+	                </div>
+	                <br>
+	                <br>
+	                <div class="form-group mt-3 d-flex justify-content-center align-items-center">
+	                	<a href="#" style="color: #1f2b7b;">개인 판매자로 가입하시나요?</a>
+	                </div>
+	            </div>                   
+	        </div>
+	    </div>
+	</section>
+	<!-- 2단계 -->
 	<section class="contact-section">
 	    <div class="container">
 	        <div class="row d-flex justify-content-center align-items-center">
@@ -107,13 +137,13 @@
 	                <br>
 	                <br>
 	                <div class="form-group mt-3 d-flex justify-content-center align-items-center">
-	                	<a href="#" style="color: #1f2b7b;">기업 판매자로 가입하시나요?</a>
+	                	<a href="#" style="color: #1f2b7b;">개인 판매자로 가입하시나요?</a>
 	                </div>
 	            </div>                   
 	        </div>
 	    </div>
 	</section>
-	<!-- 2단계 -->
+	<!-- 3단계 -->
 	<section class="contact-section">
 	    <div class="container">
 	        <div class="row d-flex justify-content-center align-items-center">
@@ -149,13 +179,13 @@
 	                <br>
 	                <br>
 	                <div class="form-group mt-3 d-flex justify-content-center align-items-center">
-	                	<a href="#" style="color: #1f2b7b;">기업 판매자로 가입하시나요?</a>
+	                	<a href="#" style="color: #1f2b7b;">개인 판매자로 가입하시나요?</a>
 	                </div>
 	            </div>                   
 	        </div>
 	    </div>
 	</section>
-    <!-- 3단계 -->
+    <!-- 4단계 -->
 	<section class="contact-section">
 	    <div class="container">
 	        <div class="row d-flex justify-content-center align-items-center">
@@ -216,13 +246,13 @@
 	                <br>
 	                <br>
 	                <div class="form-group mt-3 d-flex justify-content-center align-items-center">
-	                	<a href="#" style="color: #1f2b7b;">기업 판매자로 가입하시나요?</a>
+	                	<a href="#" style="color: #1f2b7b;">개인 판매자로 가입하시나요?</a>
 	                </div>
 	            </div>                   
 	        </div>
 	    </div>
 	</section>
-    <!-- 4단계 -->
+    <!-- 5단계 -->
 	<section class="contact-section">
 	    <div class="container">
 	        <div class="row d-flex justify-content-center align-items-center">
@@ -277,13 +307,13 @@
 	                <br>
 	                <br>
 	                <div class="form-group mt-3 d-flex justify-content-center align-items-center">
-	                	<a href="#" style="color: #1f2b7b;">기업 판매자로 가입하시나요?</a>
+	                	<a href="#" style="color: #1f2b7b;">개인 판매자로 가입하시나요?</a>
 	                </div>
 	            </div>                   
 	        </div>
 	    </div>
 	</section>
-    <!-- 5단계 -->
+    <!-- 6단계 -->
 	<section class="contact-section">
 	    <div class="container">
 	        <div class="row d-flex justify-content-center align-items-center">
@@ -352,13 +382,13 @@
 	                <br>
 	                <br>
 	                <div class="form-group mt-3 d-flex justify-content-center align-items-center">
-	                	<a href="#" style="color: #1f2b7b;">기업 판매자로 가입하시나요?</a>
+	                	<a href="#" style="color: #1f2b7b;">개인 판매자로 가입하시나요?</a>
 	                </div>
 	            </div>                   
 	        </div>
 	    </div>
 	</section>
-    <!-- 6단계 -->
+    <!-- 7단계 -->
     <section class="contact-section">
 	    <div class="container">
 	        <div class="row d-flex justify-content-center align-items-center">
@@ -381,20 +411,6 @@
 	        </div>
 	    </div>
 	</section>
-	
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-window.onload = function(){
-    document.getElementById("addressSearch").addEventListener("click", function(){ //주소입력칸을 클릭하면
-        //카카오 지도 발생
-        new daum.Postcode({
-            oncomplete: function(data) { //선택시 입력값 세팅
-                document.getElementById("address").value = data.address; // 주소 넣기
-                document.querySelector("input[id=addressDetail]").focus(); //상세입력 포커싱
-            }
-        }).open();
-    });
-}
-</script>
+	<!-- ================ contact section end ================= -->
 </body>
 </html>

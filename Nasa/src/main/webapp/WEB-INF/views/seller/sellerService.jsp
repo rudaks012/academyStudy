@@ -36,6 +36,23 @@
 			color: white;
 			background-color: #04AA6D;
 		}
+		.powertb td{
+			width: 120px;
+			height: 50px;
+			font-size: 12px;
+		}
+		.powerbtn, .modal-header{
+			background-color: #e2c8d0 !important;
+		}
+		.modal-footer{
+			display: block !important;
+			text-align: center;
+		}
+		.powerp{
+			color: red; 
+			font-size: 8px;
+			border-bottom: 1px solid #999294;
+		}
 	</style>
 </head>
 <body>
@@ -100,7 +117,7 @@
 
 					</div>
 					<a href="#" class="genric-btn danger">서비스 등록</a>
-					<a href="#" class="genric-btn danger">파워서비스 등록</a>
+					<a href="#" class="genric-btn danger" data-toggle="modal" data-target="#PowerModal">파워서비스 등록</a>
 					<!-- Job Category Listing End -->
 				</div>
 				<!-- Right content -->
@@ -261,6 +278,56 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="modal fade" id="PowerModal" tabindex="-1" role="dialog" aria-labelledby="PowerModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">파워서비스 신청</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>파워서비스란? <br />
+					합리적 예산의 고효율형! <br />
+					당신의 서비스를 메인 화면에 노출을 기대할 수 있습니다. <br /> 저렴한 비용으로 상위 노출을 원하시는 분들에게 추천합니다.</p>
+					<p class="powerp">*희망시작일로부터 일주일간 제공됩니다. <br />
+					*최종 결제 후 환불 불가합니다.<br /><br />
+					</p>
+					<div class="br"></div>
+					<table class="powertb">
+						<tr>
+							<td>서비스선택</td>
+							<td><div class="default-select" id="default-select">
+								<select>
+									<option value="1">웹개발</option>
+									<option value="2">앱개발</option>
+									<option value="3">Arabic</option>
+									<option value="4">Portuguise</option>
+									<option value="5">Bengali</option>
+								</select>
+							</div></td>
+						</tr>
+						<tr>
+							<td>희망시작일</td>
+							<td><input type="date"></td>
+						</tr>
+						<tr>
+							<td>비용</td>
+							<td><input type="text" value="500,000" disabled></td>
+						</tr>
+					</table>
+					
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="genric-btn primary  radius powerbtn" data-toggle="modal" data-dismiss="modal">결제</a>
+					<a href="#" class="genric-btn primary  radius powerbtn"  data-dismiss="modal">취소</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<script>
 		$(function () { // actvie 활성화 
 			$(".nav-item > .active").css("color", "white");
