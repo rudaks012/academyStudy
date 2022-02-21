@@ -124,7 +124,7 @@
 										</div>
 										<div class="list-caption">
 											
-											<h3><a href="listing_details.html">서비스명1</a></h3>
+											<h3><a href="serviceDetail.do">서비스명1</a></h3>
 											<p>서비스번호</p>
 											<p>서비스일자</p>
 											<div class="list-footer">
