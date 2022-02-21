@@ -29,7 +29,7 @@
 .chatBottom > textarea { width: 100%; height: 80px; border: none; padding: 10px; }
 
 </style>
-<link rel="stylesheet" href="/resources/css/chat.css" />
+<link rel="stylesheet" href="./resources/chat/css/chat.css" />
 <body>
 
 	<div class="channer" style="border-radius: 2px">
@@ -38,7 +38,7 @@
 			<!-- 채팅 리스트 -->
 			<div class="chatListContainer font_jua display-none" style="padding : 3px;">
 				 <div class="chatTop">
-					<div style="font-size: 14px; padding: 15px 0; margin-left: 4px; background-color : #9BB460; color: white; text-align: center; ">콜리톡 리스트</div>
+					<div style="font-size: 14px; padding: 15px 0; margin-left: 4px; background-color : #9BB460; color: white; text-align: center; ">나사톡 리스트</div>
 				</div> 
 				<div class="chatList"></div>
 			</div>
@@ -93,7 +93,7 @@
             <div class="chat_delete_content">
                 <p>해당 채팅방을 삭제하시겠습니까?</p>
                 <div id="chat_delete_btn">
-                	<button type="button" id="delete_yes">예</button>
+                	<button type="button" id="delete_yes">예 </button>
                 	<button type="button" id="delete_no">아니오</button>
                 </div>
             </div>
@@ -114,7 +114,7 @@
 			$.ajax({
 						url : "chatRoomList.do",
 						data : {
-							userid : "${loginMember.id}"
+							userid : "${loginMember.b_email}"
 						},
 						dataType : "json",
 						async : false, // async : false를 줌으로써 비동기를 동기로 처리 할 수 있다.
@@ -153,7 +153,7 @@
 								for ( var i in data) {
 									var $span; // 2단계
 									// 자신이 구매자 입장일 때
-									if (data[i].userid == "${loginMember.userid}") {
+									if (data[i].userid == "${loginMember.b_email}") {
 										console.log("구매자 아이디 :::"+ data[i].userid+ "판매자 아이디 :::"+ data[i].masterid);
 										$div = $(
 												"<div class='chatList_box enterRoomList' style='display:inline-block; width: 80%;' onclick='enterRoom(this);'>")
@@ -335,7 +335,7 @@
 				$.ajax({
 					url : roomid + ".do",
 					data : {
-						userid : "${loginMember.id}"
+						userid : "${loginMember.b_email}"
 					},
 					async : false,
 					dataType : "json",
@@ -372,7 +372,7 @@
 			$.ajax({
 				url : roomid + ".do",
 				data : {
-					userid : "${loginMember.userid}"
+					userid : "${loginMember.b_email}"
 				},
 				async : false,
 				dataType : "json",
@@ -412,8 +412,8 @@
 		const data = {
 			"roomid" : roomid,
 			"messageid" : "",
-			"sentid" : "${ loginMember.userid }",
-			"nickname" : "${ loginMember.nickname }",
+			"sentid" : "${ loginMember.b_email }",
+			"nickname" : "${ loginMember.b_nickname }",
 			"message" : "ENTER-CHAT",
 			/*"unReadCount" : 0*/
 		};
@@ -428,8 +428,8 @@
 		const data = {
 			"roomid" : roomid,
 			"messageid" : "",
-			"sentid" : "${ loginMember.userid }",
-			"nickname" : "${ loginMember.nickname }",
+			"sentid" : "${ loginMember.b_email }",
+			"nickname" : "${ loginMember.b_nickname }",
 			"message" : message,
 			"lr" : "left"
 		};
@@ -452,7 +452,7 @@
 			"lr" : "left"
 		};
 		console.log("수신자 :::"+data.sentid);
-		if (data.sentid != "${ loginMember.userid }") {
+		if (data.sentid != "${ loginMember.b_email }") {
 			CheckLR(data);
 		}
 	}
@@ -460,7 +460,7 @@
 	// * 2-1 추가 된 것이 내가 보낸 것인지, 상대방이 보낸 것인지 확인하기
 	function CheckLR(data) {
 		// userid이 loginSession의 userid과 다르면 왼쪽, 같으면 오른쪽
-		const LR = (data.sentid != "${ loginMember.userid }") ? "left": "right";
+		const LR = (data.sentid != "${ loginMember.b_email }") ? "left": "right";
 		// 메세지 추가
 		appendMessageTag(LR, data.sentid, data.nickname, data.message);
 	}
@@ -500,10 +500,42 @@
 		$(".chatMiddle").empty();
 	}
 	
+	$(".chat_exit").click(function(){
+		//  채팅방 나가기 이미지 클릭시
+		
+		$(".modal").show();
+		let chat_delete_roomid = $(".chat_exit").attr("id");
+		console.log("방번호!!!!!:::"+chat_delete_roomid);
+		$("#delete_yes").click(function(){
+			$.ajax({
+				url : chat_delete_roomid+"_delete.do",
+				data:{
+					roomid:chat_delete_roomid
+				},
+				success:function(data){
+					if(data=="success"){
+						alert("채팅방 삭제되었습니다.");
+						$(".modal").hide();
+						
+					}else{
+						alert("삭제가 되지 않았씁니다.");
+						$(".modal").hide();
+					}
+				}
+				
+			})
+			
+		})
+		$("#delete_no").click(function(){
+			$(".modal").hide();
+		})
+
+		
+	})
 	</script>
 </body>
 
-<script src='/resources/js/chatting/chat.js'></script>
+<!--  <script src='/resources/chat/js/chatting/chat.js'></script>-->
 
 
 </html>

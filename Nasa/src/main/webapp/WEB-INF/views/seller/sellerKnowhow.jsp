@@ -29,7 +29,7 @@
 						</div>
 						<div class="team-caption">
 							<span>노하우제목1</span>
-							<h3><a href="blog.html">제목어느걸로?</a></h3>
+							<h3><a href="knowhowDetail.do">제목어느걸로?</a></h3>
 							<p>October 6, 2020by Steve</p>
 						</div>
 					</div>
@@ -41,7 +41,7 @@
 						</div>
 						<div class="team-caption">
 							<span>노하우제목2</span>
-							<h3><a href="blog.html">제목??</a></h3>
+							<h3><a href="knowhowDetail.do">제목??</a></h3>
 							<p>October 6, 2020by Steve</p>
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 						</div>
 						<div class="team-caption">
 							<span>HEALTH & CARE</span>
-							<h3><a href="blog.html">The Best SPA Salons For
+							<h3><a href="knowhowDetail.do">The Best SPA Salons For
 									Your Relaxation</a></h3>
 							<p>October 6, 2020by Steve</p>
 						</div>
