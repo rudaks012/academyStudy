@@ -1,8 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="container-fluid">
-            	<div class="mb-5">
-            	새로운 프로모션을 등록하시겠습니까?
+    
+     <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                        <div class="mb-3 ">
+                            <h6><i  class="icon-pin mr-1"></i>공지사항관리 <i class="fas fa-chevron-right mx-2"></i>전체 공지사항 조회</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	<div class="container-fluid">
+            	<div class="mb-5 border border-danger p-4 d-flex align-items-center" style="border-radius:5px">
+            		<div class="mr-3">새로운 공지사항을 등록하시겠습니까?</div>
+            		<button class="btn btn-danger" id="insertBtn" >등록하기</button>
            		 </div>
                 <!-- *************************************************************** -->
                 <!-- Start First Cards -->
@@ -171,7 +182,7 @@
                         </h5>
                 	    <div class="card">
                            <div class="d-flex justify-content-end mr-4">
-                                <button class="btn btn-outline-danger mt-3">수정</button>
+                                <button class="btn btn-outline-primary mt-3">수정</button>
                                  <button class="btn btn-outline-secondary ml-2 mt-3">삭제</button>
                             </div>
 		                   <div class="card-body">
@@ -199,7 +210,7 @@
                                         </tr>
                                         <tr>
                                         	<td colspan="4">                                              
-                                                <textarea rows="10" class="form-control" id="message-text"></textarea>
+                                                <textarea rows="20" class="form-control" id="message-text" readonly></textarea>
                                                
                                             </td>
                                         </tr>
@@ -212,87 +223,14 @@
                 	</div>
                 </div>
                 
-                
-                <!-- 반려모달 -->
-                
-                
-                <div id="register-promotion-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dark-header-modalLabel" style="display: none;" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header modal-colored-header bg-primary">
-                                                <h4 class="modal-title" id="dark-header-modalLabel">프로모션 등록하기</h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <table class="table caption-top table-bordered thead-light  text-center">		                        
-                                    <tbody>
-                                        <tr>
-                                            <th width="18%" class="table-primary align-middle">1차 카테고리</th>
-                                            <td >
-                                            	<select class="custom-select  form-control custom-shadow">
-				                                <option selected="">선택</option>
-				                                <option value="1">July 19</option>
-				                                <option value="2">Jun 19</option>
-				                            </select>
-                                            </td>
-                                         
-                                        </tr>
-                                        <tr>
-                                        	<th width="18%" class="table-primary align-middle">2차 카테고리</th>
-                                            <td>
-                                            	<select class="custom-select  form-control custom-shadow">
-				                                <option selected="">선택</option>
-				                                <option value="1">July 19</option>
-				                                <option value="2">Jun 19</option>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th width="18%" class="table-primary align-middle">제목</th>
-                                            <td colspan="3"><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                           
-                                            <th width="18%" class="table-primary align-middle">할인율</th>
-                                            <td colspan="3">
-                                               <div class="col-3 p-0 d-flex align-items-center">
-                                            	<input class="form-control custom-shadow mr-3 " id="" name="" value="10" type="text" disabled >%
-                                        	   </div>
-                                        	</td>
-                                        </tr>
-                                         <tr>
-                                            <th  class="table-primary align-middle">유효기간</th>
-                                            <td colspan="3">
-                                            	<div class="d-flex align-items-center">
-                                        		<div class="col-5 p-0">
-	                                        	<input type="date" class="form-control" value="2018-05-13">
-	                                        	</div>
-	                                        	<span class="mx-2"><i class="fas fa-minus"></i></span>
-	                                        	<div class="col-5 p-0">
-	                                        	<input type="date" class="form-control" value="2018-05-13">
-	                                        	</div>
-                                        	</div>
-                                            </td>
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
-                                </table>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">저장</button>
-                                                <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div>
-                
-                
-              
-             
-             
-             
-             
-             
-             
+
              </div>
+             
+<script>
+	const insertBtn = document.querySelector("#insertBtn");
+	const goToTheInsertForm =()=>{
+		location.href="InsertNoticeForm.do";
+	}
+	insertBtn.addEventListener("click",goToTheInsertForm);
+
+</script>

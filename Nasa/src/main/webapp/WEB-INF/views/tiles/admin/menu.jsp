@@ -48,16 +48,57 @@
                                 aria-expanded="false"><i class=" fas fa-gift"></i><span
                                     class="hide-menu">프로모션관리</span></a></li>
                         
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i  class="icon-credit-card"></i><span
+                                    class="hide-menu">결제관리 </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                            class="hide-menu"> 구매자결제
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                            class="hide-menu"> 판매자결제
+                                        </span></a>
+                                </li>
+                            </ul>
+                        </li>  
+                          
                           <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="report_inquiry.do"
                                 aria-expanded="false"><i class=" far fa-bell mr-1"></i><span
                                     class="hide-menu">신고관리</span></a></li>
                                     
                                     
-                          <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="manage_notice.do"
-                                aria-expanded="false"><i class=" icon-pin"></i><span
-                                    class="hide-menu">공지사항관리</span></a></li>
+                          
                         
-                        
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i class="fas fa-edit mr-1"></i><span
+                                    class="hide-menu">게시글관리</span></a>
+                            <ul aria-expanded="false" class="collapse first-level base-level-line">
+                                
+                                <li class="sidebar-item"> <a class="has-arrow sidebar-link" href="javascript:void(0)"
+                                        aria-expanded="false"><span class="hide-menu">공지사항</span></a>
+                                    <ul aria-expanded="false" class="collapse second-level base-level-line">
+                                        <li class="sidebar-item"><a href="manage_notice.do" class="sidebar-link"><span
+                                                    class="hide-menu"> 공지사항 조회</span></a></li>
+                                        <li class="sidebar-item"><a href="InsertNoticeForm.do" class="sidebar-link"><span
+                                                    class="hide-menu"> 공지사항 등록
+                                                    </span></a></li>
+                                        
+                                    </ul>
+                                </li>
+                                <li class="sidebar-item"> <a class="has-arrow sidebar-link" href="javascript:void(0)"
+                                        aria-expanded="false"><span class="hide-menu">FAQ</span></a>
+                                    <ul aria-expanded="false" class="collapse second-level base-level-line">
+                                        <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                                    class="hide-menu"> FAQ 조회</span></a></li>
+                                        <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                                    class="hide-menu"> FAQ 등록
+                                                    </span></a></li>
+                                        
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
                         
                         
                         
