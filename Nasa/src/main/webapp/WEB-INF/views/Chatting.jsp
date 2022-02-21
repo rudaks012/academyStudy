@@ -164,30 +164,10 @@
 										$divs = $("<span class='userNameId'>").text(data[i].masterid);
 										//str1 = getIamge(data[i].masterid);
 										//console.log("!@#!@#"+getIamge(data[i].masterid));
+										
+										
 										// 프로필 가져오기
-										$.ajax({
-											url : "/member/chatgetProfileImg",
-											type : "get",
-											data : {
-												userid : data[i].masterid
-											},
-											success : function(obj) {
-												console.log(obj);
-												if (obj != '') {
-													getImage(obj);
-												// 	$(result).each(function(idx,obj) {
-																	/* 	var fileCallPath = encodeURIComponent(obj.profileUploadPath+ "\\"+ obj.pfuuid+ "_"+ obj.profileImgName);
-																		var str = "/member/profileDisplay?fileName="
-																				+ fileCallPath;
-																		console.log("경로 !!:::"+ str);
-																		
-																		$img = $img.attr("src",str); */
-																		
-													//				}) 
-												}
-											}
-
-										}) 
+								
 									} //자신이 구매자일떄 end
 									// 자신이 판매자 입장일 때
 									else {
@@ -199,20 +179,7 @@
 										$img = $("<img class='profile_img' src='/resources/images/temp-profile.png'>");
 										$div.append($img);
 										$divs = $("<span class='userNameId'>").text(data[i].userid);
-										$.ajax({
-													url : "/member/chatgetProfileImg",
-													type : "get",
-													data : {
-														userid : data[i].userid
-													},
-													success : function(obj) {
-														if (obj != '') {
-														console.log("obj :::::"+obj);
-															getImage(obj);
-														}
-													}
-
-												}) 
+									
 									} // 구매자가 아닌 판매자일떄  else End
 									
 									
@@ -535,7 +502,7 @@
 	</script>
 </body>
 
-<!--  <script src='/resources/chat/js/chatting/chat.js'></script>-->
+  <script src='/resources/chat/js/chatting/chat.js'></script>
 
 
 </html>

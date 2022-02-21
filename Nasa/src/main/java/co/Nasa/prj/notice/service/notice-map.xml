@@ -5,17 +5,15 @@
 	<insert id="noticeInsert"
 		parameterType="co.Nasa.prj.comm.VO.NoticeVO">
 
-		INSERT INTO NOTICE(no_code,
+INSERT INTO NOTICE(no_code,
 		no_id,
 		no_title,
 		no_subject,
 		no_date,
 		filecode,
 		no_status)
-		VALUES((SELECT NVL(MAX(no_id),0)+1 FROM
-		NOTICE N),'세션값',#{no_title},
-		#{no_subject},sysdate,'파일업로드안함','공지사항')
-
+		VALUES((SELECT NVL(MAX(NO_CODE),0)+1 FROM NOTICE ),'첫번째','title',
+		'첫번째',sysdate,'첫번째11232','공지사항1')
 		
 
 	</insert>
