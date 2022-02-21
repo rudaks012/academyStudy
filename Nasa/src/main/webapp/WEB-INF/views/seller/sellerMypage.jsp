@@ -390,16 +390,104 @@ supports (display: grid) { .profile { display:grid;
 							<li><a href="sellerKnowhow.do" class="d-flex">
 									<p>판매자 노하우</p>
 							</a></li>
+							<li><a href="" class="d-flex" data-toggle="modal" data-target="#WithdrawalModal">
+									<p>회원탈퇴</p>
+							</a></li>
 						</ul>
 					</aside>
 				</div>
 			</div>
-
-
 		</div>
 		<!-- End of profile section -->
-
-
 	</section>
+	<!-- Modal Start -->
+
+	<!-- 탈퇴 경고 모달 -->
+	<div class="modal fade" id="WithdrawalModal" tabindex="-1" role="dialog" aria-labelledby="WithdrawalModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">탈퇴하시겠습니까?</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">회원정보가 삭제됩니다!</div>
+				<div class="modal-footer">
+					<a href="#" class="genric-btn danger radius" data-toggle="modal" data-target="#passConfirmModal" data-dismiss="modal">탈퇴</a>
+					<a href="#" class="genric-btn primary radius"  data-dismiss="modal">취소</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 탈퇴 경고 모달 -->
+	<!-- 탈퇴 비밀번호 확인 모달 -->
+	<div class="modal fade" id="passConfirmModal" tabindex="-1" role="dialog" aria-labelledby="passConfirmModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">회원탈퇴</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">비밀번호를 입력해주세요:</label>
+							<input type="password" class="form-control" id="passwordconfirm">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<a href="#" type="submit" onclick="passconfirm()" class="genric-btn danger radius">탈퇴</a>
+					<a href="#" class="genric-btn primary radius"  data-dismiss="modal">취소</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 탈퇴 비밀번호 확인 모달 -->
+	
+	<!-- 진행 서비스 있으면 탈퇴 못함 -->
+	<div class="modal fade" id="noservice" tabindex="-1" role="dialog" aria-labelledby="noservice" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">탈퇴 불가</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					진행중인 서비스가 있으면 탈퇴가 불가능합니다.
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="genric-btn info radius" data-dismiss="modal">확인</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 진행 서비스 있으면 탈퇴 못함 -->
+	
+	
+	<script>
+		function passconfirm() {
+			var pcfrm = $("#passwordconfirm").val()
+			console.log(pcfrm);
+            if (pcfrm == '1234') {
+            	window.alert("탈퇴되었습니다.")
+                location.href="home.do";
+            } else if(pcfrm == ""){
+            	window.alert("비밀번호를 입력해주세요!")
+            } else if(pcfrm == "1") {
+            	$("#passConfirmModal").modal('hide');
+            	$("#noservice").modal('show');
+            	$("#passwordconfirm").val("");
+            } else {
+                $("#passConfirmModal").modal('hide');
+            }
+		}
+	</script>
+<!-- Modal End -->
 </body>
 </html>
