@@ -34,4 +34,10 @@ public class BuyerController {
 	public String buyerUpdate() {
 		return "buyer/buyerUpdate";
 	}
+	
+	// 구매자 회원가입
+	@RequestMapping("/buyerJoin.do")
+	public String buyerJoin() {
+		return "buyer/buyerJoin";
+	}
 }
