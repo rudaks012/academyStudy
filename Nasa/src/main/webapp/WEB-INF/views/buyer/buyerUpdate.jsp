@@ -28,7 +28,7 @@
               <div class="col-lg-4 col-md-8">
                   <form action="">
                       <div>
-                          <img src="assets/img/blog/author.png" alt=""> 
+                          <img src="resources/user/assets/img/blog/author.png" alt=""> 
                           <a href="#" class="genric-btn primary-border small">사진수정</a>      
                       </div>
 

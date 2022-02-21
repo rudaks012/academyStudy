@@ -34,4 +34,10 @@ public class BuyerController {
 	public String buyerUpdate() {
 		return "buyer/buyerUpdate";
 	}
+	
+	// 리뷰 페이지로 이동
+	@RequestMapping("/buyerReview.do")
+	public String buyerReview() {
+		return "buyer/buyerReview";
+	}
 }

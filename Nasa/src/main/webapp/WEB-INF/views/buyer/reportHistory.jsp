@@ -23,12 +23,14 @@
 <div class="row justify-content-center">
 	<table class="table table-striped col-8" style="margin-top:40px;">
 		<thead>
-			<th scope="col" width="50px">#</th>
-			<th scope="col">신고일</th>
-			<th scope="col">신고대상</th>
-			<th scope="col">신고유형</th>
-			<th scope="col">신고내용</th>
-			<th scope="col">신고결과</th>
+			<tr>
+				<th scope="col" width="50px">#</th>
+				<th scope="col">신고일</th>
+				<th scope="col">신고대상</th>
+				<th scope="col">신고유형</th>
+				<th scope="col">신고내용</th>
+				<th scope="col">신고결과</th>
+			</tr>
 		</thead>
 		<tbody>
 			<tr>
