@@ -61,6 +61,7 @@ public class AhController {
 			session.setAttribute("id", vo.getB_email());
 			session.setAttribute("password", vo.getB_password());
 			session.setAttribute("status", vo.getToken());
+			session.setAttribute("nickname", vo.getB_nickname());
 			cSession.addLoginUser(vo.getB_email());
 			path = "user/home";
 		}if(path =="" ) {

@@ -1,3 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="co.Nasa.prj.notice.service.notice-map"></mapper>
+<mapper namespace="co.Nasa.prj.notice.service.NoticeMapper">
+
+	<insert id="noticeInsert"
+		parameterType="co.Nasa.prj.comm.VO.NoticeVO">
+
+		INSERT INTO NOTICE(no_code,
+		no_id,
+		no_title,
+		no_subject,
+		no_date,
+		filecode,
+		no_status)
+		VALUES((SELECT NVL(MAX(no_id),0)+1 FROM
+		NOTICE N),'세션값',#{no_title},
+		#{no_subject},sysdate,'파일업로드안함','공지사항')
+
+		
+
+	</insert>
+</mapper>
