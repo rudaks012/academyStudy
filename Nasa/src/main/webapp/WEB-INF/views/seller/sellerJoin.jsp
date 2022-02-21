@@ -54,7 +54,7 @@
 								<p class="card-font">개인판매자</p>
 							</div>
 						</div>
-						<div class="card">
+						<div class="card" onClick="location.href='sellerCompanyjoin.do'">
 							<div class="card-body">
 								<img src="resources/user/assets/img/buyerjoin2.png" alt=""
 									style="width: 150px;">

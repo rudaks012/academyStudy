@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminServiceController {
 	@RequestMapping("/manage_service.do")
 	public String manage_service() {
-		return "admin/manageService";
+		return "admin/service/manageService";
 	}
 	@RequestMapping("/manage_powerService.do")
 	public String manage_powerService() {
-		return "admin/managepowerService";
+		return "admin/service/managepowerService";
 	}
 }
