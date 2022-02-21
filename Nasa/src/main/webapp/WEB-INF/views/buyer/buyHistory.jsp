@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="assets/css/buyHistoryCard.css">
+<link rel="stylesheet" href="resources/user/assets/css/buyHistoryCard.css">
 </head>
 <body>
 <!-- Hero Start-->
@@ -24,7 +24,7 @@
 <!-- buyHistory main start  -->
 <div class="blog-card">
       <div class="meta">
-        <div class="photo" style="background-image: url(assets/img/test/sun.png)"></div>
+        <div class="photo" style="background-image: url(resources/user/assets/img/test/sun.png)"></div>
         <ul class="details">
           <li class="author"><a href="#">태양 등급</a></li>
           <li class="date">10% 할인 혜택</li>
