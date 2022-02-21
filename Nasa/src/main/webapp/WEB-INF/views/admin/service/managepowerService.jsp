@@ -1,5 +1,92 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+     <script src="resources/admin/assets/libs/fullcalendar/main.css"></script>
+    <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialDate: '2022-02-18',
+      initialView: 'dayGridMonth',
+      nowIndicator: true,
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      selectable: true,
+      selectMirror: true,
+      dayMaxEvents: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2022-02-01T16:00:00',
+        },
+        {
+          title: 'Long Event',
+          start: '2022-02-07',
+          end: '2022-02-10'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2022-02-09T16:00:00'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2022-02-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2022-02-11',
+          end: '2020-09-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2022-02-12T10:30:00',
+          end: '2022-02-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2022-02-12T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2022-02-12T14:30:00'
+        },
+        {
+          title: 'Happy Hour',
+          start: '2022-02-12T17:30:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2022-02-12T20:00:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2022-02-13T07:00:00'
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2022-02-28'
+        },
+        {
+          title: 'Meeting',
+          start: '2022-02-28T12:00:00'
+        }
+      ]
+    });
+
+    calendar.render();
+  });
+
+</script>
 <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
