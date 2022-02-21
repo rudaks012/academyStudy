@@ -6,17 +6,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- CSS here -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="assets/css/slicknav.css">
-        <link rel="stylesheet" href="assets/css/animate.min.css">
-        <link rel="stylesheet" href="assets/css/magnific-popup.css">
-        <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="assets/css/themify-icons.css">
-        <link rel="stylesheet" href="assets/css/themify-icons.css">
-        <link rel="stylesheet" href="assets/css/slick.css">
-        <link rel="stylesheet" href="assets/css/nice-select.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="resources/user/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/user/assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="resources/user/assets/css/slicknav.css">
+        <link rel="stylesheet" href="resources/user/assets/css/animate.min.css">
+        <link rel="stylesheet" href="resources/user/assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="resources/user/assets/css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="resources/user/assets/css/themify-icons.css">
+        <link rel="stylesheet" href="resources/user/assets/css/themify-icons.css">
+        <link rel="stylesheet" href="resources/user/assets/css/slick.css">
+        <link rel="stylesheet" href="resources/user/assets/css/nice-select.css">
+        <link rel="stylesheet" href="resources/user/assets/css/style.css">
 
     <style>
       .container {
@@ -371,108 +371,184 @@ Remove or comment-out the code block below to see how the browser will fall-back
 </head>
 <body>
 <!-- Hero Start-->
-        <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap text-center pt-50">
-                            <h2>마이 페이지</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Hero End -->
-		<section class="mypage-section justify-content-center">
-            <div class="container">
-            <div class="row justify-content-center">
-              <div class="profile">
-          
-                <div class="profile-image">
-          
-                  <img src="assets/img/test/profiletest.jpg" alt="" style="width: 155px; height: 155px;">
-          
-                </div>
-          
-                <div class="profile-user-settings">
-          
-                  <h1 class="profile-user-name">IT 구매자</h1>
-          
-                  <a href="buyerUpdate.do" class="bttn profile-edit-bttn" style="height: 30px; font-size: 15px;">계정 설정</a>
-        
-          
-                </div>
-          
-                <div class="profile-stats">
-          
-                  <ul>
-                    <li style="font-size: 20px;"><span class="profile-stat-count">등급 : </span> 지구 <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a></li>
-                  </ul>
-          
-                </div>
-          
-                <div class="profile-bio">
-          
-                  <p><span class="profile-real-name">Email : </span> email@mail.net</p>
-          
-                </div>
-                
-                
-              
-            </div>
-            </div>
+	<div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="hero-cap text-center pt-50">
+						<h2>마이 페이지</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--Hero End -->
 
-            <div class="row justify-content-center">
-            <div class="blog_right_sidebar col-6" style="margin-top: 30px;">
-              <aside class="single_sidebar_widget post_category_widget">
-                 <h4 class="widget_title">MYPAGE MENU</h4>
-                 <ul class="list cat-list">
-                    <li>
-                       <a href="buyHistory.do" class="d-flex">
-                          <p>구매내역</p>
-                          
-                       </a>
-                    </li>
-                    <li>
-                       <a href="#" class="d-flex">
-                          <p>일정관리</p>
-                          
-                       </a>
-                    </li>
-                    <li>
-                       <a href="buyerCoupons.do" class="d-flex">
-                          <p>보유쿠폰</p>
-                          
-                       </a>
-                    </li>
-                    <li>
-                       <a href="wishlist.do" class="d-flex">
-                          <p>위시리스트</p>
-                          
-                       </a>
-                    </li>
-                    <li>
-                       <a href="#" class="d-flex">
-                          <p>리뷰확인</p>
-                          
-                       </a>
-                    </li>
-                    <li>
-                       <a href="reportHistory.do" class="d-flex">
-                          <p>신고내역</p>
-                          
-                       </a>
-                    </li>
-                 </ul>
-              </aside>
-           </div>
-          </div>
+<!-- Mypage Start -->
+	<section class="mypage-section justify-content-center">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="profile">
+				
+					<div class="profile-image">
+						<img src="resources/user/assets/img/test/profiletest.jpg" alt="" style="width: 155px; height: 155px;">
+					</div>
+				
+					<div class="profile-user-settings">
+						<h1 class="profile-user-name">IT 구매자</h1>
+						<a href="buyerUpdate.do" class="bttn profile-edit-bttn" style="height: 30px; font-size: 15px;">계정 설정</a>
+					</div>
+					<div class="profile-stats">
+						<ul>
+							<li style="font-size: 20px;">
+								<span class="profile-stat-count">등급 : 
+								</span> 지구 
+								<a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+							</li>
+						</ul>
+					</div>
+					<div class="profile-bio">
+						<p><span class="profile-real-name">Email : </span> email@mail.net</p>
+					</div>
+				</div>
+			</div>
+		
+			<div class="row justify-content-center">
+				<div class="blog_right_sidebar col-6" style="margin-top: 30px;">
+					<aside class="single_sidebar_widget post_category_widget">
+						<h4 class="widget_title">MYPAGE MENU</h4>
+						<ul class="list cat-list">
+							<li>
+								<a href="buyHistory.do" class="d-flex">
+									<p>구매내역</p>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="d-flex">
+									<p>일정관리</p>
+								</a>
+							</li>
+							<li>
+								<a href="buyerCoupons.do" class="d-flex">
+									<p>보유쿠폰</p>
+								</a>
+							</li>
+							<li>
+								<a href="wishlist.do" class="d-flex">
+									<p>위시리스트</p>
+								</a>
+							</li>
+							<li>
+								<a href="buyerReview.do" class="d-flex">
+									<p>리뷰확인</p>
+								</a>
+							</li>
+							<li>
+								<a href="reportHistory.do" class="d-flex">
+									<p>신고내역</p>
+								</a>
+							</li>
+							<li>
+								<a href="" class="d-flex" data-toggle="modal" data-target="#WithdrawalModal">
+									<p>회원탈퇴</p>
+								</a>
+							</li>
+						</ul>
+					</aside>
+				</div>
+			</div>
+		</div>
+    </section>
+<!-- Mypage End -->
+          
+<!-- Modal Start -->
 
-
-              </div>
-              <!-- End of profile section -->
-            
-
-          </section>
+	<!-- 탈퇴 경고 모달 -->
+	<div class="modal fade" id="WithdrawalModal" tabindex="-1" role="dialog" aria-labelledby="WithdrawalModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">탈퇴하시겠습니까?</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">회원정보가 삭제됩니다!</div>
+				<div class="modal-footer">
+					<a href="#" class="genric-btn danger radius" data-toggle="modal" data-target="#passConfirmModal" data-dismiss="modal">탈퇴</a>
+					<a href="#" class="genric-btn primary radius"  data-dismiss="modal">취소</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 탈퇴 경고 모달 -->
+	<!-- 탈퇴 비밀번호 확인 모달 -->
+	<div class="modal fade" id="passConfirmModal" tabindex="-1" role="dialog" aria-labelledby="passConfirmModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">회원탈퇴</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">비밀번호를 입력해주세요:</label>
+							<input type="password" class="form-control" id="passwordconfirm">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<a href="#" type="submit" onclick="passconfirm()" class="genric-btn danger radius">탈퇴</a>
+					<a href="#" class="genric-btn primary radius"  data-dismiss="modal">취소</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 탈퇴 비밀번호 확인 모달 -->
+	
+	<!-- 진행 서비스 있으면 탈퇴 못함 -->
+	<div class="modal fade" id="noservice" tabindex="-1" role="dialog" aria-labelledby="noservice" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">탈퇴 불가</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					진행중인 서비스가 있으면 탈퇴가 불가능합니다.
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="genric-btn info radius" data-dismiss="modal">확인</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 진행 서비스 있으면 탈퇴 못함 -->
+	
+	
+	<script>
+		function passconfirm() {
+			var pcfrm = $("#passwordconfirm").val()
+			console.log(pcfrm);
+            if (pcfrm == '1234') {
+            	window.alert("탈퇴되었습니다.")
+                location.href="home.do";
+            } else if(pcfrm == ""){
+            	window.alert("비밀번호를 입력해주세요!")
+            } else if(pcfrm == "1") {
+            	$("#passConfirmModal").modal('hide');
+            	$("#noservice").modal('show');
+            	$("#passwordconfirm").val("");
+            } else {
+                $("#passConfirmModal").modal('hide');
+            }
+		}
+	</script>
+<!-- Modal End -->
 </body>
 </html>

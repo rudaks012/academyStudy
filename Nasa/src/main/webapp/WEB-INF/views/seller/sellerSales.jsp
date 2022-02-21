@@ -48,7 +48,6 @@
 				<div class="card-body">
 					<table class="table caption-top table-bordered  text-center">
 						<tbody>
-
 							<tr>
 								<th class="align-middle table-primary">서비스 선택</th>
 								<td>

@@ -249,8 +249,9 @@
                                             <th width="18%" class="table-danger align-middle">신고횟수</th>
                                             <td>
                                                <div class="col-6 p-0 d-flex align-items-center">
-                                            	<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="10" type="text" disabled >회</td>
+                                            	<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="10" type="text" disabled >회
                                         	   </div>
+                                        	</td>
                                         </tr>
                                          <tr>
                                             <th colspan="4" class="table-primary align-middle">신고내용</th>

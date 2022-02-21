@@ -46,6 +46,7 @@ public class SellerController {
 		return "seller/sellerSales";
 	}
 
+
 	// 판매자 회원가입 유형 선택
 	@RequestMapping("/sellerJoin.do")
 	public String buyerJoin() {
@@ -56,5 +57,21 @@ public class SellerController {
 	@RequestMapping("/sellerPersonjoin.do")
 	public String sellerPersonjoin() {
 		return "seller/sellerPersonjoin";
+
+	
+	@RequestMapping("/sellerPayment.do")
+	public String sellerPayment() {
+		return "seller/sellerPayment";
+	}
+	
+	@RequestMapping("/knowhowDetail.do")
+	public String knowhowDetail() {
+		return "seller/knowhowDetail";
+	}
+	
+	@RequestMapping("/serviceDetail.do")
+	public String serviceDetail() {
+		return "seller/serviceDetail";
+
 	}
 }

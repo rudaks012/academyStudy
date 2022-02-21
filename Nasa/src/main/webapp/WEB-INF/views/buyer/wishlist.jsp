@@ -25,7 +25,7 @@
 	<section class="blog_area single-post-area section-padding">         
             <div class="blog-author col-lg-6" style="margin: 0 auto; margin-top: 20px;">
                 <div class="media align-items-center">
-                   <img src="assets/img/blog/author.png" alt="">
+                   <img src="resources/user/assets/img/blog/author.png" alt="">
                    <div class="media-body">
                       <a href="#">
                          <h4 style="display: inline;">IT판매자</h4> 
@@ -44,7 +44,7 @@
 
              <div class="blog-author col-lg-6" style="margin: 0 auto; margin-top: 20px;">
                 <div class="media align-items-center">
-                   <img src="assets/img/blog/author.png" alt="">
+                   <img src="resources/user/assets/img/blog/author.png" alt="">
                    <div class="media-body">
                       <a href="#">
                          <h4 style="display: inline;">IT판매자</h4> 
@@ -63,7 +63,7 @@
 
              <div class="blog-author col-lg-6" style="margin: 0 auto; margin-top: 20px;">
                 <div class="media align-items-center">
-                   <img src="assets/img/blog/author.png" alt="">
+                   <img src="resources/user/assets/img/blog/author.png" alt="">
                    <div class="media-body">
                       <a href="#">
                          <h4 style="display: inline;">IT판매자</h4> 

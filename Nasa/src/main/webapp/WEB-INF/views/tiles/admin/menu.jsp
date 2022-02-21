@@ -37,8 +37,8 @@
                                             class="hide-menu"> 일반서비스 관리
                                         </span></a>
                                 </li>
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"><span
-                                            class="hide-menu"> 파워서비스 관리
+                                <li class="sidebar-item"><a href="manage_powerService.do" class="sidebar-link"><span
+                                            class="hide-menu"> 파워서비스 일정
                                         </span></a>
                                 </li>
                             </ul>
