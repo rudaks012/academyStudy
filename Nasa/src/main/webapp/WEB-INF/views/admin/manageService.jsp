@@ -137,7 +137,7 @@
                    </div>
                </div>
                 
-                <div class="row my-5">
+                <div class="row mt-5">
                 	<div class="col-5">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             판매내역
@@ -273,70 +273,75 @@
                             상세조회
                         </h5>
                 	    <div class="card">
-                          
+                	    <!-- 유효기간이 남아있을 경우 / 유효기간 종료되면 버튼 안보임 -->
+                          <div class="d-flex justify-content-end mr-4">
+                                <button class="btn btn-outline-primary mr-3 mt-3">종료</button>
+                            </div>
 		                   <div class="card-body">
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
                                         <tr>
-                                            <th width="115px" class="table-primary align-middle">서비스코드</th>
+                                            <th width="130px" class="table-primary align-middle">서비스코드</th>
                                             <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" disabled ></td>
-                                            <th class="table-primary align-middle">아이디</th>
+                                            <th class="table-primary align-middle">서비스명</th>
                                             <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" disabled></td>
                                         </tr>
                                         <tr>
-                                            <th class="table-primary align-middle">이름</th>
+                                            <th class="table-primary align-middle">1차카테고리</th>
                                             <td><input class="form-control custom-shadow" id="" name="" value="123" type="text" disabled></td>
-                                            <th class="table-primary align-middle">닉네임</th>
+                                            <th class="table-primary align-middle">2차카테고리</th>
                                             <td><input class="form-control custom-shadow" id="" name="" value="1234" type="text" disabled></td>
                                         </tr>
                                         <tr>
-                                            <th class="table-primary align-middle">연락처</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="1234-1234" type="text" disabled></td>
                                             <th class="table-primary align-middle">구분</th>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="1234-1234" type="text" disabled></td>
+                                            <th class="table-primary align-middle">방식</th>
                                             <td><input class="form-control custom-shadow" id="" name="" value="기업" type="text" disabled></td>
                                         </tr>
                                         <tr>
-                                            <th class="table-primary align-middle">등급</th>
-                                            <td colspan="3">
-                                                <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
-	                                                <div class="custom-control custom-radio mr-3 ">
-	                                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input mr-5">
-	                                                    <label class="custom-control-label" for="customRadio4">별</label>
-	                                                </div>
-	                                                <div class="custom-control custom-radio mx-3">
-	                                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input mr-5">
-	                                                    <label class="custom-control-label" for="customRadio2">달</label>
-	                                                </div>
-	                                                <div class="custom-control custom-radio mx-3">
-	                                                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-	                                                    <label class="custom-control-label" for="customRadio3">지구</label>
-	                                                </div>
-	                                                <div class="custom-control custom-radio mx-3">
-	                                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
-	                                                    <label class="custom-control-label" for="customRadio4">해</label>
-	                                                </div>
-	                                                
-	                                            </div>
+                                         <th class="table-primary align-middle">금액</th>
+                                            <td >
+                                             	<input class="form-control custom-shadow" id="" name="" value="종료" type="text" disabled>
+                                            </td>
+                                            <th class="table-primary align-middle">유효기간</th>
+                                            <td>
+                                             	<input class="form-control custom-shadow" id="" name="" value="종료" type="text" disabled>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="table-primary align-middle">상태</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="블랙리스트" type="text" disabled></td>
-                                            <th class="table-primary align-middle">신고횟수</th>
+                                            <th class="table-primary align-middle">아이디</th>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="1234" type="text" disabled></td>
+                                            <th class="table-primary align-middle">회원상태</th>
                                             <td>
-                                                <div class="col-4 d-flex align-items-center">
-                                                <input class="form-control custom-shadow mr-2" id="" name="" value="10" type="text" disabled>회
-                                                </div>
+                                               <input class="form-control custom-shadow text-danger" id="" name="" value="블랙리스트" type="text" disabled>
                                             </td>        
                                         </tr>
                                         <tr>                                     
-                                            <th class="table-primary align-middle">주소</th>
-                                            <td colspan="3">                                              
-                                                <input class="form-control custom-shadow mb-1" style="width: 20%;" id="" name=""  value="55555" type="text" disabled>
-                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" disabled>                 
-                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" disabled>     
+                                            <th class="table-primary align-middle">누적판매</th>
+                                            <td>                                              
+                                                <input class="form-control custom-shadow mb-1"  id="" name="" type="text" disabled>                 
+                                            </td>
+                                            <th class="table-primary align-middle">리뷰수</th>
+                                            <td >                                              
+                                                <input class="form-control custom-shadow mb-1"  id="" name="" type="text" disabled>                 
                                             </td>
                                         </tr>
+                                        <tr>                                     
+                                            <th  class="table-primary align-middle">위시수</th>
+                                             <td>
+                                               <div class="col-6 p-0 d-flex align-items-center">
+                                            	 <input class="form-control custom-shadow mb-1"  id="" name="" type="text" disabled>        
+                                        	   </div>
+                                        	</td>
+                                        	 <th  class="table-primary align-middle"><span class="position-relative px-3">신고수 <i class=" icon-info text-warning position-absolute" style=" bottom:13px;" data-toggle="tooltip" data-placement="top" title="" data-original-title="해당 서비스 총 신고수"></i></span></th>
+                                             <td>
+                                               <div class="col-6 p-0 d-flex align-items-center">
+                                            	<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="10" type="text" disabled >회
+                                        	   </div>
+                                        	</td>
+                                           
+                                        </tr>
+                                        
                                     </tbody>
                                 </table>
 		
@@ -349,152 +354,28 @@
 			<div class="row">
 				<div class="col-12">
 				<h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
-                            서비스내역
+                            상세설명
                  </h5>
 					<div class="card">
 		                   <div class="card-body">
-                            <table class="table caption-top table-bordered thead-light  text-center">		                        
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>1차카테고리</th>
-                                        <th>2차카테고리</th>
-                                        <th>서비스명</th>
-                                        <th>유효기간</th>
-                                        <th>구매자아이디</th>
-                                        <th>가격</th>
-                                        <th>결제날짜</th>
-                                        <th>결제상태</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                       <td>123</td>
-                                       <td>123</td>
-                                       <td>13</td>
-                                       <td>55555</td>
-                                       <td>6666</td>
-                                       <td>7777</td>
-                                       <td>8888</td>
-                                    </tr>                                   
-                               </tbody>
-                            </table>
-
-                            <div class="d-flex justify-content-center mt-5">
-                                <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                                                    <span aria-hidden="true">«</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                                                    <span aria-hidden="true">»</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                            </div>
-		
-			                     
+                             <textarea rows="20" class="form-control" id="message-text" disabled></textarea>   
 		                   </div>
+                	<div class="card-footer border border-secondary d-flex justify-content-between bg-white" style="border-radius: 5px;">
+                               <div>링크 : <span class="text-danger mx-2"></span></div>
+                               
+                           </div>
                 	</div>
                 </div>
 				</div>
 		
 
 
-             <div class="row mt-5">
-                 <div class="col-12">      
-                        <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
-                            판매내역
-                            <div class="mr-5">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input mx-3" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">1개월</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input mx-3" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">3개월</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input mx-3" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">6개월</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input mx-3" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">1년</label>
-                                </div>
-                            </div>
-                        </h5>
+         </div>
                         
                         
                         
                     
-                	    <div class="card">
-		                   <div class="card-body">
-                            <table class="table caption-top table-bordered thead-light  text-center">		                        
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>1차카테고리</th>
-                                        <th>2차카테고리</th>
-                                        <th>서비스명</th>
-                                        <th>유효기간</th>
-                                        <th>구매자아이디</th>
-                                        <th>가격</th>
-                                        <th>결제날짜</th>
-                                        <th>결제상태</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                       <td>123</td>
-                                       <td>123</td>
-                                       <td>13</td>
-                                       <td>55555</td>
-                                       <td>6666</td>
-                                       <td>7777</td>
-                                       <td>8888</td>
-                                    </tr>                                   
-                               </tbody>
-                            </table>
-
-                            <div class="d-flex justify-content-center mt-5">
-                                <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                                                    <span aria-hidden="true">«</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                                                    <span aria-hidden="true">»</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                            </div>
-		
-			                     
-		                   </div>
-                           <div class="card-footer border border-secondary d-flex justify-content-between bg-white" style="border-radius: 5px;">
-                               <div>총 <span class="text-danger mx-2">5</span>건수</div>
-                               <div class="mr-4">누적구매금액 <span class="text-danger mx-2">100,000</span>원</div>
-                           </div>
-                	</div>
-                </div>
-              </div>
+                	  
               
              
             

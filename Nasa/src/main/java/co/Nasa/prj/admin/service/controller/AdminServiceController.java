@@ -9,4 +9,8 @@ public class AdminServiceController {
 	public String manage_service() {
 		return "admin/manageService";
 	}
+	@RequestMapping("/manage_powerService.do")
+	public String manage_powerService() {
+		return "admin/managepowerService";
+	}
 }
