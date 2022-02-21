@@ -59,6 +59,13 @@ public class SellerController {
 		return "seller/sellerPersonjoin";
 	}
 	
+	// 기업 판매자 회원가입
+	@RequestMapping("/sellerCompanyjoin.do")
+	public String sellerCompanyjoin() {
+		return "seller/sellerCompanyjoin";
+	}
+	
+	
 	@RequestMapping("/sellerPayment.do")
 	public String sellerPayment() {
 		return "seller/sellerPayment";
