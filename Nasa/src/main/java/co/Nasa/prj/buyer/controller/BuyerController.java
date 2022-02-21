@@ -36,11 +36,19 @@ public class BuyerController {
 	}
 	
 
+	// 구매자 회원가입
+	@RequestMapping("/buyerJoin.do")
+	public String buyerJoin() {
+		return "buyer/buyerJoin";
+	}
+
+
 	// 리뷰 페이지로 이동
 	@RequestMapping("/buyerReview.do")
 	public String buyerReview() {
 		return "buyer/buyerReview";
 	}
+
 
 
 }

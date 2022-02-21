@@ -42,8 +42,10 @@
 										<li class="add-list"><a href="listing_details.html"><i
 												class="ti-plus"></i> add Listing</a></li>
 										<li class="login"><a href="Login.do"> <i
-												class="ti-user"></i> Sign in or Register
+												class="ti-user"></i> 로그인
 										</a></li>
+										<li class="login"><a href="buyerJoin.do">회원가입</a></li>
+										
 										<div>
 											<button onclick="location.href='ckeditor.do'">시케이데에에에</button>
 										</div>
