@@ -34,4 +34,5 @@ public class BuyerController {
 	public String buyerUpdate() {
 		return "buyer/buyerUpdate";
 	}
+	
 }

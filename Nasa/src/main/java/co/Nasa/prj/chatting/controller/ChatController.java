@@ -20,9 +20,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 
+import co.Nasa.prj.buyer.service.BuyerService;
 import co.Nasa.prj.chatting.service.ChatMessage;
 import co.Nasa.prj.chatting.service.ChatRoom;
 import co.Nasa.prj.chatting.serviceImpl.ChatServiceImpl;
+import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.login.service.LoginService;
  
  
@@ -31,6 +33,8 @@ public class ChatController {
     @Autowired
     private ChatServiceImpl cService;
     
+    @Autowired
+    private BuyerService BuyerDao;
 //    @Autowired
 //    private LoginService serviceDao;
 //    
@@ -43,9 +47,13 @@ public class ChatController {
     	System.out.println("!!!!!");
     	System.out.println(session.getAttribute("id"));
 //    	System.out.println(principal.getName());
+    	BuyerVO vo = new BuyerVO();
+    	vo.setB_email((String)session.getAttribute("id"));
+    	BuyerDao.selectBuyer(vo);
+
     	
     	if(session.getAttribute("id")!= null) {
-    		model.addAttribute("loginMember", session.getAttribute("id"));
+    		model.addAttribute("loginMember", BuyerDao.selectBuyer(vo));
     		
     		return "Chatting";
     	}
