@@ -18,6 +18,14 @@
 		background-color: tomato !important;
 		color: white !important;
 	}
+	input[type=date]{
+		border: 1px solid lightgray;
+		color: lightgray;
+		margin-right: 10px;
+	}
+	.paybtn{
+		margin-right: 10px;
+	}
 </style>
 </head>
 <body>
@@ -98,11 +106,12 @@
 					<br /><br />
 					<div class="row justify-content-center">
 
-						<button class="genric-btn danger-border radius">1개월</button>
-						<button class="genric-btn danger-border radius">6개월</button>
-						<button class="genric-btn danger-border radius">1년</button>
-						<button class="genric-btn danger-border radius">기간설정</button>
-						<input type="date"> ~ <input type="date">
+						<button class="genric-btn danger-border radius paybtn">1개월</button>
+						<button class="genric-btn danger-border radius paybtn">6개월</button>
+						<button class="genric-btn danger-border radius paybtn">1년</button>
+						
+						<input type="date"> - <input type="date" style="margin-left: 10px;">
+						<button class="genric-btn danger-border radius">기간검색</button>
 						<table class="table table-bordered thead-light  text-center col-11" style="margin-top:40px;">
 							<thead class="thead-light">
 								<tr>
