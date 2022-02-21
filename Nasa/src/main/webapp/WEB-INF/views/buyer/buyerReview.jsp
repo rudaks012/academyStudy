@@ -43,7 +43,7 @@
 									<p class="date">December 4, 2017 at 3:12 pm </p>
 								</div>
 								<div class="reply-btn">
-									<a href="#" class="btn-reply text-uppercase">신고</a>
+									<a href="#" class="btn-reply text-uppercase" data-toggle="modal" data-target="#reportModal">신고</a>
 								</div>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 									<p class="date">December 4, 2017 at 3:12 pm </p>
 								</div>
 								<div class="reply-btn">
-									<a href="#" class="btn-reply text-uppercase">신고</a>
+									<a href="#" class="btn-reply text-uppercase" data-toggle="modal" data-target="#reportModal">신고</a>
 								</div>
 							</div>
 						</div>
@@ -79,9 +79,51 @@
 			</div>
 		</div>
 	</div>
-
-
-
 <!-- buyeerReview End -->
+
+<!-- Modal Start -->
+
+	<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">신고</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label><input type="radio" name="reportType" value="1" onclick="radiodisabled()"> 욕설/비방</label><br>
+							<label><input type="radio" name="reportType" value="2" onclick="radiodisabled()"> 음란물</label><br>
+							<label><input type="radio" name="reportType" value="3" onclick="radiodisabled()"> 스팸, 부적절한 광고</label><br>
+							<label><input type="radio" name="reportType" value="4" onclick="radiodisabled()"> 혐오 혹은 잔인한 사진</label><br>
+							<div class="form-group">
+								<label><input type="radio" name="reportType" value="5" onclick="radioactive()"> 기타 사유</label>
+								<textarea class="form-control" id="reportSubject" name="reportSubject" disabled></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="genric-btn danger radius" data-dismiss="modal">신고</a>
+					<a href="#" class="genric-btn primary radius"  data-dismiss="modal">취소</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		function radiodisabled() {
+			$("#reportSubject").attr("disabled", true);
+			$("#reportSubject").val("");
+		}
+		function radioactive() {
+		 	$("#reportSubject").attr("disabled", false);
+		}
+	</script>
+
+<!-- Modal End -->
 </body>
 </html>

@@ -48,7 +48,8 @@
     <div class="col-lg-2"></div>
     <button class="genric-btn primary-border small">1개월</button>
     <button class="genric-btn primary-border small" style="margin-left: 5px;">6개월</button>
-    <button class="genric-btn primary-border small" style="margin-left: 5px;">1년</button>                
+    <button class="genric-btn primary-border small" style="margin-left: 5px;">1년</button>
+    <input type="date" style="margin-left:10px">&nbsp;~&nbsp;<input type="date">       
   </div>       
     <div class="row justify-content-center" style="margin-top:5px;">
       <table class="table col-lg-8">
