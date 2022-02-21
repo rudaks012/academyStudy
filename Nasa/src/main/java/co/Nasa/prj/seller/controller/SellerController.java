@@ -58,6 +58,10 @@ public class SellerController {
 	public String sellerPersonjoin() {
 		return "seller/sellerPersonjoin";
 	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> 25eb00ac3fc79683a2222068216c88fba0ec553a
 	
 	@RequestMapping("/sellerPayment.do")
 	public String sellerPayment() {

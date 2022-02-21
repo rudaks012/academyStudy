@@ -54,7 +54,7 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 			// 전달받은 메세지
 			String msg = message.getPayload();
 			System.out.println("메세지 확인 "+msg);
-			
+
 			for(String key : RoomList.keySet()) {
 				System.out.println("돌아라");
 				ArrayList<WebSocketSession> value = RoomList.get(key);
