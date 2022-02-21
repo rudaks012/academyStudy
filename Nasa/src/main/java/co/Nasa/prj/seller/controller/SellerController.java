@@ -57,6 +57,7 @@ public class SellerController {
 	@RequestMapping("/sellerPersonjoin.do")
 	public String sellerPersonjoin() {
 		return "seller/sellerPersonjoin";
+	}
 
 	
 	@RequestMapping("/sellerPayment.do")

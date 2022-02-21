@@ -287,6 +287,9 @@
         display: block;
     }
 }
+	.modal-open {
+		padding-right:0px !important;
+	}
 
 /* Spinner Animation */
 
@@ -366,6 +369,14 @@ Remove or comment-out the code block below to see how the browser will fall-back
 }
 
 /* 직접 설정한 스타일들!!!!!!!! */
+
+	.modal-open {
+		padding-right:0px !important;
+	}
+	
+	body {
+		padding-right:0px !important;
+	}
 
 </style>
 </head>
@@ -521,6 +532,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 				</div>
 				<div class="modal-body">
 					진행중인 서비스가 있으면 탈퇴가 불가능합니다.
+					<p style="color:red; font-size:15px">판매자와의 거래를 끝내야 탈퇴가 가능합니다!</p>
 				</div>
 				<div class="modal-footer">
 					<a href="#" class="genric-btn info radius" data-dismiss="modal">확인</a>
@@ -536,16 +548,16 @@ Remove or comment-out the code block below to see how the browser will fall-back
 			var pcfrm = $("#passwordconfirm").val()
 			console.log(pcfrm);
             if (pcfrm == '1234') {
-            	window.alert("탈퇴되었습니다.")
+            	window.alert("탈퇴되었습니다.");
                 location.href="home.do";
             } else if(pcfrm == ""){
-            	window.alert("비밀번호를 입력해주세요!")
+            	window.alert("비밀번호를 입력해주세요!");
             } else if(pcfrm == "1") {
             	$("#passConfirmModal").modal('hide');
             	$("#noservice").modal('show');
             	$("#passwordconfirm").val("");
-            } else {
-                $("#passConfirmModal").modal('hide');
+            } else {r
+            	window.alert("비밀번호가 틀렸습니다!");
             }
 		}
 	</script>
