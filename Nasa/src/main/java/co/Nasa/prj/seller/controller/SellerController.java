@@ -45,4 +45,19 @@ public class SellerController {
 	public String sellerSales() {
 		return "seller/sellerSales";
 	}
+	
+	@RequestMapping("/sellerPayment.do")
+	public String sellerPayment() {
+		return "seller/sellerPayment";
+	}
+	
+	@RequestMapping("/knowhowDetail.do")
+	public String knowhowDetail() {
+		return "seller/knowhowDetail";
+	}
+	
+	@RequestMapping("/serviceDetail.do")
+	public String serviceDetail() {
+		return "seller/serviceDetail";
+	}
 }
