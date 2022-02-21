@@ -64,6 +64,46 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th class="align-middle table-primary ">금액</th>
+                                        <td>
+                                        	<div class="d-flex align-items-center">
+                                        	<div class="col-5 p-0">
+                                        	<select class="custom-select  form-control custom-shadow ">
+				                                <option selected="">선택</option>
+				                                <option value="1">July 19</option>
+				                                <option value="2">Jun 19</option>
+				                            </select>
+				                            </div>
+				                            <div class="col-2">
+				                            	<span ><i class="fas fa-minus"></i></span>
+				                            </div>
+				                            <div class="col-5 p-0">
+                                        	<select class="custom-select  form-control custom-shadow ">
+				                                <option selected="">선택</option>
+				                                <option value="1">July 19</option>
+				                                <option value="2">Jun 19</option>
+				                            </select>
+				                            </div>
+				                            </div>
+                                        </td>
+                                        <th class="text-center align-middle table-primary">온/오프</th>
+                                        <td>
+                                            <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
+                                                <div class="custom-control custom-radio mr-3 ">
+                                                    <input type="radio" id="onlineRadio" name="customRadio" class="custom-control-input mr-5">
+                                                    <label class="custom-control-label" for="onlineRadio">온라인</label>
+                                                </div>
+                                                <div class="custom-control custom-radio mx-3">
+                                                    <input type="radio" id="offlineRadio" name="customRadio" class="custom-control-input mr-5">
+                                                    <label class="custom-control-label" for="offlineRadio">오프라인</label>
+                                                </div>
+                                                
+                                               
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                     	<th class="align-middle table-primary">1차 카테고리</th>
                                     	<td>
                                     		<select class="custom-select  form-control custom-shadow ">
