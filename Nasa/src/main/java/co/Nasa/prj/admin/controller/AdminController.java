@@ -32,10 +32,17 @@ public class AdminController {
 	}
 	@RequestMapping("/ckeditor.do")
 	public String go_cheditor() {
+		System.out.println("/ckeditor.do");
 		return "CKEditor";
 	}
 	@RequestMapping("/chatting.do")
 	public String go_chatting() {
+		System.out.println("/chatting.do");
 		return "Chatting";
+	}
+	@RequestMapping("/fileupload.do")
+	public String go_fileupload() {
+		System.out.println("/fileupload.do");
+		return "fileupload";
 	}
 }
