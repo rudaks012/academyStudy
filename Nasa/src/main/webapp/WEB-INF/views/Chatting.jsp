@@ -30,6 +30,11 @@
 
 </style>
 <link rel="stylesheet" href="./resources/chat/css/chat.css" />
+
+
+<script
+src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+
 <body>
 
 	<div class="channer" style="border-radius: 2px">
@@ -47,7 +52,8 @@
 		<div class="channer right1">
 			<!-- 채팅 창 -->
 			<div class="chat_wrap" style="padding:3px">
-			<div class="header">CHAT <button type="button" id="chatout" style="color:red; float:right; display:none;">채팅나가기</button></div>
+			<div class="header">CHAT <button type="button" id="chatout" style="color:red; float:right; display:none;">채팅나가기</button>
+			<button type="button" id="payement" style="color:red; float:right;display:none;">결제하기</button></div>
 				<!-- 	<div class="floatLeft" id="loginOn">
 						<img class="profile_img" id="setPic">
 						src 사진 경로 동적 생성
@@ -280,6 +286,7 @@
 			clearChatroom();
 
 			websocket.close();
+			console.log("소켓닫기");
 		})
 	
 	
@@ -291,10 +298,12 @@
 
 				// 채팅방 나가기 클릭버튼 display:none 해제 
 				$("#chatout").toggle();
+				$("#payement").toggle();
 				// 현재 html에 추가되었던 동적 태그 전부 지우기
 				$('div.chatMiddle:not(.format) ul').html("");
 				// obj(this)로 들어온 태그에서 id에 담긴 방번호 추출
 
+			console.log("check합니다.");
 				roomid = obj.getAttribute("id");
 				console.log("채팅 방 아이디 ::::" + roomid);
 
@@ -310,12 +319,13 @@
 						for (var i = 0; i < data.length; i++) {
 							// 채팅 목록 동적 추가
 							CheckLR(data[i]);
+							console.log("방번호확인");
 						}
 					}
 				});
 				// 웹소켓 연결
 				connect();
-				console.log("enterRoom");
+				console.log("enterRoom1");
 				//$(obj).attr("clickable", "false");
 			//}
 		}// 채팅방 클릭 시 방번호 배정후 웹소켓 연결
@@ -323,6 +333,7 @@
 		// 채팅하기로 넘어왔을 시 작동 
 
 	let room_id = <%= request.getParameter("room_id")%>;
+	console.log(room_id);
 	console.log("룸아이디 가져오기 :::"+room_id);
 	if(room_id!=null){
 		chattingRoom(room_id);
@@ -352,7 +363,7 @@
 			});
 			// 웹소켓 연결
 			connect();
-			console.log("enterRoom");
+			console.log("enterRoom2");
 		//	$(obj).attr("clickable","false");
 	}// 채팅방 클릭 시 방번호 배정후 웹소켓 연결
 	
@@ -370,6 +381,10 @@
 		//웹 소켓에 이벤트가 발생했을 때 호출될 함수 등록
 		websocket.onopen = onOpen;
 		websocket.onmessage = onMessage;
+		websocket.close = onClose;
+		websocket.error = onError;
+		
+		
 	}
 
 	//웹 소켓에 연결되었을 때 호출될 함수
@@ -388,6 +403,22 @@
 		websocket.send(jsonData);
 		console.log(websocket);
 	} 
+	function onClose(event) {
+		var wsUri = "ws://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/websocket/echo.do";
+		
+			  if (event.wasClean) {
+			    alert(`[close] 커넥션이 정상적으로 종료되었습니다(code=${event.code} reason=${event.reason})`);
+			  } else {
+			    // 예시: 프로세스가 죽거나 네트워크에 장애가 있는 경우
+			    // event.code가 1006이 됩니다.
+			    alert('[close] 커넥션이 죽었습니다.');
+			  }
+
+	}
+	function onError(error) {
+			  alert(`[error] ${error.message}`);
+		
+	}
 
 	// * 1 메시지 전송
 	function sendMessage(message) {
@@ -502,7 +533,7 @@
 	</script>
 </body>
 
-  <script src='/resources/chat/js/chatting/chat.js'></script>
+ <!--   <script src='/resources/chat/js/chatting/chat.js'></script>-->
 
 
 </html>

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="co.Nasa.prj.chatting.service.ChatMapper">
- 
-    
-    <resultMap type="ChatRoom" id="chatRoomResultset">
+
+
+	<resultMap type="ChatRoom" id="chatRoomResultset">
 		<id property="roomid" column="roomid" />
 		<result property="userid" column="userid" />
 		<result property="usernickname" column="usernickname" />
@@ -20,35 +20,37 @@
 		<result property="nickname" column="nickname" />
 		<result property="unReadCount" column="unReadCount" />
 	</resultMap>
-    
-    <!-- 신규 채팅방일 때 채팅 방 생성 -->
- 	<insert id="createChat" >
+
+	<!-- 신규 채팅방일 때 채팅 방 생성 -->
+	<insert id="createChat">
 		insert into CHATROOM
 		values(SEQ_CHATROOM_ID.NEXTVAL, #{userid},
-		#{usernickname}, #{masterid}, #{masternickname})
+		#{usernickname},
+		#{masterid}, #{masternickname})
 	</insert>
 
 	<select id="selectChatRoom" resultMap="chatRoomResultset">
 		SELECT * FROM CHATROOM
 		WHERE roomid = #{roomid}
 	</select>
-	
-	<insert id="insertMessage" >
-		<if test="sessionCount == 1">
-			INSERT INTO CHATMESSAGE VALUES(#{roomid},
-			SEQ_CHATMESSAGE_ID.NEXTVAL,
-			#{message}, #{sentid}, #{nickname}, DEFAULT)
+
+	<insert id="insertMessage">
+		<if test="sessionCount == 0">
+			INSERT INTO CHATMESSAGE
+			VALUES(SEQ_CHATMESSAGE_ID.NEXTVAL,#{roomid},
+			#{message}, #{sentid},
+			#{nickname}, DEFAULT)
 		</if>
 		<if test="sessionCount == 2">
-			INSERT INTO CHATMESSAGE VALUES(#{roomid},
-			SEQ_CHATMESSAGE_ID.NEXTVAL,
-			#{message}, #{sentid}, #{nickname}, 0)
+			INSERT INTO CHATMESSAGE
+			VALUES(SEQ_CHATMESSAGE_ID.NEXTVAL,#{roomid},
+			#{message}, #{sentid},
+			#{nickname}, DEFAULT)
 		</if>
 	</insert>
-	<!--  <delete id="chatroomDelete">
-		delete from chatroom where roomid=#{roomid}
-	</delete>-->
-	<select id="messageList"  resultMap="chatMessageResultSet">
+	<!-- <delete id="chatroomDelete"> delete from chatroom where roomid=#{roomid} 
+		</delete> -->
+	<select id="messageList" resultMap="chatMessageResultSet">
 		SELECT * FROM CHATMESSAGE
 		WHERE roomid = #{roomid}
 	</select>
@@ -61,21 +63,25 @@
 
 	<select id="chatRoomList" resultMap="chatRoomResultset">
 		SELECT * FROM CHATROOM
-		WHERE userid = #{userid} OR masterid = #{userid}
+		WHERE
+		userid = #{userid} OR masterid = #{userid}
 	</select>
 
 	<select id="selectUnReadCount" resultType="int">
-		SELECT COUNT(*) FROM CHATMESSAGE
+		SELECT COUNT(*) FROM
+		CHATMESSAGE
 		WHERE roomid = #{roomid}
-		AND sentid != #{sentid} AND unReadCount = 1
+		AND sentid != #{sentid} AND
+		unReadCount = 1
 	</select>
 
 	<update id="updateCount">
 		UPDATE CHATMESSAGE
 		SET
 		unReadCount = 0
-		WHERE roomid = #{roomid} AND sentid != #{sentid}
+		WHERE roomid =
+		#{roomid} AND sentid != #{sentid}
 		AND unReadCount = 1
 	</update>
-	
+
 </mapper>
