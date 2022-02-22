@@ -22,11 +22,6 @@ public class HomeController {
 		return "user/home";
 	}
 	
-	@RequestMapping("/goBuyerMypage.do")
-	public String goBuyerMypage() {
-		return "buyer/buyerMypage";
-	}
-	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
