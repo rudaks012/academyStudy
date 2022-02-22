@@ -30,6 +30,10 @@
                             </ul>
                         </li>
                         
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="manage_category.do"
+                                aria-expanded="false"><i class=" fas fa-list-ul mr-1"></i><span
+                                    class="hide-menu">카테고리관리</span></a></li>
+                        
                         	<li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i  class=" far fa-star"></i><span
                                     class="hide-menu">서비스관리 </span></a>
@@ -52,12 +56,16 @@
                                 aria-expanded="false"><i  class="icon-credit-card"></i><span
                                     class="hide-menu">결제관리 </span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                            class="hide-menu"> 서비스결제관리
+                                        </span></a>
+                                </li>
                                 <li class="sidebar-item"><a href="manage_buyerPayment.do" class="sidebar-link"><span
-                                            class="hide-menu"> 구매자결제
+                                            class="hide-menu"> 구매자결제조회
                                         </span></a>
                                 </li>
                                 <li class="sidebar-item"><a href="manage_sellerPayment.do" class="sidebar-link"><span
-                                            class="hide-menu"> 판매자결제
+                                            class="hide-menu"> 판매자결제조회
                                         </span></a>
                                 </li>
                             </ul>
@@ -79,15 +87,21 @@
                             </ul>
                         </li>  
                         
-                         
-                          
-                          <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="report_inquiry.do"
-                                aria-expanded="false"><i class=" far fa-bell mr-1"></i><span
-                                    class="hide-menu">신고관리</span></a></li>
-                                    
-                                    
-                          
-                        
+                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i  class=" far fa-bell mr-1"></i><span
+                                    class="hide-menu">신고관리 </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item"><a href="report_inquiry.do" class="sidebar-link"><span
+                                            class="hide-menu"> 신고관리
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="manage_blackList.do" class="sidebar-link"><span
+                                            class="hide-menu"> 블랙리스트관리
+                                        </span></a>
+                                </li>
+                            </ul>
+                        </li>
+      
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i class="fas fa-edit mr-1"></i><span
                                     class="hide-menu">게시글관리</span></a>
@@ -249,48 +263,8 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                                aria-expanded="false"><i data-feather="crosshair" class="feather-icon"></i><span
-                                    class="hide-menu">Multi
-                                    level
-                                    dd</span></a>
-                            <ul aria-expanded="false" class="collapse first-level base-level-line">
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                            class="hide-menu"> item 1.1</span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                            class="hide-menu"> item 1.2</span></a>
-                                </li>
-                                <li class="sidebar-item"> <a class="has-arrow sidebar-link" href="javascript:void(0)"
-                                        aria-expanded="false"><span class="hide-menu">Menu 1.3</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level base-level-line">
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                                    class="hide-menu"> item
-                                                    1.3.1</span></a></li>
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                                    class="hide-menu"> item
-                                                    1.3.2</span></a></li>
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                                    class="hide-menu"> item
-                                                    1.3.3</span></a></li>
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                                    class="hide-menu"> item
-                                                    1.3.4</span></a></li>
-                                    </ul>
-                                </li>
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                            class="hide-menu"> item
-                                            1.4</span></a></li>
-                            </ul>
-                        </li>
-                        <li class="list-divider"></li>
-                        <li class="nav-small-cap"><span class="hide-menu">Extra</span></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="docs/docs.html"
-                                aria-expanded="false"><i data-feather="edit-3" class="feather-icon"></i><span
-                                    class="hide-menu">Documentation</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="authentication-login1.html"
-                                aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
-                                    class="hide-menu">Logout</span></a></li>
+                        
+                      
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
