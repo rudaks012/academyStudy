@@ -204,16 +204,18 @@ src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 									
 									var $btn1 = $("<button type='button' class='chat_exit' style='float:right; display: inline-block; border:none; background-color:white;'>")
 												.attr("id", data[i].roomid)
+									
 									var $img2 = $("<img src='/resources/images/exit.png' style=' width: 20px; margin-top: 4px;'>")
 												
 									$btn1.append($img2);
-									
+								
 									$div.append($divs);
 									$div.append($span);
 
 									$chatWrap.append($div);
 									$chatWrap.append($btn1);
-
+								
+									
 									// String을 int로 바꿔주고 더해준다.
 									countAll += parseInt(data[i].unReadCount);
 									console.log("메세지 안 읽은 숫자  ::" + countAll);

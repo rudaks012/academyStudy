@@ -18,6 +18,9 @@
 	background-color: tomato !important;
 	color: white !important;
 }
+.category-listing{
+	height: 300px !important;
+}
 </style>
 </head>
 <body>
@@ -33,51 +36,35 @@
 			</div>
 		</div>
 	</div>
-	<div class="listing-area pt-120 pb-120">
+	<div class="blog_area single-post-area section-padding">
 		<div class="container">
 			<div class="row">
 				<!-- Left content -->
 				<div class="col-xl-4 col-lg-4 col-md-6">
-					<div class="row">
-						<div class="col-12">
-							<div class="small-section-tittle2 mb-45">
-								<h4>프로모션 선택</h4>
+					<div class="blog_right_sidebar">
+						<!-- Job Category Listing start -->
+						<div class="category-listing mb-50" style="height: 200px;">
+							<!-- single one -->
+							<div class="single-listing">
+								<!-- input -->
+								<aside class="single_sidebar_widget post_category_widget">
+									<h4 class="widget_title">프로모션 선택</h4>
+									<ul class="list cat-list">
+										<li>
+											<a href="#" class="d-flex">
+												<p>진행중인 프로모션</p>
+												<p>(37)</p>
+											</a>
+										</li>
+										<li>
+											<a href="#" class="d-flex">
+												<p>종료된 프로모션</p>
+												<p>(10)</p>
+											</a>
+										</li>
+									</ul>
+								</aside>
 							</div>
-						</div>
-					</div>
-					<!-- Job Category Listing start -->
-					<div class="category-listing mb-50" style="height: 200px;">
-						<!-- single one -->
-						<div class="single-listing">
-							<!-- input -->
-							<div class="input-form"></div>
-							<!-- Select job items start -->
-							<div class="select-job-items1">
-								<select name="select1">
-									<option value="">Choose categories</option>
-									<option value="">Category 1</option>
-									<option value="">Category 2</option>
-									<option value="">Category 3</option>
-								</select>
-							</div>
-							<!--  Select job items End-->
-							<!-- Select job items start -->
-							<div class="select-job-items2">
-								<select name="select2">
-									<option value="">Location</option>
-									<option value="">Dhaka</option>
-									<option value="">Mirpur</option>
-									<option value="">Dannondi</option>
-								</select>
-							</div>
-
-							<!--  Select job items End-->
-							<!-- select-Categories start -->
-
-							<!-- select-Categories End -->
-							<!-- Select job items start -->
-
-							<!--  Select job items End-->
 						</div>
 					</div>
 					<a href="promotionInsert.do" class="genric-btn danger">프로모션 등록</a>

@@ -244,8 +244,8 @@
 							<div class="br"></div>
 						</aside>
 						<aside class="single_sidebar_widget author_widget">
-							<img class="author_img rounded-circle"
-								src="assets/img/comment/comment_1.png" alt="">
+							<img class="author_img rounded-circle" src="assets/img/comment/comment_1.png" 
+							alt="" style="cursor:pointer;" onclick="location='sellerDetail.do'">
 							<h4>Charlie Barber</h4>
 							<p>Senior blog writer</p>
 

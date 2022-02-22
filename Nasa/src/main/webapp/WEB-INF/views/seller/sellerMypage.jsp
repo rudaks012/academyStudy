@@ -267,7 +267,9 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 */
 @
-supports (display: grid) { .profile { display:grid;
+supports (display: grid) { 
+.profile 
+{ display:grid;
 	grid-template-columns: 1fr 2fr;
 	grid-template-rows: repeat(3, auto);
 	grid-column-gap: 3rem;
