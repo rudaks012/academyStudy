@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-7 align-self-center">
                         <div class="mb-3 ">
-                            <h6><i  class="fas fa-gift mr-1"></i>프로모션관리 <i class="fas fa-chevron-right mx-2"></i>전체프로모션조회</h6>
+                            <h6><i  class="icon-credit-card mr-1"></i>결제관리 <i class="fas fa-chevron-right mx-2"></i>판매자결제내역</h6>
                         </div>
                     </div>
                 </div>
@@ -20,20 +20,33 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-            	<div class="mb-5 border border-danger p-4 d-flex align-items-center" style="border-radius:5px">
-            		<div class="mr-3">새로운 프로모션을 등록하시겠습니까?</div>
-            		<button class="btn btn-danger" data-toggle="modal" data-target="#register-promotion-modal">등록하기</button>
-           		 </div>
+            	
                 <!-- *************************************************************** -->
                 <!-- Start First Cards -->
                 <!-- *************************************************************** -->
                     <h5 class="p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
-                           프로모션검색
+                           구매자검색
                      </h5>
                     <div class="card mb-4">
                         <div class="card-body">
                             <table class="table caption-top table-bordered  text-center">
                                 <tbody>
+                                	<tr>
+                                        <th class="align-middle table-primary">아이디</th>
+                                        <td>
+                                        	<div class="col-6">
+                                        		<input class="form-control custom-shadow" id="" name="" type="text">
+                                    		</div>
+                                    	</td>
+                                    </tr>
+                                     <tr>
+                                        <th class="align-middle table-primary">서비스명</th>
+                                        <td>
+                                        	<div class="col-6">
+                                        		<input class="form-control custom-shadow" id="" name="" type="text">
+                                    		</div>
+                                    	</td>
+                                    </tr>
                                     <tr>
                                         <th class="align-middle table-primary">1차 카테고리</th>
                                         <td>
@@ -58,13 +71,7 @@
 				                            </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th class="align-middle table-primary">제목</th>
-                                        <td>
-                                        	<div class="col-6">
-                                        		<input class="form-control custom-shadow" id="" name="" type="text"></td>
-                                    		</div>
-                                    </tr>
+                                   
                                     <tr>
                                         <th class="align-middle table-primary">등록일자</th>
                                         <td>
@@ -98,75 +105,30 @@
                
                
                   <div class="row my-5">
-                	<div class="col-6">
+                	<div class="col-5">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
-                            프로모션 조회
+                            구매자내역조회
                         </h5>
                 	    <div class="card">
                             <div class="card-body">
-                            	
-                            	<ul class="nav nav-tabs mb-3">
-                                    <li class="nav-item">
-                                        <a href="manage_promotion.do"  class="nav-link  active">
-                                            <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
-                                            <span class="d-none d-lg-block">전체프로모션</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="run_promotion.do"  class="nav-link">
-                                            <i class="mdi mdi-account-circle d-lg-none d-block mr-1"></i>
-                                            <span class="d-none d-lg-block">진행중프로모션</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="promotion_complete.do" class="nav-link">
-                                            <i class="mdi mdi-settings-outline d-lg-none d-block mr-1"></i>
-                                            <span class="d-none d-lg-block">종료프로모션</span>
-                                        </a>
-                                    </li>
-                                  
-                                    
-                                </ul>
-                                    
-                                    	
-                                    
-                            
-                            
-                              <div class=" my-4">총 <span class="mx-1 text-danger">50</span>건</div>
+                                <div class=" mb-3">총 <span class="mx-1 text-danger">50</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
-		                         		<th>프로모션코드</th>
-		                         		<th>1차카테고리</th>
-		                         		<th>2차카테고리</th>       		
-		                         		<th>구분</th>
-		                         		<th>제목</th>
+		                         		<th width="10%">아이디</th>
+		                         		<th>서비스명</th>
+		                         		<th>1차 카테고리</th>        		
+		                         		<th>2차 카테고리</th>
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
 		                             <tr>
 		                                <td>2222</td>
 		                                <td>2222</td>
-		                                <td>sssss</td>
-		                                <td class="text-primary">진행</td>
-		                                <td>자바 10% 할인</td>
+		                                <td>3333</td>
+		                                <td>500,000</td>
 		                             </tr>
                                      <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td>기업</td>
-		                                <td>종료</td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td ></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
 		                                <td></td>
 		                                <td></td>
 		                                <td></td>
@@ -174,6 +136,17 @@
 		                             </tr>
                                      <tr>
 		                                <td></td>
+		                                <td></td>
+		                                <td></td>
+		                                <td></td>
+		                             </tr>
+                                     <tr>
+		                                <td></td>
+		                                <td></td>
+		                                <td></td>
+		                                <td></td>
+		                             </tr>
+                                     <tr>
 		                                <td></td>
 		                                <td></td>
 		                                <td></td>
@@ -236,50 +209,62 @@
 		                   </div>
                			</div>
                 	</div>
-                	<div class="col-6">
+                	<div class="col-7">
                            <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
-                            프로모션 상세조회
+                            상세조회
                         </h5>
                 	    <div class="card">
-                           <div class="d-flex justify-content-end mr-4">
-                                <button class="btn btn-outline-primary mr-3 mt-3">수정</button>
-                                <button class="btn btn-outline-dark  mt-3">종료</button>
-                                
-                            </div>
 		                   <div class="card-body">
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
                                         <tr>
-                                            <th width="18%" class="table-primary align-middle">프로모션코드</th>
-                                            <td ><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
-                                            <th width="18%" class="table-primary align-middle">할인율</th>
-                                            <td>                                               
-                                            	<div class="col-6 p-0 d-flex align-items-center">
-                                            		<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="10" type="text" disabled >%
-                                        	   </div>
-                                        	</td>
+                                            <th width="20%" class="table-primary align-middle">결제코드</th>
+                                            <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" readonly ></td>
+                                            <th class="table-primary align-middle">결제날짜</th>
+                                            <td><input class="form-control custom-shadow " id="" name="" value="2021-01-27" type="text" readonly></td>
                                         </tr>
                                         <tr>
-                                            <th width="18%" class="table-primary align-middle">카테고리</th>
-                                            <td colspan="3" ><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
-                                            
+                                            <th class="table-primary align-middle">구매자아이디</th>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="123" type="text" readonly></td>
+                                             <th class="table-primary align-middle">구매자상태</th>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="사용자" type="text" readonly></td>
+                                            <!-- c:if 사용자 or 블랙리스트 -->
+                                           
                                         </tr>
                                         <tr>
-                                            <th width="18%" class="table-primary align-middle">제목</th>
-                                            <td colspan="3"><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
-                                            
+                                        	 <th class="table-primary align-middle">구매확정</th>
+                                            <td><input class="form-control custom-shadow " id="" name="" value="확정 전" type="text" readonly></td>
+                                            <!-- c:if 확정전, 확정완료 -->
+                                             <th class="table-primary align-middle">확정날짜</th>
+                                            <td><input class="form-control custom-shadow " id="" name="" value="해당없음" type="text" readonly></td>
+                                            <!-- c:if 해당없음, 2021-01-28 -->
                                         </tr>
                                         <tr>
-                                            <th width="18%" class="table-primary align-middle">할인율</th>
-                                            <td>                                               
-                                            	<div class="col-6 p-0 d-flex align-items-center">
-                                            		<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="10" type="text" disabled >%
-                                        	   </div>
-                                        	</td>
-                                            <th class="table-primary align-middle">누적판매율</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
+                                            <th class="table-primary align-middle">서비스코드</th>
+                                            <td colspan="3"><input class="form-control custom-shadow" id="" name="" value="123" type="text" readonly></td>
                                         </tr>
-                                         
+                                        <tr>
+                                        	<th class="table-primary align-middle">카테고리</th>
+                                            <td colspan="3"><input class="form-control custom-shadow" id="" name="" value="1234" type="text" readonly></td>
+                                        </tr>
+                                        <tr>
+                                        	<th class="table-primary align-middle">서비스명</th>
+                                            <td colspan="3"><input class="form-control custom-shadow" id="" name="" value="1234" type="text" readonly></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <th class="table-primary align-middle">판매자구분</th>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="개인" type="text" readonly></td>
+                                            <th class="table-primary align-middle">판매자아이디</th>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="블랙리스트" type="text" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="table-primary align-middle">결제금액</th>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="1234-1234" type="text" readonly></td>
+                                            <th class="table-primary align-middle">쿠폰사용</th>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="쿠폰명" type="text" readonly></td>
+                                            <!-- 쿠폰 사용x -> 해당없음 출력 -->
+                                        </tr>
                                     </tbody>
                                 </table>
 		
@@ -287,7 +272,13 @@
 		                   </div>
                			</div>
                 	</div>
-                </div>
+                   </div>
+                                    
+                                    	
+                                    
+                            
+                            
+            
                 
                 
                 <!-- 반려모달 -->

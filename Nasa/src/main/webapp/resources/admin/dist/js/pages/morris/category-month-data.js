@@ -4,7 +4,7 @@ $(function () {
 
 // Morris bar chart
     Morris.Bar({
-        element: 'morris-bar-chart',
+        element: 'category-month-chart',
         data: [{
             y: '2006',
             a: 100,
