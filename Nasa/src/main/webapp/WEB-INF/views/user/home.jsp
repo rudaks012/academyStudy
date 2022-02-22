@@ -12,32 +12,30 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-8 col-lg-9">
                         <div class="hero-cap text-center pt-50 pb-20">
-                            <h2>Our Listing</h2>
+                            <h2>NASA</h2>
                             <div>
 		
 	</div>
                         </div>
                         <!--Hero form -->
                         <form action="#" class="search-box search-box2">
-                            <div class="input-form">
-                                <input type="text" placeholder="What are you looking for?">
-                            </div>
-                            <div class="select-form">
-                                <div class="select-itms">
-                                    <select name="select" id="select1">
-                                        <option value="">All Catagories</option>
-                                        <option value="">Catagories One</option>
-                                        <option value="">Catagories Two</option>
-                                        <option value="">Catagories Three</option>
-                                        <option value="">Catagories Four</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Search box -->
-                            <div class="search-form">
-                                <a href="#">Search</a>
-                            </div>	
-                        </form>	
+	                    <div class="input-form">
+	                        <input type="text" placeholder="어떤 서비스가 필요하세요?">
+	                    </div>
+	                    <div class="select-form">
+	                        <div class="select-itms">
+	                            <select name="select" id="select1">
+	                                <option value="">통합검색</option>
+	                                <option value="">온라인 서비스</option>
+	                                <option value="">오프라인 서비스</option>
+	                            </select>
+	                        </div>
+	                    </div>
+	                    <!-- Search box -->
+	                    <div class="search-form">
+	                        <a href="searchResult.do">Search</a>
+	                    </div>	
+	                </form>	
                     </div>
                 </div>
             </div>

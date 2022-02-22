@@ -22,6 +22,13 @@ public class HomeController {
 		return "user/home";
 	}
 	
+	@RequestMapping("/searchResult.do")
+	public String searchResult() {
+		return "user/searchResult";
+	}
+	
+	
+	
 	@RequestMapping("/goBuyerMypage.do")
 	public String goBuyerMypage() {
 		return "buyer/buyerMypage";

@@ -12,79 +12,44 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header tit-up">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Customer Login</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                    
                 </div>
                 <div class="modal-body customer-box">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs">
-                        <li><a class="active" href="#Login" data-toggle="tab">Login</a></li>
-                        <li><a href="#Registration" data-toggle="tab">Registration</a></li>
-                    </ul>
                     <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="Login">
-                            <form role="form" class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <input class="form-control" id="email1" placeholder="Name" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <input class="form-control" id="exampleInputPassword1" placeholder="Email"
-                                            type="email">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-light btn-radius btn-brd grd1">
-                                            Submit
-                                        </button>
-                                        <a class="for-pwd" href="javascript:;">Forgot your password?</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="Registration">
-                            <form role="form" class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <input class="form-control" placeholder="Name" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <input class="form-control" id="email" placeholder="Email" type="email">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <input class="form-control" id="mobile" placeholder="Mobile" type="email">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <input class="form-control" id="password" placeholder="Password"
-                                            type="password">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-10">
-                                        <button type="button" class="btn btn-light btn-radius btn-brd grd1">
-                                            Save &amp; Continue
-                                        </button>
-                                        <button type="button" class="btn btn-light btn-radius btn-brd grd1">
-                                            Cancel</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="section-tittle text-center mb-80">
+                        <h1>이용약관</h1>
+                        <p>주식회사 나도 사장 이용 약관</p>
                     </div>
+                    <div class="tab-content" style="padding: 30px;">
+                        <div>제 1 장 총칙</div>
+                        <br>
+                        <div>제 1 조 (목 적)</div>
+                        <br>
+                        <div>&nbsp;&nbsp;1. 이 약관은 이용자가 주식회사 브레이브모바일(이하 "회사")이 운영하는 인터넷 서비스 사이트(이하 "사이트" 또는 "NASA")를 통해
+                            제공하는 인터넷 전자상거래 관련 서비스(이하 "서비스")와 관련하여 회사와 이용자의 권리, 의무, 책임사항을 규정함을 목적으로 합니다.
+                            또한 본 약관은 유무선 PC통신, 태블릿 PC, 스마트폰(아이폰, 안드로이드폰 등) 어플리케이션 및 모바일웹 등을 이용하는 전자상거래 등에
+                            대해서도 그 성질에 반하지 않는 한 준용됩니다. 본 약관이 규정한 내용 이외의 회사와 이용자 간의 권리, 의무 및 책임사항에 관하여서는
+                            전기통신사업법 기타 대한민국의 관련 법령과 상관습에 의합니다.</div>
+                    </div>
+                    <div class="form-group mt-3 d-flex justify-content-center align-items-center">
+	                	<div>
+	                		<button type="button" class="genric-btn primary-border e-large" data-dismiss="modal" onclick="checkagree()">동의합니다.</button>&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="genric-btn primary e-large"  onclick="main()">동의하지 않습니다.</button>
+                        </div>	                    
+	                </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+    	function checkagree() {
+    		$("#primary-checkbox").attr("checked",true);    		
+    	}
+        function main() {
+            alert("회원가입을 중단하고 메인으로 돌아갑니다.");
+            location.href='home.do';
+        }
+    </script>
 	<!-- Hero Start-->
 	<div
 		class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
@@ -103,10 +68,7 @@
 	<!-- ================ contact section start ================= -->
 	<section class="contact-section">
 		<div class="container">
-			<div class="row d-flex justify-content-center align-items-center">
-				<!-- <div class="col-12">
-                        <h2 class="contact-title">Get in Touch</h2>
-                    </div> -->
+			<div class="row d-flex justify-content-center align-items-center">				
 				<div>
 					<form class="form-contact contact_form"
 						action="contact_process.php" method="post" id="contactForm"
