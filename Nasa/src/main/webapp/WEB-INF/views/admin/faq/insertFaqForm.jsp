@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-7 align-self-center">
                         <div class="mb-3 ">
-                            <h6><i  class="icon-pin mr-1"></i>공지사항관리 <i class="fas fa-chevron-right mx-2"></i>전체 공지사항 조회<i class="fas fa-chevron-right mx-2"></i>공지사항 등록</h6>
+                            <h6><i  class="icon-phone mr-1"></i>자주묻는질문관리 <i class="fas fa-chevron-right mx-2"></i>자주묻는질문 등록</h6>
                         </div>
                     </div>
                 </div>
@@ -26,6 +26,18 @@
                             <form id="frm" method="post" action="summernote.do">
                             <table class="table caption-top table-bordered ">
                                 <tbody>
+                                	<tr>
+                                		<th  class="align-middle table-primary text-center">말머리</th>
+                                        <td>
+                                        	
+                                        	<select class="custom-select  form-control custom-shadow " id="bigCategory">
+				                                <option selected="">선택</option>
+				                                <option value="1">July 19</option>
+				                                <option value="2">Jun 19</option>
+				                            </select>
+				                            
+                                        </td>
+                                	</tr>
                                    
                                     <tr id="titleTr">
                                         <th  class="align-middle table-primary text-center">제목</th>
@@ -54,7 +66,7 @@
 
 	                     <div class="d-flex justify-content-end my-4">
                             <button id="insertBtn" class="btn btn-outline-primary mr-3">등록</button>
-	                        <button class="btn btn-outline-secondary">취소</button>
+	                        <button class="btn btn-outline-secondary" onclick="window.history.back() ">취소</button>
 	                    </div>
                    </div>
                </div>
@@ -129,11 +141,12 @@ function uploadSummernoteImageFile(file, el) {
 const insertBtn= document.querySelector("#insertBtn");
 const handleInsertForm =()=>{
 	if($("#title").val()==""){
-		$("#title").focus();
+		alert("제목을 입력해주세요.")
 		$("#title").addClass("is-invalid");
-		const oldVal=$("#title").val()
+		const oldVal=$("#title").val();
+		$("#title").focus();
 		$("#title").on("propertychange change keyup paste input", function(){
-			$("#title").removeClass("is-invalid");
+		$("#title").removeClass("is-invalid");
 		});
 		return;
 	}else{

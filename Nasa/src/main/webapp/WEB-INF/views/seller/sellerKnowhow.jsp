@@ -21,6 +21,7 @@
 
 	<div class="home-blog-area section-padding30">
 		<div class="container">
+			<a class="genric-btn danger" href="knowhowInsert.do">글 등록</a>
 			<div class="row">
 				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 					<div class="single-team mb-30">

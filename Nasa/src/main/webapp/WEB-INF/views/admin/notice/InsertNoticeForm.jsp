@@ -54,7 +54,7 @@
 
 	                     <div class="d-flex justify-content-end my-4">
                             <button id="insertBtn" class="btn btn-outline-primary mr-3">등록</button>
-	                        <button class="btn btn-outline-secondary">취소</button>
+	                        <button class="btn btn-outline-secondary" onclick="window.history.back() ">취소</button>
 	                    </div>
                    </div>
                </div>

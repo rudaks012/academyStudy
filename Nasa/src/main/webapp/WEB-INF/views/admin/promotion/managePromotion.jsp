@@ -20,8 +20,9 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-            	<div class="mb-5">
-            	새로운 프로모션을 등록하시겠습니까?
+            	<div class="mb-5 border border-danger p-4 d-flex align-items-center" style="border-radius:5px">
+            		<div class="mr-3">새로운 프로모션을 등록하시겠습니까?</div>
+            		<button class="btn btn-danger" data-toggle="modal" data-target="#register-promotion-modal">등록하기</button>
            		 </div>
                 <!-- *************************************************************** -->
                 <!-- Start First Cards -->
@@ -96,7 +97,7 @@
                
                
                
-                              <div class="row my-5">
+                  <div class="row my-5">
                 	<div class="col-6">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             프로모션 조회
@@ -124,11 +125,6 @@
                                         </a>
                                     </li>
                                   
-                                    
-                                    <li style="margin-left:200px;">
-                                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#register-promotion-modal">등록하기</button>
-                                        
-                                    </li>
                                     
                                 </ul>
                                     

@@ -22,6 +22,7 @@ public class HomeController {
 		return "user/home";
 	}
 	
+
 	@RequestMapping("/searchResult.do")
 	public String searchResult() {
 		return "user/searchResult";
@@ -34,6 +35,7 @@ public class HomeController {
 		return "buyer/buyerMypage";
 	}
 	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**

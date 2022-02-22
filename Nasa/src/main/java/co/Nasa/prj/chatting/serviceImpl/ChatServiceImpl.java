@@ -3,14 +3,16 @@ package co.Nasa.prj.chatting.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import co.Nasa.prj.chatting.service.ChatMapper;
 import co.Nasa.prj.chatting.service.ChatMessage;
 import co.Nasa.prj.chatting.service.ChatRoom;
+import co.Nasa.prj.chatting.service.ChatService;
 
-@Service
-public class ChatServiceImpl implements ChatMapper {
+@Repository("cService")
+public class ChatServiceImpl implements ChatService {
 	@Autowired
 	ChatMapper mapper;
 	

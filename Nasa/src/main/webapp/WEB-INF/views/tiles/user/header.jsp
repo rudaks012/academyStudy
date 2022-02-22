@@ -51,6 +51,7 @@
 										</div>
 										<div>
 											<button onclick="location.href='chatting.do'">채팅</button>
+												<button onclick="location.href='fileupload.do'">파일</button>
 										</div>
 									</ul>
 								</nav>

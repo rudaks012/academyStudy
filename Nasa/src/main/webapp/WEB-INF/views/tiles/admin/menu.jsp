@@ -52,16 +52,34 @@
                                 aria-expanded="false"><i  class="icon-credit-card"></i><span
                                     class="hide-menu">결제관리 </span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                <li class="sidebar-item"><a href="manage_buyerPayment.do" class="sidebar-link"><span
                                             class="hide-menu"> 구매자결제
                                         </span></a>
                                 </li>
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                <li class="sidebar-item"><a href="manage_sellerPayment.do" class="sidebar-link"><span
                                             class="hide-menu"> 판매자결제
                                         </span></a>
                                 </li>
                             </ul>
                         </li>  
+                        
+                        
+                           <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i  class="fas fa-chart-line"></i><span
+                                    class="hide-menu">매출조회 </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item"><a href="sales_category.do" class="sidebar-link"><span
+                                            class="hide-menu"> 카테고리별매출
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="all_sales.do" class="sidebar-link"><span
+                                            class="hide-menu"> 전체매출
+                                        </span></a>
+                                </li>
+                            </ul>
+                        </li>  
+                        
+                         
                           
                           <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="report_inquiry.do"
                                 aria-expanded="false"><i class=" far fa-bell mr-1"></i><span
@@ -89,9 +107,9 @@
                                 <li class="sidebar-item"> <a class="has-arrow sidebar-link" href="javascript:void(0)"
                                         aria-expanded="false"><span class="hide-menu">FAQ</span></a>
                                     <ul aria-expanded="false" class="collapse second-level base-level-line">
-                                        <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                        <li class="sidebar-item"><a href="manage_faq.do" class="sidebar-link"><span
                                                     class="hide-menu"> FAQ 조회</span></a></li>
-                                        <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                        <li class="sidebar-item"><a href="insertFaqForm.do" class="sidebar-link"><span
                                                     class="hide-menu"> FAQ 등록
                                                     </span></a></li>
                                         

@@ -73,7 +73,7 @@ public class ChatController {
     public void messageList(@PathVariable String roomid, String userid, Model model, HttpServletResponse response) throws /*JsonIOException,*/ IOException {
         List<ChatMessage> mList = cService.messageList(roomid);
         response.setContentType("application/json; charset=utf-8");
-        
+        System.out.println("룸아이디 닷두");
         // 안읽은 메세지의 숫자 0으로 바뀌기
         ChatMessage message = new ChatMessage();
         message.setSentid(userid);

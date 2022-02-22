@@ -17,45 +17,34 @@
                                 <div class="single-footer-caption mb-30">
                                     <!-- logo -->
                                     <div class="footer-logo">
-                                        <a href="index.html"><img src="resources/user/assets/img/logo/logo2_footer.png" alt=""></a>
+                                        <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                                    </div>
+                                    <a href="#" class="genric-btn info radius" style="font-weight: bold; font-size: 15px; width:150px;">1 : 1 문의</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex" style="margin-right: 0;">
+
+                            <div style="margin-right: 200px;">
+                                <div class="single-footer-caption mb-50">
+                                    <div class="footer-tittle">
+                                        <h4>고객안내</h4>
+                                        <ul>
+                                            <li><a href="#">구매자 이용안내</a></li>
+                                            <li><a href="#">판매자 이용안내</a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Quick Link</h4>
-                                    <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">Listing</a></li>
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Categories</h4>
-                                    <ul>
-                                        <li><a href="#">Reasonable Hotel</a></li>
-                                        <li><a href="#">Popular Restaurant</a></li>
-                                        <li><a href="#">Easy Shopping</a></li>
-                                        <li><a href="#">Night Life</a></li>     
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Download App</h4>
-                                    <ul>
-                                        <li class="app-log"><a href="#"><img src="resources/user/assets/img/gallery/app-logo.png" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/user/assets/img/gallery/app-logo2.png" alt=""></a></li>
-                                    </ul>
+                            <div class="mr-5">
+                                <div class="single-footer-caption mb-50">
+                                    <div class="footer-tittle">
+                                        <h4>고객센터</h4>
+                                        <ul>
+                                            <li><a href="#">공지사항</a></li>
+                                            <li><a href="#">자주묻는 질문</a></li>   
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>

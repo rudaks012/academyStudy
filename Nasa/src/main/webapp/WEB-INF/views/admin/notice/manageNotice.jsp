@@ -11,10 +11,7 @@
                 </div>
             </div>
 	<div class="container-fluid">
-            	<div class="mb-5 border border-danger p-4 d-flex align-items-center" style="border-radius:5px">
-            		<div class="mr-3">새로운 공지사항을 등록하시겠습니까?</div>
-            		<button class="btn btn-danger" id="insertBtn" >등록하기</button>
-           		 </div>
+            
                 <!-- *************************************************************** -->
                 <!-- Start First Cards -->
                 <!-- *************************************************************** -->
@@ -182,7 +179,7 @@
                         </h5>
                 	    <div class="card">
                            <div class="d-flex justify-content-end mr-4">
-                                <button class="btn btn-outline-primary mt-3">수정</button>
+                                <button id="modifyBtn" class="btn btn-outline-primary mt-3">수정</button>
                                  <button class="btn btn-outline-secondary ml-2 mt-3">삭제</button>
                             </div>
 		                   <div class="card-body">
@@ -227,10 +224,13 @@
              </div>
              
 <script>
-	const insertBtn = document.querySelector("#insertBtn");
-	const goToTheInsertForm =()=>{
-		location.href="InsertNoticeForm.do";
+
+	
+	const modifyBtn = document.querySelector("#modifyBtn");
+	const goToTheModifyNotice=()=>{
+		if(confirm("수정하시겠습니까?"))
+		location.href="ModifyNoticeForm.do"; //get방식 ?변수명= &
 	}
-	insertBtn.addEventListener("click",goToTheInsertForm);
+	modifyBtn.addEventListener("click",goToTheModifyNotice);
 
 </script>
