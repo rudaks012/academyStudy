@@ -6,17 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- CSS here -->
-        <link rel="stylesheet" href="resources/user/assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="resources/user/assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="resources/user/assets/css/slicknav.css">
-        <link rel="stylesheet" href="resources/user/assets/css/animate.min.css">
-        <link rel="stylesheet" href="resources/user/assets/css/magnific-popup.css">
-        <link rel="stylesheet" href="resources/user/assets/css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="resources/user/assets/css/themify-icons.css">
-        <link rel="stylesheet" href="resources/user/assets/css/themify-icons.css">
-        <link rel="stylesheet" href="resources/user/assets/css/slick.css">
-        <link rel="stylesheet" href="resources/user/assets/css/nice-select.css">
-        <link rel="stylesheet" href="resources/user/assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        
 
     <style>
       .container {
@@ -379,6 +370,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	}
 
 </style>
+
 </head>
 <body>
 <!-- Hero Start-->
@@ -400,32 +392,31 @@ Remove or comment-out the code block below to see how the browser will fall-back
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="profile">
-				
 					<div class="profile-image">
 						<img src="resources/user/assets/img/test/profiletest.jpg" alt="" style="width: 155px; height: 155px;">
 					</div>
 				
 					<div class="profile-user-settings">
-						<h1 class="profile-user-name">IT 구매자</h1>
+						<h1 class="profile-user-name">ITIT</h1>
 						<a href="buyerUpdate.do" class="bttn profile-edit-bttn" style="height: 30px; font-size: 15px;">계정 설정</a>
 					</div>
 					<div class="profile-stats">
 						<ul>
-							<li style="font-size: 20px;">
-								<span class="profile-stat-count">등급 : 
-								</span> 지구 
-								<a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+							<li id="gradeinfo" style="font-size: 15px;" data-toggle="tooltip" data-placement="top" title="등급 : 태양">
+							<!-- data-toggle="tooltip" data-placement="top" title="등급" -->
+								<span class="profile-real-name">등급 : </span> 태양 <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
 							</li>
 						</ul>
 					</div>
-					<div class="profile-bio">
-						<p><span class="profile-real-name">Email : </span> email@mail.net</p>
+					<div class="profile-bio" style="font-size:15px;">
+						<span class="profile-real-name">Email : </span> mail@mail.com<br>
+						<span class="profile-real-name">관심 카테고리 : </span> SW > 안드로이드
 					</div>
 				</div>
 			</div>
 		
 			<div class="row justify-content-center">
-				<div class="blog_right_sidebar col-6" style="margin-top: 30px;">
+				<div class="blog_right_sidebar" style="margin-top: 30px;width:705px;">
 					<aside class="single_sidebar_widget post_category_widget">
 						<h4 class="widget_title">MYPAGE MENU</h4>
 						<ul class="list cat-list">
@@ -470,6 +461,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 			</div>
 		</div>
     </section>
+    
 <!-- Mypage End -->
           
 <!-- Modal Start -->
@@ -544,6 +536,11 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	
 	
 	<script>
+
+	    $(document).ready(function(){
+	          $('[data-toggle="tooltip"]').tooltip();   
+	      });
+
 		function passconfirm() {
 			var pcfrm = $("#passwordconfirm").val()
 			console.log(pcfrm);
