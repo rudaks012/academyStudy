@@ -66,17 +66,19 @@
     <!--This page JavaScript -->
     <script src="resources/admin/assets/extra-libs/c3/d3.min.js"></script>
     <script src="resources/admin/assets/extra-libs/c3/c3.min.js"></script>
-    <script src="resources/assets/extra-libs/taskboard/js/jquery-ui.min.js"></script>
+   
     <script src="resources/admin/assets/extra-libs/taskboard/js/jquery.ui.touch-punch-improved.js"></script>
     <script src="resources/admin/assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="resources/admin/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    
     <script src="resources/admin/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="resources/admin/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <script src="resources/admin/dist/js/pages/dashboards/dashboard1.min.js"></script>
     
     
-    <script src="resources/admin/assets/libs/fullcalendar/dist/fullcalendar.min.css"></script>
- 
+    
+    <script src="resources/admin/assets/libs/raphael/raphael.min.js"></script>
+    <script src="resources/admin/assets/libs/morris.js/morris.min.js"></script>
+    <script src="resources/admin/dist/js/pages/morris/morris-data.js"></script>
     
 
 </body>

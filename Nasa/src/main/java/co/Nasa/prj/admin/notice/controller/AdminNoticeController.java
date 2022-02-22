@@ -16,4 +16,10 @@ public class AdminNoticeController {
 	public String InsertNoticeForm() {
 		return "admin/notice/InsertNoticeForm";
 	}
+	
+	
+	@RequestMapping("/ModifyNoticeForm.do")
+	public String ModifyNoticeForm() {
+		return "admin/notice/modifyNoticeForm";
+	}
 }

@@ -19,7 +19,7 @@
                 <!-- Start First Cards -->
                 <!-- *************************************************************** -->
                     <h5 class="p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
-                           공지사항 등록
+                           공지사항 수정
                      </h5>
                     <div class="card mb-5">
                         <div class="card-body">
@@ -53,7 +53,7 @@
                         </style>
 
 	                     <div class="d-flex justify-content-end my-4">
-                            <button id="insertBtn" class="btn btn-outline-primary mr-3">등록</button>
+                            <button id="insertBtn" class="btn btn-outline-primary mr-3">수정</button>
 	                        <button class="btn btn-outline-secondary" onclick="window.history.back() ">취소</button>
 	                    </div>
                    </div>
