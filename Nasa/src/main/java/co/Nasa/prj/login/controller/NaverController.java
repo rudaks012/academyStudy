@@ -63,9 +63,9 @@ public class NaverController {
 					String viewPage = null;
 					if (vo == null) {
 						//회원가입으로 바꿔야함
-						viewPage = "admin/adminHome";
+						viewPage = "buyer/buyerJoin";
 					} else {
-						viewPage = "buyer/buyerHome";
+						viewPage = "user/home";
 					}
 
 					return viewPage;
