@@ -23,6 +23,8 @@
 <link rel="stylesheet" href="resources/user/assets/css/slick.css">
 <link rel="stylesheet" href="resources/user/assets/css/nice-select.css">
 <link rel="stylesheet" href="resources/user/assets/css/style.css">
+
+
 </head>
 <body>
 	<header>
