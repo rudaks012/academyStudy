@@ -165,7 +165,7 @@ src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 												"<div class='chatList_box enterRoomList' style='display:inline-block; width: 80%;' onclick='enterRoom(this);'>")
 												.attr("id", data[i].roomid)
 												.attr("userId", data[i].masterid);
-										$img = $("<img class='profile_img' src='/resources/images/temp-profile.png'>");
+										$img = $("<img class='profile_img' src='resources/img/buzz.png'>");
 										$div.append($img);
 										$divs = $("<span class='userNameId'>").text(data[i].masterid);
 										//str1 = getIamge(data[i].masterid);
@@ -182,7 +182,8 @@ src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 										$div = $("<div class='chatList_box enterRoomList' style='display:inline-block; width: 80%;' onclick='enterRoom(this);'>")
 												.attr("id", data[i].roomid)
 												.attr("userId", data[i].userid);
-										$img = $("<img class='profile_img' src='/resources/images/temp-profile.png'>");
+										//$img = $("<img class='profile_img' src='/resources/images/temp-profile.png'>");
+										$img = $("<img class='profile_img' src='resources/img/buzz.png'>");
 										$div.append($img);
 										$divs = $("<span class='userNameId'>").text(data[i].userid);
 									
@@ -205,7 +206,7 @@ src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 									var $btn1 = $("<button type='button' class='chat_exit' style='float:right; display: inline-block; border:none; background-color:white;'>")
 												.attr("id", data[i].roomid)
 									
-									var $img2 = $("<img src='/resources/images/exit.png' style=' width: 20px; margin-top: 4px;'>")
+									var $img2 = $("<img src='resources/img/exit.png' style=' width: 20px; margin-top: 4px;'>")
 												
 									$btn1.append($img2);
 								
@@ -459,6 +460,7 @@ src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 
 	// * 2-1 추가 된 것이 내가 보낸 것인지, 상대방이 보낸 것인지 확인하기
 	function CheckLR(data) {
+		console.log("누가보낸것이냐left")
 		// userid이 loginSession의 userid과 다르면 왼쪽, 같으면 오른쪽
 		const LR = (data.sentid != "${ loginMember.b_email }") ? "left": "right";
 		// 메세지 추가
