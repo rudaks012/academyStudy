@@ -94,4 +94,9 @@ public class SellerController {
 	public String sellerDetail() {
 		return "seller/sellerDetail";
 	}
+	
+	@RequestMapping("/sellerUpdate.do")
+	public String sellerUpdate() {
+		return "seller/sellerUpdate";
+	}
 }

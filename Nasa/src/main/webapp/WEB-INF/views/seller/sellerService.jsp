@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 .servnav {
 	list-style-type: none;
@@ -345,7 +344,6 @@
 						*희망시작일로부터 일주일간 제공됩니다. <br /> *최종 결제 후 환불 불가합니다.<br />
 						<br />
 					</p>
-					<div class="br"></div>
 					<table class="powertb">
 						<tr>
 							<td>서비스선택</td>
@@ -410,8 +408,7 @@
 
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="genric-btn primary  radius powerbtn" data-toggle="modal"
-						data-dismiss="modal">확인</a>
+					<a href="#" class="genric-btn primary  radius powerbtn" data-toggle="modal" data-dismiss="modal">확인</a>
 					<a href="#" class="genric-btn primary  radius powerbtn" data-dismiss="modal">취소</a>
 				</div>
 			</div>
@@ -480,7 +477,7 @@
 
 					</table>
 					<div class="br">
-						<span>
+						
 							<h6 style="display: inline;">최종 결제금액</h6>
 							<span style="font-weight: 200;">45000원</span>
 					</div>
@@ -488,11 +485,11 @@
 						<span><input type="checkbox">개인정보수집 및 이용동의(필수)</span>
 						<a style="float: right;" data-toggle="modal" data-target="#useModal">보기</a>
 					</div>
-					</span>
+					
 				</div>
 				<div class="modal-footer">
 					<a href="#" class="genric-btn primary  radius powerbtn" data-toggle="modal"
-						data-dismiss="modal">결제</a> <a href="#" class="genric-btn primary  radius powerbtn"
+						data-dismiss="modal">결제</a> <a href="#" class="genric-btn primary radius powerbtn"
 						data-dismiss="modal">취소</a>
 				</div>
 			</div>
@@ -527,7 +524,6 @@
 						개인정보 제공에 동의하지 않을 수 있으며 동의하지 않을 경우 서비스 이용이 제한될 수 있습니다.
 					</p>
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -541,6 +537,13 @@
 				$(this).addClass('active');
 				$(".nav-item > .active").css("color", "white");
 			});
+			
+			$("#ydate").click(function () {
+				console.log($("#conference").attr("style", "display: block;"))
+			})
+			$("#ndate").click(function () {
+				console.log($("#conference").attr("style", "display: none;"))
+			})
 		});
 	</script>
 </body>
