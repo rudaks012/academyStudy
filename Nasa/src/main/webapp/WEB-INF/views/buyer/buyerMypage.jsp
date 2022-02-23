@@ -426,7 +426,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 								</a>
 							</li>
 							<li>
-								<a href="#" class="d-flex">
+								<a href="buyerCalendar.do" class="d-flex">
 									<p>일정관리</p>
 								</a>
 							</li>
