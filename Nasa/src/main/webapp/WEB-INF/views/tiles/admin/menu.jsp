@@ -56,7 +56,7 @@
                                 aria-expanded="false"><i  class="icon-credit-card"></i><span
                                     class="hide-menu">결제관리 </span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                <li class="sidebar-item"><a href="manage_servicePayment.do" class="sidebar-link"><span
                                             class="hide-menu"> 서비스결제관리
                                         </span></a>
                                 </li>
