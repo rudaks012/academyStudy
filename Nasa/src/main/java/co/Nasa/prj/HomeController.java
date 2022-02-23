@@ -29,10 +29,7 @@ public class HomeController {
 	}
 	
 	
-<<<<<<< HEAD
 
-=======
->>>>>>> 057fe35cb49def605dd4b5e2e9f11925926728eb
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
