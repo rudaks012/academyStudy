@@ -21,64 +21,68 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Controller
 public class MFileUploadController {
 
-	 @RequestMapping(value = "fileupload1")
-	 public String requestupload1(MultipartHttpServletRequest mRequest) {
-	        String src = mRequest.getParameter("src");
-	        MultipartFile mf = mRequest.getFile("file");
-
-	        String path = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
-
-	        String originFileName = mf.getOriginalFilename(); // 원본 파일 명
-	        long fileSize = mf.getSize(); // 파일 사이즈
-
-	        System.out.println("originFileName : " + originFileName);
-	        System.out.println("fileSize : " + fileSize);
-
-	        String safeFile = path + originFileName;
-
-	        try {
-	            mf.transferTo(new File(safeFile));
-	        } catch (IllegalStateException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        }
-
-	        return "redirect:/";
-	    }
-	 
-	 @RequestMapping(value = "fileupload2")
-	    public String requestupload2(MultipartHttpServletRequest mRequest) {
-	        List<MultipartFile> fileList = mRequest.getFiles("file");
-	        String src = mRequest.getParameter("src");
-
-	        String path = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
-
-	        for (MultipartFile mf : fileList) {
-	            String originFileName = mf.getOriginalFilename(); // 원본 파일 명
-	            long fileSize = mf.getSize(); // 파일 사이즈
-
-	            System.out.println("originFileName : " + originFileName);
-	            System.out.println("fileSize : " + fileSize);
-
-	            String safeFile = path + originFileName;
-	            try {
-	                mf.transferTo(new File(safeFile));
-	            } catch (IllegalStateException e) {
-	                // TODO Auto-generated catch block
-	                e.printStackTrace();
-	            } catch (IOException e) {
-	                // TODO Auto-generated catch block
-	                e.printStackTrace();
-	            }
-	        }
-
-	        return "redirect:/";
-	    }
+//	 @RequestMapping(value = "fileupload1")
+//	 public String requestupload1(MultipartHttpServletRequest mRequest) {
+//	        String src = mRequest.getParameter("src");
+//	        MultipartFile mf = mRequest.getFile("file");
+//
+//	        String path = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
+//
+//	        String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+//	        long fileSize = mf.getSize(); // 파일 사이즈
+//
+//	        System.out.println("originFileName : " + originFileName);
+//	        System.out.println("fileSize : " + fileSize);
+//
+//	        String safeFile = path + originFileName;
+//
+//	        try {
+//	            mf.transferTo(new File(safeFile));
+//	        } catch (IllegalStateException e) {
+//	            // TODO Auto-generated catch block
+//	            e.printStackTrace();
+//	        } catch (IOException e) {
+//	            // TODO Auto-generated catch block
+//	            e.printStackTrace();
+//	        }
+//
+//	        return "redirect:/";
+//	    }
+//	 
+//	 @RequestMapping(value = "fileupload2")
+//	    public String requestupload2(MultipartHttpServletRequest mRequest) {
+//	        List<MultipartFile> fileList = mRequest.getFiles("file");
+//	        String src = mRequest.getParameter("src");
+//
+//	        String path = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
+//
+//	        for (MultipartFile mf : fileList) {
+//	            String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+//	            long fileSize = mf.getSize(); // 파일 사이즈
+//
+//	            System.out.println("originFileName : " + originFileName);
+//	            System.out.println("fileSize : " + fileSize);
+//
+//	            String safeFile = path + originFileName;
+//	            try {
+//	                mf.transferTo(new File(safeFile));
+//	            } catch (IllegalStateException e) {
+//	                // TODO Auto-generated catch block
+//	                e.printStackTrace();
+//	            } catch (IOException e) {
+//	                // TODO Auto-generated catch block
+//	                e.printStackTrace();
+//	            }
+//	        }
+//
+//	        return "redirect:/";
+//	    }
 	 
 	 @ResponseBody
+	 
+	 
+	 
+	 
 		@RequestMapping(value = "file-upload.do", method = RequestMethod.POST)
 		public String fileUpload(
 				@RequestParam("article_file") List<MultipartFile> multipartFile
