@@ -23,62 +23,85 @@
 
 <!-- buyerReview Start -->
 
-	<div class="container">
-		<div class="comments-area">
-			<div class="comment-list">
-				<div class="single-comment justify-content-between d-flex" style="border: solid 1px;">
-					<div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-						<div class="thumb">
-							<img src="resources/user/assets/img/comment/comment_1.png" alt="">
-						</div>
-						<div class="desc">
-							<p class="comment">
-								Multiply sea night grass fourth day sea lesser rule open subdue female fill which
-								them
-								Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-							</p>
-							<div class="d-flex justify-content-between">
-								<div class="d-flex align-items-center">
-									<h5><a href="#">홍길동</a></h5>
-									<p class="date">December 4, 2017 at 3:12 pm </p>
-								</div>
-								<div class="reply-btn">
-									<a href="#" class="btn-reply text-uppercase" data-toggle="modal" data-target="#reportModal">신고</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<img src="resources/user/assets/img/gallery/list1.png"/>
-				</div>
-			</div>
-		
-			<div class="comment-list">
-				<div class="single-comment justify-content-between d-flex" style="border: solid 1px;">
-					<div class="user justify-content-between d-flex">
-						<div class="thumb">
-							<img src="resources/user/assets/img/comment/comment_2.png" alt="">
-						</div>
-						<div class="desc">
-							<p class="comment">
-								Multiply sea night grass fourth day sea lesser rule open subdue female fill which
-								them
-								Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-							</p>
-							<div class="d-flex justify-content-between">
-								<div class="d-flex align-items-center">
-									<h5><a href="#">김길동</a></h5>
-									<p class="date">December 4, 2017 at 3:12 pm </p>
-								</div>
-								<div class="reply-btn">
-									<a href="#" class="btn-reply text-uppercase" data-toggle="modal" data-target="#reportModal">신고</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	  <div class="container">
+      
+
+
+      <div class="comments-area">
+
+         <div class="comment-list">
+            <div class="single-comment justify-content-between d-flex">
+               <div class="user justify-content-between d-flex">
+                  <div class="thumb">
+                     <img src="assets/img/comment/comment_1.png" alt="">
+                  </div>
+                  <div class="desc">
+                            <span>웹개발 해드립니다.</span><br>
+                     <span>Emilly Blunt</span> <span class="ml-4">평점 : 4.5</span> <span class="date">December 4,
+                        2017 at 3:12 pm </span>
+                           
+                     <p class="comment">Never say goodbye till the end comes!</p>
+                     <span class="btn-reply1">수정</span> 
+                     <span class="btn-reply1">삭제</span>
+                  </div>
+               </div>
+               <img class="revimg" src="assets/img/gallery/list1.png">
+            </div>
+         </div>
+         <div class="comment-list left-padding">
+            <div class="single-comment justify-content-between d-flex">
+               <div class="user justify-content-between d-flex">
+                  <div class="thumb">
+                     <img src="assets/img/comment/comment_2.png" alt="">
+                  </div>
+                  <div class="desc">
+                     <span>홍길동</span> <span class="date">December 4, 2017 at 3:12 pm </span>
+                     <p class="comment">Never say goodbye till the end comes!</p>
+                     <span class="btn-reply1">신고</span> 
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="comments-area">
+         <div class="comment-list">
+            <div class="single-comment justify-content-between d-flex">
+               <div class="user justify-content-between d-flex">
+                  <div class="thumb">
+                     <img src="assets/img/comment/comment_3.png" alt="">
+                  </div>
+                  <div class="desc">
+                     <span>Maria Luna</span> <span class="date">December 4,
+                        2017 at 3:12 pm </span>
+                     <p class="comment">Never say goodbye till the end comes!</p>
+                     <span class="btn-reply1">신고</span>
+                     <span class="btn-reply1">리뷰등록</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="comments-area">
+         <div class="comment-list">
+            <div class="single-comment justify-content-between d-flex">
+               <div class="user justify-content-between d-flex">
+                  <div class="thumb">
+                     <img src="assets/img/comment/comment_1.png" alt="">
+                  </div>
+                  <div class="desc">
+                  <div class="desc">
+                     <span>Ina Hayes</span> <span class="date">December 4,
+                        2017 at 3:12 pm </span>
+                     <p class="comment">Never say goodbye till the end comes!</p>
+                     <span class="btn-reply1">신고</span>
+                     <span class="btn-reply1">리뷰등록</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
 <!-- buyeerReview End -->
 
 <!-- Modal Start -->

@@ -61,30 +61,26 @@
 						</div>
 					</div>
 				
-					<div class="single-element-widget mt-30">
-						<p>관심분야</p>
-						<div class="d-flex">
-							<div class="default-select mr-4" id="default-select">
-								<select>
-									<option value="1">English</option>
-									<option value="2">Spanish</option>
-									<option value="3">Arabic</option>
-									<option value="4">Portuguise</option>
-									<option value="5">Bengali</option>
-								</select>
-							</div>
-						
-							<div class="default-select" id="default-select">
-								<select>
-									<option value="1">English</option>
-									<option value="2">Spanish</option>
-									<option value="3">Arabic</option>
-									<option value="4">Portuguise</option>
-									<option value="5">Bengali</option>
-								</select>
-							</div>
-						</div>
-					</div>
+					<<div class="single-element-widget mt-30">
+                        <p>관심분야</p>
+                        <div class="d-flex">
+
+                            <div class="categoryselect mr-4" id="categoryselect">
+                                <select onchange="chooseCategory(this)">
+                                    <option value="a">a</option>
+                                    <option value="b">b</option>
+                                    <option value="c">c</option>
+
+                                </select>
+                            </div>
+    
+                            <div class="subcategoryselect" id="subcategoryselect">
+                                <select>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 				
 					<div style="margin-top: 20px;">
 						<p>주소</p>
@@ -135,7 +131,34 @@
 		const inputImage = document.getElementById("profileimg");
 		inputImage.addEventListener("change", e => {
 			readImage(e.target);
-		})
+		});
+		
+		function chooseCategory(e) {
+            var sub_a = ["a", "b", "c"];
+            var sub_b = ["d", "e", "f"];
+            var sub_c = ["g", "h", "i"];
+            var target = document.getElementById("subcategoryselect");
+            var c = $("#subcategoryselect div ul");
+            var d = target.children[1].children[1];
+            console.log(d);            
+
+            if(e.value == "a") var sub = sub_a;
+            else if(e.value == "b") var sub = sub_b;
+            else if(e.value == "c") var sub = sub_c;
+
+            while(d.hasChildNodes()) {
+                d.removeChild(d.firstChild);
+            }          
+
+            for(i in sub) {
+                var opt = document.createElement("li");
+                opt.setAttribute("data-value", sub[i]);
+                opt.setAttribute("class", "option");
+                opt.innerHTML = sub[i];
+                d.append(opt);
+            }
+
+        }
 	</script>
 
 <!-- buyerUpdate End -->
