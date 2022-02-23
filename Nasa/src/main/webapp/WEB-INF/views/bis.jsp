@@ -88,6 +88,8 @@
 		  accept: "application/json",
 		  success: function(result) {
 		      console.log(result);
+        const test = result.querySelectorAll("ValidMSG");
+        console.log(test);
 		  },
 		  error: function(result) {
 		      console.log(result.responseText); //responseText의 에러메세지 확인

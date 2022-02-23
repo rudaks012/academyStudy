@@ -94,8 +94,9 @@
 									<div class="d-flex">
 										<input class="form-control valid" name="nickname"
 											id="nickname" type="text" placeholder="닉네임을 입력해주세요">
-										<input type="button" value="인증"
-											class="genric-btn primary radius" style="float: right;"id="nickChk">
+										<input type="button" value="인증" onclick="nickCheck()"
+											class="genric-btn primary radius" style="float: right;"
+											id="nickChk">
 									</div>
 								</div>
 							</div>
@@ -105,9 +106,9 @@
 										이메일
 										<div class="d-flex">
 											<input class="form-control valid" name="email" id="email"
-												type="email" placeholder="example@nasa.com"> <input
-												type="button" value="확인" class="genric-btn primary radius"
-												style="float: right;">
+												type="email" placeholder="example@nasa.com"> 
+												<input type="button" id="emailChk" onclick="EmailCheck()" value="확인" class="genric-btn primary radius"style="float: right;">
+												
 										</div>
 									</div>
 								</c:if>
@@ -134,8 +135,8 @@
 							</div>
 							<div class="col-sm-8">
 								<div class="form-group">
-									비밀번호 확인<input class="form-control valid" id="passwordChk" type="password"
-										placeholder="비밀번호를 다시 입력해주세요">
+									비밀번호 확인<input class="form-control valid" id="passwordChk"
+										type="password" placeholder="비밀번호를 다시 입력해주세요">
 								</div>
 							</div>
 							<div class="col-sm-8">
@@ -180,15 +181,82 @@ if(!reg_email.test(str)) {
 }
 }
 
-function formCheck() {
-	if($('#nickChk').val() != 'Yes') {
-		alert("아이디 중복체크를 해주세요");
-		return false;
-	}
+function EmailCheck() {
+	var email = $('#email').val();
+
+    if(!CheckEmail(email)) {
+        alert('이메일을 입력하세요');
+        $('email').val('');
+        $('email').focus();
+        return;
+
+    }
+
+    $.ajax({
+        url :"ajaxEmailCheck.do",
+        type : "POST",
+        data: {email : email},
+        dataType : "text",
+        success: function(data) {
+            console.log(data);
+            
+            if(data == 'true') {
+            	alert(email + '은 사용할 수 있는 이메일 입니다.');
+            	$('#emailChk').val('인증완료!');
+            	$('#emailChk').attr('disabled',true);
+            	$('#email').attr('readonly',true);
+            	
+            	$('#password').focus();
+            }else {
+            	alert(email + '은 중복된 이메일 입니다.')
+            	$('#email').val("");
+            	$('#email').focus();
+            }
+        },
+        error : function() {
+        	console.log("실패");
+        	
+			
+		}
+    })
 	
 
 }
- 
+
+
+function nickCheck() {
+	var nickname = $('#nickname').val();
+
+    $.ajax({
+        url :"ajaxNickCheck.do",
+        type : "POST",
+        data: {nickname : nickname},
+        dataType : "text",
+        success: function(data) {
+            console.log(data);
+            
+            if(data == 'true') {
+            	alert(nickname + '은 사용할 수 있는 이메일 입니다.');
+            	$('#nickChk').val('인증완료!');
+            	$('#nickChk').attr('disabled',true);
+            	$('#nickname').attr('readonly',true);
+            	
+            	$('#password').focus();
+            }else {
+            	alert(nickname + '은 중복된 이메일 입니다.')
+            	$('#nickname').val("");
+            	$('#nickname').focus();
+            }
+        },
+        error : function() {
+        	console.log("실패");
+        	
+			
+		}
+    })
+	
+
+}
 
 </script>
 </html>
