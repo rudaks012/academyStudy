@@ -29,11 +29,11 @@
 			<div class="col-3">
 				<div class="blog_right_sidebar">
 					<aside class="single_sidebar_widget post_category_widget">
-						<h4 class="widget_title">MYPAGE MENU</h4>
+						<h4 class="widget_title">MENU</h4>
 						<ul class="list cat-list">
 							<li>
 								<a href="buyHistory.do" class="d-flex">
-									<p>구매내역</p>
+									<p style="font-weight: bold;">구매내역</p>
 								</a>
 							</li>
 							<li>
@@ -69,7 +69,7 @@
 					</aside>
 				</div>
 			</div>
-			<div class="col-9">
+			<div class="col-9">				
 				<div class="blog_left_sidebar">					
 					<div class="blog_details">
 						<div class="blog-card">

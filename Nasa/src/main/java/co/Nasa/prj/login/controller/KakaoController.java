@@ -66,7 +66,7 @@ public class KakaoController {
 		    System.out.println("회원이 아닌경우");
 		   
 		    // 회원가입창으로 이동
-		    ViewPage = "admin/adminHome";
+		    ViewPage = "buyer/buyerJoin";
 
 		} else { // 이미 카카오로 로그인한 적이 있을 때 (최초 1회 로그인때 회원가입된 상태)
 		    // id, nick, profile을 가져와서
@@ -88,7 +88,7 @@ public class KakaoController {
 		    System.out.println("nick : " + userTo.getToken());
 //		    System.out.println("profile : " + userTo.getGimg());
 		    //메인페이지
-		    ViewPage = "buyerHome";
+		    ViewPage = "user/home";
 		}
 		return ViewPage;
 	}

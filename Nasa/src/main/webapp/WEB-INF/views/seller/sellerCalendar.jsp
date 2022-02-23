@@ -1,47 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href='resources/user/fullcalendar-5.10.1/lib/main.css' rel='stylesheet' />
-<style>
-	#calendar {
-		width: 800px;
-		height: 500px;
-	}
-    .servicetable {
-        width: 800px;
-    }
-    .imgtd {
-        width: 200px;
-        height: 200px;
-    }
-    .thtext {
-        top: 10px;
-        font-size: 20px;
-    }
-    .tdtext {
-        bottom: 10px;
-    }
-</style>
-<script src='resources/user/fullcalendar-5.10.1/lib/main.js'></script>
-<script> // 수정할 것...
-document.addEventListener('DOMContentLoaded', function () {
-	let xhtp = new XMLHttpRequest();
-	xhtp.open('get', 'CalendarList.do');
-	xhtp.send();
-	xhtp.onload = function() {
-		let dbData = JSON.parse(xhtp.responseText);
-		var calendarEl = document.getElementById('calendar');
-
-		var calendar = new FullCalendar.Calendar(calendarEl, {
-			initialView: 'dayGridMonth',
-			dayMaxEvents: true, // allow "more" link when too many events
-			events: dbData
-	});
-		calendar.render();
-	}	
-});
-</script>
-
-<!-- Hero Start-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
 <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center">
     <div class="container">
         <div class="row">
@@ -61,48 +26,40 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="col-3">
                 <div class="blog_right_sidebar">
                     <aside class="single_sidebar_widget post_category_widget">
-                        <h4 class="widget_title">MENU</h4>
+                        <h4 class="widget_title">MYPAGE MENU</h4>
                         <ul class="list cat-list">
-                            <li>
-                                <a href="buyHistory.do" class="d-flex">
-                                    <p>구매내역</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="buyerCalendar.do" class="d-flex">
-                                    <p style="font-weight: bold;">일정관리</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="buyerCoupons.do" class="d-flex">
-                                    <p>보유쿠폰</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="wishlist.do" class="d-flex">
-                                    <p>위시리스트</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="buyerReview.do" class="d-flex">
-                                    <p>리뷰확인</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="reportHistory.do" class="d-flex">
-                                    <p>신고내역</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>회원탈퇴</p>
-                                </a>
-                            </li>
-                        </ul>
+								<li><a href="sellerService.do" class="d-flex">
+										<p>서비스관리</p>
+									</a></li>
+								<li><a href="sellerPromotion.do" class="d-flex">
+										<p>프로모션관리</p>
+									</a></li>
+								<li><a href="#" class="d-flex">
+										<p>일정관리</p>
+									</a></li>
+								<li><a href="sellerReview.do" class="d-flex">
+										<p>리뷰관리</p>
+									</a></li>
+								<li><a href="sellerPayment.do" class="d-flex">
+										<p>결제조회</p>
+									</a></li>
+								<li><a href="sellerSales.do" class="d-flex">
+										<p>매출확인</p>
+									</a></li>
+								<li><a href="sellerReport.do" class="d-flex">
+										<p>신고관리</p>
+									</a></li>
+								<li><a href="sellerKnowhow.do" class="d-flex">
+										<p>판매자 노하우</p>
+									</a></li>
+								<li><a href="" class="d-flex" data-toggle="modal" data-target="#WithdrawalModal">
+										<p>회원탈퇴</p>
+									</a></li>
+							</ul>
                     </aside>                            
                 </div>
-            </div>            
-            <div class="col-9">                               
+            </div>
+            <div class="col-9">                
                 <div class="blog_left_sidebar">
                     <article class="blog_item">
                         <div class="justify-content-center">
@@ -144,4 +101,5 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </div>
 </section>
-<!--================Blog Area =================-->
+</body>
+</html>
