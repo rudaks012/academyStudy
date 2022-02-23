@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             </li>
                             <li>
                                 <a href="buyerCalendar.do" class="d-flex">
-                                    <p>일정관리</p>
+                                    <p style="font-weight: bold;">일정관리</p>
                                 </a>
                             </li>
                             <li>
