@@ -33,7 +33,7 @@
 						<ul class="list cat-list">
 							<li>
 								<a href="buyHistory.do" class="d-flex">
-									<p>구매내역</p>
+									<p style="font-weight: bold;">구매내역</p>
 								</a>
 							</li>
 							<li>
