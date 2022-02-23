@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <header class="topbar" data-navbarbg="skin6">
+ <script src="resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
  
             <nav class="navbar top-navbar navbar-expand-md">
                 <div class="navbar-header" data-logobg="skin6">

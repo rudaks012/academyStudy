@@ -15,5 +15,9 @@ public class AdminFaqController {
 	public String insertFaqForm() {
 		return "admin/faq/insertFaqForm";
 	}
+	@RequestMapping("/ModifyFaqForm.do")
+	public String ModifyFaqForm() {
+		return "admin/faq/ModifyFaqForm";
+	}
 
 }

@@ -24,12 +24,25 @@
                 <!-- *************************************************************** -->
                 <!-- Start First Cards -->
                 <!-- *************************************************************** -->
-                    <div>
-                      총 나사 금액 : 1,000,000,000,000원
+                    <div class=" mb-2  p-2  " style="border-radius:5px; font-size:18px">
+                      <table class="table table-bordered text-center">
+                      	<tbody>
+                      		<tr>
+                      		  <th width="16%" class="table-primary"> 총 판매금액</th>
+                      		  <td><span class="text-danger mr-1">1,000,000,000,000,000</span>원</td>
+                      		  <th class="table-primary"> 총 수수료</th>
+                      		  <td><span class="text-danger mr-1">1,000,000,000,000,000</span>원</td>
+                      		</tr>
+                      		<tr>
+                      		  
+                      		</tr>
+                      	</tbody>
+                      </table>
                     </div>
+                     
                     
-                    <h5 class="p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
-                           구매자검색
+                    <!-- <h5 class="p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
+                           결제검색
                      </h5>
                     <div class="card mb-4">
                         <div class="card-body">
@@ -77,7 +90,7 @@
                                     </tr>
                                    
                                     <tr>
-                                        <th class="align-middle table-primary">등록일자</th>
+                                        <th class="align-middle table-primary">결제일자</th>
                                         <td>
                                         	<div class="d-flex align-items-center">
                                         		<div class="col-3">
@@ -104,16 +117,16 @@
 	                        <button class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
 	                    </div>
                    </div>
-               </div>
+               </div> -->
                
                
                
                   <div class="row my-5">
                 	<div class="col-12">
-                	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
-                            구매자내역조회
+                	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between align-items-center" style="border-radius: 5px;">
+                            결제내역조회
                             <div>
-                            	<button>ㅇㅇ</button>
+                            	<button class="btn btn-outline-warning ">엑셀 다운로드</button>
                             </div>
                         </h5>
                 	    <div class="card">
@@ -122,7 +135,7 @@
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
-		                         		<th width="10%">결제코드</th>
+		                         		<th>결제코드</th>
 		                         		<th>결제일자</th>
 		                         		<th>서비스코드</th>
 		                         		<th>1차 카테고리</th>        		
@@ -130,8 +143,10 @@
 		                         		<th>서비스명</th>
 		                         		<th>구매자아이디</th>
 		                         		<th>구매일자</th>
-		                         		<th>구매확정</th>
+		                         		<th>결제금액</th>
+		                         		
 		                         		<th>구매확정일자</th>
+		                         		<th>총금액</th>
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
@@ -140,12 +155,29 @@
 		                                <td>2222</td>
 		                                <td>3333</td>
 		                                <td>500,000</td>
+		                                <td></td>
+		                                <td></td>
+		                                <td></td>
+		                                <td></td>
+		                                <td></td>
+		                                
+		                                <td>-</td>
+		                                <td class="text-primary">15,000,000</td>
+		                                
 		                             </tr>
                                      <tr>
+		                                <td>2222</td>
+		                                <td>2222</td>
+		                                <td>3333</td>
+		                                <td>500,000</td>
 		                                <td></td>
 		                                <td></td>
 		                                <td></td>
 		                                <td></td>
+		                                <td></td>
+		                                
+		                                <td>2021-02-08</td>
+		                                <td class="text-danger">14,950,000</td>
 		                             </tr>
                                      <tr>
 		                                <td></td>

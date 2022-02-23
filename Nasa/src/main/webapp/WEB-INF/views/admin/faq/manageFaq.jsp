@@ -233,7 +233,7 @@
 	const modifyBtn = document.querySelector("#modifyBtn");
 	const goToTheModifyNotice=()=>{
 		if(confirm("수정하시겠습니까?"))
-		location.href="ModifyNoticeForm.do"; //get방식 ?변수명= &
+		location.href="ModifyFaqForm.do"; //get방식 ?변수명= &
 	}
 	modifyBtn.addEventListener("click",goToTheModifyNotice);
 

@@ -27,8 +27,9 @@
                                         <th class="align-middle table-primary">제목</th>
                                         <td>
                                         	<div class="col-6">
-                                        		<input class="form-control custom-shadow" id="" name="" type="text"></td>
+                                        		<input class="form-control custom-shadow" id="" name="" type="text">
                                     		</div>
+                                    	</td>
                                     </tr>
                                     <tr>
                                         <th class="align-middle table-primary">등록일자</th>
