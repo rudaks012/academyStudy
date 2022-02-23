@@ -39,7 +39,9 @@
 		<!-- All JS Custom Plugins Link Here here -->
         <script src="resources/user/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 		<!-- Jquery, Popper, Bootstrap -->
-		<script src="resources/user/assets/js/vendor/jquery-1.12.4.min.js"></script>
+	
+	
+	
         <script src="resources/user/assets/js/popper.min.js"></script>
         <script src="resources/user/assets/js/bootstrap.min.js"></script>
 	    <!-- Jquery Mobile Menu -->

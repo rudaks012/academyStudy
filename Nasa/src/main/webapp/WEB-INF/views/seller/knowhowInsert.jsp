@@ -5,7 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/summernote/summernote-lite.css">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script><!-- include libraries(jQuery, bootstrap) -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <style>
 .knowtd{
    background-color: rgb(229, 231, 253);
@@ -39,7 +48,7 @@ input[type="text"]{
             <div class="row d-flex justify-content-center align-items-center">
             	
                <div>
-                  <form class="" action="" method="" id="">
+                  <form class="" method="post" action="summernote.do" id="">
                      <table border="1" style="border-color: rgb(229, 232, 255);">
                         <tbody>
                            <tr>
@@ -56,7 +65,7 @@ input[type="text"]{
                      </table>
                      <br />
                      <div class="row d-flex justify-content-center align-items-center">
-                        <button class="genric-btn primary circle arrow btnbox">등록</button> &nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="genric-btn primary circle arrow btnbox">등록</button> &nbsp;&nbsp;&nbsp;
                         <button class="genric-btn primary circle arrow btnbox">취소</button>
                      </div>
                   </form>
@@ -65,12 +74,9 @@ input[type="text"]{
             </div>
          </div>
       </section>
-<script src="resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="resources/summernote/summernote-lite.js"></script>
-<script src="resources/summernote/lang/summernote-ko-KR.js"></script>         
- <script>
+  <script>
     $('#summernote').summernote({
-		height: 600,                 // 에디터 높이
+		height: 300,                 // 에디터 높이
 		minHeight: null,             // 최소 높이
 		maxHeight: null,             // 최대 높이
 		focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
@@ -130,6 +136,6 @@ function uploadSummernoteImageFile(file, el) {
     }
  });
 }
-</script>  
+</script>
 </body>
 </html>
