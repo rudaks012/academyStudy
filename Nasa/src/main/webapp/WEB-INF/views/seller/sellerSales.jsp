@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="resources/admin/assets/libs/morris.js/morris.css" rel="stylesheet"> 
 <style>
 	.nice-select {
 		width: 300px;
@@ -112,8 +113,19 @@
 
 	<div class="row justify-content-center">
 		<div class="col-xl-8" style="margin-top:40px;">
-			차트차트
+			<div class="card">
+               <div class="card-body">
+                   <h4 class="card-title"></h4>
+                   <div id="all-month-chart"></div>
+                    
+               </div>
+           </div>
 		</div>
 	</div>
+	
+	<script src="resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="resources/admin/assets/libs/raphael/raphael.min.js"></script>
+    <script src="resources/admin/assets/libs/morris.js/morris.min.js"></script>
+    <script src="resources/admin/dist/js/pages/morris/seller-month-data.js"></script>
 </body>
 </html>
