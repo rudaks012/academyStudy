@@ -5,9 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -47,7 +45,6 @@ input[type="text"]{
          <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
             	
-               <div>
                   <form class="" method="post" action="summernote.do" id="">
                      <table border="1" style="border-color: rgb(229, 232, 255);">
                         <tbody>
@@ -66,11 +63,10 @@ input[type="text"]{
                      <br />
                      <div class="row d-flex justify-content-center align-items-center">
                         <button type="submit" class="genric-btn primary circle arrow btnbox">등록</button> &nbsp;&nbsp;&nbsp;
-                        <button class="genric-btn primary circle arrow btnbox">취소</button>
+                        <button class="genric-btn primary circle arrow">취소</button>
                      </div>
                   </form>
-                  
-               </div>				
+                  		
             </div>
          </div>
       </section>
