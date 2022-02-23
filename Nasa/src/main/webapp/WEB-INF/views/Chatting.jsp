@@ -384,8 +384,6 @@ src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 		//웹 소켓에 이벤트가 발생했을 때 호출될 함수 등록
 		websocket.onopen = onOpen;
 		websocket.onmessage = onMessage;
-		websocket.close = onClose;
-		websocket.error = onError;
 		
 		
 	}
@@ -404,24 +402,8 @@ src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 		};
 		let jsonData = JSON.stringify(data);
 		websocket.send(jsonData);
-		console.log(websocket);
+		console.log("웹소켓 연결되었을때 ::::" + websocket);
 	} 
-	function onClose(event) {
-		var wsUri = "ws://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/websocket/echo.do";
-		
-			  if (event.wasClean) {
-			    alert(`[close] 커넥션이 정상적으로 종료되었습니다(code=${event.code} reason=${event.reason})`);
-			  } else {
-			    // 예시: 프로세스가 죽거나 네트워크에 장애가 있는 경우
-			    // event.code가 1006이 됩니다.
-			    alert('[close] 커넥션이 죽었습니다.');
-			  }
-
-	}
-	function onError(error) {
-			  alert(`[error] ${error.message}`);
-		
-	}
 
 	// * 1 메시지 전송
 	function sendMessage(message) {
@@ -453,24 +435,27 @@ src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 			"lr" : "left"
 		};
 		console.log("수신자 :::"+data.sentid);
-		if (data.sentid != "${ loginMember.b_email }") {
+		if (data.sentid != "${ loginMember.b_nickname }") {
 			CheckLR(data);
 		}
 	}
 
 	// * 2-1 추가 된 것이 내가 보낸 것인지, 상대방이 보낸 것인지 확인하기
 	function CheckLR(data) {
-		console.log("누가보낸것이냐left")
+		console.log("1111111");
+		//console.log("누가보낸것이냐left")
 		// userid이 loginSession의 userid과 다르면 왼쪽, 같으면 오른쪽
 		const LR = (data.sentid != "${ loginMember.b_email }") ? "left": "right";
 		// 메세지 추가
+		console.log("LR : " + LR);
 		appendMessageTag(LR, data.sentid, data.nickname, data.message);
 	}
 
 	// * 3 메세지 태그 append
 	function appendMessageTag(LR_className, sentid, nickname, message) {
-
+		console.log("222222");
 		const chatLi = createMessageTag(LR_className, sentid, nickname, message);
+		//console.log("chatLi :::::" + chatLi)
 
 		$('div.chatMiddle:not(.format) ul').append(chatLi);
 
