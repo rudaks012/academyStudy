@@ -4,15 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
-import org.apache.velocity.runtime.directive.Parse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.Nasa.prj.buyer.service.BuyerMapper;
-import co.Nasa.prj.comm.VO.BuyerVO;
 
 @Controller
 public class BuyerController {
@@ -75,6 +72,12 @@ public class BuyerController {
 	@RequestMapping("/buyerReview.do")
 	public String buyerReview() {
 		return "buyer/buyerReview";
+	}
+	
+	// 구매자 일정관리
+	@RequestMapping("/buyerCalendar.do")
+	public String buyerCalendar() {
+		return "buyer/buyerCalendar";
 	}
 
 
