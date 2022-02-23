@@ -77,9 +77,14 @@
 	                    <div class="row d-flex justify-content-center align-items-center">
 	                        <div class="col-sm-8">                                    
 	                            <div class="form-group">
-	                                상호명<input class="form-control valid" type="text" placeholder="등록된 상호명을 입력해주세요">
+	                                대표자성명<input class="form-control valid" type="text" placeholder="대표자 성명을 입력해주세요.">
 	                            </div>
-	                        </div>	                       
+	                        </div>	   
+	                         <div class="col-sm-8">                                    
+	                            <div class="form-group">
+	                                개업일자<input class="form-control valid" type="text" placeholder="개업일자를 입력해주세요.">
+	                            </div>
+	                        </div>	                    
 	                        <div class="col-sm-8">
 	                            <div class="form-group">
 	                                사업자등록번호<div class="d-flex">
@@ -87,6 +92,9 @@
 	                                    <input type="button" value="확인" class="genric-btn primary radius" style="float: right;">
 	                                    </div>
 	                            </div>
+	                            
+	                            
+	                            
 	                        </div>	                        	                        
 	                    </div>                            
 	                </form>

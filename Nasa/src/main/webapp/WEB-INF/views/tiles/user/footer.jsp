@@ -49,8 +49,11 @@
                         <div class="footer-tittle">
                             <h4>안경만</h4>
                             <ul>
-                                <li><button onclick="location.href='ckeditor.do'">시케이데에에에</button></li>
-                                <li><button onclick="location.href='chatting.do'">채팅</button><button onclick="location.href='fileupload.do'">파일</button></li>                                
+                                <li><button onclick="location.href='ckeditor.do'" style="background-color: black;">썸머</button></li>
+                                <li><button onclick="location.href='chatting.do'" style="background-color: black;">채팅</button>
+                                <button onclick="location.href='fileupload.do'" style="background-color: black;">파일</button>
+                                  <button onclick="location.href='bis.do'" style="background-color: black;">공공</button>
+                                </li>                                
                             </ul>                            
                         </div>
                     </div>
