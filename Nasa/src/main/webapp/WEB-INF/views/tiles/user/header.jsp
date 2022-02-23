@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<script src="resources/user/assets/js/vendor/jquery-1.12.4.min.js"></script> 
 </head>
 <body>
 	<!-- Header Start -->

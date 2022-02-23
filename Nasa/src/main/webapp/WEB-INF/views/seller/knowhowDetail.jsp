@@ -102,7 +102,7 @@
                               <a href="#">
                                  <h4>홍길동</h4>
                               </a>
-                              <button class="genric-btn success medium startbtn" style="float: right;">견적 요청</button>
+                              <button class="genric-btn primary small startbtn" id="stbtn" style="float: right;" data-toggle="modal" data-target="#chatModal">견적 요청</button>
                               <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
                                  our dominion twon Second divided from</p>
                            </div>
