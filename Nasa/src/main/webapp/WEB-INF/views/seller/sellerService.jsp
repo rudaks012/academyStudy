@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 .servnav {
 	list-style-type: none;
@@ -57,6 +58,7 @@
 	font-size: 8px;
 	border-bottom: 1px solid #999294;
 }
+
 .endp {
 	padding: 30px 0px 20px 0px;
 }
@@ -78,12 +80,37 @@
 .paytb td:nth-child(2) {
 	width: 200px;
 }
-.category-listing{
+
+.category-listing {
 	height: 350px !important;
+}
+
+.fables-single-item {
+	color: rgb(64, 64, 64);
+}
+
+.fables-single-item:hover {
+	background-color: tomato;
+}
+
+.nav-link.active {
+	background-color: tomato !important;
+	color: white !important;
+}
+
+input[type=date] {
+	border: 1px solid lightgray;
+	color: lightgray;
+	margin-right: 10px;
+}
+
+.paybtn {
+	margin-right: 10px;
 }
 </style>
 </head>
 <body>
+	<!-- 헤더 -->
 	<div
 		class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center">
 		<div class="container">
@@ -96,233 +123,270 @@
 			</div>
 		</div>
 	</div>
-	<div class="blog_area single-post-area section-padding">
+
+
+
+	<section class="blog_area section-padding">
 		<div class="container">
 			<div class="row">
 				<!-- Left content -->
-				<div class="col-xl-4 col-lg-4 col-md-6">
+				<div class="col-3">
 					<div class="blog_right_sidebar">
-						<div class="category-listing mb-50" style="height: 200px;">
-							<!-- single one -->
-							<div class="single-listing">
-								<!-- input -->
-								<aside class="single_sidebar_widget post_category_widget">
-									<h4 class="widget_title">서비스 선택</h4>
-									<ul class="list cat-list">
-										<li>
-											<a href="#" class="d-flex">
-												<p>진행중인 서비스</p>
-												<p>(37)</p>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="d-flex">
-												<p>종료된 서비스</p>
-												<p>(10)</p>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="d-flex">
-												<p>파워서비스</p>
-												<p>(03)</p>
-											</a>
-										</li>
-									</ul>
-								</aside>
-
-							</div>
-							<div>
-								<a href="serviceInsert.do" class="genric-btn danger">서비스 등록</a>
-								<a href="#" class="genric-btn danger" data-toggle="modal" data-target="#PowerModal">파워서비스 등록</a>
-								<a href="#" class="genric-btn danger" data-toggle="modal" data-target="#payModal">결제하기</a>
-							</div>
-						</div>
-						
+						<aside class="single_sidebar_widget post_category_widget">
+							<h4 class="widget_title">MYPAGE MENU</h4>
+							<ul class="list cat-list">
+								<li><a href="sellerService.do" class="d-flex">
+										<p>서비스관리</p>
+								</a></li>
+								<li><a href="sellerPromotion.do" class="d-flex">
+										<p>프로모션관리</p>
+								</a></li>
+								<li><a href="#" class="d-flex">
+										<p>일정관리</p>
+								</a></li>
+								<li><a href="sellerReview.do" class="d-flex">
+										<p>리뷰관리</p>
+								</a></li>
+								<li><a href="sellerPayment.do" class="d-flex">
+										<p>결제조회</p>
+								</a></li>
+								<li><a href="sellerSales.do" class="d-flex">
+										<p>매출확인</p>
+								</a></li>
+								<li><a href="sellerReport.do" class="d-flex">
+										<p>신고관리</p>
+								</a></li>
+								<li><a href="sellerKnowhow.do" class="d-flex">
+										<p>판매자 노하우</p>
+								</a></li>
+								<li><a href="" class="d-flex" data-toggle="modal"
+									data-target="#WithdrawalModal">
+										<p>회원탈퇴</p>
+								</a></li>
+							</ul>
+						</aside>
 					</div>
-					</div>
+				</div>
 				<!-- Right content -->
-				<div class="col-xl-8 col-lg-8 col-md-6">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="count mb-35">
-								<h3>진행중인 서비스</h3>
-							</div>
+				<div class="col-9">
+					<div class="blog_left_sidebar">
+						<div style="margin-top: 40px; border-bottom: 1px solid #eee;">
+							<p>
+								<a href="#" style="color: black;">마이페이지</a> > 서비스관리
+							</p>
 						</div>
-					</div>
-					<!-- listing Details Stat-->
-					<div class="listing-details-area">
-						<div class="container">
-							<div class="row">
-								<div class="col-lg-6 ">
-									<div class="single-listing mb-30">
-										<div class="list-img">
-											<img src="assets/img/gallery/list1.png" alt="">
-											<!-- <span>Open</span> -->
+						<article class="blog_item">
+							<div class="listing-area pt-120 pb-120">
+								<div class="container">
+									<nav class="fables-single-nav">
+										<div class="nav nav-tabs" id="nav-tab" role="tablist">
+											<a
+												class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
+												id="nav-desc-tab" data-toggle="tab" href="#nav-desc"
+												role="tab" aria-controls="nav-desc" aria-selected="true">진행중인
+												서비스</a> <a
+												class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+												id="nav-info-tab" data-toggle="tab" href="#nav-info"
+												role="tab" aria-controls="nav-info" aria-selected="false">종료된
+												서비스</a> <a
+												class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+												id="nav-review-tab" data-toggle="tab" href="#nav-review"
+												role="tab" aria-controls="nav-review" aria-selected="false">파워서비스</a>
 										</div>
-										<div class="list-caption">
+									</nav>
+									<br />
+									<br />
+									<div class="tab-content" id="nav-tabContent">
+										<div class="tab-pane fade show active" id="nav-desc"
+											role="tabpanel" aria-labelledby="nav-desc-tab">
+											<div class="row justify-content-center">
+												<div class="listing-details-area">
+													<div class="container">
+														<div class="row">
+															<div class="col-lg-6 ">
+																<div class="single-listing mb-30">
+																	<div class="list-img">
+																		<img src="assets/img/gallery/list1.png" alt="">
+																		<!-- <span>Open</span> -->
+																	</div>
+																	<div class="list-caption">
 
-											<h3>
-												<a href="serviceDetail.do">서비스명1</a>
-											</h3>
-											<p>서비스번호</p>
-											<p>서비스일자</p>
-											<div class="list-footer">
-												<ul>
-													<li style="margin-left: 130px;"><a href="#"
-														class="genric-btn danger-border circle">수정</a></li>
-													<li><a href="#"
-														class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6 ">
-									<div class="single-listing mb-30">
-										<div class="list-img">
-											<img src="assets/img/gallery/list2.png" alt="">
-											<!-- <span>Open</span> -->
-										</div>
-										<div class="list-caption">
+																		<h3>
+																			<a href="serviceDetail.do">서비스명1</a>
+																		</h3>
+																		<p>서비스번호</p>
+																		<p>서비스일자</p>
+																		<div class="list-footer">
+																			<ul>
+																				<li style="margin-left: 130px;"><a href="#"
+																					class="genric-btn danger-border circle">수정</a></li>
+																				<li><a href="#"
+																					class="genric-btn danger-border circle"
+																					data-toggle="modal" data-target="#endModal">종료</a></li>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-lg-6 ">
+																<div class="single-listing mb-30">
+																	<div class="list-img">
+																		<img src="assets/img/gallery/list2.png" alt="">
+																		<!-- <span>Open</span> -->
+																	</div>
+																	<div class="list-caption">
 
-											<h3>
-												<a href="listing_details.html">서비스명2</a>
-											</h3>
-											<p>서비스번호</p>
-											<p>서비스일자</p>
-											<div class="list-footer">
-												<ul>
-													<li style="margin-left: 130px;"><a href="#"
-														class="genric-btn danger-border circle">수정</a></li>
-													<li><a href="#"
-														class="genric-btn danger-border circle">종료</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6 ">
-									<div class="single-listing mb-30">
-										<div class="list-img">
-											<img src="assets/img/gallery/list3.png" alt="">
-											<!-- <span>Open</span> -->
-										</div>
-										<div class="list-caption">
+																		<h3>
+																			<a href="listing_details.html">서비스명2</a>
+																		</h3>
+																		<p>서비스번호</p>
+																		<p>서비스일자</p>
+																		<div class="list-footer">
+																			<ul>
+																				<li style="margin-left: 130px;"><a href="#"
+																					class="genric-btn danger-border circle">수정</a></li>
+																				<li><a href="#"
+																					class="genric-btn danger-border circle">종료</a></li>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-lg-6 ">
+																<div class="single-listing mb-30">
+																	<div class="list-img">
+																		<img src="assets/img/gallery/list3.png" alt="">
+																		<!-- <span>Open</span> -->
+																	</div>
+																	<div class="list-caption">
 
-											<h3>
-												<a href="listing_details.html">서비스명3</a>
-											</h3>
-											<p>서비스번호</p>
-											<p>서비스일자</p>
-											<div class="list-footer">
-												<ul>
-													<li style="margin-left: 130px;"><a href="#"
-														class="genric-btn danger-border circle">수정</a></li>
-													<li><a href="#"
-														class="genric-btn danger-border circle">종료</a></li>
-												</ul>
+																		<h3>
+																			<a href="listing_details.html">서비스명3</a>
+																		</h3>
+																		<p>서비스번호</p>
+																		<p>서비스일자</p>
+																		<div class="list-footer">
+																			<ul>
+																				<li style="margin-left: 130px;"><a href="#"
+																					class="genric-btn danger-border circle">수정</a></li>
+																				<li><a href="#"
+																					class="genric-btn danger-border circle">종료</a></li>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-lg-6 ">
+																<div class="single-listing mb-30">
+																	<div class="list-img">
+																		<img src="assets/img/gallery/list4.png" alt="">
+																		<!-- <span>Open</span> -->
+																	</div>
+																	<div class="list-caption">
+																		<span>Open</span>
+																		<h3>
+																			<a href="listing_details.html">Saintmartine</a>
+																		</h3>
+																		<p>700/D, Kings road, Green lane, 85/ London</p>
+																		<div class="list-footer">
+																			<ul>
+																				<li>+10 278 367 9823</li>
+																				<li>contact@midnight.com</li>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-lg-6 ">
+																<div class="single-listing mb-30">
+																	<div class="list-img">
+																		<img src="assets/img/gallery/list5.png" alt="">
+																		<!-- <span>Open</span> -->
+																	</div>
+																	<div class="list-caption">
+																		<span>Open</span>
+																		<h3>
+																			<a href="listing_details.html">Saintmartine</a>
+																		</h3>
+																		<p>700/D, Kings road, Green lane, 85/ London</p>
+																		<div class="list-footer">
+																			<ul>
+																				<li>+10 278 367 9823</li>
+																				<li>contact@midnight.com</li>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-lg-6 ">
+																<div class="single-listing mb-30">
+																	<div class="list-img">
+																		<img src="assets/img/gallery/list6.png" alt="">
+																		<!-- <span>Open</span> -->
+																	</div>
+																	<div class="list-caption">
+																		<span>Open</span>
+																		<h3>
+																			<a href="listing_details.html">Saintmartine</a>
+																		</h3>
+																		<p>700/D, Kings road, Green lane, 85/ London</p>
+																		<div class="list-footer">
+																			<ul>
+																				<li>+10 278 367 9823</li>
+																				<li>contact@midnight.com</li>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
+										</div>
+										<div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+											<br />
+											<br />
+											<div class="row justify-content-center">sdfasdfsd</div>
+										</div>
+										<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-info-tab">
+											<br />
+											<br />
+											<div class="row justify-content-center">3333</div>
+
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-6 ">
-									<div class="single-listing mb-30">
-										<div class="list-img">
-											<img src="assets/img/gallery/list4.png" alt="">
-											<!-- <span>Open</span> -->
-										</div>
-										<div class="list-caption">
-											<span>Open</span>
-											<h3>
-												<a href="listing_details.html">Saintmartine</a>
-											</h3>
-											<p>700/D, Kings road, Green lane, 85/ London</p>
-											<div class="list-footer">
-												<ul>
-													<li>+10 278 367 9823</li>
-													<li>contact@midnight.com</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6 ">
-									<div class="single-listing mb-30">
-										<div class="list-img">
-											<img src="assets/img/gallery/list5.png" alt="">
-											<!-- <span>Open</span> -->
-										</div>
-										<div class="list-caption">
-											<span>Open</span>
-											<h3>
-												<a href="listing_details.html">Saintmartine</a>
-											</h3>
-											<p>700/D, Kings road, Green lane, 85/ London</p>
-											<div class="list-footer">
-												<ul>
-													<li>+10 278 367 9823</li>
-													<li>contact@midnight.com</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6 ">
-									<div class="single-listing mb-30">
-										<div class="list-img">
-											<img src="assets/img/gallery/list6.png" alt="">
-											<!-- <span>Open</span> -->
-										</div>
-										<div class="list-caption">
-											<span>Open</span>
-											<h3>
-												<a href="listing_details.html">Saintmartine</a>
-											</h3>
-											<p>700/D, Kings road, Green lane, 85/ London</p>
-											<div class="list-footer">
-												<ul>
-													<li>+10 278 367 9823</li>
-													<li>contact@midnight.com</li>
-												</ul>
+							</div>
+
+							<div class="pagination-area pt-70 text-center">
+								<div class="container">
+									<div class="row">
+										<div class="col-xl-12">
+											<div class="single-wrap d-flex justify-content-center">
+												<nav aria-label="Page navigation example">
+													<ul class="pagination justify-content-start">
+														<li class="page-item active"><a class="page-link"
+															href="#">01</a></li>
+														<li class="page-item"><a class="page-link" href="#">02</a></li>
+														<li class="page-item"><a class="page-link" href="#">03</a></li>
+														<li class="page-item"><a class="page-link" href="#"><span
+																class="ti-angle-right"></span></a></li>
+													</ul>
+												</nav>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<!-- listing Details End -->
-					<!--Pagination Start  -->
-					<div class="pagination-area pt-70 text-center">
-						<div class="container">
-							<div class="row">
-								<div class="col-xl-12">
-									<div class="single-wrap d-flex justify-content-center">
-										<nav aria-label="Page navigation example">
-											<ul class="pagination justify-content-start">
-												<li class="page-item active"><a class="page-link"
-													href="#">01</a></li>
-												<li class="page-item"><a class="page-link" href="#">02</a></li>
-												<li class="page-item"><a class="page-link" href="#">03</a></li>
-												<li class="page-item"><a class="page-link" href="#"><span
-														class="ti-angle-right"></span></a></li>
-											</ul>
-										</nav>
-									</div>
-								</div>
-							</div>
-						</div>
+						</article>
 					</div>
 					<!--Pagination End  -->
 				</div>
 			</div>
 		</div>
-	</div>
-
-	
-
-
-
+	</section>
+	<!-- 모달 -->
 	<div class="modal fade" id="PowerModal" tabindex="-1" role="dialog"
 		aria-labelledby="PowerModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -341,8 +405,7 @@
 						있습니다. <br /> 저렴한 비용으로 상위 노출을 원하시는 분들에게 추천합니다.
 					</p>
 					<p class="powerp">
-						*희망시작일로부터 일주일간 제공됩니다. <br /> *최종 결제 후 환불 불가합니다.<br />
-						<br />
+						*희망시작일로부터 일주일간 제공됩니다. <br /> *최종 결제 후 환불 불가합니다.<br /> <br />
 					</p>
 					<table class="powertb">
 						<tr>
@@ -377,13 +440,15 @@
 		</div>
 	</div>
 
-	<div class="modal fade" id="endModal" tabindex="-1" role="dialog" aria-labelledby="endModalLabel"
-		aria-hidden="true">
+	<div class="modal fade" id="endModal" tabindex="-1" role="dialog"
+		aria-labelledby="endModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">서비스 종료</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<h5 class="modal-title" id="exampleModalLabel"
+						style="text-align: center;">서비스 종료</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -408,8 +473,9 @@
 
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="genric-btn primary  radius powerbtn" data-toggle="modal" data-dismiss="modal">확인</a>
-					<a href="#" class="genric-btn primary  radius powerbtn" data-dismiss="modal">취소</a>
+					<a href="#" class="genric-btn primary  radius powerbtn"
+						data-toggle="modal" data-dismiss="modal">확인</a> <a href="#"
+						class="genric-btn primary  radius powerbtn" data-dismiss="modal">취소</a>
 				</div>
 			</div>
 		</div>
@@ -417,21 +483,22 @@
 
 
 
-	<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="payModalLabel"
-		aria-hidden="true">
+	<div class="modal fade" id="payModal" tabindex="-1" role="dialog"
+		aria-labelledby="payModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document" style="max-width: 400px;">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">결제하기</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<h5 class="modal-title" id="exampleModalLabel"
+						style="text-align: center;">결제하기</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<div class="">
 
-						<img src="assets/img/comment/comment_1.png">
-						<span>홍길동</span>
+						<img src="assets/img/comment/comment_1.png"> <span>홍길동</span>
 					</div>
 					<div class="br">
 						<h3>웹개발1</h3>
@@ -440,20 +507,22 @@
 					<table class="paytb">
 						<tr>
 							<td>서비스 금액</td>
-							<td><input type="text" placeholder="상대방과 협의한 금액을 입력해주세요" style="width: 250px;"></td>
+							<td><input type="text" placeholder="상대방과 협의한 금액을 입력해주세요"
+								style="width: 250px;"></td>
 						</tr>
 						<tr>
 							<td>서비스 진행일</td>
-							<td><input type="radio" name="paydate" value="ndate" id="ndate" checked>정해진 날짜가 없어요 <br />
-								<input type="radio" name="paydate" value="ydate" id="ydate">협의한 날짜가 있어요
-								<input type="date" id="conference" style="display: none;">
-							</td>
+							<td><input type="radio" name="paydate" value="ndate"
+								id="ndate" checked>정해진 날짜가 없어요 <br /> <input
+								type="radio" name="paydate" value="ydate" id="ydate">협의한
+								날짜가 있어요 <input type="date" id="conference"
+								style="display: none;"></td>
 						</tr>
 						<tr>
 							<td>결제수단</td>
-							<td><input type="radio" name="paymethod" value="creditpay" checked>신용/체크카드
-								<input type="radio" name="paymethod" value="kakaopay">카카오페이?
-							</td>
+							<td><input type="radio" name="paymethod" value="creditpay"
+								checked>신용/체크카드 <input type="radio" name="paymethod"
+								value="kakaopay">카카오페이?</td>
 						</tr>
 						<tr>
 							<td>쿠폰</td>
@@ -477,51 +546,54 @@
 
 					</table>
 					<div class="br">
-						
-							<h6 style="display: inline;">최종 결제금액</h6>
-							<span style="font-weight: 200;">45000원</span>
+
+						<h6 style="display: inline;">최종 결제금액</h6>
+						<span style="font-weight: 200;">45000원</span>
 					</div>
 					<div class="br">
-						<span><input type="checkbox">개인정보수집 및 이용동의(필수)</span>
-						<a style="float: right;" data-toggle="modal" data-target="#useModal">보기</a>
+						<span><input type="checkbox">개인정보수집 및 이용동의(필수)</span> <a
+							style="float: right;" data-toggle="modal" data-target="#useModal">보기</a>
 					</div>
-					
+
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="genric-btn primary  radius powerbtn" data-toggle="modal"
-						data-dismiss="modal">결제</a> <a href="#" class="genric-btn primary radius powerbtn"
-						data-dismiss="modal">취소</a>
+					<a href="#" class="genric-btn primary  radius powerbtn"
+						data-toggle="modal" data-dismiss="modal">결제</a> <a href="#"
+						class="genric-btn primary radius powerbtn" data-dismiss="modal">취소</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-	<div class="modal fade" id="useModal" tabindex="-1" role="dialog" aria-labelledby="useModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog" role="document" style="max-width: 600px; margin:12.75rem auto">
+	<div class="modal fade" id="useModal" tabindex="-1" role="dialog"
+		aria-labelledby="useModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document"
+			style="max-width: 600px; margin: 12.75rem auto">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">이용약관</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<h5 class="modal-title" id="exampleModalLabel"
+						style="text-align: center;">이용약관</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<div>개인정보 수집 및 이용 동의(고객)</div>
 					<p>
-						<div>분류</div>
-						필수 정보
+					<div>분류</div>
+					필수 정보
 
-						<div>수집∙이용 동의 목적</div>
-						안전결제 서비스 제공 및 소비자 분쟁 해결, 환불 처리
+					<div>수집∙이용 동의 목적</div>
+					안전결제 서비스 제공 및 소비자 분쟁 해결, 환불 처리
 
-						<div>항목</div>
-						결제 카드 번호, 계좌 정보(은행명, 예금주명, 계좌번호)
+					<div>항목</div>
+					결제 카드 번호, 계좌 정보(은행명, 예금주명, 계좌번호)
 
-						<div>보유∙이용 기간</div>
-						개인정보 이용목적 달성 시까지 보존합니다. 단, 관계 법령의 규정에 따라 보존이 필요한 경우 해당 기간까지 보존 후 지체없이 파기합니다.
-						개인정보 제공에 동의하지 않을 수 있으며 동의하지 않을 경우 서비스 이용이 제한될 수 있습니다.
+					<div>보유∙이용 기간</div>
+					개인정보 이용목적 달성 시까지 보존합니다. 단, 관계 법령의 규정에 따라 보존이 필요한 경우 해당 기간까지 보존 후
+					지체없이 파기합니다. 개인정보 제공에 동의하지 않을 수 있으며 동의하지 않을 경우 서비스 이용이 제한될 수 있습니다.
 					</p>
 				</div>
 			</div>
@@ -537,11 +609,11 @@
 				$(this).addClass('active');
 				$(".nav-item > .active").css("color", "white");
 			});
-			
-			$("#ydate").click(function () {
+
+			$("#ydate").click(function() {
 				console.log($("#conference").attr("style", "display: block;"))
 			})
-			$("#ndate").click(function () {
+			$("#ndate").click(function() {
 				console.log($("#conference").attr("style", "display: none;"))
 			})
 		});
