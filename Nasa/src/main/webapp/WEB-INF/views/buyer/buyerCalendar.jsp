@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="col-3">
                 <div class="blog_right_sidebar">
                     <aside class="single_sidebar_widget post_category_widget">
-                        <h4 class="widget_title">MYPAGE MENU</h4>
+                        <h4 class="widget_title">MENU</h4>
                         <ul class="list cat-list">
                             <li>
                                 <a href="buyHistory.do" class="d-flex">
@@ -101,8 +101,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         </ul>
                     </aside>                            
                 </div>
-            </div>
-            <div class="col-9">                
+            </div>            
+            <div class="col-9">                               
                 <div class="blog_left_sidebar">
                     <article class="blog_item">
                         <div class="justify-content-center">
