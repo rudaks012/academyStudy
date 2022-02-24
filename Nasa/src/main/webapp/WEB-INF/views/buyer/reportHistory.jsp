@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -77,38 +78,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>2022.02.17</td>
-										<td>IT고수</td>
-										<td>욕설</td>
-										<td>zzzzz</td>
-										<td>블랙리스트</td>
-									</tr>
-									<tr>
-										<th scope="row">1</th>
-										<td>2022.02.17</td>
-										<td>IT고수</td>
-										<td>욕설</td>
-										<td>zzzzz</td>
-										<td>블랙리스트</td>
-									</tr>
-									<tr>
-										<th scope="row">1</th>
-										<td>2022.02.17</td>
-										<td>IT고수</td>
-										<td>욕설</td>
-										<td>zzzzz</td>
-										<td>블랙리스트</td>
-									</tr>
-									<tr>
-										<th scope="row">1</th>
-										<td>2022.02.17</td>
-										<td>IT고수</td>
-										<td>욕설</td>
-										<td>zzzzz</td>
-										<td>블랙리스트</td>
-									</tr>
+									<c:forEach items="${reportList }" var="report">
+										<tr>
+											<th scope="row">${report.re_code }</th>
+											<td>${report.re_date }</td>
+											<td>${report.re_res }</td>
+											<td>${report.re_type }</td>
+											<td>${report.re_subject }</td>
+											<td>${report.re_result }</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
