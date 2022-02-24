@@ -1,8 +1,9 @@
 package co.Nasa.prj.comm.VO;
 
-import lombok.Data;
 
 @Data
+
+
 public class SellerVO {
 	 String s_email; // 판매자 id
 	 String s_rank;
