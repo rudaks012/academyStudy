@@ -1,5 +1,8 @@
 package co.Nasa.prj.comm.VO;
 
+import lombok.Data;
+
+@Data
 public class FileInfoVO {
 	String file_code;
 	String file_num;

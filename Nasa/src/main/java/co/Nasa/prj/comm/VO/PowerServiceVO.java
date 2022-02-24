@@ -1,5 +1,8 @@
 package co.Nasa.prj.comm.VO;
 
+import lombok.Data;
+
+@Data
 public class PowerServiceVO {
 	String power_code;
 	String s_email;

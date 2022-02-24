@@ -1,5 +1,8 @@
 package co.Nasa.prj.comm.VO;
 
+import lombok.Data;
+
+@Data
 public class PromotionVO {
 	String procode; // promotion code
 	String s_email; // seller id/email

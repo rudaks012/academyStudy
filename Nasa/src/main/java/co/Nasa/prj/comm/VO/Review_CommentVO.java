@@ -1,5 +1,8 @@
 package co.Nasa.prj.comm.VO;
 
+import lombok.Data;
+
+@Data
 public class Review_CommentVO {
 	String rere_code;
 	String review_code;

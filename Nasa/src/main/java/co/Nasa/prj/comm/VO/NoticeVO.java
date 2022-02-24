@@ -1,10 +1,9 @@
 package co.Nasa.prj.comm.VO;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+
+@Data
 public class NoticeVO {
 	String no_code;
 	String no_id;

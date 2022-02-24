@@ -1,10 +1,10 @@
 package co.Nasa.prj.comm.VO;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class BuyerVO {
 	String b_email;
 	String b_rank;
@@ -22,4 +22,5 @@ public class BuyerVO {
 	String token;
 	String filed_code;
 	String buyer_coupon;
+	String b_name;
 }

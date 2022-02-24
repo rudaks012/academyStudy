@@ -1,5 +1,8 @@
 package co.Nasa.prj.comm.VO;
 
+import lombok.Data;
+
+@Data
 public class ServiceVO {
 	String ser_code;
 	String pro_code;
