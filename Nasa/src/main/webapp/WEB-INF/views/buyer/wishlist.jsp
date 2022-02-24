@@ -16,6 +16,9 @@
 </style>
 </head>
 <body>
+			<script src="resources/excel/html2canvas.js"></script>
+			<script src="resources/excel/jspdf.min.js"></script>
+			
 <!-- Hero Start-->
 <div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
 </div>

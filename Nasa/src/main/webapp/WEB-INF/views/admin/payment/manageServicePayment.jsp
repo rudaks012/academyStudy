@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-            
-            
+            <script src="resources/excel/html2canvas.js"></script>
+			<script src="resources/excel/jspdf.min.js"></script>
+         <div id="pdfDiv">
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
@@ -126,7 +127,7 @@
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between align-items-center" style="border-radius: 5px;">
                             결제내역조회
                             <div>
-                            	<button class="btn btn-outline-warning ">엑셀 다운로드</button>
+                            	<button class="btn btn-outline-warning " id="savePdfBtn" >PDF 다운로드</button>
                             </div>
                         </h5>
                 	    <div class="card">
@@ -340,7 +341,7 @@
                 
                 
               
-             
+             </div>
              
              
              
@@ -356,7 +357,32 @@
                     
                 }
                 bigCategory.addEventListener("change",openSmallCategory);
+
+
+                var doc = new jsPDF();
+                var specialElementHandlers = {
+                    '#editor': function(element, renderer) {
+                        return true;
+                    }
+                }
+                 
+                $('#savePdfBtn').click(function() {
+                    html2canvas($("#pdfDiv"), {
+                        onrendered : function(canvas) {
+                            // 한글깨짐현상때문에 jpeg->jspdf 전환
+                            var imgData = canvas.toDataURL('image/jpeg');
+                            var pageWidth = 210;
+                            var pageHeight = pageWidth * 1.414;
+                            var imgWidth = pageWidth - 20;
+                            var imgHeight = $('#pdfDiv').height() * imgWidth / $('#pdfDiv').width();
+                            var doc = new jsPDF('p','mm',[pageHeight, pageWidth]);
+                            doc.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+                            doc.save('화면.pdf');
+                        }
+                    });
+                });
             </script>
+            
 		
 			
 
