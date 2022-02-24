@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-     <script src="resources/admin/assets/libs/fullcalendar/main.css"></script>
-    <script>
+  <link href="resources/admin/assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
+  
+    <!-- <script>
 
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
@@ -86,7 +87,7 @@
     calendar.render();
   });
 
-</script>
+</script> -->
 <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
@@ -163,7 +164,6 @@
                     </div>
                 </div>
             </div>
-            
-   <script src="resources/admin/assets/libs/fullcalendar/main.js"></script>
-    <script src="resources/admin/dist/js/pages/calendar/cal-init.js"></script>
-	<script src="resources/admin/assets/libs/moment/min/moment.min.js"></script>
+        
+   
+  	
