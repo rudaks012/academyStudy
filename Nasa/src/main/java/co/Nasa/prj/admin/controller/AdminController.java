@@ -45,4 +45,9 @@ public class AdminController {
 		System.out.println("/fileupload.do");
 		return "fileupload";
 	}
+	@RequestMapping("/bis.do")
+	public String go_bis() {
+		System.out.println("/bis.do");
+		return "bis";
+	}
 }
