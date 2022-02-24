@@ -10,16 +10,7 @@
 </head>
 
 <!-- Hero Start-->
-<div class="hero-area2 slider-height2 hero-overly2 d-flex align-items-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-xl-12">
-				<div class="hero-cap text-center pt-50">
-					<h2>구매내역</h2>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
 </div>
 <!--Hero End -->
 <!-- buyHistory main start  -->
@@ -72,6 +63,9 @@
 			<div class="col-9">				
 				<div class="blog_left_sidebar">					
 					<div class="blog_details">
+					<a class="d-inline-block">
+                     <h2>구매내역</h2>
+                  </a>
 						<div class="blog-card">
 							<div class="meta">
 								<div class="photo" style="background-image: url(resources/user/assets/img/test/sun.png)">
