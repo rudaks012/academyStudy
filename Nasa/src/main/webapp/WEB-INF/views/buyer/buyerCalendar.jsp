@@ -2,56 +2,52 @@
     pageEncoding="UTF-8"%>
 <link href='resources/user/fullcalendar-5.10.1/lib/main.css' rel='stylesheet' />
 <style>
-	#calendar {
-		width: 800px;
-		height: 500px;
-	}
+    #calendar {
+        width: 800px;
+        height: 500px;
+    }
+
     .servicetable {
         width: 800px;
     }
+
     .imgtd {
         width: 200px;
         height: 200px;
     }
+
     .thtext {
         top: 10px;
         font-size: 20px;
     }
+
     .tdtext {
         bottom: 10px;
     }
 </style>
 <script src='resources/user/fullcalendar-5.10.1/lib/main.js'></script>
-<script> // 수정할 것...
-document.addEventListener('DOMContentLoaded', function () {
-	let xhtp = new XMLHttpRequest();
-	xhtp.open('get', 'CalendarList.do');
-	xhtp.send();
-	xhtp.onload = function() {
-		let dbData = JSON.parse(xhtp.responseText);
-		var calendarEl = document.getElementById('calendar');
+<script>
+    // 수정할 것...
+    document.addEventListener('DOMContentLoaded', function () {
+        let xhtp = new XMLHttpRequest();
+        xhtp.open('get', 'CalendarList.do');
+        xhtp.send();
+        xhtp.onload = function () {
+            let dbData = JSON.parse(xhtp.responseText);
+            var calendarEl = document.getElementById('calendar');
 
-		var calendar = new FullCalendar.Calendar(calendarEl, {
-			initialView: 'dayGridMonth',
-			dayMaxEvents: true, // allow "more" link when too many events
-			events: dbData
-	});
-		calendar.render();
-	}	
-});
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                dayMaxEvents: true, // allow "more" link when too many events
+                events: dbData
+            });
+            calendar.render();
+        }
+    });
 </script>
 
 <!-- Hero Start-->
-<div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="hero-cap text-center pt-50">
-                    <h2>일정관리</h2>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
 </div>
 <!--Hero End -->
 <!--================Blog Area =================-->
@@ -99,14 +95,18 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </a>
                             </li>
                         </ul>
-                    </aside>                            
+                    </aside>
                 </div>
-            </div>            
-            <div class="col-9">                               
+            </div>
+            <div class="col-9">
                 <div class="blog_left_sidebar">
                     <article class="blog_item">
                         <div class="justify-content-center">
                             <div class="blog_details">
+                                <a class="d-inline-block">
+                                    <h2>일정관리</h2>
+                                </a>
+                                <br>
                                 <!-- 달력 자리 -->
                                 <div id='calendar'></div>
                                 <br>
@@ -116,31 +116,33 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <table class="servicetable">
                                     <tbody>
                                         <tr class="thtext position-relative">
-                                            <th rowspan="4" class="imgtd"><img src="resources/user/assets/img/search-default-profile.jpg" style="height: 150px; width: 150px;"></td>
+                                            <th rowspan="4" class="imgtd"><img
+                                                    src="resources/user/assets/img/search-default-profile.jpg"
+                                                    style="height: 150px; width: 150px;"></td>
                                             <th>서비스 명</th>
-                                            <th colspan="2">판매자명</th>                                                
+                                            <th colspan="2">판매자명</th>
                                         </tr>
                                         <tr class="tdtext position-relative">
                                             <td>웹개발해드립니다</td>
-                                            <td colspan="2">IT고수</td>                                                
+                                            <td colspan="2">IT고수</td>
                                         </tr>
                                         <tr class="thtext position-relative">
                                             <th>진행 상황</th>
                                             <th>거래 기간</th>
-                                            <th>거래 금액</th>                                            
+                                            <th>거래 금액</th>
                                         </tr>
                                         <tr class="tdtext position-relative">
                                             <td>진행 중</td>
                                             <td>2022-01-14~2022-01-15</td>
                                             <td>10,000,000원</td>
-                                        </tr>                                        
+                                        </tr>
                                     </tbody>
                                 </table>
-                            </div>                                                       
-                        </div>                        
+                            </div>
+                        </div>
                     </article>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </section>

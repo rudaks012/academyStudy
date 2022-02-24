@@ -17,17 +17,8 @@
 </head>
 <body>
 <!-- Hero Start-->
-   <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
-       <div class="container">
-           <div class="row">
-               <div class="col-xl-12">
-                   <div class="hero-cap text-center pt-50">
-                       <h2>위시리스트</h2>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>
+<div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
+</div>
 <!--Hero End -->
 <section class="blog_area section-padding">
    <div class="container">
@@ -81,7 +72,7 @@
             <div class="blog_left_sidebar">
                <div class="blog_details">
                   <a class="d-inline-block">
-                     <h2>나의 위시리스트 | n건</h2>
+                     <h2>위시리스트</h2>
                   </a>
                   <section class="blog_area single-post-area section-padding" style="padding-top:0 !important;">         
                      <div class="blog-author" style="margin: 0 auto; margin-top: 20px;">

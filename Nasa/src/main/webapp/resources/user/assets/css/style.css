@@ -2991,8 +2991,16 @@ hr {
     background-image: url(../img/hero/hero2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 500px
+    min-height: 350px
 }
+
+.hero-area2short {
+	background-image: url(../img/hero/hero2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100px
+}
+
 
 @media (max-width: 575px) {
     .hero-area2 {
@@ -3080,14 +3088,14 @@ hr {
 .popular-location .single-location .location-details .location-btn {
     padding: 10px 20px;
     background: #fff;
-    color: #ff3d1c;
+    color: #1f2b7b;
     border-radius: 30px;
     opacity: 0;
     visibility: hidden
 }
 
 .popular-location .single-location .location-details .location-btn:hover {
-    background: #eb566c;
+    background: #7d64aa;
     color: #fff
 }
 
@@ -3213,7 +3221,6 @@ hr {
     color: #1c1930;
     font-size: 36px;
     font-weight: 600;
-    margin-bottom: 39px
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
