@@ -368,17 +368,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 </head>
 <body>
 	<!-- Hero Start-->
-	<div
-		class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
-		<div class="container">
-			<div class="row">
-				<div class="col-xl-12">
-					<div class="hero-cap text-center pt-50">
-						<h2>마이 페이지</h2>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
 	</div>
 	<!--Hero End -->
 	<section class="mypage-section justify-content-center">

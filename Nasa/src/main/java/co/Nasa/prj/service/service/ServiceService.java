@@ -1,5 +1,7 @@
 package co.Nasa.prj.service.service;
 
-public interface ServiceService {
+import co.Nasa.prj.comm.VO.ServiceVO;
 
+public interface ServiceService {
+	int serviceInsert(ServiceVO vo);
 }

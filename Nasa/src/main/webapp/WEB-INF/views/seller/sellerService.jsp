@@ -183,9 +183,9 @@ input[type=date] {
 								<hr class="hr"/>
 								<a href="serviceInsert.do" class="genric-btn danger">서비스 등록</a>
 								<a href="" class="genric-btn danger" data-toggle="modal"
-									data-target="#PowerModalLabel">파워서비스 등록</a>
+									data-target="#PowerModal">파워서비스 등록</a>
 								<a href="" class="genric-btn danger" data-toggle="modal"
-									data-target="#paydrawalModal">결제 등록</a>
+									data-target="#payModal">결제 등록</a>
 								
 								<div class="blog_details">
 										<div class="container">
