@@ -38,13 +38,13 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="home.do">Home</a></li>
+                                            <li><a href="searchResult.do">서비스 찾기</a></li>
                                             <li><a href="goSellerMypage.do">판매자마페</a></li>
                                             <li><a href="goBuyerMypage.do">구매자마페</a></li>
                                             <li><a href="go_admin.do">관리자</a></li>
+                                            <li><a href="buyerJoin.do">구매자 회원가입</a></li>
+                                            <li><a href="sellerJoin.do">판매자 회원가입</a></li>
                                             <li class="login"><a href="Login.do"> <i class="ti-user"></i> 로그인</a></li>
-                                            <li class="login"><a href="buyerJoin.do">구매자 회원가입</a></li>
-                                            <li class="login"><a href="sellerJoin.do">판매자 회원가입</a></li>
                                         </ul>
                                     </nav>
                                 </div>

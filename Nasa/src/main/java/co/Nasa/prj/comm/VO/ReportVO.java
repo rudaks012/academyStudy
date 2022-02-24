@@ -1,5 +1,8 @@
 package co.Nasa.prj.comm.VO;
 
+import lombok.Data;
+
+@Data
 public class ReportVO {
 	String re_code; // report code
 	String re_title;

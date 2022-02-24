@@ -1,5 +1,8 @@
 package co.Nasa.prj.comm.VO;
 
+import lombok.Data;
+
+@Data
 public class FileAttVO {
 	String filecode;
 	String create_dt;

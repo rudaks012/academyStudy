@@ -46,14 +46,25 @@
         </dependency>
         <!-- // 채팅 위한 socket -->
 
+<dependency>
+   <groupId>org.apache.httpcomponents</groupId>
+   <artifactId>httpclient</artifactId>
+   <version>4.5.2</version>
+   <scope>runtime</scope>
+ </dependency>
+ 
+ 
+ 
 		<!-- DataBase -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-jdbc</artifactId>
-    <version>5.3.15</version>
+    <version>3.0.5.RELEASE</version>
 </dependency>
+
 
 
 

@@ -43,7 +43,7 @@
     </div>
     <script>
     	function checkagree() {
-    		$("#primary-checkbox").attr("checked",true);    		
+    		$("#primary-checkbox").attr("checked",true);
     	}
         function main() {
             alert("회원가입을 중단하고 메인으로 돌아갑니다.");

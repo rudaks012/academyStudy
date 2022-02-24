@@ -1,5 +1,7 @@
 package co.Nasa.prj.buyer.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,12 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.Nasa.prj.buyer.service.BuyerMapper;
+import co.Nasa.prj.category.service.CategoryMapper;
+import co.Nasa.prj.comm.VO.CategoryVO;
+import co.Nasa.prj.sub_category.service.Sub_CategoryMapper;
 
 @Controller
 public class BuyerController {
 	@Autowired BuyerMapper buyerDao;
+	@Autowired CategoryMapper categoryDao;
+	@Autowired Sub_CategoryMapper sub_categoryDao;
 	
 	// 구매자 마이페이지로 이동
 	@RequestMapping("/goBuyerMypage.do")
@@ -56,7 +64,11 @@ public class BuyerController {
 	
 	// 구매자 정보 수정 페이지로 이동
 	@RequestMapping("/buyerUpdate.do")
-	public String buyerUpdate() {
+	public String buyerUpdate(Model model) {
+		List<CategoryVO> categoryList = categoryDao.selectCategoryList();
+		System.out.println(categoryList);
+		model.addAttribute("categoryList", categoryList);
+		
 		return "buyer/buyerUpdate";
 	}
 	

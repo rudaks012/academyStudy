@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     window.onload = function() {
-        document.getElementById("searchAdderess").addEventListener("click", function() {
+	        document.getElementById("searchAdderess").addEventListener("click", function() {
             new daum.Postcode({
                 oncomplete: function(data) {
                     document.getElementById("zipcode").value = data.zonecode;
@@ -22,17 +23,8 @@
 </head>
 <body>
 <!-- Hero Start-->
-   <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
-       <div class="container">
-           <div class="row">
-               <div class="col-xl-12">
-                   <div class="hero-cap text-center pt-50">
-                       <h2>정보 수정</h2>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>
+<div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
+</div>
 <!--Hero End -->
 
 <!-- buyerUpdate Start -->
@@ -61,9 +53,17 @@
 						</div>
 					</div>
 				
-					<<div class="single-element-widget mt-30">
+					<div class="single-element-widget mt-30">
                         <p>관심분야</p>
+                        <p style="font-size:15px;">현재 관심분야 : 앱-앱생성</p>
                         <div class="d-flex">
+                        	<div class="categorysel mr-4" id="categorysel">
+                                <select>
+                                   <c:forEach items="${categoryList }" var="category">
+                                    	<option value="${category.cat_no }">${category.cat_name }</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
 
                             <div class="categoryselect mr-4" id="categoryselect">
                                 <select onchange="chooseCategory(this)">

@@ -20,6 +20,7 @@
                   
                 </div>
             </div>
+            ${sellerList }
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -120,9 +121,10 @@
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
-		                         		<th>멤버코드</th>
 		                         		<th>아이디</th>
-		                         		<th>분류</th>       		
+		                         		<th>이름</th>
+		                         		<th>닉네임</th>       		
+		                         		<th>구분</th>
 		                         		<th>등급</th>
 		                         	</tr>
 		                         </thead>

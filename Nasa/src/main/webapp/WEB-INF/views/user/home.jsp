@@ -4,6 +4,17 @@
 <html>
 <head>
    <title>Home</title>
+   <style>
+       .cardimg {
+           height: 80px;
+       }
+       .cardmain {
+           border: none;           
+       }
+       .cardcate {
+           text-align: center;
+       }
+   </style>
 </head>
 <body>
 <!-- Hero Start-->
@@ -84,30 +95,59 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="row d-flex justify-content-between mx-5">
-                    <div class="card">
+                <div class="row d-flex justify-content-between mx-5" style="margin-top: 30px;">
+                    <div class="cardmain" >
                         <div class="card-body">
-                            게임개발
+                        	<div>
+                                <img src="resources/user/assets/img/maincate/app.png" alt="" class="cardimg"> 
+                            </div>
+                            <br>                      
+                            <div class="cardcate cat-cap"><p>앱 개발</p></div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="cardmain">
                         <div class="card-body">
-                            게임개발
+                        	<div>
+                                <img src="resources/user/assets/img/maincate/web.png" alt="" class="cardimg"> 
+                            </div>
+                            <br>
+                            <div class="cardcate cat-cap"><p>웹 개발</p></div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="cardmain">
                         <div class="card-body">
-                            게임개발
+                        	<div>
+                                <img src="resources/user/assets/img/maincate/game.png" alt="" class="cardimg"> 
+                            </div>
+                            <br>
+                            <div class="cardcate cat-cap"><p>게임 개발</p></div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="cardmain">
                         <div class="card-body">
-                            게임개발
+                        	<div>
+                                <img src="resources/user/assets/img/maincate/secu.png" alt="" class="cardimg"> 
+                            </div>
+                            <br>
+                            <div class="cardcate cat-cap"><p>보안</p></div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="cardmain">
                         <div class="card-body">
-                            게임개발
+                        	<div>
+                                <img src="resources/user/assets/img/maincate/support.png" alt="" class="cardimg"> 
+                            </div>
+                            <br>
+                            <div class="cardcate cat-cap"><p>기술 지원</p></div>
+                        </div>
+                    </div>
+                    <div class="cardmain">
+                        <div class="card-body">
+                        	<div>
+                                <img src="resources/user/assets/img/maincate/project.png" alt="" class="cardimg"> 
+                            </div>
+                            <br>
+                            <div class="cardcate cat-cap"><p>기획</p></div>
                         </div>
                     </div>
                 </div>

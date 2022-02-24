@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.Nasa.prj.comm.VO.AdminVO;
+import co.Nasa.prj.comm.VO.SellerVO;
 import co.Nasa.prj.login.service.LoginMapper;
 import co.Nasa.prj.login.service.LoginService;
 import co.Nasa.prj.login.service.LoginVO;
@@ -37,6 +39,18 @@ public class LoginServiceImpl implements LoginService {
 	public LoginVO readMemberInfo(String b_email) {
 		// TODO Auto-generated method stub
 		return map.readMemberInfo(b_email);
+	}
+
+	@Override
+	public SellerVO selectseller(SellerVO vo) {
+		// TODO Auto-generated method stub
+		return map.selectseller(vo);
+	}
+
+	@Override
+	public AdminVO selectadmin(AdminVO vo) {
+		// TODO Auto-generated method stub
+		return map.selectadmin(vo);
 	}
 
 

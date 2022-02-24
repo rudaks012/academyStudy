@@ -12,16 +12,7 @@
 
 <body>
 <!-- Hero Start-->
-<div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
-   <div class="container">
-      <div class="row">
-         <div class="col-xl-12">
-            <div class="hero-cap text-center pt-50">
-               <h2>보유쿠폰</h2>
-            </div>
-         </div>
-      </div>
-   </div>
+<div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
 </div>
 <!--Hero End -->
 <!-- buyerCoupons Body Start -->
@@ -75,6 +66,9 @@
             </div> -->
             <div class="blog_left_sidebar">
                <div class="blog_details">
+               <a class="d-inline-block">
+                     <h2>보유쿠폰</h2>
+                  </a>
                   <!-- GradeCard Start -->
                   <div class="blog-card">
                      <div class="meta">

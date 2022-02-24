@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             
             
             <div class="page-breadcrumb">
@@ -20,6 +21,8 @@
                   
                 </div>
             </div>
+            
+            ${buyerList }
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -92,7 +95,7 @@
                </div>
                 
                 <div class="row my-5">
-                	<div class="col-5">
+                	<div class="col-7">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             회원조회
                         </h5>
@@ -102,19 +105,40 @@
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
-		                         		<th>멤버코드</th>
 		                         		<th>아이디</th>
+		                         		<th>닉네임</th>
 		                         		<th>이름</th>       		
+		                         		<th>연락처</th>
+		                         		<th>주소</th>
 		                         		<th>등급</th>
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
+		                          	<c:forEach var="buyer" items="${buyerList }">
 		                             <tr>
-		                                <td>2222</td>
-		                                <td>2222</td>
-		                                <td>3333</td>
-		                                <td>지구</td>
+		                                <td>${buyer.b_email }</td>
+		                                <td>${buyer.b_nickname }</td>
+		                                <td>${buyer.b_name }</td>
+		                                <td>${buyer.b_tel }</td>
+		                                <td>${buyer.b_address }</td>
+		                                <td>
+		                                	<c:choose>
+		                                		<c:when test="${buyer.b_rank eq '1' }">
+		                                			별
+		                                		</c:when>
+		                                		<c:when test="${buyer.b_rank eq '2' }">
+		                                			달
+		                                		</c:when>
+		                                		<c:when test="${buyer.b_rank eq '3' }">
+		                                			지구
+		                                		</c:when>
+		                                		<c:when test="${buyer.b_rank eq '4' }">
+		                                			해
+		                                		</c:when>
+		                                	</c:choose>
+		                                </td>
 		                             </tr>
+		                             </c:forEach>
                                      <tr>
 		                                <td></td>
 		                                <td></td>
@@ -196,7 +220,7 @@
 		                   </div>
                			</div>
                 	</div>
-                	<div class="col-7">
+                	<div class="col-5">
                            <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             상세조회
                         </h5>
@@ -208,22 +232,22 @@
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
                                         <tr>
-                                            <th class="table-primary align-middle">멤버코드</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" disabled ></td>
-                                            <th class="table-primary align-middle">아이디</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" disabled></td>
+                                            <th width="85px" class="table-primary align-middle">회원<br>코드</th>
+                                            <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" readonly ></td>
+                                            <th width="85px" class="table-primary align-middle">아이디</th>
+                                            <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" readonly></td>
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">이름</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="123" type="text" disabled></td>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="123" type="text" readonly></td>
                                             <th class="table-primary align-middle">닉네임</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="1234" type="text" disabled></td>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="1234" type="text" readonly></td>
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">연락처</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="1234-1234" type="text" disabled></td>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="1234-1234" type="text" readonly></td>
                                             <th class="table-primary align-middle">구분</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="블랙리스트" type="text" disabled></td>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="블랙리스트" type="text" readonly></td>
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">등급</th>
@@ -250,21 +274,22 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="table-primary align-middle">상태</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="블랙리스트" type="text" disabled></td>
-                                            <th class="table-primary align-middle">신고횟수</th>
+                                            <th class="table-primary align-middle">신고<br>횟수</th>
                                             <td>
                                                 <div class="col-4 d-flex align-items-center">
-                                                <input class="form-control custom-shadow mr-2" id="" name="" value="10" type="text" disabled>회
+                                                <input class="form-control custom-shadow mr-2" id="" name="" value="10" type="text" readonly>회
                                                 </div>
-                                            </td>        
+                                            </td>    
+                                            <th class="table-primary align-middle">상태</th>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="블랙리스트" type="text" readonly></td>
+                                                
                                         </tr>
                                         <tr>                                     
                                             <th class="table-primary align-middle">주소</th>
                                             <td colspan="3">                                              
-                                                <input class="form-control custom-shadow mb-1" style="width: 20%;" id="" name=""  value="55555" type="text" disabled>
-                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" disabled>                 
-                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" disabled>     
+                                                <input class="form-control custom-shadow mb-1" style="width: 20%;" id="" name=""  value="55555" type="text" readonly>
+                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" readonly>                 
+                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" readonly>     
                                             </td>
                                         </tr>
                                     </tbody>
