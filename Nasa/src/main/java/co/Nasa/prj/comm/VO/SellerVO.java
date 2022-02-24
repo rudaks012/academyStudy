@@ -1,5 +1,10 @@
 package co.Nasa.prj.comm.VO;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class SellerVO {
 	 String s_email; // 판매자 id
 	 String s_rank;
