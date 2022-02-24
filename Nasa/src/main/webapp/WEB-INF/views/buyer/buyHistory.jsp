@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -71,23 +72,47 @@
 								<div class="photo" style="background-image: url(resources/user/assets/img/test/sun.png)">
 								</div>
 								<ul class="details">
-									<li class="author"><a href="#">태양 등급</a></li>
-									<li class="date">10% 할인 혜택</li>
-									<li class="tags">
-										<ul>
-											<li><a href="#">등급에 대해서 궁금하다면?</a></li>
-										</ul>
-									</li>
+									<c:choose>
+										<c:when test="${buyerinfo.b_rank  eq '1'}">
+											<li>별 등급</li>
+										</c:when>
+										<c:when test="${buyerinfo.b_rank  eq '2'}">
+											<li>달 등급</li>
+										</c:when>
+										<c:when test="${buyerinfo.b_rank  eq '3'}">
+											<li>태양 등급</li>
+										</c:when>
+										<c:when test="${buyerinfo.b_rank  eq '4'}">
+											<li>지구 등급</li>
+										</c:when>
+									</c:choose>
+									<li>10% 할인 혜택</li>
+									<li><a href="#">등급에 대해서 궁금하다면?</a></li>
 								</ul>
 							</div>
 							<div class="description">
-								<h1>태양 등급</h1>
-								<h2>SUN GRADE</h2>
+								<c:choose>
+									<c:when test="${buyerinfo.b_rank  eq '1'}">
+										<h1>별 등급</h1>
+										<h2>STAR GRADE</h2>
+									</c:when>
+									<c:when test="${buyerinfo.b_rank  eq '2'}">
+										<h1>달 등급</h1>
+										<h2>MOON GRADE</h2>
+									</c:when>
+									<c:when test="${buyerinfo.b_rank  eq '3'}">
+										<h1>태양 등급</h1>
+										<h2>SUN GRADE</h2>
+									</c:when>
+									<c:when test="${buyerinfo.b_rank  eq '4'}">
+										<h1>지구 등급</h1>
+										<h2>EARTH GRADE</h2>
+									</c:when>
+								</c:choose>
+								<!-- <h1>태양 등급</h1>
+								<h2>SUN GRADE</h2> -->
 								<p>
 									<br>현재 누적 금액 10,000,000원<br>다음 등급 까지 2,000,000원
-								</p>
-								<p class="read-more">
-									<a href="#">Read More</a>
 								</p>
 							</div>
 						</div>
@@ -112,30 +137,42 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<c:forEach items="${paymentList }" var="payment">
+										<tr>
+											<td>${payment.pay_date }</td>
+											<td>payment테이블에 서비스명 추가?</td>
+											<td>${payment.s_email }</td>
+											<td>
+												<c:choose>
+													<c:when test="${empty payment.pay_enddate }">
+														${payment.pay_date } ~
+													</c:when>
+													<c:otherwise>
+														${payment.pay_date } ~ ${payment.pay_enddate }
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>${payment.pay_price }</td>
+											<td>
+												<c:choose>
+													<c:when test="${empty payment.pay_enddate }">
+														거래중
+													</c:when>
+													<c:otherwise>
+														거래완료
+													</c:otherwise>
+												</c:choose>
+											</td>
+										</tr>
+									</c:forEach>
+									<!-- <tr>
 										<td>2022.02.18</td>
 										<td>웹개발 해드립니다.</td>
 										<td>IT고수</td>
 										<td>2022.01.01~2022.02.18</td>
 										<td>1,000,000</td>
 										<td>결제완료</td>
-									</tr>
-									<tr>
-										<td>2022.02.18</td>
-										<td>웹개발 해드립니다.</td>
-										<td>IT고수</td>
-										<td>2022.01.01~2022.02.18</td>
-										<td>1,000,000</td>
-										<td>결제완료</td>
-									</tr>
-									<tr>
-										<td>2022.02.18</td>
-										<td>웹개발 해드립니다.</td>
-										<td>IT고수</td>
-										<td>2022.01.01~2022.02.18</td>
-										<td>1,000,000</td>
-										<td>결제완료</td>
-									</tr>
+									</tr> -->
 								</tbody>
 							</table>
 						</div>
