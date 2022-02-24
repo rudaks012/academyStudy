@@ -80,7 +80,7 @@
 		   }; 
 
 	$.ajax({
-		  url: "http://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=NFwkbzbbf2uEp1cOHXKWMIFV54Jy8gdGhbkTPMWP7BoQh715sxmepPFKRpsi70HzZ9BHOLvd23f%2BRzj781IjDw%3D%3D&returnType=XML",  // serviceKey 값을 xxxxxx에 입력
+		  url: "http://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=NFwkbzbbf2uEp1cOHXKWMIFV54Jy8gdGhbkTPMWP7BoQh715sxmepPFKRpsi70HzZ9BHOLvd23f%2BRzj781IjDw%3D%3D&returnType=JSON",  // serviceKey 값을 xxxxxx에 입력
 		  type: "POST",
 		  data: JSON.stringify(data), // json 을 string으로 변환하여 전송
 		  dataType: "JSON",
@@ -88,7 +88,7 @@
 		  accept: "application/json",
 		  success: function(result) {
 		      console.log(result);
-        const test = result.querySelectorAll("ValidMSG");
+        const test = data.valid_msg;
         console.log(test);
 		  },
 		  error: function(result) {
