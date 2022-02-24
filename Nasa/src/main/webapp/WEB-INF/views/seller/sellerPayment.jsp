@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>결제 조회</title>
+<link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+<script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
 <style>
 .fables-single-item {
 	color: rgb(64, 64, 64);
@@ -32,6 +34,8 @@ input[type=date] {
  	background-color : #d5c9ea !important;
    	margin: 10px !important;
 }
+
+
 </style>
 </head>
 <body>
@@ -163,6 +167,8 @@ input[type=date] {
 															</tr>
 														</tbody>
 													</table>
+													<div id="grid"></div>
+													
 												</div>
 												<div class="tab-pane fade" id="nav-info" role="tabpanel"
 													aria-labelledby="nav-info-tab">
@@ -238,7 +244,85 @@ input[type=date] {
 			</div>
 		</div>
 	</section>
+<script>
+var Grid = tui.Grid;
 
+var instance = new Grid({
+  el: document.getElementById('grid'), // Container element
+  columns: [
+    {
+      header: '번호',
+      name: 'name'
+    },
+    {
+      header: '거래날짜',
+      name: 'artist'
+    },
+    {
+      header: '서비스',
+      name: 'release'
+    },
+    {
+      header: '구매자',
+      name: 'genre1'
+    },
+    {
+      header: '거래금액',
+      name: 'genre2'
+    },
+    {
+        header: '할인',
+        name: 'genre3'
+      }
+    ,
+    {
+        header: '수수료',
+        name: 'genre4'
+      },
+    {
+        header: '수수료감면',
+        name: 'genre5'
+      },
+      {
+          header: '최종금액',
+          name: 'genre6'
+        },
+        {
+            header: '상태',
+            name: 'genre7'
+          },
+          {
+              header: '입금일',
+              name: 'genre8'
+            }
+  ],
+  data: [
+    {
+      name: 'Beautiful Lies',
+      artist: 'Birdy',
+      release: '2016.03.26',
+      genre: 'Pop'
+    },
+    {
+        name: 'Beautiful Lies',
+        artist: 'Birdy',
+        release: '2016.03.26',
+        genre: 'Pop'
+      }
+  ]
+});
+
+Grid.applyTheme('striped', {
+	  cell: {
+	    header: {
+	      background: '#eef'
+	    },
+	    evenRow: {
+	      background: '#fee'
+	    }
+	  }
+	});
+</script>
 
 </body>
 </html>
