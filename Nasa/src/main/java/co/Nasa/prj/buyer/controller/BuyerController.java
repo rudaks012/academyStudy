@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.Nasa.prj.buyer.service.BuyerMapper;
 import co.Nasa.prj.category.service.CategoryMapper;
 import co.Nasa.prj.comm.VO.CategoryVO;
+import co.Nasa.prj.comm.VO.ReportVO;
+import co.Nasa.prj.report.service.ReportMapper;
 import co.Nasa.prj.sub_category.service.Sub_CategoryMapper;
 
 @Controller
@@ -22,6 +24,7 @@ public class BuyerController {
 	@Autowired BuyerMapper buyerDao;
 	@Autowired CategoryMapper categoryDao;
 	@Autowired Sub_CategoryMapper sub_categoryDao;
+	@Autowired ReportMapper reportDao;
 	
 	// 구매자 마이페이지로 이동
 	@RequestMapping("/goBuyerMypage.do")
@@ -40,7 +43,13 @@ public class BuyerController {
 	
 	// 신고내역 페이지로 이동
 	@RequestMapping("/reportHistory.do")
-	public String reportHistory() {
+	public String reportHistory(Model model, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+		ReportVO vo = new ReportVO();
+		vo.setRe_reporter((String)session.getAttribute("id"));
+		List<ReportVO> reportList = reportDao.selectBuyerReportList(vo);
+		
+		model.addAttribute("reportList", reportList);
+		
 		return "buyer/reportHistory";
 	}
 	
