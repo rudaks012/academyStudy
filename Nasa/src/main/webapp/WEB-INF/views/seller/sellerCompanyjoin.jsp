@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<!-- Modal -->
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -42,6 +43,7 @@
         </div>
     </div>
     <script>
+    
     	function checkagree() {
     		$("#primary-checkbox").attr("checked",true);
     	}
@@ -49,6 +51,50 @@
             alert("회원가입을 중단하고 메인으로 돌아갑니다.");
             location.href='home.do';
         }
+        
+        function testbt() {
+			
+        	
+        	var data = {
+        			  "businesses": [
+        				    {
+        				    	 "b_no":document.querySelector("#bnumber").value,// 사업자번호 "xxxxxxx" 로 조회 시,
+        				    	 "start_dt":document.querySelector("#bdate").value,
+        				    	 "p_nm": document.querySelector("#bname").value
+        				   
+        				      
+        				    }
+        				  ]
+        		   }; 
+
+        	$.ajax({
+        		  url: "http://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=NFwkbzbbf2uEp1cOHXKWMIFV54Jy8gdGhbkTPMWP7BoQh715sxmepPFKRpsi70HzZ9BHOLvd23f%2BRzj781IjDw%3D%3D&returnType=JSON",  // serviceKey 값을 xxxxxx에 입력
+        		  type: "POST",
+        		  data: JSON.stringify(data), // json 을 string으로 변환하여 전송
+        		  dataType: "JSON",
+        		  contentType: "application/json",
+        		  accept: "application/json",
+        		  success: function(result) {
+        		      	console.log(result.data[0].valid_msg);
+        		      	console.log(result);
+        		      	
+        		      	let datas = result.data[0].valid_msg;
+        		      	
+        		      	if(datas ==='확인할 수 없습니다.'){
+        		      		alert('사용할 수 없습니다.')
+        		      	}else{
+        		      		alert('인증완료!')
+        		      	$('#bChk').val('인증완료!');
+                    	$('#bChk').attr('disabled',true);
+                    	$('#bnumber').attr('readonly',true);
+						$('#bnumber').css("background-color", "rgba(150, 205, 235, 0.521)");
+        		      	}
+        		  },
+        		  error: function(result) {
+        		      console.log(result.responseText); //responseText의 에러메세지 확인
+        		  }
+        		});
+        		}
     </script>
 	<!-- Hero Start-->
 	<div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center">
@@ -73,33 +119,28 @@
                     <div class="section-tittle text-center mb-80">
                         <h1>기업 판매자<br> 사업자등록번호를 인증해주세요.</h1>
                     </div>
-	            	<form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+	            	<form class="form-contact contact_form" action="#" method="post" id="contactForm" novalidate="novalidate">
 	                    <div class="row d-flex justify-content-center align-items-center">
 	                        <div class="col-sm-8">                                    
 	                            <div class="form-group">
-	                                대표자성명<input class="form-control valid" type="text" placeholder="대표자 성명을 입력해주세요.">
+	                                대표자성명<input id="bname" class="form-control valid" type="text" placeholder="대표자 성명을 입력해주세요.">
 	                            </div>
 	                        </div>	   
 	                         <div class="col-sm-8">                                    
 	                            <div class="form-group">
-	                                개업일자<input class="form-control valid" type="text" placeholder="개업일자를 입력해주세요.">
+	                                개업일자<input id="bdate"class="form-control valid" type="text" placeholder="개업일자를 입력해주세요 'YYYYMMDD'.">
 	                            </div>
 	                        </div>	                    
 	                        <div class="col-sm-8">
 	                            <div class="form-group">
 	                                사업자등록번호<div class="d-flex">
-	                                    <input class="form-control valid" type="number" placeholder="숫자만 입력">                                            
-	                                    <input type="button" value="확인" class="genric-btn primary radius" style="float: right;">
+	                                    <input id="bnumber" class="form-control valid" type="number" placeholder="숫자만 입력">                                            
+	                                    <button type="button"  id="bChk" class="genric-btn primary radius" style="float: right;" onclick="testbt()">확인</button>
 	                                    </div>
 	                            </div>
-	                            
-	                            
-	                            
 	                        </div>	                        	                        
 	                    </div>                            
 	                </form>
-	                <br>
-	                <br>
 	                <div class="form-group mt-3 d-flex justify-content-center align-items-center">
 	                	<div>
 	                		<button type="button" class="genric-btn primary-border e-large">이전</button>&nbsp;&nbsp;&nbsp;

@@ -87,9 +87,15 @@
 		  contentType: "application/json",
 		  accept: "application/json",
 		  success: function(result) {
-		      console.log(result);
-        const test = data.valid_msg;
-        console.log(test);
+			  console.log(result);
+		      	console.log(result.data[0].valid_msg);
+		      	
+		      	let datas = result.data[0].valid_msg;
+		      	
+		      	if(datas ==='확인할 수 없습니다.'){
+		      		alert('사용할 수 없습니다.')
+		      	}
+		      	
 		  },
 		  error: function(result) {
 		      console.log(result.responseText); //responseText의 에러메세지 확인
