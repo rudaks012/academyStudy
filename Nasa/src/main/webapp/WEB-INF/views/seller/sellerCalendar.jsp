@@ -30,31 +30,32 @@
                         <ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
 										<p>서비스관리</p>
-									</a></li>
+								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
 										<p>프로모션관리</p>
-									</a></li>
+								</a></li>
 								<li><a href="#" class="d-flex">
 										<p>일정관리</p>
-									</a></li>
+								</a></li>
 								<li><a href="sellerReview.do" class="d-flex">
 										<p>리뷰관리</p>
-									</a></li>
+								</a></li>
 								<li><a href="sellerPayment.do" class="d-flex">
 										<p>결제조회</p>
-									</a></li>
+								</a></li>
 								<li><a href="sellerSales.do" class="d-flex">
 										<p>매출확인</p>
-									</a></li>
+								</a></li>
 								<li><a href="sellerReport.do" class="d-flex">
 										<p>신고관리</p>
-									</a></li>
+								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p>판매자 노하우</p>
-									</a></li>
-								<li><a href="" class="d-flex" data-toggle="modal" data-target="#WithdrawalModal">
+								</a></li>
+								<li><a href="" class="d-flex" data-toggle="modal"
+									data-target="#WithdrawalModal">
 										<p>회원탈퇴</p>
-									</a></li>
+								</a></li>
 							</ul>
                     </aside>                            
                 </div>
