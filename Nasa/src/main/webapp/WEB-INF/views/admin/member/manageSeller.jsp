@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-            
-            
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn" %>   
+
+         
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
@@ -9,7 +11,7 @@
                             <h6><i  class=" far fa-user mr-1"></i>회원관리 <i class="fas fa-chevron-right mx-2"></i>판매자관리</h6>
                         </div>
                         <ul class="list-style-none d-flex">
-                            <li class="mr-1">총 회원수 <span class="text-danger mx-1">3</span>명</li>
+                            <li class="mr-1">총 회원수 <span class="text-danger mx-1">${fn:length(sellerList) }</span>명</li>
                             <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
                             <a href="#"><li class="mx-2">블랙리스트 <span class="text-danger mx-1">100</span>명</li></a>
                             <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
@@ -20,7 +22,7 @@
                   
                 </div>
             </div>
-            ${sellerList }
+            
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -109,15 +111,15 @@
 	                    </div>
                    </div>
                </div>
-                
+                ${sellerList }
                 <div class="row my-5">
-                	<div class="col-5">
+                	<div class="col-6">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             회원조회
                         </h5>
                 	    <div class="card">
                             <div class="card-body">
-                                <div class=" mb-3">총 <span class="mx-1 text-danger">50</span>건</div>
+                                <div class=" mb-3">총 <span class="mx-1 text-danger">${fn:length(sellerList) }</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
@@ -129,66 +131,15 @@
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
-		                             <tr>
-		                                <td>2222</td>
-		                                <td>2222</td>
-		                                <td>개인</td>
-		                                <td>지구</td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td>기업</td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
+		                         	<c:forEach var="seller" items="${sellerList }">
+			                             <tr>
+			                                <td>${seller.s_email }</td>
+			                                <td>${seller.s_name }</td>
+			                                <td>${seller.s_nickname }</td>
+			                                <td>${seller.s_author }</td>
+			                                <td>${seller.s_rank }</td>
+			                             </tr>
+		                             </c:forEach>
 		                        </tbody>
 		                     </table>
 		
@@ -216,7 +167,7 @@
 		                   </div>
                			</div>
                 	</div>
-                	<div class="col-7">
+                	<div class="col-6">
                            <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             상세조회
                         </h5>
@@ -228,22 +179,22 @@
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
                                         <tr>
-                                            <th class="table-primary align-middle">멤버코드</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" disabled ></td>
+                                            <th width="90px" class="table-primary align-middle">회원<br>코드</th>
+                                            <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" readonly ></td>
                                             <th class="table-primary align-middle">아이디</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" disabled></td>
+                                            <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" readonly></td>
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">이름</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="123" type="text" disabled></td>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="123" type="text" readonly></td>
                                             <th class="table-primary align-middle">닉네임</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="1234" type="text" disabled></td>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="1234" type="text" readonly></td>
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">연락처</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="1234-1234" type="text" disabled></td>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="1234-1234" type="text" readonly></td>
                                             <th class="table-primary align-middle">구분</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="기업" type="text" disabled></td>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="기업" type="text" readonly></td>
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">등급</th>
@@ -270,21 +221,22 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="table-primary align-middle">상태</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="블랙리스트" type="text" disabled></td>
-                                            <th class="table-primary align-middle">신고횟수</th>
+                                        	  <th class="table-primary align-middle">신고<br>횟수</th>
                                             <td>
-                                                <div class="col-4 d-flex align-items-center">
-                                                <input class="form-control custom-shadow mr-2" id="" name="" value="10" type="text" disabled>회
+                                                <div class="col-6 d-flex align-items-center">
+                                                <input class="form-control custom-shadow mr-2" id="" name="" value="10" type="text" readonly>회
                                                 </div>
-                                            </td>        
+                                            </td>   
+                                            <th class="table-primary align-middle">상태</th>
+                                            <td><input class="form-control custom-shadow" id="" name="" value="블랙리스트" type="text" readonly></td>
+                                               
                                         </tr>
                                         <tr>                                     
                                             <th class="table-primary align-middle">주소</th>
                                             <td colspan="3">                                              
-                                                <input class="form-control custom-shadow mb-1" style="width: 20%;" id="" name=""  value="55555" type="text" disabled>
-                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" disabled>                 
-                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" disabled>     
+                                                <input class="form-control custom-shadow mb-1" style="width: 20%;" id="" name=""  value="55555" type="text" readonly>
+                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" readonly>                 
+                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" readonly>     
                                             </td>
                                         </tr>
                                     </tbody>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             
             
             <div class="page-breadcrumb">
@@ -10,7 +11,7 @@
                             <h6><i  class=" far fa-user mr-1"></i> 회원관리 <i class="fas fa-chevron-right mx-2"></i>구매자관리</h6>
                         </div>
                         <ul class="list-style-none d-flex">
-                            <li class="mr-1">총 회원수 <span class="text-danger mx-1">3</span>명</li>
+                            <li class="mr-1">총 회원수 <span class="text-danger mx-1">${fn:length(buyerList) }</span>명</li>
                             <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
                             <a href="#"><li class="mx-2">블랙리스트 <span class="text-danger mx-1">100</span>명</li></a>
                             <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
@@ -22,7 +23,7 @@
                 </div>
             </div>
             
-            ${buyerList }
+           
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -93,34 +94,30 @@
 	                    </div>
                    </div>
                </div>
-                
+                 ${buyerList }
                 <div class="row my-5">
-                	<div class="col-7">
+                	<div class="col-6">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             회원조회
                         </h5>
                 	    <div class="card">
                             <div class="card-body">
-                                <div class=" mb-3">총 <span class="mx-1 text-danger">50</span>건</div>
+                                <div class=" mb-3">총 <span class="mx-1 text-danger">${fn:length(buyerList) }</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
-		                         	<tr>
+		                         	<tr >
 		                         		<th>아이디</th>
-		                         		<th>닉네임</th>
 		                         		<th>이름</th>       		
 		                         		<th>연락처</th>
-		                         		<th>주소</th>
 		                         		<th>등급</th>
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
-		                          	<c:forEach var="buyer" items="${buyerList }">
-		                             <tr>
+		                          	<c:forEach var="buyer" items="${buyerList }" varStatus="status">
+		                             <tr class="member-list">
 		                                <td>${buyer.b_email }</td>
-		                                <td>${buyer.b_nickname }</td>
 		                                <td>${buyer.b_name }</td>
 		                                <td>${buyer.b_tel }</td>
-		                                <td>${buyer.b_address }</td>
 		                                <td>
 		                                	<c:choose>
 		                                		<c:when test="${buyer.b_rank eq '1' }">
@@ -139,60 +136,7 @@
 		                                </td>
 		                             </tr>
 		                             </c:forEach>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
+                                     
 		                        </tbody>
 		                     </table>
 		
@@ -220,7 +164,7 @@
 		                   </div>
                			</div>
                 	</div>
-                	<div class="col-5">
+                	<div class="col-6">
                            <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             상세조회
                         </h5>
@@ -232,7 +176,7 @@
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
                                         <tr>
-                                            <th width="85px" class="table-primary align-middle">회원<br>코드</th>
+                                            <th width="100px" class="table-primary align-middle">회원코드</th>
                                             <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" readonly ></td>
                                             <th width="85px" class="table-primary align-middle">아이디</th>
                                             <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" readonly></td>
@@ -274,9 +218,9 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="table-primary align-middle">신고<br>횟수</th>
+                                            <th class="table-primary align-middle">신고횟수</th>
                                             <td>
-                                                <div class="col-4 d-flex align-items-center">
+                                                <div class="col-6 p-0 d-flex align-items-center">
                                                 <input class="form-control custom-shadow mr-2" id="" name="" value="10" type="text" readonly>회
                                                 </div>
                                             </td>    
@@ -337,10 +281,9 @@
                                         <th>서비스명</th>
                                         <th>판매자아이디</th>
                                         <th>서비스일정</th>
-                                        <th>서비스구분</th>
                                         <th>결제금액</th>
                                         <th>결제일자</th>
-                                        <th>결제상태</th>
+                                        <th>구매확정일자</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -390,5 +333,25 @@
              </div>
             
                 
-               
-          
+ <script type="text/javascript">
+  const memberList = document.querySelectorAll(".member-list");
+  const selectMember=()=>{
+      console.log(event.target.parentNode.firstChild.nextSibling.innerText);
+      const buyerId = event.target.parentNode.firstChild.nextSibling.innerText;
+      $.ajax({
+          url:"ajaxSelectMember.do",
+          type:"post",
+          data:{"id":buyerId}
+      }).done(function(result){
+          console.log(result);
+      })
+      .fail(function(data){
+          console.log("실패원인:"+data);
+      })
+      //id 값 저장해서 넘겨주는 ajax
+      //td 아무거나 눌러도 무조건 tr을 가게 한다음 첫번재 td 가는 선택자
+  }
+  Array.from(memberList).forEach(function(element){
+      element.addEventListener('click',selectMember);
+  })
+</script>     

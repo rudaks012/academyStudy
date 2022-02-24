@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import co.Nasa.prj.admin.member.service.AdminMemberMapper;
 import co.Nasa.prj.admin.member.service.AdminMemberService;
+import co.Nasa.prj.admin.service.AdminAuthorVO;
 import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.SellerVO;
 
@@ -21,11 +22,22 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		// TODO Auto-generated method stub
 		return map.buyerList();
 	}
+	
+
+	@Override
+	public AdminAuthorVO selectBuyer(AdminAuthorVO vo) {
+		// TODO Auto-generated method stub
+		return map.selectBuyer(vo);
+	}
 
 	@Override
 	public List<SellerVO> sellerList() {
 		// TODO Auto-generated method stub
 		return map.sellerList();
 	}
+
+
+
+	
 	
 }
