@@ -20,4 +20,12 @@ public class ServiceVO {
 	String ser_offer;
 	String ser_macro;
 	String ser_line;
+	String ser_skill;
+	String ser_team;
+	String ser_lang;
+	String ser_frame;
+	String ser_dbms;
+	String ser_subimg;
+	String ser_subimg2;
+	String ser_subimg3;
 }
