@@ -104,7 +104,7 @@ public class FileUploadController {
 	         }
 	         else {
 	         vo.setNo_subject(s);
-//	         NoticeDao.noticeInsert(vo);
+	         NoticeDao.noticeInsert(vo);
 	         model.addAttribute("d",s);
 	         }
 	         return "homess";
