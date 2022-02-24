@@ -4,7 +4,15 @@
 
 
 	<select id="buyerList" resultType="co.Nasa.prj.comm.VO.BuyerVO">
- 		SELECT * FROM BUYER
+ 		SELECT * FROM buyer
+	</select>
+	
+	<select id="selectBuyer" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+		SELECT *
+		FROM BUYER B JOIN PAYMENT P
+		ON(B.B_EMAIL=P.B_EMAIL)
+		WHERE B.B_EMAIL= #{b_email}
+		
 	</select>
 	
 	<select id="sellerList" resultType="co.Nasa.prj.comm.VO.SellerVO">
