@@ -1,10 +1,10 @@
 package co.Nasa.prj.comm.VO;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+import lombok.Data;
+
+@Data
+
 public class AdminVO {
 	String aid;
 	String apassword;
