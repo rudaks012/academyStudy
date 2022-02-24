@@ -107,6 +107,10 @@ input[type=date] {
 .paybtn {
 	margin-right: 10px;
 }
+.hr{
+ 	background-color : #d5c9ea !important;
+   	margin: 10px !important;
+}
 </style>
 </head>
 <body>
@@ -169,172 +173,184 @@ input[type=date] {
 				</div>
 				<!-- Right content -->
 				<div class="col-9">
+				
 					<div class="blog_left_sidebar">
-						<div style="margin-top: 40px; border-bottom: 1px solid #eee;">
-							<p>
-								<a href="#" style="color: black;">마이페이지</a> > 서비스관리
-							</p>
-						</div>
 						<article class="blog_item">
-							<div class="listing-area pt-120 pb-120">
-								<div class="container">
-									<nav class="fables-single-nav">
-										<div class="nav nav-tabs" id="nav-tab" role="tablist">
-											<a
-												class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
-												id="nav-desc-tab" data-toggle="tab" href="#nav-desc"
-												role="tab" aria-controls="nav-desc" aria-selected="true">진행중인
-												서비스</a> <a
-												class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-												id="nav-info-tab" data-toggle="tab" href="#nav-info"
-												role="tab" aria-controls="nav-info" aria-selected="false">종료된
-												서비스</a> <a
-												class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-												id="nav-review-tab" data-toggle="tab" href="#nav-review"
-												role="tab" aria-controls="nav-review" aria-selected="false">파워서비스</a>
-										</div>
-									</nav>
-									<br />
-									<br />
-									<div class="tab-content" id="nav-tabContent">
-										<div class="tab-pane fade show active" id="nav-desc"
-											role="tabpanel" aria-labelledby="nav-desc-tab">
-											<div class="row justify-content-center">
-												<div class="listing-details-area">
-													<div class="container">
-														<div class="row">
-															<div class="col-lg-6 ">
-																<div class="single-listing mb-30">
-																	<div class="list-img">
-																		<img src="assets/img/gallery/list1.png" alt="">
-																		<!-- <span>Open</span> -->
-																	</div>
-																	<div class="list-caption">
+							<div class="justify-content-center">
+								<a class="d-inline-block" style="margin-top:20px;">
+									<h3>서비스 관리</h3>
+								</a>
+								<hr class="hr"/>
+								<a href="serviceInsert.do" class="genric-btn danger">서비스 등록</a>
+								<a href="" class="genric-btn danger" data-toggle="modal"
+									data-target="#PowerModalLabel">파워서비스 등록</a>
+								<a href="" class="genric-btn danger" data-toggle="modal"
+									data-target="#paydrawalModal">결제 등록</a>
+								
+								<div class="blog_details">
+										<div class="container">
+											<nav class="fables-single-nav">
+												<div class="nav nav-tabs" id="nav-tab" role="tablist">
+													<a
+														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
+														id="nav-desc-tab" data-toggle="tab" href="#nav-desc"
+														role="tab" aria-controls="nav-desc" aria-selected="true">진행중인
+														서비스</a> <a
+														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+														id="nav-info-tab" data-toggle="tab" href="#nav-info"
+														role="tab" aria-controls="nav-info" aria-selected="false">종료된
+														서비스</a> <a
+														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+														id="nav-review-tab" data-toggle="tab" href="#nav-review"
+														role="tab" aria-controls="nav-review"
+														aria-selected="false">파워서비스</a>
+												</div>
+											</nav>
+											<br /> <br />
+											<div class="tab-content" id="nav-tabContent">
+												<div class="tab-pane fade show active" id="nav-desc"
+													role="tabpanel" aria-labelledby="nav-desc-tab">
+													<div class="row justify-content-center">
+														<div class="listing-details-area">
+															<div class="container">
+															
+																<div class="row">
+																
+								
+																	<div class="col-lg-6 ">
+																		<div class="single-listing mb-30">
+																			<div class="list-img">
+																				<img src="assets/img/gallery/list1.png" alt="">
+																				<!-- <span>Open</span> -->
+																			</div>
+																			<div class="list-caption">
 
-																		<h3>
-																			<a href="serviceDetail.do">서비스명1</a>
-																		</h3>
-																		<p>서비스번호</p>
-																		<p>서비스일자</p>
-																		<div class="list-footer">
-																			<ul>
-																				<li style="margin-left: 130px;"><a href="#"
-																					class="genric-btn danger-border circle">수정</a></li>
-																				<li><a href="#"
-																					class="genric-btn danger-border circle"
-																					data-toggle="modal" data-target="#endModal">종료</a></li>
-																			</ul>
+																				<h3>
+																					<a href="serviceDetail.do">서비스명1</a>
+																				</h3>
+																				<p>서비스번호</p>
+																				<p>서비스일자</p>
+																				<div class="list-footer">
+																					<ul>
+																						<li style="margin-left: 130px;"><a href="#"
+																							class="genric-btn danger-border circle">수정</a></li>
+																						<li><a href="#"
+																							class="genric-btn danger-border circle"
+																							data-toggle="modal" data-target="#endModal">종료</a></li>
+																					</ul>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															</div>
-															<div class="col-lg-6 ">
-																<div class="single-listing mb-30">
-																	<div class="list-img">
-																		<img src="assets/img/gallery/list2.png" alt="">
-																		<!-- <span>Open</span> -->
-																	</div>
-																	<div class="list-caption">
+																	<div class="col-lg-6 ">
+																		<div class="single-listing mb-30">
+																			<div class="list-img">
+																				<img src="assets/img/gallery/list2.png" alt="">
+																				<!-- <span>Open</span> -->
+																			</div>
+																			<div class="list-caption">
 
-																		<h3>
-																			<a href="listing_details.html">서비스명2</a>
-																		</h3>
-																		<p>서비스번호</p>
-																		<p>서비스일자</p>
-																		<div class="list-footer">
-																			<ul>
-																				<li style="margin-left: 130px;"><a href="#"
-																					class="genric-btn danger-border circle">수정</a></li>
-																				<li><a href="#"
-																					class="genric-btn danger-border circle">종료</a></li>
-																			</ul>
+																				<h3>
+																					<a href="listing_details.html">서비스명2</a>
+																				</h3>
+																				<p>서비스번호</p>
+																				<p>서비스일자</p>
+																				<div class="list-footer">
+																					<ul>
+																						<li style="margin-left: 130px;"><a href="#"
+																							class="genric-btn danger-border circle">수정</a></li>
+																						<li><a href="#"
+																							class="genric-btn danger-border circle">종료</a></li>
+																					</ul>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															</div>
-															<div class="col-lg-6 ">
-																<div class="single-listing mb-30">
-																	<div class="list-img">
-																		<img src="assets/img/gallery/list3.png" alt="">
-																		<!-- <span>Open</span> -->
-																	</div>
-																	<div class="list-caption">
+																	<div class="col-lg-6 ">
+																		<div class="single-listing mb-30">
+																			<div class="list-img">
+																				<img src="assets/img/gallery/list3.png" alt="">
+																				<!-- <span>Open</span> -->
+																			</div>
+																			<div class="list-caption">
 
-																		<h3>
-																			<a href="listing_details.html">서비스명3</a>
-																		</h3>
-																		<p>서비스번호</p>
-																		<p>서비스일자</p>
-																		<div class="list-footer">
-																			<ul>
-																				<li style="margin-left: 130px;"><a href="#"
-																					class="genric-btn danger-border circle">수정</a></li>
-																				<li><a href="#"
-																					class="genric-btn danger-border circle">종료</a></li>
-																			</ul>
+																				<h3>
+																					<a href="listing_details.html">서비스명3</a>
+																				</h3>
+																				<p>서비스번호</p>
+																				<p>서비스일자</p>
+																				<div class="list-footer">
+																					<ul>
+																						<li style="margin-left: 130px;"><a href="#"
+																							class="genric-btn danger-border circle">수정</a></li>
+																						<li><a href="#"
+																							class="genric-btn danger-border circle">종료</a></li>
+																					</ul>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															</div>
-															<div class="col-lg-6 ">
-																<div class="single-listing mb-30">
-																	<div class="list-img">
-																		<img src="assets/img/gallery/list4.png" alt="">
-																		<!-- <span>Open</span> -->
-																	</div>
-																	<div class="list-caption">
-																		<span>Open</span>
-																		<h3>
-																			<a href="listing_details.html">Saintmartine</a>
-																		</h3>
-																		<p>700/D, Kings road, Green lane, 85/ London</p>
-																		<div class="list-footer">
-																			<ul>
-																				<li>+10 278 367 9823</li>
-																				<li>contact@midnight.com</li>
-																			</ul>
+																	<div class="col-lg-6 ">
+																		<div class="single-listing mb-30">
+																			<div class="list-img">
+																				<img src="assets/img/gallery/list4.png" alt="">
+																				<!-- <span>Open</span> -->
+																			</div>
+																			<div class="list-caption">
+																				<span>Open</span>
+																				<h3>
+																					<a href="listing_details.html">Saintmartine</a>
+																				</h3>
+																				<p>700/D, Kings road, Green lane, 85/ London</p>
+																				<div class="list-footer">
+																					<ul>
+																						<li>+10 278 367 9823</li>
+																						<li>contact@midnight.com</li>
+																					</ul>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															</div>
-															<div class="col-lg-6 ">
-																<div class="single-listing mb-30">
-																	<div class="list-img">
-																		<img src="assets/img/gallery/list5.png" alt="">
-																		<!-- <span>Open</span> -->
-																	</div>
-																	<div class="list-caption">
-																		<span>Open</span>
-																		<h3>
-																			<a href="listing_details.html">Saintmartine</a>
-																		</h3>
-																		<p>700/D, Kings road, Green lane, 85/ London</p>
-																		<div class="list-footer">
-																			<ul>
-																				<li>+10 278 367 9823</li>
-																				<li>contact@midnight.com</li>
-																			</ul>
+																	<div class="col-lg-6 ">
+																		<div class="single-listing mb-30">
+																			<div class="list-img">
+																				<img src="assets/img/gallery/list5.png" alt="">
+																				<!-- <span>Open</span> -->
+																			</div>
+																			<div class="list-caption">
+																				<span>Open</span>
+																				<h3>
+																					<a href="listing_details.html">Saintmartine</a>
+																				</h3>
+																				<p>700/D, Kings road, Green lane, 85/ London</p>
+																				<div class="list-footer">
+																					<ul>
+																						<li>+10 278 367 9823</li>
+																						<li>contact@midnight.com</li>
+																					</ul>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															</div>
-															<div class="col-lg-6 ">
-																<div class="single-listing mb-30">
-																	<div class="list-img">
-																		<img src="assets/img/gallery/list6.png" alt="">
-																		<!-- <span>Open</span> -->
-																	</div>
-																	<div class="list-caption">
-																		<span>Open</span>
-																		<h3>
-																			<a href="listing_details.html">Saintmartine</a>
-																		</h3>
-																		<p>700/D, Kings road, Green lane, 85/ London</p>
-																		<div class="list-footer">
-																			<ul>
-																				<li>+10 278 367 9823</li>
-																				<li>contact@midnight.com</li>
-																			</ul>
+																	<div class="col-lg-6 ">
+																		<div class="single-listing mb-30">
+																			<div class="list-img">
+																				<img src="assets/img/gallery/list6.png" alt="">
+																				<!-- <span>Open</span> -->
+																			</div>
+																			<div class="list-caption">
+																				<span>Open</span>
+																				<h3>
+																					<a href="listing_details.html">Saintmartine</a>
+																				</h3>
+																				<p>700/D, Kings road, Green lane, 85/ London</p>
+																				<div class="list-footer">
+																					<ul>
+																						<li>+10 278 367 9823</li>
+																						<li>contact@midnight.com</li>
+																					</ul>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
 																</div>
@@ -342,43 +358,45 @@ input[type=date] {
 														</div>
 													</div>
 												</div>
+												<div class="tab-pane fade" id="nav-info" role="tabpanel"
+													aria-labelledby="nav-info-tab">
+													<br /> <br />
+													<div class="row justify-content-center">sdfasdfsd</div>
+												</div>
+												<div class="tab-pane fade" id="nav-review" role="tabpanel"
+													aria-labelledby="nav-info-tab">
+													<br /> <br />
+													<div class="row justify-content-center">3333</div>
+
+												</div>
 											</div>
 										</div>
-										<div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-											<br />
-											<br />
-											<div class="row justify-content-center">sdfasdfsd</div>
-										</div>
-										<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-info-tab">
-											<br />
-											<br />
-											<div class="row justify-content-center">3333</div>
-
+									
+									<div class="pagination-area pt-70 text-center">
+										<div class="container">
+											<div class="row">
+												<div class="col-xl-12">
+													<div class="single-wrap d-flex justify-content-center">
+														<nav aria-label="Page navigation example">
+															<ul class="pagination justify-content-start">
+																<li class="page-item active"><a class="page-link"
+																	href="#">01</a></li>
+																<li class="page-item"><a class="page-link" href="#">02</a></li>
+																<li class="page-item"><a class="page-link" href="#">03</a></li>
+																<li class="page-item"><a class="page-link" href="#"><span
+																		class="ti-angle-right"></span></a></li>
+															</ul>
+														</nav>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="pagination-area pt-70 text-center">
-								<div class="container">
-									<div class="row">
-										<div class="col-xl-12">
-											<div class="single-wrap d-flex justify-content-center">
-												<nav aria-label="Page navigation example">
-													<ul class="pagination justify-content-start">
-														<li class="page-item active"><a class="page-link"
-															href="#">01</a></li>
-														<li class="page-item"><a class="page-link" href="#">02</a></li>
-														<li class="page-item"><a class="page-link" href="#">03</a></li>
-														<li class="page-item"><a class="page-link" href="#"><span
-																class="ti-angle-right"></span></a></li>
-													</ul>
-												</nav>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+
+
 						</article>
 					</div>
 					<!--Pagination End  -->
@@ -617,6 +635,11 @@ input[type=date] {
 				console.log($("#conference").attr("style", "display: none;"))
 			})
 		});
+
+		$("#nav-tab a").on("click", function(event) {
+			event.preventDefault();
+			$(this).tab("show");
+		})
 	</script>
 </body>
 </html>
