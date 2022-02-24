@@ -10,11 +10,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import co.Nasa.prj.chatting.controller.ChatSession;
+import co.Nasa.prj.login.service.BuyerJoinMapper;
 import co.Nasa.prj.login.service.LoginService;
 import co.Nasa.prj.login.service.LoginVO;
 import co.Nasa.prj.login.service.NaverLoginBO;
@@ -23,6 +26,9 @@ import co.Nasa.prj.login.service.NaverLoginBO;
 public class AhController {
 	   @Autowired
 	    private ChatSession cSession;
+	   @Autowired
+	   BuyerJoinMapper buyerJoinDao;
+	   
 	   
 	@Autowired private LoginService LoginDao;
 	/* NaverLoginBO */
@@ -81,4 +87,38 @@ public class AhController {
 	
 	
 	};
+	@ResponseBody
+	@PostMapping("/ajaxEmailCheck.do")
+	public String ajaxEmailCheck(@RequestParam("email") String email, HttpServletResponse response) {
+		System.out.println("ajaxEmailCheck");
+		System.out.println(email);
+		String result;
+		
+		int chk = buyerJoinDao.checkEmail(email);
+		
+		if(chk == 0) {
+			result = "true";
+		}else {
+			result ="false";
+		}
+		return result;
+	}
+	@ResponseBody
+	@PostMapping("/ajaxNickCheck.do")
+	public String ajaxNickCheck(@RequestParam("nickname") String nick, HttpServletResponse response) {
+		System.out.println("ajaxNickCheck");
+		System.out.println(nick);
+		String result;
+		
+		int chk = buyerJoinDao.checkNick(nick);
+		
+		if(chk == 0) {
+			result = "true";
+		}else {
+			result ="false";
+		}
+		
+		
+		return result;
+	}
 }

@@ -32,7 +32,7 @@
                     </div>
                     <!-- Search box -->
                     <div class="search-form">
-                        <a href="#">Search</a>
+                        <a href="searchResult.do">Search</a>
                     </div>
                 </form>
             </div>
@@ -120,61 +120,125 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-tittle text-center mb-80" style="margin: 80px; margin-bottom: 30px;">
-                    <span>Most visited places</span>
+                    <span>Power Service</span>
                     <h2>파워 서비스</h2>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                    <div class="">
-                        <img src="resources/user/assets/img/testmonial/Homepage_testi.png" alt="">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <div class="h1-testimonial-active">
+                    <!-- Single Testimonial -->
+                    <div class="single-testimonial text-center">
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-caption d-flex" style="margin-left: 5px; margin-right: 5px;">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
+                                    <div>
+                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
+                                    </div>
+                                    <div class="cat-cap" style="padding: 10px;">
+                                        <h5><a href="catagori.html">판매자1</a></h5>
+                                        <p>판매자 서비스 카테고리</p>
+                                        <a href="catagori.html">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
+                                    <div class="">
+                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
+                                    </div>
+                                    <div class="cat-cap" style="padding: 10px;">
+                                        <h5><a href="catagori.html">판매자2</a></h5>
+                                        <p>판매자 서비스 카테고리</p>
+                                        <a href="catagori.html">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
+                                    <div class="">
+                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
+                                    </div>
+                                    <div class="cat-cap" style="padding: 10px;">
+                                        <h5><a href="catagori.html">판매자3</a></h5>
+                                        <p>판매자 서비스 카테고리</p>
+                                        <a href="catagori.html">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
+                                    <div class="">
+                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
+                                    </div>
+                                    <div class="cat-cap" style="padding: 10px;">
+                                        <h5><a href="catagori.html">판매자4</a></h5>
+                                        <p>판매자 서비스 카테고리</p>
+                                        <a href="catagori.html">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="cat-cap" style="padding: 10px;">
-                        <h5><a href="catagori.html">판매자1</a></h5>
-                        <p>판매자 서비스 카테고리</p>
-                        <a href="catagori.html">View Details</a>
+                    <!-- Single Testimonial -->
+                    <div class="single-testimonial text-center">
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-caption d-flex" style="margin-left: 5px; margin-right: 5px;">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
+                                    <div>
+                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
+                                    </div>
+                                    <div class="cat-cap" style="padding: 10px;">
+                                        <h5><a href="catagori.html">판매자5</a></h5>
+                                        <p>판매자 서비스 카테고리</p>
+                                        <a href="catagori.html">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
+                                    <div class="">
+                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
+                                    </div>
+                                    <div class="cat-cap" style="padding: 10px;">
+                                        <h5><a href="catagori.html">판매자6</a></h5>
+                                        <p>판매자 서비스 카테고리</p>
+                                        <a href="catagori.html">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
+                                    <div class="">
+                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
+                                    </div>
+                                    <div class="cat-cap" style="padding: 10px;">
+                                        <h5><a href="catagori.html">판매자7</a></h5>
+                                        <p>판매자 서비스 카테고리</p>
+                                        <a href="catagori.html">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
+                                    <div class="">
+                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
+                                    </div>
+                                    <div class="cat-cap" style="padding: 10px;">
+                                        <h5><a href="catagori.html">판매자8</a></h5>
+                                        <p>판매자 서비스 카테고리</p>
+                                        <a href="catagori.html">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                    <div class="">
-                        <img src="resources/user/assets/img/testmonial/Homepage_testi.png" alt="">
-                    </div>
-                    <div class="cat-cap" style="padding: 10px;">
-                        <h5><a href="catagori.html">판매자1</a></h5>
-                        <p>판매자 서비스 카테고리</p>
-                        <a href="catagori.html">View Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                    <div class="">
-                        <img src="resources/user/assets/img/testmonial/Homepage_testi.png" alt="">
-                    </div>
-                    <div class="cat-cap" style="padding: 10px;">
-                        <h5><a href="catagori.html">판매자1</a></h5>
-                        <p>판매자 서비스 카테고리</p>
-                        <a href="catagori.html">View Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                    <div class="">
-                        <img src="resources/user/assets/img/testmonial/Homepage_testi.png" alt="">
-                    </div>
-                    <div class="cat-cap" style="padding: 10px;">
-                        <h5><a href="catagori.html">판매자1</a></h5>
-                        <p>판매자 서비스 카테고리</p>
-                        <a href="catagori.html">View Details</a>
-                    </div>
-                </div>
-            </div>
-         </div>
+        </div>
     </div>
 </div>
 <!-- peoples-visit Start -->
@@ -185,9 +249,9 @@
             <div class="row justify-content-end">
                 <div class="col-lg-8">
                     <div class="visit-caption">
-                        <span>We are offering for you</span>
+                        <span>You may also like this</span>
                         <h3>이런 서비스는 어떠세요?</h3>
-                        <p>Unlike what its name implies, dry cleaning is not actually a 'dry' process. Clothes are soaked in a different solvent.</p>
+                        <p>고객님의 관심사에 맞추어 자동으로 추천되는 서비스입니다.</p>
                         <!--Single Visit categories -->
                         <div class="visit-categories mb-40">
                             <div class="visit-location">
@@ -195,21 +259,24 @@
                             </div>
                             <div class="visit-cap">
                                 <h4>웹개발꽁짜로가르쳐드립니다~</h4>
-                                <p>Unlike what its name implies, dry cleaning is not actu  process. Clothes soaked differentent.
-                                </p>
-                                <a href="#" class="genric-btn danger">Read More</a>
+                                <p>[카테고리1] - [카테고리2]</p>
+                                <p>판매자 홍길동 님</p>
+                                <br>
+                                <a href="#" class="genric-btn primary">Read More</a>
                             </div>
                         </div>
+                        <br>
                         <!--Single Visit categories -->
                         <div class="visit-categories">
                             <div class="visit-location">
                                 <span class="flaticon-work"></span>
                             </div>
                             <div class="visit-cap">
-                                <h4>Biggest category listing</h4>
-                                <p>Unlike what its name implies, dry cleaning is not actu  process. Clothes soaked differentent.
-                                </p>
-                                <a href="#" class="genric-btn danger">Read More</a>
+                                <h4>CSS 전문가의 1대1 과외</h4>
+                                <p>[카테고리1] - [카테고리2]</p>
+                                <p>판매자 김기자 님</p>
+                                <br>
+                                <a href="#" class="genric-btn primary">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -226,7 +293,7 @@
             <div class="col-lg-12">
                 <!-- Section Tittle -->
                 <div class="section-tittle text-center mb-80" style="margin: 80px; margin-bottom: 30px;">
-                    <span>Most visited places</span>
+                    <span>Most Popular Service</span>
                     <h2>인기있는 서비스</h2>
                 </div>
             </div>
@@ -274,7 +341,7 @@
             <div class="col-lg-12">
                 <!-- Section Tittle -->
                 <div class="section-tittle text-center mb-80" style="margin: 80px; margin-bottom: 30px;">
-                    <span>Most visited places</span>
+                    <span>Most Popular Seller</span>
                     <h2>인기있는 판매자</h2>
                 </div>
             </div>
@@ -340,45 +407,7 @@
         </div>
     </div>
 </div>
-<div class="popular-location section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- Section Tittle -->
-                <div class="col-lg-12 col-md-6 col-sm-6" style="margin-top: 30px;">
-                    <div class="h1-testimonial-active">
-                        <!-- Single Testimonial -->
-                        <div class="single-testimonial text-center">
-                            <!-- Testimonial Content -->
-                            <div class="single-location mb-30">
-                                <div class="location-img">
-                                    <img src="resources/user/assets/img/event1.png" alt="">
-                                </div>
-                                <div class="location-details">
-                                    <p>메인 이벤트</p>
-                                    <a href="#" class="location-btn"> <i class="ti-plus"></i>더보기</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single Testimonial -->
-                        <div class="single-testimonial text-center">
-                            <!-- Testimonial Content -->
-                            <div class="single-location mb-30">
-                                <div class="location-img">
-                                    <img src="resources/user/assets/img/event2.png" alt="">
-                                </div>
-                                <div class="location-details">
-                                    <p>메인 이벤트</p>
-                                    <a href="#" class="location-btn"> <i class="ti-plus"></i>더보기</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                            
-                </div>                        
-            </div>
-        </div>                
-    </div>
-</div>
+
 <!-- Categories Area Start -->
 <div class="categories-area section">
     <div class="container" style="margin-bottom: 30px;">
@@ -386,7 +415,7 @@
             <div class="col-lg-12">
                 <!-- Section Tittle -->
                 <div class="section-tittle text-center mb-80" style="margin: 80px; margin-bottom: 30px;">
-                    <span>Most visited places</span>
+                    <span>Seller's Know-how</span>
                     <h2>판매자의 노하우</h2>
                 </div>
             </div>
@@ -398,7 +427,7 @@
                         <div class="single-defination">
                             <h4 class="mb-20">글제목</h4>
                             <p>글내용 ...css처리하기</p>
-                                <a href="#" class="genric-btn danger">Read More</a>
+                                <a href="#" class="genric-btn primary">Read More</a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -409,7 +438,7 @@
                                 transfer money to them through any US bank or payment system. As a result of this law,
                                 most of the popular
                                 online casino networks</p>
-                                <a href="#" class="genric-btn danger">Read More</a>
+                                <a href="#" class="genric-btn primary">Read More</a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -420,7 +449,7 @@
                                 transfer money to them through any US bank or payment system. As a result of this law,
                                 most of the popular
                                 online casino networks</p>
-                                <a href="#" class="genric-btn danger">Read More</a>
+                                <a href="#" class="genric-btn primary">Read More</a>
                         </div>
                     </div>
                 </div>

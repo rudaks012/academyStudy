@@ -68,6 +68,12 @@
 .home-blog-area{
 	margin-top : 100px;
 }
+
+.hr{
+ 	background-color : #d5c9ea !important;
+   	margin: 10px !important;
+}
+
 </style>
 </head>
 <body>
@@ -84,89 +90,146 @@
 		</div>
 	</div>
 
-	<div class="home-blog-area">
-
+	<section class="blog_area section-padding">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="count mb-35" style="text-align: center;">
-						<h3>STEP 1. 서비스 선택</h3>
+				<div class="col-3">
+					<div class="blog_right_sidebar">
+						<aside class="single_sidebar_widget post_category_widget">
+							<h4 class="widget_title">MYPAGE MENU</h4>
+							<ul class="list cat-list">
+								<li><a href="sellerService.do" class="d-flex">
+										<p>서비스관리</p>
+								</a></li>
+								<li><a href="sellerPromotion.do" class="d-flex">
+										<p>프로모션관리</p>
+								</a></li>
+								<li><a href="#" class="d-flex">
+										<p>일정관리</p>
+								</a></li>
+								<li><a href="sellerReview.do" class="d-flex">
+										<p>리뷰관리</p>
+								</a></li>
+								<li><a href="sellerPayment.do" class="d-flex">
+										<p>결제조회</p>
+								</a></li>
+								<li><a href="sellerSales.do" class="d-flex">
+										<p>매출확인</p>
+								</a></li>
+								<li><a href="sellerReport.do" class="d-flex">
+										<p>신고관리</p>
+								</a></li>
+								<li><a href="sellerKnowhow.do" class="d-flex">
+										<p>판매자 노하우</p>
+								</a></li>
+								<li><a href="" class="d-flex" data-toggle="modal"
+									data-target="#WithdrawalModal">
+										<p>회원탈퇴</p>
+								</a></li>
+							</ul>
+						</aside>
 					</div>
 				</div>
-			</div>
-			
-			<div class="row justify-content-center">
-				<div class="col-lg-8 posts-list">
-					<div id="progress">
-						<div id="progress-bar"></div>
-						<ul id="progress-num">
-							<li class="step active">1</li>
-							<li class="step">2</li>
-							<li class="step">3</li>
-						</ul>
+
+
+				<div class="col-9">
+					<div class="blog_left_sidebar">
+						<article class="blog_item">
+							<div class="justify-content-center">
+								<a class="d-inline-block" style="margin-top:20px;">
+									<h3>프로모션 등록</h3>
+								</a>
+								<hr class="hr"/>
+								<div class="blog_details">
+									
+					
+									<div class="col-lg-12">
+										<div class="count mb-35" style="text-align: center;">
+											<h3>STEP 1. 서비스 선택</h3>
+										</div>
+									</div>
+
+
+									<div class="row justify-content-center">
+										<div class="col-lg-8 posts-list">
+											<div id="progress">
+												<div id="progress-bar"></div>
+												<ul id="progress-num">
+													<li class="step active">1</li>
+													<li class="step">2</li>
+													<li class="step">3</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div class="listing-details-area">
+										<div class="container">
+											<div class="row">
+												<div class="col-lg-4">
+													<div class="single-listing mb-30">
+														<div class="list-img">
+															<img src="assets/img/gallery/list1.png" alt="">
+															<!-- <span>Open</span> -->
+														</div>
+														<div class="list-caption">
+															<span>Open</span>
+															<h3>
+																<a href="listing_details.html">서비스명1</a>
+															</h3>
+															<p>서비스번호</p>
+															<p>서비스일자</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-4">
+													<div class="single-listing mb-30">
+														<div class="list-img">
+															<img src="assets/img/gallery/list2.png" alt="">
+															<!-- <span>Open</span> -->
+														</div>
+														<div class="list-caption">
+															<span>Open</span>
+															<h3>
+																<a href="listing_details.html">서비스명2</a>
+															</h3>
+															<p>서비스번호</p>
+															<p>서비스일자</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-4">
+													<div class="single-listing mb-30">
+														<div class="list-img">
+															<img src="assets/img/gallery/list2.png" alt="">
+															<!-- <span>Open</span> -->
+														</div>
+														<div class="list-caption">
+															<span>Open</span>
+															<h3>
+																<a href="listing_details.html">서비스명2</a>
+															</h3>
+															<p>서비스번호</p>
+															<p>서비스일자</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<button id="progress-prev" class="btn" disabled>Prev</button>
+									<button id="progress-next" class="btn">Next</button>
+								</div>
+							</div>
+						</article>
 					</div>
 				</div>
-			</div>
-			
-			<div class="listing-details-area">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="single-listing mb-30">
-								<div class="list-img">
-									<img src="assets/img/gallery/list1.png" alt="">
-									<!-- <span>Open</span> -->
-								</div>
-								<div class="list-caption">
-									<span>Open</span>
-									<h3>
-										<a href="listing_details.html">서비스명1</a>
-									</h3>
-									<p>서비스번호</p>
-									<p>서비스일자</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-listing mb-30">
-								<div class="list-img">
-									<img src="assets/img/gallery/list2.png" alt="">
-									<!-- <span>Open</span> -->
-								</div>
-								<div class="list-caption">
-									<span>Open</span>
-									<h3>
-										<a href="listing_details.html">서비스명2</a>
-									</h3>
-									<p>서비스번호</p>
-									<p>서비스일자</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-listing mb-30">
-								<div class="list-img">
-									<img src="assets/img/gallery/list2.png" alt="">
-									<!-- <span>Open</span> -->
-								</div>
-								<div class="list-caption">
-									<span>Open</span>
-									<h3>
-										<a href="listing_details.html">서비스명2</a>
-									</h3>
-									<p>서비스번호</p>
-									<p>서비스일자</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+
+
 			</div>
 		</div>
-
-		<button id="progress-prev" class="btn" disabled>Prev</button>
-		<button id="progress-next" class="btn">Next</button>
-	</div>
+		
+	</section>
 	
 	<script>
 		const progressBar = document.getElementById("progress-bar");

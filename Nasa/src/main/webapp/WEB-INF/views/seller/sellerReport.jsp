@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.hr{
+ 	background-color : #d5c9ea !important;
+   	margin: 10px !important;
+}
+</style>
 </head>
 <body>
 	<div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
@@ -27,54 +33,46 @@
 	                    <aside class="single_sidebar_widget post_category_widget">
 	                        <h4 class="widget_title">MYPAGE MENU</h4>
 	                        <ul class="list cat-list">
-	                            <li>
-	                                <a href="sellerService.do" class="d-flex">
-	                                    <p>서비스관리</p>
-	                                </a>
-	                            </li>
-	                            <li>
-	                                <a href="sellerPromotion.do" class="d-flex">
-	                                    <p>프로모션관리</p>
-	                                </a>
-	                            </li>
-	                            <li>
-	                                <a href="#" class="d-flex">
-	                                    <p>일정관리</p>
-	                                </a>
-	                            </li>
-	                            <li>
-	                                <a href="sellerReview.do" class="d-flex">
-	                                    <p>리뷰관리</p>
-	                                </a>
-	                            </li>
-	                            <li>
-	                                <a href="sellerPayment.do" class="d-flex">
-	                                    <p>결제조회</p>
-	                                </a>
-	                            </li>
-	                            <li>
-	                                <a href="sellerSales.do" class="d-flex">
-	                                    <p>매출확인</p>
-	                                </a>
-	                            </li>
-	                            <li>
-	                                <a href="sellerReport.do" class="d-flex">
-	                                    <p>신고관리</p>
-	                                </a>
-	                            </li>
-	                            <li>
-	                                <a href="sellerKnowhow.do" class="d-flex">
-	                                    <p>판매자 노하우</p>
-	                                </a>
-	                            </li>
-	                        </ul>
+								<li><a href="sellerService.do" class="d-flex">
+										<p>서비스관리</p>
+								</a></li>
+								<li><a href="sellerPromotion.do" class="d-flex">
+										<p>프로모션관리</p>
+								</a></li>
+								<li><a href="#" class="d-flex">
+										<p>일정관리</p>
+								</a></li>
+								<li><a href="sellerReview.do" class="d-flex">
+										<p>리뷰관리</p>
+								</a></li>
+								<li><a href="sellerPayment.do" class="d-flex">
+										<p>결제조회</p>
+								</a></li>
+								<li><a href="sellerSales.do" class="d-flex">
+										<p>매출확인</p>
+								</a></li>
+								<li><a href="sellerReport.do" class="d-flex">
+										<p>신고관리</p>
+								</a></li>
+								<li><a href="sellerKnowhow.do" class="d-flex">
+										<p>판매자 노하우</p>
+								</a></li>
+								<li><a href="" class="d-flex" data-toggle="modal"
+									data-target="#WithdrawalModal">
+										<p>회원탈퇴</p>
+								</a></li>
+							</ul>
 	                    </aside>                            
 	                </div>
 	        	</div>
 	        	<div class="col-9">
 	        		<div class="blog_left_sidebar">
                     	<article class="blog_item">
-							<div class="row justify-content-center">
+							<div class="justify-content-center">
+								<a class="d-inline-block" style="margin-top:20px;">
+										<h3>신고내역</h3>
+									</a>
+								<hr class="hr"/>
 								<table class="table caption-top table-bordered thead-light  text-center" style="margin-top:40px;">
 									<thead class="thead-light">
 										<tr>

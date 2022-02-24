@@ -15,7 +15,7 @@
         }
         .card-body {
             padding: 11rem;
-            background-color: rgb(221, 221, 221);
+            background-color: #c1a7d3;
         }
         .card-font {            
             margin-top: 1em;

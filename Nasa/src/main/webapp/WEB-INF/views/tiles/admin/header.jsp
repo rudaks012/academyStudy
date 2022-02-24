@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <header class="topbar" data-navbarbg="skin6">
- <script src="resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+
  
             <nav class="navbar top-navbar navbar-expand-md">
                 <div class="navbar-header" data-logobg="skin6">
@@ -15,10 +15,7 @@
                         <!-- Logo icon -->
                         <a href="index.html">
                             <b class="logo-icon">
-                                <!-- Dark Logo icon -->
-                                <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo icon -->
-                                <img src="assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+                                <img src="resources/user/assets/img/logo/loder.jpg" alt="">
                             </b>
                             <!--End Logo icon -->
                             <!-- Logo text -->
