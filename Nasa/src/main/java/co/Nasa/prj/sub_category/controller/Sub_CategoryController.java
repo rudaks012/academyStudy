@@ -16,9 +16,10 @@ public class Sub_CategoryController {
 	@Autowired
 	private Sub_CategoryService subCategoryDao;
 	
-	@ResponseBody
 	@RequestMapping("/subcategoryCall.do")
+	@ResponseBody
 	public List<SubCategoryVO> subcategoryCall(@Param("cat_no") String cat_no){
+		System.out.println(cat_no);
 		return subCategoryDao.subcategoryCall(cat_no);
 	}
 }

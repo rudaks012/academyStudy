@@ -46,9 +46,10 @@ input[type="radio"] {
 	outline: none;
 	color: black;
 }
-.hr{
- 	background-color : #d5c9ea !important;
-   	margin: 10px !important;
+
+.hr {
+	background-color: #d5c9ea !important;
+	margin: 10px !important;
 }
 </style>
 </head>
@@ -111,13 +112,12 @@ input[type="radio"] {
 					<div class="blog_left_sidebar">
 						<article class="blog_item">
 							<div class="justify-content-center">
-								<a class="d-inline-block" style="margin-top:20px;">
+								<a class="d-inline-block" style="margin-top: 20px;">
 									<h3>서비스 등록</h3>
 								</a>
-								<hr class="hr"/>
+								<hr class="hr" />
 								<div class="blog_details">
-									<form name="dataForm" id="dataForm"
-										onsubmit="return registerAction()">
+									<form name="dataForm" id="dataForm" enctype="multipart/form-data" onsubmit="return registerAction()">
 										<table id="servtb" border="1"
 											style="border-color: rgb(229, 232, 255); width: 800px;">
 											<tbody>
@@ -128,10 +128,11 @@ input[type="radio"] {
 												</tr>
 												<tr>
 													<td>1차 카테고리<span class="spanstar">*</span></td>
-													<td><select name="ser_cate" id="ser_cate" class="sercate" required>
+													<td><select name="ser_cate" id="ser_cate"
+														class="sercate" required>
 															<option value="">선택하세요.</option>
-															<option value="CAT1">웹</option>
-															<option value="CAT2">앱</option>
+															<option value="CAT1">앱</option>
+															<option value="CAT2">웹</option>
 															<option value="CAT3">게임</option>
 															<option value="CAT4">보안</option>
 															<option value="CAT5">기술지원</option>
@@ -140,17 +141,16 @@ input[type="radio"] {
 													<td style="background-color: rgb(229, 231, 253);">2차
 														카테고리<span class="spanstar">*</span>
 													</td>
-													<td><select name="catego" required>
+													<td><select name="ser_sub_cate" id="ser_sub_cate"
+														class="ser_sub_cate" required>
 															<option value="">선택하세요.</option>
-															<option value="1">사이트</option>
-															<option value="2">유지보수</option>
-															<option value="3">Jun 19</option>
 													</select></td>
 												</tr>
 												<tr>
 													<td rowspan="5">서비스타입</td>
 													<td>기술수준<span class="spanstar">*</span></td>
-													<td colspan="2"><select name="level">
+													<td colspan="2"><select name="ser_skill"
+														id="ser_skill">
 															<option value="1" selected>초급</option>
 															<option value="2">중급</option>
 															<option value="3">고급</option>
@@ -158,7 +158,7 @@ input[type="radio"] {
 												</tr>
 												<tr>
 													<td class="sertb">팀 규모<span class="spanstar">*</span></td>
-													<td colspan="2"><select name="scale">
+													<td colspan="2"><select name="ser_team" id="ser_team">
 															<option value="1" selected>개인</option>
 															<option value="2">2인이상 5인미만</option>
 															<option value="3">5인이상 20인 미만</option>
@@ -167,76 +167,71 @@ input[type="radio"] {
 												</tr>
 												<tr>
 													<td class="sertb">개발 언어</td>
-													<td colspan="2"><input type="text"
-														placeholder="Java/C/Python"></td>
+													<td colspan="2"><input type="text" id="ser_lang"
+														name="ser_lang" placeholder="Java/C/Python"></td>
 												</tr>
 												<tr>
 													<td class="sertb">프레임워크</td>
-													<td colspan="2"><input type="text"
-														placeholder="Spring/Django/Angular"></td>
+													<td colspan="2"><input type="text" id="ser_frame"
+														name="ser_frame" placeholder="Spring/Django/Angular"></td>
 												</tr>
 												<tr>
 													<td class="sertb">DBMS</td>
-													<td colspan="2"><input type="text"
-														placeholder="Oracle/MongoDB/Mysql"></td>
+													<td colspan="2"><input type="text" id="ser_dbms"
+														name="ser_dbms" placeholder="Oracle/MongoDB/Mysql"></td>
 												</tr>
 												<tr>
 													<td>서비스방식<span class="spanstar">*</span></td>
-													<td colspan="3"><input type="radio" name="method"
-														value="online" checked="checked">온라인 <input
-														type="radio" name="method" value="offline">오프라인 <input
-														type="radio" name="method" value="all">전체</td>
+													<td colspan="3">
+														<input type="radio" name="ser_line"
+														value="online" checked="checked">온라인 
+														<input
+														type="radio" name="ser_line" value="offline">오프라인
+														<input type="radio" name="ser_line" value="all">전체</td>
 												</tr>
 												<tr>
 													<td>서비스제공일<span class="spanstar">*</span></td>
 													<td colspan="3"><input type="radio" name="servdate"
-														value="alltime" checked="checked">상시 &nbsp; <input
+														value="alltime" checked="checked">상시 &nbsp; 
+														<input
 														type="radio" name="servdate" value="usertime">기간지정
 														<input type="date" name="date"> - <input
 														type="date" name="date"></td>
 												</tr>
 												<tr>
 													<td>서비스 기본가격<span class="spanstar">*</span></td>
-													<td colspan="3"><input type="number" required></td>
+													<td colspan="3"><input type="number" id="ser_price" name="ser_price" required></td>
 												</tr>
 												<tr>
 													<td>서비스 설명<span class="spanstar">*</span></td>
-													<td colspan="3"><textarea cols="78" rows="4" required></textarea></td>
+													<td colspan="3"><textarea cols="78" rows="4" id="ser_sub" name="ser_sub" required></textarea></td>
 												</tr>
 												<tr>
 													<td>서비스 제공절차</td>
-													<td colspan="3"><textarea cols="78" rows="4"></textarea></td>
+													<td colspan="3"><textarea cols="78" rows="4" id="ser_offer" name="ser_offer"></textarea></td>
 												</tr>
 												<tr>
 													<td>서비스 메인이미지<span class="spanstar">*</span></td>
-													<td colspan="3"><input type="file" required></td>
+													<td colspan="3"><input type="file" name="file" id="file" required></td>
 												</tr>
 												<tr>
 													<td>서비스 상세이미지</td>
 													<td colspan="3">
-														<button id="btn-upload" type="button">파일 추가</button> <input
-														id="input_file" multiple="multiple" type="file"
-														style="display: none;"> <span
-														style="font-size: 10px; color: gray;">※첨부파일은 최대
-															3개까지 등록이 가능합니다.</span>
-
+														<button id="btn-upload" type="button">파일 추가</button> 
+														<input id="input_file" multiple="multiple" type="file" style="display: none;"> 
+														<span style="font-size: 10px; color: gray;">※첨부파일은 최대 3개까지 등록이 가능합니다.</span>
 														<div id="fileChange"></div>
 
 													</td>
 												</tr>
-												<!--  <tr>
-                              <td>자동응답메세지<span class="spanstar">*</span></td>
-                              <td colspan="3"><textarea cols="78" rows="4">홍길동입니다.</textarea></td>
-                           </tr> -->
 											</tbody>
 										</table>
 										<br />
 										<div
 											class="row d-flex justify-content-center align-items-center">
-											<button type="submit"
-												class="genric-btn primary circle arrow btnbox">등록</button>
+											<button class="genric-btn primary circle arrow btnbox">등록</button>
 											&nbsp;&nbsp;&nbsp;
-											<button class="genric-btn primary circle arrow btnbox">취소</button>
+											<button class="genric-btn primary circle arrow btnbox" onclick="history.back()">취소</button>
 										</div>
 									</form>
 
@@ -272,11 +267,24 @@ input[type="radio"] {
 			$('#ser_cate').on("change", function(){
 				$.ajax({
 					type : "POST",
-					url : "/subcategoryCall.do",
+					url : "subcategoryCall.do",
 					data : {cat_no : $('#ser_cate').val()},
-					dataType : "text",
-					success : function(data) {
-						console.log('카테고리 성공');
+					dataType : "json",
+					success : function(datas) {
+						$('#ser_sub_cate').empty();
+						let ul = document.getElementsByClassName('list')[2];
+						while(ul.hasChildNodes()){
+							ul.removeChild(ul.firstChild);
+						}
+						ul.innerHTML = "<li data-value class='option selected'>선택하세요.</li>";
+						for(data of datas){
+							$('#ser_sub_cate').append("<option value='"+ data.sub_no+"'>" + data.sub_name + "</option>");
+							
+							let ul = document.getElementsByClassName('list')[2];
+							
+							ul.innerHTML += "<li data-value='"+data.sub_no+"' class='option'>"+data.sub_name+"</li>";
+						}
+						document.getElementsByClassName('current')[1].innerHTML='선택하세요.';
 					},
 					error : function(xhr, status, error) {
 						alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
@@ -364,7 +372,7 @@ input[type="radio"] {
 			$.ajax({
 				type : "POST",
 				enctype : "multipart/form-data",
-				url : "file-upload.do",
+				url : "serviceInsertForm.do",
 				data : formData,
 				processData : false,
 				contentType : false,
