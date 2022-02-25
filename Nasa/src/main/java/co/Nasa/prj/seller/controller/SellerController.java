@@ -67,6 +67,12 @@ public class SellerController {
 		return "seller/sellerPayment";
 	}
 	
+	@RequestMapping("/serviceInsert.do")
+	public String serviceInsert() {
+		return "seller/serviceInsert";
+	}
+	
+	
 	@RequestMapping("/knowhowDetail.do")
 	public String knowhowDetail() {
 		return "seller/knowhowDetail";
