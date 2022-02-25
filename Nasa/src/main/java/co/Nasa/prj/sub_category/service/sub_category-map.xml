@@ -6,4 +6,10 @@
 		SELECT *
 		FROM SUB_CATEGORY;
 	</select>
+	
+	<select id="subcategoryCall" resultType="co.Nasa.prj.comm.VO.SubCategoryVO">
+		SELECT *
+		FROM SUB_CATEGORY
+		WHERE CAT_NO = #{cat_no}
+	</select>
 </mapper>
