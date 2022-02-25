@@ -1,6 +1,7 @@
 package co.Nasa.prj.seller.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,11 +15,6 @@ public class SellerController {
 	@RequestMapping("/sellerKnowhow.do")
 	public String sellerKnowhow() {
 		return "seller/sellerKnowhow";
-	}
-
-	@RequestMapping("/sellerService.do")
-	public String sellerService() {
-		return "seller/sellerService";
 	}
 
 	@RequestMapping("/sellerReview.do")
