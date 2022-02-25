@@ -393,9 +393,10 @@ Remove or comment-out the code block below to see how the browser will fall-back
 					</div>
 					<div class="profile-stats">
 						<ul>
-							<li id="gradeinfo" style="font-size: 15px;" data-toggle="tooltip" data-placement="top" title="등급 : 태양">
+							<li id="gradeinfo" style="font-size: 15px;">
 							<!-- data-toggle="tooltip" data-placement="top" title="등급" -->
-								<span class="profile-real-name">등급 : </span> 태양 <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+								<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 태양">등급 : 태양</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+								<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="10%할인 쿠폰 보유중">쿠폰 보유 중</span>
 							</li>
 						</ul>
 					</div>

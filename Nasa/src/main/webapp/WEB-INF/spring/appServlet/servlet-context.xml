@@ -32,6 +32,7 @@
 		<beans:property name="order" value="1" />
 	</beans:bean>
 
+
 	<beans:bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" id="tilesConfigurer">
 		<beans:property name="definitions">
 			<beans:list>
@@ -41,6 +42,8 @@
 	</beans:bean>
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
 	<beans:bean class="co.Nasa.prj.login.service.NaverLoginBO" id="naverLoginBO" />
+
+
 
 	<!-- 스프링에서 기본으로 제공하는 multipartResolver는 CommonsMultipartResolver 이므로, 순수한 
 		multipartResolver를 사용하기 위해 빈 이름으로 "multipartResolver"를 등록해야함 + 프로퍼티를 이용 최대 

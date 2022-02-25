@@ -278,12 +278,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- POI -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.14</version>
-		</dependency>
 
 		<!-- 이메일 인증: https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
@@ -298,6 +292,23 @@
 		    <artifactId>spring-context-support</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
+
+
+	
+	<!-- POI -->
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi-ooxml</artifactId>
+		<version>3.14</version>
+	</dependency>
+	
+	<!-- 로그확인 -->
+	<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1 -->
+      <dependency>
+          <groupId>org.bgee.log4jdbc-log4j2</groupId>
+          <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+          <version>1.16</version>
+      </dependency>
 
 	</dependencies>
 

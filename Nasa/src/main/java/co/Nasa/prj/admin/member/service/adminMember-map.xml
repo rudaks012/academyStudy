@@ -15,8 +15,9 @@
 	
 	<select id="selectBuyerPayment" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
 		SELECT *
-		FROM PAYMENT 
-		WHERE B_EMAIL= #{b_email}
+		FROM PAYMENT p JOIN SERVICE s
+		ON(p.s_email=s.s_email)
+		WHERE p.b_email=#{b_email}
 		
 	</select>
 	

@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="resources/user/assets/css/buyHistoryCard.css">
 </head>
 
+<body>
+
 <!-- Hero Start-->
 <div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
 </div>
@@ -120,13 +122,14 @@
 						<br>
 						<br>
 						<div class="row justify-content-center">							
-							<button class="genric-btn primary-border small">1개월</button>
-							<button class="genric-btn primary-border small" style="margin-left: 5px;">6개월</button>
-							<button class="genric-btn primary-border small" style="margin-left: 5px;">1년</button>
-							<input type="date" style="margin-left: 10px">&nbsp;~&nbsp;<input type="date">
+							<button class="genric-btn primary-border small" onclick="oneMonthSearch()">1개월</button>
+							<button class="genric-btn primary-border small" style="margin-left: 5px;" onclick="sixMonthSearch()">6개월</button>
+							<button class="genric-btn primary-border small" style="margin-left: 5px;" onclick="oneYearSearch()">1년</button>
+							<input id="firstDate" type="date" style="margin-left: 10px">&nbsp;~&nbsp;<input id="secondDate" type="date"> 
+							<button class="genric-btn danger" style="height:30px; margin-left: 5px; padding:0 auto;" onclick="selectDateSearch()">검색</button>
 						</div>
 						<div class="row justify-content-center" style="margin-top: 10px;">
-							<table class="table" style="width: 800px; text-align: center;">
+							<table id="paymentTable" class="table" style="width: 800px; text-align: center;">
 								<thead>
 									<tr>
 										<th scope="col">결제일</th>
@@ -140,7 +143,7 @@
 								<tbody>
 									<c:forEach items="${paymentList }" var="payment">
 										<tr>
-											<td>${payment.pay_date }</td>
+											<td class="paymentdate">${payment.pay_date }</td>
 											<td>payment테이블에 서비스명 추가?</td>
 											<td>${payment.s_email }</td>
 											<td>
@@ -186,6 +189,91 @@
 </section>
 
 <!-- buyHistory main end  -->
-
-
+<script>
+	function oneMonthSearch() {
+		$("#paymentTable > tbody > tr").hide();
+		var now = new Date(); // 오늘 날짜
+		var oneMonthAgo = new Date(now.setMonth(now.getMonth() - 1)); // 한달 전 날짜 구하기
+		// var searchYear = OneMonthAgo.getFullYear();
+		// var stringDate = OneMonthAgo.toLocaleDateString();
+		// console.log(stringDate); // getFillYear은 숫자로 반환하기 때문에 -2000을 해주자.
+		// var temp = $("#paymentTable > tbody > tr > td:nth-child(4):contains('"+l+"')")
+		
+		for (var i = 0; i  < $(".paymentdate").length; i++) {
+			var paymentDate = new Date($($(".paymentdate")[i]).html());
+			
+			if (paymentDate >= oneMonthAgo) {
+				$($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+			}
+		}
+	}
+	
+	function sixMonthSearch() {
+		$("#paymentTable > tbody > tr").hide();
+		var now = new Date(); // 오늘 날짜
+		var sixMonthAgo = new Date(now.setMonth(now.getMonth() - 6)); // 6달 전 날짜 구하기
+		// var searchYear = OneMonthAgo.getFullYear();
+		// var stringDate = OneMonthAgo.toLocaleDateString();
+		// console.log(stringDate); // getFillYear은 숫자로 반환하기 때문에 -2000을 해주자.
+		// var temp = $("#paymentTable > tbody > tr > td:nth-child(4):contains('"+l+"')")
+		
+		for (var i = 0; i  < $(".paymentdate").length; i++) {
+			var paymentDate = new Date($($(".paymentdate")[i]).html());
+			
+			if (paymentDate >= sixMonthAgo) {
+				$($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+			}
+		}
+	}
+	
+	function oneYearSearch() {
+		$("#paymentTable > tbody > tr").hide();
+		var now = new Date(); // 오늘 날짜
+		var oneYearAgo = new Date(now.setMonth(now.getMonth() - 12)); // 12달 전 날짜 구하기
+		// var searchYear = OneMonthAgo.getFullYear();
+		// var stringDate = OneMonthAgo.toLocaleDateString();
+		// console.log(stringDate); // getFillYear은 숫자로 반환하기 때문에 -2000을 해주자.
+		// var temp = $("#paymentTable > tbody > tr > td:nth-child(4):contains('"+l+"')")
+		
+		for (var i = 0; i  < $(".paymentdate").length; i++) {
+			var paymentDate = new Date($($(".paymentdate")[i]).html());
+			
+			if (paymentDate >= oneYearAgo) {
+				$($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+			}
+		}
+	}
+	
+	function selectDateSearch() {
+		var firstDate = $("#firstDate").val();
+		var secondDate = $("#secondDate").val();
+		console.log(firstDate);
+		console.log(secondDate);
+		
+		if(firstDate == "") {
+			window.alert("날짜를 설정해주세요!");
+			return;
+		} else if(secondDate == "") {
+			window.alert("날짜를 설정해 주세요!");
+			return;
+		} else if(firstDate > secondDate) {
+			window.alert("날짜를 올바르게 설정해주세요!");
+			return;
+		}
+		
+		$("#paymentTable > tbody > tr").hide();
+		
+		for (var i = 0; i  < $(".paymentdate").length; i++) {
+			var paymentDate = new Date($($(".paymentdate")[i]).html());
+			var first = new Date(firstDate);
+			var second = new Date(secondDate);
+			
+			if (paymentDate >= first && paymentDate <= second) {
+				$($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+			}
+		}
+		
+	}
+</script>
+</body>
 </html>

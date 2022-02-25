@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class SubCategoryVO {
 	String cat_no;
-	String sub_cat_no;
-	String sub_cat_name;
+	String sub_no;
+	String sub_name;
 }
