@@ -1,3 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="co.Nasa.prj.seller.service.seller-map"></mapper>
+<mapper namespace="co.Nasa.prj.seller.service.SellerMapper">
+
+	<select id="SellerNicknameCheck" resultType="int">
+		select count(*) from seller
+		where s_nickname=#{s_nickname}
+	</select>
+
+</mapper>

@@ -104,12 +104,11 @@
 										placeholder="example@nasa.com">
 									<input type="button" value="전송" class="position-relative genric-btn primary radius"
 										style="float: right; bottom: 45px;">
-										<label for="nickname" class="nickcheck">사용 가능한 이메일입니다.</label>
 								</div>
 							</div>
 							<div class="form-group">
 								이메일 인증<div>
-									<input class="form-control valid" name="emailchk" id="emailchk placeholder="인증코드를 확인해주세요">
+									<input class="form-control valid" name="emailchk" id="emailchk" placeholder="인증코드를 확인해주세요">
 									<input type="button" value="확인" class="position-relative genric-btn primary radius"
 										style="float: right; bottom: 45px;">
 								</div>
@@ -181,16 +180,16 @@
 			$.ajax({
 				url :"ajaxSPnickCheck.do",
 				type : "POST",
-				data: {nickname : nickname},
+				data: {s_nickname : nickname},
 				dataType : "text",
 				success : function(data) {  
-					if(data == 'true') {
-						$("#nickdiv").append("<label>사용 가능한 닉네임입니다.</label>");
-						$('#nickCheckbtn').attr('disabled', true);
-						$('#nickname').attr('readonly', true);
+					if(data == 'T') {
+						$("label").remove('#nicklabel');
+						$("#nickdiv").append('<label id="nicklabel">사용 가능한 닉네임입니다.</label>');
 					} else {
-						$("#nickdiv").append("<label>이미 사용하고 있는 닉네임입니다.</label>");            	
-            			$('#nickname').focus();
+						$("label").remove('#nicklabel');						
+						$("#nickdiv").append('<label id="nicklabel">이미 사용하고 있는 닉네임입니다.</label>');            	
+            			
 					}
 			    },
 				error : function() {
