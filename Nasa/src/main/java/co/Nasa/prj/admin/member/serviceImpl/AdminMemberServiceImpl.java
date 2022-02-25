@@ -25,15 +25,22 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	
 
 	@Override
-	public AdminAuthorVO selectBuyer(AdminAuthorVO vo) {
+	public AdminAuthorVO selectBuyer(String id) {
 		// TODO Auto-generated method stub
-		return map.selectBuyer(vo);
+		return map.selectBuyer(id);
 	}
 
 	@Override
 	public List<SellerVO> sellerList() {
 		// TODO Auto-generated method stub
 		return map.sellerList();
+	}
+
+
+	@Override
+	public List<AdminAuthorVO> selectBuyerPayment(String id) {
+		// TODO Auto-generated method stub
+		return map.selectBuyerPayment(id);
 	}
 
 

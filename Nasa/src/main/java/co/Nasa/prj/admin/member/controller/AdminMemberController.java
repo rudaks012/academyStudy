@@ -1,7 +1,12 @@
 package co.Nasa.prj.admin.member.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,17 +33,20 @@ public class AdminMemberController {
 	
 	@ResponseBody
 	@PostMapping("/ajaxSelectMember.do")
-	public String ajaxSelectMember(AdminAuthorVO vo ,@RequestParam("id") String id) {
+	public Map<String, Object> ajaxSelectMember(AdminAuthorVO vo) {
 		String result="N";
-		System.out.println(id);
-		vo.setB_email(id);
-//		vo = memberDao.selectBuyer(vo);
-//		System.out.println(memberDao.selectBuyer(vo));
-//		if(vo !=null) {
-//			result="Y";
-//			return result;
-//		}
-		return result;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		
+		vo = memberDao.selectBuyer(vo.getB_email()); //구매자 상세정보
+		System.out.println(vo);
+		List<AdminAuthorVO> payment= memberDao.selectBuyerPayment(vo.getB_email()); //구매자 결제내역
+		map.put("buyer", vo);
+		map.put("payment", payment);
+		if(vo !=null) {
+			map.put("result", result);
+		}
+		return map;
 	}
 	@RequestMapping("/manage_seller.do")
 	public String manage_seller(Model model) {

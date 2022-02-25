@@ -8,6 +8,7 @@ import co.Nasa.prj.comm.VO.SellerVO;
 
 public interface AdminMemberMapper {
 	public List<BuyerVO> buyerList();
-	public AdminAuthorVO selectBuyer(AdminAuthorVO vo); //구매자 상세조회
+	public AdminAuthorVO selectBuyer(String id); //구매자 정보
+	public List<AdminAuthorVO> selectBuyerPayment(String id); //구매자 상세조회
 	public List<SellerVO> sellerList();
 }
