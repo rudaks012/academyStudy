@@ -88,39 +88,49 @@
 					<div>
 						<div>
 							<div class="form-group">
-								이름<input class="form-control valid" name="name" id="name" type="text" placeholder="이름(실명)을 입력해주세요">
+								이름<input class="form-control valid" name="name" id="name" type="text"
+									placeholder="이름(실명)을 입력해주세요">
 							</div>
-							<div class="position-relative form-group">								
-								<p class="position-relative nini" style="top: 60px;">닉네임</p><input type="button" value="확인" class="position-relative genric-btn primary radius" style="float: right; top: 45px;">
+							<div class="form-group">
+								닉네임<div id="nickdiv">
 								<input class="form-control valid" name="nickname" id="nickname" placeholder="사용할 닉네임을 입력해주세요">
-								
-							</div>
-							<div class="form-group">
-								이메일<div class="d-flex">
-									<input class="form-control valid" name="email" id="email" type="email" placeholder="example@nasa.com">
-									<input type="button" value="전송" class="genric-btn primary radius"
-										style="float: right;">
+								<input type="button" value="확인" id="nickCheckbtn" class="position-relative genric-btn primary radius" 
+								onclick="nicknameCheck()" style="float: right; bottom: 45px;">
 								</div>
 							</div>
 							<div class="form-group">
-								이메일 인증<div class="d-flex">
-									<input class="form-control valid" name="emailchk" id="emailchk" placeholder="인증코드를 확인해주세요">
-									<input type="button" value="확인" class="genric-btn primary radius" style="float: right;">
+								이메일<div>
+									<input class="form-control valid" name="email" id="email" type="email"
+										placeholder="example@nasa.com">
+									<input type="button" value="전송" class="position-relative genric-btn primary radius"
+										style="float: right; bottom: 45px;">
+										<label for="nickname" class="nickcheck">사용 가능한 이메일입니다.</label>
 								</div>
 							</div>
 							<div class="form-group">
-								비밀번호<input class="form-control valid" name="password" id="password" type="password" placeholder="영문+숫자 조합 8자리 이상 입력해주세요">
+								이메일 인증<div>
+									<input class="form-control valid" name="emailchk" id="emailchk placeholder="인증코드를 확인해주세요">
+									<input type="button" value="확인" class="position-relative genric-btn primary radius"
+										style="float: right; bottom: 45px;">
+								</div>
 							</div>
 							<div class="form-group">
-								비밀번호 확인<input class="form-control valid" name="pwchk" id="pwchk" type="password" placeholder="비밀번호를 다시 입력해주세요">
+								비밀번호<input class="form-control valid" name="password" id="password" type="password"
+									placeholder="영문+숫자 조합 8자리 이상 입력해주세요">
 							</div>
 							<div class="form-group">
-								연락처<input class="form-control valid" name="phone" id="phone" placeholder="연락가능한 전화번호를 입력해주세요">
+								비밀번호 확인<input class="form-control valid" name="pwchk" id="pwchk" type="password"
+									placeholder="비밀번호를 다시 입력해주세요">
+							</div>
+							<div class="form-group">
+								연락처<input class="form-control valid" name="phone" id="phone"
+									placeholder="연락가능한 전화번호를 입력해주세요">
 							</div>
 							<div class="form-group">
 								주소<div class="d-flex">
 									<input class="form-control valid" id="postcode" placeholder="우편번호">
-									<input type="button" id="addressSearch" value="검색" class="genric-btn primary radius" style="float: right;">
+									<input type="button" id="addressSearch" value="검색" class="genric-btn primary radius"
+										style="float: right;">
 								</div>
 								<input class="form-control valid" id="address" placeholder="주소">
 								<input class="form-control valid" id="addressDetail" placeholder="상세 주소">
@@ -130,7 +140,8 @@
 									<input type="checkbox" id="primary-checkbox">
 									<label for="primary-checkbox"></label>
 								</div>&nbsp;
-								<a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login" style="color: #1f2b7b;">
+								<a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"
+									style="color: #1f2b7b;">
 									이용 약관, 개인정보 수집 및 이용 동의 (필수)
 								</a>
 							</div>
@@ -138,14 +149,14 @@
 						<div style="text-align: center;">
 							<div style="margin-top: 100px;">
 								<button type="submit" class="genric-btn primary e-large">가입하기</button>
-							</div>							
+							</div>
 							<div style="margin-top: 40px;">
 								<a href="#" style="color: #1f2b7b;">기업 판매자로 가입하시나요?</a>
 							</div>
 						</div>
 					</div>
-				</form>								
-			</div>		
+				</form>
+			</div>
 		</div>
 	</div>
 
@@ -162,105 +173,32 @@
 					}
 				}).open();
 			});
-		}
+		};
 
-		$(document).ready(function(){
-    
-    (function($) {
-        "use strict";
+		function nicknameCheck() {
+			var nickname = $('#nickname').val();
 
-    
-    jQuery.validator.addMethod('answercheck', function (value, element) {
-        return this.optional(element) || /^\bcat\b$/.test(value)
-    }, "type the correct answer -_-");
-
-    // validate contactForm form
-    $(function() {
-        $('#personJoin-form').validate({
-            rules: {
-                name: {
-                    required: true
-                },
-                nickname: {
-                    required: true,                   
-                },
-                email: {
-                    required: true,
-					email: true                   
-                },
-                emailchk: {
-                    required: true                   
-                },
-                password: {
-                    required: true                 
-                },
-
-				pwchk: {
-					required: true
-				},
-
-				phone: {
-					required: true
-				},
-
-				postcode: {
-					required: true
-				},
-
-				addressDetail: {
-					required: true
+			$.ajax({
+				url :"ajaxSPnickCheck.do",
+				type : "POST",
+				data: {nickname : nickname},
+				dataType : "text",
+				success : function(data) {  
+					if(data == 'true') {
+						$("#nickdiv").append("<label>사용 가능한 닉네임입니다.</label>");
+						$('#nickCheckbtn').attr('disabled', true);
+						$('#nickname').attr('readonly', true);
+					} else {
+						$("#nickdiv").append("<label>이미 사용하고 있는 닉네임입니다.</label>");            	
+            			$('#nickname').focus();
+					}
+			    },
+				error : function() {
+					console.log("실패");      	
 				}
-            },
-            messages: {
-                name: {
-                    required: "come on, you have a name, don't you?",
-                    minlength: "your name must consist of at least 2 characters"
-                },
-                subject: {
-                    required: "come on, you have a subject, don't you?",
-                    minlength: "your subject must consist of at least 4 characters"
-                },
-                number: {
-                    required: "come on, you have a number, don't you?",
-                    minlength: "your Number must consist of at least 5 characters"
-                },
-                email: {
-                    required: "no email, no message"
-                },
-                message: {
-                    required: "um...yea, you have to write something to send this form.",
-                    minlength: "thats all? really?"
-                }
-            },
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    type:"POST",
-                    data: $(form).serialize(),
-                    url:"contact_process.php",
-                    success: function() {
-                        $('#contactForm :input').attr('disabled', 'disabled');
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $(this).find(':input').attr('disabled', 'disabled');
-                            $(this).find('label').css('cursor','default');
-                            $('#success').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#success').modal('show');
-                        })
-                    },
-                    error: function() {
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $('#error').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#error').modal('show');
-                        })
-                    }
-                })
-            }
-        })
-    })
-        
- })(jQuery)
-})
+			});
+		};
+
 	</script>
 </body>
 
