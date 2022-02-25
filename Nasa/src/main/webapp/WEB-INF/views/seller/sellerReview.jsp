@@ -98,12 +98,12 @@
 				<div class="col-9">
 					<div class="blog_left_sidebar">
 						<article class="blog_item">
-							<div class="blog_details">
-								<div class="justify-content-center">
-									<a class="d-inline-block" style="margin-top: 20px;">
-										<h3>리뷰 관리</h3>
-									</a>
-									<hr class="hr" />
+							<div class="justify-content-center">
+								<a class="d-inline-block" style="margin-top: 20px;">
+									<h3>리뷰 관리</h3>
+								</a>
+								<hr class="hr" />
+								<div class="blog_details">
 									<div class="card-body">
 										<table class="table caption-top table-bordered  text-center">
 											<tbody>
@@ -119,74 +119,56 @@
 										</table>
 									</div>
 
-								</div>
-								<br />
+
+									<br />
 
 
-								<div class="comments-area">
+									<div class="comments-area">
 
-									<div class="comment-list">
-										<div class="single-comment justify-content-between d-flex">
-											<div class="user justify-content-between d-flex">
-												<div class="thumb">
-													<img src="assets/img/comment/comment_1.png" alt="">
-												</div>
-												<div class="desc">
-													<span>Emilly Blunt</span> <span class="date">December
-														4, 2017 at 3:12 pm </span>
-													<p class="comment">Never say goodbye till the end
-														comes!</p>
-													<a href="" class="btn-reply text-uppercase">신고</a>
-												</div>
-											</div>
-											<img class="revimg" src="assets/img/gallery/list1.png">
-										</div>
-									</div>
-									<div class="comment-list left-padding">
-										<div class="single-comment justify-content-between d-flex">
-											<div class="user justify-content-between d-flex">
-												<div class="thumb">
-													<img src="assets/img/comment/comment_2.png" alt="">
-												</div>
-												<div class="desc">
-													<span>홍길동</span> <span class="date">December 4, 2017
-														at 3:12 pm </span>
-													<p class="comment">Never say goodbye till the end
-														comes!</p>
-													<span class="btn-reply1">수정</span> <span class="btn-reply1">삭제</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="comments-area">
-									<div class="comment-list">
-										<div class="single-comment justify-content-between d-flex">
-											<div class="user justify-content-between d-flex">
-												<div class="thumb">
-													<img src="assets/img/comment/comment_3.png" alt="">
-												</div>
-												<div class="desc">
-													<span>Maria Luna</span> <span class="date">December
-														4, 2017 at 3:12 pm </span>
-													<p class="comment">Never say goodbye till the end
-														comes!</p>
-													<span class="btn-reply1">신고</span> <span class="btn-reply1">리뷰등록</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="comments-area">
-									<div class="comment-list">
-										<div class="single-comment justify-content-between d-flex">
-											<div class="user justify-content-between d-flex">
-												<div class="thumb">
-													<img src="assets/img/comment/comment_1.png" alt="">
-												</div>
-												<div class="desc">
+										<div class="comment-list">
+											<div class="single-comment justify-content-between d-flex">
+												<div class="user justify-content-between d-flex">
+													<div class="thumb">
+														<img src="assets/img/comment/comment_1.png" alt="">
+													</div>
 													<div class="desc">
-														<span>Ina Hayes</span> <span class="date">December
+														<span>Emilly Blunt</span> <span class="date">December
+															4, 2017 at 3:12 pm </span>
+														<p class="comment">Never say goodbye till the end
+															comes!</p>
+														<a href="" class="btn-reply text-uppercase">신고</a>
+													</div>
+												</div>
+												<img class="revimg" src="assets/img/gallery/list1.png">
+											</div>
+										</div>
+										<div class="comment-list left-padding">
+											<div class="single-comment justify-content-between d-flex">
+												<div class="user justify-content-between d-flex">
+													<div class="thumb">
+														<img src="assets/img/comment/comment_2.png" alt="">
+													</div>
+													<div class="desc">
+														<span>홍길동</span> <span class="date">December 4,
+															2017 at 3:12 pm </span>
+														<p class="comment">Never say goodbye till the end
+															comes!</p>
+														<span class="btn-reply1">수정</span> <span
+															class="btn-reply1">삭제</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="comments-area">
+										<div class="comment-list">
+											<div class="single-comment justify-content-between d-flex">
+												<div class="user justify-content-between d-flex">
+													<div class="thumb">
+														<img src="assets/img/comment/comment_3.png" alt="">
+													</div>
+													<div class="desc">
+														<span>Maria Luna</span> <span class="date">December
 															4, 2017 at 3:12 pm </span>
 														<p class="comment">Never say goodbye till the end
 															comes!</p>
@@ -197,9 +179,29 @@
 											</div>
 										</div>
 									</div>
+									<div class="comments-area">
+										<div class="comment-list">
+											<div class="single-comment justify-content-between d-flex">
+												<div class="user justify-content-between d-flex">
+													<div class="thumb">
+														<img src="assets/img/comment/comment_1.png" alt="">
+													</div>
+													<div class="desc">
+														<div class="desc">
+															<span>Ina Hayes</span> <span class="date">December
+																4, 2017 at 3:12 pm </span>
+															<p class="comment">Never say goodbye till the end
+																comes!</p>
+															<span class="btn-reply1">신고</span> <span
+																class="btn-reply1">리뷰등록</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-
 						</article>
 					</div>
 				</div>

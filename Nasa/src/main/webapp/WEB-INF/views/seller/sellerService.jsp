@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 .servnav {
 	list-style-type: none;
@@ -90,11 +90,11 @@
 }
 
 .fables-single-item:hover {
-	background-color: tomato;
+	background-color: #d5c9ea;
 }
 
 .nav-link.active {
-	background-color: tomato !important;
+	background-color: #d5c9ea !important;
 	color: white !important;
 }
 
@@ -213,23 +213,19 @@ input[type=date] {
 													<div class="row justify-content-center">
 														<div class="listing-details-area">
 															<div class="container">
-															
 																<div class="row">
-																
-								
-																	<div class="col-lg-6 ">
+																<c:forEach items="${serviceList }" var="service">
+																	<div class="col-lg-6">
 																		<div class="single-listing mb-30">
 																			<div class="list-img">
 																				<img src="assets/img/gallery/list1.png" alt="">
-																				<!-- <span>Open</span> -->
 																			</div>
 																			<div class="list-caption">
-
 																				<h3>
-																					<a href="serviceDetail.do">서비스명1</a>
+																					<a href="serviceDetail.do">${service.ser_title }</a>
 																				</h3>
-																				<p>서비스번호</p>
-																				<p>서비스일자</p>
+																				<div>번호 : s${service.ser_code }</div>
+																				<div>일자 : ${service.ser_start } ~ ${service.ser_end }</div>
 																				<div class="list-footer">
 																					<ul>
 																						<li style="margin-left: 130px;"><a href="#"
@@ -242,117 +238,7 @@ input[type=date] {
 																			</div>
 																		</div>
 																	</div>
-																	<div class="col-lg-6 ">
-																		<div class="single-listing mb-30">
-																			<div class="list-img">
-																				<img src="assets/img/gallery/list2.png" alt="">
-																				<!-- <span>Open</span> -->
-																			</div>
-																			<div class="list-caption">
-
-																				<h3>
-																					<a href="listing_details.html">서비스명2</a>
-																				</h3>
-																				<p>서비스번호</p>
-																				<p>서비스일자</p>
-																				<div class="list-footer">
-																					<ul>
-																						<li style="margin-left: 130px;"><a href="#"
-																							class="genric-btn danger-border circle">수정</a></li>
-																						<li><a href="#"
-																							class="genric-btn danger-border circle">종료</a></li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-lg-6 ">
-																		<div class="single-listing mb-30">
-																			<div class="list-img">
-																				<img src="assets/img/gallery/list3.png" alt="">
-																				<!-- <span>Open</span> -->
-																			</div>
-																			<div class="list-caption">
-
-																				<h3>
-																					<a href="listing_details.html">서비스명3</a>
-																				</h3>
-																				<p>서비스번호</p>
-																				<p>서비스일자</p>
-																				<div class="list-footer">
-																					<ul>
-																						<li style="margin-left: 130px;"><a href="#"
-																							class="genric-btn danger-border circle">수정</a></li>
-																						<li><a href="#"
-																							class="genric-btn danger-border circle">종료</a></li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-lg-6 ">
-																		<div class="single-listing mb-30">
-																			<div class="list-img">
-																				<img src="assets/img/gallery/list4.png" alt="">
-																				<!-- <span>Open</span> -->
-																			</div>
-																			<div class="list-caption">
-																				<span>Open</span>
-																				<h3>
-																					<a href="listing_details.html">Saintmartine</a>
-																				</h3>
-																				<p>700/D, Kings road, Green lane, 85/ London</p>
-																				<div class="list-footer">
-																					<ul>
-																						<li>+10 278 367 9823</li>
-																						<li>contact@midnight.com</li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-lg-6 ">
-																		<div class="single-listing mb-30">
-																			<div class="list-img">
-																				<img src="assets/img/gallery/list5.png" alt="">
-																				<!-- <span>Open</span> -->
-																			</div>
-																			<div class="list-caption">
-																				<span>Open</span>
-																				<h3>
-																					<a href="listing_details.html">Saintmartine</a>
-																				</h3>
-																				<p>700/D, Kings road, Green lane, 85/ London</p>
-																				<div class="list-footer">
-																					<ul>
-																						<li>+10 278 367 9823</li>
-																						<li>contact@midnight.com</li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-lg-6 ">
-																		<div class="single-listing mb-30">
-																			<div class="list-img">
-																				<img src="assets/img/gallery/list6.png" alt="">
-																				<!-- <span>Open</span> -->
-																			</div>
-																			<div class="list-caption">
-																				<span>Open</span>
-																				<h3>
-																					<a href="listing_details.html">Saintmartine</a>
-																				</h3>
-																				<p>700/D, Kings road, Green lane, 85/ London</p>
-																				<div class="list-footer">
-																					<ul>
-																						<li>+10 278 367 9823</li>
-																						<li>contact@midnight.com</li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
+																</c:forEach>
 																</div>
 															</div>
 														</div>
