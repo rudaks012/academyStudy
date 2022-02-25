@@ -16,6 +16,7 @@ import co.Nasa.prj.buyer.service.BuyerMapper;
 import co.Nasa.prj.category.service.CategoryMapper;
 import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.CategoryVO;
+import co.Nasa.prj.comm.VO.CouponVO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.ReportVO;
 import co.Nasa.prj.coupon.service.CouponMapper;
@@ -79,12 +80,14 @@ public class BuyerController {
 	// 보유 쿠폰 페이지로 이동
 	@RequestMapping("/buyerCoupons.do")
 	public String buyerCoupons(Model model, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
-		//BuyerVO buyervo = new BuyerVO();
-		//buyervo.setB_email((String)session.getAttribute("id"));
-		//buyervo = buyerDao.selectBuyer(buyervo);
-		//model.addAttribute("buyerinfo", buyervo);
+		BuyerVO buyervo = new BuyerVO();
+		buyervo.setB_email((String)session.getAttribute("id"));
+		buyervo = buyerDao.selectBuyer(buyervo);
+		model.addAttribute("buyerinfo", buyervo);
 		
-		
+		CouponVO couponvo = new CouponVO();
+		couponvo.setCou_id(buyervo.getBuyer_coupon());
+		model.addAttribute("couponinfo", couponDao.buyerCouponSelect(couponvo));		
 		
 		return "buyer/buyerCoupons";
 	}
@@ -101,6 +104,7 @@ public class BuyerController {
 		List<CategoryVO> categoryList = categoryDao.selectCategoryList();
 		System.out.println(categoryList);
 		model.addAttribute("categoryList", categoryList);
+		
 		
 		return "buyer/buyerUpdate";
 	}
