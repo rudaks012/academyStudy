@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-            <script src="resources/excel/html2canvas.js"></script>
-			<script src="resources/excel/jspdf.min.js"></script>
          <div id="pdfDiv">
             <div class="page-breadcrumb">
                 <div class="row">
@@ -127,13 +125,13 @@
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between align-items-center" style="border-radius: 5px;">
                             결제내역조회
                             <div>
-                            	<button class="btn btn-outline-warning " id="savePdfBtn" >PDF 다운로드</button>
+                            	<button class="btn btn-outline-warning " onclick="download();" >PDF 다운로드</button>
                             </div>
                         </h5>
                 	    <div class="card">
                             <div class="card-body">
                                 <div class=" mb-3">총 <span class="mx-1 text-danger">50</span>건</div>
-		                     <table class="table table-bordered thead-light text-center table-hover">		                        
+		                     <table id="table01" class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
 		                         		<th>결제코드</th>
@@ -358,30 +356,58 @@
                 }
                 bigCategory.addEventListener("change",openSmallCategory);
 
-
-                var doc = new jsPDF();
-                var specialElementHandlers = {
-                    '#editor': function(element, renderer) {
-                        return true;
-                    }
+                /** * 엑셀 다운로드 * @param fileName 엑셀파일명 (ex. excel.xls) * @param sheetName 시트명 * @param headers 시트내용(html - table) */
+                function _excelDown(fileName, sheetName, sheetHtml) {
+                   var html = '';
+                   html += '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
+                   html += ' <head>';
+                   html += ' <meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">';
+                   html += ' <xml>';
+                   html += ' <x:ExcelWorkbook>';
+                   html += ' <x:ExcelWorksheets>';
+                   html += ' <x:ExcelWorksheet>'
+                   html += ' <x:Name>' + sheetName +
+                      '</x:Name>'; // 시트이름 
+                   html += ' <x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions>';
+                   html += ' </x:ExcelWorksheet>';
+                   html += ' </x:ExcelWorksheets>';
+                   html += ' </x:ExcelWorkbook>';
+                   html += ' </xml>';
+                   html += ' </head>';
+                   html +=
+                      ' <body>'; 
+                         // ----------------- 시트 내용 부분 ----------------- 
+                   html += sheetHtml; // ----------------- 
+                   //시트 내용 부분 ----------------- 
+                   html += ' </body>';
+                   html += '</html>';
+                   // 데이터 타입 
+                   var data_type = 'data:application/vnd.ms-excel';
+                   var ua = window.navigator.userAgent;
+                   var blob = new Blob([html], {
+                      type: "application/csv;charset=utf-8;"
+                   });
+                   if ((ua.indexOf("MSIE ") > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) && window.navigator
+                      .msSaveBlob) { // ie이고 msSaveBlob 기능을 지원하는 경우 
+                      navigator.msSaveBlob(blob, fileName);
+                   } else { // ie가 아닌 경우 (바로 다운이 되지 않기 때문에 클릭 버튼을 만들어 클릭을 임의로 수행하도록 처리) 
+                      var anchor = window.document.createElement('a');
+                      anchor.href = window.URL.createObjectURL(blob);
+                      anchor.download = fileName;
+                      document.body.appendChild(anchor);
+                      anchor.click(); // 클릭(다운) 후 요소 제거
+                      document.body.removeChild(anchor);
+                   }
                 }
-                 
-                $('#savePdfBtn').click(function() {
-                    html2canvas($("#pdfDiv"), {
-                        onrendered : function(canvas) {
-                            // 한글깨짐현상때문에 jpeg->jspdf 전환
-                            var imgData = canvas.toDataURL('image/jpeg');
-                            var pageWidth = 210;
-                            var pageHeight = pageWidth * 1.414;
-                            var imgWidth = pageWidth - 20;
-                            var imgHeight = $('#pdfDiv').height() * imgWidth / $('#pdfDiv').width();
-                            var doc = new jsPDF('p','mm',[pageHeight, pageWidth]);
-                            doc.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
-                            doc.save('화면.pdf');
-                        }
-                    });
-                });
-            </script>
+                
+                function download(){ // 대상 테이블을 가져옴 
+          			var table = document.getElementById("table01"); if(table){ 
+          				// CASE 대상 테이블이 존재하는 경우 
+          				// 엑셀다운 (엑셀파일명, 시트명, 내부데이터HTML) 
+          				_excelDown("엑셀파일명.xls", "시트명", table.outerHTML) } }
+             </script>
+
+               
             
 		
 			
