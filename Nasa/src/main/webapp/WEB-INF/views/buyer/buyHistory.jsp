@@ -41,7 +41,8 @@
 							<li>
 								<a href="wishlist.do" class="d-flex">
 									<p>위시리스트</p>
-								</a></li>
+								</a>
+							</li>
 							<li>
 								<a href="buyerReview.do" class="d-flex">
 									<p>리뷰확인</p>
@@ -86,7 +87,7 @@
 											<li>지구 등급</li>
 										</c:when>
 									</c:choose>
-									<li>10% 할인 혜택1</li>
+									<li>10% 할인 혜택</li>
 									<li><a href="#">등급에 대해서 궁금하다면?</a></li>
 								</ul>
 							</div>
