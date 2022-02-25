@@ -1,7 +1,3 @@
-신고내역 report
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -14,6 +10,7 @@
 </head>
 
 <body>
+<input type = "hidden" id = "report" value = "${reportList }"/>
 <!-- Hero Start-->
 <div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
 </div>
@@ -70,7 +67,7 @@
 							<h2>신고내역</h2>
 						</a>
 						<div class="row justify-content-center">
-							<table class="table table-striped" style="margin-top:40px;">
+							<table id="reportTable" class="table table-striped" style="margin-top:40px;">
 								<thead>
 									<tr>
 										<th scope="col" width="50px">#</th>

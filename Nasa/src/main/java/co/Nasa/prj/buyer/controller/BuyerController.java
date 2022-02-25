@@ -18,6 +18,7 @@ import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.CategoryVO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.ReportVO;
+import co.Nasa.prj.coupon.service.CouponMapper;
 import co.Nasa.prj.payment.service.PaymentMapper;
 import co.Nasa.prj.report.service.ReportMapper;
 import co.Nasa.prj.sub_category.service.Sub_CategoryMapper;
@@ -29,6 +30,7 @@ public class BuyerController {
 	@Autowired Sub_CategoryMapper sub_categoryDao;
 	@Autowired ReportMapper reportDao;
 	@Autowired PaymentMapper paymentDao;
+	@Autowired CouponMapper couponDao;
 	
 	// 구매자 마이페이지로 이동
 	@RequestMapping("/goBuyerMypage.do")
@@ -76,7 +78,14 @@ public class BuyerController {
 	
 	// 보유 쿠폰 페이지로 이동
 	@RequestMapping("/buyerCoupons.do")
-	public String buyerCoupons() {
+	public String buyerCoupons(Model model, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+		//BuyerVO buyervo = new BuyerVO();
+		//buyervo.setB_email((String)session.getAttribute("id"));
+		//buyervo = buyerDao.selectBuyer(buyervo);
+		//model.addAttribute("buyerinfo", buyervo);
+		
+		
+		
 		return "buyer/buyerCoupons";
 	}
 	
