@@ -170,7 +170,7 @@
                         </h5>
                 	    <div class="card">
                            <div class="d-flex justify-content-end mr-4">
-                                <button class="btn btn-outline-danger mt-3">저장</button>
+                                <button class="btn btn-outline-danger mt-3">수정</button>
                             </div>
 		                   <div class="card-body">
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
@@ -196,20 +196,20 @@
                                             <td colspan="3">
                                                 <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
 	                                                <div class="custom-control custom-radio mr-3 ">
-	                                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input mr-5">
-	                                                    <label class="custom-control-label" for="customRadio4">별</label>
+	                                                    <input type="radio" id="range_star" name="b_rank" class="custom-control-input mr-5" value="1">
+	                                                    <label class="custom-control-label" for="range_star">별</label>
+	                                                </div>
+	                                                <div class="custom-control custom-radio mx-3" >
+	                                                    <input type="radio" id="range_moon" name="b_rank" class="custom-control-input mr-5" value="2">
+	                                                    <label class="custom-control-label" for="range_moon">달</label>
 	                                                </div>
 	                                                <div class="custom-control custom-radio mx-3">
-	                                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input mr-5">
-	                                                    <label class="custom-control-label" for="customRadio2">달</label>
+	                                                    <input type="radio" id="range_earth" name="b_rank" class="custom-control-input" value="3">
+	                                                    <label class="custom-control-label" for="range_earth">지구</label>
 	                                                </div>
 	                                                <div class="custom-control custom-radio mx-3">
-	                                                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-	                                                    <label class="custom-control-label" for="customRadio3">지구</label>
-	                                                </div>
-	                                                <div class="custom-control custom-radio mx-3">
-	                                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
-	                                                    <label class="custom-control-label" for="customRadio4">해</label>
+	                                                    <input type="radio" id="range_sun" name="b_rank" class="custom-control-input" value="4">
+	                                                    <label class="custom-control-label" for="range_sun">해</label>
 	                                                </div>
 	                                                
 	                                            </div>
@@ -271,8 +271,8 @@
                         </h5>
                     
                 	    <div class="card">
-		                   <div class="card-body">
-                            <table class="table caption-top table-bordered thead-light  text-center">		                        
+		                   <div id="paymentCard" class="card-body">
+                            <table id="paymentTable" class="table caption-top table-bordered thead-light  text-center">		                        
                                 <thead class="thead-light">
                                     <tr>
                                         <th>서비스코드</th>
@@ -286,18 +286,19 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                       <td>123</td>
-                                       <td>123</td>
-                                       <td>13</td>
-                                       <td>55555</td>
-                                       <td>6666</td>
-                                       <td>7777</td>
-                                       <td>8888</td>
+                                       <td id="s_code"></td>
+                                       <td id="ser_title"></td>
+                                       <td id="s_email"></td>
+                                       <td id="event_date"></td>
+                                       <td id="pay_price"></td>
+                                       <td id="pay_date"></td>
+                                       <td id="pay_enddate"></td>
+                                       
                                     </tr>                                   
                                </tbody>
                             </table>
-
-                            <div class="d-flex justify-content-center mt-5">
+							<div id="message" class="d-flex justify-content-center align-items-center"></div>
+                            <div id="paymentPaging" class="d-flex justify-content-center mt-5">
                                 <nav aria-label="Page navigation example">
                                         <ul class="pagination">
                                             <li class="page-item">
@@ -351,6 +352,41 @@
           $("#b_zipcode").val(result.buyer.b_zipcode);
           $("#b_address").val(result.buyer.b_address);
           $("#b_detailaddress").val(result.buyer.b_detailaddress);
+          
+          console.log(result.payment.s_code);
+          if(result.payment.length==0){
+        		  $("#paymentTable").hide();
+        		  $("#message").css({"height":"250px"})
+                  $(".test").remove();
+        		  $("#message").append("<div style='font-size:20px' class='test'>조회된 데이터가 없습니다. 😥<div>");
+        		  return true;
+          }else{
+        	  $("#paymentTable").show();
+        	  $("#message").css({"height":""})
+        	  $(".test").remove();
+              for (i=0; i<result.payment.length;i++){
+            	  
+            	  $("#s_code").text(result.payment[i].s_code);
+                  $("#ser_title").text(result.payment[i].ser_title);
+            	  $("#s_email").text(result.payment[i].s_email);
+            	  $("#event_date").text(result.payment[i].event_start +" ~ "+ result.payment[i].event_end);
+            	  $("#pay_price").text(result.payment[i].pay_price);
+            	  $("#pay_date").text(result.payment[i].pay_date);
+            	  if(result.payment[i].pay_enddate == null){
+                      $("#pay_enddate").addClass("text-danger");
+            		  $("#pay_enddate").text("확정전")
+            	  }else{
+            		  $("#pay_enddate").text(result.payment[i].pay_enddate)
+            		  
+/*             		  if (document.formradio.inputradio.value == "<?=$row[db]?>") //디비에 값이 1일때
+{
+document.formradio.inputradio.1.checked="true";  //라디오 박스밸류 값이 1인 부분에 체크드
+} */
+            	  }
+              }
+
+        	  
+          }
 
       })
       .fail(function(data){

@@ -37,4 +37,33 @@ public class AdminAuthorVO {
 	String pay_coupon;
 	String pay_price;
 	String pay_enddate; //구매확정날짜
+	String event_start; //서비스 일정 시작
+	String event_end; //서비스 일정 끝
+	
+	
+	//서비스
+	String ser_code;
+	String pro_code;
+	
+	String ser_start;
+	String ser_end;
+	String ser_title;
+	String ser_sub;
+	String ser_cate;
+	String ser_sub_cate;
+	int ser_price;
+	int ser_sale;
+	String filecode;
+	String ser_img;
+	String ser_offer;
+	String ser_macro;
+	String ser_line;
+	String ser_skill;
+	String ser_team;
+	String ser_lang;
+	String ser_frame;
+	String ser_dbms;
+	String ser_subimg;
+	String ser_subimg2;
+	String ser_subimg3;
 }
