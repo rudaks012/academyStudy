@@ -2,10 +2,12 @@ package co.Nasa.prj.login.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,8 @@ import co.Nasa.prj.login.service.NaverLoginBO;
 @SessionAttributes({ "loginUser", "master2", "rankPic", "Loginvo", "avo", "svo" })
 @Controller
 public class AhController {
+	
+	static Logger logger = Logger.getLogger("co.Nasa.prj.login.controller.AhController");
 	@Autowired
 	private ChatSession cSession;
 	@Autowired
@@ -53,6 +57,7 @@ public class AhController {
 	@RequestMapping("/Login.do")
 	public String login(Model model, HttpSession session) {
 		System.out.println("login페이지접속");
+		logger.info("debug - login");
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		System.out.println("네이버" + naverAuthUrl);
 		model.addAttribute("url", naverAuthUrl);
@@ -63,6 +68,7 @@ public class AhController {
 	@RequestMapping("/main.do")
 	public String main(LoginVO Loginvo, AdminVO avo, SellerVO svo, HttpServletResponse response, HttpSession session,
 			@RequestParam("id") String id, @RequestParam("pw") String password, Model model) throws IOException {
+		logger.info("debug - login");
 		String path = "";
 		avo = new AdminVO();
 		avo.setAid(id);
