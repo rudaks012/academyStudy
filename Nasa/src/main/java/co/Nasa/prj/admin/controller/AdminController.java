@@ -31,7 +31,7 @@ public class AdminController {
 	@RequestMapping("/chatting.do")
 	public String go_chatting() {
 		System.out.println("/chatting.do");
-		return "Chatting";
+		return "buyer/Chatting";
 	}
 	@RequestMapping("/fileupload.do")
 	public String go_fileupload() {

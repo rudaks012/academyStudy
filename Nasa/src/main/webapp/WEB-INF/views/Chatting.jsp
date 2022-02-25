@@ -6,16 +6,41 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <style>
+ * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Nunito", sans-serif;
+    }
+
+    html,
+    body {
+        background: linear-gradient(120deg, #443d43, #ed8ffa);
+        overflow: hidden;
+    }
+    
+    .container {
+        background: rgba(255, 255, 255, 0.05);
+        width: 600px;
+        height: 75%;
+        border-radius: 0.2em;
+        position: relative;
+        box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+    }
+
+
 
 .font_jua img, .floatRight img { display: inline-block; width: 32px; margin-right: 4px; }
-.left1 {width: 30%;	height:100%; float: left; border-radius: 1px; }
+.left1 {width: 28%;	height:70%; float: left; border-radius: 1px;  }
 .right1 { width: 70%; float: right; border-radius: 1px; }
 .profile_img{ display: inline-block; width: 32px; margin-right: 4px; }
-.chat_wrap .chatMiddle { padding-bottom: 80px; overflow: scroll; }
+.chat_wrap .chatMiddle { padding-bottom: 80px; overflow: scroll; 
+}
 .chat_wrap .chatMiddle ul { width: 100%; list-style: none; }
 .chatMiddle .format { display:none; } 
 .format  ul li { list-style: none; }
-.chat_wrap .header { font-size: 14px; padding: 15px 0; background: #9BB460; color: white; text-align: center; }
+.chat_wrap .header { font-size: 14px; padding: 15px 0; background: #7d64aa; color: white; text-align: center; 
+ }
 .chat_wrap .chatMiddle {height: 500px; }
 .chat_wrap .chatMiddle ul li { width: 100%; }
 .chat_wrap .chatMiddle ul li.left { text-align: left; }
@@ -26,7 +51,7 @@
 .chat_wrap .chatMiddle ul li > div.message { display: inline-block; word-break:break-all; margin: 5px 20px; max-width: 75%; border: 1px solid #888; padding: 10px; border-radius: 5px; background-color: #FCFCFC; color: #555; text-align: left; }
 .chatList_box, .chatList_box2 { margin : 2px; border : 2px solid silver;  }
 .chatBottom {  bottom: 0; width: 100%; background-color: #FFF; text-align: center; border-top: 1px solid #F18C7E; }
-.chatBottom > textarea { width: 100%; height: 80px; border: none; padding: 10px; }
+.chatBottom > textarea { width: 100%; height: 80px; border: solid; padding: 15px; }
 
 </style>
 <link rel="stylesheet" href="./resources/chat/css/chat.css" />
@@ -36,14 +61,14 @@
 src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 
 <body>
-
+  <div class='container' ng-cloak ng-app="chatApp">
 	<div class="channer" style="border-radius: 2px">
 		<div class="channer left1">
 	
 			<!-- 채팅 리스트 -->
 			<div class="chatListContainer font_jua display-none" style="padding : 3px;">
 				 <div class="chatTop">
-					<div style="font-size: 14px; padding: 15px 0; margin-left: 4px; background-color : #9BB460; color: white; text-align: center; ">나사톡 리스트</div>
+					<div style="font-size: 14px; padding: 15px 0; margin-left: 4px; background-color : #7d64aa; color: white; text-align: center; ">NASA LIST</div>
 				</div> 
 				<div class="chatList"></div>
 			</div>
@@ -104,6 +129,7 @@ src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
                 </div>
             </div>
         </div>
+</div>
 </div>
 	<script>
 		// 웹소켓
