@@ -60,19 +60,19 @@
                                         <td>
                                             <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                 <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio1" name="b_rank" class="custom-control-input mr-5">
                                                     <label class="custom-control-label" for="customRadio1">별</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio2" name="b_rank" class="custom-control-input mr-5">
                                                     <label class="custom-control-label" for="customRadio2">달</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                                                    <input type="radio" id="customRadio3" name="b_rank" class="custom-control-input">
                                                     <label class="custom-control-label" for="customRadio3">지구</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
+                                                    <input type="radio" id="customRadio4" name="b_rank" class="custom-control-input">
                                                     <label class="custom-control-label" for="customRadio4">해</label>
                                                 </div>
                                                 
@@ -94,7 +94,7 @@
 	                    </div>
                    </div>
                </div>
-                 ${buyerList }
+                 
                 <div class="row my-5">
                 	<div class="col-6">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
@@ -176,22 +176,20 @@
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
                                         <tr>
-                                            <th width="100px" class="table-primary align-middle">회원코드</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" readonly ></td>
-                                            <th width="85px" class="table-primary align-middle">아이디</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="123" type="text" readonly></td>
+                                            <th width="100px" class="table-primary align-middle">아이디</th>
+                                            <td colspan="3"><input class="form-control custom-shadow " id="b_email" name="" value="" type="text" readonly ></td>
+                                            
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">이름</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="123" type="text" readonly></td>
+                                            <td><input class="form-control custom-shadow" id="b_name" name="" value="" type="text" readonly></td>
                                             <th class="table-primary align-middle">닉네임</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="1234" type="text" readonly></td>
+                                            <td><input class="form-control custom-shadow" id="b_nickname" name="" value="" type="text" readonly></td>
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">연락처</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="1234-1234" type="text" readonly></td>
-                                            <th class="table-primary align-middle">구분</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="블랙리스트" type="text" readonly></td>
+                                            <td><input class="form-control custom-shadow" id="b_tel" name="" value="" type="text" readonly></td>
+                                           
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">등급</th>
@@ -221,19 +219,19 @@
                                             <th class="table-primary align-middle">신고횟수</th>
                                             <td>
                                                 <div class="col-6 p-0 d-flex align-items-center">
-                                                <input class="form-control custom-shadow mr-2" id="" name="" value="10" type="text" readonly>회
+                                                <input class="form-control custom-shadow mr-2" id="b_report" name="" value="" type="text" readonly>회
                                                 </div>
                                             </td>    
                                             <th class="table-primary align-middle">상태</th>
-                                            <td><input class="form-control custom-shadow" id="" name="" value="블랙리스트" type="text" readonly></td>
+                                            <td><input class="form-control custom-shadow" id="b_status" name="" value="" type="text" readonly></td>
                                                 
                                         </tr>
                                         <tr>                                     
                                             <th class="table-primary align-middle">주소</th>
                                             <td colspan="3">                                              
-                                                <input class="form-control custom-shadow mb-1" style="width: 20%;" id="" name=""  value="55555" type="text" readonly>
-                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" readonly>                 
-                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="" name="" type="text" readonly>     
+                                                <input class="form-control custom-shadow mb-1" style="width: 20%;" id="b_zipcode" name=""  value="" type="text" readonly>
+                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="b_address" name="" type="text" readonly>                 
+                                                <input class="form-control custom-shadow mb-1" style="width: 70%;" id="b_detailaddress" name="" type="text" readonly>     
                                             </td>
                                         </tr>
                                     </tbody>
@@ -336,14 +334,24 @@
  <script type="text/javascript">
   const memberList = document.querySelectorAll(".member-list");
   const selectMember=()=>{
-      console.log(event.target.parentNode.firstChild.nextSibling.innerText);
       const buyerId = event.target.parentNode.firstChild.nextSibling.innerText;
       $.ajax({
           url:"ajaxSelectMember.do",
           type:"post",
-          data:{"id":buyerId}
+          data:{"b_email":buyerId}
       }).done(function(result){
-          console.log(result);
+          console.log(result.buyer);
+          console.log(result.payment);
+          $("#b_email").val(result.buyer.b_email);
+          $("#b_name").val(result.buyer.b_name);
+          $("#b_nickname").val(result.buyer.b_nickname);
+          $("#b_tel").val(result.buyer.b_tel);
+          $("#b_report").val(result.buyer.b_report);
+          $("#b_status").val(result.buyer.b_status);
+          $("#b_zipcode").val(result.buyer.b_zipcode);
+          $("#b_address").val(result.buyer.b_address);
+          $("#b_detailaddress").val(result.buyer.b_detailaddress);
+
       })
       .fail(function(data){
           console.log("실패원인:"+data);
