@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="co.Nasa.prj.review_comment.service.review_comment-map">
+<mapper namespace="co.Nasa.prj.review_comment.service.Review_CommentMapper">
+	<select id="selectReview_CommentList" resultType="co.Nasa.prj.comm.VO.Review_CommentVO">
+		SELECT *
+		FROM REVIEW_COMMENT
+	</select>
 </mapper>
