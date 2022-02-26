@@ -2,10 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.Nasa.prj.admin.member.service.AdminMemberMapper">
 
-
-	<select id="buyerList" resultType="co.Nasa.prj.comm.VO.BuyerVO">
- 		SELECT * FROM buyer
-	</select>
 	
 	<select id="selectBuyer" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
 		SELECT * FROM BUYER
@@ -23,5 +19,24 @@
 	
 	<select id="sellerList" resultType="co.Nasa.prj.comm.VO.SellerVO">
 		SELECT * FROM SELLER
+	</select>
+	
+	<select id="getListWithPaging" resultType="co.Nasa.prj.comm.VO.BuyerVO">
+		<![CDATA[
+		 SELECT *
+		 FROM 
+		     (
+		      SELECT rownum rn, b.*
+		      FROM
+		        buyer b
+		      WHERE rownum <= #{pageNum} * #{amount}
+		      )
+		      where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	
+	</select>
+	
+	<select id="getBuyerTotal" resultType="int">
+		select count(*) as total from buyer
 	</select>
 </mapper>

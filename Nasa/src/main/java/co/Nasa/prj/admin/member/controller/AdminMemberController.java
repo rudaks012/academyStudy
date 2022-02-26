@@ -3,6 +3,7 @@ package co.Nasa.prj.admin.member.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.Nasa.prj.admin.member.service.AdminMemberService;
 import co.Nasa.prj.admin.service.AdminAuthorVO;
+import co.Nasa.prj.admin.service.Criteria;
+import co.Nasa.prj.admin.service.PageDTO;
 
 @Controller
 public class AdminMemberController {
@@ -25,9 +28,14 @@ public class AdminMemberController {
 	@Autowired
 	AdminMemberService memberDao;
 	
+	static Logger logger = Logger.getLogger("co.Nasa.prj.admin.member.controller");
+	
 	@RequestMapping("/go_admin.do")
-	public String go_admin(Model model) {
-		model.addAttribute("buyerList", memberDao.buyerList());
+	public String go_admin(Criteria cri,Model model) {
+//		model.addAttribute("buyerList", memberDao.buyerList());
+		model.addAttribute("buyerList",memberDao.getListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, memberDao.getBuyerTotal()));
+		model.addAttribute("totalBuyer",memberDao.getBuyerTotal());
 		return "admin/member/manageBuyer";
 	}
 	

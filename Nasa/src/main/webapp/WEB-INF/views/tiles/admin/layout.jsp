@@ -23,7 +23,7 @@
     <link href="resources/admin/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="resources/admin/dist/css/style.min.css" rel="stylesheet">
-    
+    <script src="resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
   
     
 <title><tiles:insertAttribute name="title" /></title>
@@ -58,7 +58,7 @@
     
     <!-- apps -->
     
-    <script src="resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+    
  	<script src="resources/admin/assets/extra-libs/taskboard/js/jquery.ui.touch-punch-improved.js"></script>
        
     <script src="resources/admin/assets/extra-libs/taskboard/js/jquery-ui.min.js"></script>
