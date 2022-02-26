@@ -11,7 +11,7 @@
                             <h6><i  class=" far fa-user mr-1"></i> 회원관리 <i class="fas fa-chevron-right mx-2"></i>구매자관리</h6>
                         </div>
                         <ul class="list-style-none d-flex">
-                            <li class="mr-1">총 회원수 <span class="text-danger mx-1">${fn:length(buyerList) }</span>명</li>
+                            <li class="mr-1">총 회원수 <span class="text-danger mx-1">${totalBuyer }</span>명</li>
                             <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
                             <a href="#"><li class="mx-2">블랙리스트 <span class="text-danger mx-1">100</span>명</li></a>
                             <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
@@ -102,7 +102,7 @@
                         </h5>
                 	    <div class="card">
                             <div class="card-body">
-                                <div class=" mb-3">총 <span class="mx-1 text-danger">${fn:length(buyerList) }</span>건</div>
+                                <div class=" mb-3">총 <span class="mx-1 text-danger">${totalBuyer } </span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr >
@@ -143,34 +143,45 @@
 			                     <div class="d-flex justify-content-center mt-5">
 			                        <nav aria-label="Page navigation example">
                                             <ul class="pagination">
+                                            <c:if test="${pageMaker.prev }">
                                                 <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)" aria-label="Previous">
+                                                    <a class="page-link" href="${pageMaker.startPage -1 }" aria-label="Previous">
                                                         <span aria-hidden="true">«</span>
                                                         <span class="sr-only">Previous</span>
                                                     </a>
                                                 </li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                                             </c:if>
+                                             <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+                                                <li class="page-item ${pageMaker.cri.pageNum == num ? 'active':''}">
+                                                   <a class="page-link" href="${num }">${num }</a>
+                                                 </li>
+                                             </c:forEach>
+                                             <c:if test="${pageMaker.next }">
                                                 <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)" aria-label="Next">
+                                                    <a class="page-link" href="${pageMaker.endPage + 1 }" aria-label="Next">
                                                         <span aria-hidden="true">»</span>
                                                         <span class="sr-only">Next</span>
                                                     </a>
                                                 </li>
+                                             </c:if>
                                             </ul>
                                         </nav>
 			                    </div>
 		                   </div>
                			</div>
                 	</div>
+                	
+                	<form id="actionForm" action="go_admin.do" method="get">
+                		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+                		<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+                	</form>
                 	<div class="col-6">
                            <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             상세조회
                         </h5>
                 	    <div class="card">
                            <div class="d-flex justify-content-end mr-4">
-                                <button class="btn btn-outline-danger mt-3">수정</button>
+                                <button id="modifyBtn" class="btn btn-outline-danger mt-3">수정</button>
                             </div>
 		                   <div class="card-body">
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
@@ -196,19 +207,19 @@
                                             <td colspan="3">
                                                 <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
 	                                                <div class="custom-control custom-radio mr-3 ">
-	                                                    <input type="radio" id="range_star" name="b_rank" class="custom-control-input mr-5" value="1">
+	                                                    <input type="radio" id="range_star" name="buyer_rank" class="custom-control-input mr-5" value="1">
 	                                                    <label class="custom-control-label" for="range_star">별</label>
 	                                                </div>
 	                                                <div class="custom-control custom-radio mx-3" >
-	                                                    <input type="radio" id="range_moon" name="b_rank" class="custom-control-input mr-5" value="2">
+	                                                    <input type="radio" id="range_moon" name="buyer_rank" class="custom-control-input mr-5" value="2">
 	                                                    <label class="custom-control-label" for="range_moon">달</label>
 	                                                </div>
 	                                                <div class="custom-control custom-radio mx-3">
-	                                                    <input type="radio" id="range_earth" name="b_rank" class="custom-control-input" value="3">
+	                                                    <input type="radio" id="range_earth" name="buyer_rank" class="custom-control-input" value="3">
 	                                                    <label class="custom-control-label" for="range_earth">지구</label>
 	                                                </div>
 	                                                <div class="custom-control custom-radio mx-3">
-	                                                    <input type="radio" id="range_sun" name="b_rank" class="custom-control-input" value="4">
+	                                                    <input type="radio" id="range_sun" name="buyer_rank" class="custom-control-input" value="4">
 	                                                    <label class="custom-control-label" for="range_sun">해</label>
 	                                                </div>
 	                                                
@@ -285,16 +296,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                       <td id="s_code"></td>
-                                       <td id="ser_title"></td>
-                                       <td id="s_email"></td>
-                                       <td id="event_date"></td>
-                                       <td id="pay_price"></td>
-                                       <td id="pay_date"></td>
-                                       <td id="pay_enddate"></td>
-                                       
-                                    </tr>                                   
+                                   
+                                    
+                                                                   
                                </tbody>
                             </table>
 							<div id="message" class="d-flex justify-content-center align-items-center"></div>
@@ -323,8 +327,8 @@
 			                     
 		                   </div>
                            <div class="card-footer border border-secondary d-flex justify-content-between bg-white" style="border-radius: 5px;">
-                               <div>총 <span class="text-danger mx-2">5</span>건수</div>
-                               <div class="mr-4">누적구매금액 <span class="text-danger mx-2">100,000</span>원</div>
+                               <div>총 <span id="paymentListLength" class="text-danger mx-2">0</span>건</div>
+                               <div class="mr-4">누적구매금액 <span id="totalPrice" class="text-danger mx-2">0</span>원</div>
                            </div>
                 	</div>
                 </div>
@@ -333,6 +337,31 @@
             
                 
  <script type="text/javascript">
+  //페이징
+	  $(document).ready(function(){
+	  let result="<c:out value='$(result)'/>";
+	  
+	  checkModal(result);
+	  
+	  history.replaceState({},null,null);
+	  
+	  function checkModal(result){
+		  
+		  if(result === '' ||history.state){
+			  return;
+		  }
+		  if(parseInt(result)>0){
+			  alert("게시글"+parseInt(result)+"번 등록");
+		  }
+	  }
+	  
+	  let actionForm =$("#actionForm");
+	  $(".page-item a").on("click",function(e){
+		  e.preventDefault();
+		  actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		  actionForm.submit();
+	  })
+  }) 
   const memberList = document.querySelectorAll(".member-list");
   const selectMember=()=>{
       const buyerId = event.target.parentNode.firstChild.nextSibling.innerText;
@@ -347,16 +376,26 @@
           $("#b_name").val(result.buyer.b_name);
           $("#b_nickname").val(result.buyer.b_nickname);
           $("#b_tel").val(result.buyer.b_tel);
-          $("#b_report").val(result.buyer.b_report);
+          
+          let report = result.buyer.b_report;//신고횟수
+           report >= "5"? $("#b_report").addClass("text-danger").val(result.buyer.b_report) : $("#b_report").val(result.buyer.b_report);
+          
           $("#b_status").val(result.buyer.b_status);
           $("#b_zipcode").val(result.buyer.b_zipcode);
           $("#b_address").val(result.buyer.b_address);
           $("#b_detailaddress").val(result.buyer.b_detailaddress);
+      
+          let rank = result.buyer.b_rank; //회원등급
+          rank == "1" ? $("#range_star").prop("checked",true) :
+        	  rank=="2"? $("#range_moon").prop("checked",true) :
+        		  rank=="3"? $("#range_earth").prop("checked",true) :
+        			  rank=="4"? $("#range_sun").prop("checked",true) : alert("해당 등급이 없습니다.");
           
-          console.log(result.payment.s_code);
+         
+          $("#paymentListLength").text(result.payment.length);
           if(result.payment.length==0){
         		  $("#paymentTable").hide();
-        		  $("#message").css({"height":"250px"})
+        		  $("#message").css({"height":"200px"})
                   $(".test").remove();
         		  $("#message").append("<div style='font-size:20px' class='test'>조회된 데이터가 없습니다. 😥<div>");
         		  return true;
@@ -364,29 +403,39 @@
         	  $("#paymentTable").show();
         	  $("#message").css({"height":""})
         	  $(".test").remove();
-              for (i=0; i<result.payment.length;i++){
-            	  
-            	  $("#s_code").text(result.payment[i].s_code);
-                  $("#ser_title").text(result.payment[i].ser_title);
-            	  $("#s_email").text(result.payment[i].s_email);
-            	  $("#event_date").text(result.payment[i].event_start +" ~ "+ result.payment[i].event_end);
-            	  $("#pay_price").text(result.payment[i].pay_price);
-            	  $("#pay_date").text(result.payment[i].pay_date);
-            	  if(result.payment[i].pay_enddate == null){
-                      $("#pay_enddate").addClass("text-danger");
-            		  $("#pay_enddate").text("확정전")
-            	  }else{
-            		  $("#pay_enddate").text(result.payment[i].pay_enddate)
-            		  
-/*             		  if (document.formradio.inputradio.value == "<?=$row[db]?>") //디비에 값이 1일때
-{
-document.formradio.inputradio.1.checked="true";  //라디오 박스밸류 값이 1인 부분에 체크드
-} */
-            	  }
-              }
-
         	  
-          }
+        	  let cnt=0;
+        	  
+        	  
+        	  
+              for (i=0; i<result.payment.length;i++){
+            	  let innerHtml="";
+            	  innerHtml+="<tr>";
+            	  innerHtml+="<td>"+result.payment[i].s_code+"</td>";
+            	  innerHtml+="<td>"+result.payment[i].ser_title+"</td>";
+            	  innerHtml+="<td>"+result.payment[i].s_email+"</td>";
+            	  innerHtml+="<td>"+result.payment[i].event_start +" ~ "+ result.payment[i].event_end+"</td>";
+            	  innerHtml+="<td>"+result.payment[i].pay_price+"</td>";
+            	  innerHtml+="<td>"+result.payment[i].pay_date+"</td>";
+            	  
+            	 
+            	  result.payment[i].pay_enddate == null? //구매확정날짜
+            			  innerHtml+="<td class='text-danger'>확정전</td>" : innerHtml+="<td>"+result.payment[i].pay_enddate+"</td>"
+            		  
+                  $("#paymentTable>tbody:last").append(innerHtml);
+            	  cnt+=parseInt(result.payment[i].pay_price);
+            	  
+            	  
+              }
+              $("#totalPrice").text("");
+              $("#totalPrice").text(cnt);
+              
+        	  
+          }//end of result.payment
+          
+         // $(document).on("click", "#modifyBtn", function(){console.log("here")});
+
+          
 
       })
       .fail(function(data){
@@ -398,4 +447,11 @@ document.formradio.inputradio.1.checked="true";  //라디오 박스밸류 값이
   Array.from(memberList).forEach(function(element){
       element.addEventListener('click',selectMember);
   })
+  
+  
+  const modifyBtn = document.querySelector("#modifyBtn");
+  const modifyeMemberRank =()=>{
+	  alert("ccc")
+  }
+  modifyBtn.addEventListener("click",modifyeMemberRank);
 </script>     
