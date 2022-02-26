@@ -6,7 +6,16 @@
 </select>
 
 <insert id="serviceInsert" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
-	
+	<selectKey keyProperty="ser_code" resultType="string" order="BEFORE">
+      SELECT NVL(MAX(ser_code),0)+1 FROM SERVICE   
+   </selectKey>
+      INSERT INTO SERVICE (SER_CODE, S_EMAIL, SER_START, SER_END, SER_TITLE, SER_SUB,SER_CATA, SER_SUB_CATE, SER_PRICE, SER_DATE,
+      SER_IMG, SER_OFFER, SER_IMGORIGIN, SER_LINE, SER_SKILL, SER_TEAM, SER_LANG, SER_FRAME, SER_DBMS, SER_SUBIMG, SER_SUBIMG2, SER_SUBIMG3,
+      SER_ORIGINSUB, SER_ORIGINSUB2, SER_ORIGINSUB3)
+      VALUES(#{ser_code}, #{s_email}, #{ser_start}, #{ser_end}, #{ser_title}, #{ser_sub}, #{ser_cate}, #{ser_sub_cate}, #{ser_price}, #{ser_date},
+      #{ser_img}, #{ser_offer}, #{ser_imgorigin}, #{ser_line}, #{ser_skill}, #{ser_team}, #{ser_lang}, #{ser_frame}, #{ser_dbms}, #{ser_subimg}, #{ser_subimg2}, #{ser_subimg3},
+      #{ser_originsub}, #{ser_originsub2}, #{ser_originsub3}
+      )
 </insert>
 
 

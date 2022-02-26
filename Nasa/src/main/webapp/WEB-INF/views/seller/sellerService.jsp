@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,6 +112,9 @@ input[type=date] {
  	background-color : #d5c9ea !important;
    	margin: 10px !important;
 }
+.pt-70{
+	padding-top: 0px;
+}
 </style>
 </head>
 <body>
@@ -173,7 +177,8 @@ input[type=date] {
 				</div>
 				<!-- Right content -->
 				<div class="col-9">
-				
+					<jsp:useBean id="now" class="java.util.Date" />
+					<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 					<div class="blog_left_sidebar">
 						<article class="blog_item">
 							<div class="justify-content-center">
@@ -208,24 +213,30 @@ input[type=date] {
 											</nav>
 											<br /> <br />
 											<div class="tab-content" id="nav-tabContent">
-												<div class="tab-pane fade show active" id="nav-desc"
-													role="tabpanel" aria-labelledby="nav-desc-tab">
-													<div class="row justify-content-center">
+												<div class="tab-pane fade show active" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
+													<div class="row">
 														<div class="listing-details-area">
 															<div class="container">
 																<div class="row">
+																
 																<c:forEach items="${serviceList }" var="service">
-																	<div class="col-lg-6">
+																<c:if test="${service.ser_end > today }">
+																	<div class="col-lg-6" >
 																		<div class="single-listing mb-30">
 																			<div class="list-img">
-																				<img src="assets/img/gallery/list1.png" alt="">
+																				<img src=${service.ser_img } alt="">
 																			</div>
 																			<div class="list-caption">
 																				<h3>
 																					<a href="serviceDetail.do">${service.ser_title }</a>
 																				</h3>
 																				<div>번호 : s${service.ser_code }</div>
-																				<div>일자 : ${service.ser_start } ~ ${service.ser_end }</div>
+																				<c:if test="${service.ser_date eq '상시' }">
+																					<div>일자 : 상시</div>
+																				</c:if>
+																				<c:if test="${service.ser_date eq '기간지정' }">
+																					<div>일자 : ${service.ser_start } ~ ${service.ser_end }</div>
+																				</c:if>
 																				<div class="list-footer">
 																					<ul>
 																						<li style="margin-left: 130px;"><a href="#"
@@ -238,16 +249,55 @@ input[type=date] {
 																			</div>
 																		</div>
 																	</div>
+																	</c:if>
 																</c:forEach>
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-												<div class="tab-pane fade" id="nav-info" role="tabpanel"
-													aria-labelledby="nav-info-tab">
-													<br /> <br />
-													<div class="row justify-content-center">sdfasdfsd</div>
+												<div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+													<div class="row">
+														<div class="listing-details-area">
+															<div class="container">
+																<div class="row">
+																
+																<c:forEach items="${serviceList }" var="service">
+																<c:if test="${service.ser_end < today }">
+																	<div class="col-lg-6">
+																		<div class="single-listing mb-30">
+																			<div class="list-img">
+																				<img src=${service.ser_img } alt="">
+																			</div>
+																			<div class="list-caption">
+																				<h3>
+																					<a href="serviceDetail.do">${service.ser_title }</a>
+																				</h3>
+																				<div>번호 : s${service.ser_code }</div>
+																				<c:if test="${service.ser_date eq '상시' }">
+																					<div>일자 : 상시</div>
+																				</c:if>
+																				<c:if test="${service.ser_date eq '기간지정' }">
+																					<div>일자 : ${service.ser_start } ~ ${service.ser_end }</div>
+																				</c:if>
+																				<div class="list-footer">
+																					<ul>
+																						<li style="margin-left: 50px;"><a href="#"
+																							class="genric-btn danger-border circle">수정</a></li>
+																						<li><a href="#"
+																							class="genric-btn danger-border circle"
+																							data-toggle="modal" data-target="#endModal">종료</a></li>
+																					</ul>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	</c:if>
+																</c:forEach>
+																</div>
+															</div>
+														</div>
+													</div>
 												</div>
 												<div class="tab-pane fade" id="nav-review" role="tabpanel"
 													aria-labelledby="nav-info-tab">
@@ -258,7 +308,15 @@ input[type=date] {
 											</div>
 										</div>
 									
-									<div class="pagination-area pt-70 text-center">
+									
+								</div>
+							</div>
+
+
+
+						</article>
+					</div>
+					<div class="pagination-area pt-70 text-center">
 										<div class="container">
 											<div class="row">
 												<div class="col-xl-12">
@@ -278,13 +336,6 @@ input[type=date] {
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-
-
-
-						</article>
-					</div>
 					<!--Pagination End  -->
 				</div>
 			</div>

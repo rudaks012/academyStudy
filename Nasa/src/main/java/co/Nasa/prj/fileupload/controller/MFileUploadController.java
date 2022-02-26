@@ -87,7 +87,6 @@ public class MFileUploadController {
 		public String fileUpload(
 				@RequestParam("article_file") List<MultipartFile> multipartFile
 				, HttpServletRequest request) {
-			
 			String strResult = "{ \"result\":\"FAIL\" }";
 			String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
 			String fileRoot;

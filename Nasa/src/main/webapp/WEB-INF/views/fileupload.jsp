@@ -16,6 +16,7 @@
 <div class="container">
   <h2>파일업로드</h2>
   <form name="dataForm" id="dataForm" onsubmit="return registerAction()">
+  	<input type="text" name="ddd">
   	<button id="btn-upload" type="button" style="border: 1px solid #ddd; outline: none;">파일 추가</button>
   	<input id="input_file" multiple="multiple" type="file" style="display:none;">
   	<span style="font-size:10px; color: gray;">※첨부파일은 최대 3개까지 등록이 가능합니다.</span>

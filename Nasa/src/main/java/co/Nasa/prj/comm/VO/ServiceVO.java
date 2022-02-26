@@ -15,10 +15,10 @@ public class ServiceVO {
 	String ser_sub_cate;
 	int ser_price;
 	int ser_sale;
-	String filecode;
+	String ser_date;
 	String ser_img;
 	String ser_offer;
-	String ser_macro;
+	String ser_imgorigin;
 	String ser_line;
 	String ser_skill;
 	String ser_team;
@@ -28,4 +28,7 @@ public class ServiceVO {
 	String ser_subimg;
 	String ser_subimg2;
 	String ser_subimg3;
+	String ser_originsub;
+	String ser_originsub2;
+	String ser_originsub3;
 }

@@ -117,14 +117,14 @@ input[type="radio"] {
 								</a>
 								<hr class="hr" />
 								<div class="blog_details">
-									<form name="dataForm" id="dataForm" enctype="multipart/form-data" onsubmit="return registerAction()">
+									<form name="dataForm" id="dataForm" enctype="multipart/form-data"  onsubmit="return registerAction()" accept-charset="UTF-8" method="post" >
 										<table id="servtb" border="1"
 											style="border-color: rgb(229, 232, 255); width: 800px;">
 											<tbody>
 												<tr>
 													<td>서비스명 <span class="spanstar">*</span></td>
 													<td colspan="3"><input type="text" id="sname"
-														name="sname" required></td>
+														name="ser_title" required></td>
 												</tr>
 												<tr>
 													<td>1차 카테고리<span class="spanstar">*</span></td>
@@ -151,18 +151,18 @@ input[type="radio"] {
 													<td>기술수준<span class="spanstar">*</span></td>
 													<td colspan="2"><select name="ser_skill"
 														id="ser_skill">
-															<option value="1" selected>초급</option>
-															<option value="2">중급</option>
-															<option value="3">고급</option>
+															<option value="초급" selected>초급</option>
+															<option value="중급">중급</option>
+															<option value="고급">고급</option>
 													</select></td>
 												</tr>
 												<tr>
 													<td class="sertb">팀 규모<span class="spanstar">*</span></td>
 													<td colspan="2"><select name="ser_team" id="ser_team">
-															<option value="1" selected>개인</option>
-															<option value="2">2인이상 5인미만</option>
-															<option value="3">5인이상 20인 미만</option>
-															<option value="4">20인 이상</option>
+															<option value="개인" selected>개인</option>
+															<option value="2인이상 5인미만">2인이상 5인미만</option>
+															<option value="5인이상 20인 미만">5인이상 20인 미만</option>
+															<option value="20인 이상">20인 이상</option>
 													</select></td>
 												</tr>
 												<tr>
@@ -184,19 +184,19 @@ input[type="radio"] {
 													<td>서비스방식<span class="spanstar">*</span></td>
 													<td colspan="3">
 														<input type="radio" name="ser_line"
-														value="online" checked="checked">온라인 
+														value="온라인" checked="checked">온라인 
 														<input
-														type="radio" name="ser_line" value="offline">오프라인
-														<input type="radio" name="ser_line" value="all">전체</td>
+														type="radio" name="ser_line" value="오프라인">오프라인
+														<input type="radio" name="ser_line" value="온/오프라인">온/오프라인</td>
 												</tr>
 												<tr>
 													<td>서비스제공일<span class="spanstar">*</span></td>
-													<td colspan="3"><input type="radio" name="servdate"
-														value="alltime" checked="checked">상시 &nbsp; 
+													<td colspan="3"><input type="radio" name="ser_date"
+														value="상시" checked="checked">상시 &nbsp; 
 														<input
-														type="radio" name="servdate" value="usertime">기간지정
-														<input type="date" name="date"> - <input
-														type="date" name="date"></td>
+														type="radio" name="ser_date" value="기간지정">기간지정
+														<input type="date" name="ser_start"> - 
+														<input type="date" name="ser_end"></td>
 												</tr>
 												<tr>
 													<td>서비스 기본가격<span class="spanstar">*</span></td>
@@ -369,7 +369,8 @@ input[type="radio"] {
 			/*
 			 * 파일업로드 multiple ajax처리
 			 */
-			$.ajax({
+			
+			 $.ajax({
 				type : "POST",
 				enctype : "multipart/form-data",
 				url : "serviceInsertForm.do",
@@ -386,7 +387,7 @@ input[type="radio"] {
 					alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
 					return false;
 				}
-			});
+			}); 
 			return false;
 		}
 	</script>
