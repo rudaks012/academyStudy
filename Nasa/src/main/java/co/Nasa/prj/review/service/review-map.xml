@@ -1,3 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="co.Nasa.prj.review.service.review-map"></mapper>
+<mapper namespace="co.Nasa.prj.review.service.ReviewMapper">
+	<select id="buyerSelectReviewList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
+		SELECT *
+		FROM REVIEW
+		WHERE REV_ID = #{rev_id}
+	</select>
+	
+	<delete id="deleteReview" parameterType="co.Nasa.prj.comm.VO.ReviewVO">
+		DELETE
+		FROM REVIEW
+		WHERE REV_CODE = #{rev_code}
+	</delete>
+</mapper>

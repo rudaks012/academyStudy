@@ -212,10 +212,6 @@
 		$("#paymentTable > tbody > tr").hide();
 		var now = new Date(); // 오늘 날짜
 		var sixMonthAgo = new Date(now.setMonth(now.getMonth() - 6)); // 6달 전 날짜 구하기
-		// var searchYear = OneMonthAgo.getFullYear();
-		// var stringDate = OneMonthAgo.toLocaleDateString();
-		// console.log(stringDate); // getFillYear은 숫자로 반환하기 때문에 -2000을 해주자.
-		// var temp = $("#paymentTable > tbody > tr > td:nth-child(4):contains('"+l+"')")
 		
 		for (var i = 0; i  < $(".paymentdate").length; i++) {
 			var paymentDate = new Date($($(".paymentdate")[i]).html());
@@ -230,10 +226,6 @@
 		$("#paymentTable > tbody > tr").hide();
 		var now = new Date(); // 오늘 날짜
 		var oneYearAgo = new Date(now.setMonth(now.getMonth() - 12)); // 12달 전 날짜 구하기
-		// var searchYear = OneMonthAgo.getFullYear();
-		// var stringDate = OneMonthAgo.toLocaleDateString();
-		// console.log(stringDate); // getFillYear은 숫자로 반환하기 때문에 -2000을 해주자.
-		// var temp = $("#paymentTable > tbody > tr > td:nth-child(4):contains('"+l+"')")
 		
 		for (var i = 0; i  < $(".paymentdate").length; i++) {
 			var paymentDate = new Date($($(".paymentdate")[i]).html());
@@ -250,6 +242,7 @@
 		console.log(firstDate);
 		console.log(secondDate);
 		
+		// 직접 날짜 설정하는 input에서 설정 안해줬을 때 알리기
 		if(firstDate == "") {
 			window.alert("날짜를 설정해주세요!");
 			return;
@@ -261,8 +254,10 @@
 			return;
 		}
 		
+		// 일단 tr들 모두 display:none
 		$("#paymentTable > tbody > tr").hide();
 		
+		// input type date 에 설정한 날짜 사이의 date를 가진 db 자료만 선별해서 display:none 이 돼있는 attribute를 지워주기
 		for (var i = 0; i  < $(".paymentdate").length; i++) {
 			var paymentDate = new Date($($(".paymentdate")[i]).html());
 			var first = new Date(firstDate);

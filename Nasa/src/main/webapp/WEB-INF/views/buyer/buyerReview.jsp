@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -43,6 +44,7 @@
 		body {
 			padding-right: 0px !important;
 		}
+		
 	</style>
 </head>
 
@@ -106,83 +108,49 @@
 								<h2>리뷰확인</h2>
 							</a>
 							<div class="comments-area">
-								<div id="rvcode-01" class="comment-list">
-									<div class="single-comment justify-content-between d-flex">
-										<div class="user justify-content-between d-flex">
-											<div class="thumb">
-												<img src="assets/img/comment/comment_1.png" alt="">
+								<c:forEach items="${reviewList }" var="review">
+									<div id="rvcode-${review.rev_code }" class="comment-list">
+										<div class="single-comment justify-content-between d-flex">
+											<div class="user justify-content-between d-flex">
+												<div class="thumb">
+													<img src="assets/img/comment/comment_1.png" alt="">
+												</div>
+												<div class="desc">
+													<span>${review.rev_ser_name }</span><br>
+													<span>${review.rev_name }</span>
+													<span class="ml-4">평점 : ${review.rev_rate }</span>
+													<span class="date">작성일을 테이블에 추가해야할까요 </span>
+													<p class="comment">${review.rev_sub }</p>
+													<span class="btn-reply1" style="cursor: pointer;">수정</span>
+													<span class="btn-reply1" onclick="deleteReview(this)"
+														style="cursor: pointer;" data-toggle="modal"
+														data-target="#deleteReviewModal" data-rvcode="rvcode-${review.rev_code }">삭제</span>
+												</div>
 											</div>
-											<div class="desc">
-												<span>웹개발 해드립니다.</span><br>
-												<span>Emilly Blunt</span>
-												<span class="ml-4">평점 : 4.5</span>
-												<span class="date">December 4, 2017 at 3:12 pm </span>
-												<p class="comment">Never say goodbye till the end comes!</p>
-												<span class="btn-reply1" style="cursor: pointer;">수정</span>
-												<span class="btn-reply1" onclick="deleteReview(this)"
-													style="cursor: pointer;" data-toggle="modal"
-													data-target="#deleteReviewModal" data-rvcode="rvcode-01">삭제</span>
-											</div>
-										</div>
-										<img class="revimg" src="assets/img/gallery/list1.png">
-									</div>
-								</div>
-								<div class="comment-list left-padding">
-									<div class="single-comment justify-content-between d-flex">
-										<div class="user justify-content-between d-flex">
-											<div class="thumb">
-												<img src="assets/img/comment/comment_2.png" alt="">
-											</div>
-											<div class="desc">
-												<span>홍길동</span>
-												<span class="date">December 4, 2017 at 3:12 pm </span>
-												<p class="comment">Never say goodbye till the end comes!</p>
-												<span class="btn-reply1" data-toggle="modal" data-target="#reportModal"
-													style="cursor: pointer;">신고</span>
-											</div>
+											<img class="revimg" src="assets/img/gallery/list1.png">
 										</div>
 									</div>
-								</div>
-								<div class="comment-list">
-									<div class="single-comment justify-content-between d-flex">
-										<div class="user justify-content-between d-flex">
-											<div class="thumb">
-												<img src="assets/img/comment/comment_1.png" alt="">
+									<c:forEach items="${rclist }" var="rc">
+										<c:if test="${review.rev_code eq rc.review_code}">
+											<div id="rvcode-${rc.review_code }" class="comment-list left-padding">
+												<div class="single-comment justify-content-between d-flex">
+													<div class="user justify-content-between d-flex">
+														<div class="thumb">
+															<img src="assets/img/comment/comment_2.png" alt="">
+														</div>
+														<div class="desc">
+															<span>${rc.rere_sel_name }</span>
+															<span class="date">작성일을 테이블에 추가해야할까요 </span>
+															<p class="comment">${rc.rere_sel_sub }</p>
+															<span class="btn-reply1" data-toggle="modal" data-target="#reportModal"
+																style="cursor: pointer;">신고</span>
+														</div>
+													</div>
+												</div>
 											</div>
-											<div class="desc">
-												<span>웹개발 해드립니다.</span><br>
-												<span>Emilly Blunt</span>
-												<span class="ml-4">평점 : 4.5</span>
-												<span class="date">December 4, 2017 at 3:12 pm </span>
-												<p class="comment">Never say goodbye till the end comes!</p>
-												<span class="btn-reply1" style="cursor: pointer;">수정</span>
-												<span class="btn-reply1" data-toggle="modal"
-													data-target="#deleteReviewModal" style="cursor: pointer;">삭제</span>
-											</div>
-										</div>
-										<img class="revimg" src="assets/img/gallery/list1.png">
-									</div>
-								</div>
-								<div class="comment-list">
-									<div class="single-comment justify-content-between d-flex">
-										<div class="user justify-content-between d-flex">
-											<div class="thumb">
-												<img src="assets/img/comment/comment_1.png" alt="">
-											</div>
-											<div class="desc">
-												<span>웹개발 해드립니다.</span><br>
-												<span>Emilly Blunt</span>
-												<span class="ml-4">평점 : 4.5</span>
-												<span class="date">December 4, 2017 at 3:12 pm </span>
-												<p class="comment">Never say goodbye till the end comes!</p>
-												<span class="btn-reply1" style="cursor: pointer;">수정</span>
-												<span class="btn-reply1" data-toggle="modal"
-													data-target="#deleteReviewModal" style="cursor: pointer;">삭제</span>
-											</div>
-										</div>
-										<img class="revimg" src="assets/img/gallery/list1.png">
-									</div>
-								</div>
+										</c:if>
+									</c:forEach>
+								</c:forEach>
 							</div>
 							<nav class="blog-pagination justify-content-center d-flex">
 								<ul class="pagination">
@@ -300,6 +268,20 @@
 			console.log(rvcode);
 			var target = document.getElementById(rvcode);
 			target.remove();
+			
+			target = document.getElementById(rvcode);
+			target.remove();
+			
+			var rev_code = rvcode.substr(7);
+			console.log(rev_code);
+			$.ajax({
+				url:"deleteReview.do",
+				type:"get",
+				data:{rev_code:rev_code},
+				success: function() {
+					console.log("삭제함!");
+				}
+			})
 		}
 		/* 리뷰 삭제 기능 test 함수 */
 	</script>

@@ -19,9 +19,13 @@ import co.Nasa.prj.comm.VO.CategoryVO;
 import co.Nasa.prj.comm.VO.CouponVO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.ReportVO;
+import co.Nasa.prj.comm.VO.ReviewVO;
+import co.Nasa.prj.comm.VO.Review_CommentVO;
 import co.Nasa.prj.coupon.service.CouponMapper;
 import co.Nasa.prj.payment.service.PaymentMapper;
 import co.Nasa.prj.report.service.ReportMapper;
+import co.Nasa.prj.review.service.ReviewMapper;
+import co.Nasa.prj.review_comment.service.Review_CommentMapper;
 import co.Nasa.prj.sub_category.service.Sub_CategoryMapper;
 
 @Controller
@@ -32,6 +36,8 @@ public class BuyerController {
 	@Autowired ReportMapper reportDao;
 	@Autowired PaymentMapper paymentDao;
 	@Autowired CouponMapper couponDao;
+	@Autowired ReviewMapper reviewDao;
+	@Autowired Review_CommentMapper review_commentDao;
 	
 	// 구매자 마이페이지로 이동
 	@RequestMapping("/goBuyerMypage.do")
@@ -119,7 +125,21 @@ public class BuyerController {
 
 	// 리뷰 페이지로 이동
 	@RequestMapping("/buyerReview.do")
-	public String buyerReview() {
+	public String buyerReview(Model model, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+		/*
+		 * BuyerVO buyervo = new BuyerVO();
+		 * buyervo.setB_email((String)session.getAttribute("id")); buyervo =
+		 * buyerDao.selectBuyer(buyervo); model.addAttribute("buyerinfo", buyervo);
+		 */
+		
+		ReviewVO reviewvo = new ReviewVO();
+		reviewvo.setRev_id((String)session.getAttribute("id"));
+		List<ReviewVO> reviewList = reviewDao.buyerSelectReviewList(reviewvo);
+		model.addAttribute("reviewList", reviewList);
+		
+		List<Review_CommentVO> rclist = review_commentDao.selectReview_CommentList();
+		model.addAttribute("rclist", rclist);
+		
 		return "buyer/buyerReview";
 	}
 	

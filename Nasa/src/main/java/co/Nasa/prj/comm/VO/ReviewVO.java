@@ -10,4 +10,5 @@ public class ReviewVO {
 	String rev_sub;
 	String rev_rate;
 	String rev_id;
+	String rev_ser_name;
 }
