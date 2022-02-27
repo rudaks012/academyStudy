@@ -12,4 +12,9 @@
 		FROM REVIEW
 		WHERE REV_CODE = #{rev_code}
 	</delete>
+	
+	<insert id="insertReview" parameterType="co.Nasa.prj.comm.VO.ReviewVO">
+		INSERT INTO REVIEW
+		VALUES REV_CODE = #{rev_code}, SCODE = #{scode}, REV_NAME = #{rev_name}, REV_SUB = #{rev_sub}, REV_ID = #{rev_id}, REV_SER_NAME = #{rev_ser_name}
+	</insert>
 </mapper>
