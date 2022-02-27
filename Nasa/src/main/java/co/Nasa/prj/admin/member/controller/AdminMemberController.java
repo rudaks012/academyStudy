@@ -41,14 +41,14 @@ public class AdminMemberController {
 	
 	@ResponseBody
 	@PostMapping("/ajaxSelectMember.do")
-	public Map<String, Object> ajaxSelectMember(AdminAuthorVO vo) {
+	public Map<String, Object> ajaxSelectMember(@RequestParam("b_email") String b_email,AdminAuthorVO vo,Criteria cri) {
 		String result="N";
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		
-		vo = memberDao.selectBuyer(vo.getB_email()); //구매자 상세정보
-		System.out.println(vo);
-		List<AdminAuthorVO> payment= memberDao.selectBuyerPayment(vo.getB_email()); //구매자 결제내역
+		System.out.println(b_email);
+		vo = memberDao.selectBuyer(b_email); //구매자 상세정보
+		List<AdminAuthorVO> payment= memberDao.selectBuyerPayment(b_email,cri); //구매자 결제내역
 		map.put("buyer", vo);
 		map.put("payment", payment);
 		if(vo !=null) {
