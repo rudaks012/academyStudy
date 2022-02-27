@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import co.Nasa.prj.admin.service.AdminCouponMapper;
+import co.Nasa.prj.admin.service.AdminCouponService;
 import co.Nasa.prj.chatting.controller.ChatSession;
 import co.Nasa.prj.comm.VO.AdminVO;
-import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.SellerVO;
 import co.Nasa.prj.login.service.BuyerJoinMapper;
 import co.Nasa.prj.login.service.LoginService;
@@ -37,6 +37,8 @@ public class AhController {
 	BuyerJoinMapper buyerJoinDao;
 	@Autowired
 	private LoginService LoginDao;
+	@Autowired
+	AdminCouponService AdminCouponDao;
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;

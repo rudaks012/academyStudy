@@ -99,18 +99,18 @@
 								</div>
 							</div>
 							<div class="form-group">
-								이메일<div>
+								이메일<div id="emaildiv">
 									<input class="form-control valid" name="email" id="email" type="email"
 										placeholder="example@nasa.com">
 									<input type="button" value="전송" class="position-relative genric-btn primary radius"
-										style="float: right; bottom: 45px;">
+									onclick="emailCheck()" style="float: right; bottom: 45px;">
 								</div>
 							</div>
 							<div class="form-group">
-								이메일 인증<div>
+								이메일 인증<div id="emaildivs">
 									<input class="form-control valid" name="emailchk" id="emailchk" placeholder="인증코드를 확인해주세요">
 									<input type="button" value="확인" class="position-relative genric-btn primary radius"
-										style="float: right; bottom: 45px;">
+									onclick="emailChecks()"	style="float: right; bottom: 45px;">
 								</div>
 							</div>
 							<div class="form-group">
@@ -178,11 +178,11 @@
 			var nickname = $('#nickname').val();
 
 			$.ajax({
-				url :"ajaxSPnickCheck.do",
-				type : "POST",
+				url: "ajaxSPnickCheck.do",
+				type: "post",
 				data: {s_nickname : nickname},
-				dataType : "text",
-				success : function(data) {  
+				dataType: "text",
+				success: function(data) {  
 					if(data == 'T') {
 						$("label").remove('#nicklabel');
 						$("#nickdiv").append('<label id="nicklabel">사용 가능한 닉네임입니다.</label>');
@@ -197,6 +197,29 @@
 				}
 			});
 		};
+
+		function emailCheck() {
+			var email = $('#email').val();
+
+			$.ajax({
+				type:"post",
+				url:"ajaxSPemailCheck.do",
+				data: {s_emailname : emailname},
+				success: function(data){
+					if(data == "error"){
+						$("label").remove('#emaillabel');
+						$("#emaildiv").append('<label id="emaillabel">올바르지 않은 이메일입니다.</label>');
+        			} else {
+						$("label").remove('#emaillabel');
+						$("#emaildiv").append('<label id="emaillabel">인증번호를 발송했습니다.</label>');
+        			}
+        		}
+    		});
+		};
+
+		function emailChecks() {
+			
+		}
 
 	</script>
 </body>
