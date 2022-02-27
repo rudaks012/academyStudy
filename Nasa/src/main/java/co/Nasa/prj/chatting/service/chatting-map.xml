@@ -81,5 +81,12 @@
 		#{roomid} AND sentid != #{sentid}
 		AND unReadCount = 1
 	</update>
+	
+	<select id="mainUnReadCount">
+	SELECT COUNT(*)
+	FROM CHATMESSAGE
+	where sentid = #{sentid}
+    and unreadcount = 1
+	</select>
 
 </mapper>
