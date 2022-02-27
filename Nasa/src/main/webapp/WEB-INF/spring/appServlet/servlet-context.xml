@@ -85,18 +85,23 @@
 	<beans:bean id="WebSocketHandler" class="co.Nasa.prj.chatting.controller.WebSocketHandler" />
 
 	<!-- gmail설정 -->
-	<beans:bean id="mailSender2"
-		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<beans:property name="host" value="smtp.gmail.com" />
-		<beans:property name="port" value="587" />
-		<beans:property name="username" value="yedamnasa@gmail.com" /> <!-- 자신의 이메일 아이디 -->
-		<beans:property name="password" value="yedam1234" /> <!-- 자신의 비밀번호 -->
-		<!-- 보안연결 TLS과 관련된 설정 -->
+	<beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<beans:property name="host" value="smtp.gmail.com"/>
+		<beans:property name="port" value="587"/>
+		<beans:property name="username" value="yedamnasa@gmail.com"/>
+		<beans:property name="password" value="yedam1234"/>
+		<beans:property name="defaultEncoding" value="utf-8"/>
 		<beans:property name="javaMailProperties">
 			<beans:props>
 				<beans:prop key="mail.smtp.auth">true</beans:prop>
 				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.smtps.ssl.checkserveridentity">true</beans:prop>
+				<beans:prop key="mail.smtps.ssl.trust">*</beans:prop>
+				<beans:prop key="mail.debug">true</beans:prop>
+				<beans:prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</beans:prop>
+				<beans:prop key="mail.smtp.ssl.protocols">TLSv1.2</beans:prop>
 			</beans:props>
+		
 		</beans:property>
 	</beans:bean>
 	
