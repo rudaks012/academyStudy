@@ -1,6 +1,7 @@
 package co.Nasa.prj.admin.service;
 
-public interface AdminMapper {
+public interface AdminCouponMapper {
+
 	public int schcouponupdate1();
 	public int schcouponupdate2();
 	public int schcouponupdate3();

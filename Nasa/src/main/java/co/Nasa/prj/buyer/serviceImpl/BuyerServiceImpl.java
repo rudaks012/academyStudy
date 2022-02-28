@@ -17,6 +17,10 @@ public class BuyerServiceImpl implements BuyerService {
 
 	@Override
 	public BuyerVO selectBuyer(BuyerVO vo) {
-		// TODO Auto-generated method stub
 		return map.selectBuyer(vo);
+	}
+
+	@Override
+	public int updateBuyer(BuyerVO vo) {
+		return map.updateBuyer(vo);
 	}}

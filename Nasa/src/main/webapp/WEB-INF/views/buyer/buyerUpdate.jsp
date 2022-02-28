@@ -12,9 +12,9 @@
 	        document.getElementById("searchAdderess").addEventListener("click", function() {
             new daum.Postcode({
                 oncomplete: function(data) {
-                    document.getElementById("zipcode").value = data.zonecode;
-                    document.getElementById("address").value = data.address;
-                    document.getElementById("detailaddress").focus();
+                    document.getElementById("b_zipcode").value = data.zonecode;
+                    document.getElementById("b_address").value = data.address;
+                    document.getElementById("b_detailaddress").focus();
                 }
             }).open();
         });
@@ -32,7 +32,7 @@
 	<section>
 		<div class="row justify-content-center" style="margin-top: 50px;">
 			<div style="width:550px;">
-				<form action="">
+				<form method="get" id = "profilefrm">
 					<div id="profileThumnail" class="justify-content-center" style="text-align: center;">
 	                    <img id="prvimg" src="assets/img/blog/author.png" alt="" style="width: 150px; height:150px; border-radius: 70%; overflow: hidden;"><br>
 	                    <input type="file" id="profileimg" accept="image/*" style="display: none;">
@@ -42,14 +42,14 @@
 					<div style="margin-top: 20px;">
 						<p>닉네임</p>
 						<div class="form-group">
-							<input class="form-control" name="name" id="name" type="text" placeholder="Name" required>
+							<input class="form-control" name="b_nickname" id="b_nickname" type="text" placeholder="${buyerinfo.b_nickname }" value="${buyerinfo.b_nickname }" required>
 						</div>
 					</div>
 				
 					<div style="margin-top: 20px;">
 						<p>이메일</p>
 						<div class="form-group">
-							<input class="form-control" name="email" id="email" type="text" placeholder="email" disabled required>
+							<input class="form-control" name="b_email" id="b_email" type="text" placeholder="${buyerinfo.b_email }" value="${buyerinfo.b_email }" disabled required>
 						</div>
 					</div>
 				
@@ -85,29 +85,29 @@
 					<div style="margin-top: 20px;">
 						<p>주소</p>
 						<div class="form-group">
-							<input class="form-control col-8" name="zipcode" id="zipcode" type="text" placeholder="우편번호" style="display: inline;" readonly>
+							<input class="form-control col-8" name="b_zipcode" id="b_zipcode" type="text" placeholder="${buyerinfo.b_zipcode }" value="${buyerinfo.b_zipcode }" style="display: inline;" readonly required>
 							<label id="searchAdderess" class="genric-btn primary radius col-lg-3">주소조회</label>
-							<input class="form-control col-lg-8" name="address" id="address" type="text" placeholder="주소" style="display: inline;margin-top: 5px;" readonly>
-							<input class="form-control col-lg-3" name="detailaddress" id="detailaddress" type="text" placeholder="상세주소" style="display: inline;margin-top: 5px;" required>
+							<input class="form-control col-lg-8" name="b_address" id="b_address" type="text" placeholder="${buyerinfo.b_address }" value="${buyerinfo.b_address }" style="display: inline;margin-top: 5px;" readonly required>
+							<input class="form-control col-lg-3" name="b_detailaddress" id="b_detailaddress" type="text" placeholder="${buyerinfo.b_detailaddress }" value="${buyerinfo.b_detailaddress }" style="display: inline;margin-top: 5px;" required>
 						</div>
 					</div>
 				
 					<div style="margin-top: 20px;">
 						<p>새로운 비밀번호</p>
 						<div class="form-group">
-							<input class="form-control" name="newpassword" id="newpassword" type="password" placeholder="새로운 비밀번호" required>
+							<input class="form-control" name="b_password" id="b_password" type="password" placeholder="${buyerinfo.b_password }" value=${buyerinfo.b_password } required>
 						</div>
 					</div>
 				
 					<div style="margin-top: 20px;">
 						<p>새로운 비밀번호 확인</p>
 						<div class="form-group">
-							<input class="form-control" name="newpassword" id="newpassword" type="password" placeholder="새로운 비밀번호" required>
+							<input class="form-control" name="newpassword" id="newpassword2" type="password" placeholder="${buyerinfo.b_password }" value=${buyerinfo.b_password } required>
 						</div>
 					</div>
 				
 					<div class="row justify-content-center" style="margin-bottom: 50px;">
-						<button type="submit" class="genric-btn info-border">수정</button>
+						<button class="genric-btn info-border" onclick="updateProfile()">수정</button>
 						<a href="goBuyerMypage.do" class="genric-btn danger-border" style="margin-left: 10px;">취소</a>
 					</div>
 				</form>
@@ -159,6 +159,42 @@
             }
 
         }
+		
+		function updateProfile() {
+			var newpwd1 = document.getElementById("b_password").value;
+			var newpwd2 = document.getElementById("newpassword2").value;
+			
+			var b_email = document.getElementById("b_email").value;
+			console.log(b_email);
+			var b_nickname = document.getElementById("b_nickname").value;
+			var b_zipcode = document.getElementById("b_zipcode").value;
+			var b_address = document.getElementById("b_address").value;
+			var b_detailaddress = document.getElementById("b_detailaddress").value;
+			var b_password = document.getElementById("b_password").value;
+			
+			if(newpwd1 != newpwd2) {
+				window.alert("입력한 비밀번호가 일치하지 않습니다.");
+				return;
+			}
+			
+			$.ajax({
+	 			url:"profileUpdate.do",
+        		type:"get",
+        		data: {
+        			b_email : b_email,
+        			b_nickname : b_nickname,
+        			b_zipcode : b_zipcode,
+        			b_address : b_address,
+        			b_detailaddress : b_detailaddress,
+        			b_password : b_password
+        		},
+        		success: function() {
+        			location.hrec="goBuyerMypage.do"
+        		}
+        		
+	 		});
+
+		}
 	</script>
 
 <!-- buyerUpdate End -->
