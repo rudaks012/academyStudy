@@ -206,6 +206,59 @@ chat_wrap .chatMiddle ul li>div {
     border-bottom: 10px solid transparent;
     border-right: 10px solid rgba(255, 255, 255, 0.2);
 }
+
+@keyframes ring {
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+.w-btn-neon2 {
+    position: relative;
+    border: none;
+    min-width: 70px;
+    min-height: 10px;
+    background: linear-gradient(
+        90deg,
+        #f44a40 0%,
+        #f44a40 100%
+    );
+    border-radius: 3px;
+    color: rgb(248, 253, 253);
+    cursor: pointer;
+    box-shadow: 12px 12px 24px rgba(238, 89, 89, 0.64);
+    font-weight: 700;
+    transition: 0.3s;
+          margin-right: 10px;
+}
+
+.w-btn-neon2:hover {
+color: #f44a40;
+    border: 1px solid #f44a40;
+    background: #fff;
+    transform: scale(1.2);
+}
+
+.w-btn-neon2:hover::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 6px solid #fc4f4f;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+}
 </style>
 <link rel="stylesheet" href="./resources/chat/css/chat.css" />
 
@@ -235,10 +288,11 @@ chat_wrap .chatMiddle ul li>div {
 				<div class="chat_wrap" style="padding: 3px">
 					<div class="header">
 						CHAT
-						<button type="button" id="chatout"
-							style="color: red; float: right; display: none;">채팅나가기</button>
-						<button type="button" id="payement"
-							style="color: red; float: right; display: none;">결제하기</button>
+						<button type="button" id="chatout" class="w-btn-neon2"
+							style=" float: right; display: none;">채팅나가기</button>
+					
+						<button type="button" id="payement" class="w-btn-neon2"
+							style="float: right; display: none;">결제하기</button>
 					</div>
 					<!-- 	<div class="floatLeft" id="loginOn">
 						<img class="profile_img" id="setPic">
@@ -709,6 +763,7 @@ chat_wrap .chatMiddle ul li>div {
 			})
 
 		})
+		
 	</script>
 </body>
 

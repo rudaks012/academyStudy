@@ -106,13 +106,25 @@ public class BuyerController {
 	
 	// 구매자 정보 수정 페이지로 이동
 	@RequestMapping("/buyerUpdate.do")
-	public String buyerUpdate(Model model) {
+	public String buyerUpdate(Model model, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+		BuyerVO buyervo = new BuyerVO();
+		buyervo.setB_email((String)session.getAttribute("id"));
+		buyervo = buyerDao.selectBuyer(buyervo);
+		model.addAttribute("buyerinfo", buyervo);
+		
 		List<CategoryVO> categoryList = categoryDao.selectCategoryList();
 		System.out.println(categoryList);
 		model.addAttribute("categoryList", categoryList);
 		
 		
 		return "buyer/buyerUpdate";
+	}
+	
+	@RequestMapping("/profileUpdate.do")
+	public void profileUpdate(BuyerVO vo) {
+		System.out.println(vo.getB_email());
+		// vo.setB_email("buyertest@mail.com");
+		buyerDao.updateBuyer(vo);
 	}
 	
 

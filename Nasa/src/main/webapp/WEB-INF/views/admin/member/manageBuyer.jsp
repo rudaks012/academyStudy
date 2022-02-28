@@ -302,7 +302,7 @@
                                </tbody>
                             </table>
 							<div id="message" class="d-flex justify-content-center align-items-center"></div>
-                            <div id="paymentPaging" class="d-flex justify-content-center mt-5">
+                               <div class="d-flex justify-content-center mt-5">
                                 <nav aria-label="Page navigation example">
                                         <ul class="pagination">
                                             <li class="page-item">
@@ -335,8 +335,9 @@
                  </div>
              </div>
             
-                
+<!--  <script src="resources/admin/dist/js/jquery.twbsPagination.js"></script>     -->       
  <script type="text/javascript">
+ 
   //페이징
 	  $(document).ready(function(){
 	  let result="<c:out value='$(result)'/>";
@@ -362,9 +363,13 @@
 		  actionForm.submit();
 	  })
   }) 
+  
+  
   const memberList = document.querySelectorAll(".member-list");
+  let cnt=0;
   const selectMember=()=>{
       const buyerId = event.target.parentNode.firstChild.nextSibling.innerText;
+      
       $.ajax({
           url:"ajaxSelectMember.do",
           type:"post",
@@ -400,6 +405,7 @@
         		  $("#message").append("<div style='font-size:20px' class='test'>조회된 데이터가 없습니다. 😥<div>");
         		  return true;
           }else{
+        	  $("#paymentTable>tbody>tr").remove();
         	  $("#paymentTable").show();
         	  $("#message").css({"height":""})
         	  $(".test").remove();
@@ -430,6 +436,15 @@
               $("#totalPrice").text("");
               $("#totalPrice").text(cnt);
               
+              
+           /*    //구매내역 페이징
+              $('#pagination').twbsPagination({
+                  totalPages: result.payment.length,
+                  visiblePages: 10,
+                  onPageClick: function (event, page) {
+                      $('#page-content').text('Page ' + page);
+                  }
+              }); */
         	  
           }//end of result.payment
           
@@ -445,7 +460,7 @@
       //td 아무거나 눌러도 무조건 tr을 가게 한다음 첫번재 td 가는 선택자
   }
   Array.from(memberList).forEach(function(element){
-      element.addEventListener('click',selectMember);
+      $(element).off("click").on('click',selectMember);
   })
   
   
@@ -454,4 +469,7 @@
 	  alert("ccc")
   }
   modifyBtn.addEventListener("click",modifyeMemberRank);
+  
+  
+ 
 </script>     
