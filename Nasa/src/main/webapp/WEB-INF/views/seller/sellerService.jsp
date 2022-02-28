@@ -220,7 +220,7 @@ input[type=date] {
 																<div class="row">
 																
 																<c:forEach items="${serviceList }" var="service">
-																<c:if test="${service.ser_end > today }">
+																<c:if test="${service.ser_end eq null }">
 																	<div class="col-lg-6" >
 																		<div class="single-listing mb-30">
 																			<div class="list-img">
@@ -239,11 +239,12 @@ input[type=date] {
 																				</c:if>
 																				<div class="list-footer">
 																					<ul>
-																						<li style="margin-left: 130px;"><a href="#"
-																							class="genric-btn danger-border circle">수정</a></li>
-																						<li><a href="#"
-																							class="genric-btn danger-border circle"
-																							data-toggle="modal" data-target="#endModal">종료</a></li>
+																						<li style="margin-left: 130px;">
+																							<a href="serviceUpdateForm.do?ser_code=${service.ser_code }" class="genric-btn danger-border circle">수정</a>
+																						</li>
+																						<li>
+																							<a href="#" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</a>
+																						</li>
 																					</ul>
 																				</div>
 																			</div>
@@ -282,11 +283,12 @@ input[type=date] {
 																				</c:if>
 																				<div class="list-footer">
 																					<ul>
-																						<li style="margin-left: 50px;"><a href="#"
-																							class="genric-btn danger-border circle">수정</a></li>
-																						<li><a href="#"
-																							class="genric-btn danger-border circle"
-																							data-toggle="modal" data-target="#endModal">종료</a></li>
+																						<li style="margin-left: 50px;">
+																							<a href="serviceUpdateForm.do?ser_code=${service.ser_code }" class="genric-btn danger-border circle">수정</a>
+																						</li>
+																						<li>
+																							<a href="#" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</a>
+																						</li>
 																					</ul>
 																				</div>
 																			</div>
@@ -307,35 +309,30 @@ input[type=date] {
 												</div>
 											</div>
 										</div>
-									
-									
 								</div>
 							</div>
-
-
-
 						</article>
 					</div>
 					<div class="pagination-area pt-70 text-center">
-										<div class="container">
-											<div class="row">
-												<div class="col-xl-12">
-													<div class="single-wrap d-flex justify-content-center">
-														<nav aria-label="Page navigation example">
-															<ul class="pagination justify-content-start">
-																<li class="page-item active"><a class="page-link"
-																	href="#">01</a></li>
-																<li class="page-item"><a class="page-link" href="#">02</a></li>
-																<li class="page-item"><a class="page-link" href="#">03</a></li>
-																<li class="page-item"><a class="page-link" href="#"><span
-																		class="ti-angle-right"></span></a></li>
-															</ul>
-														</nav>
-													</div>
-												</div>
-											</div>
-										</div>
+						<div class="container">
+							<div class="row">
+								<div class="col-xl-12">
+									<div class="single-wrap d-flex justify-content-center">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-start">
+												<li class="page-item active"><a class="page-link"
+													href="#">01</a></li>
+												<li class="page-item"><a class="page-link" href="#">02</a></li>
+												<li class="page-item"><a class="page-link" href="#">03</a></li>
+												<li class="page-item"><a class="page-link" href="#"><span
+														class="ti-angle-right"></span></a></li>
+											</ul>
+										</nav>
 									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 					<!--Pagination End  -->
 				</div>
 			</div>
@@ -367,11 +364,9 @@ input[type=date] {
 							<td>서비스선택</td>
 							<td><div class="default-select" id="default-select">
 									<select>
-										<option value="1">웹개발</option>
-										<option value="2">앱개발</option>
-										<option value="3">Arabic</option>
-										<option value="4">Portuguise</option>
-										<option value="5">Bengali</option>
+										<c:forEach items="${serviceList }" var="service">
+											<option value="${service.ser_code }">${service.ser_title} </option>										
+										</c:forEach>
 									</select>
 								</div></td>
 						</tr>
@@ -501,7 +496,6 @@ input[type=date] {
 
 					</table>
 					<div class="br">
-
 						<h6 style="display: inline;">최종 결제금액</h6>
 						<span style="font-weight: 200;">45000원</span>
 					</div>

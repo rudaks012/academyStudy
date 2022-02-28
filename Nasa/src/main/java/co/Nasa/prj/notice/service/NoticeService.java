@@ -5,5 +5,5 @@ import co.Nasa.prj.comm.VO.NoticeVO;
 public interface NoticeService {
 	
 	int noticeInsert(NoticeVO vo);
-
+	int knowhowInsert(NoticeVO vo);
 }

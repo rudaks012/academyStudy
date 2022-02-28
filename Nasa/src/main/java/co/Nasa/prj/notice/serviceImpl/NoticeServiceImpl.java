@@ -18,4 +18,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return map.noticeInsert(vo);
 	}
 
+	@Override
+	public int knowhowInsert(NoticeVO vo) {
+		return map.knowhowInsert(vo);
+	}
+
 }

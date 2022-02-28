@@ -17,5 +17,6 @@ public class SellerServiceImpl implements SellerService {
 	public int SellerNicknameCheck(SellerVO vo) {
 		return map.SellerNicknameCheck(vo);
 	}
+	
 
 }

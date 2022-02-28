@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <style>
 .nice-select {
 	width: 200px;
@@ -60,7 +60,7 @@ input[type="radio"] {
 			<div class="row">
 				<div class="col-xl-12">
 					<div class="hero-cap text-center pt-50">
-						<h2>서비스 등록</h2>
+						<h2>서비스 수정</h2>
 					</div>
 				</div>
 			</div>
@@ -113,7 +113,7 @@ input[type="radio"] {
 						<article class="blog_item">
 							<div class="justify-content-center">
 								<a class="d-inline-block" style="margin-top: 20px;">
-									<h3>서비스 등록</h3>
+									<h3>서비스 수정</h3>
 								</a>
 								<hr class="hr" />
 								<div class="blog_details">
@@ -127,7 +127,9 @@ input[type="radio"] {
 												<tr>
 													<td>서비스명 <span class="spanstar">*</span></td>
 													<td colspan="3"><input type="text" id="sname"
-														name="ser_title" required></td>
+														value="${service.ser_title }" name="ser_title" required>
+														<input type="hidden" value="${service.ser_code }">
+														</td>
 												</tr>
 												<tr>
 													<td>1차 카테고리<span class="spanstar">*</span></td>
@@ -171,17 +173,20 @@ input[type="radio"] {
 												<tr>
 													<td class="sertb">개발 언어</td>
 													<td colspan="2"><input type="text" id="ser_lang"
-														name="ser_lang" placeholder="Java/C/Python"></td>
+														value="${service.ser_lang }" name="ser_lang"
+														placeholder="Java/C/Python"></td>
 												</tr>
 												<tr>
 													<td class="sertb">프레임워크</td>
 													<td colspan="2"><input type="text" id="ser_frame"
-														name="ser_frame" placeholder="Spring/Django/Angular"></td>
+														value="${service.ser_frame }" name="ser_frame"
+														placeholder="Spring/Django/Angular"></td>
 												</tr>
 												<tr>
 													<td class="sertb">DBMS</td>
 													<td colspan="2"><input type="text" id="ser_dbms"
-														name="ser_dbms" placeholder="Oracle/MongoDB/Mysql"></td>
+														value="${service.ser_dbms }" name="ser_dbms"
+														placeholder="Oracle/MongoDB/Mysql"></td>
 												</tr>
 												<tr>
 													<td>서비스방식<span class="spanstar">*</span></td>
@@ -201,22 +206,28 @@ input[type="radio"] {
 												<tr>
 													<td>서비스 기본가격<span class="spanstar">*</span></td>
 													<td colspan="3"><input type="number" id="ser_price"
-														name="ser_price" required></td>
+														name="ser_price" value="${service.ser_price }" required></td>
 												</tr>
 												<tr>
 													<td>서비스 설명<span class="spanstar">*</span></td>
 													<td colspan="3"><textarea cols="78" rows="4"
-															id="ser_sub" name="ser_sub" required></textarea></td>
+															id="ser_sub" name="ser_sub" required>
+															${service.ser_sub } 
+														</textarea></td>
 												</tr>
 												<tr>
 													<td>서비스 제공절차</td>
 													<td colspan="3"><textarea cols="78" rows="4"
-															id="ser_offer" name="ser_offer"></textarea></td>
+															id="ser_offer" name="ser_offer">
+															 ${service.ser_offer }
+														</textarea></td>
 												</tr>
 												<tr>
 													<td>서비스 메인이미지<span class="spanstar">*</span></td>
-													<td colspan="3"><input type="file" name="file"
-														id="file" required></td>
+													<td colspan="3">
+														<input type="file" name="file" id="file" required>
+														<span class="fileChange">기존 파일: ${service.ser_imgorigin }</span>
+													</td>
 												</tr>
 												<tr>
 													<td>서비스 상세이미지</td>
@@ -224,11 +235,16 @@ input[type="radio"] {
 														<span style="font-size: 10px; color: gray;">※첨부파일은 최대 3개까지 등록이 가능합니다.</span>
 														<br />														
 														<input id="subfile" name="subfile" type="file" > 
+														<span class="subChange">기존 서브파일: ${service.ser_originsub }</span>
+														<span style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile')">삭제</span>
 														<br />
-														<input id="subfile2" name="subfile2" type="file"> 
+														<input id="subfile2" name="subfile2" type="file">
+														<span class="subChange2">기존 서브파일2: ${service.ser_originsub2 }</span> 
+														<span style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile2')">삭제</span>
 														<br />							
 														<input id="subfile3" name="subfile3" type="file" > 
-
+														<span class="subChange3">기존 서브파일3: ${service.ser_originsub3 }</span>
+														<span style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile3')">삭제</span>
 													</td>
 												</tr>
 											</tbody>
@@ -236,31 +252,22 @@ input[type="radio"] {
 										<br />
 										<div
 											class="row d-flex justify-content-center align-items-center">
-											<button class="genric-btn primary circle arrow btnbox">등록</button>
+											<button class="genric-btn primary circle arrow btnbox">수정</button>
 											&nbsp;&nbsp;&nbsp;
 											<button class="genric-btn primary circle arrow btnbox"
 												onclick="history.back()">취소</button>
 										</div>
 									</form>
-
 								</div>
 							</div>
 						</article>
 					</div>
-
-
 				</div>
 			</div>
 		</div>
 	</section>
-
 	<script>
-		$(document).ready(function()
-		// input file 파일 첨부시 fileCheck 함수 실행
-		{
-			$("#input_file").on("change", fileCheck);
-		});
-
+	
 		/**
 		 * 첨부파일로직
 		 */
@@ -300,56 +307,8 @@ input[type="radio"] {
 			})
 		});
 
-		// 파일 현재 필드 숫자 totalCount랑 비교값
-		var fileCount = 0;
-		// 해당 숫자를 수정하여 전체 업로드 갯수를 정한다.
-		var totalCount = 3;
-		// 파일 고유넘버
-		var fileNum = 0;
-		// 첨부파일 배열
-		var content_files = new Array();
-
-		function fileCheck(e) {
-			var files = e.target.files;
-			// 파일 배열 담기
-			var filesArr = Array.prototype.slice.call(files);
-
-			// 파일 개수 확인 및 제한
-			if (fileCount + filesArr.length > totalCount) {
-				$.alert('파일은 최대 ' + totalCount + '개까지 업로드 할 수 있습니다.');
-				return;
-			} else {
-				fileCount = fileCount + filesArr.length;
-			}
-
-			// 각각의 파일 배열담기 및 기타
-			filesArr
-					.forEach(function(f) {
-						var reader = new FileReader();
-						reader.onload = function(e) {
-							content_files.push(f);
-							$('#fileChange')
-									.append(
-											'<div id="file'
-													+ fileNum
-													+ '" onclick="fileDelete(\'file'
-													+ fileNum
-													+ '\')">'
-													+ '<font style="font-size:12px">'
-													+ f.name
-													+ '</font>'
-													+ '<img src="resources/img/icon_minus.png" style="width:20px; height:auto; vertical-align: middle; cursor: pointer;"/>'
-													+ '<div/>');
-							fileNum++;
-						};
-						reader.readAsDataURL(f);
-					});
-			console.log(content_files);
-			//초기화 한다.
-			$("#input_file").val("");
-		}
-
 		
+
 		/*
 		 * 폼 submit 로직
 		 */
@@ -357,7 +316,7 @@ input[type="radio"] {
 
 			var form = $("form")[0];
 			var formData = new FormData(form);
-		
+			
 			/*
 			 * 파일업로드 multiple ajax처리
 			 */
@@ -365,7 +324,7 @@ input[type="radio"] {
 			 $.ajax({
 				type : "POST",
 				enctype : "multipart/form-data",
-				url : "serviceInsertForm.do",
+				url : "serviceUpdate.do",
 				data : formData,
 				processData : false,
 				contentType : false,
@@ -383,7 +342,27 @@ input[type="radio"] {
 			return false;
 		}
 		
+		$('#file').on("change", function(){
+			$('.fileChange').remove();
+		})
 		
+
+		function fileDelete(sercode, status){
+			console.log(sercode);
+			console.log(status);
+			 $.ajax({
+				type : "POST",
+				url : "fileDelete.do",
+				data : {sercode: sercode, status : status},
+				dataType : "json",
+				success : function(data) {
+					
+				},
+				error : function(xhr, status, error) {
+					
+				}
+			}); 
+		}
 	</script>
 </body>
 </html>

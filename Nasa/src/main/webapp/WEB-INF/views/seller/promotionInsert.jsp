@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src='resources/user/fullcalendar-5.10.1/lib/main.js'></script>
+<link href='resources/user/fullcalendar-5.10.1/lib/main.css' rel='stylesheet' />
 <style>
 #progress {
 	position: relative;
@@ -75,6 +77,25 @@
 }
 
 </style>
+<script>
+    // 수정할 것...
+    document.addEventListener('DOMContentLoaded', function () {
+        let xhtp = new XMLHttpRequest();
+        xhtp.open('get', 'CalendarList.do');
+        xhtp.send();
+        xhtp.onload = function () {
+            let dbData = JSON.parse(xhtp.responseText);
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                dayMaxEvents: true, // allow "more" link when too many events
+                events: dbData
+            });
+            calendar.render();
+        }
+    });
+</script>
 </head>
 <body>
 	<div
@@ -141,15 +162,11 @@
 								</a>
 								<hr class="hr"/>
 								<div class="blog_details">
-									
-					
 									<div class="col-lg-12">
 										<div class="count mb-35" style="text-align: center;">
 											<h3>STEP 1. 서비스 선택</h3>
 										</div>
 									</div>
-
-
 									<div class="row justify-content-center">
 										<div class="col-lg-8 posts-list">
 											<div id="progress">
@@ -163,19 +180,17 @@
 										</div>
 									</div>
 
-									<div class="listing-details-area">
+									<div class="listing-details-area proservice">
 										<div class="container">
 											<div class="row">
 												<div class="col-lg-4">
 													<div class="single-listing mb-30">
 														<div class="list-img">
 															<img src="assets/img/gallery/list1.png" alt="">
-															<!-- <span>Open</span> -->
 														</div>
 														<div class="list-caption">
-															<span>Open</span>
 															<h3>
-																<a href="listing_details.html">서비스명1</a>
+																<a href="">서비스명1</a>
 															</h3>
 															<p>서비스번호</p>
 															<p>서비스일자</p>
@@ -189,9 +204,8 @@
 															<!-- <span>Open</span> -->
 														</div>
 														<div class="list-caption">
-															<span>Open</span>
 															<h3>
-																<a href="listing_details.html">서비스명2</a>
+																<a href="">서비스명2</a>
 															</h3>
 															<p>서비스번호</p>
 															<p>서비스일자</p>
@@ -202,10 +216,8 @@
 													<div class="single-listing mb-30">
 														<div class="list-img">
 															<img src="assets/img/gallery/list2.png" alt="">
-															<!-- <span>Open</span> -->
 														</div>
 														<div class="list-caption">
-															<span>Open</span>
 															<h3>
 																<a href="listing_details.html">서비스명2</a>
 															</h3>
@@ -217,15 +229,40 @@
 											</div>
 										</div>
 									</div>
-									<button id="progress-prev" class="btn" disabled>Prev</button>
-									<button id="progress-next" class="btn">Next</button>
+									
+									<div style="display: none;" class="procal">
+										<div id='calendar'>
+										</div>
+										<br />
+										할인율 : <input type="text">
+									</div>
+									
+									<div class="listing-details-area proser" style="display: none;">
+										<div class="row justify-content-center">
+											<div class="col-lg-6">
+													<div class="single-listing mb-30">
+														<div class="list-img">
+															<img src="assets/img/gallery/list1.png" alt="">
+															<!-- <span>Open</span> -->
+														</div>
+														<div class="list-caption">
+															<h3>
+																<a href="listing_details.html">서비스명1</a>
+															</h3>
+															<p>서비스번호</p>
+															<p>서비스일자</p>
+														</div>
+													</div>
+												</div>
+											</div>
+									</div>
+									<button id="progress-prev" class="genric-btn primary circle arrow" disabled>Prev</button>
+									<button id="progress-next" class="genric-btn primary circle arrow">Next</button>
 								</div>
 							</div>
 						</article>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 		
@@ -265,13 +302,18 @@
 			progressBar.style.width = ((active - 1) / (steps.length - 1)) * 100 + "%";
 			if (active === 1) {
 				progressPrev.disabled = true;
-			} else if (active === steps.length) {
+			} else if (active === 3) {
 				progressNext.disabled = true;
+				$('.procal').css('display','none');
+				$('.proser').css('display','block');
 			} else {
 				progressPrev.disabled = false;
 				progressNext.disabled = false;
+				$('.proservice').css('display', 'none');
+				$('.procal').css('display','block');
 			}
 		};
+		
 	</script>
 </body>
 </html>

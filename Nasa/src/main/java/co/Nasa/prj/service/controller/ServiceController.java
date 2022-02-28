@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,17 +39,18 @@ public class ServiceController {
 
 	@ResponseBody
 	@RequestMapping("/serviceInsertForm.do")
-	public String fileUpload(ServiceVO vo, @RequestParam("file") MultipartFile file, @RequestParam("article_file") List<MultipartFile> multipartFile, 
+	public String fileUpload(ServiceVO vo, @RequestParam("file") MultipartFile file, @RequestParam("subfile") MultipartFile subfile, 
+			@RequestParam("subfile2") MultipartFile subfile2, @RequestParam("subfile3") MultipartFile subfile3,
 			HttpSession session,HttpServletRequest request) throws UnsupportedEncodingException {
 		
 //		vo.setS_email((String)session.getAttribute("id"));
 		vo.setS_email("lsj");
-		
+		System.out.println("111");
 		System.out.println(file.getOriginalFilename());
-		for(MultipartFile file2 : multipartFile) {
-			System.out.println(file2.getOriginalFilename());
-		}
-		
+		System.out.println(subfile.getOriginalFilename());
+		System.out.println(subfile2.getOriginalFilename());
+		System.out.println(subfile3.getOriginalFilename());
+		System.out.println("222");
 		
 		String title = new String(request.getParameter("ser_title").getBytes("8859_1"), "UTF-8");
 		String cate = new String(request.getParameter("ser_cate").getBytes("8859_1"), "UTF-8");
@@ -82,6 +85,7 @@ public class ServiceController {
 		String fileRoot;
 		String strResult = "{ \"result\":\"FAIL\" }";
 		
+		//메인
 		try {
 			// 파일이 있을때 탄다.
 			if(file.getSize() > 0 && !file.getOriginalFilename().equals("")) {
@@ -98,7 +102,7 @@ public class ServiceController {
 				try {
 					InputStream fileStream = file.getInputStream();
 					FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
-					vo.setSer_img(fileRoot+savedFileName); //uuid
+					vo.setSer_img(savedFileName); //uuid
 					vo.setSer_imgorigin(originalFileName); //원본
 					
 				} catch (Exception e) {
@@ -117,59 +121,110 @@ public class ServiceController {
 			strResult = "{ \"result\":\"FAIL\" }";
 		}
 		
+		
+		//서브1
 		try {
 			// 파일이 있을때 탄다.
-			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
-				List<String> imgs = new ArrayList<String>();
-				int i = 0;
-				for(MultipartFile file2:multipartFile) {
-					fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
-					System.out.println(fileRoot);
+			if(subfile.getSize() > 0 && !subfile.getOriginalFilename().equals("")) {
+				
+				
+				fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
+				System.out.println(fileRoot);
+				
+				String originalFileName = file.getOriginalFilename();	//오리지날 파일명
+				String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+				String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+				
+				File targetFile = new File(fileRoot + savedFileName);	
+				try {
+					InputStream fileStream = file.getInputStream();
+					FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+					vo.setSer_subimg(savedFileName); //uuid
+					vo.setSer_originsub(originalFileName); //원본
 					
-					String originalFileName = file2.getOriginalFilename();	//오리지날 파일명
-					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-					String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-					
-					File targetFile = new File(fileRoot + savedFileName);	
-					try {
-						InputStream fileStream = file.getInputStream();
-						FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
-						
-						imgs.add(fileRoot+savedFileName); //uuid
-						imgs.add(originalFileName); //원본
-					} catch (Exception e) {
-						//파일삭제
-						FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
-						e.printStackTrace();
-						break;
-					}
-					i++;
+				} catch (Exception e) {
+					//파일삭제
+					FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+					e.printStackTrace();
 				}
+				
 				strResult = "{ \"result\":\"OK\" }";
-				
-				if(i == 1) {
-					imgs.add(null);
-					imgs.add(null);
-					imgs.add(null);
-					imgs.add(null);
-				}else if(i == 2) {
-					imgs.add(null);
-					imgs.add(null);
-				}
-				
-				vo.setSer_subimg(imgs.get(0));
-				vo.setSer_originsub(imgs.get(1));
-				
-				vo.setSer_subimg2(imgs.get(2));
-				vo.setSer_originsub2(imgs.get(3));
-				
-				vo.setSer_subimg3(imgs.get(4));
-				vo.setSer_originsub3(imgs.get(5));
 			}
 			// 파일 아무것도 첨부 안했을때 탄다.(게시판일때, 업로드 없이 글을 등록하는경우)
 			else
 				strResult = "{ \"result\":\"OK\" }";
-			System.out.println("파일이미지2");
+		}catch(Exception e){
+			e.printStackTrace();
+			strResult = "{ \"result\":\"FAIL\" }";
+		}
+		
+		//서브2
+		try {
+			// 파일이 있을때 탄다.
+			if(subfile2.getSize() > 0 && !subfile2.getOriginalFilename().equals("")) {
+				
+				
+				fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
+				System.out.println(fileRoot);
+				
+				String originalFileName = subfile2.getOriginalFilename();	//오리지날 파일명
+				String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+				String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+				
+				File targetFile = new File(fileRoot + savedFileName);	
+				try {
+					InputStream fileStream = subfile2.getInputStream();
+					FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+					vo.setSer_subimg2(savedFileName); //uuid
+					vo.setSer_originsub2(originalFileName); //원본
+					
+				} catch (Exception e) {
+					//파일삭제
+					FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+					e.printStackTrace();
+				}
+				
+				strResult = "{ \"result\":\"OK\" }";
+			}
+			// 파일 아무것도 첨부 안했을때 탄다.(게시판일때, 업로드 없이 글을 등록하는경우)
+			else
+				strResult = "{ \"result\":\"OK\" }";
+		}catch(Exception e){
+			e.printStackTrace();
+			strResult = "{ \"result\":\"FAIL\" }";
+		}
+		
+		//서브3
+		try {
+			// 파일이 있을때 탄다.
+			if(subfile3.getSize() > 0 && !subfile3.getOriginalFilename().equals("")) {
+				
+				
+				fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
+				System.out.println(fileRoot);
+				
+				String originalFileName = subfile3.getOriginalFilename();	//오리지날 파일명
+				String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+				String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+				
+				File targetFile = new File(fileRoot + savedFileName);	
+				try {
+					InputStream fileStream = subfile3.getInputStream();
+					FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+					vo.setSer_subimg3(savedFileName); //uuid
+					vo.setSer_originsub3(originalFileName); //원본
+					
+				} catch (Exception e) {
+					//파일삭제
+					FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+					e.printStackTrace();
+				}
+				
+				strResult = "{ \"result\":\"OK\" }";
+			}
+			// 파일 아무것도 첨부 안했을때 탄다.(게시판일때, 업로드 없이 글을 등록하는경우)
+			else
+				strResult = "{ \"result\":\"OK\" }";
 		}catch(Exception e){
 			e.printStackTrace();
 			strResult = "{ \"result\":\"FAIL\" }";
@@ -179,7 +234,100 @@ public class ServiceController {
 		if(n != 1) {
 			strResult = "{ \"result\":\"FAIL\" }";
 		}
+		
+//		try {
+//			// 파일이 있을때 탄다.
+//			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
+//				List<String> imgs = new ArrayList<String>();
+//				int i = 0;
+//				for(MultipartFile file2:multipartFile) {
+//					fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
+//					System.out.println(fileRoot);
+//					
+//					String originalFileName = file2.getOriginalFilename();	//오리지날 파일명
+//					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+//					String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+//					
+//					File targetFile = new File(fileRoot + savedFileName);	
+//					try {
+//						InputStream fileStream = file.getInputStream();
+//						FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+//						
+//						imgs.add(fileRoot+savedFileName); //uuid
+//						imgs.add(originalFileName); //원본
+//					} catch (Exception e) {
+//						//파일삭제
+//						FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+//						e.printStackTrace();
+//						break;
+//					}
+//					i++;
+//				}
+//				strResult = "{ \"result\":\"OK\" }";
+//				
+//				if(i == 1) {
+//					imgs.add(null);
+//					imgs.add(null);
+//					imgs.add(null);
+//					imgs.add(null);
+//				}else if(i == 2) {
+//					imgs.add(null);
+//					imgs.add(null);
+//				}
+//				
+//				vo.setSer_subimg(imgs.get(0));
+//				vo.setSer_originsub(imgs.get(1));
+//				
+//				vo.setSer_subimg2(imgs.get(2));
+//				vo.setSer_originsub2(imgs.get(3));
+//				
+//				vo.setSer_subimg3(imgs.get(4));
+//				vo.setSer_originsub3(imgs.get(5));
+//			}
+//			// 파일 아무것도 첨부 안했을때 탄다.(게시판일때, 업로드 없이 글을 등록하는경우)
+//			else
+//				strResult = "{ \"result\":\"OK\" }";
+//			System.out.println("파일이미지2");
+//		}catch(Exception e){
+//			e.printStackTrace();
+//			strResult = "{ \"result\":\"FAIL\" }";
+//		}
+//		
+//		int n = serviceDao.serviceInsert(vo);
+//		if(n != 1) {
+//			strResult = "{ \"result\":\"FAIL\" }";
+//		}
 		return strResult;
 	}
-
+	
+	@RequestMapping("/serviceUpdateForm.do")
+	public String serviceUpdateForm(Model model, @Param("ser_code") String ser_code) {
+		model.addAttribute("service", serviceDao.serviceSelect(ser_code));
+		return "seller/serviceUpdateForm";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/serviceUpdate.do")
+	public String serviceUpdate(ServiceVO vo, @RequestParam("file") MultipartFile file, @RequestParam("article_file") List<MultipartFile> multipartFile, 
+			HttpSession session,HttpServletRequest request) throws UnsupportedEncodingException {
+		vo.setS_email("lsj");
+		
+		System.out.println(file.getOriginalFilename());
+		for(MultipartFile file2 : multipartFile) {
+			System.out.println(file2.getOriginalFilename());
+		}
+		
+		return "";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/fileDelete.do")
+	public String fileDelete(@RequestParam("sercode") String ser_code, @RequestParam("status") String status) {
+		System.out.println(ser_code);
+		System.out.println(status);
+		ServiceVO vo = new ServiceVO();
+		vo = serviceDao.serviceSelect(ser_code);
+		
+		return "";
+	}
 }

@@ -24,4 +24,19 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.serviceList();
 	}
 
+	@Override
+	public ServiceVO serviceSelect(String ser_code) {
+		return map.serviceSelect(ser_code);
+	}
+
+	@Override
+	public int serviceUpdate(ServiceVO vo) {
+		return map.serviceUpdate(vo);
+	}
+
+	@Override
+	public int fileDelete(String ser_code, String status) {
+		return map.fileDelete(ser_code, status);
+	}
+
 }
