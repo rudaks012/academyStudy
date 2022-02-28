@@ -92,28 +92,20 @@ public class SellerController {
 		return "seller/serviceDetail";
 
 	}
-<<<<<<< HEAD
 	
 	@RequestMapping("/knowhowInsertForm.do")
 	public String knowhowInsertForm() {
 		return "";
 	}
 
-	@RequestMapping("/knowhowInsert.do")
-	public String knowhowInsert() {
-=======
-
 	
-//	@RequestMapping("/knowhowInsertForm.do")
-//	public String knowhowInsertForm() {
 
 
-	@RequestMapping("/knowhowInsert.do")
-	public String knowhowInsert() {
-
->>>>>>> 002032cdc12e9eddca74b8d3bcf80c4384c8d460
-		return "seller/knowhowInsert";
-	}
+//	@RequestMapping("/knowhowInsert.do")
+//	public String knowhowInsert() {
+//
+//		return "seller/knowhowInsert";
+//	}
 
 	@RequestMapping("/sellerDetail.do")
 	public String sellerDetail() {
