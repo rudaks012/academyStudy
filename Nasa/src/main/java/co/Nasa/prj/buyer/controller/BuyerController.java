@@ -6,11 +6,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.JsonObject;
 
 import co.Nasa.prj.buyer.service.BuyerMapper;
 import co.Nasa.prj.category.service.CategoryMapper;
@@ -121,10 +128,19 @@ public class BuyerController {
 	}
 	
 	@RequestMapping("/profileUpdate.do")
-	public void profileUpdate(BuyerVO vo) {
-		System.out.println(vo.getB_email());
-		// vo.setB_email("buyertest@mail.com");
+	public String profileUpdate(BuyerVO vo, @RequestParam(value="imgupload", required = false) MultipartFile imgfile, HttpServletRequest request) {
+		String originalFileName = imgfile.getOriginalFilename();
+		String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+		String savepath = saveurl + originalFileName;
+		System.out.println("savepath : " + savepath);
+		
+		String saveFile = "resources\\user\\assets\\img\\profile\\" + originalFileName;
+		vo.setB_img(saveFile);
+		
+		System.out.println("update");
 		buyerDao.updateBuyer(vo);
+		
+		return "buyer/buyerMypage";
 	}
 	
 
