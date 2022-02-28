@@ -19,4 +19,9 @@ public class SellerServiceImpl implements SellerService {
 	}
 	
 
+	@Override
+	public int SellerEmailCheck(SellerVO vo) {
+		return map.SellerEmailCheck(vo);
+	}
+
 }
