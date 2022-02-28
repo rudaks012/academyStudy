@@ -16,4 +16,9 @@ public class WishlistServiceImpl implements WishlistService {
 		return map.selectBuyerWishlist(vo);
 	}
 
+	@Override
+	public int deleteWishlist(WishlistVO vo) {
+		return map.deleteWishlist(vo);
+	}
+
 }

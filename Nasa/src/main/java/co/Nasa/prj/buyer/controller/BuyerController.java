@@ -142,7 +142,7 @@ public class BuyerController {
 	}
 	
 	@RequestMapping("/profileUpdate.do")
-	public String profileUpdate(BuyerVO vo, HttpServletRequest request) {
+	public String profileUpdate(BuyerVO vo, @RequestParam("file1") MultipartFile mf, HttpServletRequest request) {
 		//System.out.println(mf.getOriginalFilename());
 //		String originalFileName = imgfile.getOriginalFilename();
 //		String saveurl = "C:\\prjnasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
@@ -152,7 +152,7 @@ public class BuyerController {
 //		String saveFile = "resources\\user\\assets\\img\\profile\\" + originalFileName;
 //		vo.setB_img(saveFile);
 		
-		System.out.println("update");
+		System.out.println(mf.getOriginalFilename());
 		buyerDao.updateBuyer(vo);
 		
 		return "buyer/buyerMypage";
