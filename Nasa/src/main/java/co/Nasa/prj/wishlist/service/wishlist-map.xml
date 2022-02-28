@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="co.Nasa.prj.wishlist.service.wishlist-map"></mapper>
+<mapper namespace="co.Nasa.prj.wishlist.service.WishlistMapper">
+	<select id="selectBuyerWishlist" resultType="co.Nasa.prj.comm.VO.WishlistVO">
+		SELECT *
+		FROM WISHLIST
+		WHERE B_ID = #{b_id}
+	</select>
+</mapper>

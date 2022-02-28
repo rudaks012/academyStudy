@@ -32,11 +32,18 @@
 	<section>
 		<div class="row justify-content-center" style="margin-top: 50px;">
 			<div style="width:550px;">
-				<form method="get" id = "profilefrm">
+				<form method="get" id = "profilefrm" action="profileUpdate.do" onsubmit="return passwordCheck()" enctype="multipart/form-data">
 					<div id="profileThumnail" class="justify-content-center" style="text-align: center;">
-	                    <img id="prvimg" src="assets/img/blog/author.png" alt="" style="width: 150px; height:150px; border-radius: 70%; overflow: hidden;"><br>
-	                    <input type="file" id="profileimg" accept="image/*" style="display: none;">
-	                    <label class="genric-btn primary radius" for="profileimg" style="margin-top: 7px;">사진 수정</label>
+						<c:choose>
+							<c:when test="${empty buyerinfo.b_img }">
+			                    <img id="prvimg" src="resources/user/assets/img/profile/defaultprofileimg.png" alt="" style="width: 150px; height:150px; border-radius: 70%; overflow: hidden;"><br>
+							</c:when>
+							<c:otherwise>
+								<img id="prvimg" src="${buyerinfo.b_img }" alt="" style="width: 150px; height:150px; border-radius: 70%; overflow: hidden;"><br>
+							</c:otherwise>
+						</c:choose>
+	                    <input type="file" id="imgupload" name="imgupload" accept="image/*">
+	                    <!-- <label class="genric-btn primary radius" for="imgupload" style="margin-top: 7px;">사진 수정</label> -->
                     </div>
 				
 					<div style="margin-top: 20px;">
@@ -49,7 +56,7 @@
 					<div style="margin-top: 20px;">
 						<p>이메일</p>
 						<div class="form-group">
-							<input class="form-control" name="b_email" id="b_email" type="text" placeholder="${buyerinfo.b_email }" value="${buyerinfo.b_email }" disabled required>
+							<input class="form-control" name="b_email" id="b_email" type="text" placeholder="${buyerinfo.b_email }" value="${buyerinfo.b_email }" readonly required>
 						</div>
 					</div>
 				
@@ -107,7 +114,8 @@
 					</div>
 				
 					<div class="row justify-content-center" style="margin-bottom: 50px;">
-						<button class="genric-btn info-border" onclick="updateProfile()">수정</button>
+						<button type="submit" class="genric-btn info-border">수정</button>
+						<!-- onclick="updateProfile()" -->
 						<a href="goBuyerMypage.do" class="genric-btn danger-border" style="margin-left: 10px;">취소</a>
 					</div>
 				</form>
@@ -124,11 +132,11 @@
 					const previewImage = document.getElementById("prvimg");
 					previewImage.src = e.target.result;
 				}
-				reader.readAsDataURL(input.files[0]);                 
+				reader.readAsDataURL(input.files[0]);
 			}
 		}
 		
-		const inputImage = document.getElementById("profileimg");
+		const inputImage = document.getElementById("imgupload");
 		inputImage.addEventListener("change", e => {
 			readImage(e.target);
 		});
@@ -160,7 +168,17 @@
 
         }
 		
-		function updateProfile() {
+		function passwordCheck() {
+			var newpwd1 = document.getElementById("b_password").value;
+			var newpwd2 = document.getElementById("newpassword2").value; 
+			
+			if(newpwd1 != newpwd2) {
+				window.alert("입력한 비밀번호가 일치하지 않습니다.");
+				return false;
+			}
+		}
+		
+		/* function updateProfile() {
 			var newpwd1 = document.getElementById("b_password").value;
 			var newpwd2 = document.getElementById("newpassword2").value;
 			
@@ -177,7 +195,7 @@
 				return;
 			}
 			
-			$.ajax({
+			 $.ajax({
 	 			url:"profileUpdate.do",
         		type:"get",
         		data: {
@@ -189,12 +207,14 @@
         			b_password : b_password
         		},
         		success: function() {
-        			location.hrec="goBuyerMypage.do"
-        		}
+        			alert("수정되었습니다.");
+        			location.href="goBuyerMypage.do"
+        		} 
         		
 	 		});
+	 		console.log("dd");
 
-		}
+		} */
 	</script>
 
 <!-- buyerUpdate End -->

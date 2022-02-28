@@ -6,11 +6,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.JsonObject;
 
 import co.Nasa.prj.buyer.service.BuyerMapper;
 import co.Nasa.prj.category.service.CategoryMapper;
@@ -21,12 +28,16 @@ import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.ReportVO;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.Review_CommentVO;
+import co.Nasa.prj.comm.VO.SellerVO;
+import co.Nasa.prj.comm.VO.WishlistVO;
 import co.Nasa.prj.coupon.service.CouponMapper;
 import co.Nasa.prj.payment.service.PaymentMapper;
 import co.Nasa.prj.report.service.ReportMapper;
 import co.Nasa.prj.review.service.ReviewMapper;
 import co.Nasa.prj.review_comment.service.Review_CommentMapper;
+import co.Nasa.prj.seller.service.SellerMapper;
 import co.Nasa.prj.sub_category.service.Sub_CategoryMapper;
+import co.Nasa.prj.wishlist.service.WishlistMapper;
 
 @Controller
 public class BuyerController {
@@ -38,6 +49,8 @@ public class BuyerController {
 	@Autowired CouponMapper couponDao;
 	@Autowired ReviewMapper reviewDao;
 	@Autowired Review_CommentMapper review_commentDao;
+	@Autowired WishlistMapper wishlistDao;
+	@Autowired SellerMapper sellerDao;
 	
 	// 구매자 마이페이지로 이동
 	@RequestMapping("/goBuyerMypage.do")
@@ -100,7 +113,15 @@ public class BuyerController {
 	
 	// 위시 리스트 페이지로 이동
 	@RequestMapping("/wishlist.do")
-	public String wishlist() {
+	public String wishlist(Model model, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+		WishlistVO wishlistvo = new WishlistVO();
+		wishlistvo.setB_id((String)session.getAttribute("id"));
+		List<WishlistVO> wishlistList = wishlistDao.selectBuyerWishlist(wishlistvo);
+		model.addAttribute("wishlistList",wishlistList);
+		
+		List<SellerVO> sellerList = sellerDao.selectSellerList();
+		model.addAttribute("sellerList", sellerList);
+		
 		return "buyer/wishlist";
 	}
 	
@@ -121,10 +142,20 @@ public class BuyerController {
 	}
 	
 	@RequestMapping("/profileUpdate.do")
-	public void profileUpdate(BuyerVO vo) {
-		System.out.println(vo.getB_email());
-		// vo.setB_email("buyertest@mail.com");
+	public String profileUpdate(BuyerVO vo, HttpServletRequest request) {
+		//System.out.println(mf.getOriginalFilename());
+//		String originalFileName = imgfile.getOriginalFilename();
+//		String saveurl = "C:\\prjnasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+//		String savepath = saveurl + originalFileName;
+//		System.out.println("savepath : " + savepath);
+//		
+//		String saveFile = "resources\\user\\assets\\img\\profile\\" + originalFileName;
+//		vo.setB_img(saveFile);
+		
+		System.out.println("update");
 		buyerDao.updateBuyer(vo);
+		
+		return "buyer/buyerMypage";
 	}
 	
 

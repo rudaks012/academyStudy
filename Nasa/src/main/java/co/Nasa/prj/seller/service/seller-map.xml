@@ -7,9 +7,16 @@
 		where s_nickname=#{s_nickname}
 	</select>
 	
+
+	<select id="selectSellerList" resultType="co.Nasa.prj.comm.VO.SellerVO">
+		SELECT *
+		FROM SELLER
+  	</select>
+
 	<select id="SellerEmailCheck" resultType="int">
 		select count(*) from seller
 		where s_email=#{s_email}
+
 	</select>
 
 </mapper>
