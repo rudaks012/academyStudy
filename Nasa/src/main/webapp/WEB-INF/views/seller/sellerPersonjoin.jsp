@@ -93,9 +93,11 @@
 							</div>
 							<div class="form-group">
 								닉네임<div id="nickdiv">
-								<input class="form-control valid" name="nickname" id="nickname" placeholder="사용할 닉네임을 입력해주세요">
-								<input type="button" value="확인" id="nickCheckbtn" class="position-relative genric-btn primary radius" 
-								onclick="nicknameCheck()" style="float: right; bottom: 45px;">
+									<input class="form-control valid" name="nickname" id="nickname"
+										placeholder="사용할 닉네임을 입력해주세요">
+									<input type="button" value="확인" id="nickCheckbtn"
+										class="position-relative genric-btn primary radius" onclick="nicknameCheck()"
+										style="float: right; bottom: 45px;">
 								</div>
 							</div>
 							<div class="form-group">
@@ -103,27 +105,34 @@
 									<input class="form-control valid" name="email" id="email" type="email"
 										placeholder="example@nasa.com">
 									<input type="button" value="전송" class="position-relative genric-btn primary radius"
-									onclick="emailCheck()" style="float: right; bottom: 45px;">
+										onclick="emailCheck()" style="float: right; bottom: 45px;">
 								</div>
 							</div>
 							<div class="form-group">
-								이메일 인증<div id="emaildivs">
-									<input class="form-control valid" name="emailchk" id="emailchk" placeholder="인증코드를 확인해주세요">
+								이메일 인증<div id="emailchkdiv">
+									<input class="form-control valid" name="emailchk" id="emailchk"
+										placeholder="인증코드를 확인해주세요">
 									<input type="button" value="확인" class="position-relative genric-btn primary radius"
-									onclick="emailChecks()"	style="float: right; bottom: 45px;">
+										onclick="emailSendCheck()" style="float: right; bottom: 45px;">
 								</div>
 							</div>
 							<div class="form-group">
-								비밀번호<input class="form-control valid" name="password" id="password" type="password"
+								비밀번호<div id="pwdiv">
+									<input class="form-control valid" name="password" id="password" type="password"
 									placeholder="영문+숫자 조합 8자리 이상 입력해주세요">
+								</div>
 							</div>
 							<div class="form-group">
-								비밀번호 확인<input class="form-control valid" name="pwchk" id="pwchk" type="password"
-									placeholder="비밀번호를 다시 입력해주세요">
+								비밀번호 확인<div id="pwchkdiv">
+									<input disabled class="form-control valid" name="pwchk" id="pwchk" type="password"
+										placeholder="비밀번호를 다시 입력해주세요">
+								</div>
 							</div>
 							<div class="form-group">
-								연락처<input class="form-control valid" name="phone" id="phone"
-									placeholder="연락가능한 전화번호를 입력해주세요">
+								연락처<div id="phonediv">
+									<input class="form-control valid" name="phone" id="phone"
+									placeholder="연락가능한 휴대전화번호를 입력해주세요">
+								</div>
 							</div>
 							<div class="form-group">
 								주소<div class="d-flex">
@@ -174,52 +183,130 @@
 			});
 		};
 
+		// 닉네임 중복 체크
 		function nicknameCheck() {
 			var nickname = $('#nickname').val();
 
 			$.ajax({
 				url: "ajaxSPnickCheck.do",
 				type: "post",
-				data: {s_nickname : nickname},
+				data: { s_nickname: nickname },
 				dataType: "text",
-				success: function(data) {  
-					if(data == 'T') {
+				success: function (data) {
+					if (data == 'T') {
 						$("label").remove('#nicklabel');
 						$("#nickdiv").append('<label id="nicklabel">사용 가능한 닉네임입니다.</label>');
 					} else {
-						$("label").remove('#nicklabel');						
-						$("#nickdiv").append('<label id="nicklabel">이미 사용하고 있는 닉네임입니다.</label>');            	
-            			
+						$("label").remove('#nicklabel');
+						$("#nickdiv").append('<label id="nicklabel">이미 사용하고 있는 닉네임입니다.</label>');
+						$("#nicklabel").css("color", "red");
+
 					}
-			    },
-				error : function() {
-					console.log("실패");      	
+				},
+				error: function () {
+					console.log("실패");
 				}
 			});
 		};
 
-		function emailCheck() {
-			var email = $('#email').val();
+		// 이메일 인증번호 전송
+		var emailreg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var code = "";
 
-			$.ajax({
-				type:"post",
-				url:"ajaxSPemailCheck.do",
-				data: {s_emailname : emailname},
-				success: function(data){
-					if(data == "error"){
-						$("label").remove('#emaillabel');
-						$("#emaildiv").append('<label id="emaillabel">올바르지 않은 이메일입니다.</label>');
-        			} else {
-						$("label").remove('#emaillabel');
-						$("#emaildiv").append('<label id="emaillabel">인증번호를 발송했습니다.</label>');
-        			}
-        		}
-    		});
+		function emailCheck() {
+			// 이메일 형식 체크
+			var emailchk = emailreg.test($("#email").val());
+			if (!emailchk) {
+				$("label").remove('#emaillabel');
+				$("#emaildiv").append('<label id="emaillabel">올바르지 않은 이메일입니다.</label>');
+				$("#emaillabel").css("color", "red");
+			} else {
+				var email = ($('#email').val());
+				console.log(email);
+				// 이메일 중복 체크
+				$.ajax({
+					url: "ajaxSPemailCheck.do",
+					type: "post",
+					data: {s_email : email},
+					dataType: "text",
+					success: function(data) {						
+						if (data == "T") { // 중복된 이메일이 없으면 인증번호 메일 보내기
+							$.ajax({
+								type: "post",
+								url: "ajaxSPemailSend.do",
+								data: { s_email: email },
+								success: function (data) {
+									$("label").remove('#emaillabel');
+									$("#emaildiv").append('<label id="emaillabel">인증번호를 발송했습니다.</label>');
+									code = data;
+								}
+							});
+						} else {
+							$("label").remove('#emaillabel');
+							$("#emaildiv").append('<label id="emaillabel">중복된 이메일입니다.</label>');
+							$("#emaillabel").css("color", "red");
+						}
+					}
+				})
+			}
+			
 		};
 
-		function emailChecks() {
-			
+		// 이메일 인증번호 확인
+		function emailSendCheck() {
+			if ($("#emailchk").val() == code) {
+				$("label").remove('#emailchklabel');
+				$("#emailchkdiv").append('<label id="#emailchklabel">인증번호가 확인되었습니다.</label>');
+			} else {
+				$("label").remove('#emailchklabel');
+				$("#emailchkdiv").append('<label id="#emailchklabel">인증번호가 일치하지 않습니다.</label>');
+				$("#emailchklabel").css("color", "red");
+			}
 		}
+
+		// 비밀번호 설정
+		var pwreg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+		$("#password").blur(function() {
+			var pwchk = pwreg.test($("#password").val());
+			if (!pwchk) {
+				$("label").remove('#pwlabel');
+				$("#pwdiv").append('<label id="pwlabel">비밀번호는 영문+숫자 조합 8자리 이상이어야 합니다.</label>');
+				$("#pwlabel").css("color", "red");
+				$('#password').focus();
+			} else {
+				$("label").remove('#pwlabel');
+				$("#pwchk").attr("disabled", false);
+				$('#pwchk').focus();
+			}
+		})
+
+		// 비밀번호 확인
+		$("#pwchk").blur(function() {
+			if ($("#password").val() == $("#pwchk").val()) {
+				$("label").remove('#pwchklabel');
+			} else {
+				$("label").remove('#pwchklabel');
+				$("#pwchkdiv").append('<label id="pwchklabel">비밀번호가 일치하지 않습니다.</label>');
+				$("#pwchklabel").css("color", "red");
+			}
+		})
+
+		// 연락처 설정
+		var phonereg = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+		// var phonereg = /^01([0|1|6|7|8|9])-?([0-9]{8})$/;
+
+		$("#phone").blur(function() {
+			var phonechk = phonereg.test($("#phone").val());
+			if (!phonechk) {
+				$("label").remove('#phonelabel');
+				$("#phonediv").append('<label id="phonelabel">올바른 휴대전화번호를 입력해주세요.</label>');
+				$("#phonelabel").css("color", "red");
+				$('#phone').focus();
+			} else {
+				$("label").remove('#phonelabel');
+			}
+		});
 
 	</script>
 </body>

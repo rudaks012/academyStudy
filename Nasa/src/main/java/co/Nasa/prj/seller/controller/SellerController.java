@@ -92,6 +92,7 @@ public class SellerController {
 		return "seller/serviceDetail";
 
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping("/knowhowInsertForm.do")
 	public String knowhowInsertForm() {
@@ -100,6 +101,17 @@ public class SellerController {
 
 	@RequestMapping("/knowhowInsert.do")
 	public String knowhowInsert() {
+=======
+
+	
+//	@RequestMapping("/knowhowInsertForm.do")
+//	public String knowhowInsertForm() {
+
+
+	@RequestMapping("/knowhowInsert.do")
+	public String knowhowInsert() {
+
+>>>>>>> 002032cdc12e9eddca74b8d3bcf80c4384c8d460
 		return "seller/knowhowInsert";
 	}
 
@@ -113,7 +125,7 @@ public class SellerController {
 		return "seller/sellerUpdate";
 	}
 
-	// 개인 판매자 아이디 체크
+	// 개인 판매자 아이디 중복 체크
 	@RequestMapping("/ajaxSPnickCheck.do")
 	@ResponseBody
 	public String SellerNicknameCheck(@Param("s_nickname") String s_nickname, SellerVO vo) {
@@ -128,16 +140,32 @@ public class SellerController {
 		System.out.println(vo.getS_nickname());
 		return result;
 	}
-
+	
+	// 개인 판매자 이메일 중복 체크
+	@RequestMapping("/ajaxSPemailCheck.do")
+	@ResponseBody
+	public String SellerEmailCheck(@Param("s_email") String s_email, SellerVO vo) {
+		vo.setS_email(s_email);
+		int n = sellerDAO.SellerEmailCheck(vo);
+		String result;
+		if (n == 0) {
+			result = "T";
+		} else {
+			result = "F";			
+		}
+		System.out.println("확인" + vo.getS_email());
+		return result;
+	}
+		
+	
 	// 개인 판매자 이메일 인증
 	@Autowired
 	private JavaMailSender mailSender;
 
-	@RequestMapping("/ajaxSPemailCheck.do")
+	@RequestMapping("/ajaxSPemailSend.do")
 	@ResponseBody
-	public String emailCheck(@Param("s_email") String s_email) throws Exception {
+	public String emailSend(@Param("s_email") String s_email) throws Exception {
 		int serti = (int) ((Math.random() * (99999 - 10000 + 1)) + 10000);
-
 		String from = "admin@nasa.com";
 		String to = s_email;
 		String title = "NASA 회원가입 인증번호 입니다.";
@@ -154,7 +182,6 @@ public class SellerController {
 
 			mailSender.send(mail);
 			num = Integer.toString(serti);
-
 		} catch (Exception e) {
 			num = "error";
 		}

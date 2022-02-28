@@ -10,4 +10,7 @@ public interface ReviewMapper {
 	
 	// 리뷰 삭제 기능 (구매자가 리뷰페이지에서 자신의 리뷰 삭제 눌렀을 때 그 리뷰 삭제)
 	public int deleteReview(ReviewVO vo);
+	
+	// 리뷰 등록
+	public int insertReview(ReviewVO vo);
 }

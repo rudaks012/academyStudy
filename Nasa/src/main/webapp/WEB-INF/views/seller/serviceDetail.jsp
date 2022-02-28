@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,7 +101,30 @@
                            </div>
                            <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-info-tab">
                               <br /><br />
-                              <div class="revtext">
+                              <!-- 여기에 바이어 로그인 돼 있으면 리뷰작성 뜨게 작성 -->
+                              <c:if test="">
+                              </c:if>
+                              <div id="writeReview">
+                          		<h5>리뷰 작성</h5>
+                          		<div class="d-flex">
+	                          		<h5 style="font-size:15px; margin-right:10px; margin-top:10px;">평점</h5>
+	                          		<select id="rev_rate" style="width:200px;">
+	                          			<option value="1">1</option>
+	                          			<option value="2">2</option>
+	                          			<option value="3">3</option>
+	                          			<option value="4">4</option>
+	                          			<option value="5">5</option>
+	                          		</select>
+                          		</div>
+                      			<textarea placeholder="리뷰를 작성해주세요" style="width:100%; height:100px; margin-top:5px"></textarea>
+                      			<div>
+	                      			<input type="file" id="reviewimgUpload" accept="image/*" style="display:none;">
+	                      			<label class="genric-btn primary" for="reviewimgUpload">사진등록</label>
+	                      			<img id="reviewimg" alt="" style="width: 42px; height:42px; margin-left:10px; overflow: hidden; border-color:white;">
+	                      			<label class="genric-btn primary float-right" onclick="writeReview()">리뷰 작성</label>
+	                      		</div>                
+                              </div>
+                              <div class="revtext" style="margin-top:20px;">
                               <h5>서비스 리뷰</h5>
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
@@ -261,6 +285,25 @@
 			</div>
 		</div>
 	</section>
+	
+	<script>
+		function readImage(input) {
+			if(input.files && input.files[0]) {
+				const reader = new FileReader();
+				
+				reader.onload = e => {
+					const previewImage = document.getElementById("reviewimg");
+					previewImage.src = e.target.result;
+				}
+				reader.readAsDataURL(input.files[0]);                 
+			}
+		}
+		
+		const inputImage = document.getElementById("reviewimgUpload");
+		inputImage.addEventListener("change", e => {
+			readImage(e.target);
+		});
+	</script>
 	
 </body>
 </html>
