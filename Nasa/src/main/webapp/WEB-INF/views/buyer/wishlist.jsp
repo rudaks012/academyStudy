@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +78,39 @@
                   <a class="d-inline-block">
                      <h2>위시리스트</h2>
                   </a>
-                  <section class="blog_area single-post-area section-padding" style="padding-top:0 !important;">         
+                  <section class="blog_area single-post-area section-padding" style="padding-top:0 !important;">
+                  	<c:forEach items="${wishlistList }" var="wishlist">
+                  		<c:forEach items="${sellerList }" var="seller">
+                  			<c:if test="${wishlist.s_id eq seller.s_email }">
+	                  			<div class="blog-author" style="margin: 0 auto; margin-top: 20px;">
+			                        <div class="media align-items-center">
+			                           <img src="resources/user/assets/img/blog/author.png" alt="">
+			                           <div class="media-body">
+			                           	<div class="d-flex">
+		                                 	<h4 class="col-4">${seller.s_nickname } 
+			                              	<i id = "wishicon" class="fa fa-heart" aria-hidden="true" onclick="deleteWishlist(this)"></i></h4>
+			                              	<h4 class="col-8">${seller.s_address }</h4>
+			                           	</div>
+			                              <div class="d-flex"  style="margin-top: 8px;">
+			                                 <h4 class="col-4">SW개발 > 웹개발</h4>
+			                                 <h4 class="col-4">평점 : 4.5</h4>
+			                                 <h4>
+			                                 	<c:choose>
+			                                 		<c:when test="${seller.s_rank eq '1' }">별 등급</c:when>
+			                                 		<c:when test="${seller.s_rank eq '2' }">달 등급</c:when>
+			                                 		<c:when test="${seller.s_rank eq '3' }">태양 등급</c:when>
+			                                 		<c:when test="${seller.s_rank eq '4' }">지구 등급</c:when>
+			                                 		<c:otherwise>등급 미설정</c:otherwise>
+			                                 	</c:choose>
+			                                 </h4>
+			                              </div>
+			                              <p class="col-12" style="margin-top: 20px;">${seller.s_me }</p>
+			                           </div>
+			                        </div>
+			                     </div>   
+                  			</c:if>
+                  		</c:forEach>
+                  	</c:forEach>        
                      <div class="blog-author" style="margin: 0 auto; margin-top: 20px;">
                         <div class="media align-items-center">
                            <img src="resources/user/assets/img/blog/author.png" alt="">
@@ -161,5 +194,11 @@
       </div>
    </div>
 </section>
+
+<script>
+	function deleteWishlist(event) {
+		alert("위시리스트에서 제거하겠습니까?");
+	}
+</script>
 </body>
 </html>

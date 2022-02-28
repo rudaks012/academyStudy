@@ -1,5 +1,10 @@
 package co.Nasa.prj.wishlist.service;
 
-public interface WishlistMapper {
+import java.util.List;
 
+import co.Nasa.prj.comm.VO.WishlistVO;
+
+public interface WishlistMapper {
+	// 구매자 위시리스트 조회
+	public List<WishlistVO> selectBuyerWishlist(WishlistVO vo);
 }

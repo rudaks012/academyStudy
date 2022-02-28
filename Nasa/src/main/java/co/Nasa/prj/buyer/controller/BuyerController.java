@@ -28,12 +28,16 @@ import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.ReportVO;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.Review_CommentVO;
+import co.Nasa.prj.comm.VO.SellerVO;
+import co.Nasa.prj.comm.VO.WishlistVO;
 import co.Nasa.prj.coupon.service.CouponMapper;
 import co.Nasa.prj.payment.service.PaymentMapper;
 import co.Nasa.prj.report.service.ReportMapper;
 import co.Nasa.prj.review.service.ReviewMapper;
 import co.Nasa.prj.review_comment.service.Review_CommentMapper;
+import co.Nasa.prj.seller.service.SellerMapper;
 import co.Nasa.prj.sub_category.service.Sub_CategoryMapper;
+import co.Nasa.prj.wishlist.service.WishlistMapper;
 
 @Controller
 public class BuyerController {
@@ -45,6 +49,8 @@ public class BuyerController {
 	@Autowired CouponMapper couponDao;
 	@Autowired ReviewMapper reviewDao;
 	@Autowired Review_CommentMapper review_commentDao;
+	@Autowired WishlistMapper wishlistDao;
+	@Autowired SellerMapper sellerDao;
 	
 	// 구매자 마이페이지로 이동
 	@RequestMapping("/goBuyerMypage.do")
@@ -107,7 +113,15 @@ public class BuyerController {
 	
 	// 위시 리스트 페이지로 이동
 	@RequestMapping("/wishlist.do")
-	public String wishlist() {
+	public String wishlist(Model model, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+		WishlistVO wishlistvo = new WishlistVO();
+		wishlistvo.setB_id((String)session.getAttribute("id"));
+		List<WishlistVO> wishlistList = wishlistDao.selectBuyerWishlist(wishlistvo);
+		model.addAttribute("wishlistList",wishlistList);
+		
+		List<SellerVO> sellerList = sellerDao.selectSellerList();
+		model.addAttribute("sellerList", sellerList);
+		
 		return "buyer/wishlist";
 	}
 	
@@ -128,14 +142,15 @@ public class BuyerController {
 	}
 	
 	@RequestMapping("/profileUpdate.do")
-	public String profileUpdate(BuyerVO vo, @RequestParam(value="imgupload", required = false) MultipartFile imgfile, HttpServletRequest request) {
-		String originalFileName = imgfile.getOriginalFilename();
-		String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
-		String savepath = saveurl + originalFileName;
-		System.out.println("savepath : " + savepath);
-		
-		String saveFile = "resources\\user\\assets\\img\\profile\\" + originalFileName;
-		vo.setB_img(saveFile);
+	public String profileUpdate(BuyerVO vo, HttpServletRequest request) {
+		//System.out.println(mf.getOriginalFilename());
+//		String originalFileName = imgfile.getOriginalFilename();
+//		String saveurl = "C:\\prjnasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+//		String savepath = saveurl + originalFileName;
+//		System.out.println("savepath : " + savepath);
+//		
+//		String saveFile = "resources\\user\\assets\\img\\profile\\" + originalFileName;
+//		vo.setB_img(saveFile);
 		
 		System.out.println("update");
 		buyerDao.updateBuyer(vo);
