@@ -17,4 +17,10 @@ INSERT INTO NOTICE(no_code,
 		
 
 	</insert>
+	
+	<insert id="knowhowInsert" parameterType="co.Nasa.prj.comm.VO.NoticeVO">
+		INSERT INTO NOTICE(no_code, no_id, no_title, no_subject, no_date, filecode, no_status)
+		VALUES((SELECT NVL(MAX(NO_CODE),0)+1 FROM NOTICE ),#{no_id},#{no_title},
+		#{no_subject},sysdate,null,'1')
+	</insert>
 </mapper>

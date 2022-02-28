@@ -19,6 +19,12 @@ public class SellerServiceImpl implements SellerService {
 	public int SellerNicknameCheck(SellerVO vo) {
 		return map.SellerNicknameCheck(vo);
 	}
+	
+
+	@Override
+	public int SellerEmailCheck(SellerVO vo) {
+		return map.SellerEmailCheck(vo);
+	}
 
 	@Override
 	public List<SellerVO> selectSellerList() {

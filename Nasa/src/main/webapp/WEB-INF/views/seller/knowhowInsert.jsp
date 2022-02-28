@@ -39,6 +39,18 @@
  	background-color : #d5c9ea !important;
    	margin: 10px !important;
 }
+.btn::before{
+	background : none;
+}
+.modal-header{
+	display: block;
+}
+.modal-title{
+	display: none;
+}
+p {
+   margin: 0px !important;
+}
 </style>
 </head>
 <body>
@@ -105,20 +117,20 @@
 									</a>
 								<hr class="hr"/>
 								<div class="blog_details">
-									<form class="" method="post" action="summernote.do" id="">
+									<form class="" method="post" action="knowhowInsert.do" id="">
 										<table border="2" style="border-color: rgb(229, 232, 255);">
 											<tbody>
 												<tr>
 													<td class="align-middle table-primary knowtd" colspan="2">제목
 														<span class="spanstar">*</span>
 													</td>
-													<td><input type="text" id="sname" name="sname"
+													<td><input type="text" id="no_title" name="no_title"
 														class="sname"></td>
 												</tr>
 												<tr>
-
-													<td colspan="3" style="padding: 1rem"><textarea
-															id="summernote" name="summernote"></textarea></td>
+													<td colspan="3" style="padding: 1rem">
+													<textarea id="summernote" name="summernote"></textarea>
+													</td>
 												</tr>
 											</tbody>
 										</table>
@@ -128,7 +140,7 @@
 											<button type="submit"
 												class="genric-btn primary circle arrow btnbox">등록</button>
 											&nbsp;&nbsp;&nbsp;
-											<button class="genric-btn primary circle arrow">취소</button>
+											<button class="genric-btn primary circle arrow" onclick="history.back()">취소</button>
 										</div>
 									</form>
 

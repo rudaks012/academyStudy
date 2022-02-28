@@ -18,5 +18,26 @@
       )
 </insert>
 
+<select id="serviceSelect" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	SELECT * FROM SERVICE WHERE ser_code = #{ser_code}
+</select>
+
+<update id="serviceUpdate" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
+	
+</update>
+
+<update id="fileDelete" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
+	UPDATE SERVICE SET 
+	<if test="status == 'subfile'">
+		SER_SUBIMG = null, SER_ORIGINSUB = null 
+	</if>
+	<if test="status == 'subfile2'">
+		SER_SUBIMG2 = null, SER_ORIGINSUB2 = null 
+	</if>
+	<if test="status == 'subfile3'">
+		SER_SUBIMG3 = null, SER_ORIGINSUB3 = null 
+	</if>
+		WHERE SER_CODE = #{ser_code}
+</update>
 
 </mapper>
