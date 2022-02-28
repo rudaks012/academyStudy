@@ -78,7 +78,7 @@
 								<div class="blog_details">
 									<div class="home-blog-area section">
 										<div class="container">
-											<a class="genric-btn danger" href="knowhowInsert.do">글 등록</a>
+											<a class="genric-btn danger" href="knowhowInsertForm.do">글 등록</a>
 											<div class="row">
 												<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 													<div class="single-team mb-30">

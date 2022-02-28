@@ -93,8 +93,14 @@ public class SellerController {
 
 	}
 
+	
+	@RequestMapping("/knowhowInsertForm.do")
+	public String knowhowInsertForm() {
+
+
 	@RequestMapping("/knowhowInsert.do")
 	public String knowhowInsert() {
+
 		return "seller/knowhowInsert";
 	}
 
