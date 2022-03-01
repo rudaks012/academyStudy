@@ -472,8 +472,7 @@
             .fail(function (data) {
                 console.log("실패원인:" + data);
             })
-        //id 값 저장해서 넘겨주는 ajax
-        //td 아무거나 눌러도 무조건 tr을 가게 한다음 첫번재 td 가는 선택자
+      
         	
             
         	var flag = true;
