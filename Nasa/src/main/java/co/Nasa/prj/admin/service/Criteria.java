@@ -8,8 +8,6 @@ public class Criteria {
 	private int pageNum; //페이지번호
 	private int amount; //한 페이지당 몇개의 데이터
 	
-	private String b_email;
-	
 	private String type;
 	private String keyword;
 	
