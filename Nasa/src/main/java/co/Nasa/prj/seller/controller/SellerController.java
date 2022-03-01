@@ -97,14 +97,7 @@ public class SellerController {
 	public String knowhowInsertForm() {
 		return "";
 	}
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 3a5cfc696f3f9758e85c90e32e5864a1614b349c
 	
-
-
 //	@RequestMapping("/knowhowInsert.do")
 //	public String knowhowInsert() {
 //
