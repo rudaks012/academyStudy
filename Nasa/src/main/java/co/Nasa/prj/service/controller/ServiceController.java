@@ -3,12 +3,11 @@ package co.Nasa.prj.service.controller;
 import java.io.File;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -16,9 +15,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -131,13 +128,13 @@ public class ServiceController {
 				fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
 				System.out.println(fileRoot);
 				
-				String originalFileName = file.getOriginalFilename();	//오리지날 파일명
+				String originalFileName = subfile.getOriginalFilename();	//오리지날 파일명
 				String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 				String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
 				
 				File targetFile = new File(fileRoot + savedFileName);	
 				try {
-					InputStream fileStream = file.getInputStream();
+					InputStream fileStream = subfile.getInputStream();
 					FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
 					vo.setSer_subimg(savedFileName); //uuid
 					vo.setSer_originsub(originalFileName); //원본
@@ -303,6 +300,7 @@ public class ServiceController {
 	@RequestMapping("/serviceUpdateForm.do")
 	public String serviceUpdateForm(Model model, @Param("ser_code") String ser_code) {
 		model.addAttribute("service", serviceDao.serviceSelect(ser_code));
+		System.out.println(serviceDao.serviceSelect(ser_code));
 		return "seller/serviceUpdateForm";
 	}
 	
@@ -322,12 +320,38 @@ public class ServiceController {
 	
 	@ResponseBody
 	@RequestMapping("/fileDelete.do")
-	public String fileDelete(@RequestParam("sercode") String ser_code, @RequestParam("status") String status) {
+	public boolean fileDelete(@RequestParam("sercode") String ser_code, @RequestParam("status") String status) {
 		System.out.println(ser_code);
 		System.out.println(status);
 		ServiceVO vo = new ServiceVO();
 		vo = serviceDao.serviceSelect(ser_code);
 		
-		return "";
+		boolean b = true;
+		
+		if(status.equals("subfile")) {
+			File file = new File("C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\", vo.getSer_subimg());
+			if (file.exists()) {
+				file.delete();
+			}
+		}else if(status.equals("subfile2")) {
+			File file = new File("C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\", vo.getSer_subimg2());
+			if (file.exists()) {
+				file.delete();
+			}
+		}else {
+			File file = new File("C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\", vo.getSer_subimg3());
+			if (file.exists()) {
+				file.delete();
+			}
+		}
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("ser_code", ser_code);
+		map.put("status", status);
+		
+		int n = serviceDao.fileDelete(map);
+		if(n != 1) {
+			b = false;
+		}
+		return b;
 	}
 }

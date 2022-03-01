@@ -24,11 +24,6 @@ public class SellerController {
 		return "seller/sellerMypage";
 	}
 
-	@RequestMapping("/sellerKnowhow.do")
-	public String sellerKnowhow() {
-		return "seller/sellerKnowhow";
-	}
-
 	@RequestMapping("/sellerReview.do")
 	public String sellerReview() {
 		return "seller/sellerReview";
@@ -82,11 +77,7 @@ public class SellerController {
 		return "seller/serviceInsert";
 	}
 
-	@RequestMapping("/knowhowDetail.do")
-	public String knowhowDetail() {
-		return "seller/knowhowDetail";
-	}
-
+	
 	@RequestMapping("/serviceDetail.do")
 	public String serviceDetail() {
 		return "seller/serviceDetail";
@@ -95,18 +86,10 @@ public class SellerController {
 	
 	@RequestMapping("/knowhowInsertForm.do")
 	public String knowhowInsertForm() {
-		return "";
+		return "seller/knowhowInsert";
 	}
 
 	
-
-
-//	@RequestMapping("/knowhowInsert.do")
-//	public String knowhowInsert() {
-//
-//		return "seller/knowhowInsert";
-//	}
-
 	@RequestMapping("/sellerDetail.do")
 	public String sellerDetail() {
 		return "seller/sellerDetail";
@@ -117,6 +100,11 @@ public class SellerController {
 		return "seller/sellerUpdate";
 	}
 
+	@RequestMapping("/sellerCalendar.do")
+	public String sellerCalendar() {
+		return "seller/sellerCalendar";
+	}
+	
 	// 개인 판매자 아이디 중복 체크
 	@RequestMapping("/ajaxSPnickCheck.do")
 	@ResponseBody

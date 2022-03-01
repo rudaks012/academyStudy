@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,12 @@
 .hr{
  	background-color : #d5c9ea !important;
    	margin: 10px !important;
+}
+.knowbtn{
+	display: block;
+	background-color : #d5c9ea !important;
+	margin: auto;
+	width: 300px;
 }
 </style>
 </head>
@@ -71,61 +78,35 @@
 					<div class="blog_left_sidebar">
 						<article class="blog_item">
 							<div class="justify-content-center">
-							<a class="d-inline-block" style="margin-top:20px;">
+								<div class="d-inline-block" style="margin-top:20px;">
 									<h3>판매자 노하우</h3>
-								</a>
+									
+								</div>
 								<hr class="hr"/>
 								<div class="blog_details">
 									<div class="home-blog-area section">
 										<div class="container">
-											<a class="genric-btn danger" href="knowhowInsertForm.do">글 등록</a>
+											
 											<div class="row">
-												<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-													<div class="single-team mb-30">
-														<div class="team-img">
-															<img src="assets/img/gallery/home_blog1.png" alt="">
-														</div>
-														<div class="team-caption">
-															<span>노하우제목1</span>
-															<h3>
-																<a href="knowhowDetail.do">제목어느걸로?</a>
-															</h3>
-															<p>October 6, 2020by Steve</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-													<div class="single-team mb-30">
-														<div class="team-img">
-															<img src="assets/img/gallery/home_blog2.png" alt="">
-														</div>
-														<div class="team-caption">
-															<span>노하우제목2</span>
-															<h3>
-																<a href="knowhowDetail.do">제목??</a>
-															</h3>
-															<p>October 6, 2020by Steve</p>
+												<c:forEach items="${knowhows }" var="knowhow">
+													<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+														<div class="single-team mb-30">
+															<div class="team-img">
+																<img src="fileupload/${knowhow.no_img }" alt="" style="width: 238px; height: 238px;">
+															</div>
+															<div class="team-caption">
+																<span>${knowhow.no_title }</span>
+																<h3>
+																	<a href="knowhowDetail.do?no_code=${knowhow.no_code } ">${knowhow.no_title }</a>
+																</h3>
+																<p>${knowhow.no_date }</p>
+															</div>
 														</div>
 													</div>
-												</div>
-												<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-													<div class="single-team mb-30">
-														<div class="team-img">
-															<img src="assets/img/gallery/home_blog3.png" alt="">
-														</div>
-														<div class="team-caption">
-															<span>HEALTH & CARE</span>
-															<h3>
-																<a href="knowhowDetail.do">The Best SPA Salons For
-																	Your Relaxation</a>
-															</h3>
-															<p>October 6, 2020by Steve</p>
-														</div>
-													</div>
-												</div>
-
+												</c:forEach>
 											</div>
 										</div>
+										<a class="genric-btn danger knowbtn" href="knowhowInsertForm.do">글 등록</a>
 									</div>
 								</div>
 							</div>
