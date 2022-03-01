@@ -11,7 +11,7 @@
                             <h6><i  class=" far fa-user mr-1"></i>회원관리 <i class="fas fa-chevron-right mx-2"></i>판매자관리</h6>
                         </div>
                         <ul class="list-style-none d-flex">
-                            <li class="mr-1">총 회원수 <span class="text-danger mx-1">${totalSeller }</span>명</li>
+                            <li class="mr-1">총 회원수 <span class="text-danger mx-1">${fn:length(sellerList) }</span>명</li>
                             <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
                             <a href="#"><li class="mx-2">블랙리스트 <span class="text-danger mx-1">100</span>명</li></a>
                             <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
@@ -119,7 +119,7 @@
                         </h5>
                 	    <div class="card">
                             <div class="card-body">
-                                <div class=" mb-3">총 <span class="mx-1 text-danger">${totalSeller }</span>건</div>
+                                <div class=" mb-3">총 <span class="mx-1 text-danger">${fn:length(sellerList) }</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>

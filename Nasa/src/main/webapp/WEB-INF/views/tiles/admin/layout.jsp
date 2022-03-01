@@ -24,7 +24,6 @@
     <!-- Custom CSS -->
     <link href="resources/admin/dist/css/style.min.css" rel="stylesheet">
     <script src="resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
   
     
 <title><tiles:insertAttribute name="title" /></title>

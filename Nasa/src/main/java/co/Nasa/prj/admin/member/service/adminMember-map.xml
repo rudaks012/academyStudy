@@ -9,19 +9,11 @@
 		
 	</select>
 	
-	<select id="selectBuyerPayment" parameterType="co.Nasa.prj.admin.service.Criteria" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
-		<![CDATA[
-		  SELECT *
-			FROM 
-			    (
-			    select rownum rn, b.*
-			    from v_buyerpayment b
-			    WHERE b_email=#{b_email} AND ROWNUM <=#{pageNum} * #{amount}
-			    )
-		
-		  WHERE rn>(#{pageNum}-1)*#{amount}
-		]]>
-		
+	<select id="selectBuyerPayment" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+		SELECT *
+		FROM PAYMENT p JOIN SERVICE s
+		ON(p.s_email=s.s_email)
+		WHERE p.b_email=#{b_email}
 		
 	</select>
 	
@@ -71,7 +63,7 @@
 		<include refid="buyerCriteria"></include>
 		
 		<![CDATA[
-			rownum <= #{pageNum} * #{amount}
+			rownum <= ${pageNum} * #{amount}
 			)
 			
 		where rn > (#{pageNum}-1)*#{amount}
@@ -83,15 +75,4 @@
 	<select id="getBuyerTotal" resultType="int">
 		select count(*) as total from buyer
 	</select>
-	
-	<select id="getSellerTotal" resultType="int">
-		select count(*) as total from seller	
-	</select>
-	
-	<update id="updateMemberRank" parameterType="co.Nasa.prj.comm.VO.BuyerVO">
-		update buyer
-		set b_rank = #{b_rank}
-		where b_email=#{b_email}
-	
-	</update>
 </mapper>
