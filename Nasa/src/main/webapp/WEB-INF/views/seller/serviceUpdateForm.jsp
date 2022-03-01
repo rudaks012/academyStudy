@@ -136,12 +136,13 @@ input[type="radio"] {
 													<td><select name="ser_cate" id="ser_cate"
 														class="sercate" required>
 															<option value="">선택하세요.</option>
-															<option value="CAT1">앱</option>
-															<option value="CAT2">웹</option>
-															<option value="CAT3">게임</option>
-															<option value="CAT4">보안</option>
-															<option value="CAT5">기술지원</option>
-															<option value="CAT6">기획</option>
+															<option value="CAT1" <c:if test="${service.ser_cate eq 'CAT1' }">selected</c:if>>앱</option>
+															<option value="CAT2" <c:if test="${service.ser_cate eq 'CAT2' }">selected</c:if>>웹</option>
+															<option value="CAT3" <c:if test="${service.ser_cate eq 'CAT3' }">selected</c:if>>게임</option>
+															<option value="CAT4" <c:if test="${service.ser_cate eq 'CAT4' }">selected</c:if>>보안</option>
+															<option value="CAT5" <c:if test="${service.ser_cate eq 'CAT5' }">selected</c:if>>기술지원</option>
+															<option value="CAT6" <c:if test="${service.ser_cate eq 'CAT6' }">selected</c:if>>기획</option>
+															
 													</select></td>
 													<td style="background-color: rgb(229, 231, 253);">2차
 														카테고리<span class="spanstar">*</span>
@@ -156,18 +157,18 @@ input[type="radio"] {
 													<td>기술수준<span class="spanstar">*</span></td>
 													<td colspan="2"><select name="ser_skill"
 														id="ser_skill">
-															<option value="초급" selected>초급</option>
-															<option value="중급">중급</option>
-															<option value="고급">고급</option>
+															<option value="초급" <c:if test="${service.ser_skill eq '초급'}">selected</c:if>>초급</option>
+															<option value="중급" <c:if test="${service.ser_skill eq '중급'}">selected</c:if>>중급</option>
+															<option value="고급" <c:if test="${service.ser_skill eq '고급'}">selected</c:if>>고급</option>
 													</select></td>
 												</tr>
 												<tr>
 													<td class="sertb">팀 규모<span class="spanstar">*</span></td>
 													<td colspan="2"><select name="ser_team" id="ser_team">
-															<option value="개인" selected>개인</option>
-															<option value="2인이상 5인미만">2인이상 5인미만</option>
-															<option value="5인이상 20인 미만">5인이상 20인 미만</option>
-															<option value="20인 이상">20인 이상</option>
+															<option value="개인" <c:if test="${service.ser_team eq '개인'}">selected</c:if>>개인</option>
+															<option value="2인이상 5인미만" <c:if test="${service.ser_team eq '2인이상 5인미만'}">selected</c:if>>2인이상 5인미만</option>
+															<option value="5인이상 20인 미만" <c:if test="${service.ser_team eq '5인이상 20인 미만'}">selected</c:if>>5인이상 20인 미만</option>
+															<option value="20인 이상" <c:if test="${service.ser_team eq '20인 이상'}">selected</c:if>>20인 이상</option>
 													</select></td>
 												</tr>
 												<tr>
@@ -190,18 +191,17 @@ input[type="radio"] {
 												</tr>
 												<tr>
 													<td>서비스방식<span class="spanstar">*</span></td>
-													<td colspan="3"><input type="radio" name="ser_line"
-														value="온라인" checked="checked">온라인 <input
-														type="radio" name="ser_line" value="오프라인">오프라인 <input
-														type="radio" name="ser_line" value="온/오프라인">온/오프라인</td>
+													<td colspan="3">
+														<input type="radio" name="ser_line" value="온라인" <c:if test="${service.ser_line eq '온라인'}">checked="checked"</c:if>>온라인 
+														<input type="radio" name="ser_line" value="오프라인"  <c:if test="${service.ser_line eq '오프라인'}">checked="checked"</c:if>>오프라인 
+														<input type="radio" name="ser_line" value="온/오프라인"  <c:if test="${service.ser_line eq '온/오프라인'}">checked="checked"</c:if>>온/오프라인</td>
 												</tr>
 												<tr>
 													<td>서비스제공일<span class="spanstar">*</span></td>
-													<td colspan="3"><input type="radio" name="ser_date"
-														value="상시" checked="checked">상시 &nbsp; <input
-														type="radio" name="ser_date" value="기간지정">기간지정 <input
-														type="date" name="ser_start"> - <input type="date"
-														name="ser_end"></td>
+													<td colspan="3">
+														<input type="radio" name="ser_date" value="상시" <c:if test="${service.ser_date eq '상시'}">checked="checked"</c:if>>상시 &nbsp; 
+														<input type="radio" name="ser_date" value="기간지정" <c:if test="${service.ser_date eq '기간지정'}">checked="checked"</c:if>>기간지정 
+														<input type="date" name="ser_start" <c:if test="${service.ser_date eq '기간지정'}">value="${service.ser_start }"</c:if>> - <input type="date" name="ser_end" <c:if test="${service.ser_date eq '기간지정'}">value="${service.ser_end }"</c:if>></td>
 												</tr>
 												<tr>
 													<td>서비스 기본가격<span class="spanstar">*</span></td>
@@ -234,17 +234,27 @@ input[type="radio"] {
 													<td colspan="3">
 														<span style="font-size: 10px; color: gray;">※첨부파일은 최대 3개까지 등록이 가능합니다.</span>
 														<br />														
-														<input id="subfile" name="subfile" type="file" > 
-														<span class="subChange">기존 서브파일: ${service.ser_originsub }</span>
-														<span style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile')">삭제</span>
+														<input id="subfile" name="subfile" type="file" >
 														<br />
 														<input id="subfile2" name="subfile2" type="file">
-														<span class="subChange2">기존 서브파일2: ${service.ser_originsub2 }</span> 
-														<span style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile2')">삭제</span>
 														<br />							
 														<input id="subfile3" name="subfile3" type="file" > 
-														<span class="subChange3">기존 서브파일3: ${service.ser_originsub3 }</span>
-														<span style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile3')">삭제</span>
+														<br />
+														
+														<c:if test="${service.ser_originsub ne null}">
+															<span class="subfile">${service.ser_originsub }</span>
+															<span class="subfile" style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile')">삭제</span>
+															&nbsp;
+														</c:if> 
+														<c:if test="${service.ser_originsub2 ne null}">
+															<span class="subfile2">${service.ser_originsub2 }</span> 
+															<span class="subfile2" style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile2')">삭제</span>
+															&nbsp;
+														</c:if>
+														<c:if test="${service.ser_originsub3 ne null}">
+															<span class="subfile3">${service.ser_originsub3 }</span>
+															<span class="subfile3" style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile3')">삭제</span>
+														</c:if>
 													</td>
 												</tr>
 											</tbody>
@@ -272,6 +282,7 @@ input[type="radio"] {
 		 * 첨부파일로직
 		 */
 		$(function() {
+		
 			$('#btn-upload').click(function(e) {
 				e.preventDefault();
 				$('#input_file').click();
@@ -305,6 +316,41 @@ input[type="radio"] {
 					}
 				});
 			})
+			
+			$.ajax({
+				type : "POST",
+				url : "subcategoryCall.do",
+				data : {cat_no : $('#ser_cate').val()},
+				dataType : "json",
+				success : function(datas) {
+					$('#ser_sub_cate').empty();
+					let ul = document.getElementsByClassName('list')[2];
+					while(ul.hasChildNodes()){
+						ul.removeChild(ul.firstChild);
+					}
+					ul.innerHTML = "<li data-value class='option'>선택하세요.</li>";
+					for(data of datas){
+						if('${service.ser_sub_cate}' == data.sub_no){
+							$('#ser_sub_cate').append("<option value='"+ data.sub_no+"' selected>" + data.sub_name + "</option>");
+						}else{
+							$('#ser_sub_cate').append("<option value='"+ data.sub_no+"'>" + data.sub_name + "</option>");							
+						}
+						
+						let ul = document.getElementsByClassName('list')[2];
+						if('${service.ser_sub_cate}' == data.sub_no){
+							ul.innerHTML += "<li data-value='"+data.sub_no+"' class='option selected'>"+data.sub_name+"</li>";
+							document.getElementsByClassName('current')[1].innerHTML=data.sub_name;
+						}else{
+							ul.innerHTML += "<li data-value='"+data.sub_no+"' class='option'>"+data.sub_name+"</li>";							
+						}
+					}
+					
+				},
+				error : function(xhr, status, error) {
+					alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+					return false;
+				}
+			})
 		});
 
 		
@@ -329,8 +375,9 @@ input[type="radio"] {
 				processData : false,
 				contentType : false,
 				success : function(data) {
-					if (JSON.parse(data)['result'] == "OK") {
-						alert("파일업로드 성공");
+					if (data.result == "OK") {
+						alert("수정이 완료되었습니다.");
+						location.href="sellerService.do";
 					} else
 						alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
 				},
@@ -346,7 +393,18 @@ input[type="radio"] {
 			$('.fileChange').remove();
 		})
 		
-
+		$('#subfile').on("change", function(){
+			$('.subfile').remove();
+		})
+	
+		$('#subfile2').on("change", function(){
+			$('.subfile2').remove();
+		})
+		
+		$('#subfile3').on("change", function(){
+			$('.subfile3').remove();
+		})
+		
 		function fileDelete(sercode, status){
 			console.log(sercode);
 			console.log(status);
@@ -356,7 +414,11 @@ input[type="radio"] {
 				data : {sercode: sercode, status : status},
 				dataType : "json",
 				success : function(data) {
-					
+					if(data){
+						var subfile=document.getElementsByClassName(status);
+						subfile[0].remove();
+						subfile[1].remove();
+					}
 				},
 				error : function(xhr, status, error) {
 					

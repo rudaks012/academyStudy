@@ -4,7 +4,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link href='resources/user/fullcalendar-5.10.1/lib/main.css' rel='stylesheet' />
+<style>
+    #calendar {
+        width: 800px;
+        height: 500px;
+    }
+
+    .servicetable {
+        width: 800px;
+    }
+
+    .imgtd {
+        width: 200px;
+        height: 200px;
+    }
+
+    .thtext {
+        top: 10px;
+        font-size: 20px;
+    }
+
+    .tdtext {
+        bottom: 10px;
+    }
+</style>
+<script src='resources/user/fullcalendar-5.10.1/lib/main.js'></script>
 </head>
 <body>
 <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center">
@@ -102,5 +127,24 @@
         </div>
     </div>
 </section>
+<script>
+    // 수정할 것...
+    document.addEventListener('DOMContentLoaded', function () {
+        let xhtp = new XMLHttpRequest();
+        xhtp.open('get', 'CalendarList.do');
+        xhtp.send();
+        xhtp.onload = function () {
+            let dbData = JSON.parse(xhtp.responseText);
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                dayMaxEvents: true, // allow "more" link when too many events
+                events: dbData
+            });
+            calendar.render();
+        }
+    });
+</script>
 </body>
 </html>

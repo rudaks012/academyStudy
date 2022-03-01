@@ -12,4 +12,6 @@ public class NoticeVO {
 	String no_date;
 	String filecode;
 	String no_status;
+	String no_img;
+	String no_originimg;
 }
