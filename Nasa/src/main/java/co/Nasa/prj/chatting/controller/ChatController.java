@@ -1,7 +1,6 @@
 package co.Nasa.prj.chatting.controller;
 
 import java.io.IOException;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,6 @@ import co.Nasa.prj.chatting.service.ChatMessage;
 import co.Nasa.prj.chatting.service.ChatRoom;
 import co.Nasa.prj.chatting.serviceImpl.ChatServiceImpl;
 import co.Nasa.prj.comm.VO.BuyerVO;
-import co.Nasa.prj.login.service.LoginService;
  
  
 @Controller
