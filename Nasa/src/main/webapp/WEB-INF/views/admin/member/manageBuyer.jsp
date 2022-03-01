@@ -473,7 +473,11 @@
                 console.log("실패원인:" + data);
             })
       
+<<<<<<< HEAD
            
+=======
+        	
+>>>>>>> ad4bcf2e1b41b08fb138307169ed96cda8c39c50
             
            var flag = true;
             function paging(page) {

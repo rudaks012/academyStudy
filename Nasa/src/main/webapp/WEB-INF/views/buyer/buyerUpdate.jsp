@@ -62,28 +62,30 @@
 				
 					<div class="single-element-widget mt-30">
                         <p>관심분야</p>
-                        <p style="font-size:15px;">현재 관심분야 : 앱-앱생성</p>
+                        <p style="font-size:15px;">현재 관심분야 : 
+                        	<c:forEach items="${subcategoryList }" var="subcategory">
+                        		<c:if test="${subcategory.sub_no eq buyerinfo.field_code}">
+                        			<c:forEach items="${categoryList }" var="category">
+                        				<c:if test="${category.cat_no eq subcategory.cat_no }">
+                        					${category.cat_name } - ${subcategory.sub_name }
+                        				</c:if>
+                        			</c:forEach>
+                        		</c:if>
+                        	</c:forEach>
+                        </p>
                         <div class="d-flex">
                         	<div class="categorysel mr-4" id="categorysel">
-                                <select>
+                                <select id="categoryselect" required>
+                                	<option>선택하세요</option>
                                    <c:forEach items="${categoryList }" var="category">
                                     	<option value="${category.cat_no }">${category.cat_name }</option>
                                     </c:forEach>
                                 </select>
                             </div>
-
-                            <div class="categoryselect mr-4" id="categoryselect">
-                                <select onchange="chooseCategory(this)">
-                                    <option value="a">a</option>
-                                    <option value="b">b</option>
-                                    <option value="c">c</option>
-
-                                </select>
-                            </div>
     
-                            <div class="subcategoryselect" id="subcategoryselect">
-                                <select>
-                                    
+                            <div>
+                                <select class="subcategoryselect" id="subcategoryselect"  name="field_code" required>
+                                    <option>선택하세요</option>
                                 </select>
                             </div>
                         </div>
@@ -141,33 +143,6 @@
 			readImage(e.target);
 		});
 		
-		function chooseCategory(e) {
-            var sub_a = ["a", "b", "c"];
-            var sub_b = ["d", "e", "f"];
-            var sub_c = ["g", "h", "i"];
-            var target = document.getElementById("subcategoryselect");
-            var c = $("#subcategoryselect div ul");
-            var d = target.children[1].children[1];
-            console.log(d);            
-
-            if(e.value == "a") var sub = sub_a;
-            else if(e.value == "b") var sub = sub_b;
-            else if(e.value == "c") var sub = sub_c;
-
-            while(d.hasChildNodes()) {
-                d.removeChild(d.firstChild);
-            }          
-
-            for(i in sub) {
-                var opt = document.createElement("li");
-                opt.setAttribute("data-value", sub[i]);
-                opt.setAttribute("class", "option");
-                opt.innerHTML = sub[i];
-                d.append(opt);
-            }
-
-        }
-		
 		function passwordCheck() {
 			var newpwd1 = document.getElementById("b_password").value;
 			var newpwd2 = document.getElementById("newpassword2").value; 
@@ -177,6 +152,37 @@
 				return false;
 			}
 		}
+		$(function() {
+			$("#categoryselect").on("change", function() {
+				$.ajax({
+					type : "POST",
+					url : "subcategoryCall.do",
+					data : {cat_no : $('#categoryselect').val()},
+					dataType : "json",
+					success : function(datas) {
+						$('#subcategoryselect').empty();
+						let ul = document.getElementsByClassName('list')[1];
+						while(ul.hasChildNodes()){
+							ul.removeChild(ul.firstChild);
+						}
+						ul.innerHTML = "<li data-value class='option selected'>선택하세요.</li>";
+						for(data of datas){
+							$('#subcategoryselect').append("<option value='"+ data.sub_no+"'>" + data.sub_name + "</option>");
+							
+							let ul = document.getElementsByClassName('list')[1];
+							
+							ul.innerHTML += "<li data-value='"+data.sub_no+"' class='option'>"+data.sub_name+"</li>";
+						}
+						document.getElementsByClassName('current')[1].innerHTML='선택하세요.';
+					},
+					error : function(xhr, status, error) {
+						alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+						return false;
+					}
+				});
+			})
+			
+		})
 		
 		/* function updateProfile() {
 			var newpwd1 = document.getElementById("b_password").value;

@@ -1,5 +1,6 @@
 package co.Nasa.prj.service.serviceImpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,9 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	@Override
-	public int fileDelete(String ser_code, String status) {
-		return map.fileDelete(ser_code, status);
+	public int fileDelete(HashMap<String, String> mapp) {
+		return map.fileDelete(mapp);
 	}
+
 
 }

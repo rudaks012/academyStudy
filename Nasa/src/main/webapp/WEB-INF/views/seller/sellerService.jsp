@@ -115,6 +115,10 @@ input[type=date] {
 .pt-70{
 	padding-top: 0px;
 }
+blog_details img{
+	width: 354px;
+	height: 256px;
+}
 </style>
 </head>
 <body>
@@ -220,11 +224,11 @@ input[type=date] {
 																<div class="row">
 																
 																<c:forEach items="${serviceList }" var="service">
-																<c:if test="${service.ser_end eq null }">
+																<c:if test="${service.ser_end eq null || service.ser_end > today}">
 																	<div class="col-lg-6" >
 																		<div class="single-listing mb-30">
 																			<div class="list-img">
-																				<img src=${service.ser_img } alt="">
+																				<img src="fileupload/${service.ser_img }" alt="">
 																			</div>
 																			<div class="list-caption">
 																				<h3>
@@ -264,7 +268,7 @@ input[type=date] {
 																<div class="row">
 																
 																<c:forEach items="${serviceList }" var="service">
-																<c:if test="${service.ser_end < today }">
+																<c:if test="${service.ser_end ne null && service.ser_end < today }">
 																	<div class="col-lg-6">
 																		<div class="single-listing mb-30">
 																			<div class="list-img">

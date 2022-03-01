@@ -411,7 +411,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 							<li><a href="sellerPromotion.do" class="d-flex">
 									<p>프로모션관리</p>
 							</a></li>
-							<li><a href="#" class="d-flex">
+							<li><a href="sellerCalendar.do" class="d-flex">
 									<p>일정관리</p>
 							</a></li>
 							<li><a href="sellerReview.do" class="d-flex">

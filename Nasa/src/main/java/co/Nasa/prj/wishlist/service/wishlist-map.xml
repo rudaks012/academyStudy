@@ -6,4 +6,9 @@
 		FROM WISHLIST
 		WHERE B_ID = #{b_id}
 	</select>
+	
+	<delete id="deleteWishlist" parameterType="co.Nasa.prj.comm.VO.WishlistVO">
+		DELETE FROM WISHLIST
+		WHERE B_ID = #{b_id} AND S_ID = #{s_id}
+	</delete>
 </mapper>

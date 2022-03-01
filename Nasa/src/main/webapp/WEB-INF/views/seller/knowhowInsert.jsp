@@ -117,7 +117,7 @@ p {
 									</a>
 								<hr class="hr"/>
 								<div class="blog_details">
-									<form class="" method="post" action="knowhowInsert.do" id="">
+									<form class="" method="post" action="knowhowInsert.do" enctype="multipart/form-data">
 										<table border="2" style="border-color: rgb(229, 232, 255);">
 											<tbody>
 												<tr>
@@ -125,6 +125,13 @@ p {
 														<span class="spanstar">*</span>
 													</td>
 													<td><input type="text" id="no_title" name="no_title"
+														class="sname"></td>
+												</tr>
+												<tr>
+													<td class="align-middle table-primary knowtd" colspan="2">메인이미지
+														<span class="spanstar">*</span>
+													</td>
+													<td><input type="file" id="mainKnow" name="mainKnow"
 														class="sname"></td>
 												</tr>
 												<tr>

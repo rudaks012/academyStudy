@@ -19,8 +19,25 @@ INSERT INTO NOTICE(no_code,
 	</insert>
 	
 	<insert id="knowhowInsert" parameterType="co.Nasa.prj.comm.VO.NoticeVO">
-		INSERT INTO NOTICE(no_code, no_id, no_title, no_subject, no_date, filecode, no_status)
+		INSERT INTO NOTICE(no_code, no_id, no_title, no_subject, no_date, filecode, no_status, no_img, no_originimg)
 		VALUES((SELECT NVL(MAX(NO_CODE),0)+1 FROM NOTICE ),#{no_id},#{no_title},
-		#{no_subject},sysdate,null,'1')
+		#{no_subject},sysdate,null,'1',#{no_img}, #{no_originimg})
 	</insert>
+	
+	<select id="knowhowSelectList" resultType="co.Nasa.prj.comm.VO.NoticeVO">
+		SELECT *
+		FROM NOTICE
+		WHERE NO_ID = #{no_id} AND NO_STATUS = 1
+	</select>
+	
+	<select id="knowhowSelect" resultType="co.Nasa.prj.comm.VO.NoticeVO">
+		SELECT *
+		FROM NOTICE
+		WHERE NO_CODE = #{no_code}
+	</select>
+	
+	<delete id="knowhowDelete" parameterType="String">
+		DELETE FROM NOTICE
+		WHERE NO_CODE = #{no_code}
+	</delete>
 </mapper>
