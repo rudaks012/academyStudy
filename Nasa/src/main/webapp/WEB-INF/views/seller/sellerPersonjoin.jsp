@@ -88,12 +88,12 @@
 					<div>
 						<div>
 							<div id="namediv" class="form-group">
-								이름<input class="form-control valid" name="name" id="name" type="text"
+								이름<input class="form-control valid" name="s_name" id="s_name" type="text"
 									placeholder="이름(실명)을 입력해주세요">
 							</div>
 							<div id="nickdiv" class="form-group">
 								닉네임
-									<input class="form-control valid" name="nickname" id="nickname"
+									<input class="form-control valid" name="s_nickname" id="s_nickname"
 										placeholder="사용할 닉네임을 입력해주세요">
 									<input type="button" value="확인" id="nickCheckbtn"
 										class="position-relative genric-btn primary radius" onclick="nicknameCheck()"
@@ -101,7 +101,7 @@
 							</div>
 							<div id="emaildiv" class="form-group">
 								이메일
-									<input class="form-control valid" name="email" id="email" type="email"
+									<input class="form-control valid" name="s_email" id="s_email" type="email"
 										placeholder="example@nasa.com">
 									<input type="button" value="전송" class="position-relative genric-btn primary radius"
 										onclick="emailCheck()" style="float: right; bottom: 45px;">
@@ -115,7 +115,7 @@
 							</div>
 							<div id="pwdiv" class="form-group">
 								비밀번호
-									<input class="form-control valid" name="password" id="password" type="password"
+									<input class="form-control valid" name="s_password" id="s_password" type="password"
 									placeholder="영문+숫자 조합 8자리 이상 입력해주세요">
 							</div>
 							<div id="pwchkdiv" class="form-group">
@@ -125,17 +125,17 @@
 							</div>
 							<div id="phonediv" class="form-group">
 								연락처
-									<input class="form-control valid" name="phone" id="phone"
+									<input class="form-control valid" name="s_tel" id="s_tel"
 									placeholder="연락가능한 휴대전화번호를 입력해주세요">
 							</div>
-							<div class="form-group">
+							<div id="addressdiv" class="form-group">
 								주소<div class="d-flex">
-									<input class="form-control valid" id="postcode" placeholder="우편번호">
+									<input disabled class="form-control valid" id="s_zipcode" name="s_zipcode" placeholder="우편번호를 검색하세요.">
 									<input type="button" id="addressSearch" value="검색" class="genric-btn primary radius"
 										style="float: right;">
 								</div>
-								<input class="form-control valid" id="address" placeholder="주소">
-								<input class="form-control valid" id="addressDetail" placeholder="상세 주소">
+								<input disabled class="form-control valid" id="s_address" name="s_address" placeholder="주소">
+								<input disabled class="form-control valid" id="s_detailaddress" name="s_detailaddress" placeholder="상세 주소">
 							</div>
 							<div class="d-flex">
 								<div class="primary-checkbox">
@@ -165,14 +165,17 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		window.onload = function () {
-			$('#name').focus();
+			$('#s_name').focus();
 			document.getElementById("addressSearch").addEventListener("click", function () { //주소입력칸을 클릭하면
+				$("#s_zipcode").attr("disabled", false);
+				$("#s_address").attr("disabled", false);
+				$("#s_detailaddress").attr("disabled", false);
 				//카카오 지도 발생
 				new daum.Postcode({
 					oncomplete: function (data) { //선택시 입력값 세팅
-						document.getElementById("postcode").value = data.zonecode;
-						document.getElementById("address").value = data.address; // 주소 넣기
-						document.querySelector("input[id=addressDetail]").focus(); //상세입력 포커싱
+						document.getElementById("s_zipcode").value = data.zonecode;
+						document.getElementById("s_address").value = data.address; // 주소 넣기
+						document.querySelector("input[id=s_detailaddress]").focus(); //상세입력 포커싱
 					}
 				}).open();
 			});
@@ -180,20 +183,20 @@
 
 
 		// 이름 필수 입력		
-		$("#name").blur(function() {
-			if (!($("#name").val())) {
+		$("#s_name").blur(function() {
+			if (!($("#s_name").val())) {
 				$("label").remove('#namelabel');
 				$("#namediv").append('<label id="namelabel">이름(실명)은 필수 입력값입니다.</label>');
 				$("#namelabel").css("color", "red");
-				$('#name').focus();
+				$('#s_name').focus();
 			} else {
 				$("label").remove('#namelabel');
 			}
 		})
 
 		// 닉네임 필수 입력
-		$("#nickname").blur(function() {
-			if (!($("#nickname").val())) { // 닉네임에 아무것도 적혀있지 않으면
+		$("#s_nickname").blur(function() {
+			if (!($("#s_nickname").val())) { // 닉네임에 아무것도 적혀있지 않으면
 				$("label").remove('#nicklabel');
 				$("label").remove('#nicklabelok');
 				$("#nickdiv").append('<label id="nicklabel">닉네임은 필수 입력값입니다.</label>');
@@ -206,7 +209,7 @@
 
 		// 닉네임 중복 체크
 		function nicknameCheck() {
-			var nickname = $('#nickname').val();
+			var nickname = $('#s_nickname').val();
 
 			$.ajax({
 				url: "ajaxSPnickCheck.do",
@@ -232,8 +235,8 @@
 		};
 
 		// 이메일 필수 입력		
-		$("#email").blur(function() {
-			if (!($("#email").val())) {
+		$("#s_email").blur(function() {
+			if (!($("#s_email").val())) {
 				$("label").remove('#emaillabel');
 				$("label").remove('#emaillabelok');
 				$("#emaildiv").append('<label id="emaillabel">이메일은 필수 입력값입니다.</label>');
@@ -250,14 +253,14 @@
 
 		function emailCheck() {
 			// 이메일 형식 체크
-			var emailchk = emailreg.test($("#email").val());
+			var emailchk = emailreg.test($("#s_email").val());
 			if (!emailchk) {
 				$("label").remove('#emaillabel');
 				$("label").remove('#emaillabelok');
 				$("#emaildiv").append('<label id="emaillabel">올바르지 않은 형식의 이메일입니다.</label>');
 				$("#emaillabel").css("color", "red");
 			} else {
-				var email = ($('#email').val());
+				var email = ($('#s_email').val());
 				console.log(email);
 				// 이메일 중복 체크
 				$.ajax({
@@ -294,10 +297,12 @@
 		$("#emailchk").blur(function() {
 			if (!($("#emailchk").val())) {
 				$("label").remove('#emailchklabel');
+				$("label").remove('#emailchklabelok');
 				$("#emailchkdiv").append('<label id="emailchklabel">인증번호를 입력해주세요.</label>');
 				$("#emaillabel").css("color", "red");
 			} else {
 				$("label").remove('#emailchklabel');
+				$("label").remove('#emailchklabelok');
 			}
 		})
 
@@ -319,8 +324,8 @@
 		// 비밀번호 설정
 		var pwreg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-		$("#password").blur(function() {
-			var pwchk = pwreg.test($("#password").val());
+		$("#s_password").blur(function() {
+			var pwchk = pwreg.test($("#s_password").val());
 			if (!pwchk) {
 				$("label").remove('#pwlabel');
 				$("#pwdiv").append('<label id="pwlabel">비밀번호는 영문+숫자 조합 8자리 이상이어야 합니다.</label>');
@@ -334,7 +339,7 @@
 
 		// 비밀번호 확인
 		$("#pwchk").blur(function() {
-			if ($("#password").val() == $("#pwchk").val()) {
+			if ($("#s_password").val() == $("#pwchk").val()) {
 				$("label").remove('#pwchklabel');
 				$("label").remove('#pwchklabelok');
 				$("#pwchkdiv").append('<label id="pwchklabelok">비밀번호가 확인되었습니다.</label>');
@@ -348,10 +353,9 @@
 
 		// 연락처 설정
 		var phonereg = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-		// var phonereg = /^01([0|1|6|7|8|9])-?([0-9]{8})$/;
 
-		$("#phone").blur(function() {
-			var phonechk = phonereg.test($("#phone").val());
+		$("#s_tel").blur(function() {
+			var phonechk = phonereg.test($("#s_tel").val());
 			if (!phonechk) {
 				$("label").remove('#phonelabel');
 				$("#phonediv").append('<label id="phonelabel">올바른 휴대전화번호를 입력해주세요.</label>');
@@ -361,25 +365,57 @@
 			}
 		});
 
-		회원가입
+		$("#s_detailaddress").blur(function() {
+			$("label").remove('#addresslabel');
+		})
+		
+		// 회원가입
 		function sellerPersonJoin() {
 			if (!($("#nicklabelok").length)) {
 				$("label").remove('#nicklabel');				
 				$("#nickdiv").append('<label id="nicklabel">닉네임 중복체크를 해주세요.</label>');
 				$("#nicklabel").css("color", "red");
-				$("#nickname").focus();
+				$("#s_nickname").focus();
 			} else if (!($("#emaillabelok").length)) {
-				$("#email").focus();
-				$("#emaildiv").append('<label id="emaillabel">이메일은 필수 입력값입니다.</label>');
+				$("label").remove('#emaillabel');				
+				$("#emaildiv").append('<label id="emaillabel">이메일 인증이 필요합니다.</label>');
 				$("#nicklabel").css("color", "red");
-
+				$("#s_email").focus();
 			} else if (!($("#emailchklabelok").length)) {
-				$("#emailchk").focus();
+				$("label").remove('#emailchklabel');				
 				$("#emailchkdiv").append('<label id="emailchklabel">이메일 인증번호를 확인해주세요.</label>');
+				$("#emailchklabel").css("color", "red");
+				$("#emailchk").focus();
+			} else if (!($("#pwchklabelok").length)) {
+				$("label").remove('#pwlabel');
+				$("label").remove('#pwchklabel');
+				$("#pwdiv").append('<label id="pwlabel">비밀번호를 확인해주세요.</label>');
+				$("#pwlabel").css("color", "red");
+				$("#s_password").focus();
+			} else if (!($("#s_tel").val())) {
+				$("label").remove('#phonelabel');
+				$("#phonediv").append('<label id="phonelabel">연락처는 필수 입력값입니다.</label>');
+				$("#phonelabel").css("color", "red");
+				$("#s_tel").focus();
+			} else if (!($("#s_address").val())) {
+				$("label").remove('#addresslabel');
+				$("#addressdiv").append('<label id="addresslabel">주소는 필수 입력값입니다.</label>');
+				$("#addresslabel").css("color", "red");
+			} else if (!($('#primary-checkbox').is(':checked'))){
+				alert("약관에 동의하지 않으면 가입할 수 없습니다.");
 			} else {
-				console.log("확인....");
+				$.ajax({
+					url: "ajaxSPjoin.do",
+					type: "post",
+					data: $("#personJoin-form").serialize(),
+					success: function (data) {
+						if (data == "T") {
+							console.log("등록 성공");
+						}
+					}
+				});
 			}
-		}
+		};
 
 	</script>
 </body>

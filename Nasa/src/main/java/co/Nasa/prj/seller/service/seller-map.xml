@@ -5,8 +5,7 @@
 	<select id="SellerNicknameCheck" resultType="int">
 		select count(*) from seller
 		where s_nickname=#{s_nickname}
-	</select>
-	
+	</select>	
 
 	<select id="selectSellerList" resultType="co.Nasa.prj.comm.VO.SellerVO">
 		SELECT *
@@ -16,7 +15,12 @@
 	<select id="SellerEmailCheck" resultType="int">
 		select count(*) from seller
 		where s_email=#{s_email}
-
 	</select>
+	
+	<insert id="SellerInsert" parameterType="co.Nasa.prj.comm.VO.SellerVO">
+		insert into seller (s_email, s_rank, s_password, s_nickname, s_tel, s_address, s_zipcode, s_detailaddress, s_author, s_status, s_name)
+		values (#{s_email}, #{s_rank}, #{s_password}, #{s_nickname}, #{s_tel}, #{s_address}, #{s_zipcode}, #{s_detailaddress}, #{s_author}, #{s_status}, #{s_name})
+	
+	</insert>
 
 </mapper>

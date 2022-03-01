@@ -111,10 +111,10 @@ public class SellerController {
 		return "seller/sellerCalendar";
 	}
 	
-	// 개인 판매자 아이디 중복 체크
+	// 개인 판매자 닉네임 중복 체크
 	@RequestMapping("/ajaxSPnickCheck.do")
 	@ResponseBody
-	public String SellerNicknameCheck(@Param("s_nickname") String s_nickname, SellerVO vo) {
+	public String ajaxSPnickCheck(@Param("s_nickname") String s_nickname, SellerVO vo) {
 		vo.setS_nickname(s_nickname);
 		int n = sellerDAO.SellerNicknameCheck(vo);
 		String result;
@@ -130,7 +130,7 @@ public class SellerController {
 	// 개인 판매자 이메일 중복 체크
 	@RequestMapping("/ajaxSPemailCheck.do")
 	@ResponseBody
-	public String SellerEmailCheck(@Param("s_email") String s_email, SellerVO vo) {
+	public String ajaxSPemailCheck(@Param("s_email") String s_email, SellerVO vo) {
 		vo.setS_email(s_email);
 		int n = sellerDAO.SellerEmailCheck(vo);
 		String result;
@@ -142,7 +142,6 @@ public class SellerController {
 		System.out.println("확인" + vo.getS_email());
 		return result;
 	}
-		
 	
 	// 개인 판매자 이메일 인증
 	@Autowired
@@ -150,7 +149,7 @@ public class SellerController {
 
 	@RequestMapping("/ajaxSPemailSend.do")
 	@ResponseBody
-	public String emailSend(@Param("s_email") String s_email) throws Exception {
+	public String ajaxSPemailSend(@Param("s_email") String s_email) throws Exception {
 		int serti = (int) ((Math.random() * (99999 - 10000 + 1)) + 10000);
 		String from = "admin@nasa.com";
 		String to = s_email;
@@ -172,6 +171,23 @@ public class SellerController {
 			num = "error";
 		}
 		return num;
+	}
+	
+	// 개인 판매자 회원 가입
+	@RequestMapping("/ajaxSPjoin.do")
+	@ResponseBody
+	public String ajaxSPjoin(SellerVO vo) {
+		vo.setS_rank("별");
+		vo.setS_author("개인");
+		vo.setS_status("사용자");
+		
+		System.out.println(vo.toString());
+		int n = sellerDAO.SellerInsert(vo);
+		String result = "F";
+		if (n != 0) {
+			result = "T";
+		}
+		return result;
 	}
 	
 }
