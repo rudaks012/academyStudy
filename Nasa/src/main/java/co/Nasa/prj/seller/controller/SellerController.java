@@ -98,10 +98,6 @@ public class SellerController {
 		return "";
 	}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> ed3cad32ea330b65965b657134651e3f2770e25a
 
 //	@RequestMapping("/knowhowInsert.do")
 //	public String knowhowInsert() {
