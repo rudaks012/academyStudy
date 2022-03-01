@@ -373,6 +373,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 </head>
 <body>
+<div id="bmail">${id }</div>
 <!-- Hero Start-->
 <div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
 </div>
@@ -420,11 +421,6 @@ Remove or comment-out the code block below to see how the browser will fall-back
 							<li>
 								<a href="buyerCalendar.do" class="d-flex">
 									<p>일정관리</p>
-								</a>
-							</li>
-							<li>
-								<a href="buyerCoupons.do" class="d-flex">
-									<p>보유쿠폰</p>
 								</a>
 							</li>
 							<li>
@@ -519,7 +515,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 					<p style="color:red; font-size:15px">판매자와의 거래를 끝내야 탈퇴가 가능합니다!</p>
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="genric-btn info radius" data-dismiss="modal">확인</a>
+					<a class="genric-btn info radius" data-dismiss="modal">확인</a>
 				</div>
 			</div>
 		</div>
@@ -528,7 +524,6 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	
 	
 	<script>
-
 	    $(document).ready(function(){
 	          $('[data-toggle="tooltip"]').tooltip();   
 	      });
@@ -536,7 +531,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 		function passconfirm() {
 			var pcfrm = $("#passwordconfirm").val()
 			console.log(pcfrm);
-            if (pcfrm == '1234') {
+            /* if (pcfrm == '1234') {
             	window.alert("탈퇴되었습니다.");
                 location.href="home.do";
             } else if(pcfrm == ""){
@@ -547,8 +542,38 @@ Remove or comment-out the code block below to see how the browser will fall-back
             	$("#passwordconfirm").val("");
             } else {r
             	window.alert("비밀번호가 틀렸습니다!");
+            } */
+            
+            if(pcfrm == "") {
+            	alert("비밀번호를 입력해주세요");
+            }else {
+	            $.ajax ({
+	            	url: "deleteBuyer.do",
+	            	type: "POST",
+	            	data: {
+	            		dPassword: pcfrm
+	            	},
+	            	dataType: "text",
+	            	success: function(data) {
+	            		console.log(data);
+	            		if(data == "codeP") {
+	            			alert("비밀번호가 틀렸습니다.");
+	            		} else if(data == "codeS") {
+	            			$("#passConfirmModal").modal('hide');
+	                    	$("#noservice").modal('show');
+	                    	$("#passwordconfirm").val("");
+	            		} else if(data == "codeD") {
+	            			sessionStorage.clear();
+	            			location.href = "home.do"
+	            			alert("탈퇴되었습니다.");
+	            		}
+	            	}
+	            })            	
             }
+            
 		}
+		
+		
 	</script>
 <!-- Modal End -->
 </body>
