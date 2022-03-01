@@ -20,7 +20,7 @@ public class BuyerVO {
 	String b_date;
 	String b_report;
 	String token;
-	String filed_code;
+	String field_code;
 	String buyer_coupon;
 	String b_name;
 }

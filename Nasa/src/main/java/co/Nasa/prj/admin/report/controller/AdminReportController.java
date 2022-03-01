@@ -1,12 +1,21 @@
 package co.Nasa.prj.admin.report.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import co.Nasa.prj.admin.report.service.AdminReportService;
 
 @Controller
 public class AdminReportController {
+	@Autowired
+	AdminReportService reportDao;
+	
+	
 	@RequestMapping("/report_inquiry.do")
-	public String report_inquiry() {
+	public String report_inquiry(Model model) {
+		model.addAttribute("", model);
 		return"admin/report/reportInquiry";
 	}
 	@RequestMapping("/report_wait.do")

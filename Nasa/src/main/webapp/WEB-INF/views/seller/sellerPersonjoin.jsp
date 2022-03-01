@@ -84,55 +84,49 @@
 	<div class="container" style="margin-top: 60px; margin-bottom: 100px;">
 		<div class="row justify-content-center align-items-center">
 			<div class="col-5">
-				<form class="form-contact contact_form" id="personJoin-form">
+				<form class="form-contact contact_form" id="personJoin-form" method="POST">
 					<div>
 						<div>
-							<div class="form-group">
+							<div id="namediv" class="form-group">
 								이름<input class="form-control valid" name="name" id="name" type="text"
 									placeholder="이름(실명)을 입력해주세요">
 							</div>
-							<div class="form-group">
-								닉네임<div id="nickdiv">
+							<div id="nickdiv" class="form-group">
+								닉네임
 									<input class="form-control valid" name="nickname" id="nickname"
 										placeholder="사용할 닉네임을 입력해주세요">
 									<input type="button" value="확인" id="nickCheckbtn"
 										class="position-relative genric-btn primary radius" onclick="nicknameCheck()"
-										style="float: right; bottom: 45px;">
-								</div>
+										style="float: right; bottom: 45px;">								
 							</div>
-							<div class="form-group">
-								이메일<div id="emaildiv">
+							<div id="emaildiv" class="form-group">
+								이메일
 									<input class="form-control valid" name="email" id="email" type="email"
 										placeholder="example@nasa.com">
 									<input type="button" value="전송" class="position-relative genric-btn primary radius"
 										onclick="emailCheck()" style="float: right; bottom: 45px;">
-								</div>
 							</div>
-							<div class="form-group">
-								이메일 인증<div id="emailchkdiv">
+							<div id="emailchkdiv" class="form-group">
+								이메일 인증
 									<input class="form-control valid" name="emailchk" id="emailchk"
 										placeholder="인증코드를 확인해주세요">
 									<input type="button" value="확인" class="position-relative genric-btn primary radius"
 										onclick="emailSendCheck()" style="float: right; bottom: 45px;">
-								</div>
 							</div>
-							<div class="form-group">
-								비밀번호<div id="pwdiv">
+							<div id="pwdiv" class="form-group">
+								비밀번호
 									<input class="form-control valid" name="password" id="password" type="password"
 									placeholder="영문+숫자 조합 8자리 이상 입력해주세요">
-								</div>
 							</div>
-							<div class="form-group">
-								비밀번호 확인<div id="pwchkdiv">
+							<div id="pwchkdiv" class="form-group">
+								비밀번호 확인
 									<input disabled class="form-control valid" name="pwchk" id="pwchk" type="password"
 										placeholder="비밀번호를 다시 입력해주세요">
-								</div>
 							</div>
-							<div class="form-group">
-								연락처<div id="phonediv">
+							<div id="phonediv" class="form-group">
+								연락처
 									<input class="form-control valid" name="phone" id="phone"
 									placeholder="연락가능한 휴대전화번호를 입력해주세요">
-								</div>
 							</div>
 							<div class="form-group">
 								주소<div class="d-flex">
@@ -156,7 +150,7 @@
 						</div>
 						<div style="text-align: center;">
 							<div style="margin-top: 100px;">
-								<button type="submit" class="genric-btn primary e-large">가입하기</button>
+								<button type="button" class="genric-btn primary e-large" onclick="sellerPersonJoin()">가입하기</button>
 							</div>
 							<div style="margin-top: 40px;">
 								<a href="#" style="color: #1f2b7b;">기업 판매자로 가입하시나요?</a>
@@ -171,6 +165,7 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		window.onload = function () {
+			$('#name').focus();
 			document.getElementById("addressSearch").addEventListener("click", function () { //주소입력칸을 클릭하면
 				//카카오 지도 발생
 				new daum.Postcode({
@@ -183,6 +178,32 @@
 			});
 		};
 
+
+		// 이름 필수 입력		
+		$("#name").blur(function() {
+			if (!($("#name").val())) {
+				$("label").remove('#namelabel');
+				$("#namediv").append('<label id="namelabel">이름(실명)은 필수 입력값입니다.</label>');
+				$("#namelabel").css("color", "red");
+				$('#name').focus();
+			} else {
+				$("label").remove('#namelabel');
+			}
+		})
+
+		// 닉네임 필수 입력
+		$("#nickname").blur(function() {
+			if (!($("#nickname").val())) { // 닉네임에 아무것도 적혀있지 않으면
+				$("label").remove('#nicklabel');
+				$("label").remove('#nicklabelok');
+				$("#nickdiv").append('<label id="nicklabel">닉네임은 필수 입력값입니다.</label>');
+				$("#nicklabel").css("color", "red");
+			} else { // 뭐라도 적혀있으면
+				$("label").remove('#nicklabel');
+				$("label").remove('#nicklabelok');
+			}
+		})
+
 		// 닉네임 중복 체크
 		function nicknameCheck() {
 			var nickname = $('#nickname').val();
@@ -190,17 +211,18 @@
 			$.ajax({
 				url: "ajaxSPnickCheck.do",
 				type: "post",
-				data: { s_nickname: nickname },
+				data: { s_nickname : nickname },
 				dataType: "text",
 				success: function (data) {
 					if (data == 'T') {
 						$("label").remove('#nicklabel');
-						$("#nickdiv").append('<label id="nicklabel">사용 가능한 닉네임입니다.</label>');
+						$("label").remove('#nicklabelok');
+						$("#nickdiv").append('<label id="nicklabelok">사용 가능한 닉네임입니다.</label>');
 					} else {
 						$("label").remove('#nicklabel');
+						$("label").remove('#nicklabelok');
 						$("#nickdiv").append('<label id="nicklabel">이미 사용하고 있는 닉네임입니다.</label>');
 						$("#nicklabel").css("color", "red");
-
 					}
 				},
 				error: function () {
@@ -208,6 +230,19 @@
 				}
 			});
 		};
+
+		// 이메일 필수 입력		
+		$("#email").blur(function() {
+			if (!($("#email").val())) {
+				$("label").remove('#emaillabel');
+				$("label").remove('#emaillabelok');
+				$("#emaildiv").append('<label id="emaillabel">이메일은 필수 입력값입니다.</label>');
+				$("#emaillabel").css("color", "red");
+			} else {
+				$("label").remove('#emaillabel');
+				$("label").remove('#emaillabelok');			
+			}
+		})
 
 		// 이메일 인증번호 전송
 		var emailreg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -218,7 +253,8 @@
 			var emailchk = emailreg.test($("#email").val());
 			if (!emailchk) {
 				$("label").remove('#emaillabel');
-				$("#emaildiv").append('<label id="emaillabel">올바르지 않은 이메일입니다.</label>');
+				$("label").remove('#emaillabelok');
+				$("#emaildiv").append('<label id="emaillabel">올바르지 않은 형식의 이메일입니다.</label>');
 				$("#emaillabel").css("color", "red");
 			} else {
 				var email = ($('#email').val());
@@ -237,12 +273,14 @@
 								data: { s_email: email },
 								success: function (data) {
 									$("label").remove('#emaillabel');
-									$("#emaildiv").append('<label id="emaillabel">인증번호를 발송했습니다.</label>');
+									$("label").remove('#emaillabelok');
+									$("#emaildiv").append('<label id="emaillabelok">인증번호를 발송했습니다.</label>');
 									code = data;
 								}
 							});
 						} else {
 							$("label").remove('#emaillabel');
+							$("label").remove('#emaillabelok');
 							$("#emaildiv").append('<label id="emaillabel">중복된 이메일입니다.</label>');
 							$("#emaillabel").css("color", "red");
 						}
@@ -252,18 +290,32 @@
 			
 		};
 
+		// 이메일 인증번호 필수 입력
+		$("#emailchk").blur(function() {
+			if (!($("#emailchk").val())) {
+				$("label").remove('#emailchklabel');
+				$("#emailchkdiv").append('<label id="emailchklabel">인증번호를 입력해주세요.</label>');
+				$("#emaillabel").css("color", "red");
+			} else {
+				$("label").remove('#emailchklabel');
+			}
+		})
+
 		// 이메일 인증번호 확인
 		function emailSendCheck() {
 			if ($("#emailchk").val() == code) {
 				$("label").remove('#emailchklabel');
-				$("#emailchkdiv").append('<label id="#emailchklabel">인증번호가 확인되었습니다.</label>');
+				$("label").remove('#emailchklabelok');
+				$("#emailchkdiv").append('<label id="emailchklabelok">인증번호가 확인되었습니다.</label>');
 			} else {
 				$("label").remove('#emailchklabel');
-				$("#emailchkdiv").append('<label id="#emailchklabel">인증번호가 일치하지 않습니다.</label>');
+				$("label").remove('#emailchklabelok');
+				$("#emailchkdiv").append('<label id="emailchklabel">인증번호가 일치하지 않습니다.</label>');
 				$("#emailchklabel").css("color", "red");
 			}
 		}
 
+		
 		// 비밀번호 설정
 		var pwreg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
@@ -273,7 +325,6 @@
 				$("label").remove('#pwlabel');
 				$("#pwdiv").append('<label id="pwlabel">비밀번호는 영문+숫자 조합 8자리 이상이어야 합니다.</label>');
 				$("#pwlabel").css("color", "red");
-				$('#password').focus();
 			} else {
 				$("label").remove('#pwlabel');
 				$("#pwchk").attr("disabled", false);
@@ -285,8 +336,11 @@
 		$("#pwchk").blur(function() {
 			if ($("#password").val() == $("#pwchk").val()) {
 				$("label").remove('#pwchklabel');
+				$("label").remove('#pwchklabelok');
+				$("#pwchkdiv").append('<label id="pwchklabelok">비밀번호가 확인되었습니다.</label>');
 			} else {
 				$("label").remove('#pwchklabel');
+				$("label").remove('#pwchklabelok');
 				$("#pwchkdiv").append('<label id="pwchklabel">비밀번호가 일치하지 않습니다.</label>');
 				$("#pwchklabel").css("color", "red");
 			}
@@ -302,11 +356,30 @@
 				$("label").remove('#phonelabel');
 				$("#phonediv").append('<label id="phonelabel">올바른 휴대전화번호를 입력해주세요.</label>');
 				$("#phonelabel").css("color", "red");
-				$('#phone').focus();
 			} else {
-				$("label").remove('#phonelabel');
+				$("label").remove('#phonelabel');				
 			}
 		});
+
+		회원가입
+		function sellerPersonJoin() {
+			if (!($("#nicklabelok").length)) {
+				$("label").remove('#nicklabel');				
+				$("#nickdiv").append('<label id="nicklabel">닉네임 중복체크를 해주세요.</label>');
+				$("#nicklabel").css("color", "red");
+				$("#nickname").focus();
+			} else if (!($("#emaillabelok").length)) {
+				$("#email").focus();
+				$("#emaildiv").append('<label id="emaillabel">이메일은 필수 입력값입니다.</label>');
+				$("#nicklabel").css("color", "red");
+
+			} else if (!($("#emailchklabelok").length)) {
+				$("#emailchk").focus();
+				$("#emailchkdiv").append('<label id="emailchklabel">이메일 인증번호를 확인해주세요.</label>');
+			} else {
+				console.log("확인....");
+			}
+		}
 
 	</script>
 </body>
