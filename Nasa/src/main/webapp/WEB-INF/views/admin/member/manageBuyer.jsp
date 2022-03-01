@@ -433,11 +433,11 @@
               
                 //구매내역 페이징
                 if(result.payment.length!=0){
-                	
+                   
                 $('#tbodypay').empty();
                 
                 //구매내역 데이터만 가져오는 ajax를 만들고 그 done에 이 페이징 함수를 부를 것 
-				let totalCount = result.payment.length; // 글의 총 수 
+            let totalCount = result.payment.length; // 글의 총 수 
                 let pageSize = 5; // 페이지 크기 [1]~[10] 또는 [1]~[5]
                 let nowPage = 1; // 현재 페이지 
                 let visibleBlock = 5;
@@ -466,17 +466,16 @@
                     }
                 });
                 }else{
-                	 $('#tbodypay').empty();
+                    $('#tbodypay').empty();
                 }
             })
             .fail(function (data) {
                 console.log("실패원인:" + data);
             })
-        //id 값 저장해서 넘겨주는 ajax
-        //td 아무거나 눌러도 무조건 tr을 가게 한다음 첫번재 td 가는 선택자
-        	
+      
+           
             
-        	var flag = true;
+           var flag = true;
             function paging(page) {
             
             if(flag){
@@ -487,7 +486,7 @@
                      type:"post",
                      data:{"b_email": buyerId},
                      success:function(result){
-                    	 console.log(result)
+                        console.log(result)
                          let totalCount = result.length; // 글의 총 수 
                          let pageSize = 5; // 페이지 크기 [1]~[10] 또는 [1]~[5]
                          let nowPage = 1; // 현재 페이지 
@@ -555,27 +554,27 @@
         $(element).off("click").on('click', selectMember);
     })
 
-	
+   
     const modifyBtn = document.querySelector("#modifyBtn");
     const modifyeMemberRank = () => {//수정버튼 이벤트 함수
-    	var rankVal = $('input[name="buyer_rank"]:checked').val();
-    	var buyerEmail=$('input[name="b_email"]').val();
-    	console.log(rankVal);
-    	console.log(buyerEmail);
-    	console.log(typeof(rankVal));
-    	  $.ajax({
-    		url:"ajaxUpdateBuyerRank.do",
-    		type:"post",
-    		data:{"b_rank":rankVal,"b_email":buyerEmail},
-    	
-    	}).done(function(result){
-    		
-    		if(result==0){
-    			alert("현재 등급과 같습니다.")
-    		}else{
-    			alert("수정 완")
-    		}
-    	})  
+       var rankVal = $('input[name="buyer_rank"]:checked').val();
+       var buyerEmail=$('input[name="b_email"]').val();
+       console.log(rankVal);
+       console.log(buyerEmail);
+       console.log(typeof(rankVal));
+         $.ajax({
+          url:"ajaxUpdateBuyerRank.do",
+          type:"post",
+          data:{"b_rank":rankVal,"b_email":buyerEmail},
+       
+       }).done(function(result){
+          
+          if(result==0){
+             alert("현재 등급과 같습니다.")
+          }else{
+             alert("수정 완")
+          }
+       })  
     }
     modifyBtn.addEventListener("click", modifyeMemberRank);
    
