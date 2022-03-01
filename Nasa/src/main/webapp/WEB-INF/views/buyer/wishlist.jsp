@@ -82,13 +82,15 @@
                   	<c:forEach items="${wishlistList }" var="wishlist">
                   		<c:forEach items="${sellerList }" var="seller">
                   			<c:if test="${wishlist.s_id eq seller.s_email }">
-	                  			<div class="blog-author" style="margin: 0 auto; margin-top: 20px;">
+	                  			<div id="${wishlist.s_id }${wishlist.b_id}" class="blog-author" style="margin: 0 auto; margin-top: 20px;">
+	                  				<%-- <input id="buyerid" value="${wishlist.b_id }" style="display:none;">
+	                  				<input id="sellerid" value="${wishlist.s_id }" style="display:none;"> --%>
 			                        <div class="media align-items-center">
 			                           <img src="resources/user/assets/img/blog/author.png" alt="">
 			                           <div class="media-body">
 			                           	<div class="d-flex">
 		                                 	<h4 class="col-4">${seller.s_nickname } 
-			                              	<i id = "wishicon" class="fa fa-heart" aria-hidden="true" onclick="deleteWishlist(this)"></i></h4>
+			                              	<i id = "wishicon" class="fa fa-heart" aria-hidden="true" onclick="deleteWishlist(this)" data-sid="${wishlist.s_id }" data-bid = "${wishlist.b_id }"></i></h4>
 			                              	<h4 class="col-8">${seller.s_address }</h4>
 			                           	</div>
 			                              <div class="d-flex"  style="margin-top: 8px;">
@@ -111,63 +113,8 @@
                   			</c:if>
                   		</c:forEach>
                   	</c:forEach>        
-                     <div class="blog-author" style="margin: 0 auto; margin-top: 20px;">
-                        <div class="media align-items-center">
-                           <img src="resources/user/assets/img/blog/author.png" alt="">
-                           <div class="media-body">
-                              <a href="#">
-                                 <h4 style="display: inline;">IT판매자</h4> 
-                              </a>
-                              <h4 style="display: inline;"><i id = "wishicon" class="fa fa-heart" aria-hidden="true"></i></h4>
-                              <div class="col-2" style="display: inline;"></div><h4 style="display: inline; margin-left: 115px;">대구 중구</h4>
-                              <div>
-                                 <h4 style="display: inline;margin-top: 8px;">SW개발 > 웹개발</h4>
-                                 <h4 style="display: inline; margin-left: 100px;">평점 : 4.5</h4>
-                                 <h4 style="display: inline; margin-left: 100px;">지구 등급</h4>
-                              </div>
-                              <p style="margin-top: 20px;">웹개발을 주로 하고 있는 IT판매자 입니다. 기간 내에 최고의 품질로 보답하겠습니다. 믿고 맡겨주세요ㅋㅋㅋ.</p>
-                           </div>
-                        </div>
-                     </div>               
-                     <div class="blog-author" style="margin: 0 auto; margin-top: 20px;">
-                        <div class="media align-items-center">
-                           <img src="resources/user/assets/img/blog/author.png" alt="">
-                           <div class="media-body">
-                              <a href="#">
-                                 <h4 style="display: inline;">IT판매자</h4> 
-                              </a>
-                              <h4 style="display: inline;"><i id = "wishicon" class="fa fa-heart" aria-hidden="true"></i></h4>
-                              <div class="col-2" style="display: inline;"></div><h4 style="display: inline; margin-left: 115px;">대구 중구</h4>
-                              <div>
-                                 <h4 style="display: inline;margin-top: 8px;">SW개발 > 웹개발</h4>
-                                 <h4 style="display: inline; margin-left: 100px;">평점 : 4.5</h4>
-                                 <h4 style="display: inline; margin-left: 100px;">지구 등급</h4>
-                              </div>
-                              <p style="margin-top: 20px;">웹개발을 주로 하고 있는 IT판매자 입니다. 기간 내에 최고의 품질로 보답하겠습니다. 믿고 맡겨주세요ㅎㅎㅎ.</p>
-                           </div>
-                        </div>
-                     </div>
-                  
-                     <div class="blog-author" style="margin: 0 auto; margin-top: 20px;">
-                        <div class="media align-items-center">
-                           <img src="resources/user/assets/img/blog/author.png" alt="">
-                           <div class="media-body">
-                              <a href="#">
-                                 <h4 style="display: inline;">IT판매자</h4> 
-                              </a>
-                              <h4 style="display: inline;"><i id = "wishicon" class="fa fa-heart" aria-hidden="true"></i></h4>
-                              <div class="col-2" style="display: inline;"></div><h4 style="display: inline; margin-left: 115px;">대구 중구</h4>
-                              <div>
-                                 <h4 style="display: inline;margin-top: 8px;">SW개발 > 웹개발</h4>
-                                 <h4 style="display: inline; margin-left: 100px;">평점 : 4.5</h4>
-                                 <h4 style="display: inline; margin-left: 100px;">지구 등급</h4>
-                              </div>
-                              <p style="margin-top: 20px;">웹개발을 주로 하고 있는 IT판매자 입니다. 기간 내에 최고의 품질로 보답하겠습니다. 믿고 맡겨주세요ㅌㅌㅌ.</p>
-                           </div>
-                        </div>
-                     </div>
                   </section>
-                  <nav class="blog-pagination justify-content-center d-flex">
+                  <!-- <nav class="blog-pagination justify-content-center d-flex">
                      <ul class="pagination">
                         <li class="page-item">
                            <a href="#" class="page-link" aria-label="Previous">
@@ -186,7 +133,7 @@
                            </a>
                         </li>
                      </ul>
-                  </nav>
+                  </nav> -->
                </div>                              
             </div>
          </div>
@@ -195,9 +142,27 @@
    </div>
 </section>
 
-<script>
+<script>	
 	function deleteWishlist(event) {
-		alert("위시리스트에서 제거하겠습니까?");
+		var sid = $(event).data("sid");
+		var bid = $(event).data("bid");
+		var wid = sid + bid;
+		console.log(wid);
+		var target = document.getElementById(wid);
+		target.remove();
+		
+		$.ajax({
+			url:"wishlistDelete.do",
+			type:"get",
+			data:
+				{
+					s_id:sid,
+					b_id:bid
+				},
+			success: function() {
+				console.log("삭제");	
+			}
+		})
 	}
 </script>
 </body>

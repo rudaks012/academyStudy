@@ -23,4 +23,9 @@ public class BuyerServiceImpl implements BuyerService {
 	@Override
 	public int updateBuyer(BuyerVO vo) {
 		return map.updateBuyer(vo);
+	}
+
+	@Override
+	public int deleteBuyer(BuyerVO vo) {
+		return map.deleteBuyer(vo);
 	}}

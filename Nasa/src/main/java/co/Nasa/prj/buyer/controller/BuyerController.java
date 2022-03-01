@@ -29,6 +29,7 @@ import co.Nasa.prj.comm.VO.ReportVO;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.Review_CommentVO;
 import co.Nasa.prj.comm.VO.SellerVO;
+import co.Nasa.prj.comm.VO.SubCategoryVO;
 import co.Nasa.prj.comm.VO.WishlistVO;
 import co.Nasa.prj.coupon.service.CouponMapper;
 import co.Nasa.prj.payment.service.PaymentMapper;
@@ -66,6 +67,48 @@ public class BuyerController {
 		return "buyer/buyerMypage";
 	}
 	
+	@RequestMapping("/deleteBuyer.do")
+	@ResponseBody
+	public String deleteBuyer(Model model, HttpSession session, HttpServletResponse response, HttpServletRequest request, @Param("dPassword") String dPassword) {
+		// 값 넘어왔는지 체크
+		System.out.println(dPassword);
+		
+		// 삭제 조건 status
+		String deleteStatus = "codeD";
+		
+		// vo 선언
+		PaymentVO paymentvo = new PaymentVO();
+		BuyerVO buyervo = new BuyerVO();
+		
+		// vo 에 현재 로그인한 buyer 정보 입력
+		paymentvo.setB_email((String)session.getAttribute("id"));
+		buyervo.setB_email((String)session.getAttribute("id"));
+		
+		// 탈퇴 조건 설정
+		List<PaymentVO> paymentDList = paymentDao.buyerPaymentList(paymentvo);
+		buyervo = buyerDao.selectBuyer(buyervo);
+		
+		// 탈퇴 조건 실행
+			// 1. 입력한 비밀번호와 일치하는가?
+		if(!buyervo.getB_password().equals(dPassword)) {
+			System.out.println(buyervo.getB_password());
+			deleteStatus = "codeP";
+			return deleteStatus;
+		}
+		
+			// 2. 현재 거래중인 서비스가 있는가? 
+		for(int i = 0; i < paymentDList.size(); i++) {
+			if(paymentDList.get(i).getPay_enddate() == null) {
+				deleteStatus = "codeS";
+				return deleteStatus;
+			}
+		}		
+		
+		// 어디에도 해당되지 않으면 delete
+		buyerDao.deleteBuyer(buyervo);
+		
+		return deleteStatus;
+	}
 	
 	// 신고내역 페이지로 이동
 	@RequestMapping("/reportHistory.do")
@@ -137,12 +180,15 @@ public class BuyerController {
 		System.out.println(categoryList);
 		model.addAttribute("categoryList", categoryList);
 		
+		List<SubCategoryVO> subcategoryList = sub_categoryDao.sub_categoryList();
+		model.addAttribute("subcategoryList", subcategoryList);
+		
 		
 		return "buyer/buyerUpdate";
 	}
 	
 	@RequestMapping("/profileUpdate.do")
-	public String profileUpdate(BuyerVO vo, HttpServletRequest request) {
+	public String profileUpdate(BuyerVO vo) {
 		//System.out.println(mf.getOriginalFilename());
 //		String originalFileName = imgfile.getOriginalFilename();
 //		String saveurl = "C:\\prjnasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
@@ -151,8 +197,7 @@ public class BuyerController {
 //		
 //		String saveFile = "resources\\user\\assets\\img\\profile\\" + originalFileName;
 //		vo.setB_img(saveFile);
-		
-		System.out.println("update");
+
 		buyerDao.updateBuyer(vo);
 		
 		return "buyer/buyerMypage";
