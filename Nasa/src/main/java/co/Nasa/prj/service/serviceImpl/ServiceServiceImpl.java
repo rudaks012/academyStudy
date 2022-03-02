@@ -35,10 +35,6 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.serviceUpdate(vo);
 	}
 
-	@Override
-	public int fileDelete(HashMap<String, String> mapp) {
-		return map.fileDelete(mapp);
-	}
 
 
 }

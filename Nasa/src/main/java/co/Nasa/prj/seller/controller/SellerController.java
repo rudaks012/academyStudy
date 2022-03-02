@@ -1,5 +1,8 @@
 package co.Nasa.prj.seller.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.mail.internet.MimeMessage;
 
 import org.apache.ibatis.annotations.Param;
@@ -8,7 +11,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.comm.VO.SellerVO;
 import co.Nasa.prj.seller.service.SellerService;
@@ -38,7 +43,6 @@ public class SellerController {
 	public String promotionInsert() {
 		return "seller/promotionInsert";
 	}
-
 
 	@RequestMapping("/sellerSales.do")
 	public String sellerSales() {
@@ -73,13 +77,12 @@ public class SellerController {
 		return "seller/serviceInsert";
 	}
 
-	
 	@RequestMapping("/serviceDetail.do")
 	public String serviceDetail() {
 		return "seller/serviceDetail";
 
 	}
-	
+
 	@RequestMapping("/knowhowInsertForm.do")
 	public String knowhowInsertForm() {
 		return "seller/knowhowInsert";
@@ -90,7 +93,6 @@ public class SellerController {
 //
 //		return "seller/knowhowInsert";
 //	}
-
 
 	@RequestMapping("/sellerDetail.do")
 	public String sellerDetail() {
@@ -106,7 +108,7 @@ public class SellerController {
 	public String sellerCalendar() {
 		return "seller/sellerCalendar";
 	}
-	
+
 	// 개인 판매자 닉네임 중복 체크
 	@RequestMapping("/ajaxSPnickCheck.do")
 	@ResponseBody
@@ -122,7 +124,7 @@ public class SellerController {
 		System.out.println(vo.getS_nickname());
 		return result;
 	}
-	
+
 	// 개인 판매자 이메일 중복 체크
 	@RequestMapping("/ajaxSPemailCheck.do")
 	@ResponseBody
@@ -133,12 +135,12 @@ public class SellerController {
 		if (n == 0) {
 			result = "T";
 		} else {
-			result = "F";			
+			result = "F";
 		}
 		System.out.println("확인" + vo.getS_email());
 		return result;
 	}
-	
+
 	// 개인 판매자 이메일 인증
 	@Autowired
 	private JavaMailSender mailSender;
@@ -168,7 +170,7 @@ public class SellerController {
 		}
 		return num;
 	}
-	
+
 	// 개인 판매자 회원 가입
 	@RequestMapping("/ajaxSPjoin.do")
 	@ResponseBody
@@ -176,7 +178,7 @@ public class SellerController {
 		vo.setS_rank("별");
 		vo.setS_author("개인");
 		vo.setS_status("사용자");
-		
+
 		System.out.println(vo.toString());
 		int n = sellerDAO.SellerInsert(vo);
 		String result = "F";
@@ -185,5 +187,41 @@ public class SellerController {
 		}
 		return result;
 	}
-	
+
+	// 개인 판매자 회원 가입 - 추가정보 등록
+	@RequestMapping("/ajaxSPjoinUpdate.do")
+	@ResponseBody
+	public String ajaxSPjoinUpdate(SellerVO vo, MultipartFile s_img) {
+		System.out.println("이메일 : " + vo.getS_email());
+		System.out.println("확인하기 : " + vo.toString());
+		System.out.println(s_img);
+
+		// img upload
+		String originalFileName = s_img.getOriginalFilename();
+		String saveurl = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+		String savepath = saveurl + originalFileName;
+		System.out.println(savepath);
+
+		String b_img = "resources/user/assets/img/profile/" + originalFileName;
+
+		vo.setS_img(b_img);
+		System.out.println(vo.getS_img());
+
+		try {
+			s_img.transferTo(new File(savepath));
+			
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		int n = sellerDAO.SellerUpdate(vo);
+		String result = "F";
+		if (n != 0) {
+			result = "T";
+		}
+		return result;
+	}
+
 }

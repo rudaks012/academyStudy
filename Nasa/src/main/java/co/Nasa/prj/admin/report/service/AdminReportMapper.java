@@ -2,12 +2,14 @@ package co.Nasa.prj.admin.report.service;
 
 import java.util.List;
 
+import co.Nasa.prj.admin.service.AdminAuthorVO;
 import co.Nasa.prj.admin.service.Criteria;
 import co.Nasa.prj.comm.VO.ReportVO;
 
 public interface AdminReportMapper {
 
-	public int todayReport(); //오늘 신고수
+	public int totalReport(); 
 	
-	public List<ReportVO> getListWithPaging(Criteria cri);
+	public List<ReportVO> getReportListWithPaging(Criteria cri);
+	public AdminAuthorVO detailedReport(AdminAuthorVO vo); //상세조회
 }

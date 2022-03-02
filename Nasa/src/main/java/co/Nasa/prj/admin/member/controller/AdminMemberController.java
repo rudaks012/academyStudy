@@ -61,6 +61,7 @@ public class AdminMemberController {
 		}
 		return map;
 	}
+	//주석달기
 	@RequestMapping("/manage_seller.do")
 	public String manage_seller(Model model) {
 		model.addAttribute("sellerList", memberDao.sellerList());
