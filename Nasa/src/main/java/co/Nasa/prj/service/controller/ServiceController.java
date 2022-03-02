@@ -47,37 +47,37 @@ public class ServiceController {
 		System.out.println(subfile2.getOriginalFilename());
 		System.out.println(subfile3.getOriginalFilename());
 		
-		String title = new String(request.getParameter("ser_title").getBytes("8859_1"), "UTF-8");
-		String cate = new String(request.getParameter("ser_cate").getBytes("8859_1"), "UTF-8");
-		String subcate = new String(request.getParameter("ser_sub_cate").getBytes("8859_1"), "UTF-8");
-		String skill = new String(request.getParameter("ser_skill").getBytes("8859_1"), "UTF-8");
-		String team = new String(request.getParameter("ser_team").getBytes("8859_1"), "UTF-8");
-		String lang = new String(request.getParameter("ser_lang").getBytes("8859_1"), "UTF-8");
-		String frame = new String(request.getParameter("ser_frame").getBytes("8859_1"), "UTF-8");
-		String dbms = new String(request.getParameter("ser_dbms").getBytes("8859_1"), "UTF-8");
-		String line = new String(request.getParameter("ser_line").getBytes("8859_1"), "UTF-8");
-		String date = new String(request.getParameter("ser_date").getBytes("8859_1"), "UTF-8");
-		String start = new String(request.getParameter("ser_start").getBytes("8859_1"), "UTF-8");
-		String end = new String(request.getParameter("ser_end").getBytes("8859_1"), "UTF-8");
-		String sub = new String(request.getParameter("ser_sub").getBytes("8859_1"), "UTF-8");
-		String offer = new String(request.getParameter("ser_offer").getBytes("8859_1"), "UTF-8");
+//		String title = new String(request.getParameter("ser_title").getBytes("8859_1"), "UTF-8");
+//		String cate = new String(request.getParameter("ser_cate").getBytes("8859_1"), "UTF-8");
+//		String subcate = new String(request.getParameter("ser_sub_cate").getBytes("8859_1"), "UTF-8");
+//		String skill = new String(request.getParameter("ser_skill").getBytes("8859_1"), "UTF-8");
+//		String team = new String(request.getParameter("ser_team").getBytes("8859_1"), "UTF-8");
+//		String lang = new String(request.getParameter("ser_lang").getBytes("8859_1"), "UTF-8");
+//		String frame = new String(request.getParameter("ser_frame").getBytes("8859_1"), "UTF-8");
+//		String dbms = new String(request.getParameter("ser_dbms").getBytes("8859_1"), "UTF-8");
+//		String line = new String(request.getParameter("ser_line").getBytes("8859_1"), "UTF-8");
+//		String date = new String(request.getParameter("ser_date").getBytes("8859_1"), "UTF-8");
+//		String start = new String(request.getParameter("ser_start").getBytes("8859_1"), "UTF-8");
+//		String end = new String(request.getParameter("ser_end").getBytes("8859_1"), "UTF-8");
+//		String sub = new String(request.getParameter("ser_sub").getBytes("8859_1"), "UTF-8");
+//		String offer = new String(request.getParameter("ser_offer").getBytes("8859_1"), "UTF-8");
+//		
+//		vo.setSer_title(title);
+//		vo.setSer_cate(cate);
+//		vo.setSer_sub_cate(subcate);
+//		vo.setSer_skill(skill);
+//		vo.setSer_team(team);
+//		vo.setSer_lang(lang);
+//		vo.setSer_frame(frame);
+//		vo.setSer_dbms(dbms);
+//		vo.setSer_line(line);
+//		vo.setSer_date(date);
+//		vo.setSer_start(start);
+//		vo.setSer_end(end);
+//		vo.setSer_sub(sub);
+//		vo.setSer_offer(offer);
 		
-		vo.setSer_title(title);
-		vo.setSer_cate(cate);
-		vo.setSer_sub_cate(subcate);
-		vo.setSer_skill(skill);
-		vo.setSer_team(team);
-		vo.setSer_lang(lang);
-		vo.setSer_frame(frame);
-		vo.setSer_dbms(dbms);
-		vo.setSer_line(line);
-		vo.setSer_date(date);
-		vo.setSer_start(start);
-		vo.setSer_end(end);
-		vo.setSer_sub(sub);
-		vo.setSer_offer(offer);
-		
-		if(date.equals("상시")) {
+		if(vo.getSer_date().equals("상시")) {
 			vo.setSer_start("");
 			vo.setSer_end("");
 		}
@@ -262,40 +262,7 @@ public class ServiceController {
 		System.out.println(vo);
 		
 		vo.setS_email((String)session.getAttribute("id"));
-		String title = new String(request.getParameter("ser_title").getBytes("8859_1"), "UTF-8");
-		String cate = new String(request.getParameter("ser_cate").getBytes("8859_1"), "UTF-8");
-		String subcate = new String(request.getParameter("ser_sub_cate").getBytes("8859_1"), "UTF-8");
-		String skill = new String(request.getParameter("ser_skill").getBytes("8859_1"), "UTF-8");
-		String team = new String(request.getParameter("ser_team").getBytes("8859_1"), "UTF-8");
-		String lang = new String(request.getParameter("ser_lang").getBytes("8859_1"), "UTF-8");
-		String frame = new String(request.getParameter("ser_frame").getBytes("8859_1"), "UTF-8");
-		String dbms = new String(request.getParameter("ser_dbms").getBytes("8859_1"), "UTF-8");
-		String line = new String(request.getParameter("ser_line").getBytes("8859_1"), "UTF-8");
-		String date = new String(request.getParameter("ser_date").getBytes("8859_1"), "UTF-8");
-		String start = new String(request.getParameter("ser_start").getBytes("8859_1"), "UTF-8");
-		String end = new String(request.getParameter("ser_end").getBytes("8859_1"), "UTF-8");
-		String sub = new String(request.getParameter("ser_sub").getBytes("8859_1"), "UTF-8");
-		String offer = new String(request.getParameter("ser_offer").getBytes("8859_1"), "UTF-8");
 		
-		vo.setSer_title(title);
-		vo.setSer_cate(cate);
-		vo.setSer_sub_cate(subcate);
-		vo.setSer_skill(skill);
-		vo.setSer_team(team);
-		vo.setSer_lang(lang);
-		vo.setSer_frame(frame);
-		vo.setSer_dbms(dbms);
-		vo.setSer_line(line);
-		vo.setSer_date(date);
-		vo.setSer_start(start);
-		vo.setSer_end(end);
-		vo.setSer_sub(sub);
-		vo.setSer_offer(offer);
-		
-		if(date.equals("상시")) {
-			vo.setSer_start("");
-			vo.setSer_end("");
-		}
 		
 		System.out.println("=============="+file.getOriginalFilename());
 		System.out.println("=============="+vo.getSer_code());

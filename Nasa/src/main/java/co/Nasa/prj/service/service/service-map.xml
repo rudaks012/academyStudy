@@ -24,9 +24,7 @@
 
 <update id="serviceUpdate" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
 	UPDATE SERVICE SET
-	SER_START = #{ser_start}, SER_END = #{ser_end}, SER_TITLE = #{ser_title},
-	SER_SUB = #{ser_sub}, ser_cate=#{ser_cate}, SER_SUB_CATE = #{ser_sub_cate},
-	SER_PRICE = #{ser_price}, SER_DATE = #{ser_date}, SER_IMG = #{ser_img}, 
+	SER_TITLE = #{ser_title}, SER_SUB = #{ser_sub}, SER_PRICE = #{ser_price}, SER_IMG = #{ser_img}, 
 	SER_OFFER = #{ser_offer}, SER_IMGORIGIN = #{ser_imgorigin}, SER_LINE = #{ser_line}, 
 	SER_SKILL = #{ser_skill}, SER_TEAM = #{ser_team}, SER_LANG=#{ser_lang}, SER_FRAME=#{ser_frame}, 
 	SER_DBMS = #{ser_dbms}, SER_SUBIMG=#{ser_subimg}, SER_SUBIMG2 = #{ser_subimg2}, 
