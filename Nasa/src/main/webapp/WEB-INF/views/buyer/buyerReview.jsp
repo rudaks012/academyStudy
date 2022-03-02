@@ -274,12 +274,12 @@
 			console.log(rere_code);
 			var re_type = $('input[name="reportType"]:checked').val();
 			console.log(re_type);
-			var re_subject = $("#reportSubject").value;
+			var re_subject = $("#reportSubject").val();
 			
 						
 			// reportcontroller
 			$.ajax({
-				url: "reportReview_comment.do"
+				url: "reportReview_comment.do",
 				type:"post",
 				data:{rere_code : rere_code,
 					re_type : re_type,

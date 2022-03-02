@@ -16,4 +16,9 @@ public class Review_CommentServiceImpl implements Review_CommentService {
 		return map.selectReview_CommentList();
 	}
 
+	@Override
+	public Review_CommentVO selectReview_comment(Review_CommentVO vo) {
+		return map.selectReview_comment(vo);
+	}
+
 }
