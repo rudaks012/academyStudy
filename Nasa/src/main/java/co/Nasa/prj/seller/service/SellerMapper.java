@@ -8,6 +8,7 @@ public interface SellerMapper {
 	int SellerNicknameCheck(SellerVO vo);
 	int SellerEmailCheck(SellerVO vo);
 	int SellerInsert(SellerVO vo);
+	int SellerUpdate(SellerVO vo);
 
 	// seller 전체 조회
 	public List<SellerVO> selectSellerList();

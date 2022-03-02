@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -61,8 +62,7 @@
 		}
 
 		function main() {
-			alert("회원가입을 중단하고 메인으로 돌아갑니다.");
-			location.href = 'home.do';
+			alert("약관에 동의하지 않으면 가입할 수 없습니다.");
 		}
 	</script>
 
@@ -80,8 +80,7 @@
 	</div>
 	<!--Hero End -->
 
-	<!-- 1단계 -->
-	<div class="container" style="margin-top: 60px; margin-bottom: 100px;">
+	<div id="page1" class="container" style="margin-top: 60px; margin-bottom: 100px;">
 		<div class="row justify-content-center align-items-center">
 			<div class="col-5">
 				<form class="form-contact contact_form" id="personJoin-form" method="POST">
@@ -93,49 +92,52 @@
 							</div>
 							<div id="nickdiv" class="form-group">
 								닉네임
-									<input class="form-control valid" name="s_nickname" id="s_nickname"
-										placeholder="사용할 닉네임을 입력해주세요">
-									<input type="button" value="확인" id="nickCheckbtn"
-										class="position-relative genric-btn primary radius" onclick="nicknameCheck()"
-										style="float: right; bottom: 45px;">								
+								<input class="form-control valid" name="s_nickname" id="s_nickname"
+									placeholder="사용할 닉네임을 입력해주세요">
+								<input type="button" value="확인" id="nickCheckbtn"
+									class="position-relative genric-btn primary radius" onclick="nicknameCheck()"
+									style="float: right; bottom: 45px;">
 							</div>
 							<div id="emaildiv" class="form-group">
 								이메일
-									<input class="form-control valid" name="s_email" id="s_email" type="email"
-										placeholder="example@nasa.com">
-									<input type="button" value="전송" class="position-relative genric-btn primary radius"
-										onclick="emailCheck()" style="float: right; bottom: 45px;">
+								<input class="form-control valid" name="s_email" id="s_email" type="email"
+									placeholder="example@nasa.com">
+								<input type="button" value="전송" class="position-relative genric-btn primary radius"
+									onclick="emailCheck()" style="float: right; bottom: 45px;">
 							</div>
 							<div id="emailchkdiv" class="form-group">
 								이메일 인증
-									<input class="form-control valid" name="emailchk" id="emailchk"
-										placeholder="인증코드를 확인해주세요">
-									<input type="button" value="확인" class="position-relative genric-btn primary radius"
-										onclick="emailSendCheck()" style="float: right; bottom: 45px;">
+								<input class="form-control valid" name="emailchk" id="emailchk"
+									placeholder="인증코드를 확인해주세요">
+								<input type="button" value="확인" class="position-relative genric-btn primary radius"
+									onclick="emailSendCheck()" style="float: right; bottom: 45px;">
 							</div>
 							<div id="pwdiv" class="form-group">
 								비밀번호
-									<input class="form-control valid" name="s_password" id="s_password" type="password"
+								<input class="form-control valid" name="s_password" id="s_password" type="password"
 									placeholder="영문+숫자 조합 8자리 이상 입력해주세요">
 							</div>
 							<div id="pwchkdiv" class="form-group">
 								비밀번호 확인
-									<input disabled class="form-control valid" name="pwchk" id="pwchk" type="password"
-										placeholder="비밀번호를 다시 입력해주세요">
+								<input disabled class="form-control valid" name="pwchk" id="pwchk" type="password"
+									placeholder="비밀번호를 다시 입력해주세요">
 							</div>
 							<div id="phonediv" class="form-group">
 								연락처
-									<input class="form-control valid" name="s_tel" id="s_tel"
+								<input class="form-control valid" name="s_tel" id="s_tel"
 									placeholder="연락가능한 휴대전화번호를 입력해주세요">
 							</div>
 							<div id="addressdiv" class="form-group">
 								주소<div class="d-flex">
-									<input disabled class="form-control valid" id="s_zipcode" name="s_zipcode" placeholder="우편번호를 검색하세요.">
+									<input disabled class="form-control valid" id="s_zipcode" name="s_zipcode"
+										placeholder="우편번호를 검색하세요.">
 									<input type="button" id="addressSearch" value="검색" class="genric-btn primary radius"
 										style="float: right;">
 								</div>
-								<input disabled class="form-control valid" id="s_address" name="s_address" placeholder="주소">
-								<input disabled class="form-control valid" id="s_detailaddress" name="s_detailaddress" placeholder="상세 주소">
+								<input disabled class="form-control valid" id="s_address" name="s_address"
+									placeholder="주소">
+								<input disabled class="form-control valid" id="s_detailaddress" name="s_detailaddress"
+									placeholder="상세 주소">
 							</div>
 							<div class="d-flex">
 								<div class="primary-checkbox">
@@ -150,7 +152,8 @@
 						</div>
 						<div style="text-align: center;">
 							<div style="margin-top: 100px;">
-								<button type="button" class="genric-btn primary e-large" onclick="sellerPersonJoin()">가입하기</button>
+								<button type="button" class="genric-btn primary e-large"
+									onclick="sellerPersonJoin()">가입하기</button>
 							</div>
 							<div style="margin-top: 40px;">
 								<a href="#" style="color: #1f2b7b;">기업 판매자로 가입하시나요?</a>
@@ -162,10 +165,94 @@
 		</div>
 	</div>
 
+	<div id="page2" class="container" style="margin-top: 60px; margin-bottom: 100px;">
+		<div class="row d-flex justify-content-center align-items-center">
+			<div>
+				<img src="resources/user/assets/img/mainroket.png" alt="">
+				<div class="section-tittle text-center">
+					<h1>NASA에 오신 것을 환영합니다!</h1>
+				</div>
+				<div class="col-12" style="text-align: center; margin-top: 25px;">
+					<span style="font-size: 20px;">판매자 추가 정보를 입력하세요.<br>마이페이지에서 언제든지 수정 가능합니다.</span>
+				</div>
+			</div>
+		</div>
+		<div class="row d-flex justify-content-center align-items-center" style="margin-top: 100px;">
+			<div class="col-5">
+				<!-- 수정 폼 시작-->		
+				<form class="form-contact contact_form" method="post" id="personJoinUpdate-form" enctype="multipart/form-data">
+					<div class="col-12">
+						<div id="profileThumnail" class="justify-content-center" style="text-align: center;">
+							<img id="prvimg" src="resources/user/assets/img/profile/defaultprofileimg.png" alt="" style="width: 150px; height:150px; border-radius: 70%; overflow: hidden;"><br>
+							<input type="file" id="imgupload" name="s_img" accept="image/*">
+						</div>
+					</div>
+					<br>
+					<br>
+					<div class="col-12">
+						<div><span style="font-weight: bold; font-size: 17px;">[판매자 자기소개]</span></div>
+						<div class="form-group">
+							<textarea class="form-control w-100" cols="60" rows="9" id="s_me" name="s_me"
+								placeholder="판매자 자기소개 입력 (경력사항, 특장점, 주의사항 등등)"></textarea>
+						</div>
+					</div>										
+					<div class="col-12">
+						<div><span style="font-weight: bold; font-size: 17px;">[학력사항]</span></div>
+						<div class="form-group">
+							<div class="d-flex">
+								<input class="form-control valid" placeholder="대학교 입력" id="s_school" name="s_school">
+							</div>
+							<input class="form-control valid" placeholder="전공 입력" id="s_major" name="s_major">
+							<div class="d-flex" style="margin-top: 10px;">
+								<div class="switch-wrap d-flex justify-content-between">
+									<div class="confirm-radio">
+										<input type="radio" id="confirm-radio1" name="s_grad" checked="checked" value="졸업">
+										<label for="confirm-radio1"></label>
+									</div>&nbsp;
+									<p>졸업</p>
+								</div>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<div class="switch-wrap d-flex justify-content-between">
+									<div class="confirm-radio">
+										<input type="radio" id="confirm-radio2" name="s_grad" value="휴학">
+										<label for="confirm-radio2"></label>
+									</div>&nbsp;
+									<p>휴학</p>
+								</div>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<div class="switch-wrap d-flex justify-content-between">
+									<div class="confirm-radio">
+										<input type="radio" id="confirm-radio3" name="s_grad" value="중퇴">
+										<label for="confirm-radio3"></label>
+									</div>&nbsp;
+									<p>중퇴</p>
+								</div>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<div class="switch-wrap d-flex justify-content-between">
+									<div class="confirm-radio">
+										<input type="radio" id="confirm-radio4" name="s_grad" value="졸업유예">
+										<label for="confirm-radio4"></label>
+									</div>&nbsp;
+									<p>졸업유예</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-12" style="text-align: center; margin-top: 100px;">
+						<button type="button" class="genric-btn primary e-large" style="width: 177.38px;" onclick="joinUpdate()">추가 정보 입력</button>
+						<button type="button" class="genric-btn primary-border e-large" onclick="location.href='home.do'">나중에 입력하기</button>
+					</div>
+					<input type="hidden" id="next_email" name="s_email" value="">
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		window.onload = function () {
 			$('#s_name').focus();
+			// document.getElementById("page2").style.display = "none";
 			document.getElementById("addressSearch").addEventListener("click", function () { //주소입력칸을 클릭하면
 				$("#s_zipcode").attr("disabled", false);
 				$("#s_address").attr("disabled", false);
@@ -183,7 +270,7 @@
 
 
 		// 이름 필수 입력		
-		$("#s_name").blur(function() {
+		$("#s_name").blur(function () {
 			if (!($("#s_name").val())) {
 				$("label").remove('#namelabel');
 				$("#namediv").append('<label id="namelabel">이름(실명)은 필수 입력값입니다.</label>');
@@ -195,7 +282,7 @@
 		})
 
 		// 닉네임 필수 입력
-		$("#s_nickname").blur(function() {
+		$("#s_nickname").blur(function () {
 			if (!($("#s_nickname").val())) { // 닉네임에 아무것도 적혀있지 않으면
 				$("label").remove('#nicklabel');
 				$("label").remove('#nicklabelok');
@@ -214,7 +301,9 @@
 			$.ajax({
 				url: "ajaxSPnickCheck.do",
 				type: "post",
-				data: { s_nickname : nickname },
+				data: {
+					s_nickname: nickname
+				},
 				dataType: "text",
 				success: function (data) {
 					if (data == 'T') {
@@ -235,7 +324,7 @@
 		};
 
 		// 이메일 필수 입력		
-		$("#s_email").blur(function() {
+		$("#s_email").blur(function () {
 			if (!($("#s_email").val())) {
 				$("label").remove('#emaillabel');
 				$("label").remove('#emaillabelok');
@@ -243,7 +332,7 @@
 				$("#emaillabel").css("color", "red");
 			} else {
 				$("label").remove('#emaillabel');
-				$("label").remove('#emaillabelok');			
+				$("label").remove('#emaillabelok');
 			}
 		})
 
@@ -266,18 +355,23 @@
 				$.ajax({
 					url: "ajaxSPemailCheck.do",
 					type: "post",
-					data: {s_email : email},
+					data: {
+						s_email: email
+					},
 					dataType: "text",
-					success: function(data) {						
+					success: function (data) {
 						if (data == "T") { // 중복된 이메일이 없으면 인증번호 메일 보내기
 							$.ajax({
 								type: "post",
 								url: "ajaxSPemailSend.do",
-								data: { s_email: email },
+								data: {
+									s_email: email
+								},
 								success: function (data) {
 									$("label").remove('#emaillabel');
 									$("label").remove('#emaillabelok');
-									$("#emaildiv").append('<label id="emaillabelok">인증번호를 발송했습니다.</label>');
+									$("#emaildiv").append(
+										'<label id="emaillabelok">인증번호를 발송했습니다.</label>');
 									code = data;
 								}
 							});
@@ -290,11 +384,11 @@
 					}
 				})
 			}
-			
+
 		};
 
 		// 이메일 인증번호 필수 입력
-		$("#emailchk").blur(function() {
+		$("#emailchk").blur(function () {
 			if (!($("#emailchk").val())) {
 				$("label").remove('#emailchklabel');
 				$("label").remove('#emailchklabelok');
@@ -320,11 +414,11 @@
 			}
 		}
 
-		
+
 		// 비밀번호 설정
 		var pwreg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-		$("#s_password").blur(function() {
+		$("#s_password").blur(function () {
 			var pwchk = pwreg.test($("#s_password").val());
 			if (!pwchk) {
 				$("label").remove('#pwlabel');
@@ -338,7 +432,7 @@
 		})
 
 		// 비밀번호 확인
-		$("#pwchk").blur(function() {
+		$("#pwchk").blur(function () {
 			if ($("#s_password").val() == $("#pwchk").val()) {
 				$("label").remove('#pwchklabel');
 				$("label").remove('#pwchklabelok');
@@ -354,38 +448,44 @@
 		// 연락처 설정
 		var phonereg = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 
-		$("#s_tel").blur(function() {
+		$("#s_tel").blur(function () {
 			var phonechk = phonereg.test($("#s_tel").val());
 			if (!phonechk) {
 				$("label").remove('#phonelabel');
 				$("#phonediv").append('<label id="phonelabel">올바른 휴대전화번호를 입력해주세요.</label>');
 				$("#phonelabel").css("color", "red");
 			} else {
-				$("label").remove('#phonelabel');				
+				$("label").remove('#phonelabel');
 			}
 		});
 
-		$("#s_detailaddress").blur(function() {
+		$("#s_detailaddress").blur(function () {
 			$("label").remove('#addresslabel');
 		})
-		
+
+		// 페이지 이동
+		function nextPage() {
+			document.getElementById("page1").style.display = "none";
+			document.getElementById("page2").style.display = "block";
+		}
+
 		// 회원가입
 		function sellerPersonJoin() {
 			if (!($("#nicklabelok").length)) {
-				$("label").remove('#nicklabel');				
+				$("label").remove('#nicklabel');
 				$("#nickdiv").append('<label id="nicklabel">닉네임 중복체크를 해주세요.</label>');
 				$("#nicklabel").css("color", "red");
 				$("#s_nickname").focus();
-			} else if (!($("#emaillabelok").length)) {
-				$("label").remove('#emaillabel');				
-				$("#emaildiv").append('<label id="emaillabel">이메일 인증이 필요합니다.</label>');
-				$("#nicklabel").css("color", "red");
-				$("#s_email").focus();
-			} else if (!($("#emailchklabelok").length)) {
-				$("label").remove('#emailchklabel');				
-				$("#emailchkdiv").append('<label id="emailchklabel">이메일 인증번호를 확인해주세요.</label>');
-				$("#emailchklabel").css("color", "red");
-				$("#emailchk").focus();
+			// } else if (!($("#emaillabelok").length)) {
+			// 	$("label").remove('#emaillabel');				
+			// 	$("#emaildiv").append('<label id="emaillabel">이메일 인증이 필요합니다.</label>');
+			// 	$("#nicklabel").css("color", "red");
+			// 	$("#s_email").focus();
+			// } else if (!($("#emailchklabelok").length)) {
+			// 	$("label").remove('#emailchklabel');				
+			// 	$("#emailchkdiv").append('<label id="emailchklabel">이메일 인증번호를 확인해주세요.</label>');
+			// 	$("#emailchklabel").css("color", "red");
+			// 	$("#emailchk").focus();
 			} else if (!($("#pwchklabelok").length)) {
 				$("label").remove('#pwlabel');
 				$("label").remove('#pwchklabel');
@@ -401,7 +501,7 @@
 				$("label").remove('#addresslabel');
 				$("#addressdiv").append('<label id="addresslabel">주소는 필수 입력값입니다.</label>');
 				$("#addresslabel").css("color", "red");
-			} else if (!($('#primary-checkbox').is(':checked'))){
+			} else if (!($('#primary-checkbox').is(':checked'))) {
 				alert("약관에 동의하지 않으면 가입할 수 없습니다.");
 			} else {
 				$.ajax({
@@ -410,13 +510,52 @@
 					data: $("#personJoin-form").serialize(),
 					success: function (data) {
 						if (data == "T") {
+							nextPage();
 							console.log("등록 성공");
+							$('#next_email').val($('#s_email').val());
 						}
 					}
 				});
 			}
 		};
 
+		// 회원정보 추가
+		function joinUpdate() {
+			console.log("이메일 : " + $('#next_email').val());
+			$.ajax({
+					url: "ajaxSPjoinUpdate.do",
+					type: "post",
+					data: $("#personJoinUpdate-form").serialize(),
+					success: function (data) {
+						if (data == "T") {
+							console.log("수정 성공");
+							alert("추가 정보 입력 완료! 메인 화면으로 돌아갑니다.");
+							location.href='home.do';
+						} else {
+							console.log("수정 실패");
+						}
+						
+					}
+				});
+		}
+
+		// 프로필 사진 미리보기
+		function readImage(input) {
+			if(input.files && input.files[0]) {
+				const reader = new FileReader();
+				
+				reader.onload = e => {
+					const previewImage = document.getElementById("prvimg");
+					previewImage.src = e.target.result;
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		
+		const inputImage = document.getElementById("imgupload");
+		inputImage.addEventListener("change", e => {
+			readImage(e.target);
+		});
 	</script>
 </body>
 

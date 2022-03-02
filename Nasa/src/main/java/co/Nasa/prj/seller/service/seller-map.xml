@@ -19,8 +19,14 @@
 	
 	<insert id="SellerInsert" parameterType="co.Nasa.prj.comm.VO.SellerVO">
 		insert into seller (s_email, s_rank, s_password, s_nickname, s_tel, s_address, s_zipcode, s_detailaddress, s_author, s_status, s_name)
-		values (#{s_email}, #{s_rank}, #{s_password}, #{s_nickname}, #{s_tel}, #{s_address}, #{s_zipcode}, #{s_detailaddress}, #{s_author}, #{s_status}, #{s_name})
-	
+		values (#{s_email}, #{s_rank}, #{s_password}, #{s_nickname}, #{s_tel}, #{s_address}, #{s_zipcode}, #{s_detailaddress}, #{s_author}, #{s_status}, #{s_name})	
 	</insert>
+	
+	<update id="SellerUpdate" parameterType="co.Nasa.prj.comm.VO.SellerVO">
+		update seller
+		set
+		s_me = #{s_me}, s_school = #{s_school}, s_major = #{s_major}, s_grad = #{s_grad}, s_img = #{s_img}
+		where s_email = #{s_email}
+	</update>
 
 </mapper>
