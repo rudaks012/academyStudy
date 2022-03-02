@@ -37,4 +37,10 @@ public class SellerServiceImpl implements SellerService {
 		return map.SellerInsert(vo);
 	}
 
+
+	@Override
+	public int SellerUpdate(SellerVO vo) {
+		return map.SellerUpdate(vo);
+	}
+
 }
