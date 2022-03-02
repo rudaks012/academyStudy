@@ -18,6 +18,7 @@ import co.Nasa.prj.review_comment.service.Review_CommentMapper;
 public class ReportController {
 	@Autowired 
 	private ReportMapper userReportDao;
+	@Autowired
 	private Review_CommentMapper review_commentDao;
 	
 	@RequestMapping("/sellerReport.do")
@@ -32,12 +33,10 @@ public class ReportController {
 	
 	@RequestMapping("/reportReview_comment.do")
 	public void reportReview_comment(Review_CommentVO rcvo, ReportVO rpvo, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
-		System.out.println(rcvo);
-		Review_CommentVO rcvo2 = review_commentDao.selectReview_comment(rcvo);
-		//System.out.println(rcvo2);
+		rcvo = review_commentDao.selectReview_comment(rcvo);
+		System.out.println(rpvo);
 		rpvo.setRe_reporter((String)session.getAttribute("id"));
-		//System.out.println(rpvo);
-		//System.out.println(rpvo.getRe_res());
-		//userReportDao.insertBuyerReportsSeller(rpvo);
+		rpvo.setRe_res(rcvo.getRere_sel_id());
+		userReportDao.insertBuyerReportsSeller(rpvo);
 	}
 }
