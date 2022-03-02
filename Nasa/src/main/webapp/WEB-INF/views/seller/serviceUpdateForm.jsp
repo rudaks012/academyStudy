@@ -128,7 +128,7 @@ input[type="radio"] {
 													<td>서비스명 <span class="spanstar">*</span></td>
 													<td colspan="3"><input type="text" id="sname"
 														value="${service.ser_title }" name="ser_title" required>
-														<input type="hidden" value="${service.ser_code }">
+														<input type="hidden" name="ser_code" value="${service.ser_code }">
 														</td>
 												</tr>
 												<tr>
@@ -245,18 +245,21 @@ input[type="radio"] {
 														
 														<c:if test="${service.ser_originsub ne null}">
 															<span class="subfile">${service.ser_originsub }</span>
-															<span class="subfile" style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile')">삭제</span>
+															<span class="subfile" style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(1)">삭제</span>
 															&nbsp;
 														</c:if> 
+															<input type="hidden" id="subfilex" name="subfilex" value="${service.ser_originsub }">
 														<c:if test="${service.ser_originsub2 ne null}">
 															<span class="subfile2">${service.ser_originsub2 }</span> 
-															<span class="subfile2" style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile2')">삭제</span>
+															<span class="subfile2" style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(2)">삭제</span>
 															&nbsp;
 														</c:if>
+															<input type="hidden" id="subfilex2" name="subfilex2" value="${service.ser_originsub2 }">
 														<c:if test="${service.ser_originsub3 ne null}">
 															<span class="subfile3">${service.ser_originsub3 }</span>
-															<span class="subfile3" style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(${service.ser_code }, 'subfile3')">삭제</span>
+															<span class="subfile3" style="color:red;font-size:12px;cursor:pointer;" onclick="fileDelete(3)">삭제</span>
 														</c:if>
+															<input type="hidden" id="subfilex3" name="subfilex3" value="${service.ser_originsub3 }">
 													</td>
 												</tr>
 											</tbody>
@@ -361,13 +364,17 @@ input[type="radio"] {
 		 * 폼 submit 로직
 		 */
 		function registerAction() {
-
+			if($('#ser_cate').val() == '' ){
+				alert('1차 카테고리를 선택해주세요!');
+				return;
+			}else if($('#ser_cate').val() == '' ){
+				alert('2차 카테고리를 선택해주세요!');
+				return;
+			}
+			
 			var form = $("form")[0];
 			var formData = new FormData(form);
 			
-			/*
-			 * 파일업로드 multiple ajax처리
-			 */
 			
 			 $.ajax({
 				type : "POST",
@@ -377,7 +384,7 @@ input[type="radio"] {
 				processData : false,
 				contentType : false,
 				success : function(data) {
-					if (data.result == "OK") {
+					if (data == "OK") {
 						alert("수정이 완료되었습니다.");
 						location.href="sellerService.do";
 					} else
@@ -407,24 +414,18 @@ input[type="radio"] {
 			$('.subfile3').remove();
 		})
 		
-		function fileDelete(sercode, status){
-			console.log(sercode);
-			console.log(status);
-			 $.ajax({
-				type : "POST",
-				url : "fileDelete.do",
-				data : {sercode: sercode, status : status},
-				dataType : "json",
-				success : function(data) {
-					if(data){
-						var subfile=document.getElementsByClassName(status);
-						subfile[0].remove();
-					}
-				},
-				error : function(xhr, status, error) {
-					
-				}
-			}); 
+		function fileDelete(num){
+			if(num == 1){
+				$("#subfilex").val('');
+				$('.subfile').remove();
+			}else if(num == 2){
+				$("#subfilex2").val('');
+				$('.subfile2').remove();
+			}else{
+				$("#subfilex3").val('');
+				$('.subfile3').remove();
+			}
+			
 		}
 	</script>
 </body>
