@@ -64,7 +64,7 @@
 										<p>신고관리</p>
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
-										<p>판매자 노하우</p>
+										<p style="font-weight: bold;">판매자 노하우</p>
 								</a></li>
 								<li><a href="" class="d-flex" data-toggle="modal"
 									data-target="#WithdrawalModal">

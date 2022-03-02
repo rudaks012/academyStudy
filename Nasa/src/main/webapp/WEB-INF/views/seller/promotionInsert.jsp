@@ -67,7 +67,18 @@ p {
 	font-size: 16px;
 	letter-spacing: 1px
 }
-
+#msform input[type='radio']{
+	padding: 8px 15px 8px 15px;
+	border: 1px solid #ccc;
+	border-radius: 0px;
+	margin-top: 2px;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	background-color: #ECEFF1;
+	font-size: 16px;
+	letter-spacing: 1px
+}
 #msform input:focus,
 #msform textarea:focus {
 	-moz-box-shadow: none !important;
@@ -288,7 +299,7 @@ p {
 										<p>서비스관리</p>
 									</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
-										<p>프로모션관리</p>
+										<p style="font-weight: bold;">프로모션관리</p>
 									</a></li>
 								<li><a href="#" class="d-flex">
 										<p>일정관리</p>
@@ -347,6 +358,7 @@ p {
 															<div class="row">
 
 															</div> 
+															
 															<div class="listing-details-area proservice">
 																<div class="container">
 																	<div class="row">
@@ -361,8 +373,8 @@ p {
 																					</h3>
 																					<p>서비스번호</p>
 																					<p>서비스일자</p>
-																					<div class="list-footer">
-																						<input type="button" value="선택">
+																					<div class="list_footer" style="text-align: center;">
+																						<input type="radio" name="pro_service" value="service1">
 																					</div>
 																				</div>
 																				
@@ -371,8 +383,7 @@ p {
 																		<div class="col-lg-4">
 																			<div class="single-listing mb-30">
 																				<div class="list-img">
-																					<img src="assets/img/gallery/list2.png" alt="">
-																					<!-- <span>Open</span> -->
+																					<img src="assets/img/gallery/list1.png" alt="">
 																				</div>
 																				<div class="list-caption">
 																					<h3>
@@ -380,33 +391,17 @@ p {
 																					</h3>
 																					<p>서비스번호</p>
 																					<p>서비스일자</p>
-																					<div class="list-footer">
-																						<input type="button" value="선택">
+																					<div class="list_footer" style="text-align: center;">
+																						<input type="radio" name="pro_service" value="service2">
 																					</div>
 																				</div>
-																			</div>
-																		</div>
-																		<div class="col-lg-4">
-																			<div class="single-listing mb-30">
-																				<div class="list-img">
-																					<img src="assets/img/gallery/list2.png" alt="">
-																				</div>
-																				<div class="list-caption">
-																					<h3>
-																						<a href="listing_details.html">서비스명2</a>
-																					</h3>
-																					<p>서비스번호</p>
-																					<p>서비스일자</p>
-																					<div class="list-footer">
-																						<input type="button" value="선택">
-																					</div>
-																				</div>
+																				
 																			</div>
 																		</div>
 																	</div>
 																</div>
 															</div>
-
+															
 														</div> 
 														<input type="button" name="next"
 															class="next action-button" value="Next" />
@@ -416,8 +411,10 @@ p {
 															<div class="row">
 
 															</div> 
-															<label class="fieldlabels">Date: *</label>
-															<input type="date" name="fdate" max="2022-03-10"/>
+															<label class="fieldlabels">프로모션 시작날짜: *</label>
+															<input type="date" name="fdate" required="required"/>
+															<label class="fieldlabels">프로모션 종료날짜: *</label>
+															<input type="date" name="fdate" required="required"/>
 															<label class="fieldlabels">할인율(%): *</label> 
 															<input type="number" name="fdiscount" />
 															

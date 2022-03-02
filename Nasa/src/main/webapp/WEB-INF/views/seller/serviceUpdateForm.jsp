@@ -75,7 +75,7 @@ input[type="radio"] {
 							<h4 class="widget_title">MYPAGE MENU</h4>
 							<ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
-										<p>서비스관리</p>
+										<p style="font-weight: bold;">서비스관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
 										<p>프로모션관리</p>
@@ -225,8 +225,10 @@ input[type="radio"] {
 												<tr>
 													<td>서비스 메인이미지<span class="spanstar">*</span></td>
 													<td colspan="3">
-														<input type="file" name="file" id="file" required>
-														<span class="fileChange">기존 파일: ${service.ser_imgorigin }</span>
+														<input type="file" name="file" id="file">
+														<c:if test="${service.ser_imgorigin ne null}">
+															<span class="fileChange">기존 파일: ${service.ser_imgorigin }</span>
+														</c:if>
 													</td>
 												</tr>
 												<tr>
@@ -417,7 +419,6 @@ input[type="radio"] {
 					if(data){
 						var subfile=document.getElementsByClassName(status);
 						subfile[0].remove();
-						subfile[1].remove();
 					}
 				},
 				error : function(xhr, status, error) {

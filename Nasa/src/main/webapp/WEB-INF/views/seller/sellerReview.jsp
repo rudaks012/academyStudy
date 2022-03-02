@@ -72,7 +72,7 @@
 										<p>일정관리</p>
 								</a></li>
 								<li><a href="sellerReview.do" class="d-flex">
-										<p>리뷰관리</p>
+										<p style="font-weight: bold;">리뷰관리</p>
 								</a></li>
 								<li><a href="sellerPayment.do" class="d-flex">
 										<p>결제조회</p>

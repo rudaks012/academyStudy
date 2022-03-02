@@ -60,7 +60,7 @@
 										<p>프로모션관리</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
-										<p>일정관리</p>
+										<p style="font-weight: bold;">일정관리</p>
 								</a></li>
 								<li><a href="sellerReview.do" class="d-flex">
 										<p>리뷰관리</p>
