@@ -13,4 +13,5 @@ public class ReportVO {
 	String re_reporter; // 신고자 id
 	String re_res; // 피신고자 id
 	String re_date;
+	String re_rpoertdate;
 }

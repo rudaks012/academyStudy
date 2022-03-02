@@ -134,7 +134,7 @@ input[type="radio"] {
 												<tr>
 													<td>1차 카테고리<span class="spanstar">*</span></td>
 													<td><select name="ser_cate" id="ser_cate"
-														class="sercate" required>
+														class="sercate" disabled="disabled">
 															<option value="">선택하세요.</option>
 															<option value="CAT1" <c:if test="${service.ser_cate eq 'CAT1' }">selected</c:if>>앱</option>
 															<option value="CAT2" <c:if test="${service.ser_cate eq 'CAT2' }">selected</c:if>>웹</option>
@@ -148,7 +148,7 @@ input[type="radio"] {
 														카테고리<span class="spanstar">*</span>
 													</td>
 													<td><select name="ser_sub_cate" id="ser_sub_cate"
-														class="ser_sub_cate" required>
+														class="ser_sub_cate" disabled="disabled">
 															<option value="">선택하세요.</option>
 													</select></td>
 												</tr>
@@ -194,33 +194,32 @@ input[type="radio"] {
 													<td colspan="3">
 														<input type="radio" name="ser_line" value="온라인" <c:if test="${service.ser_line eq '온라인'}">checked="checked"</c:if>>온라인 
 														<input type="radio" name="ser_line" value="오프라인"  <c:if test="${service.ser_line eq '오프라인'}">checked="checked"</c:if>>오프라인 
-														<input type="radio" name="ser_line" value="온/오프라인"  <c:if test="${service.ser_line eq '온/오프라인'}">checked="checked"</c:if>>온/오프라인</td>
+														<input type="radio" name="ser_line" value="온/오프라인" <c:if test="${service.ser_line eq '온/오프라인'}">checked="checked"</c:if>>온/오프라인</td>
 												</tr>
 												<tr>
 													<td>서비스제공일<span class="spanstar">*</span></td>
 													<td colspan="3">
-														<input type="radio" name="ser_date" value="상시" <c:if test="${service.ser_date eq '상시'}">checked="checked"</c:if>>상시 &nbsp; 
-														<input type="radio" name="ser_date" value="기간지정" <c:if test="${service.ser_date eq '기간지정'}">checked="checked"</c:if>>기간지정 
-														<input type="date" name="ser_start" <c:if test="${service.ser_date eq '기간지정'}">value="${service.ser_start }"</c:if>> - <input type="date" name="ser_end" <c:if test="${service.ser_date eq '기간지정'}">value="${service.ser_end }"</c:if>></td>
+														<input type="radio" name="ser_date" value="상시" disabled <c:if test="${service.ser_date eq '상시'}">checked="checked"</c:if>>상시 &nbsp; 
+														<input type="radio" name="ser_date" value="기간지정" disabled <c:if test="${service.ser_date eq '기간지정'}">checked="checked"</c:if>>기간지정 
+														<input type="date" name="ser_start" disabled <c:if test="${service.ser_date eq '기간지정'}">value="${service.ser_start }"</c:if>> - <input type="date" name="ser_end" disabled <c:if test="${service.ser_date eq '기간지정'}">value="${service.ser_end }"</c:if>></td>
 												</tr>
 												<tr>
 													<td>서비스 기본가격<span class="spanstar">*</span></td>
-													<td colspan="3"><input type="number" id="ser_price"
-														name="ser_price" value="${service.ser_price }" required></td>
+													<td colspan="3">
+														<input type="number" id="ser_price" name="ser_price" value="${service.ser_price }" required>
+													</td>
 												</tr>
 												<tr>
 													<td>서비스 설명<span class="spanstar">*</span></td>
-													<td colspan="3"><textarea cols="78" rows="4"
-															id="ser_sub" name="ser_sub" required>
-															${service.ser_sub } 
-														</textarea></td>
+													<td colspan="3">
+														<textarea cols="78" rows="4" id="ser_sub" name="ser_sub" required>${service.ser_sub }</textarea>
+													</td>
 												</tr>
 												<tr>
 													<td>서비스 제공절차</td>
-													<td colspan="3"><textarea cols="78" rows="4"
-															id="ser_offer" name="ser_offer">
-															 ${service.ser_offer }
-														</textarea></td>
+													<td colspan="3">
+														<textarea cols="78" rows="4" id="ser_offer" name="ser_offer">${service.ser_offer }</textarea>
+													</td>
 												</tr>
 												<tr>
 													<td>서비스 메인이미지<span class="spanstar">*</span></td>
