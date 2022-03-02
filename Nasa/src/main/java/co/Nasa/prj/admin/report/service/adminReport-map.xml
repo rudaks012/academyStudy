@@ -2,7 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.Nasa.prj.admin.report.service.AdminReportMapper">
 
-  <select id="todayReport">
-  	select count(*) from report where to_char(re_date,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
+  <select id="totalReport" resultType="int">
+  	select count(*) from report
   </select>
+  
+  <select id="getReportListWithPaging" resultType="co.Nasa.prj.comm.VO.ReportVO">
+  	<![CDATA[
+  	 SELECT *
+  	 FROM 
+  	     (
+  	     SELECT rownum rn, r.*
+  	     from report r
+  	     where rownum <=#{pageNum} * #{amount}
+  	     )
+  	 WHERE rn > (#{pageNum}-1 )* #{amount}
+  	]]>
+  </select>
+  
+	<select id="detailedReport" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+        SELECT 
+      r.*
+      <if test='b_author !="B"'>
+      ,(SELECT b_report FROM buyer WHERE b_email=#{re_res}) as b_report
+      </if>
+      <if test='b_author =="B"'>
+      ,(SELECT s_report FROM seller WHERE s_email=#{re_res}) as s_report
+      </if>
+      
+      FROM report r
+      WHERE r.re_res = #{re_res} AND r.re_code=#{re_code}
+  </select>
+  
 </mapper>
