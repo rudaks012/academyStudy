@@ -45,6 +45,23 @@ public class AdminReportController {
 		model.addAttribute("total",reportDao.totalReportWait() );
 		return"admin/report/reportWait";
 	}
+	
+	//신고대기 상세조회 ajax
+	@ResponseBody
+	@RequestMapping("/ajaxDetailedReportWait.do")
+	public AdminAuthorVO ajaxDetailedReportWait(AdminAuthorVO vo) {
+		return reportDao.detailedReport(vo);
+	}
+	
+	//신고대기->Y ajax
+	@ResponseBody
+	@RequestMapping("/ajaxConfirmReport.do")
+	public int ajaxConfirmReport(AdminAuthorVO vo) {
+		int n= reportDao.updateReportResult(vo);
+		return n;
+	}
+	
+	
 	@RequestMapping("/report_complete.do")
 	public String report_complete() {
 		return"admin/report/reportComplete";

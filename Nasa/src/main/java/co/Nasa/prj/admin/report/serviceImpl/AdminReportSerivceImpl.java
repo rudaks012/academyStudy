@@ -48,6 +48,18 @@ public class AdminReportSerivceImpl implements AdminReportService {
 		return map.getReportWaitListWithPaging(cri);
 	}
 
+	@Override
+	public AdminAuthorVO detailedReportWait(AdminAuthorVO vo) {
+		// TODO Auto-generated method stub
+		return map.detailedReportWait(vo);
+	}
+
+	@Override
+	public int updateReportResult(AdminAuthorVO vo) {
+		// TODO Auto-generated method stub
+		return map.updateReportResult(vo);
+	}
+
 	
 
 

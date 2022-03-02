@@ -51,4 +51,18 @@
   	]]>
   </select>
   
+ <update id="updateReportResult" parameterType="co.Nasa.prj.admin.service.AdminAuthorVO" >
+ 	UPDATE report
+	SET re_result = 'Y', RE_RPOERTDATE=sysdate
+	<choose>
+		<when test="b_author =='B'">
+		
+		</when>
+		<when test="b_author =='B'">
+		
+		</when>
+	</choose>
+	WHERE re_code= #{re_code}
+ </update>
+  
 </mapper>
