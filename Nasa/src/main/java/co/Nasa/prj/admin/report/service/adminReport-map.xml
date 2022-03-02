@@ -22,15 +22,33 @@
 	<select id="detailedReport" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
         SELECT 
       r.*
-      <if test='b_author !="B"'>
-      ,(SELECT b_report FROM buyer WHERE b_email=#{re_res}) as b_report
-      </if>
-      <if test='b_author =="B"'>
-      ,(SELECT s_report FROM seller WHERE s_email=#{re_res}) as s_report
-      </if>
-      
+      <choose>
+      	<when test="b_author =='B'">
+      		,(SELECT b_report FROM buyer WHERE b_email=#{re_res}) as b_report
+      	</when>
+      	<when test="b_author !='B'">
+      		,(SELECT s_report FROM seller WHERE s_email=#{re_res}) as s_report
+      	</when>
+      </choose>
       FROM report r
       WHERE r.re_res = #{re_res} AND r.re_code=#{re_code}
+  </select>
+  
+  <select id="totalReportWait" resultType="int">
+  	select count(*) from report where re_result is null
+  </select>
+  
+  <select id="getReportWaitListWithPaging" resultType="co.Nasa.prj.comm.VO.ReportVO">
+  	<![CDATA[
+  	 SELECT *
+  	 FROM 
+  	     (
+  	     SELECT rownum rn, r.*
+  	     FROM report r
+  	     WHERE re_result is null AND rownum <=#{pageNum} * #{amount}
+  	     )
+  	 WHERE rn > (#{pageNum}-1 )* #{amount}
+  	]]>
   </select>
   
 </mapper>

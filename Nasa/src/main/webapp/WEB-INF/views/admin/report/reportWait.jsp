@@ -113,7 +113,7 @@
                                     </li>
                                 </ul>
                             
-                            
+                            ${reportWaitLists }
                               <div class=" my-4">총 <span class="mx-1 text-danger">50</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
