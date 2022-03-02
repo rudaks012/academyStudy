@@ -86,7 +86,11 @@
 											<td>${report.re_res }</td>
 											<td>${report.re_type }</td>
 											<td>${report.re_subject }</td>
-											<td>${report.re_result }</td>
+											<c:choose>
+												<c:when test="${report.re_result eq 'Y'}"><td>승인</td></c:when>
+												<c:when test="${report.re_result eq 'D'}"><td>반려</td></c:when>
+											</c:choose>
+											<%-- <td>${report.re_result }</td> --%>
 										</tr>
 									</c:forEach>
 								</tbody>

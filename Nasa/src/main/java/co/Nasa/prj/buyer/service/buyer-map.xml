@@ -9,8 +9,14 @@
 	</select>
 	
 	<update id="updateBuyer" parameterType="co.Nasa.prj.comm.VO.BuyerVO">
-		UPDATE BUYER
-		SET B_NICKNAME = #{b_nickname}, B_ZIPCODE = #{b_zipcode}, B_ADDRESS = #{b_address}, B_DETAILADDRESS = #{b_detailaddress}, B_PASSWORD = #{b_password}, FIELD_CODE = #{field_code}
+		UPDATE 	BUYER
+		SET 	B_NICKNAME = #{b_nickname}
+		  	  , B_ZIPCODE = #{b_zipcode}
+		  	  , B_ADDRESS = #{b_address}
+		  	  , B_DETAILADDRESS = #{b_detailaddress}
+		  	  , B_PASSWORD = #{b_password}
+		  	  , FIELD_CODE = #{field_code}
+		  	  , B_IMG = #{b_img}
 		WHERE B_EMAIL = #{b_email}
 	</update>
 	

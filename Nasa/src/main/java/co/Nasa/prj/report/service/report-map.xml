@@ -13,4 +13,16 @@
 		WHERE RE_REPORTER = #{re_reporter}
 		ORDER BY RE_DATE DESC
 	</select>
+	
+	<insert id="insertBuyerReportsSeller" parameterType="co.Nasa.prj.comm.VO.ReportVO">
+		INSERT INTO REPORT(RE_CODE, RE_TYPE, RE_REPORTER, RE_RES, RE_DATE, RE_SUBJECT)
+		VALUES (
+			(SELECT NVL(MAX(RE_CODE), 0)+1 FROM REPORT),
+			#{re_type},
+			#{re_reporter},
+			#{re_res},
+			sysdate,
+			#{re_subject}
+		)
+	</insert>
 </mapper>

@@ -78,18 +78,21 @@
 									<c:choose>
 										<c:when test="${buyerinfo.b_rank  eq '1'}">
 											<li>별 등급</li>
+											<li>2% 할인 혜택</li>
 										</c:when>
 										<c:when test="${buyerinfo.b_rank  eq '2'}">
 											<li>달 등급</li>
+											<li>5% 할인 혜택</li>
 										</c:when>
 										<c:when test="${buyerinfo.b_rank  eq '3'}">
 											<li>태양 등급</li>
+											<li>7% 할인 혜택</li>
 										</c:when>
 										<c:when test="${buyerinfo.b_rank  eq '4'}">
 											<li>지구 등급</li>
+											<li>10% 할인 혜택</li>
 										</c:when>
 									</c:choose>
-									<li>10% 할인 혜택</li>
 									<li><a href="#">등급에 대해서 궁금하다면?</a></li>
 								</ul>
 							</div>

@@ -1,5 +1,8 @@
 package co.Nasa.prj.buyer.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.mail.internet.MimeMessage;
@@ -203,17 +206,36 @@ public class BuyerController {
 		return "buyer/buyerUpdate";
 	}
 
-	@RequestMapping("/profileUpdate.do")
-	public String profileUpdate(BuyerVO vo) {
-		// System.out.println(mf.getOriginalFilename());
-//		String originalFileName = imgfile.getOriginalFilename();
-//		String saveurl = "C:\\prjnasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
-//		String savepath = saveurl + originalFileName;
-//		System.out.println("savepath : " + savepath);
-//		
-//		String saveFile = "resources\\user\\assets\\img\\profile\\" + originalFileName;
-//		vo.setB_img(saveFile);
-
+	@RequestMapping(value = "/profileUpdate.do", produces = "text/plain;charset=UTF-8")
+	public String profileUpdate(BuyerVO vo, MultipartFile imgupload, HttpSession session, HttpServletResponse response,
+			HttpServletRequest request) {
+		if(vo.getField_code() == null) {
+			BuyerVO bvo = new BuyerVO();
+			bvo.setB_email((String) session.getAttribute("id"));
+			bvo = buyerDao.selectBuyer(bvo);
+			vo.setField_code(bvo.getField_code());
+		}
+		System.out.println(vo.getField_code());
+		
+		// img upload
+		String originalFileName = imgupload.getOriginalFilename();
+		String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+		String savepath = saveurl + originalFileName;
+		System.out.println(savepath);
+		
+		String b_img = "resources/user/assets/img/profile/" + originalFileName;
+		
+		vo.setB_img(b_img);
+		System.out.println(vo.getB_img());
+		
+		try {
+			imgupload.transferTo(new File(savepath));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		buyerDao.updateBuyer(vo);
 
 		return "buyer/buyerMypage";

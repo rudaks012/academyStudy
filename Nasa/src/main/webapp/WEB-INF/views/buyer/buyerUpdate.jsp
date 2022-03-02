@@ -22,6 +22,7 @@
 </script>
 </head>
 <body>
+<% request.setCharacterEncoding("UTF-8"); %>
 <!-- Hero Start-->
 <div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
 </div>
@@ -32,7 +33,7 @@
 	<section>
 		<div class="row justify-content-center" style="margin-top: 50px;">
 			<div style="width:550px;">
-				<form method="get" id = "profilefrm" action="profileUpdate.do" onsubmit="return passwordCheck()" enctype="multipart/form-data">
+				<form method="post" id = "profilefrm" action="profileUpdate.do" onsubmit="return passwordCheck()" enctype="multipart/form-data">
 					<div id="profileThumnail" class="justify-content-center" style="text-align: center;">
 						<c:choose>
 							<c:when test="${empty buyerinfo.b_img }">
@@ -42,8 +43,8 @@
 								<img id="prvimg" src="${buyerinfo.b_img }" alt="" style="width: 150px; height:150px; border-radius: 70%; overflow: hidden;"><br>
 							</c:otherwise>
 						</c:choose>
-	                    <input type="file" id="imgupload" name="imgupload" accept="image/*">
-	                    <!-- <label class="genric-btn primary radius" for="imgupload" style="margin-top: 7px;">사진 수정</label> -->
+	                    <input type="file" id="imgupload" name="imgupload" accept="image/*" style="display:none;">
+	                    <label class="genric-btn primary radius" for="imgupload" style="margin-top: 7px;">사진 수정</label>
                     </div>
 				
 					<div style="margin-top: 20px;">
@@ -84,8 +85,7 @@
                             </div>
     
                             <div>
-                                <select class="subcategoryselect" id="subcategoryselect"  name="field_code" required>
-                                    <option>선택하세요</option>
+                                <select class="subcategoryselect" id="subcategoryselect"  name="field_code">
                                 </select>
                             </div>
                         </div>
