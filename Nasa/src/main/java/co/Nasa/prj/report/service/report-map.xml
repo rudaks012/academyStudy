@@ -6,4 +6,11 @@
 		FROM REPORT
 		WHERE RE_REPORTER = #{re_reporter}
 	</select>
+	
+	<select id="selectSellerReportList" resultType="co.Nasa.prj.comm.VO.ReportVO">
+		SELECT *
+		FROM REPORT
+		WHERE RE_REPORTER = #{re_reporter}
+		ORDER BY RE_DATE DESC
+	</select>
 </mapper>

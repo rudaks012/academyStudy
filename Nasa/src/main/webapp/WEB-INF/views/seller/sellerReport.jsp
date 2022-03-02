@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +12,9 @@
 .hr{
  	background-color : #d5c9ea !important;
    	margin: 10px !important;
+}
+.table thead th{
+	background-color : #e0d6f2 !important;
 }
 </style>
 </head>
@@ -52,7 +58,7 @@
 										<p>매출확인</p>
 								</a></li>
 								<li><a href="sellerReport.do" class="d-flex">
-										<p>신고관리</p>
+										<p style="font-weight: bold;">신고관리</p>
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p>판매자 노하우</p>
@@ -85,22 +91,17 @@
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach items="${reports }" var="report" varStatus="status">
 										<tr>
-											<th scope="row">1</th>
-											<td>2022.02.17</td>
-											<td>IT고수</td>
-											<td>욕설</td>
-											<td>zzzzz</td>
-											<td>블랙리스트</td>
+											<th scope="row">${fn:length(reports)-status.index }</th>
+											<td>${fn:substring(report.re_date,0,11) }</td>
+											<td>${report.re_res }</td>
+											<td>${report.re_type }</td>
+											<td>${report.re_subject }</td>
+											<td>${report.re_result }</td>
 										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>2022.02.17</td>
-											<td>IT고수</td>
-											<td>욕설</td>
-											<td>zzzzz</td>
-											<td>블랙리스트</td>
-										</tr>
+									</c:forEach>
+										
 									</tbody>
 								</table>
 							</div>

@@ -53,6 +53,9 @@ public class NoticeController {
 		PrintWriter out = response.getWriter();
 		vo.setNo_id("lsj");
 		
+		String title = new String(req.getParameter("no_title").getBytes("8859_1"), "UTF-8");
+		vo.setNo_title(title);
+		
 		String fileRoot;
 		try {
 			// 파일이 있을때 탄다.
@@ -90,7 +93,7 @@ public class NoticeController {
 		System.out.println(vo.getNo_title());
 		System.out.println(file.getOriginalFilename());
 		// 서머노트 코드 원본
-		String s = req.getParameter("summernote");
+		String s = new String(req.getParameter("summernote").getBytes("8859_1"), "UTF-8");
 		System.out.println("s라고 저장됨 " + s);
 		System.out.println("파일자르는 이름 " + s.indexOf("src=")); // 13번째에서 잘라야함.
 		vo.setNo_subject(s);
@@ -101,80 +104,6 @@ public class NoticeController {
 			vo.setNo_subject(s);
 		}
 		
-//		if(s.indexOf("src=")==-1) {
-//			vo.setNo_subject(s);
-//			int n = 0;
-//			//int n = NoticeDao.knowhowInsert(vo);
-//			if(n != 0) {
-//				out.println("<script language='javascript'>");
-//				out.println("alert('등록 완료하였습니다.')");
-//				out.println("</script>");
-//				
-//				model.addAttribute("d", s);
-//				return "seller/sellerKnowhow";
-//			}
-//		}else {
-//			//while(s.indexOf("src=") != -1) {
-////				if (s.indexOf("src=") == 8) {
-////					// 이미지 파일일 경우 코드 잘라서 쓰기.
-////					String d = s.substring(0, 13) + "editor/" + s.substring(39);
-////					System.out.println("d라고 저장됨 " + d);
-////					vo.setNo_subject(d);
-////					int n = 0;
-////					//int n = NoticeDao.knowhowInsert(vo);
-////					if(n != 0) {
-////						out.println("<script language='javascript'>");
-////						out.println("alert('등록 완료하였습니다.')");
-////						out.println("</script>");
-////
-////						out.flush();
-////						model.addAttribute("d", d);
-////						
-////						return "seller/sellerKnowhow";
-////					}
-////				}
-//				//System.out.println(s.indexOf("src="));
-//			//}
-//			int lineCnt = 0;
-//		    int fromIndex = -1;
-//		    while ((fromIndex = s.indexOf("\n", fromIndex + 1)) >= 0) {
-//		    	lineCnt++;
-//		    }
-//
-//			
-//		}
-		
-		
-//		if (s.indexOf("src=") == 8) {
-//			// 이미지 파일일 경우 코드 잘라서 쓰기.
-//			String d = s.substring(0, 13) + "editor/" + s.substring(39);
-//			System.out.println("d라고 저장됨 " + d);
-//			vo.setNo_subject(d);
-//			int n = 0;
-//			//int n = NoticeDao.knowhowInsert(vo);
-//			if(n != 0) {
-//				out.println("<script language='javascript'>");
-//				out.println("alert('등록 완료하였습니다.')");
-//				out.println("</script>");
-//
-//				out.flush();
-//				model.addAttribute("d", d);
-//				
-//				return "seller/sellerKnowhow";
-//			}
-//		} else {
-//			vo.setNo_subject(s);
-//			int n = 0;
-//			//int n = NoticeDao.knowhowInsert(vo);
-//			if(n != 0) {
-//				out.println("<script language='javascript'>");
-//				out.println("alert('등록 완료하였습니다.')");
-//				out.println("</script>");
-//				
-//				model.addAttribute("d", s);
-//				return "seller/sellerKnowhow";
-//			}
-//		}
 		int n = NoticeDao.knowhowInsert(vo);
 		if(n != 0) {
 			out.println("<script language='javascript'>");
@@ -202,5 +131,11 @@ public class NoticeController {
 			b = false;
 		}
 		return b;
+	}
+	
+	@RequestMapping("/knowhowUpdateForm.do")
+	public String knowhowUpdateForm(Model model, @RequestParam("no_code") String no_code) {
+		model.addAttribute("knowhowUpdate", NoticeDao.knowhowSelect(no_code));
+		return "seller/knowhowUpdateForm";
 	}
 }

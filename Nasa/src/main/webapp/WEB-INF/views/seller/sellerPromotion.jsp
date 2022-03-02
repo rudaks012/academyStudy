@@ -55,7 +55,7 @@
 										<p>서비스관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
-										<p>프로모션관리</p>
+										<p style="font-weight: bold;">프로모션관리</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
 										<p>일정관리</p>

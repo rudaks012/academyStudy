@@ -85,7 +85,7 @@
                            </p>
                          
                            <div style="text-align: center;">
-                              <button id="knowUpdate" class="genric-btn primary small startbtn">수정</button>
+                              <button class="genric-btn primary small startbtn" onclick="location.href='knowhowUpdateForm.do?no_code=${knowhowDetail.no_code}'">수정</button>
                               <button id="knowDelete" class="genric-btn primary small startbtn">삭제</button>
                            </div>
                           

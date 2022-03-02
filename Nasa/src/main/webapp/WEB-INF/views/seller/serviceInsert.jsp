@@ -75,7 +75,7 @@ input[type="radio"] {
 							<h4 class="widget_title">MYPAGE MENU</h4>
 							<ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
-										<p>서비스관리</p>
+										<p style="font-weight: bold;">서비스관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
 										<p>프로모션관리</p>

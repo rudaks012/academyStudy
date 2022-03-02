@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,13 +54,13 @@ p {
 </style>
 </head>
 <body>
-	<div
+<div
 		class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-12">
 					<div class="hero-cap text-center pt-50">
-						<h2>노하우 등록</h2>
+						<h2>노하우 수정</h2>
 					</div>
 				</div>
 			</div>
@@ -113,7 +113,7 @@ p {
 						<article class="blog_item">
 							<div class="justify-content-center">
 								<a class="d-inline-block" style="margin-top:20px;">
-										<h3>노하우 등록</h3>
+										<h3>노하우 수정</h3>
 									</a>
 								<hr class="hr"/>
 								<div class="blog_details">
@@ -125,18 +125,22 @@ p {
 														<span class="spanstar">*</span>
 													</td>
 													<td><input type="text" id="no_title" name="no_title"
-														class="sname"></td>
+														class="sname" value="${knowhowUpdate.no_title }"></td>
 												</tr>
 												<tr>
 													<td class="align-middle table-primary knowtd" colspan="2">메인이미지
 														<span class="spanstar">*</span>
 													</td>
 													<td><input type="file" id="mainKnow" name="mainKnow"
-														class="sname" required="required"></td>
+														class="sname" >
+														<span>기존 파일 : ${knowhowUpdate.no_originimg }</span>	
+													</td>
 												</tr>
 												<tr>
 													<td colspan="3" style="padding: 1rem">
-													<textarea id="summernote" name="summernote"></textarea>
+													<textarea id="summernote" name="summernote" >
+														${knowhowUpdate.no_subject }
+													</textarea>
 													</td>
 												</tr>
 											</tbody>

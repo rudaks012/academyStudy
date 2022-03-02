@@ -74,7 +74,7 @@ input[type=date] {
 										<p>리뷰관리</p>
 								</a></li>
 								<li><a href="sellerPayment.do" class="d-flex">
-										<p>결제조회</p>
+										<p style="font-weight: bold;">결제조회</p>
 								</a></li>
 								<li><a href="sellerSales.do" class="d-flex">
 										<p>매출확인</p>

@@ -230,70 +230,10 @@ public class ServiceController {
 		int n = serviceDao.serviceInsert(vo);
 		if(n != 1) {
 			strResult = "{ \"result\":\"FAIL\" }";
+		}else {
+			strResult = "{ \"result\":\"OK\" }";
 		}
 		
-//		try {
-//			// 파일이 있을때 탄다.
-//			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
-//				List<String> imgs = new ArrayList<String>();
-//				int i = 0;
-//				for(MultipartFile file2:multipartFile) {
-//					fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
-//					System.out.println(fileRoot);
-//					
-//					String originalFileName = file2.getOriginalFilename();	//오리지날 파일명
-//					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-//					String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-//					
-//					File targetFile = new File(fileRoot + savedFileName);	
-//					try {
-//						InputStream fileStream = file.getInputStream();
-//						FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
-//						
-//						imgs.add(fileRoot+savedFileName); //uuid
-//						imgs.add(originalFileName); //원본
-//					} catch (Exception e) {
-//						//파일삭제
-//						FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
-//						e.printStackTrace();
-//						break;
-//					}
-//					i++;
-//				}
-//				strResult = "{ \"result\":\"OK\" }";
-//				
-//				if(i == 1) {
-//					imgs.add(null);
-//					imgs.add(null);
-//					imgs.add(null);
-//					imgs.add(null);
-//				}else if(i == 2) {
-//					imgs.add(null);
-//					imgs.add(null);
-//				}
-//				
-//				vo.setSer_subimg(imgs.get(0));
-//				vo.setSer_originsub(imgs.get(1));
-//				
-//				vo.setSer_subimg2(imgs.get(2));
-//				vo.setSer_originsub2(imgs.get(3));
-//				
-//				vo.setSer_subimg3(imgs.get(4));
-//				vo.setSer_originsub3(imgs.get(5));
-//			}
-//			// 파일 아무것도 첨부 안했을때 탄다.(게시판일때, 업로드 없이 글을 등록하는경우)
-//			else
-//				strResult = "{ \"result\":\"OK\" }";
-//			System.out.println("파일이미지2");
-//		}catch(Exception e){
-//			e.printStackTrace();
-//			strResult = "{ \"result\":\"FAIL\" }";
-//		}
-//		
-//		int n = serviceDao.serviceInsert(vo);
-//		if(n != 1) {
-//			strResult = "{ \"result\":\"FAIL\" }";
-//		}
 		return strResult;
 	}
 	
@@ -306,14 +246,68 @@ public class ServiceController {
 	
 	@ResponseBody
 	@RequestMapping("/serviceUpdate.do")
-	public String serviceUpdate(ServiceVO vo, @RequestParam("file") MultipartFile file, @RequestParam("article_file") List<MultipartFile> multipartFile, 
+	public String serviceUpdate(ServiceVO vo, @RequestParam("file") MultipartFile file, @RequestParam("subfile") MultipartFile subfile, 
+			@RequestParam("subfile2") MultipartFile subfile2, @RequestParam("subfile3") MultipartFile subfile3, 
 			HttpSession session,HttpServletRequest request) throws UnsupportedEncodingException {
 		vo.setS_email("lsj");
 		
 		System.out.println(file.getOriginalFilename());
-		for(MultipartFile file2 : multipartFile) {
-			System.out.println(file2.getOriginalFilename());
+		
+		ServiceVO vo2 = new ServiceVO();
+		vo2 = serviceDao.serviceSelect(vo.getSer_code());
+		
+		String fileRoot;
+		
+		//메인이미지 새로 등록했을때
+		if(file.getSize() > 0 && !file.getOriginalFilename().equals("")) {
+			
+			fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
+			System.out.println(fileRoot);
+			
+			String originalFileName = file.getOriginalFilename();	//오리지날 파일명
+			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+			String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+			
+			File targetFile = new File(fileRoot + savedFileName);	
+			File targetFile2 = new File(fileRoot + vo2.getSer_img());
+			//이미있는파일 삭제
+			if (targetFile2.exists()) {
+				targetFile2.delete();
+			}
+			
+			try {
+				InputStream fileStream = file.getInputStream();
+				FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+				vo.setSer_img(savedFileName); //uuid
+				vo.setSer_imgorigin(originalFileName); //원본
+				
+			} catch (Exception e) {
+				//파일삭제
+				FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+				e.printStackTrace();
+			}
 		}
+		//메인이미지 null일때
+		else {
+			//기존이미지 유지
+			vo.setSer_img(vo2.getSer_img());
+			vo.setSer_imgorigin(vo2.getSer_imgorigin());
+			
+		}
+		
+		
+		//서브1
+		
+		//서브2
+		
+		//서브3
+		
+		
+		
+		
+		
+		
+		int n = serviceDao.serviceUpdate(vo);
 		
 		return "";
 	}

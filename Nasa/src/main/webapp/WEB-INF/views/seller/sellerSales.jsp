@@ -74,7 +74,7 @@
 										<p>결제조회</p>
 								</a></li>
 								<li><a href="sellerSales.do" class="d-flex">
-										<p>매출확인</p>
+										<p style="font-weight: bold;">매출확인</p>
 								</a></li>
 								<li><a href="sellerReport.do" class="d-flex">
 										<p>신고관리</p>
