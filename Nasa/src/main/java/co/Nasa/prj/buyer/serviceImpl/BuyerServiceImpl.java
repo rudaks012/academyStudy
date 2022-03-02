@@ -1,7 +1,5 @@
 package co.Nasa.prj.buyer.serviceImpl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -28,4 +26,20 @@ public class BuyerServiceImpl implements BuyerService {
 	@Override
 	public int deleteBuyer(BuyerVO vo) {
 		return map.deleteBuyer(vo);
-	}}
+	}
+
+	@Override
+	public int BuyerNicknameCheck(BuyerVO vo) {
+		return map.BuyerNicknameCheck(vo);
+	}
+
+	@Override
+	public int BuyerEmailCheck(BuyerVO vo) {
+		return map.BuyerEmailCheck(vo);
+	}
+
+	@Override
+	public int BuyerInsert(BuyerVO vo) {
+		return map.BuyerInsert(vo);
+	}
+}

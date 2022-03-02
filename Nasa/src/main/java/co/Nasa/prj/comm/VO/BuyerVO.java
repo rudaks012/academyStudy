@@ -1,8 +1,6 @@
 package co.Nasa.prj.comm.VO;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class BuyerVO {

@@ -19,4 +19,20 @@
 		FROM BUYER
 		WHERE B_EMAIL = #{b_email}
 	</delete>
+	
+	<select id="BuyerNicknameCheck" resultType="int">
+		select count(*) from buyer
+		where b_nickname=#{b_nickname}
+	</select>
+	
+	<select id="BuyerEmailCheck" resultType="int">
+		select count(*) from buyer
+		where b_email=#{b_email}
+	</select>
+	
+	<insert id="BuyerInsert" parameterType="co.Nasa.prj.comm.VO.BuyerVO">
+		insert into buyer (b_email, b_rank, b_password, b_nickname, b_tel, b_address, b_zipcode, b_detailaddress, b_author, b_status, token, field_code, b_name)
+		values (#{b_email}, #{b_rank}, #{b_password}, #{b_nickname}, #{b_tel}, #{b_address}, #{b_zipcode}, #{b_detailaddress}, #{b_author}, #{b_status}, #{token}, #{field_code}, #{b_name})
+	</insert>
+	
 </mapper>

@@ -7,6 +7,7 @@ import co.Nasa.prj.comm.VO.SellerVO;
 public interface SellerMapper {
 	int SellerNicknameCheck(SellerVO vo);
 	int SellerEmailCheck(SellerVO vo);
+	int SellerInsert(SellerVO vo);
 
 	// seller 전체 조회
 	public List<SellerVO> selectSellerList();
