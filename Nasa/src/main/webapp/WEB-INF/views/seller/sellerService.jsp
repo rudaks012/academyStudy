@@ -115,7 +115,7 @@ input[type=date] {
 .pt-70{
 	padding-top: 0px;
 }
-blog_details img{
+.blog_details img{
 	width: 354px;
 	height: 256px;
 }
@@ -273,7 +273,7 @@ blog_details img{
 																	<div class="col-lg-6">
 																		<div class="single-listing mb-30">
 																			<div class="list-img">
-																				<img src=${service.ser_img } alt="">
+																				<img src="fileupload/${service.ser_img }" alt="">
 																			</div>
 																			<div class="list-caption">
 																				<h3>

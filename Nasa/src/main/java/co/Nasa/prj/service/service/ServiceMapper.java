@@ -10,5 +10,5 @@ public interface ServiceMapper {
 	int serviceInsert(ServiceVO vo);
 	ServiceVO serviceSelect(String ser_code);
 	int serviceUpdate(ServiceVO vo);
-	int fileDelete(HashMap<String, String> mapp);
+
 }

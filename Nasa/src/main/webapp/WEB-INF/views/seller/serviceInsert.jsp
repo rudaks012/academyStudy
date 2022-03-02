@@ -132,7 +132,7 @@ input[type="radio"] {
 												<tr>
 													<td>1차 카테고리<span class="spanstar">*</span></td>
 													<td><select name="ser_cate" id="ser_cate"
-														class="sercate" required>
+														class="sercate">
 															<option value="">선택하세요.</option>
 															<option value="CAT1">앱</option>
 															<option value="CAT2">웹</option>
@@ -145,7 +145,7 @@ input[type="radio"] {
 														카테고리<span class="spanstar">*</span>
 													</td>
 													<td><select name="ser_sub_cate" id="ser_sub_cate"
-														class="ser_sub_cate" required>
+														class="ser_sub_cate" >
 															<option value="">선택하세요.</option>
 													</select></td>
 												</tr>
@@ -255,11 +255,11 @@ input[type="radio"] {
 	</section>
 
 	<script>
-		$(document).ready(function()
+		/* $(document).ready(function()
 		// input file 파일 첨부시 fileCheck 함수 실행
 		{
 			$("#input_file").on("change", fileCheck);
-		});
+		}); */
 
 		/**
 		 * 첨부파일로직
@@ -309,7 +309,7 @@ input[type="radio"] {
 		// 첨부파일 배열
 		var content_files = new Array();
 
-		function fileCheck(e) {
+		/* function fileCheck(e) {
 			var files = e.target.files;
 			// 파일 배열 담기
 			var filesArr = Array.prototype.slice.call(files);
@@ -347,14 +347,22 @@ input[type="radio"] {
 			console.log(content_files);
 			//초기화 한다.
 			$("#input_file").val("");
-		}
+		} */
 
 		
 		/*
 		 * 폼 submit 로직
 		 */
 		function registerAction() {
-
+			console.log($('#ser_cate').val());
+			if($('#ser_cate').val() == '' ){
+				alert('1차 카테고리를 선택해주세요!');
+				return;
+			}else if($('#ser_cate').val() == '' ){
+				alert('2차 카테고리를 선택해주세요!');
+				return;
+			}
+			
 			var form = $("form")[0];
 			var formData = new FormData(form);
 		
@@ -370,11 +378,15 @@ input[type="radio"] {
 				processData : false,
 				contentType : false,
 				success : function(data) {
+					console.log(JSON.parse(data));
+					data = JSON.parse(data);
 					if (data.result == "OK") {
 						alert("파일업로드 성공");
 						location.href="sellerService.do";
-					} else
+					} else{
 						alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
+						console.log(data.result);
+					}					
 				},
 				error : function(xhr, status, error) {
 					alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
