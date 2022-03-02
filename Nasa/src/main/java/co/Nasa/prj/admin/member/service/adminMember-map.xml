@@ -26,7 +26,7 @@
 	</select>
 	
 	<select id="sellerList" resultType="co.Nasa.prj.comm.VO.SellerVO">
-		SELECT * FROM SELLER
+		SELECT * FROM SELLER ORDER BY s_date
 	</select>
 	
 	<sql id="buyerCriteria">

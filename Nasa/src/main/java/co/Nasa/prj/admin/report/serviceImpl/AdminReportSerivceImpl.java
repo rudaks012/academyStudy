@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import co.Nasa.prj.admin.report.service.AdminReportMapper;
 import co.Nasa.prj.admin.report.service.AdminReportService;
+import co.Nasa.prj.admin.service.AdminAuthorVO;
 import co.Nasa.prj.admin.service.Criteria;
 import co.Nasa.prj.comm.VO.ReportVO;
 
@@ -16,15 +17,29 @@ public class AdminReportSerivceImpl implements AdminReportService {
 	@Autowired
 	AdminReportMapper map;
 
+	
 	@Override
-	public int todayReport() {
+	public int totalReport() {
 		// TODO Auto-generated method stub
-		return map.todayReport();
+		return map.totalReport();
 	}
 
 	@Override
-	public List<ReportVO> getListWithPaging(Criteria cri) {
+	public List<ReportVO> getReportListWithPaging(Criteria cri) {
 		// TODO Auto-generated method stub
-		return map.getListWithPaging(cri);
+		return map.getReportListWithPaging(cri);
 	}
+
+	@Override
+	public AdminAuthorVO detailedReport(AdminAuthorVO vo) {
+		// TODO Auto-generated method stub
+		return map.detailedReport(vo);
+	}
+
+	
+
+
+
+
+	
 }

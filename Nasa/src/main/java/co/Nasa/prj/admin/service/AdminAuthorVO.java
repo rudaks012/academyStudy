@@ -24,6 +24,28 @@ public class AdminAuthorVO {
 	String buyer_coupon;
 	String b_name;
 	
+	//판매자
+	
+	String s_rank;
+	String s_password;
+	String s_nickname;
+	String s_tel;
+	String s_address;
+	String s_zipcode;
+	String s_detailaddress;
+	String s_author;
+	String s_img; // 프로필 사진
+	String s_business;
+	String s_status;
+	String s_date;
+	int s_report;
+	String s_school;
+	String s_major;
+	String s_grad; // 졸업상태
+	String s_carrer;
+	String s_me; // 자기소개
+	String s_name;
+	
 	//payment 결제내역
 	String pay_code; //결제내역
 	
@@ -66,4 +88,14 @@ public class AdminAuthorVO {
 	String ser_subimg;
 	String ser_subimg2;
 	String ser_subimg3;
+	
+	
+	//신고
+	String re_code; // report code
+	String re_type;
+	String re_subject; // 신고 내용
+	String re_result;
+	String re_reporter; // 신고자 id
+	String re_res; // 피신고자 id
+	String re_date;
 }
