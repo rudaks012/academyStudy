@@ -5,6 +5,7 @@
 		SELECT *
 		FROM REVIEW
 		WHERE REV_ID = #{rev_id}
+		ORDER BY REV_CODE DESC
 	</select>
 	
 	<delete id="deleteReview" parameterType="co.Nasa.prj.comm.VO.ReviewVO">

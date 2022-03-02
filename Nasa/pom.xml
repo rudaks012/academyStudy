@@ -149,11 +149,11 @@
 		<!-- SUMMERYNOTE 파일 업로드 -->
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<!-- 대용량 파일 처리 -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<!-- json 변환 -->

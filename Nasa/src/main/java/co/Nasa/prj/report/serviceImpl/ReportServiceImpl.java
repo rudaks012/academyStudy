@@ -24,4 +24,9 @@ public class ReportServiceImpl implements ReportService {
 		return map.selectSellerReportList(vo);
 	}
 
+	@Override
+	public int insertBuyerReportsSeller(ReportVO vo) {
+		return map.insertBuyerReportsSeller(vo);
+	}
+
 }

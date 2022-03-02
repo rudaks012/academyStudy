@@ -127,7 +127,9 @@
 														data-target="#deleteReviewModal" data-rvcode="rvcode-${review.rev_code }">삭제</span>
 												</div>
 											</div>
-											<img class="revimg" src="assets/img/gallery/list1.png">
+											<c:if test="${not empty review.rev_img }">
+												<img class="revimg" src="${review.rev_img }" style="width:200px;height:100px;">
+											</c:if>
 										</div>
 									</div>
 									<c:forEach items="${rclist }" var="rc">
@@ -142,7 +144,7 @@
 															<span>${rc.rere_sel_name }</span>
 															<span class="date">작성일을 테이블에 추가해야할까요 </span>
 															<p class="comment">${rc.rere_sel_sub }</p>
-															<span class="btn-reply1" data-toggle="modal" data-target="#reportModal"
+															<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-rere_code="${rc.rere_code }"
 																style="cursor: pointer;">신고</span>
 														</div>
 													</div>
@@ -152,7 +154,7 @@
 									</c:forEach>
 								</c:forEach>
 							</div>
-							<nav class="blog-pagination justify-content-center d-flex">
+							<!-- <nav class="blog-pagination justify-content-center d-flex">
 								<ul class="pagination">
 									<li class="page-item">
 										<a href="#" class="page-link" aria-label="Previous">
@@ -171,7 +173,7 @@
 										</a>
 									</li>
 								</ul>
-							</nav>
+							</nav> -->
 						</div>						
 					</div>
 				</div>
@@ -195,17 +197,14 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label><input type="radio" name="reportType" value="1" onclick="radiodisabled()">
+							<label><input type="radio" name="reportType" value="욕설/비방" onclick="radiodisabled()">
 								욕설/비방</label><br>
-							<label><input type="radio" name="reportType" value="2" onclick="radiodisabled()">
+							<label><input type="radio" name="reportType" value="음란물" onclick="radiodisabled()">
 								음란물</label><br>
-							<label><input type="radio" name="reportType" value="3" onclick="radiodisabled()"> 스팸, 부적절한
-								광고</label><br>
-							<label><input type="radio" name="reportType" value="4" onclick="radiodisabled()"> 혐오 혹은 잔인한
-								사진</label><br>
+							<label><input type="radio" name="reportType" value="스팸, 부적절한 광고" onclick="radiodisabled()"> 스팸, 부적절한 광고</label><br>
+							<label><input type="radio" name="reportType" value="혐오 혹은 잔인한 사진" onclick="radiodisabled()"> 혐오 혹은 잔인한 사진</label><br>
 							<div class="form-group">
-								<label><input type="radio" name="reportType" value="5" onclick="radioactive()"> 기타
-									사유</label>
+								<label><input type="radio" name="reportType" value="기타 사유" onclick="radioactive()"> 기타 사유</label>
 								<textarea class="form-control" id="reportSubject" name="reportSubject"
 									disabled></textarea>
 							</div>
@@ -213,8 +212,8 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="genric-btn danger radius" data-dismiss="modal">신고</a>
-					<a href="#" class="genric-btn primary radius" data-dismiss="modal">취소</a>
+					<a href="#" class="genric-btn danger radius" data-dismiss="modal" onclick="reportReview()">신고</a>
+					<a href="#" class="genric-btn primary radius" data-dismiss="modal" onclick="readiodisabled()">취소</a>
 				</div>
 			</div>
 		</div>
@@ -259,13 +258,37 @@
 			$("#reportSubject").attr("disabled", false);
 		}
 		/* 신고 사유 textarea 끄고 켜는 함수 */
-
+		
 		/* 리뷰 삭제 기능 test 함수 */
 		$(document).ready(function () {
 			$("#deleteReviewModal").on("show.bs.modal", function (event) {
 				rvcode = $(event.relatedTarget).data("rvcode");
 			});
+			
+			$("#reportModal").on("show.bs.modal", function (event) {
+				rere_code = $(event.relatedTarget).data("rere_code");
+			});
 		});
+		
+		function reportReview() {
+			console.log(rere_code);
+			var re_type = $('input[name="reportType"]:checked').val();
+			console.log(re_type);
+			var re_subject = $("#reportSubject").value;
+			
+						
+			// reportcontroller
+			$.ajax({
+				url: "reportReview_comment.do"
+				type:"post",
+				data:{rere_code : rere_code,
+					re_type : re_type,
+					re_subject : re_subject},
+				success: function() {
+					console.log("신고함!");
+				}
+			})
+		}
 
 		function deleteReview() {
 			console.log(rvcode);
