@@ -37,10 +37,7 @@ public class HomeController {
 	}
 	
 
-	@RequestMapping("/searchResult.do")
-	public String searchResult() {
-		return "user/searchResult";
-	}
+	
 	
 	
 

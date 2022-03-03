@@ -190,7 +190,7 @@
 	                    </table>
 	                </div>                        
 	                <br>
-	                <div class="searchtable">
+	                <!-- <div class="searchtable">
 	                    <table>
 	                        <tbody>
 	                            <tr>
@@ -288,7 +288,7 @@
 	                            </tr>
 	                        </tbody>
 	                    </table>
-	                </div>     
+	                </div>      -->
 	            </div>
 	        </div>
 	    </div>
