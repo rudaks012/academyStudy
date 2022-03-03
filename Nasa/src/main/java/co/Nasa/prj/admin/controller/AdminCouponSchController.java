@@ -19,12 +19,12 @@ public class AdminCouponSchController {
 	//00 03 1 * * 매월 1일 3시에
 	// 0 * * * * * 1분마다
 	public void test () {
-		AdminDao.schcoupondelete();
+		AdminDao.schcoupondelete();	//매달 1일 3시에 전체 사용자 쿠폰을 삭제
 		
-		AdminDao.schcouponupdate1();
-		AdminDao.schcouponupdate2();
-		AdminDao.schcouponupdate3();
-		AdminDao.schcouponupdate4();
+		AdminDao.schcouponupdate1(); //별등급 쿠폰 1 지급
+		AdminDao.schcouponupdate2();	//달등급 쿠폰 2 지금
+		AdminDao.schcouponupdate3();	//해등급 쿠폰 3지급
+		AdminDao.schcouponupdate4();	//지구등급 쿠폰 4 지급
 		
 		System.out.println("dely 3000");
 	}

@@ -381,13 +381,16 @@ p {
 																							</h3>
 																							<p>서비스번호: s${service.ser_code }</p>
 																							<c:if test="${service.ser_date eq '상시' }">
-																								<div>일자 : 상시</div>
+																								<div class="ser_date">일자 : 상시</div>
+																								<input type="hidden" class="" value="${service.ser_start }">
 																							</c:if>
 																							<c:if test="${service.ser_date eq '기간지정' }">
-																								<div>일자 : ${service.ser_start } ~ ${service.ser_end }</div>
+																								<div class="ser_date">일자 : ${service.ser_start } ~ ${service.ser_end }</div>
+																								<input type="hidden" class="startCheck" value="${service.ser_start }">
+																								<input type="hidden" class="endCheck" value="${service.ser_end }">
 																							</c:if>
 																							<div class="list_footer" style="text-align: center;">
-																								<input type="radio" name="pro_service" value="${service.ser_code }">
+																								<input type="radio" name="pro_service" class="pro_service" value="${service.ser_code }" >
 																							</div>
 																						</div>
 																					</div>
@@ -406,9 +409,9 @@ p {
 															<div class="row">
 
 															</div> 
-															<label class="fieldlabels">프로모션 시작날짜: *</label>
+															<label class="fieldlabels1">프로모션 시작날짜: *</label>
 															<input type="date" name="startdate" id="startdate" />
-															<label class="fieldlabels">프로모션 종료날짜: *</label>
+															<label class="fieldlabels2">프로모션 종료날짜: *</label>
 															<input type="date" name="enddate" id="enddate"/>
 															<label class="fieldlabels">할인율(%): *</label> 
 															<input type="number" name="fdiscount" id="discount" />
@@ -417,7 +420,7 @@ p {
 														<input type="button" name="next" class="next action-button" value="Next" id="seconnext" /> 
 														<input type="button" name="previous" class="previous action-button-previous" value="Previous" />
 													</fieldset>
-													<fieldset>
+													<fieldset id="form3">
 														<div class="form-card">
 															<div class="row">
 																
@@ -443,27 +446,27 @@ p {
 																	</div>
 															</div>
 														</div> <input type="button" name="next" class="next action-button" value="Submit" /> 
-														<input type="button" name="previous" class="previous action-button-previous" value="Previous" id="thirdnext"/>
+														<input type="button" name="previous" class="previous action-button-previous " value="Previous" id="thirdnext"/>
 													</fieldset>
-													<fieldset>
+													<fieldset id="form4">
 														<div class="form-card">
 															<div class="row">
 
 															</div> <br><br>
 															<h2 class="purple-text text-center">
-																<strong>SUCCESS !</strong></h2> <br>
+																<strong class="strong">SUCCESS !</strong></h2> <br>
 															<div class="row justify-content-center">
 																<div class="col-3"> 
-																	<img src="/assets/img/GwStPmg.png" class="fit-image"> 
+																	<img src="assets/img/promotion/GwStPmg.png" class="fit-image"> 
 																</div>
 															</div> <br><br>
 															<div class="row justify-content-center">
 																<div class="col-7 text-center">
-																	<h5 class="purple-text text-center">등록 완료하였습니다!</h5>
+																	<h5 class="purple-text text-center form4h">등록 완료하였습니다!</h5>
 																	<br/><br/>
 																</div>
 															</div>
-															<input type="button" class="action-button" value="목록가기" style="float: none; display: block; margin: auto;"/> 
+															<input type="button" class="action-button" value="목록가기" onclick="location.href='promotionInsert.do'" style="float: none; display: block; margin: auto;"/> 
 														</div>
 													</fieldset>
 												</form>
@@ -489,7 +492,7 @@ p {
 		var opacity;
 		var current = 1;
 		var steps = $("fieldset").length;
-
+	
 		setProgressBar(current);
 
 		$(".next").click(function () {
@@ -512,11 +515,13 @@ p {
 				}else if($('#enddate').val() == ''){
 					alert('종료날짜를 선택해주세요!');
 					return;
+				}else if($('#startdate').val() > $('#enddate').val()){
+					alert('시작날짜는 종료날짜보다 클 수 없습니다.');
+					return;
 				}else if($('#discount').val() == ''){
 					alert('할인율을 작성해주세요!');
 					return;
 				}
-				
 			}
 			
 			
@@ -581,7 +586,28 @@ p {
 		});
 
 		function setProgressBar(curStep) {
-			if(curStep == 3){
+			if(curStep == 2){
+				console.log($("input[name=pro_service]:checked").parent().parent().children(".startCheck").val());
+				let start = $("input[name=pro_service]:checked").parent().parent().children(".startCheck").val();
+				let end = $("input[name=pro_service]:checked").parent().parent().children(".endCheck").val();
+				if(start === undefined){
+					console.log('상시')
+					$("#startdate").attr("min",'');
+					$("#startdate").attr("max",'');
+					
+					$("#enddate").attr("min",'');
+					$("#enddate").attr("max",'');
+					
+				}else{
+					$("#startdate").attr("min",start);
+					$("#startdate").attr("max",end);
+					$("#startdate").val(start);
+					$("#enddate").attr("min",start);
+					$("#enddate").attr("max",end);
+					$("#enddate").val(end);
+				}
+			}
+			else if(curStep == 3){
 				let id = $("input[name=pro_service]:checked").val();
 				let img = document.getElementsByClassName(id)[0].getAttribute('src');
 				$("#finalimg").attr("src", img);
@@ -592,26 +618,47 @@ p {
 				$("#finaldate").text("프로모션 일자: "+$("#startdate").val()+" - "+ $("#enddate").val());
 				$(".final").append($("<p>").text("할인율 : " + $("#discount").val() + "%"));
 			}else if(curStep == 4){
+				let discount = $('#discount').val();
+				let pro_start = $('#startdate').val();
+				let pro_end = $('#enddate').val();
+				let pro_service = $("input[name=pro_service]:checked").val();
+				
+				
 				$.ajax({
 					url: "promoInsert.do",
-					data : {},
+					data : {discount: discount, pro_start:pro_start, pro_end:pro_end, pro_service:pro_service},
 					type : "post",
 					dataType : "json",
 					success : function(result) {
-						
+						console.log(result);
+						if(result == "OK"){
+							
+						}else{
+							$(".strong").text("FAIL!!!");	
+							$(".form4h").text("일시적 오류로 등록 실패하였습니다.");
+							$(".fit-image").attr("src","assets/img/promotion/x-mark.png");
+						}
+					},
+					error: function(err){
+						$(".strong").text("FAIL!!!");	
+						$(".form4h").text("일시적 오류로 등록 실패하였습니다.");	
+						$(".fit-image").attr("src","assets/img/promotion/x-mark.png");
 					}
 				});
+				
 			}
-			
 			var percent = parseFloat(100 / steps) * curStep;
 			percent = percent.toFixed();
 			$(".progress-bar").css("width", percent + "%")
+			
 		}
 
 		$(".submit").click(function () {
 			return false;
 		})
-
+		
+	
+	
 	});
 		
 	</script>
