@@ -28,15 +28,15 @@ public class AdminController {
 		System.out.println("/ckeditor.do");
 		return "CKEditor";
 	}
-	@RequestMapping("/chatting.do")
-	public String go_chatting() {
-		System.out.println("/chatting.do");
-		return "buyer/Chatting";
-	}
+//	@RequestMapping("/chatting.do")
+//	public String go_chatting() {
+//		System.out.println("/chatting.do");
+//		return "buyer/Chatting";
+//	}
 	@RequestMapping("/fileupload.do")
 	public String go_fileupload() {
 		System.out.println("/fileupload.do");
-		return "fileupload";
+		return "buyer/Chatting12";
 	}
 	@RequestMapping("/bis.do")
 	public String go_bis() {

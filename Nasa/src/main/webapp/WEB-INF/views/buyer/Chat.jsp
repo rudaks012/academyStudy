@@ -266,7 +266,7 @@ color: #f44a40;
 <script
 	src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 
-<body>
+
 	<div class='container' ng-cloak ng-app="chatApp">
 		<div class="channer" style="border-radius: 2px">
 			<div class="channer left1">
@@ -293,6 +293,8 @@ color: #f44a40;
 					
 						<button type="button" id="payement" class="w-btn-neon2"
 							style="float: right; display: none;">결제하기</button>
+								<button type="button" data-toggle="modal" data-target="#reportModal" id="Chatreport" class="w-btn-neon2"
+							style="float: right; display: none;">신고하기</button>
 					</div>
 					<!-- 	<div class="floatLeft" id="loginOn">
 						<img class="profile_img" id="setPic">
@@ -345,7 +347,46 @@ color: #f44a40;
 				</div>
 			</div>
 		</div>
+		<!-- Modal Start -->
+	<!-- 신고 모달 -->
+	<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">신고</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label><input type="radio" name="reportType" value="욕설/비방" onclick="radiodisabled()">
+								욕설/비방</label><br>
+							<label><input type="radio" name="reportType" value="음란물" onclick="radiodisabled()">
+								음란물</label><br>
+							<label><input type="radio" name="reportType" value="스팸, 부적절한 광고" onclick="radiodisabled()"> 스팸, 부적절한 광고</label><br>
+							<label><input type="radio" name="reportType" value="혐오 혹은 잔인한 사진" onclick="radiodisabled()"> 혐오 혹은 잔인한 사진</label><br>
+							<div class="form-group">
+								<label><input type="radio" name="reportType" value="기타 사유" onclick="radioactive()"> 기타 사유</label>
+								<textarea class="form-control" id="reportSubject" name="reportSubject"
+									disabled></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="genric-btn danger radius" data-dismiss="modal" onclick="reportReview()">신고</a>
+					<a href="#" class="genric-btn primary radius" data-dismiss="modal" onclick="readiodisabled()">취소</a>
+				</div>
+			</div>
+		</div>
 	</div>
+	<!-- 신고 모달 -->
+	</div>
+	
+	
 	<script>
 		// 웹소켓
 		let websocket;
@@ -547,6 +588,8 @@ color: #f44a40;
 			// 채팅방 나가기 클릭버튼 display:none 해제 
 			$("#chatout").toggle();
 			$("#payement").toggle();
+			$("#Chatreport").toggle();
+			
 			// 현재 html에 추가되었던 동적 태그 전부 지우기
 			$('div.chatMiddle:not(.format) ul').html("");
 			// obj(this)로 들어온 태그에서 id에 담긴 방번호 추출
@@ -764,10 +807,41 @@ color: #f44a40;
 
 		})
 		
+		var rvcode = "";
+		
+		/* 신고 사유 textarea 끄고 켜는 함수 */
+		function radiodisabled() {
+			$("#reportSubject").attr("disabled", true);
+			$("#reportSubject").val("");
+		}
+
+		function radioactive() {
+			$("#reportSubject").attr("disabled", false);
+		}
+		
+		/* 신고 사유 textarea 끄고 켜는 함수 */
+			function reportReview() {
+			console.log(rere_code);
+			var re_type = $('input[name="reportType"]:checked').val();
+			console.log(re_type);
+			var re_subject = $("#reportSubject").val();
+			
+						
+			// reportcontroller
+			$.ajax({
+				url: "reportReview_comment.do",
+				type:"post",
+				data:{rere_code : rere_code,
+					re_type : re_type,
+					re_subject : re_subject},
+				success: function() {
+					console.log("신고함!");
+				}
+			})
+		}
 	</script>
-</body>
+
 
 <!--   <script src='/resources/chat/js/chatting/chat.js'></script>-->
 
 
-</html>
