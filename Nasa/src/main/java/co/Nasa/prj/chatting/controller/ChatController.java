@@ -53,7 +53,7 @@ public class ChatController {
     	if(session.getAttribute("id")!= null) {
     		model.addAttribute("loginMember", BuyerDao.selectBuyer(vo));
     		
-    		return "Chatting";
+    		return "buyer/Chatting";
     	}
     	else 
     		return "user/home";
