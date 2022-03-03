@@ -13,4 +13,7 @@ public interface ReportMapper {
 	
 	// 구매자가 판매자 리뷰댓글 신고
 	int insertBuyerReportsSeller(ReportVO vo);
+	
+	//채팅 신고
+	int insertChattingReport(ReportVO vo);
 }
