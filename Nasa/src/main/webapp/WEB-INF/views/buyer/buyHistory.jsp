@@ -135,7 +135,7 @@
 								<!-- <h1>태양 등급</h1>
 								<h2>SUN GRADE</h2> -->
 								<p>
-									<br>현재 누적 금액 ${paysum }원<br>다음 등급 까지 2,000,000원
+									<br>현재 누적 금액 ${paysum }원<br>다음 등급 까지 ${upgrademoney }원
 								</p>
 							</div>
 						</div>
