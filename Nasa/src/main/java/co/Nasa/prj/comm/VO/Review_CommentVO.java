@@ -9,4 +9,5 @@ public class Review_CommentVO {
 	String rere_sel_name;
 	String rere_sel_id;
 	String rere_sel_sub;
+	String rere_date;
 }

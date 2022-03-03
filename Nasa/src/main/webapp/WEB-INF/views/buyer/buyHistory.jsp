@@ -68,12 +68,29 @@
 				<div class="blog_left_sidebar">					
 					<div class="blog_details">
 					<a class="d-inline-block">
-                     <h2>구매내역</h2>
-                  </a>
+                    	<h2>구매내역</h2>
+                  	</a>
 						<div class="blog-card">
 							<div class="meta">
-								<div class="photo" style="background-image: url(resources/user/assets/img/test/sun.png)">
-								</div>
+								<c:choose>
+									<c:when test="${buyerinfo.b_rank  eq '1'}">
+										<div class="photo" style="background-image: url(resources/user/assets/img/grade/star.png)"></div>
+									</c:when>
+									<c:when test="${buyerinfo.b_rank  eq '2'}">
+										<div class="photo" style="background-image: url(resources/user/assets/img/grade/moon.png)"></div>
+									</c:when>
+									<c:when test="${buyerinfo.b_rank  eq '3'}">
+										<div class="photo" style="background-image: url(resources/user/assets/img/grade/sun.png)"></div>
+									</c:when>
+									<c:when test="${buyerinfo.b_rank  eq '4'}">
+										<div class="photo" style="background-image: url(resources/user/assets/img/grade/earth.png)"></div>
+									</c:when>
+									<c:otherwise>
+										
+									</c:otherwise>
+								</c:choose>
+								<!-- <div class="photo" style="background-image: url(resources/user/assets/img/test/sun.png)">
+								</div> -->
 								<ul class="details">
 									<c:choose>
 										<c:when test="${buyerinfo.b_rank  eq '1'}">
@@ -118,7 +135,7 @@
 								<!-- <h1>태양 등급</h1>
 								<h2>SUN GRADE</h2> -->
 								<p>
-									<br>현재 누적 금액 10,000,000원<br>다음 등급 까지 2,000,000원
+									<br>현재 누적 금액 ${paysum }원<br>다음 등급 까지 2,000,000원
 								</p>
 							</div>
 						</div>

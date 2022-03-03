@@ -153,6 +153,15 @@ public class BuyerController {
 		paymentvo.setB_email((String) session.getAttribute("id"));
 		List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
 		model.addAttribute("paymentList", paymentList);
+		int paysum = 0;
+		for (int i = 0; i < paymentList.size(); i++) {
+			PaymentVO pmvo = paymentList.get(i);
+			if(pmvo.getPay_enddate() != null) {
+				paysum += pmvo.getPay_price();
+			}
+		}
+		
+		model.addAttribute("paysum", paysum);
 
 		return "buyer/buyHistory";
 	}
@@ -218,22 +227,31 @@ public class BuyerController {
 		System.out.println(vo.getField_code());
 		
 		// img upload
+		BuyerVO voforimg = new BuyerVO();
+		voforimg.setB_email((String) session.getAttribute("id"));
+		voforimg = buyerDao.selectBuyer(voforimg);
+		String beforimg = voforimg.getB_img();
+		
 		String originalFileName = imgupload.getOriginalFilename();
-		String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
-		String savepath = saveurl + originalFileName;
-		System.out.println(savepath);
-		
-		String b_img = "resources/user/assets/img/profile/" + originalFileName;
-		
-		vo.setB_img(b_img);
-		System.out.println(vo.getB_img());
-		
-		try {
-			imgupload.transferTo(new File(savepath));
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(originalFileName.equals("")) {
+			vo.setB_img(beforimg);
+		} else {
+			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+			String savepath = saveurl + originalFileName;
+			System.out.println(savepath);
+			
+			String b_img = "resources/user/assets/img/profile/" + originalFileName;
+			
+			vo.setB_img(b_img);
+			System.out.println(vo.getB_img());
+			
+			try {
+				imgupload.transferTo(new File(savepath));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		buyerDao.updateBuyer(vo);

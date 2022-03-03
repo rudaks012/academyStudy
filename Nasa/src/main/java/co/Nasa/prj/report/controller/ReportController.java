@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,11 +34,17 @@ public class ReportController {
 	}
 	
 	@RequestMapping("/reportReview_comment.do")
-	public void reportReview_comment(Review_CommentVO rcvo, ReportVO rpvo, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+	public ResponseEntity<String> reportReview_comment(Review_CommentVO rcvo, ReportVO rpvo, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
 		rcvo = review_commentDao.selectReview_comment(rcvo);
 		System.out.println(rpvo);
 		rpvo.setRe_reporter((String)session.getAttribute("id"));
 		rpvo.setRe_res(rcvo.getRere_sel_id());
-		userReportDao.insertBuyerReportsSeller(rpvo);
+		int i = userReportDao.insertBuyerReportsSeller(rpvo);
+		
+		if (i == 1) {
+			return new ResponseEntity<String>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
+		}
 	}
 }
