@@ -31,11 +31,18 @@ public class AdminReportController {
 	//신고상세조회
 	@ResponseBody
 	@PostMapping("/ajaxDetailedReport.do")
-	public AdminAuthorVO ajaxDetailedReport(AdminAuthorVO vo) {
+	public ReportVO ajaxDetailedReport(ReportVO vo) {
 		
 		return reportDao.detailedReport(vo);
 	}
 	
+	//신고반려
+	@ResponseBody
+	@PostMapping("/ajaxUpdateDeniedReport.do")
+	public int updateDeniedReport(ReportVO vo) {
+		int n=reportDao.updateDeniedReport(vo);
+		return n;
+	}
 	
 	//신고대기
 	@RequestMapping("/report_wait.do")
@@ -49,11 +56,11 @@ public class AdminReportController {
 	//신고대기 상세조회 ajax
 	@ResponseBody
 	@RequestMapping("/ajaxDetailedReportWait.do")
-	public AdminAuthorVO ajaxDetailedReportWait(AdminAuthorVO vo) {
+	public ReportVO ajaxDetailedReportWait(ReportVO vo) {
 		return reportDao.detailedReport(vo);
 	}
 	
-	//신고대기->Y ajax
+	//신고대기->Y ajax 이거 수정해야함
 	@ResponseBody
 	@RequestMapping("/ajaxConfirmReport.do")
 	public int ajaxConfirmReport(AdminAuthorVO vo) {
