@@ -107,7 +107,7 @@ input[type="radio"] {
 					</div>
 				</div>
 
-
+				
 				<div class="col-9">
 					<div class="blog_left_sidebar">
 						<article class="blog_item">
@@ -195,8 +195,8 @@ input[type="radio"] {
 													<td colspan="3"><input type="radio" name="ser_date"
 														value="상시" checked="checked">상시 &nbsp; <input
 														type="radio" name="ser_date" value="기간지정">기간지정 <input
-														type="date" name="ser_start"> - <input type="date"
-														name="ser_end"></td>
+														type="date" name="ser_start" id="ser_start" > - <input type="date"
+														id="ser_end" name="ser_end"></td>
 												</tr>
 												<tr>
 													<td>서비스 기본가격<span class="spanstar">*</span></td>
@@ -349,6 +349,28 @@ input[type="radio"] {
 			$("#input_file").val("");
 		} */
 
+		
+		$('#ser_start').click(function(){
+			var today = new Date();
+			var year = today.getFullYear();
+			var month = ('0' + (today.getMonth() + 1)).slice(-2);
+			var day = ('0' + today.getDate()).slice(-2);
+
+			var dateString = year + '-' + month  + '-' + day;
+			$('#ser_start').attr("min", dateString);
+			
+		})
+		
+		$('#ser_end').click(function(){
+			var today = new Date();
+			var year = today.getFullYear();
+			var month = ('0' + (today.getMonth() + 1)).slice(-2);
+			var day = ('0' + today.getDate()).slice(-2);
+
+			var dateString = year + '-' + month  + '-' + day;
+			$('#ser_end').attr("min", dateString);
+			
+		})
 		
 		/*
 		 * 폼 submit 로직
