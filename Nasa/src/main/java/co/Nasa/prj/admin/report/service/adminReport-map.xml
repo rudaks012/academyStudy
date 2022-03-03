@@ -60,4 +60,17 @@
 	WHERE re_code=#{re_code}
   
   </update>
+  
+  <resultMap type="hashmap" id="update_newReport"/>
+  	<select id="updateConfirmReport" parameterType="hashmap" statementType="STATEMENT">
+  		{CALL confirm_report(
+  		   #{p_id, mode=IN, jdbcType=VARCHAR, javaType=STRING},
+  		   #{p_code, mode=IN, jdbcType=VARCHAR, javaType=STRING},
+  		   #{result, mode=OUT, jdbcType=INTEGER, javaType=INTEGER, resultMap=update_newReport}
+  		   )
+  		   
+  		 }
+  	</select>
+  
+
 </mapper>
