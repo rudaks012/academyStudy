@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.Nasa.prj.comm.VO.ReportVO;
 import co.Nasa.prj.comm.VO.Review_CommentVO;
@@ -47,4 +49,19 @@ public class ReportController {
 			return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
 		}
 	}
+	
+	//report 여기까지함
+	@ResponseBody
+	@RequestMapping("/reportChatting.do")
+	public String reportChatting(@RequestParam ("re_member") String re_member, 
+			@RequestParam("re_type") String re_type, @RequestParam String re_subject,HttpSession session
+			) {
+		ReportVO vo = new ReportVO();
+		vo.setRe_reporter((String) session.getAttribute("id"));
+		vo.setRe_type(re_type);
+		vo.setRe_reporter(re_member);
+		vo.setRe_subject(re_subject);
+		
+		return "check";
+ 	}
 }
