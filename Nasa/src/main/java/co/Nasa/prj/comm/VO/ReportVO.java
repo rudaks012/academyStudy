@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class ReportVO {
 	String re_code; // report code
-	String re_title;
 	String re_type;
 	String re_subject; // 신고 내용
 	String re_result;
@@ -13,5 +12,11 @@ public class ReportVO {
 	String re_reporter; // 신고자 id
 	String re_res; // 피신고자 id
 	String re_date;
-	String re_rpoertdate;
+	String re_rpoertdate; //신고처리날짜
+	String re_denied; //반려사유
+	
+	
+	String email; 
+	String gb; //s인지 b인지 구매자판매자 구분
+	int report; //신고횟수
 }

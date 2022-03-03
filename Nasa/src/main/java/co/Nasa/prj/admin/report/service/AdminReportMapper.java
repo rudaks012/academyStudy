@@ -11,11 +11,14 @@ public interface AdminReportMapper {
 		//전체조회 reportInquiry.jsp
 		public int totalReport(); 
 		public List<ReportVO> getReportListWithPaging(Criteria cri);
-		public AdminAuthorVO detailedReport(AdminAuthorVO vo); //상세조회
+		public ReportVO detailedReport(ReportVO vo); //상세조회 
+		
+		//신고반려
+		public int updateDeniedReport(ReportVO vo);
 		
 		//신고대기조회
 		public int totalReportWait();
 		public List<ReportVO> getReportWaitListWithPaging(Criteria cri);
-		public AdminAuthorVO detailedReportWait(AdminAuthorVO vo);
+		public ReportVO detailedReportWait(ReportVO vo);
 		public int updateReportResult(AdminAuthorVO vo); //신고 승인
 }

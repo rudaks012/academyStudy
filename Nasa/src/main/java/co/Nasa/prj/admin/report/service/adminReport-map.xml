@@ -16,22 +16,16 @@
   	     where rownum <=#{pageNum} * #{amount}
   	     )
   	 WHERE rn > (#{pageNum}-1 )* #{amount}
+  	 ORDER BY re_code DESC
   	]]>
   </select>
   
-	<select id="detailedReport" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
-        SELECT 
-      r.*
-      <choose>
-      	<when test="b_author =='B'">
-      		,(SELECT b_report FROM buyer WHERE b_email=#{re_res}) as b_report
-      	</when>
-      	<when test="b_author !='B'">
-      		,(SELECT s_report FROM seller WHERE s_email=#{re_res}) as s_report
-      	</when>
-      </choose>
-      FROM report r
-      WHERE r.re_res = #{re_res} AND r.re_code=#{re_code}
+	<select id="detailedReport" parameterType="String" resultType="co.Nasa.prj.comm.VO.ReportVO">
+      SELECT v.* ,r.*
+	  FROM vw_member_report v JOIN report r
+	  ON (v.email=r.re_res)
+	  WHERE email=#{email} AND re_code=#{re_code}
+	 
   </select>
   
   <select id="totalReportWait" resultType="int">
@@ -48,21 +42,22 @@
   	     WHERE re_result is null AND rownum <=#{pageNum} * #{amount}
   	     )
   	 WHERE rn > (#{pageNum}-1 )* #{amount}
+  	 ORDER BY re_code DESC
   	]]>
   </select>
   
  <update id="updateReportResult" parameterType="co.Nasa.prj.admin.service.AdminAuthorVO" >
  	UPDATE report
 	SET re_result = 'Y', RE_RPOERTDATE=sysdate
-	<choose>
-		<when test="b_author =='B'">
-		
-		</when>
-		<when test="b_author =='B'">
-		
-		</when>
-	</choose>
+	
 	WHERE re_code= #{re_code}
+	
  </update>
+
+  <update id="updateDeniedReport" parameterType="co.Nasa.prj.comm.VO.ReportVO">
+  	UPDATE REPORT
+	SET re_result='D', re_rpoertdate=sysdate,re_denied=#{re_denied}
+	WHERE re_code=#{re_code}
   
+  </update>
 </mapper>

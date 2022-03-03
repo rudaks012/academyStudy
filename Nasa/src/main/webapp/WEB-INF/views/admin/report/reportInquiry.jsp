@@ -138,7 +138,7 @@
 		                                	<td class="text-primary">대기</td>
 		                                </c:if>
 		                                <c:if test="${report.re_result eq 'Y'}">
-		                                	<td>완료</td>
+		                                	<td>승인</td>
 		                                </c:if>
 		                                <c:if test="${report.re_result eq 'D'}">
 		                                	<td class="text-danger">반려</td>
@@ -186,8 +186,8 @@
                         </h5>
                 	    <div class="card">
                            <div class="d-flex justify-content-end mr-4">
-                                <button class="btn btn-outline-primary mr-3 mt-3" id="confirmBtn">승인</button>
-                                <button class="btn btn-outline-dark  mt-3" data-toggle="modal" data-target="#refuse-report-modal">반려</button>
+                                <button class="btn btn-outline-primary mr-3 mt-3" id="confirmBtn" style="visibility:hidden">승인</button>
+                                <button id="deniedBtn" class="btn btn-outline-dark  mt-3" data-toggle="modal" data-target="#refuse-report-modal" style="visibility:hidden">반려</button>
                                 
                             </div>
 		                   <div class="card-body">
@@ -213,7 +213,7 @@
                                         	<th width="18%" class="table-danger align-middle">신고횟수</th>
                                             <td>
                                                <div class="col-6 p-0 d-flex align-items-center">
-                                            	<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="" type="text" readonly >회
+                                            	<input class="form-control custom-shadow mr-2 text-danger" id="total_report" name="" value="" type="text" readonly >회
                                         	   </div>
                                         	</td>
                                         	<th width="18%" class="table-primary align-middle">신고유형</th>
@@ -251,7 +251,7 @@
                 
                 <!-- 반려모달 -->
                 
-                
+              <form id="frm" type="post">  
                 <div id="refuse-report-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dark-header-modalLabel" style="display: none;" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
@@ -264,23 +264,23 @@
                                     <tbody>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">신고코드</th>
-                                            <td ><input class="form-control custom-shadow " id="" name="" value="" type="text" disabled ></td>
+                                            <td ><input class="form-control custom-shadow " id="r_code" name="re_code" value="" type="text" readonly ></td>
                                             <th width="18%" class="table-primary align-middle">신고일자</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="" type="text" disabled ></td>
+                                            <td><input class="form-control custom-shadow " id="r_date" name="re_date" value="" type="text" readonly ></td>
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">신고자</th>
-                                            <td ><input class="form-control custom-shadow " id="" name="" value="" type="text" disabled ></td>
+                                            <td ><input class="form-control custom-shadow " id="r_id" name="re_reporter" value="" type="text" readonly ></td>
                                             <th width="18%" class="table-primary align-middle">신고유형</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="" type="text" disabled ></td>
+                                            <td><input class="form-control custom-shadow " id="r_type" name="re_type" value="" type="text" readonly ></td>
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-danger align-middle">피신고자</th>
-                                            <td ><input class="form-control custom-shadow " id="" name="" value="" type="text" disabled ></td>
+                                            <td ><input class="form-control custom-shadow " id="res_id" name="re_res" value="" type="text" readonly ></td>
                                             <th width="18%" class="table-danger align-middle">신고횟수</th>
                                             <td>
                                                <div class="col-6 p-0 d-flex align-items-center">
-                                            	<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="" type="text" disabled >회</td>
+                                            	<input class="form-control custom-shadow mr-2 text-danger" id="r_total" name="" value="" type="text" readonly >회</td>
                                         	   </div>
                                         </tr>
                                          <tr>
@@ -288,7 +288,7 @@
                                         </tr>
                                         <tr>
 											<td colspan="4" >
-												<textarea rows="10" class="form-control" id="message-text"></textarea>
+												<textarea rows="10" class="form-control" id="r_denied" wrap="hard"></textarea>
 											
 											</td>                                        
                                         </tr>
@@ -297,13 +297,13 @@
                                 </table>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">저장</button>
+                                                <button type="button" id="savedBtn" class="btn btn-primary">반려</button>
                                                 <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
                                             </div>
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal-dialog -->
                                 </div>
-                
+                </form>
                 
               
              
@@ -321,12 +321,13 @@
 const reportList = document.querySelectorAll(".reportList");
 
 const selectReport=()=>{
+	
 	const res = event.target.parentNode.lastChild.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerText;
 	const reCode=event.target.parentElement.firstElementChild.value;
 	$.ajax({
 		url:"ajaxDetailedReport.do",
 		type:"post",
-		data:{"re_res":res,"re_code":reCode}
+		data:{"email":res,"re_code":reCode}
 	}).done(function(result){
 		console.log(result)
 		$("#re_code").val(result.re_code)
@@ -334,18 +335,91 @@ const selectReport=()=>{
 		$("#re_reporter").val(result.re_reporter)
 		$("#re_type").val(result.re_type)
 		$("#re_res").val(result.re_res)
-		$("#re_result").val(result.re_result)
-	//	let re_date = result.re_rpoertdate
-	//	re_date==null? $("#re_rpoertdate").val("대기"): $("#re_rpoertdate").val(result.re_rpoertdate)
+		
+		//신고횟수
+		let gb = result.gb;
+		gb=='s'?$("#total_report").val(result.report):$("#total_report").val(result.report)
+		
+		//신고결과
+		let re_result =result.re_result;
+			re_result=='Y'?$("#re_result").val("승인"):
+				re_result=='D'?$("#re_result").val("반려"):$("#re_result").val("대기")
+		//신고처리날짜
+		let re_date = result.re_rpoertdate
+		if(re_date ==null){
+			$("#re_rpoertdate").val("대기");
+			$("#confirmBtn").css('visibility','visible');
+			$("#deniedBtn").css('visibility','visible');
+		
+		}else{
+			$("#re_rpoertdate").val(result.re_rpoertdate);
+			$("#confirmBtn").css('visibility','hidden');
+			$("#deniedBtn").css('visibility','hidden');
+		}
+		
+	    //신고내용
 		$("#re_subject").val(result.re_subject)
 		
+		//파일
 		let filecode= result.filecode
-		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text("filecode 조인 필요")
+		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text(result.filecode)
+				
+				
+		//반려모달
+		$("#r_code").val(result.re_code)
+		$("#r_date").val(result.re_date)
+		$("#r_id").val(result.re_reporter)
+		$("#r_type").val(result.re_type)
+		$("#res_id").val(result.re_res)
+		gb=='s'?$("#r_total").val(result.report):$("#r_total").val(result.report)
+				
 	})
 }
 Array.from(reportList).forEach(function (element) {
     $(element).off("click").on('click', selectReport);
 })
+
+//승인 버튼
+const confirmReport=()=>{
+	if($("#re_code").val()!=""){
+		alert("승인 쿼리 만들어")
+	}
+}
+$("#confirmBtn").on("click",confirmReport);
+
+
+//반려모달 저장 버튼
+const deniedReport=()=>{
+	let r_denied=$("#r_denied").val();
+	if(r_denied==""){
+		alert("내용을 입력해주세요.");
+		$("#r_denied").focus();
+	}else{
+		let code =$("#r_code").val();
+		let r_denied= $("#r_denied").val().replace(/\n/g, "<br />")
+		$.ajax({
+			url:"ajaxUpdateDeniedReport.do",
+			type:"post",
+			data:{"re_code":code,"re_denied":r_denied}
+		}).done(function(result){
+			if(result!=0){
+			   alert("해당 신고는 반려되었습니다.")
+			   $("#savedBtn").attr("data-dismiss","modal");
+				window.location.reload();
+			}else{
+				alert("관리자에게 문의하세요.");
+				$("#savedBtn").attr("data-dismiss","modal");
+			}
+			
+		}).fail(function(result){
+			alert("관리자에게 문의하세요.")
+			$("#savedBtn").attr("data-dismiss","modal");
+		})
+	}
+	
+}
+
+$("#savedBtn").on("click",deniedReport);
 </script>
             
               

@@ -31,7 +31,7 @@ public class AdminReportSerivceImpl implements AdminReportService {
 	}
 
 	@Override
-	public AdminAuthorVO detailedReport(AdminAuthorVO vo) {
+	public ReportVO detailedReport(ReportVO vo) {
 		// TODO Auto-generated method stub
 		return map.detailedReport(vo);
 	}
@@ -48,16 +48,24 @@ public class AdminReportSerivceImpl implements AdminReportService {
 		return map.getReportWaitListWithPaging(cri);
 	}
 
-	@Override
-	public AdminAuthorVO detailedReportWait(AdminAuthorVO vo) {
-		// TODO Auto-generated method stub
-		return map.detailedReportWait(vo);
-	}
+
 
 	@Override
 	public int updateReportResult(AdminAuthorVO vo) {
 		// TODO Auto-generated method stub
 		return map.updateReportResult(vo);
+	}
+
+	@Override
+	public ReportVO detailedReportWait(ReportVO vo) {
+		// TODO Auto-generated method stub
+		return map.detailedReportWait(vo);
+	}
+
+	@Override
+	public int updateDeniedReport(ReportVO vo) {
+		// TODO Auto-generated method stub
+		return map.updateDeniedReport(vo);
 	}
 
 	
