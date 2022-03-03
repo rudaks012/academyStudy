@@ -8,8 +8,14 @@ import co.Nasa.prj.comm.VO.ReportVO;
 
 public interface AdminReportMapper {
 
-	public int totalReport(); 
-	
-	public List<ReportVO> getReportListWithPaging(Criteria cri);
-	public AdminAuthorVO detailedReport(AdminAuthorVO vo); //상세조회
+		//전체조회 reportInquiry.jsp
+		public int totalReport(); 
+		public List<ReportVO> getReportListWithPaging(Criteria cri);
+		public AdminAuthorVO detailedReport(AdminAuthorVO vo); //상세조회
+		
+		//신고대기조회
+		public int totalReportWait();
+		public List<ReportVO> getReportWaitListWithPaging(Criteria cri);
+		public AdminAuthorVO detailedReportWait(AdminAuthorVO vo);
+		public int updateReportResult(AdminAuthorVO vo); //신고 승인
 }

@@ -150,7 +150,7 @@
 		                        </tbody>
 		                     </table>
 		
-			                         <div class="d-flex justify-content-center mt-5">
+			          <div class="d-flex justify-content-center mt-5">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 <c:if test="${pageMaker.prev }">
@@ -186,7 +186,7 @@
                         </h5>
                 	    <div class="card">
                            <div class="d-flex justify-content-end mr-4">
-                                <button class="btn btn-outline-primary mr-3 mt-3">승인</button>
+                                <button class="btn btn-outline-primary mr-3 mt-3" id="confirmBtn">승인</button>
                                 <button class="btn btn-outline-dark  mt-3" data-toggle="modal" data-target="#refuse-report-modal">반려</button>
                                 
                             </div>
@@ -201,19 +201,23 @@
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">신고자</th>
-                                            <td ><input class="form-control custom-shadow " id="re_reporter" name="re_reporter" value="" type="text" readonly ></td>
-                                            <th width="18%" class="table-primary align-middle">신고유형</th>
-                                            <td><input class="form-control custom-shadow " id="re_type" name="re_type" value="" type="text" readonly ></td>
+                                            <td colspan="3"><input class="form-control custom-shadow " id="re_reporter" name="re_reporter" value="" type="text" readonly ></td>
+                                            
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-danger align-middle">피신고자</th>
-                                            <td ><input class="form-control custom-shadow " id="re_res" name="re_res" value="" type="text" readonly ></td>
-                                            <th width="18%" class="table-danger align-middle">신고횟수</th>
+                                            <td colspan="3"><input class="form-control custom-shadow " id="re_res" name="re_res" value="" type="text" readonly ></td>
+                                            
+                                        </tr>
+                                        <tr>
+                                        	<th width="18%" class="table-danger align-middle">신고횟수</th>
                                             <td>
                                                <div class="col-6 p-0 d-flex align-items-center">
                                             	<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="" type="text" readonly >회
                                         	   </div>
                                         	</td>
+                                        	<th width="18%" class="table-primary align-middle">신고유형</th>
+                                            <td><input class="form-control custom-shadow " id="re_type" name="re_type" value="" type="text" readonly ></td>
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">신고처리</th>
@@ -226,13 +230,13 @@
                                         </tr>
                                         <tr>
 											<td colspan="4" >
-												<textarea rows="10" class="form-control" id="message-text" readonly></textarea>
+												<textarea rows="10" class="form-control" id="re_subject" readonly></textarea>
 											
 											</td>                                 
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">첨부파일</th>
-                                            <td colspan="3">해당없음</td>
+                                            <td colspan="3" id=" filecode"></td>
                                             
                                         </tr>
                                     </tbody>
@@ -325,6 +329,18 @@ const selectReport=()=>{
 		data:{"re_res":res,"re_code":reCode}
 	}).done(function(result){
 		console.log(result)
+		$("#re_code").val(result.re_code)
+		$("#re_date").val(result.re_date)
+		$("#re_reporter").val(result.re_reporter)
+		$("#re_type").val(result.re_type)
+		$("#re_res").val(result.re_res)
+		$("#re_result").val(result.re_result)
+	//	let re_date = result.re_rpoertdate
+	//	re_date==null? $("#re_rpoertdate").val("대기"): $("#re_rpoertdate").val(result.re_rpoertdate)
+		$("#re_subject").val(result.re_subject)
+		
+		let filecode= result.filecode
+		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text("filecode 조인 필요")
 	})
 }
 Array.from(reportList).forEach(function (element) {

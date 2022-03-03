@@ -18,7 +18,7 @@ public class AdminReportController {
 	@Autowired
 	AdminReportService reportDao;
 	
-	
+	//전체신고
 	@RequestMapping("/report_inquiry.do")
 	public String report_inquiry(Model model,Criteria cri) {
 		model.addAttribute("reportLists", reportDao.getReportListWithPaging(cri));
@@ -37,10 +37,31 @@ public class AdminReportController {
 	}
 	
 	
+	//신고대기
 	@RequestMapping("/report_wait.do")
-	public String report_wait() {
+	public String report_wait(Model model,Criteria cri) {
+		model.addAttribute("reportWaitLists", reportDao.getReportWaitListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportWait()));
+		model.addAttribute("total",reportDao.totalReportWait() );
 		return"admin/report/reportWait";
 	}
+	
+	//신고대기 상세조회 ajax
+	@ResponseBody
+	@RequestMapping("/ajaxDetailedReportWait.do")
+	public AdminAuthorVO ajaxDetailedReportWait(AdminAuthorVO vo) {
+		return reportDao.detailedReport(vo);
+	}
+	
+	//신고대기->Y ajax
+	@ResponseBody
+	@RequestMapping("/ajaxConfirmReport.do")
+	public int ajaxConfirmReport(AdminAuthorVO vo) {
+		int n= reportDao.updateReportResult(vo);
+		return n;
+	}
+	
+	
 	@RequestMapping("/report_complete.do")
 	public String report_complete() {
 		return"admin/report/reportComplete";

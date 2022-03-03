@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-            
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>           
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>           
             
             <div class="page-breadcrumb">
                 <div class="row">
@@ -114,107 +115,68 @@
                                 </ul>
                             
                             
-                              <div class=" my-4">총 <span class="mx-1 text-danger">50</span>건</div>
+                              <div class=" my-4">총 <span class="mx-1 text-danger">${total }</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
-		                         		<th>신고코드</th>
-		                         		<th>신고유형</th>
 		                         		<th>신고자아이디</th>       		
+		                         		<th>신고유형</th>
+		                         		<th>피신고자아이디</th>
 		                         		<th>신고일자</th>
 		                         		<th>신고처리</th>
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
-		                             <tr>
-		                                <td>2222</td>
-		                                <td>2222</td>
-		                                <td>sssss</td>
-		                                <td>2021-02-18</td>
-		                                <td class="text-primary">대기</td>
+		                           <c:forEach var="report" items="${reportWaitLists }">
+		                           	 <tr class="reportList">
+		                           	 	<input type="hidden" value="${report.re_code }">
+		                                <td>${report.re_reporter }</td>
+		                                <td>${report.re_type }</td>
+		                                <td>${report.re_res }</td>
+		                                <td>${fn:substring(report.re_date,0,11) }</td>
+		                                <c:if test="${empty report.re_result }">
+		                                	<td class="text-primary">대기</td>
+		                                </c:if>
+		                                <c:if test="${report.re_result eq 'Y'}">
+		                                	<td>완료</td>
+		                                </c:if>
+		                                <c:if test="${report.re_result eq 'D'}">
+		                                	<td class="text-danger">반려</td>
+		                                </c:if>
 		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td>기업</td>
-		                                <td></td>
-		                                <td>완료</td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td class="text-danger">반려</td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
-                                     <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                             </tr>
+		                           </c:forEach>
+		                             
+                                     
 		                        </tbody>
 		                     </table>
 		
-			                     <div class="d-flex justify-content-center mt-5">
-			                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                                                        <span aria-hidden="true">«</span>
-                                                        <span class="sr-only">Previous</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                                                        <span aria-hidden="true">»</span>
-                                                        <span class="sr-only">Next</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-			                    </div>
+			        <div class="d-flex justify-content-center mt-5">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <c:if test="${pageMaker.prev }">
+                                    <li class="page-item">
+                                        <a class="page-link" href="${pageMaker.startPage -1 }" aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
+                                            <span class="sr-only">이전</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+                                <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+                                    <li class="page-item ${pageMaker.cri.pageNum == num ? 'active':''}">
+                                        <a class="page-link" href="${num }">${num }</a>
+                                    </li>
+                                </c:forEach>
+                                <c:if test="${pageMaker.next }">
+                                    <li class="page-item">
+                                        <a class="page-link" href="${pageMaker.endPage + 1 }" aria-label="Next">
+                                            <span aria-hidden="true">»</span>
+                                            <span class="sr-only">다음</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+                            </ul>
+                        </nav>
+                    </div>
 		                   </div>
                			</div>
                 	</div>
@@ -224,7 +186,7 @@
                         </h5>
                 	    <div class="card">
                            <div class="d-flex justify-content-end mr-4">
-                                <button class="btn btn-outline-primary mr-3 mt-3">승인</button>
+                                <button class="btn btn-outline-primary mr-3 mt-3" id="confirmBtn">승인</button>
                                 <button class="btn btn-outline-dark  mt-3" data-toggle="modal" data-target="#refuse-report-modal">반려</button>
                                 
                             </div>
@@ -233,44 +195,48 @@
                                     <tbody>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">신고코드</th>
-                                            <td ><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
+                                            <td ><input class="form-control custom-shadow " id="re_code" name="re_code" value="" type="text" readonly ></td>
                                             <th width="18%" class="table-primary align-middle">신고일자</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="2021-01-18" type="text" disabled ></td>
+                                            <td><input class="form-control custom-shadow " id="re_date" name="re_date" value="" type="text" readonly></td>
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">신고자</th>
-                                            <td ><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
-                                            <th width="18%" class="table-primary align-middle">신고유형</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="악성댓글" type="text" disabled ></td>
+                                            <td colspan="3"><input class="form-control custom-shadow " id="re_reporter" name="re_reporter" value="" type="text" readonly ></td>
+                                            
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-danger align-middle">피신고자</th>
-                                            <td ><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
-                                            <th width="18%" class="table-danger align-middle">신고횟수</th>
+                                            <td colspan="3"><input class="form-control custom-shadow " id="re_res" name="re_res" value="" type="text" readonly ></td>
+                                            
+                                        </tr>
+                                        <tr>
+                                        	<th width="18%" class="table-danger align-middle">신고횟수</th>
                                             <td>
                                                <div class="col-6 p-0 d-flex align-items-center">
-                                            	<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="10" type="text" disabled >회</td>
+                                            	<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="" type="text" readonly >회
                                         	   </div>
+                                        	</td>
+                                        	<th width="18%" class="table-primary align-middle">신고유형</th>
+                                            <td><input class="form-control custom-shadow " id="re_type" name="re_type" value="" type="text" readonly ></td>
+                                        </tr>
+                                        <tr>
+                                            <th width="18%" class="table-primary align-middle">신고처리</th>
+                                            <td ><input class="form-control custom-shadow " id="re_result" name="re_result" value="" type="text" readonly ></td>
+                                            <th width="18%" class="table-primary align-middle">처리일자</th>
+                                            <td><input class="form-control custom-shadow " id="re_rpoertdate" name="re_rpoertdate" value="" type="text" readonly ></td>
                                         </tr>
                                          <tr>
                                             <th colspan="4" class="table-primary align-middle">신고내용</th>
                                         </tr>
                                         <tr>
-											<td colspan="4" height="300px">
-												dddddddddddddd
-												ddddddddddd
-												dddddddddddd
-												dddddddddddddd
-												ddddddddddddddddd<br>
-												ddddddddd<br>
-												dddddddd<br>
-												dddd<br>
+											<td colspan="4" >
+												<textarea rows="10" class="form-control" id="re_subject" readonly></textarea>
 											
-											</td>                                        
+											</td>                                 
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">첨부파일</th>
-                                            <td colspan="3">해당없음</td>
+                                            <td colspan="3" id="filecode"></td>
                                             
                                         </tr>
                                     </tbody>
@@ -349,7 +315,62 @@
              </div>
 		
 			
+<script type="text/javascript">
 
+const reportList = document.querySelectorAll(".reportList");
+
+const selectReport=()=>{
+
+const res = event.target.parentNode.lastChild.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerText;
+const reCode=event.target.parentElement.firstElementChild.value;
+	console.log(reCode)
+	$.ajax({
+		url:"ajaxDetailedReportWait.do",
+		type:"post",
+		data:{"re_res":res,"re_code":reCode}
+	}).done(function(result){
+		$("#re_code").val(result.re_code)
+		$("#re_date").val(result.re_date)
+		$("#re_reporter").val(result.re_reporter)
+		$("#re_type").val(result.re_type)
+		$("#re_res").val(result.re_res)
+		let re_result = result.re_result;
+		re_result==null? $("#re_result").val("대기"):$("#re_result").val(result.re_result)
+		
+		let re_date = result.re_rpoertdate
+		re_date==null? $("#re_rpoertdate").val("대기"): $("#re_rpoertdate").val(result.re_rpoertdate)
+		$("#re_subject").val(result.re_subject) 
+		
+		let filecode= result.filecode
+		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text("filecode 조인 필요")
+	})
+}
+Array.from(reportList).forEach(function (element) {
+    $(element).off("click").on('click', selectReport);
+})
+
+//승인버튼
+ const confirmBtn= document.querySelector("#confirmBtn");
+ const confirmReport=()=>{
+	 if($("#re_code").val()!=""){
+		 const reCode=$("#re_code").val();
+		 console.log(reCode)
+		 $.ajax({
+			 url:"ajaxConfirmReport.do",
+			 type:"post",
+			 data:{"re_code":reCode}
+		 }).done(function(result){
+			 if(result!=0){
+				 alert("해당 신고가 승인되었습니다.")
+				 window.location.reload();
+			 }
+		 })
+	 }else{
+		 alert("승인하려는 신고내역을 선택해주세요")
+	 }
+ }
+ confirmBtn.addEventListener("click",confirmReport);
+</script>
 
             
               
