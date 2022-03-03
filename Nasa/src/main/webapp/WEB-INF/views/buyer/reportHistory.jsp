@@ -70,7 +70,7 @@
 							<table id="reportTable" class="table table-striped" style="margin-top:40px;">
 								<thead>
 									<tr>
-										<th scope="col" width="50px">#</th>
+										<!-- <th scope="col" width="50px">#</th> -->
 										<th scope="col">신고일</th>
 										<th scope="col">신고대상</th>
 										<th scope="col">신고유형</th>
@@ -81,12 +81,13 @@
 								<tbody>
 									<c:forEach items="${reportList }" var="report">
 										<tr>
-											<th scope="row">${report.re_code }</th>
+											<%-- <th scope="row">${report.re_code }</th> --%>
 											<td>${report.re_date }</td>
 											<td>${report.re_res }</td>
 											<td>${report.re_type }</td>
 											<td>${report.re_subject }</td>
 											<c:choose>
+												<c:when test="${report.re_result eq '대기'}"><td>대기 중</td></c:when>
 												<c:when test="${report.re_result eq 'Y'}"><td>승인</td></c:when>
 												<c:when test="${report.re_result eq 'D'}"><td>반려</td></c:when>
 											</c:choose>
