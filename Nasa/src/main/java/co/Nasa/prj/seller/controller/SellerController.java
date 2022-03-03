@@ -34,16 +34,7 @@ public class SellerController {
 		return "seller/sellerReview";
 	}
 
-	@RequestMapping("/sellerPromotion.do")
-	public String sellerPromotion() {
-		return "seller/sellerPromotion";
-	}
-
-	@RequestMapping("/promotionInsert.do")
-	public String promotionInsert() {
-		return "seller/promotionInsert";
-	}
-
+	
 	@RequestMapping("/sellerSales.do")
 	public String sellerSales() {
 		return "seller/sellerSales";

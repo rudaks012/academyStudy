@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -251,7 +253,10 @@ p {
  	background-color : #d5c9ea !important;
    	margin: 10px !important;
 }
-
+.first img{
+	width: 250px;
+	height: 183px;
+}
 </style>
 <script>
     // 수정할 것...
@@ -358,53 +363,43 @@ p {
 															<div class="row">
 
 															</div> 
-															
+															<jsp:useBean id="now" class="java.util.Date" />
+															<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 															<div class="listing-details-area proservice">
 																<div class="container">
 																	<div class="row">
-																		<div class="col-lg-4">
-																			<div class="single-listing mb-30">
-																				<div class="list-img">
-																					<img src="assets/img/gallery/list1.png" alt="">
-																				</div>
-																				<div class="list-caption">
-																					<h3>
-																						<a href="">서비스명1</a>
-																					</h3>
-																					<p>서비스번호</p>
-																					<p>서비스일자</p>
-																					<div class="list_footer" style="text-align: center;">
-																						<input type="radio" name="pro_service" value="service1">
+																	<c:forEach items="${serviceList }" var="service">
+																		<c:if test="${service.ser_end eq null || service.ser_end > today}">
+																				<div class="col-lg-4">
+																					<div class="single-listing mb-30">
+																						<div class="list-img first">
+																							<img src="fileupload/${service.ser_img }" alt="" class="${service.ser_code }">
+																						</div>
+																						<div class="list-caption">
+																							<h3>
+																								<a href="" class="${service.ser_code }">${service.ser_title }</a>
+																							</h3>
+																							<p>서비스번호: s${service.ser_code }</p>
+																							<c:if test="${service.ser_date eq '상시' }">
+																								<div>일자 : 상시</div>
+																							</c:if>
+																							<c:if test="${service.ser_date eq '기간지정' }">
+																								<div>일자 : ${service.ser_start } ~ ${service.ser_end }</div>
+																							</c:if>
+																							<div class="list_footer" style="text-align: center;">
+																								<input type="radio" name="pro_service" value="${service.ser_code }">
+																							</div>
+																						</div>
 																					</div>
 																				</div>
-																				
-																			</div>
-																		</div>
-																		<div class="col-lg-4">
-																			<div class="single-listing mb-30">
-																				<div class="list-img">
-																					<img src="assets/img/gallery/list1.png" alt="">
-																				</div>
-																				<div class="list-caption">
-																					<h3>
-																						<a href="">서비스명2</a>
-																					</h3>
-																					<p>서비스번호</p>
-																					<p>서비스일자</p>
-																					<div class="list_footer" style="text-align: center;">
-																						<input type="radio" name="pro_service" value="service2">
-																					</div>
-																				</div>
-																				
-																			</div>
-																		</div>
+																			</c:if>
+																		</c:forEach>
 																	</div>
 																</div>
 															</div>
 															
 														</div> 
-														<input type="button" name="next"
-															class="next action-button" value="Next" />
+														<input type="button" name="next" id="firstnext" class="next action-button" value="Next" />
 													</fieldset>
 													<fieldset>
 														<div class="form-card">
@@ -412,42 +407,43 @@ p {
 
 															</div> 
 															<label class="fieldlabels">프로모션 시작날짜: *</label>
-															<input type="date" name="fdate" required="required"/>
+															<input type="date" name="startdate" id="startdate" />
 															<label class="fieldlabels">프로모션 종료날짜: *</label>
-															<input type="date" name="fdate" required="required"/>
+															<input type="date" name="enddate" id="enddate"/>
 															<label class="fieldlabels">할인율(%): *</label> 
-															<input type="number" name="fdiscount" />
+															<input type="number" name="fdiscount" id="discount" />
 															
 														</div> 
-														<input type="button" name="next" class="next action-button" value="Next" /> 
+														<input type="button" name="next" class="next action-button" value="Next" id="seconnext" /> 
 														<input type="button" name="previous" class="previous action-button-previous" value="Previous" />
 													</fieldset>
 													<fieldset>
 														<div class="form-card">
 															<div class="row">
 																
-															</div> 
+															</div>
+															<br/> 
 															<div class="listing-details-area proser" >
 																<div class="row justify-content-center">
 																	<div class="col-lg-6">
 																			<div class="single-listing mb-30">
 																				<div class="list-img">
-																					<img src="assets/img/gallery/list1.png" alt="">
+																					<img src="assets/img/gallery/list1.png" alt="" id="finalimg">
 																					<!-- <span>Open</span> -->
 																				</div>
-																				<div class="list-caption">
+																				<div class="list-caption final">
 																					<h3>
-																						<a href="listing_details.html">서비스명1</a>
+																						<a href="" id="finaltitle"></a>
 																					</h3>
-																					<p>서비스번호</p>
-																					<p>서비스일자</p>
+																					<p id="finalno"></p>
+																					<p id="finaldate"></p>
 																				</div>
 																			</div>
 																		</div>
 																	</div>
 															</div>
 														</div> <input type="button" name="next" class="next action-button" value="Submit" /> 
-														<input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+														<input type="button" name="previous" class="previous action-button-previous" value="Previous" id="thirdnext"/>
 													</fieldset>
 													<fieldset>
 														<div class="form-card">
@@ -463,7 +459,7 @@ p {
 															</div> <br><br>
 															<div class="row justify-content-center">
 																<div class="col-7 text-center">
-																	<h5 class="purple-text text-center">등록완료하였습니다!</h5>
+																	<h5 class="purple-text text-center">등록 완료하였습니다!</h5>
 																	<br/><br/>
 																</div>
 															</div>
@@ -500,7 +496,31 @@ p {
 
 			current_fs = $(this).parent();
 			next_fs = $(this).parent().next();
-
+			
+			console.log($(this).attr('id'));
+			if($(this).attr('id') == "firstnext"){
+				var listVar = $('input[name=pro_service]').is(":checked");
+				console.log(listVar);
+				if(!listVar){
+					alert('서비스를 선택해주세요!');
+					return;
+				}
+			}else if($(this).attr('id') == "seconnext"){
+				if($('#startdate').val() == ''){
+					alert('시작날짜를 선택해주세요!');
+					return;
+				}else if($('#enddate').val() == ''){
+					alert('종료날짜를 선택해주세요!');
+					return;
+				}else if($('#discount').val() == ''){
+					alert('할인율을 작성해주세요!');
+					return;
+				}
+				
+			}
+			
+			
+			
 			//Add Class Active
 			$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
@@ -543,6 +563,7 @@ p {
 				opacity: 0
 			}, {
 				step: function (now) {
+					
 					// for making fielset appear animation
 					opacity = 1 - now;
 
@@ -560,10 +581,31 @@ p {
 		});
 
 		function setProgressBar(curStep) {
+			if(curStep == 3){
+				let id = $("input[name=pro_service]:checked").val();
+				let img = document.getElementsByClassName(id)[0].getAttribute('src');
+				$("#finalimg").attr("src", img);
+				let title = document.getElementsByClassName(id)[1].innerHTML;
+
+				$("#finaltitle").text(title);
+				$("#finalno").text("서비스 번호: s"+id);
+				$("#finaldate").text("프로모션 일자: "+$("#startdate").val()+" - "+ $("#enddate").val());
+				$(".final").append($("<p>").text("할인율 : " + $("#discount").val() + "%"));
+			}else if(curStep == 4){
+				$.ajax({
+					url: "promoInsert.do",
+					data : {},
+					type : "post",
+					dataType : "json",
+					success : function(result) {
+						
+					}
+				});
+			}
+			
 			var percent = parseFloat(100 / steps) * curStep;
 			percent = percent.toFixed();
-			$(".progress-bar")
-				.css("width", percent + "%")
+			$(".progress-bar").css("width", percent + "%")
 		}
 
 		$(".submit").click(function () {
