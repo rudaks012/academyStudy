@@ -100,10 +100,10 @@ public class SellerController {
 		return "seller/sellerCalendar";
 	}
 
-	// 개인 판매자 닉네임 중복 체크
-	@RequestMapping("/ajaxSPnickCheck.do")
+	// 판매자 닉네임 중복 체크
+	@RequestMapping("/ajaxnickCheck.do")
 	@ResponseBody
-	public String ajaxSPnickCheck(@Param("s_nickname") String s_nickname, SellerVO vo) {
+	public String ajaxnickCheck(@Param("s_nickname") String s_nickname, SellerVO vo) {
 		vo.setS_nickname(s_nickname);
 		int n = sellerDAO.SellerNicknameCheck(vo);
 		String result;
@@ -117,9 +117,9 @@ public class SellerController {
 	}
 
 	// 개인 판매자 이메일 중복 체크
-	@RequestMapping("/ajaxSPemailCheck.do")
+	@RequestMapping("/ajaxemailCheck.do")
 	@ResponseBody
-	public String ajaxSPemailCheck(@Param("s_email") String s_email, SellerVO vo) {
+	public String ajaxemailCheck(@Param("s_email") String s_email, SellerVO vo) {
 		vo.setS_email(s_email);
 		int n = sellerDAO.SellerEmailCheck(vo);
 		String result;
@@ -136,7 +136,7 @@ public class SellerController {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	@RequestMapping("/ajaxSPemailSend.do")
+	@RequestMapping("/ajaxemailSend.do")
 	@ResponseBody
 	public String ajaxSPemailSend(@Param("s_email") String s_email) throws Exception {
 		int serti = (int) ((Math.random() * (99999 - 10000 + 1)) + 10000);
@@ -178,28 +178,44 @@ public class SellerController {
 		}
 		return result;
 	}
-
-	// 개인 판매자 회원 가입 - 추가정보 등록
-	@RequestMapping("/ajaxSPjoinUpdate.do")
+	
+	// 기업 판매자 회원 가입
+	@RequestMapping("/ajaxSCjoin.do")
 	@ResponseBody
-	public String ajaxSPjoinUpdate(SellerVO vo, MultipartFile s_img) {
-		System.out.println("이메일 : " + vo.getS_email());
-		System.out.println("확인하기 : " + vo.toString());
-		System.out.println(s_img);
+	public String ajaxSCjoin(SellerVO vo) {
+		vo.setS_rank("별");
+		vo.setS_author("기업");
+		vo.setS_status("사용자");
+
+		System.out.println(vo.toString());
+		int n = sellerDAO.SellerInsert(vo);
+		String result = "F";
+		if (n != 0) {
+			result = "T";
+		}
+		return result;
+	}
+
+	// 판매자 회원 가입 - 추가정보 등록
+	@RequestMapping("/ajaxjoinUpdate.do")
+	@ResponseBody
+	public String ajaxSPjoinUpdate(SellerVO vo, MultipartFile imgupload) {
+		System.out.println("***이메일*** : " + vo.getS_email());
+		System.out.println("***확인하기*** : " + vo.toString());
 
 		// img upload
-		String originalFileName = s_img.getOriginalFilename();
+		String originalFileName = imgupload.getOriginalFilename();
 		String saveurl = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
 		String savepath = saveurl + originalFileName;
 		System.out.println(savepath);
 
-		String b_img = "resources/user/assets/img/profile/" + originalFileName;
+		String img = "resources/user/assets/img/profile/" + originalFileName;
 
-		vo.setS_img(b_img);
-		System.out.println(vo.getS_img());
+		vo.setS_img(img);
+		System.out.println("***이미지*** : " + vo.getS_img());
 
 		try {
-			s_img.transferTo(new File(savepath));
+			imgupload.transferTo(new File(savepath));
 			
 		} catch (IllegalStateException e) {
 			e.printStackTrace();

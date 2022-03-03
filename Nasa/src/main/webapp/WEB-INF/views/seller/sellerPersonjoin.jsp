@@ -180,11 +180,11 @@
 		<div class="row d-flex justify-content-center align-items-center" style="margin-top: 100px;">
 			<div class="col-5">
 				<!-- 수정 폼 시작-->		
-				<form class="form-contact contact_form" method="post" id="personJoinUpdate-form" enctype="multipart/form-data">
+				<form class="form-contact contact_form" method="post" id="personJoinUpdate-form">
 					<div class="col-12">
 						<div id="profileThumnail" class="justify-content-center" style="text-align: center;">
 							<img id="prvimg" src="resources/user/assets/img/profile/defaultprofileimg.png" alt="" style="width: 150px; height:150px; border-radius: 70%; overflow: hidden;"><br>
-							<input type="file" id="imgupload" name="s_img" accept="image/*">
+							<input type="file" id="imgupload" name="imgupload" accept="image/*">
 						</div>
 					</div>
 					<br>
@@ -252,7 +252,7 @@
 	<script>
 		window.onload = function () {
 			$('#s_name').focus();
-			// document.getElementById("page2").style.display = "none";
+			document.getElementById("page2").style.display = "none";
 			document.getElementById("addressSearch").addEventListener("click", function () { //주소입력칸을 클릭하면
 				$("#s_zipcode").attr("disabled", false);
 				$("#s_address").attr("disabled", false);
@@ -299,7 +299,7 @@
 			var nickname = $('#s_nickname').val();
 
 			$.ajax({
-				url: "ajaxSPnickCheck.do",
+				url: "ajaxnickCheck.do",
 				type: "post",
 				data: {
 					s_nickname: nickname
@@ -353,7 +353,7 @@
 				console.log(email);
 				// 이메일 중복 체크
 				$.ajax({
-					url: "ajaxSPemailCheck.do",
+					url: "ajaxemailCheck.do",
 					type: "post",
 					data: {
 						s_email: email
@@ -363,7 +363,7 @@
 						if (data == "T") { // 중복된 이메일이 없으면 인증번호 메일 보내기
 							$.ajax({
 								type: "post",
-								url: "ajaxSPemailSend.do",
+								url: "ajaxemailSend.do",
 								data: {
 									s_email: email
 								},
@@ -476,16 +476,16 @@
 				$("#nickdiv").append('<label id="nicklabel">닉네임 중복체크를 해주세요.</label>');
 				$("#nicklabel").css("color", "red");
 				$("#s_nickname").focus();
-			// } else if (!($("#emaillabelok").length)) {
-			// 	$("label").remove('#emaillabel');				
-			// 	$("#emaildiv").append('<label id="emaillabel">이메일 인증이 필요합니다.</label>');
-			// 	$("#nicklabel").css("color", "red");
-			// 	$("#s_email").focus();
-			// } else if (!($("#emailchklabelok").length)) {
-			// 	$("label").remove('#emailchklabel');				
-			// 	$("#emailchkdiv").append('<label id="emailchklabel">이메일 인증번호를 확인해주세요.</label>');
-			// 	$("#emailchklabel").css("color", "red");
-			// 	$("#emailchk").focus();
+			} else if (!($("#emaillabelok").length)) {
+				$("label").remove('#emaillabel');				
+				$("#emaildiv").append('<label id="emaillabel">이메일 인증이 필요합니다.</label>');
+				$("#nicklabel").css("color", "red");
+				$("#s_email").focus();
+			} else if (!($("#emailchklabelok").length)) {
+				$("label").remove('#emailchklabel');				
+				$("#emailchkdiv").append('<label id="emailchklabel">이메일 인증번호를 확인해주세요.</label>');
+				$("#emailchklabel").css("color", "red");
+				$("#emailchk").focus();
 			} else if (!($("#pwchklabelok").length)) {
 				$("label").remove('#pwlabel');
 				$("label").remove('#pwchklabel');
@@ -519,17 +519,22 @@
 			}
 		};
 
-		// 회원정보 추가
+		// 회원정보 추가 수정
 		function joinUpdate() {
-			console.log("이메일 : " + $('#next_email').val());
+			console.log($('#next_email').val());
+			var form = $('#personJoinUpdate-form')[0];
+			var data = new FormData(form);
+			
 			$.ajax({
-					url: "ajaxSPjoinUpdate.do",
-					type: "post",
-					data: $("#personJoinUpdate-form").serialize(),
+					url: "ajaxjoinUpdate.do",
+					type: "post",					
+					data: data,
+					contentType : false,
+        			processData : false,
 					success: function (data) {
 						if (data == "T") {
 							console.log("수정 성공");
-							alert("추가 정보 입력 완료! 메인 화면으로 돌아갑니다.");
+							alert("추가 정보 입력 완료! 메인 화면으로 이동합니다.");
 							location.href='home.do';
 						} else {
 							console.log("수정 실패");
