@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.Nasa.prj.promotion.service.PromotionMapper">
+
+<insert id="promotionInsert" parameterType="co.Nasa.prj.comm.VO.PromotionVO">
+	<selectKey keyProperty="pro_code" resultType="string" order="BEFORE">
+      SELECT NVL(MAX(TO_NUMBER(pro_code)),0)+1 FROM PROMOTION   
+   </selectKey>
+	INSERT INTO PROMOTION
+	VALUES(#{pro_code},#{s_email},#{prodiscount},#{pro_end},#{pro_start}, #{pro_service})
+</insert>
 </mapper>

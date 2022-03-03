@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class PromotionVO {
-	String procode; // promotion code
+	String pro_code; // promotion code
 	String s_email; // seller id/email
 	String prodiscount; // 할인률
 	String pro_start;

@@ -149,7 +149,7 @@ p {
 										<div
 											class="row d-flex justify-content-center align-items-center">
 											<button type="submit"
-												class="genric-btn primary circle arrow btnbox">등록</button>
+												class="genric-btn primary circle arrow btnbox">수정</button>
 											&nbsp;&nbsp;&nbsp;
 											<button class="genric-btn primary circle arrow" onclick="history.back()">취소</button>
 										</div>

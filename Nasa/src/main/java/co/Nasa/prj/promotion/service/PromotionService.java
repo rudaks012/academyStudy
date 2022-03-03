@@ -1,5 +1,7 @@
 package co.Nasa.prj.promotion.service;
 
-public interface PromotionService {
+import co.Nasa.prj.comm.VO.PromotionVO;
 
+public interface PromotionService {
+	int promotionInsert(PromotionVO vo);
 }
