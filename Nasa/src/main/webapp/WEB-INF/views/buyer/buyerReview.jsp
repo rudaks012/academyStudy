@@ -10,9 +10,9 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<style>
 		.nice-select {
-			width: 300px;
+		    width: 50px;
+		    margin-top: 8px;
 		}
-
 		.revimg {
 			width: 200px;
 			height: 100px;
@@ -119,10 +119,21 @@
 													<span>${review.rev_ser_name }</span><br>
 													<span>${review.rev_name }</span>
 													<span class="ml-4">평점 : ${review.rev_rate }</span>
-													<span class="date">작성일을 테이블에 추가해야할까요 </span>
+													<span class="date">${review.rev_date } </span>
 													<p class="comment">${review.rev_sub }</p>
-													<span class="btn-reply1" style="cursor: pointer;">수정</span>
-													<span class="btn-reply1" onclick="deleteReview(this)"
+													<c:choose>
+														<c:when test="${not empty review.rev_img }">
+															<span class="btn-reply1" style="cursor: pointer;" data-toggle="modal"
+																data-target="#updateReviewModal" data-rvcode="${review.rev_code }" data-rvsub="${review.rev_sub }" 
+																data-rvimg="${review.rev_img }">수정</span>
+														</c:when>
+														<c:otherwise>
+															<span class="btn-reply1" style="cursor: pointer;" data-toggle="modal"
+																data-target="#updateReviewModal" data-rvcode="${review.rev_code }" data-rvsub="${review.rev_sub }" 
+																data-rvimg="none">수정</span>
+														</c:otherwise>
+													</c:choose>
+													<span class="btn-reply1"
 														style="cursor: pointer;" data-toggle="modal"
 														data-target="#deleteReviewModal" data-rvcode="rvcode-${review.rev_code }">삭제</span>
 												</div>
@@ -142,7 +153,7 @@
 														</div>
 														<div class="desc">
 															<span>${rc.rere_sel_name }</span>
-															<span class="date">작성일을 테이블에 추가해야할까요 </span>
+															<span class="date">${rc.rere_date } </span>
 															<p class="comment">${rc.rere_sel_sub }</p>
 															<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-rere_code="${rc.rere_code }"
 																style="cursor: pointer;">신고</span>
@@ -213,7 +224,7 @@
 				</div>
 				<div class="modal-footer">
 					<a href="#" class="genric-btn danger radius" data-dismiss="modal" onclick="reportReview()">신고</a>
-					<a href="#" class="genric-btn primary radius" data-dismiss="modal" onclick="readiodisabled()">취소</a>
+					<a href="#" class="genric-btn primary radius" data-dismiss="modal" onclick="radiodisabled();disradio();">취소</a>
 				</div>
 			</div>
 		</div>
@@ -242,12 +253,69 @@
 	<!-- 삭제 경고 모달 -->
 	
 	<!-- 리뷰 업데이트 모달 -->
+	<div class="modal fade bd-example-modal-lg" id="updateReviewModal" tabindex="-1" role="dialog" aria-labelledby="updateReviewModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">리뷰 수정</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form method = "post" action = "reviewUpdate.do" enctype="multipart/form-data">
+					<div class="modal-body">
+						<div class="d-flex">
+							<input type="hidden" id="hidden_revcode" name="rev_code">
+                      		<h5 style="font-size:15px; margin-right:10px; margin-top:20px;">평점</h5>
+                      		<select id="rev_rate" name = "rev_rate" style="width:50px;">
+                      			<option value="1">1</option>
+                      			<option value="2">2</option>
+                      			<option value="3">3</option>
+                      			<option value="4">4</option>
+                      			<option value="5">5</option>
+                      		</select>
+                   		</div>
+                   		<h5 style="font-size:15px; margin-top:20px;">내용</h5>
+	              		<textarea id = "modal_rev_sub" name="rev_sub" style="width:100%; height:100px; margin-top:5px" required></textarea>
+	              		<div class = "d-flex">
+		              		<input type="file" id="reviewimg" name="revimg" accept="image/*" style="display:none;">
+		                    <label class="genric-btn primary radius" for="reviewimg" style="margin-top: 7px;">사진 첨부</label>
+		                    <img id="reviewimgpreview" alt="" style="width: 42px; height:42px; margin-left:10px;margin-top: 7px; overflow: hidden; border-color:white;">
+	              		</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="genric-btn danger radius">수정</button>
+						<button class="genric-btn primary radius" data-dismiss="modal">취소</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	<!-- 리뷰 업데이트 모달 -->
 
 
 	<!-- Modal End -->
 	<script>
+		function readImage(input) {
+			if(input.files && input.files[0]) {
+				const reader = new FileReader();
+				
+				reader.onload = e => {
+					const previewImage = document.getElementById("reviewimgpreview");
+					previewImage.src = e.target.result;
+				}
+				reader.readAsDataURL(input.files[0]);                 
+			}
+		}
+		
+		const inputImage = document.getElementById("reviewimg");
+		inputImage.addEventListener("change", e => {
+			readImage(e.target);
+		});
+	
 		var rvcode = "";
+		var rvsub = "";
 		/* 신고 사유 textarea 끄고 켜는 함수 */
 		function radiodisabled() {
 			$("#reportSubject").attr("disabled", true);
@@ -257,12 +325,24 @@
 		function radioactive() {
 			$("#reportSubject").attr("disabled", false);
 		}
+		
+		function disradio() {
+			$("input:radio[name='reportType']").prop("checked", false);
+			console.log("disradio");
+		}
 		/* 신고 사유 textarea 끄고 켜는 함수 */
 		
 		/* 리뷰 삭제 기능 test 함수 */
 		$(document).ready(function () {
 			$("#deleteReviewModal").on("show.bs.modal", function (event) {
 				rvcode = $(event.relatedTarget).data("rvcode");
+			});
+			
+			$("#updateReviewModal").on("show.bs.modal", function (event) {
+				rvcode = $(event.relatedTarget).data("rvcode");
+				rvsub = $(event.relatedTarget).data("rvsub");
+				$("#hidden_revcode").val(rvcode);
+				$("#modal_rev_sub").val(rvsub);			
 			});
 			
 			$("#reportModal").on("show.bs.modal", function (event) {
@@ -286,6 +366,9 @@
 					re_subject : re_subject},
 				success: function() {
 					console.log("신고함!");
+				},
+				error: function() {
+					console.log("신고에러")
 				}
 			})
 		}
@@ -300,12 +383,16 @@
 			
 			var rev_code = rvcode.substr(7);
 			console.log(rev_code);
+			
 			$.ajax({
 				url:"deleteReview.do",
 				type:"get",
 				data:{rev_code:rev_code},
 				success: function() {
 					console.log("삭제함!");
+				},
+				error: function() {
+					console.log("에러");
 				}
 			})
 		}

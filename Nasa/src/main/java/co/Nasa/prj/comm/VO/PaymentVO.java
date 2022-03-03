@@ -13,6 +13,6 @@ public class PaymentVO {
 	String pay_cate1; //카테고리2
 	String pay_type;
 	String pay_coupon;
-	String pay_price;
+	int pay_price;
 	String pay_enddate; //구매확정날짜
 }

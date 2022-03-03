@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -82,12 +83,12 @@
 									<c:forEach items="${reportList }" var="report">
 										<tr>
 											<%-- <th scope="row">${report.re_code }</th> --%>
-											<td>${report.re_date }</td>
+											<td>${fn:substring(report.re_date, 0, 11) }</td>
 											<td>${report.re_res }</td>
 											<td>${report.re_type }</td>
 											<td>${report.re_subject }</td>
 											<c:choose>
-												<c:when test="${report.re_result eq '대기'}"><td>대기 중</td></c:when>
+												<c:when test="${empty report.re_result}"><td>대기 중</td></c:when>
 												<c:when test="${report.re_result eq 'Y'}"><td>승인</td></c:when>
 												<c:when test="${report.re_result eq 'D'}"><td>반려</td></c:when>
 											</c:choose>

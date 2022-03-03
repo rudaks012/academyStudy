@@ -2,20 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.Nasa.prj.review.service.ReviewMapper">
 	<select id="buyerSelectReviewList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
-		SELECT *
-		FROM REVIEW
-		WHERE REV_ID = #{rev_id}
-		ORDER BY REV_CODE DESC
+		SELECT		*
+		FROM		REVIEW
+		WHERE		REV_ID = #{rev_id}
+		ORDER BY 	REV_CODE DESC
+	</select>
+	
+	<select id="selectReview" resultType="co.Nasa.prj.comm.VO.ReviewVO">
+		SELECT	*
+		FROM	REVIEW
+		WHERE	REV_CODE = #{rev_code}
 	</select>
 	
 	<delete id="deleteReview" parameterType="co.Nasa.prj.comm.VO.ReviewVO">
 		DELETE
-		FROM REVIEW
-		WHERE REV_CODE = #{rev_code}
+		FROM 	REVIEW
+		WHERE 	REV_CODE = #{rev_code}
 	</delete>
 	
 	<insert id="insertReview" parameterType="co.Nasa.prj.comm.VO.ReviewVO">
-		INSERT INTO REVIEW
-		VALUES REV_CODE = #{rev_code}, SCODE = #{scode}, REV_NAME = #{rev_name}, REV_SUB = #{rev_sub}, REV_ID = #{rev_id}, REV_SER_NAME = #{rev_ser_name}
+		INSERT INTO REVIEW(REV_CODE, SCODE, REV_NAME, REV_SUB, REV_ID, REV_SER_NAME)
+		VALUES (#{rev_code}
+				, #{scode}
+				, #{rev_name}
+				, #{rev_sub}
+				, #{rev_id}
+				, #{rev_ser_name})
 	</insert>
+	
+	<update id="updateReview" parameterType="co.Nasa.prj.comm.VO.ReviewVO">
+		UPDATE	REVIEW
+		SET		REV_SUB = #{rev_sub}, REV_RATE = #{rev_rate}, REV_IMG = #{rev_img}
+		WHERE	REV_CODE = #{rev_code}
+	</update>
 </mapper>
