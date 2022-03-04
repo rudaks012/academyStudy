@@ -28,5 +28,10 @@
 		s_me = #{s_me}, s_school = #{s_school}, s_major = #{s_major}, s_grad = #{s_grad}, s_img = #{s_img}
 		where s_email = #{s_email}
 	</update>
-
+	
+	<select id="SellerSelect" resultType="co.Nasa.prj.comm.VO.SellerVO">
+		SELECT * 
+		FROM SELLER
+		WHERE s_email = #{s_email}
+	</select>
 </mapper>

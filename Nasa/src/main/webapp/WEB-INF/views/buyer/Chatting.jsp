@@ -83,7 +83,6 @@ textarea::placeholder {
 	padding: 1em 0;
 	height: auto;
 	border-radius: 5px;
-	overflow: auto;
 }
 
 .right {
@@ -252,7 +251,7 @@ color: #f44a40;
 
 <body>
 <div class="listing-area pt-120 pb-120">
-	<div class="container" ng-cloak ng-app="chatApp" style="height: 600px";>
+	<div class="container" ng-cloak ng-app="chatApp" style="height: 500px";>
 		<div class="row channer" style="border-radius: 2px;height: 600px;">
 			<div class="col-4 col-lg-3 col-md-6 channer left1">
 				<div class="row">
@@ -382,6 +381,11 @@ color: #f44a40;
 								<textarea class="form-control" id="reportSubject" name="reportSubject"
 									disabled></textarea>
 							</div>
+								<div class="col-12">
+						<div id="profileThumnail" class="justify-content-center" style="text-align: center;">
+							<input type="file" id="imgupload" name="imgupload" accept="image/*">
+						</div>
+					</div>
 						</div>
 					</form>
 				</div>
@@ -828,23 +832,31 @@ color: #f44a40;
 			$("#reportSubject").attr("disabled", false);
 		}
 		
+		
+		
 		/* 신고 사유 textarea 끄고 켜는 함수 */
 			function reportReview() {
-			console.log(rere_code);
 			var re_type = $('input[name="reportType"]:checked').val();
 			console.log(re_type);
+			var re_member = document.querySelector(".left").querySelector(".sender").getElementsByTagName("span")[0].innerText;
+			console.log("신고멤버:1111111" + re_member); 
 			var re_subject = $("#reportSubject").val();
+			console.log("신고내용:!11" + re_subject);
 			
 						
 			// reportcontroller
 			$.ajax({
-				url: "reportReview_comment.do",
+				url: "reportChatting.do",
 				type:"post",
-				data:{rere_code : rere_code,
+				data:{re_member : re_member,
 					re_type : re_type,
 					re_subject : re_subject},
-				success: function() {
+				dataType:"text",
+					
+				success: function(result) {
+					if(result == "OK") {
 					console.log("신고함!");
+					}
 				}
 			})
 		}

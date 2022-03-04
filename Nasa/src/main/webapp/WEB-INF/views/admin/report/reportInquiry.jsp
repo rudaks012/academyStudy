@@ -177,6 +177,11 @@
                             </ul>
                         </nav>
                     </div>
+                      <form id="actionForm" action="report_inquiry.do" method="get">
+			            <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+			            <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+			        </form>
+                    
 		                   </div>
                			</div>
                 	</div>
@@ -191,7 +196,7 @@
                                 
                             </div>
 		                   <div class="card-body">
-                                <table class="table caption-top table-bordered thead-light  text-center">		                        
+                                <table id="report_tbl" class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">신고코드</th>
@@ -234,7 +239,7 @@
 											
 											</td>                                 
                                         </tr>
-                                        <tr>
+                                        <tr >
                                             <th width="18%" class="table-primary align-middle">첨부파일</th>
                                             <td colspan="3" id=" filecode"></td>
                                             
@@ -260,7 +265,7 @@
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <div class="modal-body">
-                                                <table class="table caption-top table-bordered thead-light  text-center">		                        
+                                                <table class="table caption-top table-bordered thead-light">		                        
                                     <tbody>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">신고코드</th>
@@ -317,6 +322,12 @@
 			
 
 <script type="text/javascript">
+let actionForm = $("#actionForm");
+$(".page-item a").on("click", function (e) {
+    e.preventDefault();
+    actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+    actionForm.submit();
+})
 
 const reportList = document.querySelectorAll(".reportList");
 
@@ -329,6 +340,7 @@ const selectReport=()=>{
 		type:"post",
 		data:{"email":res,"re_code":reCode}
 	}).done(function(result){
+		removeTr();
 		console.log(result)
 		$("#re_code").val(result.re_code)
 		$("#re_date").val(result.re_date)
@@ -363,7 +375,24 @@ const selectReport=()=>{
 		//파일
 		let filecode= result.filecode
 		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text(result.filecode)
-				
+		
+		//신고 결과가 반려일 경우
+		 function removeTr(){
+			$(".new-tr").remove();
+		}
+		if(re_result=='D'){
+			
+			let innerHtml='<tr class="new-tr">'
+			innerHtml+='<th colspan="4" class="table-danger align-middle">신고반려사유</th>'
+			innerHtml+='</tr>'
+			innerHtml+='<tr class="new-tr">'
+			innerHtml+='<td class="text-start" colspan="4" height="300px">'+result.re_denied+'</td>'
+			innerHtml+='</tr>'
+			
+			
+			$('#report_tbl').append(innerHtml);
+			
+		}
 				
 		//반려모달
 		$("#r_code").val(result.re_code)
@@ -382,7 +411,28 @@ Array.from(reportList).forEach(function (element) {
 //승인 버튼
 const confirmReport=()=>{
 	if($("#re_code").val()!=""){
-		alert("승인 쿼리 만들어")
+	let code=$("#re_code").val();
+	let id=$("#re_res").val();
+
+	let reportData={
+			re_code:code,
+			email:id
+	}
+	
+		 $.ajax({
+			url:"updateConfirmReport.do",
+			data : JSON.stringify(reportData),
+			headers:{'Content-Type':'application/json'},
+			type:"post"
+		    
+		}).done(function(result){
+			if(result!=0){
+				alert("해당신고를 승인했습니다.")
+				window.location.reload();
+			}
+		}).fail(function(){
+			alert("시스템 관리자에게 문의하세요.")
+		}) 
 	}
 }
 $("#confirmBtn").on("click",confirmReport);

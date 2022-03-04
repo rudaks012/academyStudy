@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.comm.VO.SellerVO;
+import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.seller.service.SellerService;
 
 @Controller
@@ -68,11 +70,6 @@ public class SellerController {
 		return "seller/serviceInsert";
 	}
 
-	@RequestMapping("/serviceDetail.do")
-	public String serviceDetail() {
-		return "seller/serviceDetail";
-
-	}
 
 	@RequestMapping("/knowhowInsertForm.do")
 	public String knowhowInsertForm() {
@@ -84,7 +81,7 @@ public class SellerController {
 //
 //		return "seller/knowhowInsert";
 //	}
-
+	
 	@RequestMapping("/sellerDetail.do")
 	public String sellerDetail() {
 		return "seller/sellerDetail";

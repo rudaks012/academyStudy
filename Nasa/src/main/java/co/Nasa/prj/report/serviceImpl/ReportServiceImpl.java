@@ -29,4 +29,10 @@ public class ReportServiceImpl implements ReportService {
 		return map.insertBuyerReportsSeller(vo);
 	}
 
+	@Override
+	public int insertChattingReport(ReportVO vo) {
+		// TODO Auto-generated method stub
+		return map.insertChattingReport(vo);
+	}
+
 }

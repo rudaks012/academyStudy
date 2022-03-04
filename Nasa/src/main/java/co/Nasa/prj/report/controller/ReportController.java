@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.comm.VO.ReportVO;
 import co.Nasa.prj.comm.VO.Review_CommentVO;
@@ -47,4 +50,27 @@ public class ReportController {
 			return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
 		}
 	}
+	
+	//report 여기까지함
+	@ResponseBody
+	@RequestMapping(value = "/reportChatting.do",produces = "text/plain;charset=UTF-8")
+	public String reportChatting(@RequestParam ("re_member") String re_member, 
+			@RequestParam("re_type") String re_type, @RequestParam String re_subject,HttpSession session,
+			MultipartFile imgupload
+			) {
+		int n = 0 ;
+		String result = "";
+		ReportVO vo = new ReportVO();
+		vo.setRe_reporter((String) session.getAttribute("id"));
+		vo.setRe_type(re_type);
+		vo.setRe_reporter(re_member);
+		vo.setRe_subject(re_subject);	
+		
+		if(n>0) {
+			result = "OK";
+		}else {
+			result = "NO";
+		}
+		return result;
+ 	}
 }

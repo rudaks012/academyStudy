@@ -1,6 +1,7 @@
 package co.Nasa.prj.admin.report.service;
 
 import java.util.List;
+import java.util.Map;
 
 import co.Nasa.prj.admin.service.AdminAuthorVO;
 import co.Nasa.prj.admin.service.Criteria;
@@ -15,6 +16,9 @@ public interface AdminReportMapper {
 		
 		//신고반려
 		public int updateDeniedReport(ReportVO vo);
+		
+		//신고승인
+		public Map<String, Object> updateConfirmReport(Map<String, Object>map);
 		
 		//신고대기조회
 		public int totalReportWait();
