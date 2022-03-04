@@ -3,8 +3,30 @@
 <mapper namespace="co.Nasa.prj.admin.report.service.AdminReportMapper">
 
   <select id="totalReport" resultType="int">
-  	select count(*) from report
+  	select count(*)  from report
+  	 
+  	    <trim prefix="where" prefixOverrides="AND">
+  	      <include refid="criteria"></include>
+  	    </trim>
+  	  
   </select>
+  
+  <sql id="criteria"> 
+  	<if test= "re_type!=null and !re_type.equals('')">
+  	    AND re_type like '%'||#{re_type}||'%'
+  	 </if>
+  	 
+  	 <if test="re_reporter!=null and !re_reporter.equals('')">
+  	     AND re_reporter like '%'||#{re_reporter}||'%'
+  	</if>
+  	
+  	<if test="re_date!=null and !re_date.equals('')">
+  	   <![CDATA[
+  	     AND to_char(re_date,'yyyymmdd') between #{re_date} and #{re_date2}
+  	  ]]>   
+     </if>
+    
+  </sql>
   
   <select id="getReportListWithPaging" resultType="co.Nasa.prj.comm.VO.ReportVO">
   	<![CDATA[
@@ -12,24 +34,12 @@
   	 FROM 
   	     (
   	     SELECT rownum rn, r.*
-  	     from report r
-  	 ]]>    
-  	     <where> 
-  	 <![CDATA[
+  	     FROM report r
+  	     WHERE
   	      rownum <=#{pageNum} * #{amount} 
   	  ]]> 
-  	     <if test= "re_type!=null and !re_type.equals('')">
-  	      and re_type like '%'||#{re_type}||'%'
-  	     </if>
-  	     <if test="re_reporter!=null and !re_reporter.equals('')">
-  	      and re_reporter like '%'||#{re_reporter}||'%'
-  	     </if>
-  	     <if test="re_date!=null and !re_date.equals('')">
-  	 <![CDATA[
-  	     and to_char(re_date,'yyyymmdd') between #{re_date} and #{re_date2}
-  	  ]]>   
-		</if>
-  	     </where>
+  	     <include refid="criteria"></include>
+  	     
   	   <![CDATA[  
   	     )
   	 WHERE rn > (#{pageNum}-1 )* #{amount}
