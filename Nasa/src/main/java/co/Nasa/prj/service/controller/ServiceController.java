@@ -21,13 +21,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.comm.VO.ServiceVO;
+import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
 
 @Controller
 public class ServiceController {
 	@Autowired
 	private ServiceService serviceDao;
-
+	@Autowired
+	private SellerService sellerDAO;
+	
 	@RequestMapping("/sellerService.do")
 	public String sellerService(Model model) {
 		model.addAttribute("serviceList", serviceDao.serviceList());
@@ -451,6 +454,17 @@ public class ServiceController {
 	public String searchResult(Model model) {
 		model.addAttribute("searchList", serviceDao.searchListAll());
 		return "user/searchResult";
+	}
+	
+	@RequestMapping("/serviceDetail.do")
+	public String sellerDetail(Model model, @RequestParam("ser_code") String ser_code) {
+		ServiceVO vo = new ServiceVO();
+		vo = serviceDao.serviceSelect(ser_code);
+		System.out.println("++++++++++++"+vo);
+		model.addAttribute("detailS", serviceDao.serviceSelect(ser_code));
+		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(vo.getS_email()));
+		
+		return "seller/serviceDetail";
 	}
 	
 

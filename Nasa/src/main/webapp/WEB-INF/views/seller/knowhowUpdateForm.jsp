@@ -82,7 +82,7 @@ p {
 								<li><a href="sellerPromotion.do" class="d-flex">
 										<p>프로모션관리</p>
 								</a></li>
-								<li><a href="#" class="d-flex">
+								<li><a href="sellerCalendar.do" class="d-flex">
 										<p>일정관리</p>
 								</a></li>
 								<li><a href="sellerReview.do" class="d-flex">
@@ -100,10 +100,6 @@ p {
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p style="font-weight: bold;">판매자 노하우</p>
 								</a></li>
-								<li><a href="" class="d-flex" data-toggle="modal"
-									data-target="#WithdrawalModal">
-										<p>회원탈퇴</p>
-								</a></li>
 							</ul>
 						</aside>
 					</div>
@@ -117,23 +113,25 @@ p {
 									</a>
 								<hr class="hr"/>
 								<div class="blog_details">
-									<form class="" method="post" action="knowhowInsert.do" enctype="multipart/form-data">
+									<form id="knowhowUp" method="post" enctype="multipart/form-data">
 										<table border="2" style="border-color: rgb(229, 232, 255);">
 											<tbody>
 												<tr>
 													<td class="align-middle table-primary knowtd" colspan="2">제목
 														<span class="spanstar">*</span>
 													</td>
-													<td><input type="text" id="no_title" name="no_title"
-														class="sname" value="${knowhowUpdate.no_title }"></td>
+													<td><input type="text" id="no_title" name="no_title" required="required"
+														class="sname" value="${knowhowUpdate.no_title }">
+														<input type="hidden" name="no_code" value="${knowhowUpdate.no_code }">	
+													</td>
 												</tr>
 												<tr>
 													<td class="align-middle table-primary knowtd" colspan="2">메인이미지
 														<span class="spanstar">*</span>
 													</td>
-													<td><input type="file" id="mainKnow" name="mainKnow"
+													<td><input type="file" id="file" name="file"
 														class="sname" >
-														<span>기존 파일 : ${knowhowUpdate.no_originimg }</span>	
+														<span class="knowhowFile">&nbsp;&nbsp; 기존 파일 : ${knowhowUpdate.no_originimg }</span>	
 													</td>
 												</tr>
 												<tr>
@@ -146,12 +144,12 @@ p {
 											</tbody>
 										</table>
 										<br />
-										<div
-											class="row d-flex justify-content-center align-items-center">
-											<button type="submit"
-												class="genric-btn primary circle arrow btnbox">수정</button>
+										<div class="row d-flex justify-content-center align-items-center">
+											<input type="button" id="knowhowUbtn" value="수정"
+												class="genric-btn primary circle arrow btnbox">
 											&nbsp;&nbsp;&nbsp;
-											<button class="genric-btn primary circle arrow" onclick="history.back()">취소</button>
+											
+											<input type="button" class="genric-btn primary circle arrow" onclick="history.back()" value="취소">
 										</div>
 									</form>
 
@@ -231,6 +229,36 @@ p {
 				}
 			});
 		}
+		
+		$("#mainKnow").on("change", function(){
+			$(".knowhowFile").remove();
+		})
+	
+		$("#knowhowUbtn").on("click", function(){
+			var form = $("form")[0];
+			var formData = new FormData(form);
+		
+			 $.ajax({
+				type : "POST",
+				enctype : "multipart/form-data",
+				url : "knowhowUpdate.do",
+				data : formData,
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					if (data == "OK") {
+						alert("수정하였습니다.");
+						location.href="sellerKnowhow.do";
+					} else{
+						alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
+					}					
+				},
+				error : function(xhr, status, error) {
+					alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+				}
+			}); 
+		})
+		
 	</script>
 </body>
 </html>

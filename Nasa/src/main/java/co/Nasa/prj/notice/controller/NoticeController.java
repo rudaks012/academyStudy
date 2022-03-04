@@ -29,10 +29,10 @@ public class NoticeController {
 
 	
 	@RequestMapping("/sellerKnowhow.do")
-	public String sellerKnowhow(Model model, HttpSession session) {
-//		String no_id = (String)session.getAttribute("id");
-		String no_id = "lsj";
-		model.addAttribute("knowhows", NoticeDao.knowhowSelectList(no_id));
+	public String sellerKnowhow(Model model) {
+		//String no_id = (String)session.getAttribute("id");
+
+		model.addAttribute("knowhows", NoticeDao.knowhowSelectList());
 		return "seller/sellerKnowhow";
 	}
 	
@@ -43,18 +43,13 @@ public class NoticeController {
 		return "seller/knowhowDetail";
 	}
 
-	
+	@ResponseBody
 	@RequestMapping("/knowhowInsert.do")
-	public String knowhowInsert(Model model, NoticeVO vo, HttpServletRequest req, HttpServletResponse response, HttpSession session,
-			@RequestParam("mainKnow") MultipartFile file)
+	public String knowhowInsert(Model model, NoticeVO vo, HttpServletRequest req, HttpSession session,
+			@RequestParam("file") MultipartFile file)
 			throws IOException {
 
-		response.setContentType("text/html; charset=EUC-KR");
-		PrintWriter out = response.getWriter();
-		vo.setNo_id("lsj");
-		
-		String title = new String(req.getParameter("no_title").getBytes("8859_1"), "UTF-8");
-		vo.setNo_title(title);
+		vo.setNo_id((String)session.getAttribute("id"));
 		
 		String fileRoot;
 		try {
@@ -62,7 +57,7 @@ public class NoticeController {
 			if(file.getSize() > 0 && !file.getOriginalFilename().equals("")) {
 				
 				
-				fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
+				fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\editor\\";
 				System.out.println(fileRoot);
 				
 				String originalFileName = file.getOriginalFilename();	//오리지날 파일명
@@ -93,7 +88,7 @@ public class NoticeController {
 		System.out.println(vo.getNo_title());
 		System.out.println(file.getOriginalFilename());
 		// 서머노트 코드 원본
-		String s = new String(req.getParameter("summernote").getBytes("8859_1"), "UTF-8");
+		String s = req.getParameter("summernote");
 		System.out.println("s라고 저장됨 " + s);
 		System.out.println("파일자르는 이름 " + s.indexOf("src=")); // 13번째에서 잘라야함.
 		vo.setNo_subject(s);
@@ -104,21 +99,14 @@ public class NoticeController {
 			vo.setNo_subject(s);
 		}
 		
+		String result = "FAIL";
 		int n = NoticeDao.knowhowInsert(vo);
 		if(n != 0) {
-			out.println("<script language='javascript'>");
-			out.println("alert('등록 완료하였습니다.')");
-			out.println("</script>");
-			
+			result = "OK";
 			model.addAttribute("d", s);
-			return "seller/sellerKnowhow";
-		}else {
-			out.println("<script language='javascript'>");
-			out.println("alert('등록 실패하였습니다.')");
-			out.println("</script>");
 		}
 		
-		return "seller/knowhowInsert";
+		return result;
 	}
 	
 	@ResponseBody
@@ -137,5 +125,74 @@ public class NoticeController {
 	public String knowhowUpdateForm(Model model, @RequestParam("no_code") String no_code) {
 		model.addAttribute("knowhowUpdate", NoticeDao.knowhowSelect(no_code));
 		return "seller/knowhowUpdateForm";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/knowhowUpdate.do")
+	public String knowhowUpdate(NoticeVO vo,HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {
+		
+		
+		NoticeVO vo2 = new NoticeVO();
+		vo2 = NoticeDao.knowhowSelect(vo.getNo_code());
+		
+		String fileRoot;
+		
+		try {
+			// 파일이 있을때 탄다.
+			if (file.getSize() > 0 && !file.getOriginalFilename().equals("")) {
+
+				fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\editor\\";
+				System.out.println(fileRoot);
+
+				String originalFileName = file.getOriginalFilename(); // 오리지날 파일명
+				String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
+				String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+
+				File targetFile = new File(fileRoot + savedFileName);
+				File targetFile2 = new File(fileRoot + vo2.getNo_img());
+				// 이미있는파일 삭제
+				if (targetFile2.exists()) {
+					targetFile2.delete();
+				}
+				
+				try {
+					InputStream fileStream = file.getInputStream();
+					FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
+					vo.setNo_img(savedFileName); // uuid
+					vo.setNo_originimg(originalFileName); // 원본
+
+				} catch (Exception e) {
+					// 파일삭제
+					FileUtils.deleteQuietly(targetFile); // 저장된 현재 파일 삭제
+					e.printStackTrace();
+				}
+			}
+			else {
+				vo.setNo_img(vo2.getNo_img());
+				vo.setNo_originimg(vo2.getNo_originimg());			
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		String s = request.getParameter("summernote");
+		System.out.println("s라고 저장됨 " + s);
+		System.out.println("파일자르는 이름 " + s.indexOf("src=")); // 13번째에서 잘라야함.
+		vo.setNo_subject(s);
+		if(s.indexOf("src=")!=-1) {
+			System.out.println(s);
+			s = s.replaceAll("/prj/resources/fileupload", "editor");
+			System.out.println(s);
+			vo.setNo_subject(s);
+		}
+		String result = "FAIL";
+		int n = NoticeDao.knowhowUpdate(vo);
+		
+		if(n != 0) {
+			result = "OK"; 
+		}
+		
+		return result;
 	}
 }

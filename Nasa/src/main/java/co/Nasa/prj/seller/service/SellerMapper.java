@@ -12,4 +12,7 @@ public interface SellerMapper {
 
 	// seller 전체 조회
 	public List<SellerVO> selectSellerList();
+	
+	//이메일로 한명 조회
+	SellerVO SellerSelect(String s_email);
 }

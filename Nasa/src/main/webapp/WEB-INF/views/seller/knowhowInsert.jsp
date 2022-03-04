@@ -82,7 +82,7 @@ p {
 								<li><a href="sellerPromotion.do" class="d-flex">
 										<p>프로모션관리</p>
 								</a></li>
-								<li><a href="#" class="d-flex">
+								<li><a href="sellerCalendar.do" class="d-flex">
 										<p>일정관리</p>
 								</a></li>
 								<li><a href="sellerReview.do" class="d-flex">
@@ -100,10 +100,6 @@ p {
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p style="font-weight: bold;">판매자 노하우</p>
 								</a></li>
-								<li><a href="" class="d-flex" data-toggle="modal"
-									data-target="#WithdrawalModal">
-										<p>회원탈퇴</p>
-								</a></li>
 							</ul>
 						</aside>
 					</div>
@@ -117,7 +113,7 @@ p {
 									</a>
 								<hr class="hr"/>
 								<div class="blog_details">
-									<form class="" method="post" action="knowhowInsert.do" enctype="multipart/form-data">
+									<form id="knowhowform" method="post"  enctype="multipart/form-data">
 										<table border="2" style="border-color: rgb(229, 232, 255);">
 											<tbody>
 												<tr>
@@ -125,13 +121,13 @@ p {
 														<span class="spanstar">*</span>
 													</td>
 													<td><input type="text" id="no_title" name="no_title"
-														class="sname"></td>
+														class="sname" required="required"></td>
 												</tr>
 												<tr>
 													<td class="align-middle table-primary knowtd" colspan="2">메인이미지
 														<span class="spanstar">*</span>
 													</td>
-													<td><input type="file" id="mainKnow" name="mainKnow"
+													<td><input type="file" id="file" name="file"
 														class="sname" required="required"></td>
 												</tr>
 												<tr>
@@ -144,8 +140,8 @@ p {
 										<br />
 										<div
 											class="row d-flex justify-content-center align-items-center">
-											<button type="submit"
-												class="genric-btn primary circle arrow btnbox">등록</button>
+											<input type="button" id="knowhowbtn" value="등록"
+												class="genric-btn primary circle arrow btnbox">
 											&nbsp;&nbsp;&nbsp;
 											<button class="genric-btn primary circle arrow" onclick="history.back()">취소</button>
 										</div>
@@ -227,6 +223,35 @@ p {
 				}
 			});
 		}
+		
+		$("#knowhowbtn").click(function(){
+			var form = $("form")[0];
+			var formData = new FormData(form);
+		
+			 $.ajax({
+				type : "POST",
+				enctype : "multipart/form-data",
+				url : "knowhowInsert.do",
+				data : formData,
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					console.log(data);
+					if (data == "OK") {
+						alert("등록하였습니다.");
+						location.href="sellerKnowhow.do";
+					} else{
+						alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
+						return;
+					}					
+				},
+				error : function(xhr, status, error) {
+					alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+					return;
+				}
+			}); 
+		})
+		
 	</script>
 </body>
 </html>

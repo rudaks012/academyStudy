@@ -154,7 +154,7 @@ input[type=date] {
 								<li><a href="sellerPromotion.do" class="d-flex">
 										<p>프로모션관리</p>
 								</a></li>
-								<li><a href="#" class="d-flex">
+								<li><a href="sellerCalendar.do" class="d-flex">
 										<p>일정관리</p>
 								</a></li>
 								<li><a href="sellerReview.do" class="d-flex">
@@ -171,10 +171,6 @@ input[type=date] {
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p>판매자 노하우</p>
-								</a></li>
-								<li><a href="" class="d-flex" data-toggle="modal"
-									data-target="#WithdrawalModal">
-										<p>회원탈퇴</p>
 								</a></li>
 							</ul>
 						</aside>
@@ -233,7 +229,7 @@ input[type=date] {
 																			</div>
 																			<div class="list-caption">
 																				<h3>
-																					<a href="serviceDetail.do">${service.ser_title }</a>
+																					<a href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
 																				</h3>
 																				<div>번호 : s${service.ser_code }</div>
 																				<c:if test="${service.ser_date eq '상시' }">

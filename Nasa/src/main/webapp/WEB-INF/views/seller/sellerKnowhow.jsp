@@ -48,7 +48,7 @@
 								<li><a href="sellerPromotion.do" class="d-flex">
 										<p>프로모션관리</p>
 								</a></li>
-								<li><a href="#" class="d-flex">
+								<li><a href="sellerCalendar.do" class="d-flex">
 										<p>일정관리</p>
 								</a></li>
 								<li><a href="sellerReview.do" class="d-flex">
@@ -65,10 +65,6 @@
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p style="font-weight: bold;">판매자 노하우</p>
-								</a></li>
-								<li><a href="" class="d-flex" data-toggle="modal"
-									data-target="#WithdrawalModal">
-										<p>회원탈퇴</p>
 								</a></li>
 							</ul>
 						</aside>
@@ -89,10 +85,11 @@
 											
 											<div class="row">
 												<c:forEach items="${knowhows }" var="knowhow">
+												<c:if test="${knowhow.no_id eq id }">
 													<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 														<div class="single-team mb-30">
 															<div class="team-img">
-																<img src="fileupload/${knowhow.no_img }" alt="" style="width: 238px; height: 238px;">
+																<img src="editor/${knowhow.no_img }" alt="" style="width: 238px; height: 238px;">
 															</div>
 															<div class="team-caption">
 																<span>${knowhow.no_title }</span>
@@ -103,6 +100,7 @@
 															</div>
 														</div>
 													</div>
+												</c:if>
 												</c:forEach>
 											</div>
 										</div>

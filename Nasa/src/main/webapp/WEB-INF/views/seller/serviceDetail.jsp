@@ -85,18 +85,16 @@
                         <div class="tab-content" id="nav-tabContent">
                            <div class="tab-pane fade show active" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
                               <div class="row justify-content-center">
-                                 2222222
+                                 
                                  <p class="excert">
-                                    MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                                    should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                                    fraction of the camp price. However, who has the willpower
+                                    ${detailS.ser_sub }
                                  </p>
                               </div>
                            </div>
                            <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
                               <br /><br />
                               <div class="row justify-content-center">
-                                    ㄴㅇㄹㄴㅇㄹㄴㅇ
+                                    취소환불규정
                               </div>
                            </div>
                            <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-info-tab">
@@ -260,9 +258,16 @@
 					<div class="blog_right_sidebar">
 						<aside class="single_sidebar_widget search_widget">
 							<div class="input-group">
-								<h3>웹 개발 해드립니다</h3>
-								<br />
-								<br /> <span>가격 : 50,000 ~</span>
+								<h1>${detailS.ser_title }</h1>
+								<br /><br />
+								<c:if test="${detailS.ser_date eq '상시' }">
+									<span>기간 : ${detailS.ser_date } </span>
+								</c:if>
+								<c:if test="${detailS.ser_date eq '기간지정' }">
+									<span>기간 : ${detailS.ser_start } ~ ${detailS.ser_end } </span>
+								</c:if>
+								<br /><br />
+								<span style="font-size:25px; font-weight: bold;">가격 : ${detailS.ser_price }원 ~ </span>
 							</div>
 							<!-- /input-group -->
 							<div class="br"></div>
@@ -270,13 +275,10 @@
 						<aside class="single_sidebar_widget author_widget">
 							<img class="author_img rounded-circle" src="assets/img/comment/comment_1.png" 
 							alt="" style="cursor:pointer;" onclick="location='sellerDetail.do'">
-							<h4>Charlie Barber</h4>
-							<p>Senior blog writer</p>
+							<h4>${sellerInfo.s_name } 이름?닉네임?</h4>
+							<p>등급 : ${sellerInfo.s_rank }</p>
 
-							<p>Boot camps have its supporters andit sdetractors. Some
-								people do not understand why you should have to spend money on
-								boot camp when you can get. Boot camps have itssuppor ters
-								andits detractors.</p>
+							<p>${sellerInfo.s_me }</p>
 							<button class="genric-btn primary small startbtn">채팅</button>
 							<div class="br"></div>
 						</aside>
