@@ -59,8 +59,8 @@ public class KakaoController {
 //		    request.setAttribute("kakaoname",request.getParameter("kakaoname"));
 //		    request.setAttribute("kakaobirth",request.getParameter("kakaobirth"));
 //		    request.setAttribute("kakaoemail",request.getParameter("kakaoemail"));
-		    session.setAttribute("kakaoid", kakaoid);
-		    session.setAttribute("kakaoname", kakaoname);
+		    session.setAttribute("email", kakaoid);
+		    session.setAttribute("name", kakaoname);
 		    session.setAttribute("token", token);
 		    
 		    System.out.println("회원이 아닌경우");

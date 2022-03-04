@@ -350,10 +350,10 @@ public class BuyerController {
 	@RequestMapping("/ajaxBjoin.do")
 	@ResponseBody
 	public String ajaxBjoin(BuyerVO vo) {
-		vo.setB_rank("별");
+		vo.setB_rank("1");
 		vo.setB_author("구매자");
 		vo.setB_status("사용자");
-		vo.setToken("t");
+		//vo.setToken("t");
 		vo.setField_code("1");
 
 		System.out.println("여기를 확인해보세여" + vo.toString());
