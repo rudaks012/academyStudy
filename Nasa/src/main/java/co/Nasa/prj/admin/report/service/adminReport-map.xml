@@ -13,11 +13,29 @@
   	     (
   	     SELECT rownum rn, r.*
   	     from report r
-  	     where rownum <=#{pageNum} * #{amount}
+  	 ]]>    
+  	     <where> 
+  	 <![CDATA[
+  	      rownum <=#{pageNum} * #{amount} 
+  	  ]]> 
+  	     <if test= "re_type!=null and !re_type.equals('')">
+  	      and re_type like '%'||#{re_type}||'%'
+  	     </if>
+  	     <if test="re_reporter!=null and !re_reporter.equals('')">
+  	      and re_reporter like '%'||#{re_reporter}||'%'
+  	     </if>
+  	     <if test="re_date!=null and !re_date.equals('')">
+  	 <![CDATA[
+  	     and to_char(re_date,'yyyymmdd') between #{re_date} and #{re_date2}
+  	  ]]>   
+		</if>
+  	     </where>
+  	   <![CDATA[  
   	     )
   	 WHERE rn > (#{pageNum}-1 )* #{amount}
-  	 ORDER BY re_code DESC
-  	]]>
+  	 ORDER BY re_date DESC
+  	 ]]>
+  	  
   </select>
   
 	<select id="detailedReport" parameterType="String" resultType="co.Nasa.prj.comm.VO.ReportVO">
@@ -62,10 +80,10 @@
   </update>
   
   <resultMap type="hashmap" id="update_newReport"/>
-  	<select id="updateConfirmReport" parameterType="hashmap" statementType="STATEMENT">
+  	<select id="updateConfirmReport" parameterType="hashmap" statementType="CALLABLE">
   		{CALL confirm_report(
-  		   #{p_id, mode=IN, jdbcType=VARCHAR, javaType=STRING},
-  		   #{p_code, mode=IN, jdbcType=VARCHAR, javaType=STRING},
+  		   #{p_id},
+  		   #{p_code},
   		   #{result, mode=OUT, jdbcType=INTEGER, javaType=INTEGER, resultMap=update_newReport}
   		   )
   		   

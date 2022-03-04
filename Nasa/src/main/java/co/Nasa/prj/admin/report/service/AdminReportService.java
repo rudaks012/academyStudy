@@ -18,7 +18,7 @@ public interface AdminReportService {
 	public int updateDeniedReport(ReportVO vo);
 	
 	//신고승인
-	public Map<String, Object> updateConfirmReport(Map<String, Object>map);
+	public Map<String, Object> updateConfirmReport(Map<String, Object>reportMap);
 	
 	//신고대기조회
 	public int totalReportWait();

@@ -27,6 +27,7 @@ public class AdminReportController {
 	//전체신고
 	@RequestMapping("/report_inquiry.do")
 	public String report_inquiry(Model model,Criteria cri) {
+		System.out.println(cri);
 		model.addAttribute("reportLists", reportDao.getReportListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReport()));
 		model.addAttribute("total", reportDao.totalReport());
@@ -58,6 +59,7 @@ public class AdminReportController {
 		
 		map.put("p_id",vo.getEmail());
 		map.put("p_code",vo.getRe_code());
+		map.put("result", "");
 		
 		reportDao.updateConfirmReport(map);
 		return map;

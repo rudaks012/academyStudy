@@ -10,8 +10,10 @@ public class Criteria {
 	
 	private String b_email;
 	
-	private String type;
-	private String keyword;
+	private String re_type;
+	private String re_reporter;
+	private String re_date;
+	private String re_date2;
 	
 	public Criteria() {
 		this(1,10);
@@ -21,7 +23,5 @@ public class Criteria {
 		this.amount = amount;
 	}
 	
-	public String[] getTypeArr() {
-		return type == null ? new String[] {}:type.split("");
-	}
+	
 }

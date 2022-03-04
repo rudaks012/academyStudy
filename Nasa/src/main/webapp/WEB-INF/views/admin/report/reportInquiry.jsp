@@ -27,16 +27,21 @@
                      </h5>
                     <div class="card mb-4">
                         <div class="card-body">
+                          <form id="searchForm" method="get">
                             <table class="table caption-top table-bordered  text-center">
                                 <tbody>
                                     <tr>
                                         <th class="align-middle table-primary">신고유형</th>
                                         <td>
                                         	<div class="col-6">
-                                        	<select class="custom-select  form-control custom-shadow ">
-				                                <option selected="">선택</option>
-				                                <option value="1">July 19</option>
-				                                <option value="2">Jun 19</option>
+                                        	<select name="re_type" class="custom-select  form-control custom-shadow ">
+                                        	<option value="" selected>선택</option>
+				                                <option value="욕설/비방" >비방/욕설</option>
+				                                <option value="스팸, 부적절한 광고">스팸/부적절한 광고</option>
+				                                <option value="혐오 혹은 잔인한사진">혐오/잔인한사진</option>
+				                                <option value="음란물">음란물</option>
+				                                <option value="채팅신고">채팅신고</option>
+				                                <option value="기타 사유">기타</option>
 				                            </select>
 				                            </div>
                                         </td>
@@ -45,7 +50,7 @@
                                         <th class="align-middle table-primary">신고자아이디</th>
                                         <td>
                                         	<div class="col-6">
-                                        		<input class="form-control custom-shadow" id="" name="" type="text"></td>
+                                        		<input class="form-control custom-shadow" id="id" name="re_reporter" type="text"></td>
                                     		</div>
                                     </tr>
                                     <tr>
@@ -53,17 +58,18 @@
                                         <td>
                                         	<div class="d-flex align-items-center">
                                         		<div class="col-3">
-	                                        	<input type="date" class="form-control" value="2018-05-13">
+	                                        	<input type="date" class="form-control" name="re_date" value="">
 	                                        	</div>
 	                                        	<span class="mx-2"><i class="fas fa-minus"></i></span>
 	                                        	<div class="col-3">
-	                                        	<input type="date" class="form-control" value="2018-05-13">
+	                                        	<input type="date" class="form-control" name="re_date2" value="">
 	                                        	</div>
                                         	</div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                           </form>
                         <style>
                             .search, .reload{
                                 position: relative;
@@ -73,7 +79,7 @@
 
 	                     <div class="d-flex justify-content-end my-4">
                             <button class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
-	                        <button class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
+	                        <button id="search" class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
 	                    </div>
                    </div>
                </div>
@@ -87,6 +93,7 @@
                         </h5>
                 	    <div class="card">
                             <div class="card-body">
+                             
                             	<ul class="nav nav-tabs mb-3">
                                     <li class="nav-item">
                                         <a href="report_inquiry.do"  class="nav-link  active">
@@ -113,7 +120,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            
+                              
                             
                               <div class=" my-4">총 <span class="mx-1 text-danger">${total }</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
@@ -202,11 +209,11 @@
                                             <th width="18%" class="table-primary align-middle">신고코드</th>
                                             <td ><input class="form-control custom-shadow " id="re_code" name="re_code" value="" type="text" readonly ></td>
                                             <th width="18%" class="table-primary align-middle">신고일자</th>
-                                            <td><input class="form-control custom-shadow " id="re_date" name="re_date" value="" type="text" readonly></td>
+                                            <td><input class="form-control custom-shadow " id="re_date" name="" value="" type="text" readonly></td>
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">신고자</th>
-                                            <td colspan="3"><input class="form-control custom-shadow " id="re_reporter" name="re_reporter" value="" type="text" readonly ></td>
+                                            <td colspan="3"><input class="form-control custom-shadow " id="re_reporter" name="" value="" type="text" readonly ></td>
                                             
                                         </tr>
                                         <tr>
@@ -241,8 +248,7 @@
                                         </tr>
                                         <tr >
                                             <th width="18%" class="table-primary align-middle">첨부파일</th>
-                                            <td colspan="3" id=" filecode"></td>
-                                            
+                                            <td colspan="3" id="filecode"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -322,6 +328,18 @@
 			
 
 <script type="text/javascript">
+//신고날짜 변경
+let startDate =$("input[name='re_date']");
+let endDate =$("input[name='re_date2']");
+const handleReportDate =()=>{
+	$(endDate).val($(startDate).val())
+
+	
+}
+$("input[name='re_date']").on("change",handleReportDate);
+
+
+
 let actionForm = $("#actionForm");
 $(".page-item a").on("click", function (e) {
     e.preventDefault();
@@ -371,7 +389,7 @@ const selectReport=()=>{
 		
 	    //신고내용
 		$("#re_subject").val(result.re_subject)
-		
+		console.log(result.filecode);
 		//파일
 		let filecode= result.filecode
 		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text(result.filecode)
@@ -425,8 +443,8 @@ const confirmReport=()=>{
 			headers:{'Content-Type':'application/json'},
 			type:"post"
 		    
-		}).done(function(result){
-			if(result!=0){
+		}).done(function(data){
+			if(data.result!=0){
 				alert("해당신고를 승인했습니다.")
 				window.location.reload();
 			}
@@ -470,6 +488,23 @@ const deniedReport=()=>{
 }
 
 $("#savedBtn").on("click",deniedReport);
+
+//검색버튼
+const searchReport=()=>{
+	let type=$("select[name='re_type'] option:selected").val();
+	let reporterId =$("input[name='re_reporter']").val();
+	startDate = $(startDate).val();
+	console.log(reporterId)
+	if(type!=""||reporterId!=""||startDate!=""){
+		searchForm.action="report_inquiry.do";
+		searchForm.submit();
+	}else{
+		alert("검색어를 입력해주세요.")
+	}
+	
+	
+}
+$("#search").on("click",searchReport);
 </script>
             
               
