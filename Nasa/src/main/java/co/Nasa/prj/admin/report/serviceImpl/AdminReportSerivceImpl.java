@@ -70,9 +70,9 @@ public class AdminReportSerivceImpl implements AdminReportService {
 	}
 
 	@Override
-	public Map<String, Object> updateConfirmReport(Map<String, Object> map) {
+	public Map<String, Object> updateConfirmReport(Map<String, Object> reportMap) {
 		// TODO Auto-generated method stub
-		return null;
+		return map.updateConfirmReport(reportMap);
 	}
 
 
