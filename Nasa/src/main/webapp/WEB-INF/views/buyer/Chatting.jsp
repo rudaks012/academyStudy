@@ -196,12 +196,7 @@ keyframes ring { 0% {
 
 %
 {
-width
-
-
-:
-
-
+width:
 300px
 ;
 
