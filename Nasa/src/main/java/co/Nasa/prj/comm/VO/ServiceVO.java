@@ -31,4 +31,8 @@ public class ServiceVO {
 	String ser_originsub;
 	String ser_originsub2;
 	String ser_originsub3;
+	
+	// v_search_list
+	String count;
+	String avg;
 }

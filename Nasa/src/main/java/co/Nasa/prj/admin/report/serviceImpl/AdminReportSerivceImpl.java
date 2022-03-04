@@ -1,6 +1,7 @@
 package co.Nasa.prj.admin.report.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -67,6 +68,16 @@ public class AdminReportSerivceImpl implements AdminReportService {
 		// TODO Auto-generated method stub
 		return map.updateDeniedReport(vo);
 	}
+
+	@Override
+	public Map<String, Object> updateConfirmReport(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	
 
 	
 

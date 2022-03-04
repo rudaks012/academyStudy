@@ -33,4 +33,8 @@
 	WHERE SER_CODE = #{ser_code}
 </update>
 
+<select id="searchListAll" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	SELECT * FROM V_SEARCH_LIST
+</select>
+
 </mapper>
