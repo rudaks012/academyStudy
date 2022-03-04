@@ -214,10 +214,6 @@
 		$("#paymentTable > tbody > tr").hide();
 		var now = new Date(); // 오늘 날짜
 		var oneMonthAgo = new Date(now.setMonth(now.getMonth() - 1)); // 한달 전 날짜 구하기
-		// var searchYear = OneMonthAgo.getFullYear();
-		// var stringDate = OneMonthAgo.toLocaleDateString();
-		// console.log(stringDate); // getFillYear은 숫자로 반환하기 때문에 -2000을 해주자.
-		// var temp = $("#paymentTable > tbody > tr > td:nth-child(4):contains('"+l+"')")
 		
 		for (var i = 0; i  < $(".paymentdate").length; i++) {
 			var paymentDate = new Date($($(".paymentdate")[i]).html());
