@@ -84,12 +84,19 @@
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
                            <div class="tab-pane fade show active" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
-                              <div class="row justify-content-center">
-                                 
+                             
+                              	<br/><br/>
+                                 <h5><u>서비스 소개</u></h5>
                                  <p class="excert">
                                     ${detailS.ser_sub }
                                  </p>
-                              </div>
+                                 <p>
+                                 ddddddddddd
+                                 </p>
+                             	<h5><u>기술수준</u></h5>
+                             	<p>${detailS.ser_skill }</p>
+                             	<h5><u>팀 규모</u></h5>
+                             	<p>${detailS.ser_team }</p>
                            </div>
                            <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
                               <br /><br />
@@ -268,6 +275,7 @@
 								</c:if>
 								<br /><br />
 								<span style="font-size:25px; font-weight: bold;">가격 : ${detailS.ser_price }원 ~ </span>
+								<br /><br />
 							</div>
 							<!-- /input-group -->
 							<div class="br"></div>
