@@ -177,6 +177,11 @@
                             </ul>
                         </nav>
                     </div>
+                    
+                      <form id="actionForm" action="report_wait.do" method="get">
+			            <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+			            <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+			        </form>
 		                   </div>
                			</div>
                 	</div>
@@ -316,6 +321,12 @@
 		
 			
 <script type="text/javascript">
+let actionForm = $("#actionForm");
+$(".page-item a").on("click", function (e) {
+    e.preventDefault();
+    actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+    actionForm.submit();
+})
 
 const reportList = document.querySelectorAll(".reportList");
 
@@ -329,6 +340,7 @@ const reCode=event.target.parentElement.firstElementChild.value;
 		type:"post",
 		data:{"re_res":res,"re_code":reCode}
 	}).done(function(result){
+		console.log(result)
 		$("#re_code").val(result.re_code)
 		$("#re_date").val(result.re_date)
 		$("#re_reporter").val(result.re_reporter)

@@ -1,9 +1,15 @@
 package co.Nasa.prj.admin.report.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -44,12 +50,27 @@ public class AdminReportController {
 		return n;
 	}
 	
+	//신고승인
+	@ResponseBody
+	@PostMapping("/updateConfirmReport.do")
+	public Map<String, Object> updateConfirmReport(@RequestBody ReportVO vo,HttpServletRequest response){
+		Map<String, Object> map = new HashMap<String,Object>();
+		
+		map.put("p_id",vo.getEmail());
+		map.put("p_code",vo.getRe_code());
+		
+		reportDao.updateConfirmReport(map);
+		return map;
+	}
+	
+	
 	//신고대기
 	@RequestMapping("/report_wait.do")
 	public String report_wait(Model model,Criteria cri) {
 		model.addAttribute("reportWaitLists", reportDao.getReportWaitListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportWait()));
 		model.addAttribute("total",reportDao.totalReportWait() );
+		
 		return"admin/report/reportWait";
 	}
 	
