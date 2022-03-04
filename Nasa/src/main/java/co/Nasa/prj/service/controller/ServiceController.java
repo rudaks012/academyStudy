@@ -446,10 +446,10 @@ public class ServiceController {
 		return "OK";
 	}
 	
-	// 서비스 검색 결과 리스트 조회	
+	// 서비스 전체 리스트 조회	
 	@RequestMapping("/searchResult.do")
 	public String searchResult(Model model) {
-		model.addAttribute("serviceList", serviceDao.serviceList());
+		model.addAttribute("searchList", serviceDao.searchListAll());
 		return "user/searchResult";
 	}
 	

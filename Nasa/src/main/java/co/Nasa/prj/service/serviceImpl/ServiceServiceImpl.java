@@ -1,6 +1,5 @@
 package co.Nasa.prj.service.serviceImpl;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import co.Nasa.prj.service.service.ServiceService;
 public class ServiceServiceImpl implements ServiceService {
 	@Autowired
 	private ServiceMapper map;
-	
+
 	@Override
 	public int serviceInsert(ServiceVO vo) {
 		return map.serviceInsert(vo);
@@ -35,6 +34,9 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.serviceUpdate(vo);
 	}
 
-
+	@Override
+	public List<ServiceVO> searchListAll() {
+		return map.searchListAll();
+	}
 
 }
