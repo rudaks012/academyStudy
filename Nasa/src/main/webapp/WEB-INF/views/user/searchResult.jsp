@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -165,30 +166,32 @@
 	                </div>
 	            </div>
 	            <div class="col-12">
-	                <div class="searchtable">
-	                    <table>
-	                        <tbody>
-	                            <tr>
-	                                <td rowspan="4" class="tableimg"><img class="tableimgs" src="resources/user/assets/img/search-default-profile.jpg"></td>
-	                                <td colspan="2" class="position-relative tablecategory">카테고리1 > 카테고리2</td>
-	                                <td class="tableinfos">5.0<br>123개의 리뷰</td>
-	                            </tr>
-	                            <tr>
-	                                <td class="position-relative tabletitle" colspan="3">웹개발해드립니다</td>
-	                            </tr>
-	                            <tr>
-	                                <td colspan="2" class="position-relative tableusername">홍길동</td>
-	                                <td class="position-relative tableprice">50,000원</td>
-	                            </tr>
-	                            <tr>
-	                                <td class="position-relative tablecontext">두줄까지만출력하게끔... 서비스련 내용...서비스 관련 내용...서비스 관련 내용...서비스 관련 내용..서비스
-	                                    관련 내용...서비스 관련 내용...서비스 관련 내용...서비스 관련 내용...</td>
-	                                <td class="tablewish"><img src="resources/user/assets/img/hearticcon.png" style="width: 25px; height: 25px;"></td>
-	                                <td class="tablebtn"><a href="#" class="genric-btn primary">견적 요청</a></td>
-	                            </tr>
-	                        </tbody>
-	                    </table>
-	                </div>                        
+					<c:forEach items="${searchList }" var="service">
+						<div class="searchtable">
+							<table>
+								<tbody>
+									<tr>
+										<td rowspan="4" class="tableimg"><img class="tableimgs" src="resources/user/assets/img/search-default-profile.jpg"></td>
+										<td colspan="2" class="position-relative tablecategory">${service.ser_cate } > ${service.ser_sub_cate }</td>
+										<td class="tableinfos">평점 : ${service.avg }<br>${service.count }개의 리뷰</td>
+									</tr>
+									<tr>
+										<td class="position-relative tabletitle" colspan="3">${service.ser_title }</td>
+									</tr>
+									<tr>
+										<td colspan="2" class="position-relative tableusername">홍길동</td>
+										<td class="position-relative tableprice">${service.ser_price }원</td>
+									</tr>
+									<tr>
+										<td class="position-relative tablecontext">두줄까지만출력하게끔... 서비스련 내용...서비스 관련 내용...서비스 관련 내용...서비스 관련 내용..서비스
+											관련 내용...서비스 관련 내용...서비스 관련 내용...서비스 관련 내용...</td>
+										<td class="tablewish"><img src="resources/user/assets/img/hearticcon.png" style="width: 25px; height: 25px;"></td>
+										<td class="tablebtn"><a href="#" class="genric-btn primary">견적 요청</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</c:forEach>	                                        
 	                <br>
 	                <!-- <div class="searchtable">
 	                    <table>
