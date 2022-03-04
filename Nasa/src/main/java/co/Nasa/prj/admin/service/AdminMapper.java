@@ -6,5 +6,7 @@ public interface AdminMapper {
 	public int schcouponupdate3();
 	public int schcouponupdate4();
 	public int schcoupondelete();
-
+	
+	// 매월 1일 구매자 등급 업데이트
+	public int schgradeupdate();
 }

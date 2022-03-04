@@ -28,5 +28,10 @@ public class AdminCouponSchController {
 		
 		System.out.println("dely 3000");
 	}
+	
+	@Scheduled(cron = "0 0 2 1 * ?")
+	public void gradeUpgrade() {
+		AdminDao.schrankupdate();
+	}
 
 }

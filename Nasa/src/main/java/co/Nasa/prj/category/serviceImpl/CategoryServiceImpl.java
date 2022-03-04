@@ -17,4 +17,9 @@ public class CategoryServiceImpl implements CategoryService {
 		return map.selectCategoryList();
 	}
 
+	@Override
+	public CategoryVO selectCategory(CategoryVO vo) {
+		return map.selectCategory(vo);
+	}
+
 }

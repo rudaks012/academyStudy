@@ -24,4 +24,9 @@ public class Sub_CategoryServiceImpl implements Sub_CategoryService {
 		return map.subcategoryCall(cat_no);
 	}
 
+	@Override
+	public SubCategoryVO selectSub_category(SubCategoryVO vo) {
+		return map.selectSub_category(vo);
+	}
+
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -385,25 +386,57 @@ Remove or comment-out the code block below to see how the browser will fall-back
 			<div class="row justify-content-center">
 				<div class="profile">
 					<div class="profile-image">
-						<img src="resources/user/assets/img/test/profiletest.jpg" alt="" style="width: 155px; height: 155px;">
+						<img src="${buyerinfo.b_img }" alt="" style="width: 155px; height: 155px;">
 					</div>
 				
 					<div class="profile-user-settings">
-						<h1 class="profile-user-name">ITIT</h1>
+						<h1 class="profile-user-name">${buyerinfo.b_nickname }</h1>
 						<a href="buyerUpdate.do" class="bttn profile-edit-bttn" style="height: 30px; font-size: 15px;">계정 설정</a>
 					</div>
 					<div class="profile-stats">
 						<ul>
 							<li id="gradeinfo" style="font-size: 15px;">
 							<!-- data-toggle="tooltip" data-placement="top" title="등급" -->
-								<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 태양">등급 : 태양</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
-								<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="10%할인 쿠폰 보유중">쿠폰 보유 중</span>
+								<c:choose>
+									<c:when test="${buyerinfo.b_rank eq '1' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 별">등급 : 별</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+									</c:when>
+									<c:when test="${buyerinfo.b_rank eq '2' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 딜">등급 : 달</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+									</c:when>
+									<c:when test="${buyerinfo.b_rank eq '3' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 태양">등급 : 태양</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+									</c:when>
+									<c:when test="${buyerinfo.b_rank eq '4' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 지구">등급 : 지구</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+									</c:when>
+									<c:otherwise>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 확인불가">등급 : 등급확인불가</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+									</c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${buyerinfo.buyer_coupon eq '0' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="쿠폰을 이미 사용하였습니다.">쿠폰을 이미 사용하였습니다.</span>
+									</c:when>
+									<c:when test="${buyerinfo.buyer_coupon eq '1' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="2%할인 쿠폰 보유중">쿠폰 보유 중</span>
+									</c:when>
+									<c:when test="${buyerinfo.buyer_coupon eq '2' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="5%할인 쿠폰 보유중">쿠폰 보유 중</span>
+									</c:when>
+									<c:when test="${buyerinfo.buyer_coupon eq '3' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="7%할인 쿠폰 보유중">쿠폰 보유 중</span>
+									</c:when>
+									<c:when test="${buyerinfo.buyer_coupon eq '4' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="10%할인 쿠폰 보유중">쿠폰 보유 중</span>
+									</c:when>
+								</c:choose>
 							</li>
 						</ul>
 					</div>
 					<div class="profile-bio" style="font-size:15px;">
-						<span class="profile-real-name">Email : </span> mail@mail.com<br>
-						<span class="profile-real-name">관심 카테고리 : </span> SW > 안드로이드
+						<span class="profile-real-name">Email : </span> ${buyerinfo.b_email }<br>
+						<span class="profile-real-name">관심 카테고리 : </span> ${categoryName } > ${subcategoryName }
 					</div>
 				</div>
 			</div>
