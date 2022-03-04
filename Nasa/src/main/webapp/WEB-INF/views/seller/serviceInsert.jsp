@@ -80,7 +80,7 @@ input[type="radio"] {
 								<li><a href="sellerPromotion.do" class="d-flex">
 										<p>프로모션관리</p>
 								</a></li>
-								<li><a href="#" class="d-flex">
+								<li><a href="sellerCalendar.do" class="d-flex">
 										<p>일정관리</p>
 								</a></li>
 								<li><a href="sellerReview.do" class="d-flex">
@@ -97,10 +97,6 @@ input[type="radio"] {
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p>판매자 노하우</p>
-								</a></li>
-								<li><a href="" class="d-flex" data-toggle="modal"
-									data-target="#WithdrawalModal">
-										<p>회원탈퇴</p>
 								</a></li>
 							</ul>
 						</aside>
@@ -194,7 +190,7 @@ input[type="radio"] {
 													<td>서비스제공일<span class="spanstar">*</span></td>
 													<td colspan="3"><input type="radio" name="ser_date"
 														value="상시" checked="checked">상시 &nbsp; <input
-														type="radio" name="ser_date" value="기간지정">기간지정 <input
+														type="radio" name="ser_date" value="기간지정" >기간지정 <input
 														type="date" name="ser_start" id="ser_start" > - <input type="date"
 														id="ser_end" name="ser_end"></td>
 												</tr>
@@ -236,7 +232,7 @@ input[type="radio"] {
 										<br />
 										<div
 											class="row d-flex justify-content-center align-items-center">
-											<button class="genric-btn primary circle arrow btnbox">등록</button>
+											<input type="button" class="genric-btn primary circle arrow btnbox" value="등록" onclick="registerAction()">
 											&nbsp;&nbsp;&nbsp;
 											<button class="genric-btn primary circle arrow btnbox"
 												onclick="history.back()">취소</button>
@@ -383,6 +379,11 @@ input[type="radio"] {
 			}else if($('#ser_cate').val() == '' ){
 				alert('2차 카테고리를 선택해주세요!');
 				return;
+			}else if( $('input[name="ser_date"]:checked').val() == "기간지정"){
+				if($('#ser_start').val() > $('#ser_end').val()){
+					alert('시작일은 종료일보다 빠를 수 없습니다.');
+					return;
+				}
 			}
 			
 			var form = $("form")[0];
@@ -403,7 +404,7 @@ input[type="radio"] {
 					console.log(JSON.parse(data));
 					data = JSON.parse(data);
 					if (data.result == "OK") {
-						alert("파일업로드 성공");
+						alert("서비스 등록이 완료되었습니다.");
 						location.href="sellerService.do";
 					} else{
 						alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");

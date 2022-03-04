@@ -80,7 +80,7 @@ input[type="radio"] {
 								<li><a href="sellerPromotion.do" class="d-flex">
 										<p>프로모션관리</p>
 								</a></li>
-								<li><a href="#" class="d-flex">
+								<li><a href="sellerCalendar.do" class="d-flex">
 										<p>일정관리</p>
 								</a></li>
 								<li><a href="sellerReview.do" class="d-flex">
@@ -97,10 +97,6 @@ input[type="radio"] {
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p>판매자 노하우</p>
-								</a></li>
-								<li><a href="" class="d-flex" data-toggle="modal"
-									data-target="#WithdrawalModal">
-										<p>회원탈퇴</p>
 								</a></li>
 							</ul>
 						</aside>
@@ -269,7 +265,7 @@ input[type="radio"] {
 											<button class="genric-btn primary circle arrow btnbox">수정</button>
 											&nbsp;&nbsp;&nbsp;
 											<button class="genric-btn primary circle arrow btnbox"
-												onclick="history.back()">취소</button>
+												onclick="history.back();">취소</button>
 										</div>
 									</form>
 								</div>

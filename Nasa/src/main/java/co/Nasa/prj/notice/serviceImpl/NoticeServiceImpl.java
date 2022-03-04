@@ -26,8 +26,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVO> knowhowSelectList(String no_id) {
-		return map.knowhowSelectList(no_id);
+	public List<NoticeVO> knowhowSelectList() {
+		return map.knowhowSelectList();
 	}
 
 	@Override
@@ -38,6 +38,11 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int knowhowDelete(String no_code) {
 		return map.knowhowDelete(no_code);
+	}
+
+	@Override
+	public int knowhowUpdate(NoticeVO vo) {
+		return map.knowhowUpdate(vo);
 	}
 
 }

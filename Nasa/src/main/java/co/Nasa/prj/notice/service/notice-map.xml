@@ -27,7 +27,7 @@ INSERT INTO NOTICE(no_code,
 	<select id="knowhowSelectList" resultType="co.Nasa.prj.comm.VO.NoticeVO">
 		SELECT *
 		FROM NOTICE
-		WHERE NO_ID = #{no_id} AND NO_STATUS = 1
+		WHERE NO_STATUS = '1'
 	</select>
 	
 	<select id="knowhowSelect" resultType="co.Nasa.prj.comm.VO.NoticeVO">
@@ -40,4 +40,11 @@ INSERT INTO NOTICE(no_code,
 		DELETE FROM NOTICE
 		WHERE NO_CODE = #{no_code}
 	</delete>
+	
+	<update id="knowhowUpdate" parameterType="co.Nasa.prj.comm.VO.NoticeVO">
+		UPDATE NOTICE SET
+		NO_TITLE = #{no_title}, NO_SUBJECT = #{no_subject},
+		NO_IMG = #{no_img}, NO_ORIGINIMG = #{no_originimg}
+		WHERE NO_CODE = #{no_code}
+	</update>
 </mapper>
