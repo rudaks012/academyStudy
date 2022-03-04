@@ -186,23 +186,43 @@ public class BuyerController {
 				System.out.println("1");
 				upgrademoney = 1000000;
 				upgrademoney -= paysum;
-				upgrademoneyform = formatter.format(upgrademoney) + "원";
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
 				break;
 			case "2":
 				System.out.println("2");
 				upgrademoney = 5000000;
 				upgrademoney -= paysum;
-				upgrademoneyform = formatter.format(upgrademoney) + "원";
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
 				break;
 			case "3":
 				System.out.println("3");
 				upgrademoney = 10000000;
 				upgrademoney -= paysum;
-				upgrademoneyform = formatter.format(upgrademoney) + "원";
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
 				break;
 			case "4":
 				System.out.println("4");
-				upgrademoneyform = "0원. [최고등급입니다.]";
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
 				break;
 		}
 		
