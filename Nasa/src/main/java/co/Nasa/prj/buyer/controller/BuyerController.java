@@ -3,6 +3,7 @@ package co.Nasa.prj.buyer.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.mail.internet.MimeMessage;
@@ -154,6 +155,7 @@ public class BuyerController {
 		List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
 		model.addAttribute("paymentList", paymentList);
 		int paysum = 0;
+		int upgrademoney = 0;
 		for (int i = 0; i < paymentList.size(); i++) {
 			PaymentVO pmvo = paymentList.get(i);
 			if(pmvo.getPay_enddate() != null) {
@@ -161,7 +163,26 @@ public class BuyerController {
 			}
 		}
 		
-		model.addAttribute("paysum", paysum);
+		switch (buyervo.getB_rank()) {
+			case "1":
+				upgrademoney = 1000000;
+				break;
+			case "2":
+				upgrademoney = 5000000;
+			case "3":
+				upgrademoney = 10000000;
+			case "4":
+				upgrademoney = 20000000;
+		}
+		
+		upgrademoney -= upgrademoney - paysum;
+		
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		String paysumform = formatter.format(paysum);
+		String upgrademoneyform = formatter.format(upgrademoney);
+		
+		model.addAttribute("paysum", paysumform);
+		model.addAttribute("upgrademoney",upgrademoneyform);
 
 		return "buyer/buyHistory";
 	}
