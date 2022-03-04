@@ -8,7 +8,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <style>
-
 * {
 	margin: 0;
 	padding: 0;
@@ -24,7 +23,6 @@ html, body {
 .container {
 	background: rgba(255, 255, 255, 0.05);
 }
-
 
 .left1 {
 	background: rgba(255, 255, 255, 0.1);
@@ -110,7 +108,6 @@ textarea::placeholder {
 	margin: 10px 20px 0 20px;
 	font-size: 13px;
 	font-weight: bold;
-	
 }
 
 .chat_wrap .chatMiddle ul li>div.message {
@@ -126,6 +123,7 @@ textarea::placeholder {
 	text-align: left;
 	font-size: 16px;
 }
+
 chat_wrap .chatMiddle ul li>div {
 	font-size: 17px;
 }
@@ -170,75 +168,100 @@ chat_wrap .chatMiddle ul li>div {
 }
 
 .
-
 .chatList_box, .chatList_box2 {
 	margin: 2px;
 	border: 2px solid silver;
 }
 
-
 .chatMiddle:nth-of-type(odd).right:after {
-    content: "";
-    position: absolute;
-    margin: -1.5em -17.06em;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid rgba(255, 255, 255, 0.2);
+	content: "";
+	position: absolute;
+	margin: -1.5em -17.06em;
+	width: 0;
+	height: 0;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-right: 10px solid rgba(255, 255, 255, 0.2);
 }
 
-@keyframes ring {
-    0% {
-        width: 30px;
-        height: 30px;
-        opacity: 1;
-    }
-    100% {
-        width: 300px;
-        height: 300px;
-        opacity: 0;
-    }
+@
+keyframes ring { 0% {
+	width: 30px;
+	height: 30px;
+	opacity: 1;
 }
 
+100
+
+
+%
+{
+width
+
+
+:
+
+
+300px
+;
+
+
+height
+
+
+:
+
+
+300px
+;
+
+
+opacity
+
+
+:
+
+
+0
+;
+
+
+}
+}
 .w-btn-neon2 {
-    position: relative;
-    border: none;
-    min-width: 70px;
-    min-height: 10px;
-    background: linear-gradient(
-        90deg,
-        #f44a40 0%,
-        #f44a40 100%
-    );
-    border-radius: 3px;
-    color: rgb(248, 253, 253);
-    cursor: pointer;
-    box-shadow: 12px 12px 24px rgba(238, 89, 89, 0.64);
-    font-weight: 700;
-    transition: 0.3s;
-          margin-right: 10px;
+	position: relative;
+	border: none;
+	min-width: 70px;
+	min-height: 10px;
+	background: linear-gradient(90deg, #f44a40 0%, #f44a40 100%);
+	border-radius: 3px;
+	color: rgb(248, 253, 253);
+	cursor: pointer;
+	box-shadow: 12px 12px 24px rgba(238, 89, 89, 0.64);
+	font-weight: 700;
+	transition: 0.3s;
+	margin-right: 10px;
 }
 
 .w-btn-neon2:hover {
-color: #f44a40;
-    border: 1px solid #f44a40;
-    background: #fff;
-    transform: scale(1.2);
+	color: #f44a40;
+	border: 1px solid #f44a40;
+	background: #fff;
+	transform: scale(1.2);
 }
 
 .w-btn-neon2:hover::after {
-    content: "";
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    border: 6px solid #fc4f4f;
-    position: absolute;
-    z-index: -1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: ring 1.5s infinite;
+	content: "";
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	border: 6px solid #fc4f4f;
+	position: absolute;
+	z-index: -1;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	animation: ring 1.5s infinite;
 }
 </style>
 
@@ -250,63 +273,64 @@ color: #f44a40;
 	src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 
 <body>
-<div class="listing-area pt-120 pb-120">
-	<div class="container" ng-cloak ng-app="chatApp" style="height: 500px";>
-		<div class="row channer" style="border-radius: 2px;height: 600px;">
-			<div class="col-4 col-lg-3 col-md-6 channer left1">
-				<div class="row">
-                            <div class="col-12">
-                                    <div class="small-section-tittle2 mb-45">
-                                    <h4>LIST</h4>
-                                </div>
-                            </div>
-                        </div>
-				<!-- 채팅 리스트 -->
-                <div class="chatList"></div>
-			</div>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+	<div class="listing-area pt-120 pb-120">
+		<div class="container" ng-cloak ng-app="chatApp" style="height: 500px";>
+			<div class="row channer" style="border-radius: 2px; height: 600px;">
+				<div class="col-4 col-lg-3 col-md-6 channer left1">
+					<div class="row">
+						<div class="col-12">
+							<div class="small-section-tittle2 mb-45">
+								<h4>LIST</h4>
+							</div>
+						</div>
+					</div>
+					<!-- 채팅 리스트 -->
+					<div class="chatList"></div>
+				</div>
+				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
-			<div class="col-8 col-lg-8 col-md-6 channer right1" >
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="count mb-35">
-                            <span>list</span>
-                            <button type="button" id="chatout" class="w-btn-neon2"
-							style=" float: right; display: none;">채팅나가기</button>
-					
-						<button type="button" id="payement" class="w-btn-neon2"
-							style="float: right; display: none;">결제하기</button>
-								<button type="button" data-toggle="modal" data-target="#reportModal" id="Chatreport" class="w-btn-neon2"
-							style="float: right; display: none;">신고하기</button>
-                        </div>
-                    </div>
-                </div>
-				<!-- 채팅 창 -->
-				<div class="chat_wrap " style="padding: 3px">
-					
-					<!-- 	<div class="floatLeft" id="loginOn">
+				<div class="col-8 col-lg-8 col-md-6 channer right1">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="count mb-35">
+								<span>list</span>
+								<button type="button" id="chatout" class="w-btn-neon2"
+									style="float: right; display: none;">채팅나가기</button>
+
+								<button type="button" id="payement" class="w-btn-neon2"
+									style="float: right; display: none;">결제하기</button>
+								<button type="button" data-toggle="modal"
+									data-target="#reportModal" id="Chatreport" class="w-btn-neon2"
+									style="float: right; display: none;">신고하기</button>
+							</div>
+						</div>
+					</div>
+					<!-- 채팅 창 -->
+					<div class="chat_wrap " style="padding: 3px">
+
+						<!-- 	<div class="floatLeft" id="loginOn">
 						<img class="profile_img" id="setPic">
 						src 사진 경로 동적 생성
 					</div> -->
-					<!-- 					<div class="name_container font_noto" id="setName">
+						<!-- 					<div class="name_container font_noto" id="setName">
 						이름 동적 생성
 					</div>
  -->
 
-					<div class="listing-details-area chatMiddle" style="height: 500px">
-						<ul>
-							<!-- 동적 생성 -->
-						</ul>
+						<div class="listing-details-area chatMiddle" style="height: 500px">
+							<ul>
+								<!-- 동적 생성 -->
+							</ul>
+						</div>
+						<div class="col-xl-8 col-lg-8 col-md-6 chatBottom">
+							<textarea placeholder="메세지를 입력해 주세요."></textarea>
+						</div>
 					</div>
-					<div class="col-xl-8 col-lg-8 col-md-6 chatBottom">
-						<textarea placeholder="메세지를 입력해 주세요."></textarea>
-					</div>
-				</div>
 
+				</div>
 			</div>
 		</div>
-</div>
-<!-- 여기끝남 -->
+		<!-- 여기끝남 -->
 
 
 
@@ -356,50 +380,58 @@ color: #f44a40;
 
 
 		<!-- Modal Start -->
-	<!-- 신고 모달 -->
-	<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">신고</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<label><input type="radio" name="reportType" value="욕설/비방" onclick="radiodisabled()">
-								욕설/비방</label><br>
-							<label><input type="radio" name="reportType" value="음란물" onclick="radiodisabled()">
-								음란물</label><br>
-							<label><input type="radio" name="reportType" value="스팸, 부적절한 광고" onclick="radiodisabled()"> 스팸, 부적절한 광고</label><br>
-							<label><input type="radio" name="reportType" value="혐오 혹은 잔인한 사진" onclick="radiodisabled()"> 혐오 혹은 잔인한 사진</label><br>
-							<div class="form-group">
-								<label><input type="radio" name="reportType" value="기타 사유" onclick="radioactive()"> 기타 사유</label>
-								<textarea class="form-control" id="reportSubject" name="reportSubject"
-									disabled></textarea>
-							</div>
-								<div class="col-12">
-						<div id="profileThumnail" class="justify-content-center" style="text-align: center;">
-							<input type="file" id="imgupload" name="imgupload" accept="image/*">
-						</div>
+		<!-- 신고 모달 -->
+		<div class="modal fade" id="reportModal" tabindex="-1" role="dialog"
+			aria-labelledby="reportModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">신고</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<a href="#" class="genric-btn danger radius" data-dismiss="modal" onclick="reportReview()">신고</a>
-					<a href="#" class="genric-btn primary radius" data-dismiss="modal" onclick="readiodisabled()">취소</a>
+					<div class="modal-body">
+						<form id="dataForm" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label><input type="radio" name="reportType"
+									value="욕설/비방" onclick="radiodisabled()"> 욕설/비방</label><br>
+								<label><input type="radio" name="reportType" value="음란물"
+									onclick="radiodisabled()"> 음란물</label><br> <label><input
+									type="radio" name="reportType" value="스팸/부적절한 광고"
+									onclick="radiodisabled()"> 스팸/부적절한 광고</label><br> <label><input
+									type="radio" name="reportType" value="혐오/잔인한 사진"
+									onclick="radiodisabled()"> 혐오/잔인한 사진</label><br>
+								<div class="form-group">
+									<label><input type="radio" name="reportType"
+										value="기타사유" onclick="radioactive()"> 기타사유</label>
+									<textarea class="form-control" id="reportSubject"
+										name="reportSubject" disabled></textarea>
+								</div>
+								<div class="col-12">
+									<div id="profileThumnail" class="justify-content-center"
+										style="text-align: center;">
+										<input type="file" id="imgupload" name="imgupload"
+											accept="image/*">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<a href="#" class="genric-btn danger radius" data-dismiss="modal"
+							onclick="reportReview()">신고</a> <a href="#"
+							class="genric-btn primary radius" data-dismiss="modal"
+							onclick="readiodisabled()">취소</a>
+					</div>
 				</div>
 			</div>
 		</div>
+		<!-- 신고 모달 -->
 	</div>
-	<!-- 신고 모달 -->
-	</div>
-	
-	
+
+
 	<script>
 		// 웹소켓
 		let websocket;
@@ -835,27 +867,37 @@ color: #f44a40;
 		
 		
 		/* 신고 사유 textarea 끄고 켜는 함수 */
-			function reportReview() {
+		function reportReview() {
+			var form = $("#dataForm")[0];
+			console.log(form);
+			var formData = new FormData(form);
+		 
 			var re_type = $('input[name="reportType"]:checked').val();
-			console.log(re_type);
+			//console.log(re_type);
 			var re_member = document.querySelector(".left").querySelector(".sender").getElementsByTagName("span")[0].innerText;
-			console.log("신고멤버:1111111" + re_member); 
+			//console.log("신고멤버:1111111" + re_member); 
 			var re_subject = $("#reportSubject").val();
-			console.log("신고내용:!11" + re_subject);
+			//console.log("신고내용:!11" + re_subject);
+			var re_img = document.querySelector('#imgupload').value;
+			//console.log("신고이미지 : 33333333"+ re_img);
 			
+			formData.append('re_member', re_member);
+			formData.append('re_subject', re_subject);
+			formData.append('re_type', re_type);
 						
 			// reportcontroller
 			$.ajax({
 				url: "reportChatting.do",
 				type:"post",
-				data:{re_member : re_member,
-					re_type : re_type,
-					re_subject : re_subject},
-				dataType:"text",
-					
+				data: formData,
+				enctype: "multipart/form-data",
+				processData : false,
+				contentType : false,
 				success: function(result) {
 					if(result == "OK") {
 					console.log("신고함!");
+					}else {
+						console.log("실패함")
 					}
 				}
 			})

@@ -1,5 +1,8 @@
 package co.Nasa.prj.report.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -54,17 +57,47 @@ public class ReportController {
 	//report 여기까지함
 	@ResponseBody
 	@RequestMapping(value = "/reportChatting.do",produces = "text/plain;charset=UTF-8")
-	public String reportChatting(@RequestParam ("re_member") String re_member, 
-			@RequestParam("re_type") String re_type, @RequestParam String re_subject,HttpSession session,
-			MultipartFile imgupload
+	public String reportChatting(HttpSession session,
+			MultipartFile imgupload, HttpServletRequest req
 			) {
+		System.out.println("check");
+		System.out.println("remember" + req.getParameter("re_member"));
+		System.out.println("report type : |||||" + req.getParameter("reportType"));
+		System.out.println("re_subject : |||||" + req.getParameter("re_subject"));
+		
+		
 		int n = 0 ;
 		String result = "";
 		ReportVO vo = new ReportVO();
 		vo.setRe_reporter((String) session.getAttribute("id"));
-		vo.setRe_type(re_type);
-		vo.setRe_reporter(re_member);
-		vo.setRe_subject(re_subject);	
+		System.out.println("vo값 찍어보기||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+				+ "" + vo.getRe_reporter());
+		vo.setRe_type(req.getParameter("reportType"));
+		vo.setRe_res(req.getParameter("re_member"));
+		vo.setRe_subject(req.getParameter("re_subject"));
+
+		String originaFileName = imgupload.getOriginalFilename();
+		if(originaFileName.equals("")) {
+
+		}else {
+			String saveurl ="C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\resources\\chat\\report\\";
+			String savepath =saveurl +originaFileName;
+			System.out.println(savepath);
+
+			String r_img = "resources/chat/report/" + originaFileName;
+			vo.setFilecode(r_img);
+			System.out.println("파일코드 입력" + vo.getFilecode());
+			
+			try {
+				imgupload.transferTo(new File(savepath));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		n = userReportDao.insertChattingReport(vo);
 		
 		if(n>0) {
 			result = "OK";
