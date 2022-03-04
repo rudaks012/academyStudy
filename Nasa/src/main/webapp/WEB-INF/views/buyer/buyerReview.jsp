@@ -208,14 +208,12 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label><input type="radio" name="reportType" value="욕설/비방" onclick="radiodisabled()">
-								욕설/비방</label><br>
-							<label><input type="radio" name="reportType" value="음란물" onclick="radiodisabled()">
-								음란물</label><br>
-							<label><input type="radio" name="reportType" value="스팸, 부적절한 광고" onclick="radiodisabled()"> 스팸, 부적절한 광고</label><br>
-							<label><input type="radio" name="reportType" value="혐오 혹은 잔인한 사진" onclick="radiodisabled()"> 혐오 혹은 잔인한 사진</label><br>
+							<label><input type="radio" name="reportType" value="욕설/비방" onclick="radiodisabled()"> 욕설/비방</label><br>
+							<label><input type="radio" name="reportType" value="음란물" onclick="radiodisabled()"> 음란물</label><br>
+							<label><input type="radio" name="reportType" value="스팸/부적절한 광고" onclick="radiodisabled()"> 스팸/부적절한 광고</label><br>
+							<label><input type="radio" name="reportType" value="혐오/잔인한 사진" onclick="radiodisabled()"> 혐오/잔인한 사진</label><br>
 							<div class="form-group">
-								<label><input type="radio" name="reportType" value="기타 사유" onclick="radioactive()"> 기타 사유</label>
+								<label><input type="radio" name="reportType" value="기타사유" onclick="radioactive()"> 기타사유</label>
 								<textarea class="form-control" id="reportSubject" name="reportSubject"
 									disabled></textarea>
 							</div>

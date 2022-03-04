@@ -3,8 +3,14 @@
 <mapper namespace="co.Nasa.prj.sub_category.service.Sub_CategoryMapper">
 	<!-- sub_category 전체 리스트 조회 -->
 	<select id="sub_categoryList" resultType="co.Nasa.prj.comm.VO.SubCategoryVO">
-		SELECT *
-		FROM SUB_CATEGORY
+		SELECT	*
+		FROM	SUB_CATEGORY
+	</select>
+	
+	<select id="selectSub_category" resultType="co.Nasa.prj.comm.VO.SubCategoryVO">
+		SELECT	*
+		FROM	SUB_CATEGORY
+		WHERE	SUB_NO = #{sub_no}
 	</select>
 	
 	<select id="subcategoryCall" resultType="co.Nasa.prj.comm.VO.SubCategoryVO">

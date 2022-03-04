@@ -3,8 +3,12 @@
 <mapper namespace="co.Nasa.prj.category.service.CategoryMapper">
 	<!-- category 전체 리스트 조회 -->
 	<select id="selectCategoryList" resultType="co.Nasa.prj.comm.VO.CategoryVO">
-		SELECT *
-		FROM CATEGORY
+		SELECT	*
+		FROM	CATEGORY
 	</select>
-
+	<select id="selectCategory" resultType="co.Nasa.prj.comm.VO.CategoryVO">
+		SELECT	*
+		FROM	CATEGORY
+		WHERE	CAT_NO = #{cat_no}
+	</select>
 </mapper>

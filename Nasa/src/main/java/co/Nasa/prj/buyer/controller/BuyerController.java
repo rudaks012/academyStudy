@@ -74,13 +74,30 @@ public class BuyerController {
 	@RequestMapping("/goBuyerMypage.do")
 	public String goBuyerMypage(HttpSession session, HttpServletResponse response, HttpServletRequest request,
 			Model model) {
-		/*
-		 * BuyerVO vo = new BuyerVO();
-		 * vo.setB_email((String)session.getAttribute("id")); BuyerVO buyerinfo =
-		 * buyerDao.selectBuyer(vo); System.out.println(buyerinfo.getB_email());
-		 * model.addAttribute("buyerinfo", buyerinfo);
-		 */
-
+		// 사용할 VO
+		BuyerVO vo = new BuyerVO();
+		CategoryVO cvo = new CategoryVO();
+		SubCategoryVO scvo = new SubCategoryVO();
+		
+		// 마이페이지에 구매자 정보 전달
+		vo.setB_email((String) session.getAttribute("id"));
+		vo = buyerDao.selectBuyer(vo);
+		
+		// 마이페이지에 관심 카테고리 정보 전달(구매자 테이블에 관련 정보가 서브카테고리밖에 없어서 다른 VO 가져와야함)
+		scvo.setSub_no(vo.getField_code());
+		scvo = sub_categoryDao.selectSub_category(scvo);
+		
+		cvo.setCat_no(scvo.getCat_no());
+		cvo = categoryDao.selectCategory(cvo);
+		
+		String categoryName = cvo.getCat_name();
+		String subcategoryName = scvo.getSub_name();
+		
+		// 모델
+		model.addAttribute("buyerinfo", vo);
+		model.addAttribute("categoryName", categoryName);
+		model.addAttribute("subcategoryName", subcategoryName);
+		
 		return "buyer/buyerMypage";
 	}
 
@@ -162,25 +179,34 @@ public class BuyerController {
 				paysum += pmvo.getPay_price();
 			}
 		}
-		
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		String upgrademoneyform = "";
 		switch (buyervo.getB_rank()) {
 			case "1":
+				System.out.println("1");
 				upgrademoney = 1000000;
+				upgrademoney -= paysum;
+				upgrademoneyform = formatter.format(upgrademoney) + "원";
 				break;
 			case "2":
+				System.out.println("2");
 				upgrademoney = 5000000;
+				upgrademoney -= paysum;
+				upgrademoneyform = formatter.format(upgrademoney) + "원";
+				break;
 			case "3":
+				System.out.println("3");
 				upgrademoney = 10000000;
+				upgrademoney -= paysum;
+				upgrademoneyform = formatter.format(upgrademoney) + "원";
+				break;
 			case "4":
-				upgrademoney = 20000000;
+				System.out.println("4");
+				upgrademoneyform = "0원. [최고등급입니다.]";
+				break;
 		}
 		
-		upgrademoney -= upgrademoney - paysum;
-		
-		DecimalFormat formatter = new DecimalFormat("###,###");
 		String paysumform = formatter.format(paysum);
-		String upgrademoneyform = formatter.format(upgrademoney);
-		
 		model.addAttribute("paysum", paysumform);
 		model.addAttribute("upgrademoney",upgrademoneyform);
 
@@ -277,7 +303,7 @@ public class BuyerController {
 		
 		buyerDao.updateBuyer(vo);
 
-		return "buyer/buyerMypage";
+		return "redirect:goBuyerMypage.do";
 	}
 
 	// 구매자 회원가입

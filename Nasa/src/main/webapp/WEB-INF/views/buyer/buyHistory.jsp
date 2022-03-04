@@ -135,7 +135,7 @@
 								<!-- <h1>태양 등급</h1>
 								<h2>SUN GRADE</h2> -->
 								<p>
-									<br>현재 누적 금액 ${paysum }원<br>다음 등급 까지 ${upgrademoney }원
+									<br>현재 누적 금액 ${paysum }원<br>다음 등급 까지 ${upgrademoney }
 								</p>
 							</div>
 						</div>
@@ -199,6 +199,9 @@
 									</tr> -->
 								</tbody>
 							</table>
+							<nav aria-label="Page navigation example">
+								<ul class="pagination"></ul>
+							</nav>
 						</div>
 					</div>
 					
@@ -210,6 +213,35 @@
 
 <!-- buyHistory main end  -->
 <script>
+	// pagination
+	
+	 $(document).ready(function(){
+		 var alltr = $("#paymentTable > tbody > tr").length;
+		 var pagesize = 0;
+		 if (alltr % 10 == 0) {
+			 pagesize = alltr / 10;
+		 } else if (alltr %10 > 0) {
+			 pagesize = alltr / 10;
+			 pagesize++;
+			 pagesize = Math.floor(pagesize++);
+		 }
+		 
+		
+		 
+		 
+		 
+		 $(".pagination").append("<li class='page-item'><a class='page-link' href='#'>Prev</a></li>");
+		 
+		 for(var i = 1; i<= pagesize; i++) {
+			 $(".pagination").append("<li class='page-item'><a class='page-link' href='#'>" + i + "</a></li>")
+		 }
+		 
+		 $(".pagination").append("<li class='page-item'><a class='page-link' href='#'>Next</a></li>");
+		 
+      });
+	
+	//pagination
+
 	function oneMonthSearch() {
 		$("#paymentTable > tbody > tr").hide();
 		var now = new Date(); // 오늘 날짜
