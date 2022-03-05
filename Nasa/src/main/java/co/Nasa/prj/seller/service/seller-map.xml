@@ -34,4 +34,13 @@
 		FROM SELLER
 		WHERE s_email = #{s_email}
 	</select>
+	
+	<update id="SellerProfileUpdate" parameterType="co.Nasa.prj.comm.VO.SellerVO">
+		UPDATE SELLER SET
+		S_PASSWORD = #{s_password}, S_NICKNAME = #{s_nickname},
+		S_TEL = #{s_tel}, S_ADDRESS = #{s_address}, S_ZIPCODE = #{s_zipcode},
+		S_DETAILADDRESS = #{s_detailaddress}, S_IMG = #{s_img}, S_NAME = #{s_name},
+		S_ME = #{s_me}, S_SCHOOL = #{s_school}, S_MAJOR = #{s_major}, S_GRAD = #{s_grad}, S_CARRER = #{s_carrer}
+		WHERE s_email = #{s_email}
+	</update>
 </mapper>

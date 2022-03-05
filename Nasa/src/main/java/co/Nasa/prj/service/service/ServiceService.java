@@ -11,5 +11,5 @@ public interface ServiceService {
 	int serviceUpdate(ServiceVO vo);
 
 	List<ServiceVO> searchListAll();
-
+	
 }

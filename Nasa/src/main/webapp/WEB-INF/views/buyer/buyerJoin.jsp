@@ -79,13 +79,13 @@
 				<form class="form-contact contact_form" id="buyerJoin-form" method="POST">
 					<div>
 						<div>
-							<c:if test="${email eq null}">
+							
 
 								<div id="namediv" class="form-group">
 									이름<input class="form-control valid" name="b_name" id="b_name" type="text"
 										placeholder="이름(실명)을 입력해주세요">
 								</div>
-							</c:if>
+						
 							<c:if test="${name eq null}">
 								<div id="nickdiv" class="form-group">
 									닉네임 <input class="form-control valid" name="b_nickname" id="b_nickname"

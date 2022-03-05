@@ -44,6 +44,13 @@
    font-size: 14px;
    font-weight: 400;
 }
+.tab-pane{
+	padding : 1em;
+}
+.img-fluid{
+	width: 753px;
+	height: 375px;
+}
 </style>
 </head>
 <body>
@@ -66,7 +73,7 @@
 				<div class="col-lg-8 posts-list">
 					<div class="single-post">
                      <div class="feature-img">
-                        <img class="img-fluid" src="assets/img/blog/single_blog_1.png" alt="">
+                        <img class="img-fluid" src="fileupload/${detailS.ser_img }" alt="">
                      </div>
                      <div class="blog_details">
                         <nav class="fables-single-nav">
@@ -90,13 +97,45 @@
                                  <p class="excert">
                                     ${detailS.ser_sub }
                                  </p>
-                                 <p>
-                                 ddddddddddd
-                                 </p>
+                                 <hr />
                              	<h5><u>기술수준</u></h5>
                              	<p>${detailS.ser_skill }</p>
                              	<h5><u>팀 규모</u></h5>
                              	<p>${detailS.ser_team }</p>
+                             	<c:if test="${detailS.ser_lang ne null}">
+                             		<h5><u>개발언어</u></h5>
+                             		<p>- ${detailS.ser_lang }</p>
+                             	</c:if>
+                             	<c:if test="${detailS.ser_frame ne null}">
+                             		<h5><u>프레임워크</u></h5>
+                             		<p>- ${detailS.ser_frame }</p>
+                             	</c:if>
+                             	<c:if test="${detailS.ser_dbms ne null}">
+                             		<h5><u>DBMS</u></h5>
+                             		<p>- ${detailS.ser_dbms }</p>
+                             	</c:if>
+                             	
+                             	<hr />
+                             	
+                             	<h5><u>서비스방식</u></h5>
+                           		<p>- ${detailS.ser_line }</p>
+                           		
+                           		<hr />
+                           		
+                           		<c:if test="${detailS.ser_offer ne null}">
+                             		<h5><u>제공절차</u></h5>
+                             		<p>${detailS.ser_offer }</p>
+                             		<hr />
+                             	</c:if>
+                             	
+                             	<c:if test="${detailS.ser_subimg ne null || detailS.ser_subimg2 ne null || detailS.ser_subimg3 ne null}">
+                             		<h5><u>서비스 이미지</u></h5>
+                             		<p><img src="fileupload/${detailS.ser_subimg }"></p>
+                             		<p><img src="fileupload/${detailS.ser_subimg2 }"></p>
+                             		<p><img src="fileupload/${detailS.ser_subimg3 }"></p>
+                             		<hr />
+                             	</c:if>
+                           		
                            </div>
                            <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
                               <br /><br />
@@ -264,15 +303,11 @@
 				<div class="col-lg-4">
 					<div class="blog_right_sidebar">
 						<aside class="single_sidebar_widget search_widget">
-							<div class="input-group">
+							<div>
+							
+								<span>*카테고리 : ${cate.cat_name } > ${subcate.sub_name }</span>
+								<br/><br/>
 								<h1>${detailS.ser_title }</h1>
-								<br /><br />
-								<c:if test="${detailS.ser_date eq '상시' }">
-									<span>기간 : ${detailS.ser_date } </span>
-								</c:if>
-								<c:if test="${detailS.ser_date eq '기간지정' }">
-									<span>기간 : ${detailS.ser_start } ~ ${detailS.ser_end } </span>
-								</c:if>
 								<br /><br />
 								<span style="font-size:25px; font-weight: bold;">가격 : ${detailS.ser_price }원 ~ </span>
 								<br /><br />
@@ -283,7 +318,7 @@
 						<aside class="single_sidebar_widget author_widget">
 							<img class="author_img rounded-circle" src="assets/img/comment/comment_1.png" 
 							alt="" style="cursor:pointer;" onclick="location='sellerDetail.do'">
-							<h4>${sellerInfo.s_name } 이름?닉네임?</h4>
+							<h4>${sellerInfo.s_name }</h4>
 							<p>등급 : ${sellerInfo.s_rank }</p>
 
 							<p>${sellerInfo.s_me }</p>
