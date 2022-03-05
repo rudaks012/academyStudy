@@ -49,4 +49,10 @@ public class SellerServiceImpl implements SellerService {
 		return map.SellerSelect(s_email);
 	}
 
+
+	@Override
+	public int SellerProfileUpdate(SellerVO vo) {
+		return map.SellerProfileUpdate(vo);
+	}
+
 }

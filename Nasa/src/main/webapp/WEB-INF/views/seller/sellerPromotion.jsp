@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,6 +114,7 @@
 												<div class="listing-details-area">
 													<div class="container">
 														<div class="row">
+														<c:forEach items="${promotions }" var="promotion">
 															<div class="col-lg-6 ">
 																<div class="single-listing mb-30">
 																	<div class="list-img">
@@ -123,53 +126,16 @@
 																		<h3>
 																			<a href="listing_details.html">서비스명1</a>
 																		</h3>
-																		<p>프로모션번호</p>
-																		<p>프로모션일자</p>
-																		<p>프로모션일자</p>
-																		<p>할인율</p>
+																		<p>프로모션 코드 : p${promotion.pro_code }</p>
+																		<p>프로모션 시작일자 : ${promotion.pro_start }</p>
+																		<p>프로모션 종료일자 : ${promotion.pro_end }</p>
+																		<p>할인율: ${promotion.prodiscount }%</p>
 
 																	</div>
 																</div>
 															</div>
-															<div class="col-lg-6 ">
-																<div class="single-listing mb-30">
-																	<div class="list-img">
-																		<img src="assets/img/gallery/list2.png" alt="">
-																		<!-- <span>Open</span> -->
-																	</div>
-																	<div class="list-caption">
-																		<span>Open</span>
-																		<h3>
-																			<a href="listing_details.html">서비스명2</a>
-																		</h3>
-																		<p>프로모션번호</p>
-																		<p>프로모션일자</p>
-																		<p>프로모션일자</p>
-																		<p>할인율</p>
-
-																	</div>
-																</div>
-															</div>
-															<div class="col-lg-6 ">
-																<div class="single-listing mb-30">
-																	<div class="list-img">
-																		<img src="assets/img/gallery/list3.png" alt="">
-																		<!-- <span>Open</span> -->
-																	</div>
-																	<div class="list-caption">
-																		<span>Open</span>
-																		<h3>
-																			<a href="listing_details.html">서비스명3</a>
-																		</h3>
-																		<p>프로모션번호</p>
-																		<p>프로모션일자</p>
-																		<p>프로모션일자</p>
-																		<p>할인율</p>
-
-																	</div>
-																</div>
-															</div>
-
+														</c:forEach>
+														
 														</div>
 													</div>
 												</div>

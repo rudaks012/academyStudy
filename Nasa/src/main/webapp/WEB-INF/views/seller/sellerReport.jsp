@@ -80,7 +80,6 @@
 										<tr>
 											<th>순번</th>
 											<th>신고일</th>
-											<th>신고제목</th>
 											<th>신고대상</th>
 											<th>신고유형</th>
 											<th>신고내용</th>
@@ -93,7 +92,6 @@
 										<tr>
 											<th scope="row">${fn:length(reports)-status.index }</th>
 											<td>${fn:substring(report.re_date,0,11) }</td>
-											<td>${report.re_title }</td>
 											<td>${report.re_res }</td>
 											<td>${report.re_type }</td>
 											<td>${report.re_subject }</td>

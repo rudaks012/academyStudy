@@ -15,4 +15,7 @@ public interface SellerMapper {
 	
 	//이메일로 한명 조회
 	SellerVO SellerSelect(String s_email);
+	
+	//seller profile모든정보수정
+	int SellerProfileUpdate(SellerVO vo);
 }

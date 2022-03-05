@@ -3,8 +3,6 @@ package co.Nasa.prj.service.controller;
 import java.io.File;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import co.Nasa.prj.category.service.CategoryMapper;
+import co.Nasa.prj.category.service.CategoryService;
+import co.Nasa.prj.comm.VO.CategoryVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
+import co.Nasa.prj.comm.VO.SubCategoryVO;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
+import co.Nasa.prj.sub_category.service.Sub_CategoryService;
 
 @Controller
 public class ServiceController {
@@ -30,6 +34,10 @@ public class ServiceController {
 	private ServiceService serviceDao;
 	@Autowired
 	private SellerService sellerDAO;
+	@Autowired
+	private CategoryService categoryDao;
+	@Autowired
+	private Sub_CategoryService subCategoryDao;
 	
 	@RequestMapping("/sellerService.do")
 	public String sellerService(Model model) {
@@ -50,41 +58,6 @@ public class ServiceController {
 		System.out.println(subfile.getOriginalFilename());
 		System.out.println(subfile2.getOriginalFilename());
 		System.out.println(subfile3.getOriginalFilename());
-
-//		String title = new String(request.getParameter("ser_title").getBytes("8859_1"), "UTF-8");
-//		String cate = new String(request.getParameter("ser_cate").getBytes("8859_1"), "UTF-8");
-//		String subcate = new String(request.getParameter("ser_sub_cate").getBytes("8859_1"), "UTF-8");
-//		String skill = new String(request.getParameter("ser_skill").getBytes("8859_1"), "UTF-8");
-//		String team = new String(request.getParameter("ser_team").getBytes("8859_1"), "UTF-8");
-//		String lang = new String(request.getParameter("ser_lang").getBytes("8859_1"), "UTF-8");
-//		String frame = new String(request.getParameter("ser_frame").getBytes("8859_1"), "UTF-8");
-//		String dbms = new String(request.getParameter("ser_dbms").getBytes("8859_1"), "UTF-8");
-//		String line = new String(request.getParameter("ser_line").getBytes("8859_1"), "UTF-8");
-//		String date = new String(request.getParameter("ser_date").getBytes("8859_1"), "UTF-8");
-//		String start = new String(request.getParameter("ser_start").getBytes("8859_1"), "UTF-8");
-//		String end = new String(request.getParameter("ser_end").getBytes("8859_1"), "UTF-8");
-//		String sub = new String(request.getParameter("ser_sub").getBytes("8859_1"), "UTF-8");
-//		String offer = new String(request.getParameter("ser_offer").getBytes("8859_1"), "UTF-8");
-//		
-//		vo.setSer_title(title);
-//		vo.setSer_cate(cate);
-//		vo.setSer_sub_cate(subcate);
-//		vo.setSer_skill(skill);
-//		vo.setSer_team(team);
-//		vo.setSer_lang(lang);
-//		vo.setSer_frame(frame);
-//		vo.setSer_dbms(dbms);
-//		vo.setSer_line(line);
-//		vo.setSer_date(date);
-//		vo.setSer_start(start);
-//		vo.setSer_end(end);
-//		vo.setSer_sub(sub);
-//		vo.setSer_offer(offer);
-
-		if (vo.getSer_date().equals("상시")) {
-			vo.setSer_start("");
-			vo.setSer_end("");
-		}
 
 		String fileRoot;
 		String strResult = "{ \"result\":\"FAIL\" }";
@@ -462,10 +435,18 @@ public class ServiceController {
 		vo = serviceDao.serviceSelect(ser_code);
 		System.out.println("++++++++++++"+vo);
 		model.addAttribute("detailS", serviceDao.serviceSelect(ser_code));
+		
+		CategoryVO catevo = new CategoryVO();
+		catevo.setCat_no(vo.getSer_cate());
+		model.addAttribute("cate", categoryDao.selectCategory(catevo));
+		
+		SubCategoryVO subcatevo = new SubCategoryVO();
+		subcatevo.setSub_no(vo.getSer_sub_cate());
+		model.addAttribute("subcate", subCategoryDao.selectSub_category(subcatevo));
+		
 		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(vo.getS_email()));
 		
 		return "seller/serviceDetail";
 	}
 	
-
 }

@@ -1,5 +1,7 @@
 package co.Nasa.prj.promotion.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,11 @@ public class PromotionServiceImpl implements PromotionService {
 	@Override
 	public int promotionInsert(PromotionVO vo) {
 		return map.promotionInsert(vo);
+	}
+
+	@Override
+	public List<PromotionVO> promotionList() {
+		return map.promotionList();
 	}
 
 }

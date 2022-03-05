@@ -221,23 +221,18 @@ input[type=date] {
 																<div class="row">
 																
 																<c:forEach items="${serviceList }" var="service">
-																<c:if test="${service.ser_end eq null || service.ser_end > today}">
+																<c:if test="${service.ser_status eq 'N'}">
 																	<div class="col-lg-6" >
 																		<div class="single-listing mb-30">
 																			<div class="list-img">
-																				<img src="fileupload/${service.ser_img }" alt="">
+																				<img src="fileupload/${service.ser_img }" id="prvimg" alt="">
 																			</div>
 																			<div class="list-caption">
 																				<h3>
 																					<a href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
 																				</h3>
 																				<div>번호 : s${service.ser_code }</div>
-																				<c:if test="${service.ser_date eq '상시' }">
-																					<div>일자 : 상시</div>
-																				</c:if>
-																				<c:if test="${service.ser_date eq '기간지정' }">
-																					<div>일자 : ${service.ser_start } ~ ${service.ser_end }</div>
-																				</c:if>
+																		
 																				<div class="list-footer">
 																					<ul>
 																						<li style="margin-left: 130px;">
@@ -251,7 +246,7 @@ input[type=date] {
 																			</div>
 																		</div>
 																	</div>
-																	</c:if>
+																</c:if>
 																</c:forEach>
 																</div>
 															</div>
@@ -265,7 +260,8 @@ input[type=date] {
 																<div class="row">
 																
 																<c:forEach items="${serviceList }" var="service">
-																<c:if test="${service.ser_end ne null && service.ser_end < today }">
+																<c:if test="${service.ser_status eq 'Y'}">
+																
 																	<div class="col-lg-6">
 																		<div class="single-listing mb-30">
 																			<div class="list-img">
@@ -276,12 +272,6 @@ input[type=date] {
 																					<a href="serviceDetail.do">${service.ser_title }</a>
 																				</h3>
 																				<div>번호 : s${service.ser_code }</div>
-																				<c:if test="${service.ser_date eq '상시' }">
-																					<div>일자 : 상시</div>
-																				</c:if>
-																				<c:if test="${service.ser_date eq '기간지정' }">
-																					<div>일자 : ${service.ser_start } ~ ${service.ser_end }</div>
-																				</c:if>
 																				<div class="list-footer">
 																					<ul>
 																						<li style="margin-left: 50px;">
@@ -572,6 +562,24 @@ input[type=date] {
 			event.preventDefault();
 			$(this).tab("show");
 		})
+		
+		// 프로필 사진 미리보기
+		/* function readImage(input) {
+			if(input.files && input.files[0]) {
+				const reader = new FileReader();
+				
+				reader.onload = e => {
+					const previewImage = document.getElementById("prvimg");
+					previewImage.src = e.target.result;
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		
+		const inputImage = document.getElementById("imgupload");
+		inputImage.addEventListener("change", e => {
+			readImage(e.target);
+		}); */
 	</script>
 </body>
 </html>
