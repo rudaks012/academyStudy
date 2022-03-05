@@ -6,4 +6,8 @@
 		FROM PAYMENT
 		WHERE B_EMAIL = #{b_email}
 	</select>
+	
+	<select id="selectListChart" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+	SELECT PAY_DATE,PAY_PRICE FROM PAYMENT
+	</select>
 </mapper>
