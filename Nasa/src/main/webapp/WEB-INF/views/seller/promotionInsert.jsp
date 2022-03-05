@@ -366,7 +366,7 @@ p {
 																<div class="container">
 																	<div class="row">
 																	<c:forEach items="${serviceList }" var="service">
-																		<c:if test="${service.ser_end eq null || service.ser_end > today}">
+																		
 																				<div class="col-lg-4">
 																					<div class="single-listing mb-30">
 																						<div class="list-img first">
@@ -377,22 +377,14 @@ p {
 																								<a href="" class="${service.ser_code }">${service.ser_title }</a>
 																							</h3>
 																							<p>서비스번호: s${service.ser_code }</p>
-																							<c:if test="${service.ser_date eq '상시' }">
-																								<div class="ser_date">일자 : 상시</div>
-																								<input type="hidden" class="" value="${service.ser_start }">
-																							</c:if>
-																							<c:if test="${service.ser_date eq '기간지정' }">
-																								<div class="ser_date">일자 : ${service.ser_start } ~ ${service.ser_end }</div>
-																								<input type="hidden" class="startCheck" value="${service.ser_start }">
-																								<input type="hidden" class="endCheck" value="${service.ser_end }">
-																							</c:if>
+																							
 																							<div class="list_footer" style="text-align: center;">
 																								<input type="radio" name="pro_service" class="pro_service" value="${service.ser_code }" >
 																							</div>
 																						</div>
 																					</div>
 																				</div>
-																			</c:if>
+																			
 																		</c:forEach>
 																	</div>
 																</div>
@@ -463,7 +455,7 @@ p {
 																	<br/><br/>
 																</div>
 															</div>
-															<input type="button" class="action-button" value="목록가기" onclick="location.href='promotionInsert.do'" style="float: none; display: block; margin: auto;"/> 
+															<input type="button" class="action-button" value="목록가기" onclick="location.href='sellerPromotion.do'" style="float: none; display: block; margin: auto;"/> 
 														</div>
 													</fieldset>
 												</form>
@@ -625,18 +617,19 @@ p {
 					url: "promoInsert.do",
 					data : {discount: discount, pro_start:pro_start, pro_end:pro_end, pro_service:pro_service},
 					type : "post",
-					dataType : "json",
+					dataType : "text",
 					success : function(result) {
 						console.log(result);
 						if(result == "OK"){
 							
 						}else{
-							$(".strong").text("FAIL!!!");	
+							$(".strong").text("FAIL!!!!");	
 							$(".form4h").text("일시적 오류로 등록 실패하였습니다.");
 							$(".fit-image").attr("src","assets/img/promotion/x-mark.png");
 						}
 					},
 					error: function(err){
+						console.log(err);
 						$(".strong").text("FAIL!!!");	
 						$(".form4h").text("일시적 오류로 등록 실패하였습니다.");	
 						$(".fit-image").attr("src","assets/img/promotion/x-mark.png");

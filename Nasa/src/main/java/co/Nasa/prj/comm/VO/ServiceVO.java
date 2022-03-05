@@ -8,7 +8,6 @@ public class ServiceVO {
 	String pro_code;
 	String s_email;
 	String ser_start;
-	String ser_end;
 	String ser_title;
 	String ser_sub;
 	String ser_cate;
@@ -31,6 +30,8 @@ public class ServiceVO {
 	String ser_originsub;
 	String ser_originsub2;
 	String ser_originsub3;
+	String ser_status;
+	String ser_reason;
 	
 	// v_search_list
 	String count;

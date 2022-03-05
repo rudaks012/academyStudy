@@ -1,5 +1,7 @@
 package co.Nasa.prj.promotion.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,7 +23,8 @@ public class PromotionController {
 	private ServiceService serviceDao;
 	
 	@RequestMapping("/sellerPromotion.do")
-	public String sellerPromotion() {
+	public String sellerPromotion(Model model) {
+		model.addAttribute("promotions",promotionDao.promotionList());
 		return "seller/sellerPromotion";
 	}
 	
@@ -47,6 +50,7 @@ public class PromotionController {
 		vo.setPro_service(pro_service);
 		
 		int n = promotionDao.promotionInsert(vo);
+		System.out.println(n);
 		if(n != 1) {
 			return "FAIL";
 		}

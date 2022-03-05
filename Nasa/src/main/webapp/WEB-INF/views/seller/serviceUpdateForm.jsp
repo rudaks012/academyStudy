@@ -192,13 +192,7 @@ input[type="radio"] {
 														<input type="radio" name="ser_line" value="오프라인"  <c:if test="${service.ser_line eq '오프라인'}">checked="checked"</c:if>>오프라인 
 														<input type="radio" name="ser_line" value="온/오프라인" <c:if test="${service.ser_line eq '온/오프라인'}">checked="checked"</c:if>>온/오프라인</td>
 												</tr>
-												<tr>
-													<td>서비스제공일<span class="spanstar">*</span></td>
-													<td colspan="3">
-														<input type="radio" name="ser_date" value="상시" disabled <c:if test="${service.ser_date eq '상시'}">checked="checked"</c:if>>상시 &nbsp; 
-														<input type="radio" name="ser_date" value="기간지정" disabled <c:if test="${service.ser_date eq '기간지정'}">checked="checked"</c:if>>기간지정 
-														<input type="date" name="ser_start" disabled <c:if test="${service.ser_date eq '기간지정'}">value="${service.ser_start }"</c:if>> - <input type="date" name="ser_end" disabled <c:if test="${service.ser_date eq '기간지정'}">value="${service.ser_end }"</c:if>></td>
-												</tr>
+											
 												<tr>
 													<td>서비스 기본가격<span class="spanstar">*</span></td>
 													<td colspan="3">

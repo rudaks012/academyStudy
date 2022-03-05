@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.SellerVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.seller.service.SellerService;
@@ -88,7 +90,8 @@ public class SellerController {
 	}
 
 	@RequestMapping("/sellerUpdate.do")
-	public String sellerUpdate() {
+	public String sellerUpdate(Model model, HttpSession session) {
+		model.addAttribute("sellerInfo",sellerDAO.SellerSelect((String)session.getAttribute("id")));
 		return "seller/sellerUpdate";
 	}
 
@@ -226,6 +229,51 @@ public class SellerController {
 			result = "T";
 		}
 		return result;
+	}
+	
+	//판매자 전체프로필 수정
+	@ResponseBody
+	@RequestMapping("/SellerProfileUpdate.do")
+	public String SellerProfileUpdate(SellerVO vo, MultipartFile imgupload, HttpSession session, @RequestParam("pwCheck") String pwCheck) {
+		System.out.println("============="+imgupload.getOriginalFilename());
+		System.out.println(pwCheck);
+		vo.setS_email((String) session.getAttribute("id"));
+		
+		SellerVO svo = new SellerVO();
+		svo = sellerDAO.SellerSelect((String) session.getAttribute("id"));
+		svo = sellerDAO.SellerSelect("lee123@nasa.com");
+		String beforimg = svo.getS_img();
+		
+		if(pwCheck.equals("basic")) {
+			vo.setS_password(svo.getS_password());
+		}
+		
+		String originalFileName = imgupload.getOriginalFilename();
+		if(originalFileName.equals("")) {
+			vo.setS_img(beforimg);
+		} else {
+			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+			String savepath = saveurl + originalFileName;
+			System.out.println(savepath);
+			
+			String b_img = "resources/user/assets/img/profile/" + originalFileName;
+			
+			vo.setS_img(b_img);
+			
+			try {
+				imgupload.transferTo(new File(savepath));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		int n = sellerDAO.SellerProfileUpdate(vo);
+		if(n != 1) {
+			return "F";
+		}
+		return "T";
 	}
 
 }

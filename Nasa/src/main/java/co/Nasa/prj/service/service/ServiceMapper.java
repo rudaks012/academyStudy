@@ -11,5 +11,5 @@ public interface ServiceMapper {
 	int serviceUpdate(ServiceVO vo);
 
 	List<ServiceVO> searchListAll();
-
+	
 }

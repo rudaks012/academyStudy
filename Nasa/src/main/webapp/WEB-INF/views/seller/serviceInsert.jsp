@@ -187,14 +187,6 @@ input[type="radio"] {
 														type="radio" name="ser_line" value="온/오프라인">온/오프라인</td>
 												</tr>
 												<tr>
-													<td>서비스제공일<span class="spanstar">*</span></td>
-													<td colspan="3"><input type="radio" name="ser_date"
-														value="상시" checked="checked">상시 &nbsp; <input
-														type="radio" name="ser_date" value="기간지정" >기간지정 <input
-														type="date" name="ser_start" id="ser_start" > - <input type="date"
-														id="ser_end" name="ser_end"></td>
-												</tr>
-												<tr>
 													<td>서비스 기본가격<span class="spanstar">*</span></td>
 													<td colspan="3"><input type="number" id="ser_price"
 														name="ser_price" required></td>
@@ -357,16 +349,6 @@ input[type="radio"] {
 			
 		})
 		
-		$('#ser_end').click(function(){
-			var today = new Date();
-			var year = today.getFullYear();
-			var month = ('0' + (today.getMonth() + 1)).slice(-2);
-			var day = ('0' + today.getDate()).slice(-2);
-
-			var dateString = year + '-' + month  + '-' + day;
-			$('#ser_end').attr("min", dateString);
-			
-		})
 		
 		/*
 		 * 폼 submit 로직
@@ -379,11 +361,6 @@ input[type="radio"] {
 			}else if($('#ser_cate').val() == '' ){
 				alert('2차 카테고리를 선택해주세요!');
 				return;
-			}else if( $('input[name="ser_date"]:checked').val() == "기간지정"){
-				if($('#ser_start').val() > $('#ser_end').val()){
-					alert('시작일은 종료일보다 빠를 수 없습니다.');
-					return;
-				}
 			}
 			
 			var form = $("form")[0];
