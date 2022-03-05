@@ -7,4 +7,8 @@
 		WHERE B_EMAIL = #{b_email}
 		ORDER BY PAY_DATE DESC
 	</select>
+	
+	<select id="selectListChart" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+	SELECT PAY_DATE,PAY_PRICE FROM PAYMENT
+	</select>
 </mapper>
