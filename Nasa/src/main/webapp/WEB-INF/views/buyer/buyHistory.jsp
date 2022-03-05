@@ -218,31 +218,49 @@
 	 $(document).ready(function(){
 		 var alltr = $("#paymentTable > tbody > tr").length;
 		 var pagesize = 0;
+		 var onepagesize = 10;
 		 if (alltr % 10 == 0) {
-			 pagesize = alltr / 10;
-		 } else if (alltr %10 > 0) {
-			 pagesize = alltr / 10;
+			 pagesize = alltr / onepagesize;
+		 } else if (alltr % onepagesize > 0) {
+			 pagesize = alltr / onepagesize;
 			 pagesize++;
 			 pagesize = Math.floor(pagesize++);
 		 }
 		 
-		
 		 
-		 
-		 
-		 $(".pagination").append("<li class='page-item'><a class='page-link' href='#'>Prev</a></li>");
+		 $(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
 		 
 		 for(var i = 1; i<= pagesize; i++) {
-			 $(".pagination").append("<li class='page-item'><a class='page-link' href='#'>" + i + "</a></li>")
+			 $(".pagination").append("<li class='page-item'><a class='page-link' onclick='movepage(this)'>" + i + "</a></li>")
 		 }
 		 
-		 $(".pagination").append("<li class='page-item'><a class='page-link' href='#'>Next</a></li>");
+		 $(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
+		 
+		 $("#paymentTable > tbody > tr").hide();
+		 
+ 		 for(var i = 1; i <= onepagesize; i++) {
+			 $("#paymentTable > tbody > tr:nth-child("+i+")").show();
+		 }
 		 
       });
 	
+	function movepage(event) {
+		$("#paymentTable > tbody > tr").hide();
+		console.log($(event).text());
+		var pagingnum = $(event).text();
+		var pagenumber = $(event).text() * 10;
+		console.log(pagenumber);
+		
+		for(var i = pagenumber - 9; i <= pagenumber; i++) {
+			$("#paymentTable > tbody > tr:nth-child("+i+")").show();
+		}
+	}
+	
 	//pagination
 
+	// 1개월 거래내역 검색
 	function oneMonthSearch() {
+		$("#paymentTable > tbody > tr").removeAttr('class');
 		$("#paymentTable > tbody > tr").hide();
 		var now = new Date(); // 오늘 날짜
 		var oneMonthAgo = new Date(now.setMonth(now.getMonth() - 1)); // 한달 전 날짜 구하기
@@ -251,12 +269,54 @@
 			var paymentDate = new Date($($(".paymentdate")[i]).html());
 			
 			if (paymentDate >= oneMonthAgo) {
-				$($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+				//$($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+				$($('#paymentTable > tbody > tr')[i]).attr('class', 'onem');
 			}
+		}
+		
+		var onemtr = $(".onem").length;
+		console.log("onem size : " + onemtr)
+	 	var pagesize = 0;
+	 	var onepagesize = 10;
+	 	
+	 	if (onemtr % 10 == 0) {
+			 pagesize = onemtr / onepagesize;
+	 	} else if (onemtr % onepagesize > 0) {
+			 pagesize = onemtr / onepagesize;
+			 pagesize++;
+			 pagesize = Math.floor(pagesize++);
+	 	}
+	 	
+	 	$(".pagination").children().remove();
+	 	$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
+		 
+		for(var i = 1; i<= pagesize; i++) {
+			$(".pagination").append("<li class='page-item'><a class='page-link' onclick='movepageonem(this)'>" + i + "</a></li>")
+		}
+		 
+		$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
+		 
+		$("#paymentTable > tbody > tr").hide();
+		 
+		for(var i = 0; i <= onepagesize; i++) {
+			 $($(".onem")[i]).show();
+		}
+	}
+	
+	function movepageonem(event) {
+		$("#paymentTable > tbody > tr").hide();
+		console.log($(event).text());
+		var pagingnum = $(event).text();
+		var pagenumber = $(event).text() * 10;
+		console.log(pagenumber);
+		
+		for(var i = pagenumber - 10; i < pagenumber; i++) {
+			$($(".onem")[i]).show();
 		}
 	}
 	
 	function sixMonthSearch() {
+		$("#paymentTable > tbody > tr").removeAttr('class');
 		$("#paymentTable > tbody > tr").hide();
 		var now = new Date(); // 오늘 날짜
 		var sixMonthAgo = new Date(now.setMonth(now.getMonth() - 6)); // 6달 전 날짜 구하기
@@ -265,12 +325,54 @@
 			var paymentDate = new Date($($(".paymentdate")[i]).html());
 			
 			if (paymentDate >= sixMonthAgo) {
-				$($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+				//$($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+				$($('#paymentTable > tbody > tr')[i]).attr('class', 'sixm');
 			}
+		}
+		
+		var sixmtr = $(".sixm").length;
+		console.log("sixm size : " + sixmtr)
+	 	var pagesize = 0;
+	 	var onepagesize = 10;
+	 	
+	 	if (sixmtr % 10 == 0) {
+			 pagesize = sixmtr / onepagesize;
+	 	} else if (sixmtr % onepagesize > 0) {
+			 pagesize = sixmtr / onepagesize;
+			 pagesize++;
+			 pagesize = Math.floor(pagesize++);
+	 	}
+	 	
+	 	$(".pagination").children().remove();
+	 	$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
+		 
+		for(var i = 1; i<= pagesize; i++) {
+			$(".pagination").append("<li class='page-item'><a class='page-link' onclick='movepagesixm(this)'>" + i + "</a></li>")
+		}
+		 
+		$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
+		 
+		$("#paymentTable > tbody > tr").hide();
+		 
+		for(var i = 0; i <= onepagesize; i++) {
+			 $($(".sixm")[i]).show();
+		}
+	}
+	
+	function movepagesixm(event) {
+		$("#paymentTable > tbody > tr").hide();
+		console.log($(event).text());
+		var pagingnum = $(event).text();
+		var pagenumber = $(event).text() * 10;
+		console.log(pagenumber);
+		
+		for(var i = pagenumber - 10; i < pagenumber; i++) {
+			$($(".sixm")[i]).show();
 		}
 	}
 	
 	function oneYearSearch() {
+		$("#paymentTable > tbody > tr").removeAttr('class');
 		$("#paymentTable > tbody > tr").hide();
 		var now = new Date(); // 오늘 날짜
 		var oneYearAgo = new Date(now.setMonth(now.getMonth() - 12)); // 12달 전 날짜 구하기
@@ -279,12 +381,54 @@
 			var paymentDate = new Date($($(".paymentdate")[i]).html());
 			
 			if (paymentDate >= oneYearAgo) {
-				$($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+				//$($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+				$($('#paymentTable > tbody > tr')[i]).attr('class', 'oney');
 			}
+		}
+		
+		var oneytr = $(".oney").length;
+		console.log("oney size : " + oneytr)
+	 	var pagesize = 0;
+	 	var onepagesize = 10;
+	 	
+	 	if (oneytr % 10 == 0) {
+			 pagesize = oneytr / onepagesize;
+	 	} else if (oneytr % onepagesize > 0) {
+			 pagesize = oneytr / onepagesize;
+			 pagesize++;
+			 pagesize = Math.floor(pagesize++);
+	 	}
+	 	
+	 	$(".pagination").children().remove();
+	 	$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
+		 
+		for(var i = 1; i<= pagesize; i++) {
+			$(".pagination").append("<li class='page-item'><a class='page-link' onclick='movepageoney(this)'>" + i + "</a></li>")
+		}
+		 
+		$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
+		 
+		$("#paymentTable > tbody > tr").hide();
+		 
+		for(var i = 0; i <= onepagesize; i++) {
+			 $($(".oney")[i]).show();
+		}
+	}
+	
+	function movepageoney(event) {
+		$("#paymentTable > tbody > tr").hide();
+		console.log($(event).text());
+		var pagingnum = $(event).text();
+		var pagenumber = $(event).text() * 10;
+		console.log(pagenumber);
+		
+		for(var i = pagenumber - 10; i < pagenumber; i++) {
+			$($(".oney")[i]).show();
 		}
 	}
 	
 	function selectDateSearch() {
+		$("#paymentTable > tbody > tr").removeAttr('class');
 		var firstDate = $("#firstDate").val();
 		var secondDate = $("#secondDate").val();
 		console.log(firstDate);
@@ -312,10 +456,51 @@
 			var second = new Date(secondDate);
 			
 			if (paymentDate >= first && paymentDate <= second) {
-				$($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+				// $($('#paymentTable > tbody > tr')[i]).removeAttr('style');
+				$($('#paymentTable > tbody > tr')[i]).attr('class', 'btwd');
 			}
 		}
 		
+		var btwdtr = $(".btwd").length;
+		console.log("btwd size : " + btwdtr)
+	 	var pagesize = 0;
+	 	var onepagesize = 10;
+	 	
+	 	if (btwdtr % 10 == 0) {
+			 pagesize = btwdtr / onepagesize;
+	 	} else if (btwdtr % onepagesize > 0) {
+			 pagesize = btwdtr / onepagesize;
+			 pagesize++;
+			 pagesize = Math.floor(pagesize++);
+	 	}
+	 	
+	 	$(".pagination").children().remove();
+	 	$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
+		 
+		for(var i = 1; i<= pagesize; i++) {
+			$(".pagination").append("<li class='page-item'><a class='page-link' onclick='movepagebtwdtr(this)'>" + i + "</a></li>")
+		}
+		 
+		$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
+		 
+		$("#paymentTable > tbody > tr").hide();
+		 
+		for(var i = 0; i <= onepagesize; i++) {
+			 $($(".btwd")[i]).show();
+		}
+		
+	}
+	
+	function movepagebtwdtr(event) {
+		$("#paymentTable > tbody > tr").hide();
+		console.log($(event).text());
+		var pagingnum = $(event).text();
+		var pagenumber = $(event).text() * 10;
+		console.log(pagenumber);
+		
+		for(var i = pagenumber - 10; i < pagenumber; i++) {
+			$($(".btwd")[i]).show();
+		}
 	}
 </script>
 </body>

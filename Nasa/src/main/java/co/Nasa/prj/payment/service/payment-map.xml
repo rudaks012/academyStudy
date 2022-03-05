@@ -5,6 +5,7 @@
 		SELECT *
 		FROM PAYMENT
 		WHERE B_EMAIL = #{b_email}
+		ORDER BY PAY_DATE DESC
 	</select>
 	
 	<select id="selectListChart" resultType="co.Nasa.prj.comm.VO.PaymentVO">
