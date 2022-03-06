@@ -11,4 +11,10 @@
 		FROM REVIEW_COMMENT
 		WHERE RERE_CODE = #{rere_code}
 	</select>
+	
+	<select id="sellerReviewCommentList" resultType="co.Nasa.prj.comm.VO.Review_CommentVO">
+		SELECT * 
+		FROM REVIEW_COMMENT 
+		WHERE RERE_SEL_ID = #{s_email}
+	</select>
 </mapper>

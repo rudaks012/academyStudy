@@ -34,11 +34,10 @@
 	background-color: #ddd;
 }
 
-.nav-item a.active {
-	color: white;
-	background-color: #04AA6D;
+.genric-btn.danger-border{
+	color: #9e68ff;
+	border: 1px solid #8a2fdb;
 }
-
 .powertb td {
 	width: 120px;
 	height: 50px;
@@ -46,7 +45,7 @@
 }
 
 .powerbtn, .modal-header {
-	background-color: #e2c8d0 !important;
+	background-color: #d5c9ea  !important;
 }
 
 .modal-footer {
@@ -236,7 +235,7 @@ input[type=date] {
 																				<div class="list-footer">
 																					<ul>
 																						<li style="margin-left: 130px;">
-																							<a href="serviceUpdateForm.do?ser_code=${service.ser_code }" class="genric-btn danger-border circle">수정</a>
+																							<button type="button" onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'" class="genric-btn danger-border circle">수정</button>
 																						</li>
 																						<li>
 																							<a href="#" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</a>
@@ -272,13 +271,13 @@ input[type=date] {
 																					<a href="serviceDetail.do">${service.ser_title }</a>
 																				</h3>
 																				<div>번호 : s${service.ser_code }</div>
-																				<div class="list-footer">
-																					<ul>
-																						<li style="margin-left: 50px;">
-																							<a href="serviceUpdateForm.do?ser_code=${service.ser_code }" class="genric-btn danger-border circle">수정</a>
-																						</li>
-																						<li>
+																				<div class="list-footer" >
+																					<ul > 
+																						<li >
+																						<!-- <div style="margin-left: 210px;">
 																							<a href="#" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</a>
+																						</div> -->
+																						<div>* 종료된 서비스입니다.</div>
 																						</li>
 																					</ul>
 																				</div>

@@ -7,12 +7,12 @@
       SELECT NVL(MAX(TO_NUMBER(pro_code)),0)+1 FROM PROMOTION   
    </selectKey>
 	INSERT INTO PROMOTION
-	VALUES(#{pro_code},#{s_email},#{prodiscount},#{pro_end},#{pro_start}, #{pro_service})
+	VALUES(#{pro_code},#{s_email},#{prodiscount},#{pro_start}, #{pro_end}, #{pro_service})
 </insert>
 
 <select id="promotionList" resultType="co.Nasa.prj.comm.VO.PromotionVO">
-	SELECT *
-	FROM
-	PROMOTION
+	select p.*, s.ser_title as ser_title, s.ser_img as ser_img
+	from promotion p, service s 
+	where pro_service = ser_code
 </select>
 </mapper>

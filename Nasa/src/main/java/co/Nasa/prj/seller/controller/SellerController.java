@@ -33,11 +33,6 @@ public class SellerController {
 		return "seller/sellerMypage";
 	}
 
-	@RequestMapping("/sellerReview.do")
-	public String sellerReview() {
-		return "seller/sellerReview";
-	}
-
 	
 	@RequestMapping("/sellerSales.do")
 	public String sellerSales() {

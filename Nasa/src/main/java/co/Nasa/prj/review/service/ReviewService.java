@@ -1,5 +1,6 @@
 package co.Nasa.prj.review.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import co.Nasa.prj.comm.VO.ReviewVO;
@@ -19,4 +20,9 @@ public interface ReviewService {
 	
 	// 리뷰 업데이트
 	public int updateReview(ReviewVO vo);
+	
+	// 판매자 리뷰 리스트 조회
+	public List<ReviewVO> sellerReviewList(String s_email);
+	
+	public List<ReviewVO> reviewSearch(HashMap<String, String> remap);
 }

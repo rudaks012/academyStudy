@@ -39,5 +39,10 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.searchListAll();
 	}
 
+	@Override
+	public List<ServiceVO> serviceSelectList(String s_email) {
+		return map.serviceSelectList(s_email);
+	}
+
 
 }

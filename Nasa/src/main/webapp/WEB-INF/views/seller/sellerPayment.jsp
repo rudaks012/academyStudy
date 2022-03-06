@@ -5,8 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>결제 조회</title>
-<link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
-<script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
 <style>
 .fables-single-item {
 	color: rgb(64, 64, 64);
@@ -123,24 +121,22 @@ input[type=date] {
 													<table
 														class="table table-bordered thead-light  text-center"
 														style="margin-top: 40px;">
-														<thead class="thead-light">
+														<thead class="thead-light" style="font-size: 12px;">
 															<tr>
-																<th>번호</th>
-																<th>거래날짜</th>
-																<th>서비스</th>
+																<th>거래일</th>
+																<th>서비스명</th>
 																<th>구매자</th>
 																<th>거래금액</th>
 																<th>할인</th>
 																<th>수수료</th>
 																<th>수수료감면</th>
 																<th>최종금액</th>
-																<th>상태</th>
-																<th>입금일</th>
+																<th>진행상황</th>
+																<th>구매확정</th>
 															</tr>
 														</thead>
-														<tbody>
+														<tbody style="font-size: 12px;">
 															<tr>
-																<th scope="row">S1</th>
 																<td>2022.02.17</td>
 																<td>웹개발</td>
 																<td>김길동</td>
@@ -152,22 +148,8 @@ input[type=date] {
 																<td>대기중</td>
 																<td></td>
 															</tr>
-															<tr>
-																<th scope="row">S1</th>
-																<td>2022.03.17</td>
-																<td>앱개발</td>
-																<td>김짱구</td>
-																<td>40,000</td>
-																<td>5%</td>
-																<td>4,000</td>
-																<td>2%</td>
-																<td>46,000</td>
-																<td>대기중</td>
-																<td></td>
-															</tr>
 														</tbody>
 													</table>
-													<div id="grid"></div>
 													
 												</div>
 												<div class="tab-pane fade" id="nav-info" role="tabpanel"
@@ -186,7 +168,7 @@ input[type=date] {
 														<table
 															class="table table-bordered thead-light  text-center"
 															style="margin-top: 40px;">
-															<thead class="thead-light">
+															<thead class="thead-light"  style="font-size: 12px;">
 																<tr>
 																	<th>번호</th>
 																	<th>거래날짜</th>
@@ -201,7 +183,7 @@ input[type=date] {
 																	<th>입금일</th>
 																</tr>
 															</thead>
-															<tbody>
+															<tbody  style="font-size: 12px;">
 																<tr>
 																	<th scope="row">S1</th>
 																	<td>2022.02.17</td>

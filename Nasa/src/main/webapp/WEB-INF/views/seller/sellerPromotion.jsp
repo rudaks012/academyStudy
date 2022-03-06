@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +14,11 @@
 }
 
 .fables-single-item:hover {
-	background-color: tomato;
+	background-color: #d5c9ea;
 }
 
 .nav-link.active {
-	background-color: tomato !important;
+	background-color: #d5c9ea !important;
 	color: white !important;
 }
 
@@ -28,6 +29,10 @@
 .hr {
 	background-color: #d5c9ea !important;
 	margin: 10px !important;
+}
+.blog_details img{
+	width: 354px;
+	height: 256px;
 }
 </style>
 </head>
@@ -82,7 +87,8 @@
 					</div>
 				</div>
 
-
+				<jsp:useBean id="now" class="java.util.Date" />
+				<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" />
 				<div class="col-9">
 					<div class="blog_left_sidebar">
 						<article class="blog_item">
@@ -115,16 +121,17 @@
 													<div class="container">
 														<div class="row">
 														<c:forEach items="${promotions }" var="promotion">
+														<c:if test="${promotion.pro_end > nowDate}">
 															<div class="col-lg-6 ">
 																<div class="single-listing mb-30">
 																	<div class="list-img">
-																		<img src="assets/img/gallery/list1.png" alt="">
+																		<img src="fileupload/${promotion.ser_img }" alt="">
 																		<!-- <span>Open</span> -->
 																	</div>
 																	<div class="list-caption">
 																		<span>Open</span>
 																		<h3>
-																			<a href="listing_details.html">서비스명1</a>
+																			<a href="listing_details.html">${promotion.ser_title }</a>
 																		</h3>
 																		<p>프로모션 코드 : p${promotion.pro_code }</p>
 																		<p>프로모션 시작일자 : ${promotion.pro_start }</p>
@@ -134,6 +141,7 @@
 																	</div>
 																</div>
 															</div>
+															</c:if>
 														</c:forEach>
 														
 														</div>
@@ -142,18 +150,36 @@
 											</div>
 											<div class="tab-pane fade" id="nav-info" role="tabpanel"
 												aria-labelledby="nav-info-tab">
-												<p
-													class="fables-single-info mt-4 font-15 fables-fifth-text-color">
-													22222 a page when looking at its layout. The point of using
-													Lorem Ipsum is that it has a more-or-less normal
-													distribution of letters, as opposed to using 'Content here,
-													content here', making it look like readable English. Many
-													desktop publishing packages and web page editors now use
-													Lorem Ipsum as their default model text, and a search for
-													'lorem ipsum' will uncover many web sites still in their
-													infancy. Various versions have evolved over the years,
-													sometimes by accident, sometimes on purpose (injected
-													humour and the like).</p>
+												<div class="listing-details-area">
+													<div class="container">
+														<div class="row">
+														<c:forEach items="${promotions }" var="promotion">
+														<c:if test="${promotion.pro_end < nowDate}">
+															<div class="col-lg-6 ">
+																<div class="single-listing mb-30">
+																	<div class="list-img">
+																		<img src="fileupload/${promotion.ser_img }" alt="">
+																		<!-- <span>Open</span> -->
+																	</div>
+																	<div class="list-caption">
+																		<span>Open</span>
+																		<h3>
+																			<a href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
+																		</h3>
+																		<p>프로모션 코드 : p${promotion.pro_code }</p>
+																		<p>프로모션 시작일자 : ${promotion.pro_start }</p>
+																		<p>프로모션 종료일자 : ${promotion.pro_end }</p>
+																		<p>할인율: ${promotion.prodiscount }%</p>
+
+																	</div>
+																</div>
+															</div>
+															</c:if>
+														</c:forEach>
+														
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
