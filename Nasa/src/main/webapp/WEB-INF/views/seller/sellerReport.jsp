@@ -95,8 +95,16 @@
 											<td>${report.re_res }</td>
 											<td>${report.re_type }</td>
 											<td>${report.re_subject }</td>
-											<td>${report.re_result }</td>
-											<td>${report.re_rpoertdate }</td>
+											<c:if test="${empty report.re_result }">
+												<td>대기</td>
+											</c:if>
+											<c:if test="${report.re_result eq 'Y'}">
+												<td>완료</td>
+											</c:if>
+											<c:if test="${report.re_result eq 'D'}">
+												<td>반려</td>
+											</c:if>
+											<td>${fn:substring(report.re_rpoertdate,0,11) }</td>
 										</tr>
 									</c:forEach>
 										

@@ -10,4 +10,7 @@ public class PromotionVO {
 	String pro_start;
 	String pro_end;
 	String pro_service;
+	
+	String ser_title;
+	String ser_img;
 }

@@ -37,4 +37,7 @@
 	SELECT * FROM V_SEARCH_LIST
 </select>
 
+<select id="serviceSelectList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email}
+</select>
 </mapper>

@@ -2,6 +2,8 @@ package co.Nasa.prj.review.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,15 +13,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.review.service.ReviewMapper;
+import co.Nasa.prj.review_comment.service.Review_CommentMapper;
+import co.Nasa.prj.service.service.ServiceMapper;
 
 @Controller
 public class ReviewController {
 	@Autowired ReviewMapper reviewDao;
+	@Autowired ServiceMapper serviceDao;
+	@Autowired Review_CommentMapper review_commentDao;
 	
 	@RequestMapping("/deleteReview.do" )
 	public ResponseEntity<String> deleteReview(ReviewVO vo) {
@@ -63,5 +72,26 @@ public class ReviewController {
 		reviewDao.updateReview(vo);
 		
 		return "redirect:buyerReview.do";
+	}
+	
+	@RequestMapping("/sellerReview.do")
+	public String sellerReview(Model model, HttpSession session) {
+		String s_email = (String)session.getAttribute("id");
+		model.addAttribute("serviceList", serviceDao.serviceSelectList(s_email));
+		
+		model.addAttribute("reviewList", reviewDao.sellerReviewList(s_email));
+		model.addAttribute("re_comList", review_commentDao.sellerReviewCommentList(s_email));
+		
+		return "seller/sellerReview";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/reviewSearch.do")
+	public List<ReviewVO> reviewSearch(@RequestParam("scode") String scode, HttpSession session) {
+		HashMap<String, String> remap = new HashMap<String, String>();
+		remap.put("s_email", (String)session.getAttribute("id"));
+		remap.put("scode", scode);
+		
+		return reviewDao.reviewSearch(remap); 
 	}
 }

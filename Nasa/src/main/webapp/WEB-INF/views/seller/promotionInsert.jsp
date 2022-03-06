@@ -575,28 +575,7 @@ p {
 		});
 
 		function setProgressBar(curStep) {
-			if(curStep == 2){
-				console.log($("input[name=pro_service]:checked").parent().parent().children(".startCheck").val());
-				let start = $("input[name=pro_service]:checked").parent().parent().children(".startCheck").val();
-				let end = $("input[name=pro_service]:checked").parent().parent().children(".endCheck").val();
-				if(start === undefined){
-					console.log('상시')
-					$("#startdate").attr("min",'');
-					$("#startdate").attr("max",'');
-					
-					$("#enddate").attr("min",'');
-					$("#enddate").attr("max",'');
-					
-				}else{
-					$("#startdate").attr("min",start);
-					$("#startdate").attr("max",end);
-					$("#startdate").val(start);
-					$("#enddate").attr("min",start);
-					$("#enddate").attr("max",end);
-					$("#enddate").val(end);
-				}
-			}
-			else if(curStep == 3){
+			if(curStep == 3){
 				let id = $("input[name=pro_service]:checked").val();
 				let img = document.getElementsByClassName(id)[0].getAttribute('src');
 				$("#finalimg").attr("src", img);

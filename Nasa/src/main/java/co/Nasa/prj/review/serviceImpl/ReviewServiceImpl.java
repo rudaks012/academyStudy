@@ -1,5 +1,6 @@
 package co.Nasa.prj.review.serviceImpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,15 @@ public class ReviewServiceImpl implements ReviewService {
 		return map.selectReview(vo);
 	}
 
+	@Override
+	public List<ReviewVO> sellerReviewList(String s_email) {
+		return map.sellerReviewList(s_email);
+	}
+
+	@Override
+	public List<ReviewVO> reviewSearch(HashMap<String, String> remap) {
+		return map.reviewSearch(remap);
+	}
+
+	
 }

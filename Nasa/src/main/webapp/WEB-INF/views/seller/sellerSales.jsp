@@ -30,8 +30,8 @@
 .font-40 {
 	font-size: 40px;
 }
-.hr{
- 	background-color : #d5c9ea !important;
+hr{
+ 	border-bottom : 1px solid #d5c9ea !important;
    	margin: 10px !important;
 }
 </style>
