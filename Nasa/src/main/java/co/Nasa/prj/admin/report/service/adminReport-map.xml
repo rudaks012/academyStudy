@@ -58,6 +58,9 @@
   
   <select id="totalReportWait" resultType="int">
   	select count(*) from report where re_result is null
+  	 <trim prefix="where" prefixOverrides="AND">
+  	      <include refid="criteria"></include>
+  	    </trim>
   </select>
   
   <select id="getReportWaitListWithPaging" resultType="co.Nasa.prj.comm.VO.ReportVO">
@@ -68,9 +71,13 @@
   	     SELECT rownum rn, r.*
   	     FROM report r
   	     WHERE re_result is null AND rownum <=#{pageNum} * #{amount}
+  	     
+  	     ]]>
+  	     <include refid="criteria"></include>
+  	 <![CDATA[    
+  	 	 ORDER BY re_code DESC
   	     )
   	 WHERE rn > (#{pageNum}-1 )* #{amount}
-  	 ORDER BY re_code DESC
   	]]>
   </select>
   
@@ -99,6 +106,78 @@
   		   
   		 }
   	</select>
+  	
+  	
+  	
+  <select id="totalReportComplete" resultType="int">
+  	select count(*) from report where re_result ='Y'
+  	 <trim prefix="where" prefixOverrides="AND">
+  	      <include refid="criteria"></include>
+  	    </trim>
+  </select>
+  
+  <select id="getReportCompleteListWithPaging" resultType="co.Nasa.prj.comm.VO.ReportVO">
+  	<![CDATA[
+  	 SELECT *
+  	 FROM 
+  	     (
+  	     SELECT rownum rn, r.*
+  	     FROM report r
+  	     WHERE re_result ='Y' AND rownum <=#{pageNum} * #{amount}
+  	     
+  	     ]]>
+  	     <include refid="criteria"></include>
+  	 <![CDATA[    
+  	 	 ORDER BY re_code DESC
+  	     )
+  	 WHERE rn > (#{pageNum}-1 )* #{amount}
+  	]]>
+  </select>
+  
+  
+  <select id="detailedReportComplete" parameterType="String" resultType="co.Nasa.prj.comm.VO.ReportVO">
+      SELECT v.* ,r.*
+	  FROM vw_member_report v JOIN report r
+	  ON (v.email=r.re_res)
+	  WHERE email=#{email} AND re_code=#{re_code}
+	 
+  </select>
+  
+  
+  
+  <select id="totalReportRefuse" resultType="int">
+  	select count(*) from report where re_result ='D'
+  	 <trim prefix="where" prefixOverrides="AND">
+  	      <include refid="criteria"></include>
+  	    </trim>
+  </select>
+  
+  <select id="getReportRefuseListWithPaging" resultType="co.Nasa.prj.comm.VO.ReportVO">
+  	<![CDATA[
+  	 SELECT *
+  	 FROM 
+  	     (
+  	     SELECT rownum rn, r.*
+  	     FROM report r
+  	     WHERE re_result ='D' AND rownum <=#{pageNum} * #{amount}
+  	     
+  	     ]]>
+  	     <include refid="criteria"></include>
+  	 <![CDATA[    
+  	 	 ORDER BY re_code DESC
+  	     )
+  	 WHERE rn > (#{pageNum}-1 )* #{amount}
+  	]]>
+  </select>
+  
+  
+  <select id="detailedRefuseComplete" parameterType="String" resultType="co.Nasa.prj.comm.VO.ReportVO">
+      SELECT v.* ,r.*
+	  FROM vw_member_report v JOIN report r
+	  ON (v.email=r.re_res)
+	  WHERE email=#{email} AND re_code=#{re_code}
+	 
+  </select>
   
 
 </mapper>

@@ -25,4 +25,16 @@ public interface AdminReportMapper {
 		public List<ReportVO> getReportWaitListWithPaging(Criteria cri);
 		public ReportVO detailedReportWait(ReportVO vo);
 		public int updateReportResult(AdminAuthorVO vo); //신고 승인
+		
+		
+		//신고승인완료조회
+		public int totalReportComplete();
+		public List<ReportVO> getReportCompleteListWithPaging(Criteria cri);
+		public ReportVO detailedReportComplete(ReportVO vo);
+		
+		
+		//신고반료조회
+		public int totalReportRefuse();
+		public List<ReportVO> getReportRefuseListWithPaging(Criteria cri);
+		public ReportVO detailedRefuseComplete(ReportVO vo);
 }
