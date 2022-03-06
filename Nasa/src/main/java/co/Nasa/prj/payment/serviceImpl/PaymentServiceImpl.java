@@ -26,4 +26,36 @@ public class PaymentServiceImpl implements PaymentService {
 		return map.selectListChart();
 	}
 
+	@Override
+	public List<Integer> selectpaymenttable(int month) {
+		// TODO Auto-generated method stub
+		return map.selectpaymenttable(month);
+	}
+
+	@Override
+	public List<Integer> countservice(int count) {
+		// TODO Auto-generated method stub
+		return map.countservice(count);
+	}
+
+	@Override
+	public List<PaymentVO> selectListYearChart() {
+		// TODO Auto-generated method stub
+		return map.selectListYearChart();
+	}
+
+	@Override
+	public List<Integer> selectYearchart(int year) {
+		// TODO Auto-generated method stub
+		return map.selectYearchart(year);
+	}
+
+	@Override
+	public List<Integer> countYearChart(int count) {
+		// TODO Auto-generated method stub
+		return map.countYearChart(count);
+	}
+
+
+
 }

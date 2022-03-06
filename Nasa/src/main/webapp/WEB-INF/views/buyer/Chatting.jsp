@@ -103,7 +103,6 @@ textarea::placeholder {
 	overflow: auto;
 }
 
-/////////////////////
 .chat_wrap .chatMiddle ul li>div.sender {
 	margin: 10px 20px 0 20px;
 	font-size: 13px;
@@ -167,7 +166,7 @@ chat_wrap .chatMiddle ul li>div {
 	left: 28%;
 }
 
-.
+
 .chatList_box, .chatList_box2 {
 	margin: 2px;
 	border: 2px solid silver;
@@ -184,44 +183,17 @@ chat_wrap .chatMiddle ul li>div {
 	border-right: 10px solid rgba(255, 255, 255, 0.2);
 }
 
-@
-keyframes ring { 0% {
-	width: 30px;
-	height: 30px;
-	opacity: 1;
-}
-
-100
-
-
-%
-{
-width:
-300px
-;
-
-
-height
-
-
-:
-
-
-300px
-;
-
-
-opacity
-
-
-:
-
-
-0
-;
-
-
-}
+	@keyframes ring {
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
 }
 .w-btn-neon2 {
 	position: relative;
@@ -292,7 +264,7 @@ opacity
 								<button type="button" id="chatout" class="w-btn-neon2"
 									style="float: right; display: none;">채팅나가기</button>
 
-								<button type="button" id="payement" class="w-btn-neon2"
+								<button type="button" data-toggle="modal" data-target="#paymentmodal" id="payement" class="w-btn-neon2"
 									style="float: right; display: none;">결제하기</button>
 								<button type="button" data-toggle="modal"
 									data-target="#reportModal" id="Chatreport" class="w-btn-neon2"
@@ -424,6 +396,7 @@ opacity
 			</div>
 		</div>
 		<!-- 신고 모달 -->
+
 	</div>
 
 

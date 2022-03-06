@@ -1,9 +1,11 @@
 package co.Nasa.prj;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.Nasa.prj.buyer.service.BuyerService;
@@ -26,38 +29,90 @@ import co.Nasa.prj.payment.service.PaymentService;
  */
 @Controller
 public class HomeController {
-	
+
 	@Autowired
-    private BuyerService BuyerDao;
-	
+	private BuyerService BuyerDao;
+
 	@Autowired
 	private PaymentService paymentDao;
-	
+
 	@RequestMapping("/home.do")
 	public String home(HttpSession session, Model model) {
-		
+
 //		BuyerVO vo = new BuyerVO();
 //    	vo.setB_email((String)session.getAttribute("id"));
 //    	BuyerDao.selectBuyer(vo);
 //    	model.addAttribute("loginMember", BuyerDao.selectBuyer(vo));
 		return "user/home";
 	}
-	
-	@RequestMapping(value = "/chartData.do")
+
+	// 차트 그리기
+	@RequestMapping(value = "/ajaxchartData.do")
 	@ResponseBody
 	public List<PaymentVO> ajaxChartpage(Model model) {
-		List<PaymentVO> list  = paymentDao.selectListChart();
-		
+		List<PaymentVO> list = paymentDao.selectListChart();
 		return list;
 	}
-	
 
-	
-	
-	
+	// 월별 누적판매금액 수수료
+	@RequestMapping(value = "/ajaxsalesTable.do")
+	@ResponseBody
+	public List<Integer> ajaxsalesTable() {
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 1; i < 13; i++) {
+			list.addAll(paymentDao.selectpaymenttable(i));
+		}
+		return list;
+	}
+
+	// 월별 카운트
+	@RequestMapping("/ajaxcountService.do")
+	@ResponseBody
+	public List<Integer> ajaxcountservice() {
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 1; i < 13; i++) {
+			list.addAll(paymentDao.countservice(i));
+		}
+
+		return list;
+	}
+
+	// 연도별 차트 그리기
+	@RequestMapping("/ajaxyearChart.do")
+	@ResponseBody
+	public List<PaymentVO> ajaxyearChart(Model model) {
+		List<PaymentVO> list = paymentDao.selectListYearChart();
+		return list;
+	}
+
+	// 연도별 누적판매금액, 수수료 계산
+	@RequestMapping("/selectYearchart.do")
+	@ResponseBody
+	public List<Integer> ajaxselectYearchart() {
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 2020; i < 2024; i++) {
+			list.addAll(paymentDao.selectYearchart(i));
+		}
+		System.out.println("리스트 찍어보자 |||||||||||||||||||||||||||" + list);
+		return list;
+	}
+
+	// 연도별 카운트 조회
+	@RequestMapping("/countYearChart.do")
+	@ResponseBody
+	public List<Integer> countYearChart() {
+
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 2020; i < 2024; i++) {
+			list.addAll(paymentDao.countYearChart(i));
+		}
+		System.out.println("카운트찍어보자 |||||||||||||||||||||||" + list);
+
+		return list;
+	}
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -74,5 +129,5 @@ public class HomeController {
 //		
 //		return "home";
 //	}
-	
+
 }
