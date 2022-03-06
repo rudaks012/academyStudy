@@ -27,16 +27,21 @@
                      </h5>
                     <div class="card mb-4">
                         <div class="card-body">
+                          <form id="searchForm" method="get">
                             <table class="table caption-top table-bordered  text-center">
                                 <tbody>
                                     <tr>
                                         <th class="align-middle table-primary">신고유형</th>
                                         <td>
                                         	<div class="col-6">
-                                        	<select class="custom-select  form-control custom-shadow ">
-				                                <option selected="">선택</option>
-				                                <option value="1">July 19</option>
-				                                <option value="2">Jun 19</option>
+                                        	<select name="re_type" class="custom-select  form-control custom-shadow ">
+                                        		<option value="" id="choice" selected>선택</option>
+				                                <option value="욕설/비방" <c:out value="${pageMaker.cri.re_type eq '욕설/비방'? 'selected':'' }"/>>비방/욕설</option>
+				                                <option value="스팸/부적절한광고" <c:out value="${pageMaker.cri.re_type eq '스팸/부적절한 광고'? 'selected':'' }"/>>스팸/부적절한 광고</option>
+				                                <option value="혐오/잔인한사진" <c:out value="${pageMaker.cri.re_type eq '혐오/잔인한사진'? 'selected':'' }"/>>혐오/잔인한사진</option>
+				                                <option value="음란물" <c:out value="${pageMaker.cri.re_type eq '음란물'? 'selected':'' }"/>>음란물</option>
+				                                <option value="채팅신고" <c:out value="${pageMaker.cri.re_type eq '채팅신고'? 'selected':'' }"/>>채팅신고</option>
+				                                <option value="기타" <c:out value="${pageMaker.cri.re_type eq '기타'? 'selected':'' }"/>>기타</option>r
 				                            </select>
 				                            </div>
                                         </td>
@@ -45,7 +50,7 @@
                                         <th class="align-middle table-primary">신고자아이디</th>
                                         <td>
                                         	<div class="col-6">
-                                        		<input class="form-control custom-shadow" id="" name="" type="text"></td>
+                                        		<input class="form-control custom-shadow" id="id" name="re_reporter" type="text" value='<c:out value="${pageMaker.cri.re_reporter }"/>'></td>
                                     		</div>
                                     </tr>
                                     <tr>
@@ -53,17 +58,18 @@
                                         <td>
                                         	<div class="d-flex align-items-center">
                                         		<div class="col-3">
-	                                        	<input type="date" class="form-control" value="2018-05-13">
+	                                        	<input type="date" class="form-control" name="re_date" value='<c:out value="${pageMaker.cri.re_date }"/>'>
 	                                        	</div>
 	                                        	<span class="mx-2"><i class="fas fa-minus"></i></span>
 	                                        	<div class="col-3">
-	                                        	<input type="date" class="form-control" value="2018-05-13">
+	                                        	<input type="date" class="form-control" name="re_date2" value='<c:out value="${pageMaker.cri.re_date2 }"/>'>
 	                                        	</div>
                                         	</div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                           </form>
                         <style>
                             .search, .reload{
                                 position: relative;
@@ -72,15 +78,15 @@
                         </style>
 
 	                     <div class="d-flex justify-content-end my-4">
-                            <button class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
-	                        <button class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
+                            <button id="resetBtn" class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
+	                        <button id="searchBtn" class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
 	                    </div>
                    </div>
                </div>
                
                
                
-                              <div class="row my-5">
+                  <div class="row my-5">
                 	<div class="col-6">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             신고조회
@@ -178,10 +184,15 @@
                         </nav>
                     </div>
                     
-                      <form id="actionForm" action="report_wait.do" method="get">
-			            <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-			            <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-			        </form>
+                        <form id="actionForm" action="report_wait.do" method="get">
+				            <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+				            <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+				            <input type="hidden" name="re_type" value="${pageMaker.cri.re_type }">
+				            <input type="hidden" name="re_reporter" value="${pageMaker.cri.re_reporter }">
+				            <input type="hidden" name="re_date" value="${pageMaker.cri.re_date }">
+				             <input type="hidden" name="re_date2" value="${pageMaker.cri.re_date2 }">
+			        	</form>
+			        	
 		                   </div>
                			</div>
                 	</div>
@@ -218,7 +229,7 @@
                                         	<th width="18%" class="table-danger align-middle">신고횟수</th>
                                             <td>
                                                <div class="col-6 p-0 d-flex align-items-center">
-                                            	<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="" type="text" readonly >회
+                                            	<input class="form-control custom-shadow mr-2 text-danger" id="total_report" name="" value="" type="text" readonly >회
                                         	   </div>
                                         	</td>
                                         	<th width="18%" class="table-primary align-middle">신고유형</th>
@@ -257,6 +268,7 @@
                 <!-- 반려모달 -->
                 
                 
+               <form id="frm" type="post">  
                 <div id="refuse-report-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dark-header-modalLabel" style="display: none;" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
@@ -265,27 +277,27 @@
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <div class="modal-body">
-                                                <table class="table caption-top table-bordered thead-light  text-center">		                        
+                                                <table class="table caption-top table-bordered thead-light">		                        
                                     <tbody>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">신고코드</th>
-                                            <td ><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
+                                            <td ><input class="form-control custom-shadow " id="r_code" name="re_code" value="" type="text" readonly ></td>
                                             <th width="18%" class="table-primary align-middle">신고일자</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="2021-01-18" type="text" disabled ></td>
+                                            <td><input class="form-control custom-shadow " id="r_date" name="re_date" value="" type="text" readonly ></td>
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">신고자</th>
-                                            <td ><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
+                                            <td ><input class="form-control custom-shadow " id="r_id" name="re_reporter" value="" type="text" readonly ></td>
                                             <th width="18%" class="table-primary align-middle">신고유형</th>
-                                            <td><input class="form-control custom-shadow " id="" name="" value="악성댓글" type="text" disabled ></td>
+                                            <td><input class="form-control custom-shadow " id="r_type" name="re_type" value="" type="text" readonly ></td>
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-danger align-middle">피신고자</th>
-                                            <td ><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
+                                            <td ><input class="form-control custom-shadow " id="res_id" name="re_res" value="" type="text" readonly ></td>
                                             <th width="18%" class="table-danger align-middle">신고횟수</th>
                                             <td>
                                                <div class="col-6 p-0 d-flex align-items-center">
-                                            	<input class="form-control custom-shadow mr-2 text-danger" id="" name="" value="10" type="text" disabled >회</td>
+                                            	<input class="form-control custom-shadow mr-2 text-danger" id="r_total" name="" value="" type="text" readonly >회</td>
                                         	   </div>
                                         </tr>
                                          <tr>
@@ -293,7 +305,7 @@
                                         </tr>
                                         <tr>
 											<td colspan="4" >
-												<textarea rows="10" class="form-control" id="message-text"></textarea>
+												<textarea rows="10" class="form-control" id="r_denied" wrap="hard"></textarea>
 											
 											</td>                                        
                                         </tr>
@@ -302,12 +314,13 @@
                                 </table>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">저장</button>
+                                                <button type="button" id="savedBtn" class="btn btn-primary">반려</button>
                                                 <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
                                             </div>
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal-dialog -->
                                 </div>
+                </form>
                 
                 
               
@@ -321,6 +334,32 @@
 		
 			
 <script type="text/javascript">
+
+//신고날짜 변경
+let startDate =$("input[name='re_date']");
+let endDate =$("input[name='re_date2']");
+const handleReportDate =()=>{
+	$(endDate).val($(startDate).val())
+	
+	
+}
+$("input[name='re_date']").on("change",handleReportDate);
+
+//초기화 버튼
+
+const hadleResetLists =()=>{
+	$(startDate).val("")
+	$(endDate).val("")
+	$("input[name='re_reporter']").val('')
+	$("select[name='re_type']").val('').prop("selected",true);
+	searchForm.action="report_wait.do";
+	searchForm.submit();
+}
+$("#resetBtn").on("click",hadleResetLists);
+
+
+
+//전체목록 페이징 처리
 let actionForm = $("#actionForm");
 $(".page-item a").on("click", function (e) {
     e.preventDefault();
@@ -338,50 +377,128 @@ const reCode=event.target.parentElement.firstElementChild.value;
 	$.ajax({
 		url:"ajaxDetailedReportWait.do",
 		type:"post",
-		data:{"re_res":res,"re_code":reCode}
+		data:{"email":res,"re_code":reCode}
 	}).done(function(result){
-		console.log(result)
+		
 		$("#re_code").val(result.re_code)
 		$("#re_date").val(result.re_date)
 		$("#re_reporter").val(result.re_reporter)
 		$("#re_type").val(result.re_type)
 		$("#re_res").val(result.re_res)
-		let re_result = result.re_result;
-		re_result==null? $("#re_result").val("대기"):$("#re_result").val(result.re_result)
 		
-		let re_date = result.re_rpoertdate
-		re_date==null? $("#re_rpoertdate").val("대기"): $("#re_rpoertdate").val(result.re_rpoertdate)
-		$("#re_subject").val(result.re_subject) 
+		//신고횟수
+		let gb = result.gb;
+		gb=='s'?$("#total_report").val(result.report):$("#total_report").val(result.report)
 		
+		//신고결과
+		let re_result =result.re_result;
+			re_result=='Y'?$("#re_result").val("승인"):
+				re_result=='D'?$("#re_result").val("반려"):$("#re_result").val("대기")
+		//신고처리날짜
+		$("#re_rpoertdate").val("대기");
+	    //신고내용
+		$("#re_subject").val(result.re_subject)
+		console.log(result.filecode);
+		//파일
 		let filecode= result.filecode
-		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text("filecode 조인 필요")
+		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text(result.filecode)
+				
+				
+		//반려모달
+		$("#r_code").val(result.re_code)
+		$("#r_date").val(result.re_date)
+		$("#r_id").val(result.re_reporter)
+		$("#r_type").val(result.re_type)
+		$("#res_id").val(result.re_res)
+		gb=='s'?$("#r_total").val(result.report):$("#r_total").val(result.report)    
 	})
 }
 Array.from(reportList).forEach(function (element) {
     $(element).off("click").on('click', selectReport);
 })
 
-//승인버튼
- const confirmBtn= document.querySelector("#confirmBtn");
- const confirmReport=()=>{
-	 if($("#re_code").val()!=""){
-		 const reCode=$("#re_code").val();
-		 console.log(reCode)
+//승인 버튼
+const confirmReport=()=>{
+	if($("#re_code").val()!=""){
+	let code=$("#re_code").val();
+	let id=$("#re_res").val();
+
+	let reportData={
+			re_code:code,
+			email:id
+	}
+	
 		 $.ajax({
-			 url:"ajaxConfirmReport.do",
-			 type:"post",
-			 data:{"re_code":reCode}
-		 }).done(function(result){
-			 if(result!=0){
-				 alert("해당 신고가 승인되었습니다.")
-				 window.location.reload();
-			 }
-		 })
-	 }else{
-		 alert("승인하려는 신고내역을 선택해주세요")
-	 }
- }
- confirmBtn.addEventListener("click",confirmReport);
+			url:"updateConfirmReport.do",
+			data : JSON.stringify(reportData),
+			headers:{'Content-Type':'application/json'},
+			type:"post"
+		    
+		}).done(function(data){
+			if(data.result!=0){
+				alert("해당신고를 승인했습니다.")
+				window.location.reload();
+			}
+		}).fail(function(){
+			alert("시스템 관리자에게 문의하세요.")
+		}) 
+	}
+}
+$("#confirmBtn").on("click",confirmReport);
+
+
+//반려모달 저장 버튼
+const deniedReport=()=>{
+	let r_denied=$("#r_denied").val();
+	if(r_denied==""){
+		alert("내용을 입력해주세요.");
+		$("#r_denied").focus();
+	}else{
+		let code =$("#r_code").val();
+		let r_denied= $("#r_denied").val().replace(/\n/g, "<br />")
+		$.ajax({
+			url:"ajaxUpdateDeniedReport.do",
+			type:"post",
+			data:{"re_code":code,"re_denied":r_denied}
+		}).done(function(result){
+			if(result!=0){
+			   alert("해당 신고는 반려되었습니다.")
+			   $("#savedBtn").attr("data-dismiss","modal");
+				window.location.reload();
+			}else{
+				alert("관리자에게 문의하세요.");
+				$("#savedBtn").attr("data-dismiss","modal");
+			}
+			
+		}).fail(function(result){
+			alert("관리자에게 문의하세요.")
+			$("#savedBtn").attr("data-dismiss","modal");
+		})
+	}
+	
+}
+
+$("#savedBtn").on("click",deniedReport);
+
+
+
+//검색버튼
+const searchReport=()=>{
+	let type=$("select[name='re_type'] option:selected").val();
+	let reporterId =$("input[name='re_reporter']").val();
+	startDate = $(startDate).val();
+	console.log(reporterId)
+//	if(type!="choice"||reporterId!=""||startDate!=""){
+		searchForm.action="report_wait.do";
+		searchForm.submit();
+//	}else{
+//		alert("검색어를 입력해주세요.")
+//	}
+	
+	
+}
+$("#searchBtn").on("click",searchReport);
+
 </script>
 
             

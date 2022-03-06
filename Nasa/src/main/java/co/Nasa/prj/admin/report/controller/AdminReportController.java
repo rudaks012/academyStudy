@@ -83,7 +83,7 @@ public class AdminReportController {
 		return reportDao.detailedReport(vo);
 	}
 	
-	//신고대기->Y ajax 이거 수정해야함
+	//신고대기->Y 추후수정
 	@ResponseBody
 	@RequestMapping("/ajaxConfirmReport.do")
 	public int ajaxConfirmReport(AdminAuthorVO vo) {
@@ -91,13 +91,31 @@ public class AdminReportController {
 		return n;
 	}
 	
-	
+	//신고승인 페이지
 	@RequestMapping("/report_complete.do")
-	public String report_complete() {
+	public String report_complete(Model model,Criteria cri) {
+		
+		model.addAttribute("reportCompleteLists", reportDao.getReportListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportComplete()));
+		model.addAttribute("total",reportDao.totalReportComplete() );
 		return"admin/report/reportComplete";
 	}
+	
+	
+	@ResponseBody
+	@PostMapping("/ajaxDetailedReportComplete.do")
+	public ReportVO ajaxDetailedReportComplete(ReportVO vo) {
+		return reportDao.detailedReport(vo);
+	}
+	
 	@RequestMapping("/report_refuse.do")
-	public String report_refuse() {
+	public String report_refuse(Model model,Criteria cri) {
+		
+		model.addAttribute("reportRefuseLists", reportDao.getReportRefuseListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportRefuse()));
+		model.addAttribute("total",reportDao.totalReportRefuse() );
 		return"admin/report/reportRefuse";
 	}
+	
+	
 }

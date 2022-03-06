@@ -35,13 +35,13 @@
                                         <td>
                                         	<div class="col-6">
                                         	<select name="re_type" class="custom-select  form-control custom-shadow ">
-                                        	<option value="" selected>선택</option>
-				                                <option value="욕설/비방" >비방/욕설</option>
-				                                <option value="스팸, 부적절한 광고">스팸/부적절한 광고</option>
-				                                <option value="혐오 혹은 잔인한사진">혐오/잔인한사진</option>
-				                                <option value="음란물">음란물</option>
-				                                <option value="채팅신고">채팅신고</option>
-				                                <option value="기타 사유">기타</option>
+                                        		<option value="" id="choice" selected>선택</option>
+				                                <option value="욕설/비방" <c:out value="${pageMaker.cri.re_type eq '욕설/비방'? 'selected':'' }"/>>비방/욕설</option>
+				                                <option value="스팸/부적절한광고" <c:out value="${pageMaker.cri.re_type eq '스팸/부적절한 광고'? 'selected':'' }"/>>스팸/부적절한 광고</option>
+				                                <option value="혐오/잔인한사진" <c:out value="${pageMaker.cri.re_type eq '혐오/잔인한사진'? 'selected':'' }"/>>혐오/잔인한사진</option>
+				                                <option value="음란물" <c:out value="${pageMaker.cri.re_type eq '음란물'? 'selected':'' }"/>>음란물</option>
+				                                <option value="채팅신고" <c:out value="${pageMaker.cri.re_type eq '채팅신고'? 'selected':'' }"/>>채팅신고</option>
+				                                <option value="기타" <c:out value="${pageMaker.cri.re_type eq '기타'? 'selected':'' }"/>>기타</option>r
 				                            </select>
 				                            </div>
                                         </td>
@@ -50,7 +50,7 @@
                                         <th class="align-middle table-primary">신고자아이디</th>
                                         <td>
                                         	<div class="col-6">
-                                        		<input class="form-control custom-shadow" id="id" name="re_reporter" type="text"></td>
+                                        		<input class="form-control custom-shadow" id="id" name="re_reporter" type="text" value='<c:out value="${pageMaker.cri.re_reporter }"/>'></td>
                                     		</div>
                                     </tr>
                                     <tr>
@@ -58,11 +58,11 @@
                                         <td>
                                         	<div class="d-flex align-items-center">
                                         		<div class="col-3">
-	                                        	<input type="date" class="form-control" name="re_date" value="">
+	                                        	<input type="date" class="form-control" name="re_date" value='<c:out value="${pageMaker.cri.re_date }"/>'>
 	                                        	</div>
 	                                        	<span class="mx-2"><i class="fas fa-minus"></i></span>
 	                                        	<div class="col-3">
-	                                        	<input type="date" class="form-control" name="re_date2" value="">
+	                                        	<input type="date" class="form-control" name="re_date2" value='<c:out value="${pageMaker.cri.re_date2 }"/>'>
 	                                        	</div>
                                         	</div>
                                         </td>
@@ -78,8 +78,8 @@
                         </style>
 
 	                     <div class="d-flex justify-content-end my-4">
-                            <button class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
-	                        <button id="search" class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
+                            <button id="resetBtn" class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
+	                        <button id="searchBtn" class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
 	                    </div>
                    </div>
                </div>
@@ -187,6 +187,11 @@
                       <form id="actionForm" action="report_inquiry.do" method="get">
 			            <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 			            <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+			            <input type="hidden" name="re_type" value="${pageMaker.cri.re_type }">
+			            <input type="hidden" name="re_reporter" value="${pageMaker.cri.re_reporter }">
+			            <input type="hidden" name="re_date" value="${pageMaker.cri.re_date }">
+			             <input type="hidden" name="re_date2" value="${pageMaker.cri.re_date2 }">
+			            
 			        </form>
                     
 		                   </div>
@@ -333,13 +338,25 @@ let startDate =$("input[name='re_date']");
 let endDate =$("input[name='re_date2']");
 const handleReportDate =()=>{
 	$(endDate).val($(startDate).val())
-
+	
 	
 }
 $("input[name='re_date']").on("change",handleReportDate);
 
+//초기화 버튼
+
+const hadleResetLists =()=>{
+	$(startDate).val("")
+	$(endDate).val("")
+	$("input[name='re_reporter']").val('')
+	$("select[name='re_type']").val('').prop("selected",true);
+	searchForm.action="report_inquiry.do";
+	searchForm.submit();
+}
+$("#resetBtn").on("click",hadleResetLists);
 
 
+//전체목록 페이징처리
 let actionForm = $("#actionForm");
 $(".page-item a").on("click", function (e) {
     e.preventDefault();
@@ -495,16 +512,19 @@ const searchReport=()=>{
 	let reporterId =$("input[name='re_reporter']").val();
 	startDate = $(startDate).val();
 	console.log(reporterId)
-	if(type!=""||reporterId!=""||startDate!=""){
+//	if(type!="choice"||reporterId!=""||startDate!=""){
 		searchForm.action="report_inquiry.do";
 		searchForm.submit();
-	}else{
-		alert("검색어를 입력해주세요.")
-	}
+//	}else{
+//		alert("검색어를 입력해주세요.")
+//	}
 	
 	
 }
-$("#search").on("click",searchReport);
+$("#searchBtn").on("click",searchReport);
+
+
+
 </script>
             
               

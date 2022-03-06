@@ -75,6 +75,42 @@ public class AdminReportSerivceImpl implements AdminReportService {
 		return map.updateConfirmReport(reportMap);
 	}
 
+	@Override
+	public int totalReportComplete() {
+		// TODO Auto-generated method stub
+		return map.totalReportComplete();
+	}
+
+	@Override
+	public List<ReportVO> getReportCompleteListWithPaging(Criteria cri) {
+		// TODO Auto-generated method stub
+		return map.getReportCompleteListWithPaging(cri);
+	}
+
+	@Override
+	public ReportVO detailedReportComplete(ReportVO vo) {
+		// TODO Auto-generated method stub
+		return map.detailedReportComplete(vo);
+	}
+
+	@Override
+	public int totalReportRefuse() {
+		// TODO Auto-generated method stub
+		return map.totalReportRefuse();
+	}
+
+	@Override
+	public List<ReportVO> getReportRefuseListWithPaging(Criteria cri) {
+		// TODO Auto-generated method stub
+		return map.getReportRefuseListWithPaging(cri);
+	}
+
+	@Override
+	public ReportVO detailedRefuseComplete(ReportVO vo) {
+		// TODO Auto-generated method stub
+		return map.detailedRefuseComplete(vo);
+	}
+
 
 
 	
