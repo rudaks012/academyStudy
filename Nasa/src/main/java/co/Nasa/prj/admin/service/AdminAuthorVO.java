@@ -24,6 +24,7 @@ public class AdminAuthorVO {
 	String buyer_coupon;
 	String b_name;
 	
+	
 	//판매자
 	
 	String s_rank;
