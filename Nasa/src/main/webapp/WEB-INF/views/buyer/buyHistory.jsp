@@ -219,7 +219,7 @@
 		 var alltr = $("#paymentTable > tbody > tr").length;
 		 var pagesize = 0;
 		 var onepagesize = 10;
-		 if (alltr % 10 == 0) {
+		 if (alltr % onepagesize == 0) {
 			 pagesize = alltr / onepagesize;
 		 } else if (alltr % onepagesize > 0) {
 			 pagesize = alltr / onepagesize;

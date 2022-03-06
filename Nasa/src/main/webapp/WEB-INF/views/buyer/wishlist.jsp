@@ -112,7 +112,12 @@
 			                     </div>   
                   			</c:if>
                   		</c:forEach>
-                  	</c:forEach>        
+                  	</c:forEach>
+
+	                  	<nav aria-label="Page navigation example">
+							<ul class="pagination"></ul>
+						</nav>      
+
                   </section>
                   <!-- <nav class="blog-pagination justify-content-center d-flex">
                      <ul class="pagination">
@@ -142,7 +147,49 @@
    </div>
 </section>
 
-<script>	
+<script>
+// pagination
+	$(document).ready(function() {
+		var allwish = $(".blog-author").length;
+		console.log(allwish);
+		var pagesize = 0;
+	 	var onepagesize = 10;
+	 	
+	 	if(allwish % onepagesize == 0) {
+	 		pagesize = allwish / onepagesize;
+	 	} else if (allwish % onepagesize > 0) {
+	 		pagesize = allwish / onepagesize;
+			pagesize++;
+			pagesize = Math.floor(pagesize++);	
+	 	}
+	 	
+	 	//$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
+		 
+		for(var i = 1; i<= pagesize; i++) {
+			 $(".pagination").append("<li class='page-item'><a class='page-link' onclick='movepage(this)'>" + i + "</a></li>")
+		}
+		 
+		//$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
+		 
+		$(".blog-author").hide();
+		 
+		for(var i = 0; i < onepagesize; i++) {
+			 $($(".blog-author")[i]).show();
+		}
+	});
+	
+	function movepage(event) {
+		$(".blog-author").hide();
+		console.log($(event).text());
+		var pagingnum = $(event).text();
+		var pagenumber = $(event).text() * 10;
+		console.log(pagenumber);
+		
+		for(var i = pagenumber - 10; i < pagenumber; i++) {
+			 $($(".blog-author")[i]).show();
+		}
+	}
+// pagination
 	function deleteWishlist(event) {
 		var sid = $(event).data("sid");
 		var bid = $(event).data("bid");
