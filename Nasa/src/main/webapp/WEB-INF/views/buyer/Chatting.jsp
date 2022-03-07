@@ -230,6 +230,84 @@ chat_wrap .chatMiddle ul li>div {
 	transform: translate(-50%, -50%);
 	animation: ring 1.5s infinite;
 }
+.powerbtn, .modal-header {
+	background-color: #d5c9ea  !important;
+}
+
+.modal-footer {
+	display: block !important;
+	text-align: center;
+}
+
+.powerp {
+	color: red;
+	font-size: 8px;
+	border-bottom: 1px solid #999294;
+}
+
+.endp {
+	padding: 30px 0px 20px 0px;
+}
+
+.br {
+	border-top: 1px solid #999294;
+	margin-top: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #999294;
+}
+
+.paytb td {
+	width: 120px;
+	height: 50px;
+	font-size: 12px;
+}
+
+.paytb td:nth-child(2) {
+	width: 200px;
+}
+
+.category-listing {
+	height: 350px !important;
+}
+
+.fables-single-item {
+	color: rgb(64, 64, 64);
+}
+
+.fables-single-item:hover {
+	background-color: #d5c9ea;
+}
+
+.nav-link.active {
+	background-color: #d5c9ea !important;
+	color: white !important;
+}
+
+input[type=date] {
+	border: 1px solid lightgray;
+	color: lightgray;
+	margin-right: 10px;
+}
+
+.paybtn {
+	margin-right: 10px;
+}
+.hr{
+ 	background-color : #d5c9ea !important;
+   	margin: 10px !important;
+}
+.pt-70{
+	padding-top: 0px;
+}
+.blog_details img{
+	width: 354px;
+	height: 256px;
+}
+.genric-btn.danger-border:hover{
+	background-color : #d5c9ea !important;
+	color: white;
+}
 </style>
 
 
@@ -238,6 +316,8 @@ chat_wrap .chatMiddle ul li>div {
 
 <script
 	src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script src ="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
+
 
 <body>
 	<div class="listing-area pt-120 pb-120">
@@ -264,7 +344,8 @@ chat_wrap .chatMiddle ul li>div {
 								<button type="button" id="chatout" class="w-btn-neon2"
 									style="float: right; display: none;">채팅나가기</button>
 
-								<button type="button" data-toggle="modal" data-target="#paymentmodal" id="payement" class="w-btn-neon2"
+								<button type="button" data-toggle="modal"
+								data-target="#payModal" id="payement" class="w-btn-neon2"
 									style="float: right; display: none;">결제하기</button>
 								<button type="button" data-toggle="modal"
 									data-target="#reportModal" id="Chatreport" class="w-btn-neon2"
@@ -396,6 +477,124 @@ chat_wrap .chatMiddle ul li>div {
 			</div>
 		</div>
 		<!-- 신고 모달 -->
+
+
+		<!-- 결제 모달-->
+		<div class="modal fade" id="payModal" tabindex="-1" role="dialog"
+		aria-labelledby="payModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document" style="max-width: 400px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"
+						style="text-align: center;">결제하기</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form>
+
+			
+				<div class="modal-body">
+					<div class="">
+						<img src="assets/img/comment/comment_1.png"> <span id="paycheckId"></span>
+					</div>
+					<table class="paytb">
+						<!--여기 결제-->
+						<tr>
+							<td>서비스 금액</td>
+							<td><input type="text" id="chatmoney"placeholder="상대방과 협의한 금액을 입력해주세요"
+								style="width: 250px;"></td>
+						</tr>
+						<tr>
+							<td>서비스 진행일</td>
+							<td><input type="radio" name="paydate" value="ndate" id="ndate" checked>정해진 날짜가 없어요 <br /> <input type="radio"
+									name="paydate" value="ydate" id="ydate">협의한
+								날짜가 있어요 <input type="date" id="conference" ></td>
+							</tr>
+						<tr>
+							<td>결제수단</td>
+							<td><input type="radio" name="paymethod" value="creditpay"
+								checked>신용/체크카드 <input type="radio" name="paymethod"
+								value="kakaopay">카카오페이</td>
+						</tr>
+						<tr>
+							<td>쿠폰</td>
+							<td>
+								<div class="default-select" id="coupon-select">
+									<select>
+										<option value="1">사용안함</option>
+										<option value="2">사용</option>
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>서비스금액</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>쿠폰 할인</td>
+							<td style="color: red;">5000원</td>
+						</tr>
+
+					</table>
+					<div class="br">
+						<h6 style="display: inline;">최종 결제금액</h6>
+						<span style="font-weight: 200;">45000원</span>
+					</div>
+					<div class="br">
+						<span><input type="checkbox">개인정보수집 및 이용동의(필수)</span> <a
+							style="float: right;" data-toggle="modal" data-target="#useModal">보기</a>
+					</div>
+
+				</div>
+			</form>
+				
+				<div class="modal-footer">
+					<a href="#" class="genric-btn primary  radius powerbtn"
+						data-toggle="modal" data-dismiss="modal" onclick="chatpaymentOK()">결제</a> <a href="#"
+						class="genric-btn primary radius powerbtn" data-dismiss="modal">취소</a>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- 결제 모달 끝-->
+		<!-- 이용약관 모달-->
+		<div class="modal fade" id="useModal" tabindex="-1" role="dialog"
+		aria-labelledby="useModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document"
+			style="max-width: 600px; margin: 12.75rem auto">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"
+						style="text-align: center;">이용약관</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div>개인정보 수집 및 이용 동의(고객)</div>
+					<p>
+					<div>분류</div>
+					필수 정보
+
+					<div>수집∙이용 동의 목적</div>
+					안전결제 서비스 제공 및 소비자 분쟁 해결, 환불 처리
+
+					<div>항목</div>
+					결제 카드 번호, 계좌 정보(은행명, 예금주명, 계좌번호)
+
+					<div>보유∙이용 기간</div>
+					개인정보 이용목적 달성 시까지 보존합니다. 단, 관계 법령의 규정에 따라 보존이 필요한 경우 해당 기간까지 보존 후
+					지체없이 파기합니다. 개인정보 제공에 동의하지 않을 수 있으며 동의하지 않을 경우 서비스 이용이 제한될 수 있습니다.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- 이용 약관 모달 끝-->
 
 	</div>
 
@@ -535,6 +734,7 @@ chat_wrap .chatMiddle ul li>div {
 				getRoomList();
 
 			}, 20000);
+	
 		});
 
 		function getImage(obj) {
@@ -595,6 +795,7 @@ chat_wrap .chatMiddle ul li>div {
 
 		// 채팅 방 클릭 시 방번호 배정 후 웹소켓 연결
 		function enterRoom(obj) {
+			//지금 여기
 
 			//if ($(obj).attr("clickable") == "true") {
 
@@ -630,6 +831,9 @@ chat_wrap .chatMiddle ul li>div {
 			// 웹소켓 연결
 			connect();
 			console.log("enterRoom1");
+			var re_member = document.querySelector(".left").querySelector(".sender").getElementsByTagName("span")[0].innerText;
+			console.log("엔터룸 기멤버" + re_member); 
+			document.querySelector("#paycheckId").innerHTML = re_member;
 			//$(obj).attr("clickable", "false");
 			//}
 		}// 채팅방 클릭 시 방번호 배정후 웹소켓 연결
@@ -870,6 +1074,87 @@ chat_wrap .chatMiddle ul li>div {
 				}
 			})
 		}
+
+		// $('.chatList_box enterRoomList').on("click",function(){
+		// 	var re_member = document.querySelector(".left").querySelector(".sender").getElementsByTagName("span")[0].innerText;
+		// 	console.log("신고멤버:1111111" + re_member); 
+		// 	document.querySelector("#paycheckId").innerHTML = re_member;
+
+		// })
+
+		//채팅 결제 함수
+		function chatpaymentOK() {
+			var IMP = window.IMP;
+			var code = "imp56117193";
+			IMP.init(code);
+
+			var masterid = document.querySelector("#paycheckId").innerText; // hong나옴
+			console.log("상대방아이디",masterid);
+			var chatmoney = document.querySelector("#chatmoney").value; // 인풋값 결제금액
+			console.log("결제금액",chatmoney);
+			var chatdate = $('input[name="paydate"]:checked').val(); // 인풋값 결제날짜
+			console.log("결제날짜",chatdate);
+			var paymethod = $('intpu[name="paymethod"]:checked').val(); // 인풋값 결제방법
+			console.log("결제방법",paymethod);
+			var startservice = document.querySelector("#conference").value; // 협의한 서비스 날짜
+
+			//결제요청
+
+			IMP.request_pay({
+				pg : 'inicis',
+				pay_method : 'card',
+				merchant_uid : 'merchant_' + new Date().getTime(),
+				name : '채팅결제', // 상품명
+				amount : chatmoney,	 //금액
+				buyer_email : '',
+				buyer_name : masterid, //판매자아이디
+				//buyer_tel : '010-1234-5678',
+				//buyer_addr : '서울특별시 강남구 삼성동',
+				buyer_postcode : '123-456',
+				//결제완료후 이동할 페이지
+				m_redirect_url : 'http://localhost:8080/project/chat/chatPayComplete.do'
+			}, function(rsp) {
+				if ( rsp.success ) { // 결제 성공시
+					var msg = '결제가 완료되었습니다.';
+
+					var result = {
+							"s_email" : masterid,
+							"pay_price" : chatmoney,
+							"chatdate" : chatdate,
+							"paymethod" : paymethod,
+							"startservice" : startservice
+					}
+					console.log("결제완료",result);
+					$.ajax({
+						url : "chatpayment.do",
+						type : "post",
+						data : JSON.stringify(result),
+						contentType : "application/json;charSet=utf-8",
+						dataType : "json",
+						success : function (data) {
+							if(n == 'Y') {
+								console.log("성공함");
+							}else{
+								console.log("실패함");
+							}
+						} 
+					});
+					console.log("결제성공",result);
+					// msg += '고유ID : ' + rsp.imp_uid;
+					// msg += '상점 거래ID : ' + rsp.merchant_uid;
+					// msg += '결제 금액 : ' + rsp.paid_amount;
+					// msg += '카드 승인번호 : ' + rsp.apply_num;
+					alert(msg);
+				} else {
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : ' + rsp.error_msg;
+			}
+			});
+
+
+		}
+
+
 	</script>
 </body>
 
