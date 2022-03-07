@@ -11,4 +11,24 @@
 		DELETE FROM WISHLIST
 		WHERE B_ID = #{b_id} AND S_ID = #{s_id}
 	</delete>
+	
+	<select id="selectPagingWishlist" resultType="co.Nasa.prj.comm.VO.WishlistVO">
+		SELECT	*
+		FROM	(
+				 SELECT ROWNUM RN, A.*
+				 FROM	(
+				 		 SELECT *
+				 		 FROM WISHLIST
+				 		 WHERE B_ID = #{b_id}
+				 		 ORDER BY WISH_DATE DESC
+				 ) A
+		)
+		WHERE	RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="countPagingWishlist" resultType="int">
+			 SELECT		COUNT(*)
+			 FROM		WISHLIST
+			 WHERE		B_ID = #{b_id}
+	</select>
 </mapper>
