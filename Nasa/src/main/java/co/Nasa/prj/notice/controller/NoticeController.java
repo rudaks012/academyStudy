@@ -21,12 +21,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.comm.VO.NoticeVO;
 import co.Nasa.prj.notice.service.NoticeService;
+import co.Nasa.prj.seller.service.SellerService;
 
 @Controller
 public class NoticeController {
 	@Autowired
 	private NoticeService NoticeDao;
-
+	@Autowired
+	private SellerService sellerDAO;
 	
 	@RequestMapping("/sellerKnowhow.do")
 	public String sellerKnowhow(Model model) {
@@ -39,7 +41,10 @@ public class NoticeController {
 	@RequestMapping("/knowhowDetail.do")
 	public String knowhowDetail(Model model, @RequestParam("no_code") String no_code) {
 		System.out.println(no_code);
+		NoticeVO vo = new NoticeVO();
+		vo = NoticeDao.knowhowSelect(no_code);
 		model.addAttribute("knowhowDetail",NoticeDao.knowhowSelect(no_code));
+		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(vo.getNo_id()));
 		return "seller/knowhowDetail";
 	}
 

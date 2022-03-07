@@ -118,7 +118,10 @@ input[type=date] {
 	width: 354px;
 	height: 256px;
 }
-
+.genric-btn.danger-border:hover{
+	background-color : #d5c9ea !important;
+	color: white;
+}
 </style>
 </head>
 <body>
@@ -234,11 +237,11 @@ input[type=date] {
 																		
 																				<div class="list-footer">
 																					<ul>
-																						<li style="margin-left: 130px;">
+																						<li style="margin-left: 140px;">
 																							<button type="button" onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'" class="genric-btn danger-border circle">수정</button>
 																						</li>
 																						<li>
-																							<a href="#" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</a>
+																							<button type="button" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</button>
 																						</li>
 																					</ul>
 																				</div>
