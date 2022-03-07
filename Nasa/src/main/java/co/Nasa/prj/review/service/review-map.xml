@@ -43,17 +43,7 @@
 		ORDER BY r.rev_date DESC
 	</select>
 	
-	<resultMap type="co.Nasa.prj.comm.VO.Review_CommentVO" id="review_comment">
-		<result column="RERE_CODE" property="RERE_CODE"/>
-		<result column="REVIEW_CODE" property="REVIEW_CODE"/>
-		<result column="RERE_SEL_NAME" property="RERE_SEL_NAME"/>
-		<result column="RERE_SEL_ID" property="RERE_SEL_ID"/>
-		<result column="RERE_SEL_SUB" property="RERE_SEL_SUB"/>
-		<result column="RERE_DATE" property="RERE_DATE"/>
-	</resultMap>
-	<resultMap type="co.Nasa.prj.comm.VO.ReviewVO" id="review">
-		<collection property="review_commentVo" resultMap="review_comment"></collection>
-	</resultMap>
+	
 	<select id="reviewSearch" resultType="co.Nasa.prj.comm.VO.ReviewVO">
 		SELECT m.* FROM SERVICE s ,
 		(SELECT * FROM REVIEW r , REVIEW_COMMENT c WHERE REV_CODE = REVIEW_CODE(+) ORDER BY REV_DATE DESC) m

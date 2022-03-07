@@ -25,5 +25,4 @@ public interface PaymentService {
 	//연도별 누적 판매 수량
 	List<Integer> countYearChart(int count);
 	
-	
 }

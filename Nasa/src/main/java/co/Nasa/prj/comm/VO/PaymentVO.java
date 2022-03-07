@@ -15,4 +15,6 @@ public class PaymentVO {
 	String pay_coupon;
 	int pay_price;
 	String pay_enddate; //구매확정날짜
+	String event_start;
+	String event_end;
 }
