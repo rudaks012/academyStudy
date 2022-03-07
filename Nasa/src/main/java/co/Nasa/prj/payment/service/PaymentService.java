@@ -28,5 +28,4 @@ public interface PaymentService {
 	//채팅 결제 등록
 	int insertchatpayment(PaymentVO vo);
 	
-	
 }

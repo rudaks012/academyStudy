@@ -22,8 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 import co.Nasa.prj.category.service.CategoryMapper;
 import co.Nasa.prj.category.service.CategoryService;
 import co.Nasa.prj.comm.VO.CategoryVO;
+import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.comm.VO.SubCategoryVO;
+import co.Nasa.prj.payment.service.PaymentMapper;
+import co.Nasa.prj.payment.service.PaymentService;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
 import co.Nasa.prj.sub_category.service.Sub_CategoryService;
@@ -38,10 +41,13 @@ public class ServiceController {
 	private CategoryService categoryDao;
 	@Autowired
 	private Sub_CategoryService subCategoryDao;
+	@Autowired
+	private PaymentService paymentDao;
 	
 	@RequestMapping("/sellerService.do")
-	public String sellerService(Model model) {
-		model.addAttribute("serviceList", serviceDao.serviceList());
+	public String sellerService(Model model, HttpSession session) {
+		String s_email = (String)session.getAttribute("id");
+		model.addAttribute("serviceList", serviceDao.serviceMaxEnddateList(s_email));
 		return "seller/sellerService";
 	}
 
@@ -449,4 +455,11 @@ public class ServiceController {
 		return "seller/serviceDetail";
 	}
 	
+	@ResponseBody
+	@RequestMapping("/endService.do")
+	public String endService(ServiceVO vo) {
+		System.out.println(vo.getSer_reason());
+		System.out.println(vo.getSer_code());
+		return "T";
+	}
 }

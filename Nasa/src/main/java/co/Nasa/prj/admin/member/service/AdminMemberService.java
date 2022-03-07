@@ -21,6 +21,7 @@ public interface AdminMemberService {
 	//판매자
 	public List<SellerVO> sellerList(Criteria cri); //판매자 전체목록
 	public AdminAuthorVO selectSeller(String id); //판매자 정보
+	public List<AdminAuthorVO> selectSellerServiceList(Criteria cri); //구매자 정보와 결제내역
 	public int updateSellerRank(SellerVO vo); //판매자 등급바꾸기
 	public int getSellerTotal();//판매자 총 수
 }

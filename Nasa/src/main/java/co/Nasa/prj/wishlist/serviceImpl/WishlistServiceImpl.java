@@ -21,4 +21,14 @@ public class WishlistServiceImpl implements WishlistService {
 		return map.deleteWishlist(vo);
 	}
 
+	@Override
+	public int countPagingWishlist(WishlistVO vo) {
+		return map.countPagingWishlist(vo);
+	}
+
+	@Override
+	public List<WishlistVO> selectPagingWishlist(WishlistVO vo) {
+		return map.selectPagingWishlist(vo);
+	}
+
 }

@@ -28,16 +28,18 @@
                 <!--Hero form -->
                 <form action="#" class="search-box search-box2">
                     <div class="input-form">
-                        <input type="text" placeholder="What are you looking for?">
+                        <input type="text" placeholder="어떤 서비스가 필요하세요?">
                     </div>
                     <div class="select-form">
                         <div class="select-itms">
                             <select name="select" id="select1">
-                                <option value="">All Catagories</option>
-                                <option value="">Catagories One</option>
-                                <option value="">Catagories Two</option>
-                                <option value="">Catagories Three</option>
-                                <option value="">Catagories Four</option>
+                                <option value="">통합검색</option>
+                                <option value="">앱</option>
+                                <option value="">웹</option>
+                                <option value="">게임</option>
+                                <option value="">보안</option>
+                                <option value="">기술지원</option>
+                                <option value="">기획</option>
                             </select>
                         </div>
                     </div>
@@ -172,108 +174,54 @@
                     <div class="single-testimonial text-center">
                         <!-- Testimonial Content -->
                         <div class="testimonial-caption d-flex" style="margin-left: 5px; margin-right: 5px;">
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                                    <div>
-                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
-                                    </div>
-                                    <div class="cat-cap" style="padding: 10px;">
-                                        <h5><a href="catagori.html">판매자1</a></h5>
-                                        <p>판매자 서비스 카테고리</p>
-                                        <a href="catagori.html">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                                    <div class="">
-                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
-                                    </div>
-                                    <div class="cat-cap" style="padding: 10px;">
-                                        <h5><a href="catagori.html">판매자2</a></h5>
-                                        <p>판매자 서비스 카테고리</p>
-                                        <a href="catagori.html">View Details</a>
+                            <c:forEach items="${powerlist }" var="power" begin="0" end="3" step="1">
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
+                                        <div>
+                                            <c:choose>
+                                                <c:when test="${empty power.s_img }">
+                                                    <img src="resources/user/assets/img/profile/defaultprofileimg.png" alt="" style="width: 82px; height: 82px; display: block; margin: 0px auto;">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="${power.s_img }" alt="" style="width: 82px; height: 82px; display: block; margin: 0px auto;">
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                        <div class="cat-cap" style="padding: 10px;">
+                                            <h5><a href="catagori.html">${power.s_nickname }</a></h5>
+                                            <p>${power.power_service }</p>
+                                            <a href="catagori.html">상세보기</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                                    <div class="">
-                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
-                                    </div>
-                                    <div class="cat-cap" style="padding: 10px;">
-                                        <h5><a href="catagori.html">판매자3</a></h5>
-                                        <p>판매자 서비스 카테고리</p>
-                                        <a href="catagori.html">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                                    <div class="">
-                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
-                                    </div>
-                                    <div class="cat-cap" style="padding: 10px;">
-                                        <h5><a href="catagori.html">판매자4</a></h5>
-                                        <p>판매자 서비스 카테고리</p>
-                                        <a href="catagori.html">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <!-- Single Testimonial -->
                     <div class="single-testimonial text-center">
                         <!-- Testimonial Content -->
                         <div class="testimonial-caption d-flex" style="margin-left: 5px; margin-right: 5px;">
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                                    <div>
-                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
-                                    </div>
-                                    <div class="cat-cap" style="padding: 10px;">
-                                        <h5><a href="catagori.html">판매자5</a></h5>
-                                        <p>판매자 서비스 카테고리</p>
-                                        <a href="catagori.html">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                                    <div class="">
-                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
-                                    </div>
-                                    <div class="cat-cap" style="padding: 10px;">
-                                        <h5><a href="catagori.html">판매자6</a></h5>
-                                        <p>판매자 서비스 카테고리</p>
-                                        <a href="catagori.html">View Details</a>
+                            <c:forEach items="${powerlist }" var="power" begin="4" end="7" step="1">
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
+                                        <div>
+                                            <c:choose>
+                                                <c:when test="${empty power.s_img }">
+                                                    <img src="resources/user/assets/img/profile/defaultprofileimg.png" alt="" style="width: 82px; height: 82px; display: block; margin: 0px auto;">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="${power.s_img }" alt="" style="width: 82px; height: 82px; display: block; margin: 0px auto;">
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                        <div class="cat-cap" style="padding: 10px;">
+                                            <h5><a href="catagori.html">${power.s_nickname }</a></h5>
+                                            <p>${power.power_service }</p>
+                                            <a href="catagori.html">상세보기</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                                    <div class="">
-                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
-                                    </div>
-                                    <div class="cat-cap" style="padding: 10px;">
-                                        <h5><a href="catagori.html">판매자7</a></h5>
-                                        <p>판매자 서비스 카테고리</p>
-                                        <a href="catagori.html">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="single-cat text-center mb-50" style="height: 300px; padding: 30px;">
-                                    <div class="">
-                                        <img src="assets/img/testmonial/Homepage_testi.png" alt="" style="display: block; margin: 0px auto;;">
-                                    </div>
-                                    <div class="cat-cap" style="padding: 10px;">
-                                        <h5><a href="catagori.html">판매자8</a></h5>
-                                        <p>판매자 서비스 카테고리</p>
-                                        <a href="catagori.html">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -339,39 +287,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-location mb-30">
-                    <div class="location-img">
-                        <img src="resources/user/assets/img/gallery/location1.png" alt="">
-                    </div>
-                    <div class="location-details">
-                        <p>New York</p>
-                        <a href="#" class="location-btn">65 <i class="ti-plus"></i> Location</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-location mb-30">
-                    <div class="location-img">
-                        <img src="resources/user/assets/img/gallery/location2.png" alt="">
-                    </div>
-                    <div class="location-details">
-                        <p>Paris</p>
-                        <a href="#" class="location-btn">60 <i class="ti-plus"></i> Location</a>
+            <c:forEach items="${bestservicelist }" var="bestservice" begin="0" end="2" step="1">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-location mb-30">
+                        <div class="location-img">
+                            <img src="fileupload/${bestservice.ser_img }" alt="">                            
+                        </div>
+                        <div class="location-details">
+                            <p>${bestservice.ser_title }</p>
+                            <a href="#" class="location-btn">상세보기</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-location mb-30">
-                    <div class="location-img">
-                        <img src="resources/user/assets/img/gallery/location3.png" alt="">
-                    </div>
-                    <div class="location-details">
-                        <p>Rome</p>
-                        <a href="#" class="location-btn">50 <i class="ti-plus"></i> Location</a>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>            
         </div>
     </div>
 </div>
@@ -497,34 +425,5 @@
         </div>                
     </div>
 </div>
-<!-- <script src="http://code.jquery.com/jquery-latest.min.js"> </script>
-<script type="text/javascript">
-
-function ajaxdbtest(){
-   $.ajax({
-      url : "ajaxdbtest.do",
-      success : function(data){
-         console.log(data)
-      }
-   })
-}
-</script>
-   nasaaa
-   
-   <div>
-      <button onclick="location.href='go_buyer.do'">구매자 페이지</button>
-   </div>
-   <div>
-      <button onclick="location.href='go_seller.do'">판매자 페이지</button>
-   </div>
-   <div>
-      <button onclick="location.href='go_admin.do'">관리자 페이지</button>
-   </div>
-   <div>
-      <button onclick="location.href='Login.do'">로그인</button>
-   </div>
-   <div>
-   <button type="button" onclick="ajaxdbtest()">ajaxdbtest12</button>
-   </div> -->
 </body>
 </html>

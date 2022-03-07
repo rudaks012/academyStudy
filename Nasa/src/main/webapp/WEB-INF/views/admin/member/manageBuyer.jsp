@@ -222,25 +222,37 @@
                         <table class="table caption-top table-bordered thead-light  text-center">
                             <tbody>
                                 <tr>
+                                    <td rowspan="4" width="200px">
+                                       <img id="b_img"  width="200px" height="250px">
+                                    </td>
+
+                                </tr>
+                                 <tr>
+                                    <th class="table-primary align-middle">이름</th>
+                                    <td colspan="2"><input class="form-control custom-shadow" id="b_name" name="b_name" value=""
+                                            type="text" readonly></td>
+                                  
+                                    
+                                </tr>
+                                <tr>
+                                	<th class="table-primary align-middle">닉네임</th>
+                                    <td colspan="2"><input class="form-control custom-shadow" id="b_nickname" name="b_nickname"
+                                            value="" type="text" readonly></td>
+                                </tr>
+                                <tr>
+                                    <th class="table-primary align-middle">연락처</th>
+                                    <td colspan="3"><input class="form-control custom-shadow" id="b_tel" name="b_tel" value=""
+                                            type="text" readonly></td>
+
+                                </tr>
+                                <tr>
                                     <th width="100px" class="table-primary align-middle">아이디</th>
                                     <td colspan="3"><input class="form-control custom-shadow " id="b_email"
                                             name="b_email" value="" type="text" readonly></td>
 
                                 </tr>
-                                <tr>
-                                    <th class="table-primary align-middle">이름</th>
-                                    <td><input class="form-control custom-shadow" id="b_name" name="b_name" value=""
-                                            type="text" readonly></td>
-                                    <th class="table-primary align-middle">닉네임</th>
-                                    <td><input class="form-control custom-shadow" id="b_nickname" name="b_nickname"
-                                            value="" type="text" readonly></td>
-                                </tr>
-                                <tr>
-                                    <th class="table-primary align-middle">연락처</th>
-                                    <td><input class="form-control custom-shadow" id="b_tel" name="b_tel" value=""
-                                            type="text" readonly></td>
-
-                                </tr>
+                               
+                                
                                 <tr>
                                     <th class="table-primary align-middle">등급</th>
                                     <td colspan="3">
@@ -269,7 +281,12 @@
 
                                         </div>
                                     </td>
-                                </tr>
+                                    
+                                    <tr>
+	                                    <th class="table-primary align-middle">가입일자</th>
+	                                    <td colspan="3"><input class="form-control custom-shadow" id="b_date" name="b_date" value=""
+	                                            type="text" readonly></td>
+                                	</tr>
                                 <tr>
                                     <th class="table-primary align-middle">신고횟수</th>
                                     <td>
@@ -278,7 +295,7 @@
                                                 value="" type="text" readonly>회
                                         </div>
                                     </td>
-                                    <th class="table-primary align-middle">상태</th>
+                                    <th class="table-primary align-middle" width="100px">상태</th>
                                     <td><input class="form-control custom-shadow" id="b_status" name="" value=""
                                             type="text" readonly></td>
 
@@ -308,28 +325,7 @@
         <div class="col-12">
             <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                 구매내역
-                <div class="mr-5">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input mx-3" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                            value="option1">
-                        <label class="form-check-label" for="inlineRadio1">1개월</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input mx-3" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                            value="option1">
-                        <label class="form-check-label" for="inlineRadio1">3개월</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input mx-3" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                            value="option1">
-                        <label class="form-check-label" for="inlineRadio1">6개월</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input mx-3" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                            value="option1">
-                        <label class="form-check-label" for="inlineRadio1">1년</label>
-                    </div>
-                </div>
+                
             </h5>
 
             <div class="card">
@@ -587,7 +583,11 @@ $("#searchBtn").on("click",searchReport);
                     rank == "3" ? $("#range_earth").prop("checked", true) :
                     rank == "4" ? $("#range_sun").prop("checked", true) : alert("해당 등급이 없습니다.");
 				
-                    
+                //가입일자
+                $("#b_date").val(result.buyer.b_date);
+                
+                //프로필
+                $("#b_img").attr("src",result.buyer.b_img)
                 //구매내역 총수
                 $("#paymentListLength").text(result.payment.length);
                 //구매내역 누적금액

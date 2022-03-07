@@ -29,8 +29,8 @@ public class AdminReportController {
 	public String report_inquiry(Model model,Criteria cri) {
 		System.out.println(cri);
 		model.addAttribute("reportLists", reportDao.getReportListWithPaging(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReport()));
-		model.addAttribute("total", reportDao.totalReport());
+		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReport(cri)));
+		model.addAttribute("total", reportDao.totalReport(cri));
 	
 		return"admin/report/reportInquiry";
 	}
@@ -70,8 +70,8 @@ public class AdminReportController {
 	@RequestMapping("/report_wait.do")
 	public String report_wait(Model model,Criteria cri) {
 		model.addAttribute("reportWaitLists", reportDao.getReportWaitListWithPaging(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportWait()));
-		model.addAttribute("total",reportDao.totalReportWait() );
+		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportWait(cri)));
+		model.addAttribute("total",reportDao.totalReportWait(cri) );
 		
 		return"admin/report/reportWait";
 	}
@@ -96,8 +96,8 @@ public class AdminReportController {
 	public String report_complete(Model model,Criteria cri) {
 		
 		model.addAttribute("reportCompleteLists", reportDao.getReportListWithPaging(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportComplete()));
-		model.addAttribute("total",reportDao.totalReportComplete() );
+		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportComplete(cri)));
+		model.addAttribute("total",reportDao.totalReportComplete(cri) );
 		return"admin/report/reportComplete";
 	}
 	
@@ -112,8 +112,8 @@ public class AdminReportController {
 	public String report_refuse(Model model,Criteria cri) {
 		
 		model.addAttribute("reportRefuseLists", reportDao.getReportRefuseListWithPaging(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportRefuse()));
-		model.addAttribute("total",reportDao.totalReportRefuse() );
+		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportRefuse(cri)));
+		model.addAttribute("total",reportDao.totalReportRefuse(cri) );
 		return"admin/report/reportRefuse";
 	}
 	

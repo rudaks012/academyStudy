@@ -32,8 +32,12 @@ public class ServiceVO {
 	String ser_originsub3;
 	String ser_status;
 	String ser_reason;
+	String ser_end;
 	
 	// v_search_list
 	String count;
 	String avg;
+	
+	String s_code;
+	String pay_enddate;
 }

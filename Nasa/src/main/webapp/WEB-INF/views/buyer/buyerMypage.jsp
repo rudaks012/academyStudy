@@ -402,7 +402,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 별">등급 : 별</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
 									</c:when>
 									<c:when test="${buyerinfo.b_rank eq '2' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 딜">등급 : 달</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 달">등급 : 달</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
 									</c:when>
 									<c:when test="${buyerinfo.b_rank eq '3' }">
 										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 태양">등급 : 태양</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
