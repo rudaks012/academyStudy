@@ -2,6 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.Nasa.prj.admin.member.service.AdminMemberMapper">
 
+  <sql id="buyerCriteria"> 
+  	<if test= "b_email!=null and !b_email.equals('')">
+  	    AND b_email like '%'||#{b_email}||'%'
+  	 </if>
+  	 
+  	 <if test="b_nickname!=null and !b_nickname.equals('')">
+  	     AND b_nickname like '%'||#{b_nickname}||'%'
+  	</if>
+  	
+  	<if test="b_name!=null and !b_name.equals('')">
+  	     AND b_name like '%'||#{b_name}||'%'
+  	</if>
+  	
+  	<if test="b_tel!=null and !b_name.equals('')">
+  	     AND b_tel like '%'||#{b_tel}||'%'
+  	</if>
+  	
+  	<if test="b_address=null and !b_address.equals('')">
+  	     AND b_address like '%'||#{b_address}||'%'
+  	</if>
+  	
+  	<if test="b_rank=null and !b_rank.equals('')">
+  	     AND b_rank like '%'||#{b_rank}||'%'
+  	</if>
+  	
+  	<if test="b_date!=null and !b_date.equals('')">
+  	   <![CDATA[
+  	     AND to_char(b_date,'yyyymmdd') between #{b_date} and #{b_date2}
+  	  ]]>   
+     </if>
+   </sql>
+ 
 	
 	<select id="selectBuyer" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
 		SELECT * FROM BUYER
@@ -25,8 +57,66 @@
 		
 	</select>
 	
-	<select id="sellerList" resultType="co.Nasa.prj.comm.VO.SellerVO">
-		SELECT * FROM SELLER ORDER BY s_date
+	
+	
+	    
+     <sql id="sellerCriteria"> 
+	  	<if test= "s_email!=null and !s_email.equals('')">
+	  	    AND b_email like '%'||#{b_email}||'%'
+	  	 </if>
+	  	 
+	  	 <if test="s_nickname!=null and !s_nickname.equals('')">
+	  	     AND s_nickname like '%'||#{s_nickname}||'%'
+	  	</if>
+	  	
+	  	<if test="s_name!=null and !s_name.equals('')">
+	  	     AND s_name like '%'||#{s_name}||'%'
+	  	</if>
+	  	
+	  	<if test="s_tel!=null and !s_tel.equals('')">
+	  	     AND s_tel like '%'||#{s_tel}||'%'
+	  	</if>
+	  	
+	  	<if test="s_rank!=null and !s_rank.equals('')">
+	  	     AND s_rank like '%'||#{s_rank}||'%'
+	  	</if>
+	  	
+	  	<if test="s_address=null and !s_address.equals('')">
+	  	     AND s_address like '%'||#{s_address}||'%'
+	  	</if>
+	  	
+	  	<if test="b_rank=null and !b_rank.equals('')">
+	  	     AND b_rank like '%'||#{b_rank}||'%'
+	  	</if>
+	  	
+	  	<if test="b_date!=null and !b_date.equals('')">
+	  	   <![CDATA[
+	  	     AND to_char(b_date,'yyyymmdd') between #{b_date} and #{b_date2}
+	  	  ]]>   
+     </if>
+  	
+  </sql>
+	
+	<select id="sellerList" parameterType="co.Nasa.prj.admin.service.Criteria" resultType="co.Nasa.prj.comm.VO.SellerVO">
+		<![CDATA[
+		 SELECT *
+		 FROM 
+		     (
+		      SELECT rownum rn, s.*
+		      FROM
+		        seller s
+		      where
+			   rownum <= #{pageNum} * #{amount}
+			   
+	    ]]>
+	     <include refid="sellerCriteria"></include>
+	    <![CDATA[
+			)
+			
+		where rn > (#{pageNum}-1)*#{amount}
+		
+		]]>
+	
 	</select>
 	
 	
@@ -40,6 +130,10 @@
 		        buyer b
 		      where
 			   rownum <= #{pageNum} * #{amount}
+			   
+	    ]]>
+	     <include refid="buyerCriteria"></include>
+	    <![CDATA[
 			)
 			
 		where rn > (#{pageNum}-1)*#{amount}
@@ -52,6 +146,12 @@
 		select count(*) as total from buyer
 	</select>
 	
+	<select id="selectSeller" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+		SELECT * FROM SELLER
+		WHERE S_EMAIL= #{s_email}
+		
+	</select>
+	
 	<select id="getSellerTotal" resultType="int">
 		select count(*) as total from seller	
 	</select>
@@ -60,6 +160,13 @@
 		update buyer
 		set b_rank = #{b_rank}
 		where b_email=#{b_email}
+	
+	</update>
+	
+	<update id="updateSellerRank" parameterType="co.Nasa.prj.comm.VO.SellerVO">
+		update seller
+		set s_rank = #{s_rank}
+		where s_email=#{s_email}
 	
 	</update>
 </mapper>

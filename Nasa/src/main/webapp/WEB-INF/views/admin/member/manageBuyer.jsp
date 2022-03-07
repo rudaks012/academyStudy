@@ -49,48 +49,63 @@
     <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">회원검색</h5>
     <div class="card mb-4">
         <div class="card-body">
+          <form id="searchForm" method="get">
             <table class="table caption-top table-bordered  text-center">
                 <tbody>
                     <tr>
                         <th class="align-middle table-primary">아이디</th>
-                        <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
+                        <td><input class="form-control custom-shadow" id="" name="b_email" type="text" value='<c:out value="${pageMaker.cri.b_email }"/>'></td>
                         <th class="align-middle table-primary">닉네임</th>
-                        <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
+                        <td><input class="form-control custom-shadow" id="" name="b_nickname" type="text" value='<c:out value="${pageMaker.cri.b_nickname }"/>'></td>
                     </tr>
                     <tr>
                         <th class="text-center align-middle table-primary">이름</th>
-                        <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
+                        <td><input class="form-control custom-shadow" id="" name="b_name" type="text" value='<c:out value="${pageMaker.cri.b_name }"/>'></td>
                         <th class="align-middle table-primary">연락처</th>
-                        <td><input class="form-control custom-shadow" id="" name="" type="tel"></td>
+                        <td><input class="form-control custom-shadow" id="" name="b_tel" type="text" value='<c:out value="${pageMaker.cri.b_tel }"/>'></td>
                     </tr>
                     <tr>
                         <th class="align-middle table-primary">주소</th>
-                        <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
+                        <td><input class="form-control custom-shadow" id="" name="b_address" type="text" value='<c:out value="${pageMaker.cri.b_address }"/>'></td>
                         <th class="text-center align-middle table-primary">등급</th>
                         <td>
                             <div class="d-flex align-items-center position-relative" style="top: 5px; left: 10px;">
                                 <div class="custom-control custom-radio mr-3 ">
                                     <input type="radio" id="customRadio1" name="b_rank"
-                                        class="custom-control-input mr-5"> <label class="custom-control-label"
+                                        class="custom-control-input mr-5" value="1"> <label class="custom-control-label"
                                         for="customRadio1">별</label>
                                 </div>
                                 <div class="custom-control custom-radio mx-3">
                                     <input type="radio" id="customRadio2" name="b_rank"
-                                        class="custom-control-input mr-5"> <label class="custom-control-label"
+                                        class="custom-control-input mr-5" value="2"> <label class="custom-control-label"
                                         for="customRadio2">달</label>
                                 </div>
                                 <div class="custom-control custom-radio mx-3">
-                                    <input type="radio" id="customRadio3" name="b_rank" class="custom-control-input">
+                                    <input type="radio" id="customRadio3" name="b_rank" class="custom-control-input" value="3">
                                     <label class="custom-control-label" for="customRadio3">지구</label>
                                 </div>
                                 <div class="custom-control custom-radio mx-3">
-                                    <input type="radio" id="customRadio4" name="b_rank" class="custom-control-input">
+                                    <input type="radio" id="customRadio4" name="b_rank" class="custom-control-input" value="4">
                                     <label class="custom-control-label" for="customRadio4">해</label>
                                 </div>
 
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                           <th class="align-middle table-primary">가입일자</th>
+                            <td colspan="3">
+                                <div class="d-flex align-items-center">
+                                     <div class="col-3 p-0">
+	                                     <input type="date" class="form-control" name="b_date" value='<c:out value="${pageMaker.cri.b_date }"/>'>
+	                                  </div>
+	                                  <span class="mx-2"><i class="fas fa-minus"></i></span>
+	                                  <div class="col-3 p-0">
+	                                       <input type="date" class="form-control" name="b_date2" value='<c:out value="${pageMaker.cri.b_date2 }"/>'>
+	                                   </div>
+                                  </div>
+                               </td>
+                     </tr>
                 </tbody>
             </table>
             <style>
@@ -101,14 +116,15 @@
                 }
             </style>
 
-            <div class="d-flex justify-content-end my-4">
-                <button class="btn btn-outline-warning mr-3">
-                    초기화<i class="ml-2 icon-reload reload"></i>
-                </button>
-                <button class="btn btn-outline-secondary">
-                    검색<i class="ml-2 icon-magnifier search"></i>
-                </button>
-            </div>
+	            <div class="d-flex justify-content-end my-4">
+	                <button id="resetBtn" class="btn btn-outline-warning mr-3">
+	                    초기화<i class="ml-2 icon-reload reload"></i>
+	                </button>
+	                <button id="searchBtn" class="btn btn-outline-secondary">
+	                    검색<i class="ml-2 icon-magnifier search"></i>
+	                </button>
+	            </div>
+            </form>
         </div>
     </div>
 
@@ -184,9 +200,17 @@
         </div>
 
         <form id="actionForm" action="go_admin.do" method="get">
-            <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-            <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-        </form>
+			 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+			 <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+			 <input type="hidden" name="b_email" value="${pageMaker.cri.b_email }">
+			 <input type="hidden" name="b_nickname" value="${pageMaker.cri.b_nickname }">
+			 <input type="hidden" name="b_name" value="${pageMaker.cri.b_name }">
+			 <input type="hidden" name="b_tel" value="${pageMaker.cri.b_tel }">
+			 <input type="hidden" name="b_address" value="${pageMaker.cri.b_address }">
+			 <input type="hidden" name="b_rank" value="${pageMaker.cri.b_rank }">
+			 <input type="hidden" name="b_date" value="${pageMaker.cri.b_date }">
+			 <input type="hidden" name="b_date2" value="${pageMaker.cri.b_date2 }">
+		</form>
         <div class="col-6">
             <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">상세조회</h5>
             <div class="card">
@@ -361,6 +385,47 @@
 
 <script src="resources/admin/dist/js/jquery.twbsPagination.js"></script>
 <script type="text/javascript">
+//신고날짜 변경
+let startDate =$("input[name='b_date']");
+let endDate =$("input[name='b_date2']");
+const handleReportDate =()=>{
+	$(endDate).val($(startDate).val())
+	
+	
+}
+$("input[name='b_date']").on("change",handleReportDate);
+
+//초기화버튼
+const hadleResetLists =()=>{
+	$(startDate).val("")
+	$(endDate).val("")
+	$("input[name='b_email']").val('')
+	$("input[name='b_name']").val('')
+	$("input[name='b_nickname']").val('')
+	$("input[name='b_tel']").val('')
+	$("input[name='b_address']").val('')
+	
+	searchForm.action="go_admin.do";
+	searchForm.submit();
+}
+$("#resetBtn").on("click",hadleResetLists);
+
+
+//검색버튼
+const searchReport=()=>{
+
+	
+//	if(type!="choice"||reporterId!=""||startDate!=""){
+		searchForm.action="go_admin.do";
+		searchForm.submit();
+//	}else{
+//		alert("검색어를 입력해주세요.")
+//	}
+	
+	
+}
+$("#searchBtn").on("click",searchReport);
+
     $('#pagination').twbsPagination({
         totalPages: 100,
         visiblePages: 5,

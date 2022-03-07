@@ -21,4 +21,5 @@ public class BuyerVO {
 	String field_code;
 	String buyer_coupon;
 	String b_name;
+	String b_date2;
 }
