@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -112,6 +113,18 @@ public class HomeController {
 		System.out.println("카운트찍어보자 |||||||||||||||||||||||" + list);
 
 		return list;
+	}
+	//채팅 결제
+	@RequestMapping("/chatpayment.do")
+	@ResponseBody
+	public int chatpayment(@RequestBody PaymentVO vo ) {
+		System.out.println("vo찍어본다||||||||||||||||||||||||||"+vo);
+		int res = paymentDao.insertchatpayment(vo);
+		if(res == 1) {
+			
+		}
+		
+		return res;
 	}
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);

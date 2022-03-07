@@ -1,50 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.Nasa.prj.payment.service.PaymentMapper">
-	<select id="buyerPaymentList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
-		SELECT *
-		FROM PAYMENT
-		WHERE B_EMAIL = #{b_email}
-		ORDER BY PAY_DATE DESC
-	</select>
-	
-	
-	<!-- 차트 입력 -->
-	<select id="selectListChart" resultType="co.Nasa.prj.comm.VO.PaymentVO">
-		SELECT PAY_DATE,PAY_PRICE FROM PAYMENT
-	</select>
-	
-	<!-- 테이블 입력할때 씀 -->
-	<select id="selectpaymenttable" resultType="int" parameterType="int">
-		SELECT NVL(SUM(PAY_PRICE),0)
-		FROM PAYMENT
-		WHERE SUBSTR(PAY_DATE,6,2) =#{num}
-	</select>
-	
-	<select id="countservice" resultType="int" parameterType="int">
-		SELECT COUNT(*) 
-		FROM PAYMENT
-		WHERE SUBSTR(PAY_DATE,6,2) =#{num}
-	</select>
-	
-	<!-- 연도별 차트 입력 -->
-	<select id="selectListYearChart" resultType="co.Nasa.prj.comm.VO.PaymentVO">
-		SELECT PAY_DATE,PAY_PRICE FROM PAYMENT
-	</select>
-	
-	<!-- 연도별 누적 판매금액,  수수료 -->
-	<select id="selectYearchart" resultType="int" parameterType="int">
-		SELECT NVL(SUM(PAY_PRICE),0)
-	    FROM PAYMENT
-	    WHERE SUBSTR(PAY_DATE,0,4) = #{num}
-	</select>
-	
-	<!-- 연도별 누적 판매 수량 -->
-	<select id="countYearChart" resultType="int" parameterType="int">
-		 SELECT COUNT(*)
-   		 FROM PAYMENT
-    	 WHERE SUBSTR(PAY_DATE,0,4) = #{num}
-	</select>
+   <select id="buyerPaymentList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+      SELECT *
+      FROM PAYMENT
+      WHERE B_EMAIL = #{b_email}
+      ORDER BY PAY_DATE DESC
+   </select>
+   
+   
+   <!-- 차트 입력 -->
+   <select id="selectListChart" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+      SELECT PAY_DATE,PAY_PRICE FROM PAYMENT
+   </select>
+   
+   <!-- 테이블 입력할때 씀 -->
+   <select id="selectpaymenttable" resultType="int" parameterType="int">
+      SELECT NVL(SUM(PAY_PRICE),0)
+      FROM PAYMENT
+      WHERE SUBSTR(PAY_DATE,6,2) =#{num}
+   </select>
+   
+   <select id="countservice" resultType="int" parameterType="int">
+      SELECT COUNT(*) 
+      FROM PAYMENT
+      WHERE SUBSTR(PAY_DATE,6,2) =#{num}
+   </select>
+   
+   <!-- 연도별 차트 입력 -->
+   <select id="selectListYearChart" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+      SELECT PAY_DATE,PAY_PRICE FROM PAYMENT
+   </select>
+   
+   <!-- 연도별 누적 판매금액,  수수료 -->
+   <select id="selectYearchart" resultType="int" parameterType="int">
+      SELECT NVL(SUM(PAY_PRICE),0)
+       FROM PAYMENT
+       WHERE SUBSTR(PAY_DATE,0,4) = #{num}
+   </select>
+   
+   <!-- 연도별 누적 판매 수량 -->
+   <select id="countYearChart" resultType="int" parameterType="int">
+       SELECT COUNT(*)
+          FROM PAYMENT
+        WHERE SUBSTR(PAY_DATE,0,4) = #{num}
+   </select>
+   
+
+	<!-- 채팅 결제 -->
+	<insert id="insertchatpayment" parameterType="co.Nasa.prj.comm.VO.PaymentVO">
 	
 
 </mapper>
