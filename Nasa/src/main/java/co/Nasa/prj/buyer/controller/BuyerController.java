@@ -24,13 +24,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.JsonObject;
 
 import co.Nasa.prj.buyer.service.BuyerMapper;
 import co.Nasa.prj.category.service.CategoryMapper;
 import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.CategoryVO;
 import co.Nasa.prj.comm.VO.CouponVO;
+import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.ReportVO;
 import co.Nasa.prj.comm.VO.ReviewVO;
@@ -251,14 +251,29 @@ public class BuyerController {
 
 	// 위시 리스트 페이지로 이동
 	@RequestMapping("/wishlist.do")
-	public String wishlist(Model model, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+	public String wishlist(Model model, HttpSession session, HttpServletResponse response, 
+							HttpServletRequest request, PagingDTO pagingdto) {
+		
+		if(pagingdto.getPageNum() == 0) {
+			pagingdto.setPageNum(1);
+		}
 		WishlistVO wishlistvo = new WishlistVO();
 		wishlistvo.setB_id((String) session.getAttribute("id"));
-		List<WishlistVO> wishlistList = wishlistDao.selectBuyerWishlist(wishlistvo);
-		model.addAttribute("wishlistList", wishlistList);
+		wishlistvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<WishlistVO> wishlistList = wishlistDao.selectPagingWishlist(wishlistvo);
 
 		List<SellerVO> sellerList = sellerDao.selectSellerList();
 		model.addAttribute("sellerList", sellerList);
+		
+		// pagination
+		pagingdto.setTotal(wishlistDao.countPagingWishlist(wishlistvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal()));
+		
+		
+		// pagination
+		
+		model.addAttribute("wishlistList", wishlistList);
+		
 
 		return "buyer/wishlist";
 	}

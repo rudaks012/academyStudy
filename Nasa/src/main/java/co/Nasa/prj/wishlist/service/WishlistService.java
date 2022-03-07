@@ -10,4 +10,10 @@ public interface WishlistService {
 	
 	// 위시리스트 제거
 	public int deleteWishlist(WishlistVO vo);
+	
+	// total 에 쓸 것 카운트
+	public int countPagingWishlist(WishlistVO vo);
+	
+	// paging 할 위시리스트
+	List<WishlistVO> selectPagingWishlist(WishlistVO vo);
 }
