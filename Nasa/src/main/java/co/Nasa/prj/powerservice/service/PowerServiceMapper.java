@@ -1,5 +1,9 @@
 package co.Nasa.prj.powerservice.service;
 
-public interface PowerServiceMapper {
+import java.util.List;
 
+import co.Nasa.prj.comm.VO.PowerServiceVO;
+
+public interface PowerServiceMapper {
+	List<PowerServiceVO> PowerServiceList();
 }

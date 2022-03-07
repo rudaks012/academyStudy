@@ -112,7 +112,7 @@ public class SellerController {
 		return result;
 	}
 
-	// 개인 판매자 이메일 중복 체크
+	// 판매자 이메일 중복 체크
 	@RequestMapping("/ajaxemailCheck.do")
 	@ResponseBody
 	public String ajaxemailCheck(@Param("s_email") String s_email, SellerVO vo) {
@@ -128,7 +128,7 @@ public class SellerController {
 		return result;
 	}
 
-	// 개인 판매자 이메일 인증
+	// 판매자 이메일 인증
 	@Autowired
 	private JavaMailSender mailSender;
 
