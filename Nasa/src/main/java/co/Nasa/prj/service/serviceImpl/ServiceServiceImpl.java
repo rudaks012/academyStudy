@@ -44,5 +44,15 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.serviceSelectList(s_email);
 	}
 
+	@Override
+	public List<ServiceVO> serviceMaxEnddateList(String s_email) {
+		return map.serviceMaxEnddateList(s_email);
+	}
+
+	@Override
+	public int endService(ServiceVO vo) {
+		return map.endService(vo);
+	}
+
 
 }

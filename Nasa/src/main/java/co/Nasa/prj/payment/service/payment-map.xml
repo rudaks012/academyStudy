@@ -45,4 +45,6 @@
    		 FROM PAYMENT
     	 WHERE SUBSTR(PAY_DATE,0,4) = #{num}
 	</select>
+	
+
 </mapper>

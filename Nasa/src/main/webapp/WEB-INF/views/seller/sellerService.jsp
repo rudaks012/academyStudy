@@ -241,7 +241,9 @@ input[type=date] {
 																							<button type="button" onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'" class="genric-btn danger-border circle">수정</button>
 																						</li>
 																						<li>
-																							<button type="button" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</button>
+																							<button type="button" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal" 
+																							data-sercode="${service.ser_code }" data-sertitle="${service.ser_title }" data-end="${service.pay_enddate }">종료</button>
+																							
 																						</li>
 																					</ul>
 																				</div>
@@ -402,21 +404,21 @@ input[type=date] {
 					<table class="powertb">
 						<tr>
 							<td>서비스종료사유</td>
-							<td><textarea cols="30" rows="3"></textarea></td>
+							<td><textarea cols="30" rows="3" id="ser_reason"></textarea></td>
 						</tr>
 						<tr>
 							<td>의뢰 종료 예정 날짜</td>
-							<td><input type="date" value="2022-02-12" disabled></td>
+							<td><input type="date" id="ser_end" value="2022-02-12" disabled></td>
 						</tr>
 						<tr>
 							<td>희망 종료일</td>
-							<td><input type="date"></td>
+							<td><input type="date" id="ser_cal"></td>
 						</tr>
 					</table>
 
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="genric-btn primary  radius powerbtn"
+					<a href="#" class="genric-btn primary  radius powerbtn" id="endbtn"
 						data-toggle="modal" data-dismiss="modal">확인</a> <a href="#"
 						class="genric-btn primary  radius powerbtn" data-dismiss="modal">취소</a>
 				</div>
@@ -565,23 +567,51 @@ input[type=date] {
 			$(this).tab("show");
 		})
 		
-		// 프로필 사진 미리보기
-		/* function readImage(input) {
-			if(input.files && input.files[0]) {
-				const reader = new FileReader();
+		$(document).ready(function () {
+			
+			$("#endModal").on("show.bs.modal", function (event) {
+			
+				var reason = document.getElementById("ser_reason");
+				reason.value = '';
+				var end = document.getElementById("ser_cal");
+				end.value = '';
 				
-				reader.onload = e => {
-					const previewImage = document.getElementById("prvimg");
-					previewImage.src = e.target.result;
+				sercode = $(event.relatedTarget).data("sercode");
+				sertitle = $(event.relatedTarget).data("sertitle");
+				serend = $(event.relatedTarget).data("end");
+				if(serend.substr(0,10) != ''){
+					var today = new Date(serend.substr(0,10));
+					today.setMonth(today.getMonth() + 1);
+					today.setDate(today.getDate() + 1); 
+	
+					var year = today.getFullYear();
+					var month = (today.getMonth() < 10 ? '0' : '')+today.getMonth();
+					var day = (today.getDate() < 10 ? '0' : '')+today.getDate();
+					date = year+ '-' + month + '-' + day
+					console.log(date);
+					$("#ser_cal").attr('min', date);
 				}
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
+				$(".endp").text(sertitle+'을(를) 종료하시겠습니까?');
+				$(".endp").attr('id',sercode);
+				$("#ser_end").val(serend.substr(0,10));
+				
+			});			
+		});
 		
-		const inputImage = document.getElementById("imgupload");
-		inputImage.addEventListener("change", e => {
-			readImage(e.target);
-		}); */
+		$("#endbtn").on("click", function(){
+			ser_code = $(".endp").attr('id');
+			ser_reason = $("#ser_reason").text();
+			
+			$.ajax({
+				url: "endService.do",
+  				dataType: "json",
+  				type:"post",
+  				data: {ser_code: ser_code,ser_reason: ser_reason },
+  				success: function (result){
+  					
+  				}
+			})
+		})
 	</script>
 </body>
 </html>

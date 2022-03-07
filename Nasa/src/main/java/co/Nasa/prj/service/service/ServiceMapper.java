@@ -13,4 +13,7 @@ public interface ServiceMapper {
 	List<ServiceVO> searchListAll();
 
 	List<ServiceVO> serviceSelectList(String s_email);
+	
+	List<ServiceVO> serviceMaxEnddateList(String s_email);
+	int endService(ServiceVO vo);
 }

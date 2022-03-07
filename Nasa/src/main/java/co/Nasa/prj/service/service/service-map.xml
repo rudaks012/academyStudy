@@ -40,4 +40,16 @@
 <select id="serviceSelectList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
 	SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email}
 </select>
+
+<select id="serviceMaxEnddateList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	SELECT S.*, P.* FROM SERVICE S 
+	LEFT JOIN (SELECT S_CODE, MAX(TO_DATE(EVENT_END, 'yyyy-MM-dd')) PAY_ENDDATE 
+	FROM PAYMENT GROUP BY S_CODE) P 
+	ON S.SER_CODE = P.S_CODE
+	WHERE S.S_EMAIL = #{s_email}
+</select>
+
+<update id="endService" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
+	
+</update>
 </mapper>
