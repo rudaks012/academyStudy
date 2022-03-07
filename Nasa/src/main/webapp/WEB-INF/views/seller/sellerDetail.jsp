@@ -105,18 +105,17 @@
             <div class="col-lg-12" style="border: 1px solid rgb(223, 223, 223); background-color: rgb(240, 239, 239);">
                <div class="blog-author col-lg-6" style="margin: 0 auto; margin-top: 20px; ">
                   <div class="media align-items-center">
-                     <img src="assets/img/blog/author.png" alt="">
+                     <img src="${sellerInfo.s_img }" alt="">
                      <div class="media-body">
                         <a href="#">
-                           <h4 style="display: inline;">IT판매자</h4>
+                           <h4 style="display: inline;">${sellerInfo.s_name }</h4>
                         </a>
 
                         <div class="col-2" style="display: inline;"></div>
-                        <h4 style="display: inline; margin-left: 140px;">대구 중구</h4>
+                        <h4 style="display: inline; margin-left: 140px;">${sellerInfo.s_address }</h4>
                         <div>
                            <h4 style="display: inline;margin-top: 8px;">SW개발 > 웹개발</h4>
-                           <h4 style="display: inline; margin-left: 100px;">평점 : 4.5</h4>
-                           <h4 style="display: inline; margin-left: 100px;">지구 등급</h4>
+                           <h4 style="display: inline; margin-left: 100px;">등급 : ${sellerInfo.s_rank }</h4>
                         </div>
                        
                      </div>
@@ -147,7 +146,7 @@
                               <div class="row justify-content-center">
                                 
                                  <p class="excert">
-                                    <p style="margin-top: 20px;">웹개발을 주로 하고 있는 IT판매자 입니다. 기간 내에 최고의 품질로 보답하겠습니다. 믿고 맡겨주세요ㅋㅋㅋ.</p>
+                                    <p style="margin-top: 20px;">${sellerInfo.s_me }</p>
                                  </p>
                               </div>
                            </div>
@@ -334,9 +333,9 @@
 
                         <h4>판매자 정보</h4><br/>
                         <h5>활동정보</h5>
-                        <div>회원구분 : 개인회원</div>
+                        <div>회원구분 : ${sellerInfo.s_author }</div>
                         <div>총 작업수 : 12건</div>
-                        <div>주소 : 대구 </div>
+                        <div>주소 : ${sellerInfo.s_address } </div>
                         <br/>
                         <h5>자격증</h5>
                         <div>한국산업인력공단·사무자동화산업기사</div>

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
    .blog-author{
-      padding: 0px 0px 0px 0px !important;
+     
       margin-top: 20px !important;
    }
    .startbtn{
@@ -34,7 +34,8 @@
       <section class="blog_area single-post-area section-padding">
          <div class="container">
             <div class="row justify-content-center">
-               <div class="col-lg-8 posts-list">
+            
+               <div class="col-lg-8 posts-list"  style="border: 1px solid #d5c9ea; padding: 3em">
                   <div class="single-post">
 
                         <div class="feature-img">
@@ -42,7 +43,7 @@
                         </div>
                      
                         <div class="blog_details">
-                           <h2 class="center">${knowhowDetail.no_title }</h2>
+                           <h2 class="center" style="border-bottom: 1px solid #d5c9ea; padding-bottom: 20px;">${knowhowDetail.no_title }</h2>
                            <ul class="blog-info-link mt-3 mb-4">
                               <li><a href="#"><i class="fa fa-user"></i> ${knowhowDetail.no_id }</a></li>
                               <li><a href="#"><i class="fa fa-calendar"></i>${knowhowDetail.no_date }</a></li>
@@ -50,40 +51,7 @@
                            <p class="excert">
                               ${knowhowDetail.no_subject }
                            </p>
-                           <p>
-                              MCSE boot camps have its supporters and its detractors. Some people do not understand why
-                              you
-                              should have to spend money on boot camp when you can get the MCSE study materials yourself
-                              at a
-                              fraction of the camp price. However, who has the willpower to actually sit through a
-                              self-imposed MCSE training. who has the willpower to actually
-                           </p>
-                           <div class="quote-wrapper">
-                              <div class="quotes">
-                                 MCSE boot camps have its supporters and its detractors. Some people do not understand
-                                 why you
-                                 should have to spend money on boot camp when you can get the MCSE study materials
-                                 yourself at
-                                 a fraction of the camp price. However, who has the willpower to actually sit through a
-                                 self-imposed MCSE training.
-                              </div>
-                           </div>
-                           <p>
-                              MCSE boot camps have its supporters and its detractors. Some people do not understand why
-                              you
-                              should have to spend money on boot camp when you can get the MCSE study materials yourself
-                              at a
-                              fraction of the camp price. However, who has the willpower
-                           </p>
-                           <p>
-                              MCSE boot camps have its supporters and its detractors. Some people do not understand why
-                              you
-                              should have to spend money on boot camp when you can get the MCSE study materials yourself
-                              at a
-                              fraction of the camp price. However, who has the willpower to actually sit through a
-                              self-imposed MCSE training. who has the willpower to actually
-                           </p>
-                         
+                          
                            <div style="text-align: center;">
                               <button class="genric-btn primary small startbtn" onclick="location.href='knowhowUpdateForm.do?no_code=${knowhowDetail.no_code}'">수정</button>
                               <button id="knowDelete" class="genric-btn primary small startbtn">삭제</button>
@@ -96,14 +64,14 @@
                   <div class="navigation-top">
                      <div class="blog-author">
                         <div class="media align-items-center">
-                           <img src="assets/img/blog/author.png" alt="">
+                           <img src="${sellerInfo.s_img }" style="cursor: pointer;" onclick="location.href='sellerDetail.do?s_email=${sellerInfo.s_email}'">
+            
                            <div class="media-body">
                               <a href="#">
-                                 <h4>${knowhowDetail.no_id }</h4>
-                              </a>
+                                 <h4>${sellerInfo.s_name }</h4>
+                              </a> &nbsp;&nbsp;&nbsp; <span>등급 : ${sellerInfo.s_rank }</span>
                               <button class="genric-btn primary small startbtn" id="stbtn" style="float: right;" data-toggle="modal" data-target="#chatModal">견적 요청</button>
-                              <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                                 our dominion twon Second divided from</p>
+                              <p>${sellerInfo.s_me }</p>
                            </div>
                         </div>
                      </div>

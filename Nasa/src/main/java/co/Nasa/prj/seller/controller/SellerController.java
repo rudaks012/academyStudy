@@ -80,7 +80,8 @@ public class SellerController {
 //	}
 	
 	@RequestMapping("/sellerDetail.do")
-	public String sellerDetail() {
+	public String sellerDetail(Model model, @RequestParam("s_email") String s_email) {
+		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(s_email));
 		return "seller/sellerDetail";
 	}
 
