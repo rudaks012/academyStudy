@@ -20,9 +20,9 @@ public class AdminReportSerivceImpl implements AdminReportService {
 
 	
 	@Override
-	public int totalReport() {
+	public int totalReport(Criteria cri) {
 		// TODO Auto-generated method stub
-		return map.totalReport();
+		return map.totalReport(cri);
 	}
 
 	@Override
@@ -38,9 +38,9 @@ public class AdminReportSerivceImpl implements AdminReportService {
 	}
 
 	@Override
-	public int totalReportWait() {
+	public int totalReportWait(Criteria cri) {
 		// TODO Auto-generated method stub
-		return map.totalReportWait();
+		return map.totalReportWait(cri);
 	}
 
 	@Override
@@ -76,9 +76,9 @@ public class AdminReportSerivceImpl implements AdminReportService {
 	}
 
 	@Override
-	public int totalReportComplete() {
+	public int totalReportComplete(Criteria cri) {
 		// TODO Auto-generated method stub
-		return map.totalReportComplete();
+		return map.totalReportComplete(cri);
 	}
 
 	@Override
@@ -94,9 +94,9 @@ public class AdminReportSerivceImpl implements AdminReportService {
 	}
 
 	@Override
-	public int totalReportRefuse() {
+	public int totalReportRefuse(Criteria cri) {
 		// TODO Auto-generated method stub
-		return map.totalReportRefuse();
+		return map.totalReportRefuse(cri);
 	}
 
 	@Override

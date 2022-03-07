@@ -91,6 +91,12 @@ public class AdminAuthorVO {
 	String ser_subimg3;
 	
 	
+	//파워서비스
+	String power_code;
+	String power_start;
+	String power_end;
+	String power_service;
+	
 	//신고
 	String re_code; // report code
 	String re_type;
@@ -99,4 +105,11 @@ public class AdminAuthorVO {
 	String re_reporter; // 신고자 id
 	String re_res; // 피신고자 id
 	String re_date;
+	
+	//카테고리
+	String cat_no;
+	String cat_name;
+	
+	String sub_no;
+	String sub_name;
 }

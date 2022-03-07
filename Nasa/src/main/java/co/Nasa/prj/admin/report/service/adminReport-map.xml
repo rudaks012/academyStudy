@@ -2,14 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.Nasa.prj.admin.report.service.AdminReportMapper">
 
-  <select id="totalReport" resultType="int">
-  	select count(*)  from report
-  	 
-  	    <trim prefix="where" prefixOverrides="AND">
-  	      <include refid="criteria"></include>
-  	    </trim>
-  	  
-  </select>
   
   <sql id="criteria"> 
   	<if test= "re_type!=null and !re_type.equals('')">
@@ -55,12 +47,21 @@
 	  WHERE email=#{email} AND re_code=#{re_code}
 	 
   </select>
+    <select id="totalReport" resultType="int">
+  	select count(*)  from report
+  	 
+  	    <trim prefix="where" prefixOverrides="AND">
+  	      <include refid="criteria"></include>
+  	    </trim>
+  	  
+  </select>
+  
   
   <select id="totalReportWait" resultType="int">
   	select count(*) from report where re_result is null
-  	 <trim prefix="where" prefixOverrides="AND">
+  	 
   	      <include refid="criteria"></include>
-  	    </trim>
+  	  
   </select>
   
   <select id="getReportWaitListWithPaging" resultType="co.Nasa.prj.comm.VO.ReportVO">
@@ -111,9 +112,9 @@
   	
   <select id="totalReportComplete" resultType="int">
   	select count(*) from report where re_result ='Y'
-  	 <trim prefix="where" prefixOverrides="AND">
+  	 
   	      <include refid="criteria"></include>
-  	    </trim>
+  	   
   </select>
   
   <select id="getReportCompleteListWithPaging" resultType="co.Nasa.prj.comm.VO.ReportVO">
@@ -147,9 +148,9 @@
   
   <select id="totalReportRefuse" resultType="int">
   	select count(*) from report where re_result ='D'
-  	 <trim prefix="where" prefixOverrides="AND">
+  	 
   	      <include refid="criteria"></include>
-  	    </trim>
+  	   
   </select>
   
   <select id="getReportRefuseListWithPaging" resultType="co.Nasa.prj.comm.VO.ReportVO">

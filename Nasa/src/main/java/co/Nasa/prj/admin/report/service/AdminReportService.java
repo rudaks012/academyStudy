@@ -10,7 +10,7 @@ import co.Nasa.prj.comm.VO.ReportVO;
 public interface AdminReportService {
 
 	//전체조회 reportInquiry.jsp
-	public int totalReport(); 
+	public int totalReport(Criteria cri); 
 	public List<ReportVO> getReportListWithPaging(Criteria cri);
 	public ReportVO detailedReport(ReportVO vo); //상세조회
 	
@@ -21,19 +21,19 @@ public interface AdminReportService {
 	public Map<String, Object> updateConfirmReport(Map<String, Object>reportMap);
 	
 	//신고대기조회
-	public int totalReportWait();
+	public int totalReportWait(Criteria cri);
 	public List<ReportVO> getReportWaitListWithPaging(Criteria cri);
 	public ReportVO detailedReportWait(ReportVO vo);
 	public int updateReportResult(AdminAuthorVO vo); //신고 승인
 	
 	//신고승인완료조회
-	public int totalReportComplete();
+	public int totalReportComplete(Criteria cri);
 	public List<ReportVO> getReportCompleteListWithPaging(Criteria cri);
 	public ReportVO detailedReportComplete(ReportVO vo);
 	
 	//신고반료조회
 	
-	public int totalReportRefuse();
+	public int totalReportRefuse(Criteria cri);
 	public List<ReportVO> getReportRefuseListWithPaging(Criteria cri);
 	public ReportVO detailedRefuseComplete(ReportVO vo);
 	

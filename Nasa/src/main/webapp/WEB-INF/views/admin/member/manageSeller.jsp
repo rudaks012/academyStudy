@@ -38,6 +38,7 @@
                      </h5>
                     <div class="card mb-4">
                         <div class="card-body">
+                          <form id="searchForm" method="get">
                             <table class="table caption-top table-bordered  text-center">
                                 <tbody>
                                     <tr>
@@ -113,6 +114,7 @@
                                     </tr> -->
                                 </tbody>
                             </table>
+                           </form>
                         <style>
                             .search, .reload{
                                 position: relative;
@@ -223,22 +225,34 @@
 		                   <div class="card-body">
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
+	                                    <tr>
+		                                    <td rowspan="4" >
+		                                       <img id="s_img"  width="180px" height="230px">
+		                                    </td>
+	                               		 </tr>
+                                        <tr>
+                                        	<th class="table-primary align-middle">이름</th>
+                                            <td colspan="2"><input class="form-control custom-shadow" id="s_name" name="" value="" type="text" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="table-primary align-middle" width="150px">닉네임</th>
+                                            <td colspan="2"><input class="form-control custom-shadow" id="s_nickname" name="" value="" type="text" readonly></td>
+                                        </tr>
                                         <tr>
                                             
-                                            <th class="table-primary align-middle">아이디</th>
+                                            <th class="table-primary align-middle" width="150px">아이디</th>
                                             <td colspan="3"><input class="form-control custom-shadow " id="s_email" name="s_email" value="" type="text" readonly></td>
                                         </tr>
                                         <tr>
-                                            <th class="table-primary align-middle">이름</th>
-                                            <td><input class="form-control custom-shadow" id="s_name" name="" value="" type="text" readonly></td>
-                                            <th class="table-primary align-middle">닉네임</th>
-                                            <td><input class="form-control custom-shadow" id="s_nickname" name="" value="" type="text" readonly></td>
-                                        </tr>
-                                        <tr>
                                             <th class="table-primary align-middle">연락처</th>
-                                            <td><input class="form-control custom-shadow" id="s_tel" name="" value="" type="text" readonly></td>
+                                            <td width="200px"><input class="form-control custom-shadow" id="s_tel" name="" value="" type="text" readonly></td>
                                             <th class="table-primary align-middle">구분</th>
                                             <td><input class="form-control custom-shadow" id="s_author" name="" value="" type="text" readonly></td>
+                                        </tr>
+                                         <tr>
+                                            
+                                            <th class="table-primary align-middle">가입일자</th>
+                                            <td colspan="3"><input class="form-control custom-shadow " id="s_date" name="s_date" value="" type="text" readonly></td>
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">등급</th>
@@ -265,13 +279,13 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                        	  <th class="table-primary align-middle">신고<br>횟수</th>
+                                        	  <th class="table-primary align-middle">신고횟수</th>
                                             <td>
                                                 <div class="p-0 col-6 d-flex align-items-center">
                                                 <input class="form-control custom-shadow mr-2" id="s_report" name="" value="" type="text" readonly>회
                                                 </div>
                                             </td>   
-                                            <th class="table-primary align-middle">상태</th>
+                                            <th class="table-primary align-middle" width="80px">상태</th>
                                             <td><input class="form-control custom-shadow" id="s_status" name="" value="" type="text" readonly></td>
                                                
                                         </tr>
@@ -283,6 +297,7 @@
                                                 <input class="form-control custom-shadow mb-1" style="width: 70%;" id="s_detailaddress" name="" type="text" readonly>     
                                             </td>
                                         </tr>
+                                       
                                     </tbody>
                                 </table>
 		
@@ -302,126 +317,68 @@
                         
                 	    <div class="card">
 		                   <div class="card-body">
-                            <table class="table caption-top table-bordered thead-light  text-center">		                        
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>1차카테고리</th>
-                                        <th>2차카테고리</th>
-                                        <th>서비스명</th>
-                                        <th>유효기간</th>
-                                        <th>구매자아이디</th>
-                                        <th>가격</th>
-                                        <th>결제날짜</th>
-                                        <th>결제상태</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                       <td>123</td>
-                                       <td>123</td>
-                                       <td>13</td>
-                                       <td>55555</td>
-                                       <td>6666</td>
-                                       <td>7777</td>
-                                       <td>8888</td>
-                                    </tr>                                   
-                               </tbody>
-                            </table>
+		                     <div>
+		                     	<i class="fas fa-chevron-circle-right mb-3 mr-2" style="color:#8771ea"></i>학적정보
+		                     </div>
+                             <table class="table caption-top table-bordered thead-light  text-center">		                        
+                                    <tbody>
+                                        <tr>
+                                            
+                                            <th class="table-primary align-middle" width="20%">학교명</th>
+                                            <td colspan="3">
+                                                <div class="col-4 p-0">
+                                                   <input class="form-control custom-shadow " id="s_school" name="s_school" value="" type="text" readonly></td>
+                                        		</div>
+                                        </tr>
+                                         <tr>
+                                            
+                                            <th class="table-primary align-middle">학과명</th>
+                                            <td colspan="3">
+                                                <div class="col-4 p-0">
+                                                   <input class="form-control custom-shadow " id="s_major" name="s_major" value="" type="text" readonly></td>
+                                        		</div>
+                                        </tr>
+                                         <tr>
+                                            
+                                            <th class="table-primary align-middle">졸업사항</th>
+                                            <td colspan="3">
+                                                <div class="col-4 p-0">
+                                                   <input class="form-control custom-shadow " id=s_grad" name="s_grad" value="" type="text" readonly></td>
+                                        		</div>
+                                        </tr>
+                                        
+                                        
+                                    </tbody>
+                                </table>
+                                
+                                
+                                <div class="my-4">
+		                     		<i class="fas fa-chevron-circle-right  mr-2" style="color:#8771ea"></i>기타 경력사항
+		                     	</div>
+		                     	
+			                     	<div class="col-12">
+			                     		<textarea cols="8" id="s_carrer" style="height:150px ;width:100%" readonly></textarea>
+			                     	</div>
+			                     	
+			                     <div class="my-4">
+		                     		<i class="fas fa-chevron-circle-right  mr-2" style="color:#8771ea"></i>자기소개
+		                     	</div>
+		                     	
+			                     	<div class="col-12">
+			                     		<textarea cols="8" id="s_me" style="height:350px ;width:100%" readonly></textarea>
+			                     	</div>		
+		                     	  
 
-                            <div class="d-flex justify-content-center mt-5">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <c:if test="${pageMaker.prev }">
-                                    <li class="page-item"><a class="page-link" href="${pageMaker.startPage -1 }"
-                                            aria-label="Previous"> <span aria-hidden="true">«</span> <span
-                                                class="sr-only">이전</span>
-                                        </a></li>
-                                </c:if>
-                                <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-                                    <li class="page-item ${pageMaker.cri.pageNum == num ? 'active':''}">
-                                        <a class="page-link" href="${num }">${num }</a>
-                                    </li>
-                                </c:forEach>
-                                <c:if test="${pageMaker.next }">
-                                    <li class="page-item"><a class="page-link" href="${pageMaker.endPage + 1 }"
-                                            aria-label="Next"> <span aria-hidden="true">»</span> <span
-                                                class="sr-only">다음</span>
-                                        </a></li>
-                                </c:if>
-                            </ul>
-                        </nav>
-                    </div>
+                         
 		
 			                     
 		                   </div>
-                           <div class="card-footer border border-secondary d-flex justify-content-between bg-white" style="border-radius: 5px;">
-                               <div>총 <span class="text-danger mx-2">5</span>건수</div>
-                               <div class="mr-4">누적구매금액 <span class="text-danger mx-2">100,000</span>원</div>
-                           </div>
+                         
                 	</div>
                 </div>
               </div>    
 			
-			<div class="row">
-				<div class="col-12">
-				<h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
-                            서비스내역
-                 </h5>
-					<div class="card">
-		                   <div class="card-body">
-                            <table class="table caption-top table-bordered thead-light  text-center">		                        
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>1차카테고리</th>
-                                        <th>2차카테고리</th>
-                                        <th>서비스명</th>
-                                        <th>유효기간</th>
-                                        <th>구매자아이디</th>
-                                        <th>가격</th>
-                                        <th>결제날짜</th>
-                                        <th>결제상태</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                       <td>123</td>
-                                       <td>123</td>
-                                       <td>13</td>
-                                       <td>55555</td>
-                                       <td>6666</td>
-                                       <td>7777</td>
-                                       <td>8888</td>
-                                    </tr>                                   
-                               </tbody>
-                            </table>
-
-                            <div class="d-flex justify-content-center mt-5">
-                                <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                                                    <span aria-hidden="true">«</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                                                    <span aria-hidden="true">»</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                            </div>
-		
-			                     
-		                   </div>
-                	</div>
-                </div>
-				</div>
+			
 		
 
 
@@ -469,7 +426,7 @@ $("#resetBtn").on("click",hadleResetLists);
 
 //검색버튼
 const searchReport=()=>{
-
+	
 	
 //	if(type!="choice"||reporterId!=""||startDate!=""){
 		searchForm.action="manage_seller.do";
@@ -619,40 +576,16 @@ $("#searchBtn").on("click",searchReport);
                     rank == "3" ? $("#range_earth").prop("checked", true) :
                     rank == "4" ? $("#range_sun").prop("checked", true) : alert("해당 등급이 없습니다.");
 				
-                $("#s_author").val(result.seller.s_author);    
-                //구매내역 총수
-           //     $("#paymentListLength").text(result.payment.length);
-                //구매내역 누적금액
-                let cnt=0;
-           //     for(i=0;i<result.payment.length;i++){
-           //     	cnt+=parseInt(result.payment[i].pay_price)
-           //     }
-           //     $("#totalPrice").text(cnt);
+                $("#s_date").val(result.seller.s_date);
+                $("#s_author").val(result.seller.s_author);   
+                $
+                $("#s_school").val(result.seller.s_school); 
+                $("#s_major").val(result.seller.s_major); 
+                $("#s_grad").val(result.seller.s_grad);   
+                $("#s_carrer").val(result.seller.s_carrer);   
+                $("#s_me").val(result.seller.s_me);   
+                
 
-                //구매내역 페이징
-           //     if (result.payment.length != 0) {
-            //        $('#tbodypay').empty();
-
-                    //구매내역 데이터만 가져오는 ajax를 만들고 그 done에 이 페이징 함수를 부를 것 
-           //         let totalCount = result.payment.length; // 글의 총 수 
-           //         let pageSize = 5; // 페이지 크기 [1]~[10] 또는 [1]~[5]
-           //         let nowPage = 1; // 현재 페이지
-           //         let visibleBlock = 5;
-
-           //         totalPages = totalCount / pageSize;
-
-
-            //        if (totalCount % pageSize > 0) {
-           //             totalPages++;
-         //           }
-
-
-                    $("#pagination").twbsPagination("changeTotalPages", totalPages, nowPage);
-
-                    console.log("첫번째 테스트");
-         //       } else {
-         //           $('#tbodypay').empty();
-         //       }
             })
             .fail(function (data) {
                 console.log("실패원인:" + data);
