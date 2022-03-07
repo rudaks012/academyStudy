@@ -23,6 +23,9 @@ import co.Nasa.prj.buyer.service.BuyerService;
 import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.payment.service.PaymentService;
+import co.Nasa.prj.powerservice.service.PowerServiceMapper;
+import co.Nasa.prj.powerservice.service.PowerServiceService;
+import co.Nasa.prj.service.service.ServiceService;
 
 /**
  * Handles requests for the application home page.
@@ -31,18 +34,18 @@ import co.Nasa.prj.payment.service.PaymentService;
 public class HomeController {
 
 	@Autowired
-	private BuyerService BuyerDao;
+	private PowerServiceService powerDao;
 
 	@Autowired
 	private PaymentService paymentDao;
+	
+	@Autowired
+	private ServiceService serviceDao;
 
 	@RequestMapping("/home.do")
-	public String home(HttpSession session, Model model) {
-
-//		BuyerVO vo = new BuyerVO();
-//    	vo.setB_email((String)session.getAttribute("id"));
-//    	BuyerDao.selectBuyer(vo);
-//    	model.addAttribute("loginMember", BuyerDao.selectBuyer(vo));
+	public String home(Model model) {
+		model.addAttribute("powerlist", powerDao.PowerServiceList());
+//		model.addAttribute("bestservicelist", serviceDao.BestServiceList());
 		return "user/home";
 	}
 
@@ -116,18 +119,18 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-//	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
-//	public String home(Locale locale, Model model) {
-//		logger.info("Welcome home! The client locale is {}.", locale);
-//		
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		
-//		String formattedDate = dateFormat.format(date);
-//		
-//		model.addAttribute("serverTime", formattedDate );
-//		
-//		return "home";
-//	}
+//   @RequestMapping(value = "/home.do", method = RequestMethod.GET)
+//   public String home(Locale locale, Model model) {
+//      logger.info("Welcome home! The client locale is {}.", locale);
+//      
+//      Date date = new Date();
+//      DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+//      
+//      String formattedDate = dateFormat.format(date);
+//      
+//      model.addAttribute("serverTime", formattedDate );
+//      
+//      return "home";
+//   }
 
 }

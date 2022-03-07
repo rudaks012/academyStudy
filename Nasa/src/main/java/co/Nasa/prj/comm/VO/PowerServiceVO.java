@@ -1,8 +1,10 @@
 package co.Nasa.prj.comm.VO;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class PowerServiceVO {
 	String power_code;
 	String s_email;
@@ -10,4 +12,7 @@ public class PowerServiceVO {
 	String power_start;
 	String power_end;
 	String power_service;
+	
+	String s_nickname;
+	String s_img;
 }
