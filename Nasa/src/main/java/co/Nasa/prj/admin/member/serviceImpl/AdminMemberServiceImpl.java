@@ -82,6 +82,12 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		return map.updateSellerRank(vo);
 	}
 
+	@Override
+	public List<AdminAuthorVO> selectSellerServiceList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return map.selectSellerServiceList(cri);
+	}
+
 	
 
 	

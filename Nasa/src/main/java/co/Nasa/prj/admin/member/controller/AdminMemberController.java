@@ -69,6 +69,7 @@ public class AdminMemberController {
 		model.addAttribute("sellerList", memberDao.sellerList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, memberDao.getSellerTotal()));
 		model.addAttribute("totalSeller", memberDao.getSellerTotal());
+		System.out.println(cri.getS_rank());
 		return "admin/member/manageSeller";
 	}
 	
@@ -78,7 +79,9 @@ public class AdminMemberController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		vo = memberDao.selectSeller(vo.getS_email()); //판매자 상세정보
+		List<AdminAuthorVO> serviceList= memberDao.selectSellerServiceList(cri); //판매자
 		map.put("seller", vo);
+		map.put("serviceList", serviceList);
 		return map;
 	}
 	

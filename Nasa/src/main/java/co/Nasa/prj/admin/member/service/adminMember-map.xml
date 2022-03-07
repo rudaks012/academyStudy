@@ -19,11 +19,11 @@
   	     AND b_tel like '%'||#{b_tel}||'%'
   	</if>
   	
-  	<if test="b_address=null and !b_address.equals('')">
+  	<if test="b_address!=null and !b_address.equals('')">
   	     AND b_address like '%'||#{b_address}||'%'
   	</if>
   	
-  	<if test="b_rank=null and !b_rank.equals('')">
+  	<if test="b_rank!=null and !b_rank.equals('')">
   	     AND b_rank like '%'||#{b_rank}||'%'
   	</if>
   	
@@ -62,7 +62,7 @@
 	    
      <sql id="sellerCriteria"> 
 	  	<if test= "s_email!=null and !s_email.equals('')">
-	  	    AND b_email like '%'||#{b_email}||'%'
+	  	    AND s_email like '%'||#{s_email}||'%'
 	  	 </if>
 	  	 
 	  	 <if test="s_nickname!=null and !s_nickname.equals('')">
@@ -81,23 +81,23 @@
 	  	     AND s_rank like '%'||#{s_rank}||'%'
 	  	</if>
 	  	
-	  	<if test="s_address=null and !s_address.equals('')">
+	  	<if test="s_address!=null and !s_address.equals('')">
 	  	     AND s_address like '%'||#{s_address}||'%'
 	  	</if>
 	  	
-	  	<if test="b_rank=null and !b_rank.equals('')">
-	  	     AND b_rank like '%'||#{b_rank}||'%'
+	  	<if test="s_rank!=null and !s_rank.equals('')">
+	  	     AND s_rank = #{s_rank}
 	  	</if>
 	  	
-	  	<if test="b_date!=null and !b_date.equals('')">
+	  	<if test="s_date!=null and !s_date.equals('')">
 	  	   <![CDATA[
-	  	     AND to_char(b_date,'yyyymmdd') between #{b_date} and #{b_date2}
+	  	     AND to_char(s_date,'yyyy-mm-dd') between #{s_date} and #{s_date2}
 	  	  ]]>   
      </if>
   	
   </sql>
 	
-	<select id="sellerList" parameterType="co.Nasa.prj.admin.service.Criteria" resultType="co.Nasa.prj.comm.VO.SellerVO">
+	<select id="sellerList" parameterType="co.Nasa.prj.admin.service.Criteria" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
 		<![CDATA[
 		 SELECT *
 		 FROM 
@@ -119,6 +119,21 @@
 	
 	</select>
 	
+	<select id="selectSellerServiceList" parameterType="co.Nasa.prj.admin.service.Criteria" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+	
+	   		<![CDATA[
+				  SELECT *
+					FROM 
+					    (
+					    select rownum rn, s.*
+					    from v_sellerservicelist s
+					    WHERE s_email=#{s_email} AND ROWNUM <=#{pageNum} * #{amount}
+					    )
+				
+				  WHERE rn>(#{pageNum}-1)*#{amount}
+				]]>
+
+	</select>
 	
 	<select id="getListWithPaging" resultType="co.Nasa.prj.comm.VO.BuyerVO">
 		<![CDATA[
@@ -153,7 +168,10 @@
 	</select>
 	
 	<select id="getSellerTotal" resultType="int">
-		select count(*) as total from seller	
+		select count(*) as total from seller
+		 <trim prefix="where" prefixOverrides="AND">
+		    <include refid="sellerCriteria"></include>	
+		 </trim>
 	</select>
 	
 	<update id="updateMemberRank" parameterType="co.Nasa.prj.comm.VO.BuyerVO">
