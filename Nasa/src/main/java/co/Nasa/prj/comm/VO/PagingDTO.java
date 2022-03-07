@@ -14,6 +14,9 @@ public class PagingDTO {
 	
 	
 	public void setTotal(int total) {
+		if(getPageNum() == 0) {
+			setPageNum(1); 
+		}
 		this.total=total;
 		this.endPage = (int)(Math.ceil(this.pageNum/10.0))*10;
 		this.startPage  = this.endPage-9;
@@ -26,13 +29,16 @@ public class PagingDTO {
 		this.prev = this.startPage > 1;
 		
 		this.next = this.endPage < realEnd;
-
 	}
 	
 	public PagingDTO() {}
 	
 	public PagingDTO(int total) {
 		this.pageNum= getPageNum();
+		System.out.println("pageNum = " + pageNum);
+		if(this.pageNum == 0) {
+			this.pageNum = 1;
+		}
 		this.amount= getAmount();
 		this.total=total;
 		
@@ -49,9 +55,7 @@ public class PagingDTO {
 		this.next = this.endPage < realEnd;
 		
 		if(startPage < 0) {
-			setStartPage(1);
+			this.startPage = 1;
 		}
-		
-		setEndPage(endPage);
 	}
 }
