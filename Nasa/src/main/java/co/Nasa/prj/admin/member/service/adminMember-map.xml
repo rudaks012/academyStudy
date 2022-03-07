@@ -29,7 +29,7 @@
   	
   	<if test="b_date!=null and !b_date.equals('')">
   	   <![CDATA[
-  	     AND to_char(b_date,'yyyymmdd') between #{b_date} and #{b_date2}
+  	     AND to_char(b_date,'yyyy-mm-dd') between #{b_date} and #{b_date2}
   	  ]]>   
      </if>
    </sql>
