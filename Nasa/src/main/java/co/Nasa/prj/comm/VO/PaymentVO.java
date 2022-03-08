@@ -17,4 +17,14 @@ public class PaymentVO {
 	String pay_enddate; //구매확정날짜
 	String event_start;
 	String event_end;
+	
+	int start; // 쿼리에 쓸 start
+	int end; // 위와 같음
+	
+	public void calcStartEnd(int pageNum, int amount) {
+		setEnd(pageNum * amount);
+		setStart(getEnd() - amount + 1);
+	}
+	
+	int searchMonth;
 }

@@ -22,13 +22,11 @@ public class PaymentServiceImpl implements PaymentService {
 
    @Override
    public List<PaymentVO> selectListChart() {
-      // TODO Auto-generated method stub
       return map.selectListChart();
    }
 
    @Override
    public List<Integer> selectpaymenttable(int month) {
-      // TODO Auto-generated method stub
       return map.selectpaymenttable(month);
    }
 
@@ -40,19 +38,16 @@ public class PaymentServiceImpl implements PaymentService {
 
    @Override
    public List<PaymentVO> selectListYearChart() {
-      // TODO Auto-generated method stub
       return map.selectListYearChart();
    }
 
    @Override
    public List<Integer> selectYearchart(int year) {
-      // TODO Auto-generated method stub
       return map.selectYearchart(year);
    }
 
    @Override
    public List<Integer> countYearChart(int count) {
-      // TODO Auto-generated method stub
       return map.countYearChart(count);
    }
 
@@ -61,8 +56,37 @@ public class PaymentServiceImpl implements PaymentService {
 	//채팅 결제
 	@Override
 	public int insertchatpayment(PaymentVO vo) {
-		// TODO Auto-generated method stub
 		return map.insertchatpayment(vo);
+	}
+
+	@Override
+	public List<PaymentVO> selectPagingBuyerPaymentList(PaymentVO vo) {
+		return map.selectPagingBuyerPaymentList(vo);
+	}
+
+	@Override
+	public int countPagingBuyerPayment(PaymentVO vo) {
+		return map.countPagingBuyerPayment(vo);
+	}
+
+	@Override
+	public List<PaymentVO> monthSearch(PaymentVO vo) {
+		return map.monthSearch(vo);
+	}
+
+	@Override
+	public List<PaymentVO> sixmonthSearch(PaymentVO vo) {
+		return map.sixmonthSearch(vo);
+	}
+
+	@Override
+	public List<PaymentVO> yearSearch(PaymentVO vo) {
+		return map.yearSearch(vo);
+	}
+
+	@Override
+	public List<PaymentVO> selectdateSearch(PaymentVO vo) {
+		return map.selectdateSearch(vo);
 	}
 
 	

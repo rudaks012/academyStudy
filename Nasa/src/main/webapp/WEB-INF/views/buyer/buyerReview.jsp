@@ -45,6 +45,10 @@
 			padding-right: 0px !important;
 		}
 		
+		.profileimg {
+			width: 70px;
+			height: 70px;
+		}
 	</style>
 </head>
 
@@ -112,9 +116,18 @@
 									<div id="rvcode-${review.rev_code }" class="comment-list">
 										<div class="single-comment justify-content-between d-flex">
 											<div class="user justify-content-between d-flex">
-												<div class="thumb">
-													<img src="assets/img/comment/comment_1.png" alt="">
-												</div>
+												<c:choose>
+													<c:when test="${not empty review.b_img }">
+														<div class="thumb">
+															<img class = "profileimg" src="${review.b_img }" alt="">
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div class="thumb">
+															<img class = "profileimg" src="resources/user/assets/img/profile/search-default-profile.jpg" alt="">
+														</div>
+													</c:otherwise>
+												</c:choose>
 												<div class="desc">
 													<span>${review.rev_ser_name }</span><br>
 													<span>${review.rev_name }</span>
@@ -148,9 +161,18 @@
 											<div id="rvcode-${rc.review_code }" class="comment-list left-padding">
 												<div class="single-comment justify-content-between d-flex">
 													<div class="user justify-content-between d-flex">
-														<div class="thumb">
-															<img src="assets/img/comment/comment_2.png" alt="">
-														</div>
+														<c:choose>
+															<c:when test="${not empty rc.s_img }">
+																<div class="thumb">
+																	<img src="${rc.s_img}" class = "profileimg" alt="">
+																</div>
+															</c:when>
+															<c:otherwise>
+																<div class="thumb">
+																	<img src="resources/user/assets/img/profile/search-default-profile.jpg" class = "profileimg" alt="">
+																</div>
+															</c:otherwise>
+														</c:choose>
 														<div class="desc">
 															<span>${rc.rere_sel_name }</span>
 															<span class="date">${rc.rere_date } </span>
@@ -164,6 +186,29 @@
 										</c:if>
 									</c:forEach>
 								</c:forEach>
+								
+								<div class="row justify-content-center mt-10">
+									<nav aria-label="Page navigation example">
+									  <ul class="pagination">
+										  <c:if test="${paging.prev }">
+											  <li class="page-item"><a class="page-link" href="buyerReview.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+										  </c:if>
+										  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+											  <c:choose>
+												  <c:when test="${p == paging.pageNum }">
+													  <li class="page-item"><b class="page-link">${p }</b></li>
+												  </c:when>
+												  <c:when test="${p != paging.pageNum }">
+													  <li class="page-item"><a class="page-link" href="buyerReview.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+												  </c:when>
+											  </c:choose>
+										  </c:forEach>
+										  <c:if test="${paging.next }">
+											  <li class="page-item"><a class="page-link" href="buyerReview.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+										  </c:if>
+									  </ul>
+									</nav>
+								</div>
 							</div>
 							<!-- <nav class="blog-pagination justify-content-center d-flex">
 								<ul class="pagination">

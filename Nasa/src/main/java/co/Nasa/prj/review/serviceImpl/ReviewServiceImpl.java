@@ -47,5 +47,15 @@ public class ReviewServiceImpl implements ReviewService {
 		return map.reviewSearch(remap);
 	}
 
+	@Override
+	public List<ReviewVO> selectPagingReviewList(ReviewVO vo) {
+		return map.selectPagingReviewList(vo);
+	}
+
+	@Override
+	public int countPagingReview(ReviewVO vo) {
+		return map.countPagingReview(vo);
+	}
+
 	
 }

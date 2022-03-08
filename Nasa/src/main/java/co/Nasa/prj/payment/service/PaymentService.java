@@ -8,6 +8,18 @@ public interface PaymentService {
    // 구매자 개인 구매내역 조회
    public List<PaymentVO> buyerPaymentList(PaymentVO vo);
    
+   // 구매자 paging lisg select
+   public List<PaymentVO> selectPagingBuyerPaymentList(PaymentVO vo);
+   
+   // total count
+   public int countPagingBuyerPayment(PaymentVO vo);
+   
+   //1개월, 6개월, 1년, 기간 검색
+   public List<PaymentVO> monthSearch(PaymentVO vo);
+   public List<PaymentVO> sixmonthSearch(PaymentVO vo);
+   public List<PaymentVO> yearSearch(PaymentVO vo);
+   public List<PaymentVO> selectdateSearch(PaymentVO vo);
+   
    //차트 목록
    List<PaymentVO> selectListChart();
    

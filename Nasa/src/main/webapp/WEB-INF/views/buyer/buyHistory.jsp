@@ -7,6 +7,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<style>
+		.pageClick {
+			font-weight: 900;
+		}
+	</style>
 	<link rel="stylesheet" href="resources/user/assets/css/buyHistoryCard.css">
 </head>
 
@@ -142,9 +147,9 @@
 						<br>
 						<br>
 						<div class="row justify-content-center">							
-							<button class="genric-btn primary-border small" onclick="oneMonthSearch()">1개월</button>
-							<button class="genric-btn primary-border small" style="margin-left: 5px;" onclick="sixMonthSearch()">6개월</button>
-							<button class="genric-btn primary-border small" style="margin-left: 5px;" onclick="oneYearSearch()">1년</button>
+							<a class="genric-btn primary-border small" href="monthSearch.do">1개월</a>
+							<button class="genric-btn primary-border small" style="margin-left: 5px;">6개월</button>
+							<button class="genric-btn primary-border small" style="margin-left: 5px;">1년</button>
 							<input id="firstDate" type="date" style="margin-left: 10px">&nbsp;~&nbsp;<input id="secondDate" type="date"> 
 							<button class="genric-btn danger" style="height:30px; margin-left: 5px; padding:0 auto;" onclick="selectDateSearch()">검색</button>
 						</div>
@@ -200,8 +205,28 @@
 								</tbody>
 							</table>
 							<nav aria-label="Page navigation example">
-								<ul class="pagination"></ul>
+								  <ul class="pagination">
+									  <c:if test="${paging.prev }">
+										  <li class="page-item"><a class="page-link" href="${address }?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+									  </c:if>
+									  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+										  <c:choose>
+											  <c:when test="${p == paging.pageNum }">
+												  <li class="page-item"><b class="page-link">${p }</b></li>
+											  </c:when>
+											  <c:when test="${p != paging.pageNum }">
+												  <li class="page-item"><a class="page-link" href="${address }?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+											  </c:when>
+										  </c:choose>
+									  </c:forEach>
+									  <c:if test="${paging.next }">
+										  <li class="page-item"><a class="page-link" href="${address }?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+									  </c:if>
+								  </ul>
 							</nav>
+							<!-- <nav aria-label="Page navigation example">
+								<ul class="pagination"></ul>
+							</nav> -->
 						</div>
 					</div>
 					
@@ -215,7 +240,7 @@
 <script>
 	// pagination
 	
-	 $(document).ready(function(){
+	 /* $(document).ready(function(){
 		 var alltr = $("#paymentTable > tbody > tr").length;
 		 var pagesize = 0;
 		 var onepagesize = 10;
@@ -228,13 +253,13 @@
 		 }
 		 
 		 
-		 $(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
+		 //$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
 		 
 		 for(var i = 1; i<= pagesize; i++) {
 			 $(".pagination").append("<li class='page-item'><a class='page-link' onclick='movepage(this)'>" + i + "</a></li>")
 		 }
 		 
-		 $(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
+		 //$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
 		 
 		 $("#paymentTable > tbody > tr").hide();
 		 
@@ -245,7 +270,9 @@
       });
 	
 	function movepage(event) {
+		$(".pageClick").removeClass("pageClick");
 		$("#paymentTable > tbody > tr").hide();
+		$(event).addClass("pageClick");
 		console.log($(event).text());
 		var pagingnum = $(event).text();
 		var pagenumber = $(event).text() * 10;
@@ -288,13 +315,13 @@
 	 	}
 	 	
 	 	$(".pagination").children().remove();
-	 	$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
+	 	//$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
 		 
 		for(var i = 1; i<= pagesize; i++) {
 			$(".pagination").append("<li class='page-item'><a class='page-link' onclick='movepageonem(this)'>" + i + "</a></li>")
 		}
 		 
-		$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
+		//$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
 		 
 		$("#paymentTable > tbody > tr").hide();
 		 
@@ -344,13 +371,13 @@
 	 	}
 	 	
 	 	$(".pagination").children().remove();
-	 	$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
+	 	//$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
 		 
 		for(var i = 1; i<= pagesize; i++) {
 			$(".pagination").append("<li class='page-item'><a class='page-link' onclick='movepagesixm(this)'>" + i + "</a></li>")
 		}
 		 
-		$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
+		//$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
 		 
 		$("#paymentTable > tbody > tr").hide();
 		 
@@ -400,13 +427,13 @@
 	 	}
 	 	
 	 	$(".pagination").children().remove();
-	 	$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
+	 	//$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
 		 
 		for(var i = 1; i<= pagesize; i++) {
 			$(".pagination").append("<li class='page-item'><a class='page-link' onclick='movepageoney(this)'>" + i + "</a></li>")
 		}
 		 
-		$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
+		//$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
 		 
 		$("#paymentTable > tbody > tr").hide();
 		 
@@ -475,13 +502,13 @@
 	 	}
 	 	
 	 	$(".pagination").children().remove();
-	 	$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
+	 	//$(".pagination").append("<li class='page-item'><a class='page-link'>Prev</a></li>");
 		 
 		for(var i = 1; i<= pagesize; i++) {
 			$(".pagination").append("<li class='page-item'><a class='page-link' onclick='movepagebtwdtr(this)'>" + i + "</a></li>")
 		}
 		 
-		$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
+		//$(".pagination").append("<li class='page-item'><a class='page-link'>Next</a></li>");
 		 
 		$("#paymentTable > tbody > tr").hide();
 		 
@@ -501,7 +528,7 @@
 		for(var i = pagenumber - 10; i < pagenumber; i++) {
 			$($(".btwd")[i]).show();
 		}
-	}
+	} */
 </script>
 </body>
 </html>

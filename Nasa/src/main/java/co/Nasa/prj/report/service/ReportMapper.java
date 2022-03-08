@@ -16,4 +16,10 @@ public interface ReportMapper {
 	
 	//채팅 신고
 	int insertChattingReport(ReportVO vo);
+	
+	//구매자 신고내역 페이징 단위 조회
+	List<ReportVO> selectPagingBuyerReportList(ReportVO vo);
+	
+	// total count (buyer)
+	int countPagingBuyerReport(ReportVO vo);
 }

@@ -8,6 +8,40 @@
       ORDER BY PAY_DATE DESC
    </select>
    
+   <select id="selectPagingBuyerPaymentList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+   		SELECT	*
+   		FROM	(
+   				 SELECT	ROWNUM RN, A.*
+   				 FROM	(
+   				 		 SELECT 	*
+   				 		 FROM 		PAYMENT
+   				 		 WHERE 		B_EMAIL = #{b_email}
+   				 		 ORDER BY	PAY_DATE DESC
+   				 ) A
+   		)
+   		WHERE	RN BETWEEN #{start} AND #{end}
+   </select>
+   
+   <select id="countPagingBuyerPayment" resultType="int">
+   		SELECT	COUNT(*)
+   		FROM	PAYMENT
+   		WHERE	B_EMAIL = #{b_email}
+   </select>
+   
+   <select id="monthSearch" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+   		SELECT	*
+   		FROM	(
+   				 SELECT ROWNUM RN, A.*
+   				 FROM	(
+   				 		 SELECT	*
+   				 		 FROM		PAYMENT
+   				 		 WHERE		B_EMAIL = #{b_email} AND PAY_DATE >= ADD_MONTH(sysdate, -1)
+   				 		 ORDER BY	PAY_DATE DESC
+   				 ) A
+   		)
+   		WHERE	RN BETWEEN #{start} AND #{end}
+   </select>
+   
    
    <!-- 차트 입력 -->
    <select id="selectListChart" resultType="co.Nasa.prj.comm.VO.PaymentVO">

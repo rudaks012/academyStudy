@@ -37,7 +37,7 @@
 					<div id="profileThumnail" class="justify-content-center" style="text-align: center;">
 						<c:choose>
 							<c:when test="${empty buyerinfo.b_img }">
-			                    <img id="prvimg" src="resources/user/assets/img/profile/defaultprofileimg.png" alt="" style="width: 150px; height:150px; border-radius: 70%; overflow: hidden;"><br>
+			                    <img id="prvimg" src="resources/user/assets/img/profile/search-default-profile.jpg" alt="" style="width: 150px; height:150px; border-radius: 70%; overflow: hidden;"><br>
 							</c:when>
 							<c:otherwise>
 								<img id="prvimg" src="${buyerinfo.b_img }" alt="" style="width: 150px; height:150px; border-radius: 70%; overflow: hidden;"><br>
