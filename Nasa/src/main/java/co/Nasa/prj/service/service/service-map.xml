@@ -52,4 +52,8 @@
 <update id="endService" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
 	
 </update>
+
+<select id="homeCategorySelect" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	SELECT * FROM SERVICE WHERE ser_cate = #{ser_cate}
+</select>
 </mapper>

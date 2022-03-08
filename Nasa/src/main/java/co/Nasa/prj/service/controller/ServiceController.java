@@ -44,9 +44,15 @@ public class ServiceController {
 	@Autowired
 	private PaymentService paymentDao;
 	
+	@RequestMapping("/homeCategory.do")
+	public String homeCategory(Model model, @Param("ser_cate") String ser_cate) {
+		model.addAttribute("homecatelist", serviceDao.homeCategorySelect(ser_cate));
+		return "user/homeCategory";
+	}
+	
 	@RequestMapping("/sellerService.do")
 	public String sellerService(Model model, HttpSession session) {
-		String s_email = (String)session.getAttribute("id");
+		String s_email = (String) session.getAttribute("id");
 		model.addAttribute("serviceList", serviceDao.serviceMaxEnddateList(s_email));
 		return "seller/sellerService";
 	}
@@ -427,34 +433,34 @@ public class ServiceController {
 		}
 		return "OK";
 	}
-	
-	// 서비스 전체 리스트 조회	
+
+	// 서비스 전체 리스트 조회
 	@RequestMapping("/searchResult.do")
 	public String searchResult(Model model) {
 		model.addAttribute("searchList", serviceDao.searchListAll());
 		return "user/searchResult";
 	}
-	
+
 	@RequestMapping("/serviceDetail.do")
 	public String sellerDetail(Model model, @RequestParam("ser_code") String ser_code) {
 		ServiceVO vo = new ServiceVO();
 		vo = serviceDao.serviceSelect(ser_code);
-		System.out.println("++++++++++++"+vo);
+		System.out.println("++++++++++++" + vo);
 		model.addAttribute("detailS", serviceDao.serviceSelect(ser_code));
-		
+
 		CategoryVO catevo = new CategoryVO();
 		catevo.setCat_no(vo.getSer_cate());
 		model.addAttribute("cate", categoryDao.selectCategory(catevo));
-		
+
 		SubCategoryVO subcatevo = new SubCategoryVO();
 		subcatevo.setSub_no(vo.getSer_sub_cate());
 		model.addAttribute("subcate", subCategoryDao.selectSub_category(subcatevo));
-		
+
 		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(vo.getS_email()));
-		
+
 		return "seller/serviceDetail";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/endService.do")
 	public String endService(ServiceVO vo) {

@@ -41,7 +41,7 @@ public class SellerController {
 
 	// 판매자 회원가입 유형 선택
 	@RequestMapping("/sellerJoin.do")
-	public String buyerJoin() {
+	public String sellerJoin() {
 		return "seller/sellerJoin";
 	}
 

@@ -16,4 +16,6 @@ public interface ServiceMapper {
 	
 	List<ServiceVO> serviceMaxEnddateList(String s_email);
 	int endService(ServiceVO vo);
+	
+	List<ServiceVO> homeCategorySelect(String ser_cate);
 }

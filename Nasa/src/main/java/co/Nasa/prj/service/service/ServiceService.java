@@ -15,4 +15,6 @@ public interface ServiceService {
 	List<ServiceVO> serviceMaxEnddateList(String s_email);
 	
 	int endService(ServiceVO vo);
+	
+	List<ServiceVO> homeCategorySelect(String ser_cate);
 }
