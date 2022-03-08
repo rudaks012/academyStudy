@@ -39,6 +39,7 @@ public class PagingDTO {
 		if(this.pageNum == 0) {
 			this.pageNum = 1;
 		}
+		
 		this.amount= getAmount();
 		this.total=total;
 		
