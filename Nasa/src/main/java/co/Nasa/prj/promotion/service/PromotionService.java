@@ -7,4 +7,5 @@ import co.Nasa.prj.comm.VO.PromotionVO;
 public interface PromotionService {
 	List<PromotionVO> promotionList();
 	int promotionInsert(PromotionVO vo);
+	String endPromotion(String pro_service);
 }

@@ -54,5 +54,20 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.endService(vo);
 	}
 
+	@Override
+	public ServiceVO serviceSelectMaxEnd(ServiceVO vo) {
+		return map.serviceSelectMaxEnd(vo);
+	}
+
+	@Override
+	public int schEndDateCheck() {
+		return map.schEndDateCheck();
+	}
+
+	@Override
+	public List<ServiceVO> servicePromotion(String s_email) {
+		return map.servicePromotion(s_email);
+	}
+
 
 }

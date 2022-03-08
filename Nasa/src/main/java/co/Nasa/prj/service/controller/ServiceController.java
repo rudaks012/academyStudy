@@ -219,8 +219,13 @@ public class ServiceController {
 	}
 
 	@RequestMapping("/serviceUpdateForm.do")
-	public String serviceUpdateForm(Model model, @Param("ser_code") String ser_code) {
+	public String serviceUpdateForm(Model model, @Param("ser_code") String ser_code, HttpSession session) {
 		model.addAttribute("service", serviceDao.serviceSelect(ser_code));
+		
+		ServiceVO vo = new ServiceVO();
+		vo.setSer_code(ser_code);
+		vo.setS_email((String)session.getAttribute("id"));
+		model.addAttribute("endDate", serviceDao.serviceSelectMaxEnd(vo));
 		System.out.println(serviceDao.serviceSelect(ser_code));
 		return "seller/serviceUpdateForm";
 	}
@@ -457,9 +462,22 @@ public class ServiceController {
 	
 	@ResponseBody
 	@RequestMapping("/endService.do")
-	public String endService(ServiceVO vo) {
-		System.out.println(vo.getSer_reason());
-		System.out.println(vo.getSer_code());
+	public String endService(@RequestParam("ser_code") String ser_code,@RequestParam("ser_reason") String ser_reason,@RequestParam("ser_end") String ser_end ) {
+		ServiceVO vo = new ServiceVO();
+		vo.setSer_code(ser_code);
+		vo.setSer_reason(ser_reason);
+		vo.setSer_end(ser_end);
+		
+		int n = serviceDao.endService(vo);
+		if(n != 1) {
+			return "F";
+		}
 		return "T";
+	}
+	
+	@Scheduled(cron = "0 0 0 * * ?")
+	public void gradeUpgrade() {
+		serviceDao.schEndDateCheck();
+		System.out.println("enddate 스케쥴러 체크");
 	}
 }
