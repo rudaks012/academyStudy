@@ -20,4 +20,12 @@ public class ReportVO {
 	String email; 
 	String gb; //s인지 b인지 구매자판매자 구분
 	int report; //신고횟수
+	
+	int start; // 쿼리에 쓸 start
+	int end; // 위와 같음
+	
+	public void calcStartEnd(int pageNum, int amount) {
+		setEnd(pageNum * amount);
+		setStart(getEnd() - amount + 1);
+	}
 }

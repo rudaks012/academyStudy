@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.UUID;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -148,12 +149,16 @@ public class BuyerController {
 	// 신고내역 페이지로 이동
 	@RequestMapping("/reportHistory.do")
 	public String reportHistory(Model model, HttpSession session, HttpServletResponse response,
-			HttpServletRequest request) {
+			HttpServletRequest request, PagingDTO pagingdto) {
 		ReportVO vo = new ReportVO();
 		vo.setRe_reporter((String) session.getAttribute("id"));
-		List<ReportVO> reportList = reportDao.selectBuyerReportList(vo);
+		//List<ReportVO> reportList = reportDao.selectBuyerReportList(vo);
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<ReportVO> reportList = reportDao.selectPagingBuyerReportList(vo);
+		pagingdto.setTotal(reportDao.countPagingBuyerReport(vo));
 
 		model.addAttribute("reportList", reportList);
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 
 		return "buyer/reportHistory";
 	}
@@ -161,7 +166,7 @@ public class BuyerController {
 	// 구매내역 페이지로 이동
 	@RequestMapping("/buyHistory.do")
 	public String buyHistory(Model model, HttpSession session, HttpServletResponse response,
-			HttpServletRequest request) {
+			HttpServletRequest request, PagingDTO pagingdto) {
 		BuyerVO buyervo = new BuyerVO();
 		buyervo.setB_email((String) session.getAttribute("id"));
 		buyervo = buyerDao.selectBuyer(buyervo);
@@ -169,8 +174,13 @@ public class BuyerController {
 
 		PaymentVO paymentvo = new PaymentVO();
 		paymentvo.setB_email((String) session.getAttribute("id"));
-		List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
+		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
+		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<PaymentVO> paymentList = paymentDao.selectPagingBuyerPaymentList(paymentvo);
+		pagingdto.setTotal(paymentDao.countPagingBuyerPayment(paymentvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("address", "buyHistory.do");
 		int paysum = 0;
 		int upgrademoney = 0;
 		for (int i = 0; i < paymentList.size(); i++) {
@@ -232,6 +242,11 @@ public class BuyerController {
 
 		return "buyer/buyHistory";
 	}
+	
+	@RequestMapping("/monthSearch.do")
+	public String monthSearch() {
+		return "";
+	}
 
 	// 보유 쿠폰 페이지로 이동
 	@RequestMapping("/buyerCoupons.do")
@@ -253,10 +268,6 @@ public class BuyerController {
 	@RequestMapping("/wishlist.do")
 	public String wishlist(Model model, HttpSession session, HttpServletResponse response, 
 							HttpServletRequest request, PagingDTO pagingdto) {
-		
-		if(pagingdto.getPageNum() == 0) {
-			pagingdto.setPageNum(1);
-		}
 		WishlistVO wishlistvo = new WishlistVO();
 		wishlistvo.setB_id((String) session.getAttribute("id"));
 		wishlistvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
@@ -267,7 +278,7 @@ public class BuyerController {
 		
 		// pagination
 		pagingdto.setTotal(wishlistDao.countPagingWishlist(wishlistvo));
-		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal()));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		
 		
 		// pagination
@@ -312,17 +323,19 @@ public class BuyerController {
 		BuyerVO voforimg = new BuyerVO();
 		voforimg.setB_email((String) session.getAttribute("id"));
 		voforimg = buyerDao.selectBuyer(voforimg);
-		String beforimg = voforimg.getB_img();
 		
 		String originalFileName = imgupload.getOriginalFilename();
+		String beforimg = voforimg.getB_img();
 		if(originalFileName.equals("")) {
 			vo.setB_img(beforimg);
 		} else {
+			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+			String saveFileName = UUID.randomUUID() + extension;
 			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
-			String savepath = saveurl + originalFileName;
+			String savepath = saveurl + saveFileName;
 			System.out.println(savepath);
 			
-			String b_img = "resources/user/assets/img/profile/" + originalFileName;
+			String b_img = "resources/user/assets/img/profile/" + saveFileName;
 			
 			vo.setB_img(b_img);
 			System.out.println(vo.getB_img());
@@ -430,20 +443,20 @@ public class BuyerController {
 	// 리뷰 페이지로 이동
 	@RequestMapping("/buyerReview.do")
 	public String buyerReview(Model model, HttpSession session, HttpServletResponse response,
-			HttpServletRequest request) {
-		/*
-		 * BuyerVO buyervo = new BuyerVO();
-		 * buyervo.setB_email((String)session.getAttribute("id")); buyervo =
-		 * buyerDao.selectBuyer(buyervo); model.addAttribute("buyerinfo", buyervo);
-		 */
-
+			HttpServletRequest request, PagingDTO pagingdto) {
 		ReviewVO reviewvo = new ReviewVO();
 		reviewvo.setRev_id((String) session.getAttribute("id"));
-		List<ReviewVO> reviewList = reviewDao.buyerSelectReviewList(reviewvo);
+		//List<ReviewVO> reviewList = reviewDao.buyerSelectReviewList(reviewvo);
+		reviewvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<ReviewVO> reviewList = reviewDao.selectPagingReviewList(reviewvo);
 		model.addAttribute("reviewList", reviewList);
 
 		List<Review_CommentVO> rclist = review_commentDao.selectReview_CommentList();
+		System.out.println(rclist);
+		
+		pagingdto.setTotal(reviewDao.countPagingReview(reviewvo));
 		model.addAttribute("rclist", rclist);
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 
 		return "buyer/buyerReview";
 	}

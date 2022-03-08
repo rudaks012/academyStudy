@@ -386,7 +386,14 @@ Remove or comment-out the code block below to see how the browser will fall-back
 			<div class="row justify-content-center">
 				<div class="profile">
 					<div class="profile-image">
-						<img src="${buyerinfo.b_img }" alt="" style="width: 155px; height: 155px;">
+						<c:choose>
+							<c:when test="${empty buyerinfo.b_img }">
+								<img src="resources/user/assets/img/profile/search-default-profile.jpg" alt="" style="width: 155px; height: 155px;">
+							</c:when>
+							<c:otherwise>
+								<img src="${buyerinfo.b_img }" alt="" style="width: 155px; height: 155px;">
+							</c:otherwise>
+						</c:choose>
 					</div>
 				
 					<div class="profile-user-settings">

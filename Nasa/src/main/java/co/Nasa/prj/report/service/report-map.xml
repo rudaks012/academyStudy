@@ -38,6 +38,25 @@
 				#{re_subject},
 				#{filecode}
 			)
-
 	</insert>
+	
+	<select id="selectPagingBuyerReportList" resultType="co.Nasa.prj.comm.VO.ReportVO">
+		SELECT	*
+		FROM	(
+				 SELECT	ROWNUM RN, A.*
+				 FROM	(
+				 		 SELECT	*
+				 		 FROM	REPORT
+				 		 WHERE	RE_REPORTER = #{re_reporter}
+				 		 ORDER BY RE_DATE DESC
+				 ) A
+		)		
+		WHERE	RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id = "countPagingBuyerReport" resultType = "int">
+		SELECT	COUNT(*)
+		FROM	REPORT
+		WHERE	RE_REPORTER = #{re_reporter}
+	</select>
 </mapper>

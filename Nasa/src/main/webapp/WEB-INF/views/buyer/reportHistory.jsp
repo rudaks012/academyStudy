@@ -97,6 +97,28 @@
 									</c:forEach>
 								</tbody>
 							</table>
+							<div class="row justify-content-center mt-10">
+								<nav aria-label="Page navigation example">
+								  <ul class="pagination">
+									  <c:if test="${paging.prev }">
+										  <li class="page-item"><a class="page-link" href="reportHistory.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+									  </c:if>
+									  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+										  <c:choose>
+											  <c:when test="${p == paging.pageNum }">
+												  <li class="page-item"><b class="page-link">${p }</b></li>
+											  </c:when>
+											  <c:when test="${p != paging.pageNum }">
+												  <li class="page-item"><a class="page-link" href="reportHistory.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+											  </c:when>
+										  </c:choose>
+									  </c:forEach>
+									  <c:if test="${paging.next }">
+										  <li class="page-item"><a class="page-link" href="reportHistory.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+									  </c:if>
+								  </ul>
+								</nav>
+							</div>
 						</div>
 					</div>
 				</div>

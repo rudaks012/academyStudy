@@ -20,4 +20,14 @@ public class ReviewVO {
 	String rere_sel_id;
 	String rere_sel_sub;
 	String rere_date;
+	
+	String b_img;
+	
+	int start; // 쿼리에 쓸 start
+	int end; // 위와 같음
+	
+	public void calcStartEnd(int pageNum, int amount) {
+		setEnd(pageNum * amount);
+		setStart(getEnd() - amount + 1);
+	}
 }

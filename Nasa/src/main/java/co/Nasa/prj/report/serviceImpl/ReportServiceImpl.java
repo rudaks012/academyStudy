@@ -35,4 +35,14 @@ public class ReportServiceImpl implements ReportService {
 		return map.insertChattingReport(vo);
 	}
 
+	@Override
+	public List<ReportVO> selectPagingBuyerReportList(ReportVO vo) {
+		return map.selectPagingBuyerReportList(vo);
+	}
+
+	@Override
+	public int countPagingBuyerReport(ReportVO vo) {
+		return map.countPagingBuyerReport(vo);
+	}
+
 }
