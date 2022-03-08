@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.review.service.ReviewMapper;
 import co.Nasa.prj.review.service.ReviewService;
 
+@Repository("reviewDao")
 public class ReviewServiceImpl implements ReviewService {
 	@Autowired ReviewMapper map;
 
@@ -45,6 +47,11 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<ReviewVO> reviewSearch(HashMap<String, String> remap) {
 		return map.reviewSearch(remap);
+	}
+
+	@Override
+	public List<ReviewVO> sellerReviewSelectList(ReviewVO vo) {
+		return map.sellerReviewSelectList(vo);
 	}
 
 	

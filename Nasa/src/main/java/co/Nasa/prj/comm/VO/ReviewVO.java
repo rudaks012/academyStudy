@@ -20,4 +20,6 @@ public class ReviewVO {
 	String rere_sel_id;
 	String rere_sel_sub;
 	String rere_date;
+	
+	String s_email;
 }

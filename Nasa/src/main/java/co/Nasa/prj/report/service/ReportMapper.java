@@ -16,4 +16,6 @@ public interface ReportMapper {
 	
 	//채팅 신고
 	int insertChattingReport(ReportVO vo);
+	
+	int sellerReviewReport(ReportVO vo);
 }

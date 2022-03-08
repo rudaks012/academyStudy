@@ -43,6 +43,12 @@
 .table-primary {
 	background-color: #d5c9ea !important;
 }
+.comments-area .date1{
+    font-size: 14px;
+    color: #999999;
+    margin-bottom: 0;
+    margin-left: 0px;
+}
 </style>
 </head>
 <body>
@@ -110,7 +116,7 @@
 											<tbody>
 												<tr>
 													<th class="align-middle table-primary">서비스 선택</th>
-													<td><select id="reviewChange">
+													<td><select id="reviewChange" onchange="change()">
 															<option value="all">전체</option>
 															<c:forEach items="${serviceList }" var="service">
 																<option value="${service.ser_code }">${service.ser_title }</option>
@@ -125,22 +131,25 @@
 									<br />
 
 									<c:forEach items="${reviewList}" var="review">
-										<div class="comments-area">
+										<div class="comments-area" id="c${review.rev_code }">
 											<div class="comment-list">
 												<div class="single-comment justify-content-between d-flex">
 													<div class="user justify-content-between d-flex">
 														<div class="thumb">
 															<img src="assets/img/comment/comment_1.png" alt="">
 														</div>
-														<div class="desc">
-															<span>${review.rev_ser_name }</span><br> 
+														<div class="desc" id="re${review.rev_code }" >
+															<span class="date1">서비스 : ${review.rev_ser_name }</span><br> 
 															<span>${review.rev_name }</span>
 															<span class="ml-4">평점 : ${review.rev_rate }</span> 
-															<span class="date">${review.rev_date } </span>
-															<p class="comment">${review.rev_sub }</p>
-																<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-rere_code="${rc.rere_code }"
+															<span class="date">${review.rev_date }</span>
+															<p class="comment" >${review.rev_sub }</p>
+																<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-rere_code="${review.rev_code }"
 																	style="cursor: pointer;">신고</span>
-															
+															<c:if test="${empty review.rere_code}">
+																<span class="btn-reply1" data-toggle="modal" data-target="#insertModal" id="b${review.rev_code }" data-insert_code="${review.rev_code }"
+																	style="cursor: pointer;">답댓등록</span>
+															</c:if>		
 														</div>
 													</div>
 													<c:if test="${not empty review.rev_img }">
@@ -149,40 +158,42 @@
 													</c:if>
 												</div>
 											</div>
-											<c:forEach items="${re_comList }" var="re_com">
-												<c:if test="${review.rev_code eq re_com.review_code}">
-													<div class="comment-list left-padding">
+											
+												<c:if test="${not empty review.rere_code}">
+													<div class="comment-list left-padding" id="r${review.rere_code }">
 														<div class="single-comment justify-content-between d-flex">
 															<div class="user justify-content-between d-flex">
 																<div class="thumb">
 																	<img src="assets/img/comment/comment_2.png" alt="">
 																</div>
 																<div class="desc">
-																	<span>${re_com.rere_sel_name }</span> 
-																	<span class="date">${re_com.rere_date }</span>
-																	<p class="comment">${re_com.rere_sel_sub }</p>
+																	<span>${review.rere_sel_name }</span> 
+																	<span class="date">${review.rere_date }</span>
+																	<p class="comment" id="${review.rere_code }">${review.rere_sel_sub }</p>
 																	<span class="btn-reply1" style="cursor: pointer;"
 																		data-toggle="modal" data-target="#updateReviewModal"
-																		data-rvcode="${review.rev_code }"
-																		data-rvsub="${review.rev_sub }" data-rvimg="none">수정</span>
+																		data-rvcode="${review.rere_code }"
+																		data-rvsub="${review.rere_sel_sub }" data-rvimg="none">수정</span>
 																	<span class="btn-reply1" style="cursor: pointer;"
 																data-toggle="modal" data-target="#deleteReviewModal"
-																data-rvcode="rvcode-${review.rev_code }">삭제</span>
+																data-rvcode="rvcode-${review.rere_code }">삭제</span>
 																
 																</div>
 															</div>
 														</div>
 													</div>
 												</c:if>
+												</div>
 											</c:forEach>
 										</div>
-									</c:forEach>
+									
 								</div>
 							</div>
 						</article>
 					</div>
 				</div>
 			</div>
+	
 		</div>
 	</section>
 	<!-- 신고 모달 -->
@@ -226,6 +237,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
+					<input type="hidden" id="del_rerecode">
 					<h5 class="modal-title" id="exampleModalLabel">리뷰 삭제</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -252,29 +264,15 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form method = "post" action = "reviewUpdate.do" enctype="multipart/form-data">
+				<form method = "post" action = "" >
 					<div class="modal-body">
-						<div class="d-flex">
-							<input type="hidden" id="hidden_revcode" name="rev_code">
-                      		<h5 style="font-size:15px; margin-right:10px; margin-top:20px;">평점</h5>
-                      		<select id="rev_rate" name = "rev_rate" style="width:50px;">
-                      			<option value="1">1</option>
-                      			<option value="2">2</option>
-                      			<option value="3">3</option>
-                      			<option value="4">4</option>
-                      			<option value="5">5</option>
-                      		</select>
-                   		</div>
+						<input type="hidden" id="hidden_rerecode">
                    		<h5 style="font-size:15px; margin-top:20px;">내용</h5>
 	              		<textarea id = "modal_rev_sub" name="rev_sub" style="width:100%; height:100px; margin-top:5px" required></textarea>
-	              		<div class = "d-flex">
-		              		<input type="file" id="reviewimg" name="revimg" accept="image/*" style="display:none;">
-		                    <label class="genric-btn primary radius" for="reviewimg" style="margin-top: 7px;">사진 첨부</label>
-		                    <img id="reviewimgpreview" alt="" style="width: 42px; height:42px; margin-left:10px;margin-top: 7px; overflow: hidden; border-color:white;">
-	              		</div>
+	              		
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="genric-btn danger radius">수정</button>
+						<button type="button" id="upbtn" class="genric-btn danger radius" data-dismiss="modal">수정</button>
 						<button class="genric-btn primary radius" data-dismiss="modal">취소</button>
 					</div>
 				</form>
@@ -283,8 +281,40 @@
 	</div>
 	<!-- 리뷰 업데이트 모달 -->
 	
+	
+	
+	<div class="modal fade bd-example-modal-lg" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertReviewModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">답댓 등록</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form method = "post" action = "">
+					<div class="modal-body">
+						<div class="d-flex">
+							<input type="hidden" id="hidden_insertcode" name="rev_code">
+         
+                   		</div>
+                   		<h5 style="font-size:15px; margin-top:20px;">내용</h5>
+	              		<textarea id = "modal_int_sub" name="rev_sub" style="width:100%; height:100px; margin-top:5px" required></textarea>
+	              		
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="revinbtn" class="genric-btn danger radius" data-dismiss="modal">등록</button>
+						<button class="genric-btn primary radius" data-dismiss="modal">취소</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
 	<script>
-		$("#reviewChange").change(function(){
+		function change(){
 			console.log($('.selected').attr('data-value'));
 			var re_code = $('.selected').attr('data-value');
 			if(re_code == 'all'){
@@ -301,7 +331,7 @@
  					$(".comments-area").remove();
   					if(result.length != 0){
   						for(data of result){
-  							var div1= $("<div>").attr('class','comments-area');
+  							var div1= $("<div>").attr('class','comments-area').attr('id', 'c'+data.rev_code);
   							var div2= $("<div>").attr('class','comment-list');
   							var div3= $("<div>").attr('class','single-comment justify-content-between d-flex');
   							var div4= $("<div>").attr('class','user justify-content-between d-flex');
@@ -312,14 +342,14 @@
   							
   							
   							var div6= $("<div>").attr('class','desc');
-  							var span1= $("<span>").html(data.rev_ser_name);
+  							var span1= $("<span>").attr('class','date1').html(data.rev_ser_name);
   							var span2= $("<span>").html(data.rev_name);
   							var span3= $("<span>").attr('class','ml-4').html('평점 : ' + data.rev_rate);
   							var span4= $("<span>").attr('class','date').html(data.rev_date);
   							var p=$("<p>").attr('class','comment').html(data.rev_sub);
   						
   							div3.append(div6.append(span1).append($("<br>")).append(span2).append(span3).append(span4).append(p)
-  							.append('<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-rere_code="${rc.rere_code }" style="cursor: pointer;">신고</span>'));
+  							.append('<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-rere_code="${review.rev_code }" style="cursor: pointer;">신고</span>'));
   							if(data.rev_img != null){
   								div3.append('<img class="revimg" src='+data.rev_img+' style="width: 200px; height: 100px;">');
   							}
@@ -334,11 +364,11 @@
   								var $div5 =$("<div>").attr('class','desc');
   								var $span1 =$("<span>").html(data.rere_sel_name);
   								var $span2 =$("<span>").attr('class','date').html(data.rere_date);
-  								var $p =$("<p>").attr('class','comment').html(data.rere_sel_sub);
+  								var $p =$("<p>").attr('class','comment').attr('id',data.rere_code).html(data.rere_sel_sub);
   								div1.append($div1.append($div2.append($div3.append($div4.append($img)))));
   								$div3.append($div5.append($span1).append($span2).append($p)
-  								.append('<span class="btn-reply1" style="cursor: pointer;" data-toggle="modal" data-target="#updateReviewModal" data-rvcode='+data.rev_code+' data-rvsub='+data.rev_sub+' data-rvimg="none">수정</span>&nbsp;&nbsp;')
-  								.append('<span class="btn-reply1" style="cursor: pointer;" data-toggle="modal" data-target="#deleteReviewModal" data-rvcode="rvcode-'+data.rev_code+'">삭제</span>')
+  								.append('<span class="btn-reply1" style="cursor: pointer;" data-toggle="modal" data-target="#updateReviewModal" data-rvcode='+data.rere_code+' data-rvsub='+data.rere_sel_sub+' data-rvimg="none">수정</span>&nbsp;&nbsp;')
+  								.append('<span class="btn-reply1" style="cursor: pointer;" data-toggle="modal" data-target="#deleteReviewModal" data-rvcode="rvcode-'+data.rere_code+'">삭제</span>')
   								);
   								
   							}
@@ -354,7 +384,157 @@
   				}
 				
 			})
+		}
+		
+		
+		function radiodisabled() {
+			$("#reportSubject").attr("disabled", true);
+			$("#reportSubject").val("");
+		}
+
+		function radioactive() {
+			$("#reportSubject").attr("disabled", false);
+		}
+		
+		function disradio() {
+			$("input:radio[name='reportType']").prop("checked", false);
+			console.log("disradio");
+		}
+		
+		$(document).ready(function () {
+			$("#deleteReviewModal").on("show.bs.modal", function (event) {
+				rvcode = $(event.relatedTarget).data("rvcode");
+			});
+			
+			$("#updateReviewModal").on("show.bs.modal", function (event) {
+				rvcode = $(event.relatedTarget).data("rvcode");
+				rvsub = $(event.relatedTarget).data("rvsub");
+				$("#hidden_rerecode").val(rvcode);
+				$("#modal_rev_sub").val(rvsub);			
+			});
+			
+			$("#reportModal").on("show.bs.modal", function (event) {
+				rere_code = $(event.relatedTarget).data("rere_code");
+			});
+			
+			$("#insertModal").on("show.bs.modal", function (event) {
+				rvcode = $(event.relatedTarget).data("insert_code");
+			});
+		});
+		
+		$("#upbtn").on("click", function(){
+			var rere_code = $("#hidden_rerecode").val();
+			var rere_sub = $("#modal_rev_sub").val();
+			
+			$.ajax({
+				url : "sellerReviewUpdate.do",
+				type: "post",
+				data:{rere_code:rere_code, rere_sub:rere_sub },
+				success: function(result){
+					console.log(result);
+					if(result != ''){
+						alert('수정되었습니다.');
+						$("#upbtn").data('dismiss','modal');
+						document.getElementById(result.rere_code).innerHTML = result.rere_sel_sub;
+						
+					}
+				}
+			})
 		})
+		
+		function deleteReview() {
+			var rere_code = rvcode.substr(7);
+			var code  = 'r'+rvcode.substr(7);
+			var insert = 're'+rvcode.substr(7);
+			$.ajax({
+				url:"deleteReviewComment.do",
+				type:"post",
+				data:{rere_code:rere_code},
+				success: function(result) {
+					if(result){
+						alert("삭제되었습니다.");	
+						 document.getElementById(code).remove();
+						 /*let re = document.getElementById(insert);
+						let span = document.createElement('span');
+						span.innerHTML = '<span class="btn-reply1" data-toggle="modal" data-target="#insertModal" id="b'+rvcode.substr(7)+'" data-insert_code="'+rvcode.substr(7)+'" style="cursor: pointer;">답댓등록</span>';
+						re.append(span); */
+						 change();
+					}
+				},
+				error: function() {
+					alert("에러");
+				}
+			})  
+		}
+		
+		function reportReview() {
+			console.log(rere_code);
+			var re_type = $('input[name="reportType"]:checked').val();
+			console.log(re_type);
+			var re_subject = $("#reportSubject").val();
+			
+			console.log(re_type);
+			console.log(re_subject);
+			
+			 $.ajax({
+				url: "sellerReviewReport.do",
+				type:"post",
+				data:{rere_code : rere_code,
+					re_type : re_type,
+					re_subject : re_subject},
+				success: function() {
+					alert("신고되었습니다.");
+				},
+				error: function() {
+					console.log("신고에러")
+				}
+			}) 
+		}
+		
+		$("#revinbtn").on("click", function(e){
+			console.log(rvcode);
+			rere_sel_sub = $("#modal_int_sub").val();
+			console.log(rere_sel_sub);
+			var code  = 'c'+rvcode;
+			
+			
+		   $.ajax({
+			url: "sellerReviewInsert.do",
+			type:"post",
+			dataType: "json",
+			data:{rvcode : rvcode,
+				rere_sel_sub : rere_sel_sub},
+			success: function(data) {
+				alert("등록되었습니다.");
+				/* console.log(data);
+				var btn  = 'b'+rvcode;
+				document.getElementById(btn).remove();
+				
+				var com = document.getElementById(code);
+				
+				var $div1 = $("<div>").attr('class','comment-list left-padding');
+				var $div2 =$("<div>").attr('class','single-comment justify-content-between d-flex');
+				var $div3 =$("<div>").attr('class','user justify-content-between d-flex');
+				var $div4 =$("<div>").attr('class','thumb');
+				var $img =$("<img>").attr('src','assets/img/comment/comment_2.png');
+				var $div5 =$("<div>").attr('class','desc');
+				var $span1 =$("<span>").html(data.rere_sel_name);
+				var $span2 =$("<span>").attr('class','date').html(data.rere_date);
+				var $p =$("<p>").attr('class','comment').attr('id',data.rere_code).html(data.rere_sel_sub);
+				com.append($div1.append($div2.append($div3.append($div4.append($img)))));
+				$div3.append($div5.append($span1).append($span2).append($p)
+				.append('<span class="btn-reply1" style="cursor: pointer;" data-toggle="modal" data-target="#updateReviewModal" data-rvcode='+data.rere_code+' data-rvsub='+data.rere_sel_sub+' data-rvimg="none">수정</span>&nbsp;&nbsp;')
+				.append('<span class="btn-reply1" style="cursor: pointer;" data-toggle="modal" data-target="#deleteReviewModal" data-rvcode="rvcode-'+data.rere_code+'">삭제</span>')
+				); */
+				 change();
+				
+			},
+			error: function() {
+				console.log("에러")
+			}
+		})     
+	})
+		
 	</script>
 </body>
 </html>

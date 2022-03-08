@@ -16,4 +16,7 @@ public interface ReportService {
 	
 	//채팅 신고
 	int insertChattingReport(ReportVO vo);
+	
+	// 판매자가 구매자 댓글 신고
+	int sellerReviewReport(ReportVO vo);
 }

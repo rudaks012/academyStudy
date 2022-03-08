@@ -35,4 +35,9 @@ public class ReportServiceImpl implements ReportService {
 		return map.insertChattingReport(vo);
 	}
 
+	@Override
+	public int sellerReviewReport(ReportVO vo) {
+		return map.sellerReviewReport(vo);
+	}
+
 }
