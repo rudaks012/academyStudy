@@ -44,9 +44,15 @@ public class ServiceController {
 	@Autowired
 	private PaymentService paymentDao;
 	
+	@RequestMapping("/homeCategory.do")
+	public String homeCategory(Model model, @Param("ser_cate") String ser_cate) {
+		model.addAttribute("homecatelist", serviceDao.homeCategorySelect(ser_cate));
+		return "user/homeCategory";
+	}
+	
 	@RequestMapping("/sellerService.do")
 	public String sellerService(Model model, HttpSession session) {
-		String s_email = (String)session.getAttribute("id");
+		String s_email = (String) session.getAttribute("id");
 		model.addAttribute("serviceList", serviceDao.serviceMaxEnddateList(s_email));
 		return "seller/sellerService";
 	}
@@ -219,8 +225,13 @@ public class ServiceController {
 	}
 
 	@RequestMapping("/serviceUpdateForm.do")
-	public String serviceUpdateForm(Model model, @Param("ser_code") String ser_code) {
+	public String serviceUpdateForm(Model model, @Param("ser_code") String ser_code, HttpSession session) {
 		model.addAttribute("service", serviceDao.serviceSelect(ser_code));
+		
+		ServiceVO vo = new ServiceVO();
+		vo.setSer_code(ser_code);
+		vo.setS_email((String)session.getAttribute("id"));
+		model.addAttribute("endDate", serviceDao.serviceSelectMaxEnd(vo));
 		System.out.println(serviceDao.serviceSelect(ser_code));
 		return "seller/serviceUpdateForm";
 	}
@@ -427,39 +438,52 @@ public class ServiceController {
 		}
 		return "OK";
 	}
-	
-	// 서비스 전체 리스트 조회	
+
+	// 서비스 전체 리스트 조회
 	@RequestMapping("/searchResult.do")
 	public String searchResult(Model model) {
 		model.addAttribute("searchList", serviceDao.searchListAll());
 		return "user/searchResult";
 	}
-	
+
 	@RequestMapping("/serviceDetail.do")
 	public String sellerDetail(Model model, @RequestParam("ser_code") String ser_code) {
 		ServiceVO vo = new ServiceVO();
 		vo = serviceDao.serviceSelect(ser_code);
-		System.out.println("++++++++++++"+vo);
+		System.out.println("++++++++++++" + vo);
 		model.addAttribute("detailS", serviceDao.serviceSelect(ser_code));
-		
+
 		CategoryVO catevo = new CategoryVO();
 		catevo.setCat_no(vo.getSer_cate());
 		model.addAttribute("cate", categoryDao.selectCategory(catevo));
-		
+
 		SubCategoryVO subcatevo = new SubCategoryVO();
 		subcatevo.setSub_no(vo.getSer_sub_cate());
 		model.addAttribute("subcate", subCategoryDao.selectSub_category(subcatevo));
-		
+
 		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(vo.getS_email()));
-		
+
 		return "seller/serviceDetail";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/endService.do")
-	public String endService(ServiceVO vo) {
-		System.out.println(vo.getSer_reason());
-		System.out.println(vo.getSer_code());
+	public String endService(@RequestParam("ser_code") String ser_code,@RequestParam("ser_reason") String ser_reason,@RequestParam("ser_end") String ser_end ) {
+		ServiceVO vo = new ServiceVO();
+		vo.setSer_code(ser_code);
+		vo.setSer_reason(ser_reason);
+		vo.setSer_end(ser_end);
+		
+		int n = serviceDao.endService(vo);
+		if(n != 1) {
+			return "F";
+		}
 		return "T";
+	}
+	
+	@Scheduled(cron = "0 0 0 * * ?")
+	public void gradeUpgrade() {
+		serviceDao.schEndDateCheck();
+		System.out.println("enddate 스케쥴러 체크");
 	}
 }

@@ -20,4 +20,9 @@ public class PowerServiceServiceImpl implements PowerServiceService {
 		return map.PowerServiceList();
 	}
 
+	@Override
+	public String endPower(String ser_code) {
+		return map.endPower(ser_code);
+	}
+
 }

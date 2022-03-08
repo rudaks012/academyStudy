@@ -6,4 +6,11 @@
 		SELECT * FROM V_POWER_LIST
 	</select>
 	
+	<select id="endPower" resultType="String">
+		<![CDATA[
+		SELECT MAX(POWER_END) 
+		FROM POWERSERVICE 
+		WHERE SER_CODE = #{ser_code} 
+		AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < POWER_END ]]>
+	</select>
 </mapper>

@@ -43,7 +43,11 @@
 	height: 50px;
 	font-size: 12px;
 }
-
+.endservtb td{
+	width: 180px;
+	height: 50px;
+	font-size: 12px;
+}
 .powerbtn, .modal-header {
 	background-color: #d5c9ea  !important;
 }
@@ -121,6 +125,10 @@ input[type=date] {
 .genric-btn.danger-border:hover{
 	background-color : #d5c9ea !important;
 	color: white;
+}
+.pl-md-5, .px-md-5{
+	padding-left : 2rem!important;
+	padding-right:2rem!important;
 }
 </style>
 </head>
@@ -209,6 +217,10 @@ input[type=date] {
 														role="tab" aria-controls="nav-info" aria-selected="false">종료된
 														서비스</a> <a
 														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+														id="nav-end-tab" data-toggle="tab" href="#nav-end"
+														role="tab" aria-controls="nav-end" aria-selected="false">종료예정
+														서비스</a> <a
+														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
 														id="nav-review-tab" data-toggle="tab" href="#nav-review"
 														role="tab" aria-controls="nav-review"
 														aria-selected="false">파워서비스</a>
@@ -223,7 +235,7 @@ input[type=date] {
 																<div class="row">
 																
 																<c:forEach items="${serviceList }" var="service">
-																<c:if test="${service.ser_status eq 'N'}">
+																<c:if test="${service.ser_status eq 'N' && empty service.ser_end}">
 																	<div class="col-lg-6" >
 																		<div class="single-listing mb-30">
 																			<div class="list-img">
@@ -242,9 +254,46 @@ input[type=date] {
 																						</li>
 																						<li>
 																							<button type="button" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal" 
-																							data-sercode="${service.ser_code }" data-sertitle="${service.ser_title }" data-end="${service.pay_enddate }">종료</button>
+																							data-sercode="${service.ser_code }" data-sertitle="${service.ser_title }"  data-end="${service.pay_enddate }">종료</button>
 																							
 																						</li>
+																					</ul>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</c:if>
+																</c:forEach>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="tab-pane fade show" id="nav-end" role="tabpanel" aria-labelledby="nav-end-tab">
+													<div class="row">
+														<div class="listing-details-area">
+															<div class="container">
+																<div class="row">
+																	
+																<c:forEach items="${serviceList }" var="service">
+																<c:if test="${service.ser_status eq 'N' && !empty service.ser_end}">
+																	<div class="col-lg-6" >
+																		<div class="single-listing mb-30">
+																			<div class="list-img">
+																				<img src="fileupload/${service.ser_img }" id="prvimg" alt="">
+																			</div>
+																			<div class="list-caption">
+																				<h3>
+																					<a href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
+																				</h3>
+																				<div>번호 : s${service.ser_code }</div>
+																		
+																				<div class="list-footer" style="display: block;">
+																					<ul>
+																						<li style="margin-left: 238px;">
+																							<button type="button" onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'" class="genric-btn danger-border circle">수정</button>
+																						</li>
+																						
 																					</ul>
 																				</div>
 																			</div>
@@ -401,14 +450,22 @@ input[type=date] {
 
 					<p class="endp">서비스명(웹개발1)을 종료하시겠습니까?</p>
 
-					<table class="powertb">
+					<table class="endservtb">
 						<tr>
 							<td>서비스종료사유</td>
 							<td><textarea cols="30" rows="3" id="ser_reason"></textarea></td>
 						</tr>
 						<tr>
 							<td>의뢰 종료 예정 날짜</td>
-							<td><input type="date" id="ser_end" value="2022-02-12" disabled></td>
+							<td><input type="text" id="ser_end"  disabled></td>
+						</tr>
+						<tr>
+							<td>프로모션 종료 예정 날짜</td>
+							<td><input type="text" id="ser_proend" disabled></td>
+						</tr>
+						<tr>
+							<td>파워서비스 종료 예정 날짜</td>
+							<td><input type="text" id="ser_powerend"  disabled></td>
 						</tr>
 						<tr>
 							<td>희망 종료일</td>
@@ -419,7 +476,7 @@ input[type=date] {
 				</div>
 				<div class="modal-footer">
 					<a href="#" class="genric-btn primary  radius powerbtn" id="endbtn"
-						data-toggle="modal" data-dismiss="modal">확인</a> <a href="#"
+						data-toggle="modal" >확인</a> <a href="#"
 						class="genric-btn primary  radius powerbtn" data-dismiss="modal">취소</a>
 				</div>
 			</div>
@@ -570,17 +627,64 @@ input[type=date] {
 		$(document).ready(function () {
 			
 			$("#endModal").on("show.bs.modal", function (event) {
-			
+				
+				sercode = $(event.relatedTarget).data("sercode");
+				sertitle = $(event.relatedTarget).data("sertitle");
+				serend = $(event.relatedTarget).data("end");
+				
+				$.ajax({
+					url: "endPromotion.do",
+	  				dataType: "text",
+	  				type:"post",
+	  				data: {sercode: sercode},
+	  				success: function (result){
+	  					console.log(result);
+	  					if(result == ''){
+	  						$("#ser_proend").val('-');
+	  					}else{
+		  					$("#ser_proend").val(result);  						
+	  					}
+	  				},error: function(err){
+	  					console.log(err);
+	  				}
+				}) 
+				
+				$.ajax({
+					url: "endPower.do",
+	  				dataType: "text",
+	  				type:"post",
+	  				data: {sercode: sercode},
+	  				success: function (result){
+	  					console.log(result);
+	  					if(result == ''){
+	  						$("#ser_powerend").val('-');
+	  					}else{
+		  					$("#ser_powerend").val(result);	  						
+	  					}
+	  				},error: function(err){
+	  					console.log(err);
+	  				}
+				})   
+			   
 				var reason = document.getElementById("ser_reason");
 				reason.value = '';
 				var end = document.getElementById("ser_cal");
 				end.value = '';
 				
-				sercode = $(event.relatedTarget).data("sercode");
-				sertitle = $(event.relatedTarget).data("sertitle");
-				serend = $(event.relatedTarget).data("end");
+				
 				if(serend.substr(0,10) != ''){
 					var today = new Date(serend.substr(0,10));
+					today.setMonth(today.getMonth() + 1);
+					today.setDate(today.getDate() + 1); 
+	
+					var year = today.getFullYear();
+					var month = (today.getMonth() < 10 ? '0' : '')+today.getMonth();
+					var day = (today.getDate() < 10 ? '0' : '')+today.getDate();
+					date = year+ '-' + month + '-' + day
+					console.log(date);
+					$("#ser_cal").attr('min', date);
+				}else{
+					var today = new Date();
 					today.setMonth(today.getMonth() + 1);
 					today.setDate(today.getDate() + 1); 
 	
@@ -599,18 +703,32 @@ input[type=date] {
 		});
 		
 		$("#endbtn").on("click", function(){
-			ser_code = $(".endp").attr('id');
-			ser_reason = $("#ser_reason").text();
-			
+			let ser_code = $(".endp").attr('id');
+			let ser_reason = $("#ser_reason").val();
+			let ser_end = $("#ser_cal").val();
+
+			if(ser_reason == ''){
+				alert('종료사유를 작성해주세요.');
+				$("#ser_reason").focus();
+				return;
+			}else if(ser_end == ''){
+				alert('희망 종료일자를 선택해주세요.');
+				return;
+			}
 			$.ajax({
 				url: "endService.do",
-  				dataType: "json",
+  				dataType: "text",
   				type:"post",
-  				data: {ser_code: ser_code,ser_reason: ser_reason },
+  				data: {ser_code: ser_code, ser_reason: ser_reason, ser_end: ser_end },
   				success: function (result){
-  					
+  					if(result == "T"){
+  						alert('종료 예약되었습니다.');
+  						$("#endbtn").data('dismiss','modal');
+  					}else{
+  						return;
+  					}
   				}
-			})
+			}) 
 		})
 	</script>
 </body>

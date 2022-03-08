@@ -117,10 +117,14 @@ public class HomeController {
 	//채팅 결제
 	@RequestMapping("/chatpayment.do")
 	@ResponseBody
-	public int chatpayment(@RequestBody PaymentVO vo ) {
+	public int chatpayment(@RequestBody PaymentVO vo,HttpSession session) {
+
+		vo.setB_email((String) session.getAttribute("id"));
 		System.out.println("vo찍어본다||||||||||||||||||||||||||"+vo);
+		
 		int res = paymentDao.insertchatpayment(vo);
 		if(res == 1) {
+			System.out.println("성공적으로 인설트됨!!!!!!!!!");
 			
 		}
 		

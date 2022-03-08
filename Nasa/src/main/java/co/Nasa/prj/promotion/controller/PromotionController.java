@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.Nasa.prj.comm.VO.PromotionVO;
@@ -29,8 +30,8 @@ public class PromotionController {
 	}
 	
 	@RequestMapping("/promotionInsert.do")
-	public String promotionInsert(Model model) {
-		model.addAttribute("serviceList",serviceDao.serviceList());
+	public String promotionInsert(Model model, HttpSession session) {
+		model.addAttribute("serviceList",serviceDao.servicePromotion((String)session.getAttribute("id")));
 		return "seller/promotionInsert";
 	}
 	
@@ -55,6 +56,14 @@ public class PromotionController {
 			return "FAIL";
 		}
 		return "OK";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/endPromotion.do")
+	public String endPromotion(@RequestParam("sercode") String pro_service) {
+		String enddate = promotionDao.endPromotion(pro_service);
+		System.out.println(enddate);
+		return enddate;
 	}
 
 }

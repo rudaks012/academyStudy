@@ -15,4 +15,12 @@
 	from promotion p, service s 
 	where pro_service = ser_code
 </select>
+
+<select id="endPromotion" resultType="co.Nasa.prj.comm.VO.PromotionVO">
+	<![CDATA[
+	SELECT MAX(PRO_END) 
+	FROM PROMOTION 
+	WHERE PRO_SERVICE = #{pro_service}
+	AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END]]>
+</select>
 </mapper>

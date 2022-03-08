@@ -24,4 +24,9 @@ public class PromotionServiceImpl implements PromotionService {
 		return map.promotionList();
 	}
 
+	@Override
+	public String endPromotion(String pro_service) {
+		return map.endPromotion(pro_service);
+	}
+
 }

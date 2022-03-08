@@ -21,13 +21,16 @@ import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.SellerVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.seller.service.SellerService;
+import co.Nasa.prj.service.service.ServiceService;
 
 @Controller
 public class SellerController {
 
 	@Autowired
 	SellerService sellerDAO;
-
+	@Autowired
+	ServiceService serviceDao;
+	
 	@RequestMapping("/goSellerMypage.do")
 	public String goSellerMypage() {
 		return "seller/sellerMypage";
@@ -35,13 +38,15 @@ public class SellerController {
 
 	
 	@RequestMapping("/sellerSales.do")
-	public String sellerSales() {
+	public String sellerSales(Model model, HttpSession session) {
+		model.addAttribute("serviceList", serviceDao.serviceSelectList((String)session.getAttribute("id")));
+		model.addAttribute("seller", sellerDAO.SellerSelect((String)session.getAttribute("id")));
 		return "seller/sellerSales";
 	}
 
 	// 판매자 회원가입 유형 선택
 	@RequestMapping("/sellerJoin.do")
-	public String buyerJoin() {
+	public String sellerJoin() {
 		return "seller/sellerJoin";
 	}
 
