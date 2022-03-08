@@ -33,10 +33,6 @@
 	WHERE SER_CODE = #{ser_code}
 </update>
 
-<select id="searchListAll" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT * FROM V_SEARCH_LIST
-</select>
-
 <select id="serviceSelectList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
 	SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email}
 </select>
@@ -75,7 +71,19 @@
   </select>
   
 <select id="homeCategorySelect" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT * FROM SERVICE WHERE ser_cate = #{ser_cate}
-
+	SELECT * FROM V_SERVICE_LIST WHERE SER_CATE = #{ser_cate}
+	ORDER BY SER_CODE DESC
 </select>
+
+<select id="homeCategorySelectAll" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	SELECT * FROM V_SERVICE_LIST
+	ORDER BY SER_CODE DESC
+	
+</select>
+
+<select id="bestServiceList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	SELECT * FROM V_SERVICE_LIST
+	ORDER BY REVIEWCOUNT DESC
+</select>
+
 </mapper>

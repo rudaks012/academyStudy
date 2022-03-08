@@ -18,4 +18,8 @@ public interface SellerMapper {
 	
 	//seller profile모든정보수정
 	int SellerProfileUpdate(SellerVO vo);
+	
+	//채팅 셀러 조회
+	public SellerVO chatsellerselect(SellerVO vo);
+	
 }

@@ -56,5 +56,27 @@
 		WHERE s.s_email = #{s_email} and s.ser_code = scode and scode = #{scode}
 	</select>
 	
+
 	
+
+	<select id = "selectPagingReviewList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
+		SELECT	*
+		FROM	(
+				 SELECT	ROWNUM RN, A.*
+				 FROM	(
+				 		 SELECT		R.*, B.B_IMG
+				 		 FROM		REVIEW R, BUYER B
+				 		 WHERE		R.REV_ID = #{rev_id} AND R.REV_ID = B.B_EMAIL
+						 ORDER BY 	R.REV_CODE DESC
+				 ) A
+		)
+		WHERE	RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id = "countPagingReview" resultType = "int">
+		SELECT	COUNT(*)
+		FROM	REVIEW
+		WHERE	REV_ID = #{rev_id}
+	</select>
+
 </mapper>

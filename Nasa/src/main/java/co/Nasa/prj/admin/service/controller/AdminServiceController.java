@@ -12,6 +12,7 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.Nasa.prj.admin.service.AdminAuthorVO;
@@ -37,9 +38,11 @@ public class AdminServiceController {
 	
 	@ResponseBody
 	@PostMapping("/ajaxSelectService.do")
-	public Map<String, Object> ajaxSelectService(AdminAuthorVO vo) {
+	public Map<String, Object> ajaxSelectService(AdminAuthorVO vo, @RequestParam("ser_code")String s_code, @RequestParam("ser_code")String scode) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("serviceInfo",adminServiceDao.detailedService(vo));
+		map.put("totalPay", adminServiceDao.totalPay(s_code));
+		map.put("totalReview", adminServiceDao.totalReview(scode));
 		return map;
 	}
 	@RequestMapping("/manage_powerService.do")

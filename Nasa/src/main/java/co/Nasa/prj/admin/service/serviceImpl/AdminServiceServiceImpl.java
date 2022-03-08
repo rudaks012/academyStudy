@@ -31,6 +31,16 @@ public class AdminServiceServiceImpl implements AdminServiceService {
 		// TODO Auto-generated method stub
 		return map.detailedService(vo);
 	}
+	@Override
+	public String totalPay(String code) {
+		// TODO Auto-generated method stub
+		return map.totalPay(code);
+	}
+	@Override
+	public int totalReview(String code) {
+		// TODO Auto-generated method stub
+		return map.totalReview(code);
+	}
 
 	
 }

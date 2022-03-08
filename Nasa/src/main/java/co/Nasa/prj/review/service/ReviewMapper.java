@@ -9,6 +9,12 @@ public interface ReviewMapper {
 	// 구매자 리뷰 리스트 조회
 	public List<ReviewVO> buyerSelectReviewList(ReviewVO vo);
 	
+	// 구매자 리뷰 페이징 단위 조회
+	public List<ReviewVO> selectPagingReviewList(ReviewVO vo);
+	
+	// total count (review)
+	int countPagingReview(ReviewVO vo);
+	
 	// 리뷰 하나 조회
 	public ReviewVO selectReview(ReviewVO vo);
 	

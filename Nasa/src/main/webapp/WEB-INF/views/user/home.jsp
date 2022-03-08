@@ -22,6 +22,9 @@
            border-radius: 70%;
            overflow: hidden;
        }
+       .card-body {
+           cursor:pointer;
+       }
    </style>
 </head>
 <body>
@@ -107,34 +110,34 @@
             <div class="col-lg-12">
                 <div class="row d-flex justify-content-between mx-5" style="margin-top: 30px;">
                     <div class="cardmain" >
-                        <div class="card-body">
+                        <div class="card-body" onclick="location.href='homeCategory.do?ser_cate=CAT1'">
                         	<div>
-                                <a href="homeCategory.do?ser_cate=CAT1"><img src="resources/user/assets/img/maincate/app.png" alt="" class="cardimg"></a> 
+                                <img src="resources/user/assets/img/maincate/app.png" alt="" class="cardimg">
                             </div>
                             <br>                      
                             <div class="cardcate cat-cap"><p>앱 개발</p></div>
                         </div>
                     </div>
                     <div class="cardmain">
-                        <div class="card-body">
+                        <div class="card-body" onclick="location.href='homeCategory.do?ser_cate=CAT2'">
                         	<div>
-                                <img src="resources/user/assets/img/maincate/web.png" alt="" class="cardimg"> 
+                        		<img src="resources/user/assets/img/maincate/web.png" alt="" class="cardimg">
                             </div>
                             <br>
                             <div class="cardcate cat-cap"><p>웹 개발</p></div>
                         </div>
                     </div>
                     <div class="cardmain">
-                        <div class="card-body">
+                        <div class="card-body" onclick="location.href='homeCategory.do?ser_cate=CAT3'">
                         	<div>
-                                <img src="resources/user/assets/img/maincate/game.png" alt="" class="cardimg"> 
+                                <img src="resources/user/assets/img/maincate/game.png" alt="" class="cardimg">
                             </div>
                             <br>
                             <div class="cardcate cat-cap"><p>게임 개발</p></div>
                         </div>
                     </div>
                     <div class="cardmain">
-                        <div class="card-body">
+                        <div class="card-body" onclick="location.href='homeCategory.do?ser_cate=CAT4'">
                         	<div>
                                 <img src="resources/user/assets/img/maincate/secu.png" alt="" class="cardimg"> 
                             </div>
@@ -143,7 +146,7 @@
                         </div>
                     </div>
                     <div class="cardmain">
-                        <div class="card-body">
+                        <div class="card-body" onclick="location.href='homeCategory.do?ser_cate=CAT5'">
                         	<div>
                                 <img src="resources/user/assets/img/maincate/support.png" alt="" class="cardimg"> 
                             </div>
@@ -152,7 +155,7 @@
                         </div>
                     </div>
                     <div class="cardmain">
-                        <div class="card-body">
+                        <div class="card-body" onclick="location.href='homeCategory.do?ser_cate=CAT6'">
                         	<div>
                                 <img src="resources/user/assets/img/maincate/project.png" alt="" class="cardimg"> 
                             </div>
@@ -282,9 +285,8 @@
     </div>
 </div>
 <!-- peoples-visit End -->
-<!-- Popular Locations End -->
-<div class="popular-location section" style="margin-top: 50px;">
-    <div class="container">
+<div class="listing-details-area">
+    <div class="container">                
         <div class="row">
             <div class="col-lg-12">
                 <!-- Section Tittle -->
@@ -296,18 +298,26 @@
         </div>
         <div class="row">
             <c:forEach items="${bestservicelist }" var="bestservice" begin="0" end="2" step="1">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-location mb-30">
-                        <div class="location-img">
-                            <img src="fileupload/${bestservice.ser_img }" alt="">                            
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-listing mb-30">
+                        <div class="list-img">
+                            <img src="fileupload/${bestservice.ser_img }" alt="" style="width: 370px; height: 258px;">
+                            <!-- <span>Open</span> -->
                         </div>
-                        <div class="location-details">
-                            <p>${bestservice.ser_title }</p>
-                            <a href="#" class="location-btn">상세보기</a>
+                        <div class="list-caption">
+                            <span>Open</span>
+                             <h3><a href="serviceDetail.do?ser_code=${bestservice.ser_code }">${bestservice.ser_title }</a></h3>
+                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${bestservice.ser_sub }</p>
+                            <div class="list-footer">
+                                <ul>
+                                    <li>${bestservice.category }</li>
+                                    <li>${bestservice.sub_category }</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>            
+                </div>                
+            </c:forEach>
         </div>
     </div>
 </div>

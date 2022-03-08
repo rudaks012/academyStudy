@@ -38,9 +38,9 @@
 				#{re_subject},
 				#{filecode}
 			)
-
 	</insert>
 	
+
 	<insert id="sellerReviewReport" parameterType="co.Nasa.prj.comm.VO.ReportVO">
 		INSERT INTO REPORT(RE_CODE,RE_TYPE, RE_REPORTER, RE_RES, RE_DATE, RE_SUBJECT ) 
 		VALUES((SELECT NVL(MAX(TO_NUMBER(RE_CODE)), 0)+1 FROM REPORT),
@@ -50,4 +50,25 @@
 			sysdate,
 			#{re_subject})
 	</insert>
+
+	<select id="selectPagingBuyerReportList" resultType="co.Nasa.prj.comm.VO.ReportVO">
+		SELECT	*
+		FROM	(
+				 SELECT	ROWNUM RN, A.*
+				 FROM	(
+				 		 SELECT	*
+				 		 FROM	REPORT
+				 		 WHERE	RE_REPORTER = #{re_reporter}
+				 		 ORDER BY RE_DATE DESC
+				 ) A
+		)		
+		WHERE	RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id = "countPagingBuyerReport" resultType = "int">
+		SELECT	COUNT(*)
+		FROM	REPORT
+		WHERE	RE_REPORTER = #{re_reporter}
+	</select>
+
 </mapper>

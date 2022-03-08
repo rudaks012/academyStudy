@@ -112,4 +112,7 @@ public class AdminAuthorVO {
 	
 	String sub_no;
 	String sub_name;
+	
+	String total_price;
+	
 }

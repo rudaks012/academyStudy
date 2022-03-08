@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.Nasa.prj.admin.service.AdminServiceMapper">
-
+	<sql id="serviceCriteria">
+		<if test= "s_email!=null and !s_email.equals('')">
+	  	    AND s.s_email like '%'||#{s_email}||'%'
+	  	 </if>
+	  	 
+	  	 <if test="ser_title!=null and !ser_title.equals('')">
+	  	     AND v.ser_title like '%'||#{ser_title}||'%'
+	  	</if>
+	  	
+	  	<if test="ser_line!=null and !ser_line.equals('')">
+	  	     AND v.ser_line = #{ser_line}
+	  	</if>
+	  	
+	  	<if test="ser_team!=null and !ser_team.equals('')">
+	  	     AND v.ser_team = #{ser_team}
+	  	</if>
+	  	
+	  	<if test="s_name!=null and !s_name.equals('')">
+	  	     AND s.s_name like '%'||#{s_name}||'%'
+	  	</if>
+	  	
+	  	<if test="cat_no!=null and !cat_no.equals('')">
+	  	     AND v.cat_no = #{cat_no}
+	  	</if>
+	  	
+	  	<if test="sub_no!=null and !sub_no.equals('')">
+	  	     AND v.sub_no = #{sub_no}
+	  	</if>
+	  	
+	 
+	
+	</sql>
 	<select id="getServiceListWithPaging" resultType="co.Nasa.prj.comm.VO.ServiceVO">
 	    <![CDATA[
-		  SELECT *
-			FROM 
-			    (
-			    select rownum rn, s.*
-			    from service s
-			    WHERE ROWNUM <=#{pageNum} * #{amount}
-			    )
-		
-		  WHERE rn>(#{pageNum}-1)*#{amount}
+		  SELECT * FROM 
+          ( select rownum rn, A.*
+            FROM (SELECT v.*,s.s_name,s.s_nickname,s.s_tel,s.s_author
+                    from vw_selectservice v join seller s 
+                    on(v.s_email=s.s_email)           
+            order by ser_code desc) A
+            where rownum <= #{pageNum} * #{amount} 
+		]]>	    
+		    <include refid="serviceCriteria"></include> 
+		<![CDATA[
+			        ) 
+    		WHERE rn>(#{pageNum}-1)*#{amount}
 		]]>
 	</select>
 	
@@ -22,6 +56,18 @@
 	
 	<select id="detailedService" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
 	   SELECT * FROM vw_selectservice WHERE SER_CODE =#{ser_code}
+	</select>
+	
+	<select id="totalPay" resultType="String">
+		SELECT to_char(sum(pay_price),'fm999,999,999,999') total_price
+		FROM PAYMENT
+		WHERE s_code=#{s_code}
+	</select>
+	
+	<select id="totalReview" resultType="int">
+		SELECT COUNT(*)
+		FROM REVIEW
+		WHERE scode=#{scode}
 	</select>
 
 

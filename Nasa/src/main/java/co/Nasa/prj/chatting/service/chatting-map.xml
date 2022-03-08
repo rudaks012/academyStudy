@@ -88,5 +88,9 @@
 	where sentid = #{sentid}
     and unreadcount = 1
 	</select>
+	
+	<select id="" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	SELECT * FROM SERVICE WHERE S_CODE ={sno}
+	</select>
 
 </mapper>

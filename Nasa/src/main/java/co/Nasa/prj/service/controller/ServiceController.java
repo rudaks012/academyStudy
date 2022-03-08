@@ -50,6 +50,12 @@ public class ServiceController {
 		return "user/homeCategory";
 	}
 	
+	@RequestMapping("/homeCategoryAll.do")
+	public String homeCategoryAll(Model model) {
+		model.addAttribute("allservicelist", serviceDao.homeCategorySelectAll());
+		return "user/homeCategoryAll";
+	}
+	
 	@RequestMapping("/sellerService.do")
 	public String sellerService(Model model, HttpSession session) {
 		String s_email = (String) session.getAttribute("id");
@@ -437,14 +443,7 @@ public class ServiceController {
 			return "FAIL";
 		}
 		return "OK";
-	}
-
-	// 서비스 전체 리스트 조회
-	@RequestMapping("/searchResult.do")
-	public String searchResult(Model model) {
-		model.addAttribute("searchList", serviceDao.searchListAll());
-		return "user/searchResult";
-	}
+	}	
 
 	@RequestMapping("/serviceDetail.do")
 	public String sellerDetail(Model model, @RequestParam("ser_code") String ser_code) {

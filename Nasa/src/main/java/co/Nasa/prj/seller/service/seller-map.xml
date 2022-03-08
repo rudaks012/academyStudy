@@ -43,4 +43,15 @@
 		S_ME = #{s_me}, S_SCHOOL = #{s_school}, S_MAJOR = #{s_major}, S_GRAD = #{s_grad}, S_CARRER = #{s_carrer}
 		WHERE s_email = #{s_email}
 	</update>
+	
+	<select id="chatsellerselect" resultType="co.Nasa.prj.comm.VO.SellerVO" parameterType="co.Nasa.prj.comm.VO.SellerVO">
+		SELECT S_EMAIL ,S_NICKNAME
+		FROM SELLER
+		WHERE S_EMAIL = #{s_email}
+		UNION all
+		SELECT B_EMAIL AS S_EMAIL,B_NICKNAME AS S_NICKNAME FROM BUYER
+		WHERE B_EMAIL = #{s_email}
+		
+		
+	</select>
 </mapper>

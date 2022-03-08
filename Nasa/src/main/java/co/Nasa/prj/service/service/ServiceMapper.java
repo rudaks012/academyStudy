@@ -9,12 +9,10 @@ public interface ServiceMapper {
 	int serviceInsert(ServiceVO vo);
 	ServiceVO serviceSelect(String ser_code);
 	int serviceUpdate(ServiceVO vo);
-
-	List<ServiceVO> searchListAll();
-
-	List<ServiceVO> serviceSelectList(String s_email);
 	
+	List<ServiceVO> serviceSelectList(String s_email);
 	List<ServiceVO> serviceMaxEnddateList(String s_email);
+	
 	ServiceVO serviceSelectMaxEnd(ServiceVO vo);
 	
 	int endService(ServiceVO vo);
@@ -25,5 +23,6 @@ public interface ServiceMapper {
 
 	
 	List<ServiceVO> homeCategorySelect(String ser_cate);
-
+	List<ServiceVO> homeCategorySelectAll();
+	List<ServiceVO> bestServiceList();
 }
