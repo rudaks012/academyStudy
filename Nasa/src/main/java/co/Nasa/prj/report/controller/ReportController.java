@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.comm.VO.ReportVO;
+import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.Review_CommentVO;
 import co.Nasa.prj.report.service.ReportMapper;
+import co.Nasa.prj.review.service.ReviewMapper;
+import co.Nasa.prj.review.service.ReviewService;
 import co.Nasa.prj.review_comment.service.Review_CommentMapper;
 
 @Controller
@@ -28,12 +31,13 @@ public class ReportController {
 	private ReportMapper userReportDao;
 	@Autowired
 	private Review_CommentMapper review_commentDao;
+	@Autowired
+	private ReviewMapper reviewDao;
 	
 	@RequestMapping("/sellerReport.do")
 	public String sellerReport(Model model, HttpSession session) {
 		ReportVO vo = new ReportVO();
-		//vo.setRe_reporter((String)session.getAttribute("id"));
-		vo.setRe_reporter("lsj");
+		vo.setRe_reporter((String)session.getAttribute("id"));
 		model.addAttribute("reports",userReportDao.selectSellerReportList(vo));
 		
 		return "seller/sellerReport";
@@ -106,4 +110,27 @@ public class ReportController {
 		}
 		return result;
  	}
+	
+	@ResponseBody
+	@RequestMapping("/sellerReviewReport.do")
+	public String sellerReviewReport(@RequestParam("rere_code") String re_code, @RequestParam("re_type") String re_type, @RequestParam("re_subject") String re_subject,
+			HttpSession session) {
+		ReviewVO rvo = new ReviewVO();
+		rvo.setRev_code(re_code);
+		rvo = reviewDao.selectReview(rvo);
+		
+		ReportVO vo = new ReportVO();
+		
+		vo.setRe_reporter((String)session.getAttribute("id"));
+		vo.setRe_res(rvo.getRev_id());
+		vo.setRe_type(re_type);
+		vo.setRe_subject(re_subject);
+		
+		int n = userReportDao.sellerReviewReport(vo);
+		System.out.println(n);
+		if(n != 1) {
+			return "F";
+		}
+		return "T";
+	}
 }

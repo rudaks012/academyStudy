@@ -29,6 +29,8 @@ public interface ReviewService {
 	
 	// 판매자 리뷰 리스트 조회
 	public List<ReviewVO> sellerReviewList(String s_email);
-	
+	public List<ReviewVO> sellerReviewSelectList(ReviewVO vo);
 	public List<ReviewVO> reviewSearch(HashMap<String, String> remap);
+	
+	
 }

@@ -37,12 +37,18 @@
 	</update>
 	
 	<select id="sellerReviewList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
+		SELECT m.* FROM SERVICE s ,
+		(SELECT * FROM REVIEW r , REVIEW_COMMENT c WHERE REV_CODE = REVIEW_CODE(+) ORDER BY REV_DATE DESC) m
+		WHERE s.s_email = #{s_email} and s.ser_code = scode
+	</select>
+	
+	<select id="sellerReviewSelectList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
 		SELECT r.* 
 		FROM REVIEW r, SERVICE s 
 		WHERE S_EMAIL= #{s_email} AND SCODE = SER_CODE
+		AND SCODE = #{scode}
 		ORDER BY r.rev_date DESC
 	</select>
-	
 	
 	<select id="reviewSearch" resultType="co.Nasa.prj.comm.VO.ReviewVO">
 		SELECT m.* FROM SERVICE s ,
@@ -50,6 +56,9 @@
 		WHERE s.s_email = #{s_email} and s.ser_code = scode and scode = #{scode}
 	</select>
 	
+
+	
+
 	<select id = "selectPagingReviewList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
 		SELECT	*
 		FROM	(
@@ -69,4 +78,5 @@
 		FROM	REVIEW
 		WHERE	REV_ID = #{rev_id}
 	</select>
+
 </mapper>

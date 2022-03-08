@@ -14,5 +14,10 @@ public interface Review_CommentMapper {
 	public Review_CommentVO selectReview_comment(Review_CommentVO vo);
 	
 	// 특정 판매자 대댓글 조회
-	public List<Review_CommentVO> sellerReviewCommentList(String s_email);
+	public List<Review_CommentVO> sellerReviewCommentList(Review_CommentVO vo);
+	
+	public int sellerReviewUpdate(Review_CommentVO vo);
+	int deleteReviewComment(String rere_code);
+	int sellerReviewInsert(Review_CommentVO vo);
+	public Review_CommentVO reviewCommSelect(String review_code);
 }

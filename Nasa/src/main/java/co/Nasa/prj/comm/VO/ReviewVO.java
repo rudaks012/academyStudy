@@ -21,6 +21,9 @@ public class ReviewVO {
 	String rere_sel_sub;
 	String rere_date;
 	
+
+	String s_email;
+
 	String b_img;
 	
 	int start; // 쿼리에 쓸 start
@@ -30,4 +33,5 @@ public class ReviewVO {
 		setEnd(pageNum * amount);
 		setStart(getEnd() - amount + 1);
 	}
+
 }

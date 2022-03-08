@@ -16,6 +16,29 @@
 	<select id="sellerReviewCommentList" resultType="co.Nasa.prj.comm.VO.Review_CommentVO">
 		SELECT * 
 		FROM REVIEW_COMMENT 
-		WHERE RERE_SEL_ID = #{s_email}
+		WHERE RERE_SEL_ID = #{rere_sel_id}
+	</select>
+	
+	<update id="sellerReviewUpdate" parameterType="co.Nasa.prj.comm.VO.Review_CommentVO">
+		UPDATE REVIEW_COMMENT
+		SET RERE_SEL_SUB = #{rere_sel_sub}
+		WHERE RERE_CODE = #{rere_code}
+	</update>
+	
+	<delete id="deleteReviewComment" parameterType="String">
+		DELETE FROM REVIEW_COMMENT 
+		WHERE RERE_CODE = #{rere_code}
+	</delete>
+	
+	<insert id="sellerReviewInsert" parameterType="co.Nasa.prj.comm.VO.Review_CommentVO">
+		INSERT INTO REVIEW_COMMENT
+		VALUES((SELECT NVL(MAX(TO_NUMBER(RERE_CODE)), 0)+1 FROM REVIEW_COMMENT),
+		#{review_code}, #{rere_sel_name}, #{rere_sel_id}, #{rere_sel_sub}, sysdate)
+	</insert>
+	
+	<select id="reviewCommSelect" resultType="co.Nasa.prj.comm.VO.Review_CommentVO">
+		SELECT * 
+		FROM REVIEW_COMMENT 
+		WHERE REVIEW_CODE = #{review_code}
 	</select>
 </mapper>

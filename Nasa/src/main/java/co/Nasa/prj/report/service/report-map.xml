@@ -40,6 +40,17 @@
 			)
 	</insert>
 	
+
+	<insert id="sellerReviewReport" parameterType="co.Nasa.prj.comm.VO.ReportVO">
+		INSERT INTO REPORT(RE_CODE,RE_TYPE, RE_REPORTER, RE_RES, RE_DATE, RE_SUBJECT ) 
+		VALUES((SELECT NVL(MAX(TO_NUMBER(RE_CODE)), 0)+1 FROM REPORT),
+			#{re_type},
+			#{re_reporter},
+			#{re_res},
+			sysdate,
+			#{re_subject})
+	</insert>
+
 	<select id="selectPagingBuyerReportList" resultType="co.Nasa.prj.comm.VO.ReportVO">
 		SELECT	*
 		FROM	(
@@ -59,4 +70,5 @@
 		FROM	REPORT
 		WHERE	RE_REPORTER = #{re_reporter}
 	</select>
+
 </mapper>

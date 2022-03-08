@@ -481,7 +481,7 @@ public class ServiceController {
 	}
 	
 	@Scheduled(cron = "0 0 0 * * ?")
-	public void gradeUpgrade() {
+	public void EndDateCheck() {
 		serviceDao.schEndDateCheck();
 		System.out.println("enddate 스케쥴러 체크");
 	}

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.comm.VO.ReviewVO;
+import co.Nasa.prj.comm.VO.Review_CommentVO;
 import co.Nasa.prj.review.service.ReviewMapper;
 import co.Nasa.prj.review_comment.service.Review_CommentMapper;
 import co.Nasa.prj.service.service.ServiceMapper;
@@ -78,16 +79,20 @@ public class ReviewController {
 	public String sellerReview(Model model, HttpSession session) {
 		String s_email = (String)session.getAttribute("id");
 		model.addAttribute("serviceList", serviceDao.serviceSelectList(s_email));
-		
 		model.addAttribute("reviewList", reviewDao.sellerReviewList(s_email));
-		model.addAttribute("re_comList", review_commentDao.sellerReviewCommentList(s_email));
+//		
+//		Review_CommentVO vo2 = new Review_CommentVO();
+//		vo2.setRere_sel_id(s_email);
+//		model.addAttribute("re_comList", review_commentDao.sellerReviewCommentList(vo2));
 		
 		return "seller/sellerReview";
 	}
 	
+	
+	
 	@ResponseBody
 	@RequestMapping("/reviewSearch.do")
-	public List<ReviewVO> reviewSearch(@RequestParam("scode") String scode, HttpSession session) {
+	public List<ReviewVO> reviewSearch(Model model, @RequestParam("scode") String scode, HttpSession session) {
 		HashMap<String, String> remap = new HashMap<String, String>();
 		remap.put("s_email", (String)session.getAttribute("id"));
 		remap.put("scode", scode);
