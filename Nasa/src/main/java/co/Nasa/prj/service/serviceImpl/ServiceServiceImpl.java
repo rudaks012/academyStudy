@@ -35,11 +35,6 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	@Override
-	public List<ServiceVO> searchListAll() {
-		return map.searchListAll();
-	}
-
-	@Override
 	public List<ServiceVO> serviceSelectList(String s_email) {
 		return map.serviceSelectList(s_email);
 	}
@@ -70,10 +65,18 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.servicePromotion(s_email);
 	}
 
-
 	public List<ServiceVO> homeCategorySelect(String ser_cate) {
 		return map.homeCategorySelect(ser_cate);
 	}
 
+	@Override
+	public List<ServiceVO> homeCategorySelectAll() {
+		return map.homeCategorySelectAll();
+	}
+
+	@Override
+	public List<ServiceVO> bestServiceList() {
+		return map.bestServiceList();
+	}
 
 }
