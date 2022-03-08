@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,18 +103,18 @@ hr{
 														<tr>
 															<th class="align-middle table-primary">서비스 선택</th>
 															<td><select name="service">
-																	<option selected="">웹개발1</option>
-																	<option value="1">웹개발2</option>
-																	<option value="2">Jun 19</option>
+																<c:forEach items="${serviceList }" var="service">
+																	<option value="${service.ser_code }">${service.ser_title }</option>
+																</c:forEach>
 															</select></td>
 
 														</tr>
 														<tr>
 															<th class="align-middle table-primary">연도 선택</th>
 															<td style="text-align: left;"><select name="chart">
-																	<option selected="">판매자가입연도로부터 지금연도까지?</option>
-																	<option value="1">웹개발2</option>
-																	<option value="2">Jun 19</option>
+																	<option selected="" value="2022">2022년</option>
+																	<option value="2021">2021년</option>
+																	<option value="2020">2020년</option>
 															</select><br />
 															</td>
 														</tr>
@@ -162,7 +163,7 @@ hr{
 												<h4 class="card-title"></h4>
 												<div style="width: 100%;">
 													<canvas id="myChart"></canvas>
-													<table class="table table-bordered thead-light  text-center">
+													<!-- <table class="table table-bordered thead-light  text-center">
 													<thead>
 														<tr>
 															<th></th>
@@ -230,7 +231,7 @@ hr{
 														</tr>
 							
 													</tbody>
-												</table>
+												</table> -->
 												</div>
 											</div>
 										</div>

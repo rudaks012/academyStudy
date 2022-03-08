@@ -55,8 +55,25 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	@Override
+
+	public ServiceVO serviceSelectMaxEnd(ServiceVO vo) {
+		return map.serviceSelectMaxEnd(vo);
+	}
+
+	@Override
+	public int schEndDateCheck() {
+		return map.schEndDateCheck();
+	}
+
+	@Override
+	public List<ServiceVO> servicePromotion(String s_email) {
+		return map.servicePromotion(s_email);
+	}
+
+
 	public List<ServiceVO> homeCategorySelect(String ser_cate) {
 		return map.homeCategorySelect(ser_cate);
 	}
+
 
 }

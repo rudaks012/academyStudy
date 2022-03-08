@@ -6,4 +6,5 @@ import co.Nasa.prj.comm.VO.PowerServiceVO;
 
 public interface PowerServiceService {
 	List<PowerServiceVO> PowerServiceList();
+	String endPower(String ser_code);
 }
