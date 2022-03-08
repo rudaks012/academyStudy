@@ -39,6 +39,7 @@ public class ReportServiceImpl implements ReportService {
 
 	public int sellerReviewReport(ReportVO vo) {
 		return map.sellerReviewReport(vo);
+	}
 
 	public List<ReportVO> selectPagingBuyerReportList(ReportVO vo) {
 		return map.selectPagingBuyerReportList(vo);

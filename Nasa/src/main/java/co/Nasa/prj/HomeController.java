@@ -13,10 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.Nasa.prj.buyer.service.BuyerService;
+import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.PaymentVO;
-import co.Nasa.prj.comm.VO.SellerVO;
 import co.Nasa.prj.payment.service.PaymentService;
 import co.Nasa.prj.powerservice.service.PowerServiceService;
 import co.Nasa.prj.seller.service.SellerService;
