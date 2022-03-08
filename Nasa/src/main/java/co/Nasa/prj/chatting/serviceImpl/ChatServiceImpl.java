@@ -10,6 +10,7 @@ import co.Nasa.prj.chatting.service.ChatMapper;
 import co.Nasa.prj.chatting.service.ChatMessage;
 import co.Nasa.prj.chatting.service.ChatRoom;
 import co.Nasa.prj.chatting.service.ChatService;
+import co.Nasa.prj.comm.VO.ServiceVO;
 
 @Repository("cService")
 public class ChatServiceImpl implements ChatService {
@@ -59,6 +60,12 @@ public class ChatServiceImpl implements ChatService {
 	@Override
 	public int chatroomDelete(String roomid) {
 		return mapper.chatroomDelete(roomid);
+	}
+
+	@Override
+	public ServiceVO getRow(int sno) {
+		// TODO Auto-generated method stub
+		return mapper.getRow(sno);
 	}
 
 }

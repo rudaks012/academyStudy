@@ -25,4 +25,7 @@ public class SellerVO {
 	String s_me; // 자기소개
 	String s_name;
 
+	
+	String b_email; // 채팅용 vo
+	String b_nickname; // 채팅용 vo
 }
