@@ -54,5 +54,9 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.endService(vo);
 	}
 
+	@Override
+	public List<ServiceVO> homeCategorySelect(String ser_cate) {
+		return map.homeCategorySelect(ser_cate);
+	}
 
 }

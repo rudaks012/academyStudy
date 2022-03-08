@@ -109,7 +109,7 @@
                     <div class="cardmain" >
                         <div class="card-body">
                         	<div>
-                                <img src="resources/user/assets/img/maincate/app.png" alt="" class="cardimg"> 
+                                <a href="homeCategory.do?ser_cate=CAT1"><img src="resources/user/assets/img/maincate/app.png" alt="" class="cardimg"></a> 
                             </div>
                             <br>                      
                             <div class="cardcate cat-cap"><p>앱 개발</p></div>
