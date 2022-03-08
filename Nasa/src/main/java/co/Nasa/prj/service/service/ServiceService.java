@@ -17,7 +17,12 @@ public interface ServiceService {
 	ServiceVO serviceSelectMaxEnd(ServiceVO vo);
 	
 	int endService(ServiceVO vo);
+
 	int schEndDateCheck();
 	
 	List<ServiceVO> servicePromotion(String s_email);
+
+	
+	List<ServiceVO> homeCategorySelect(String ser_cate);
+
 }

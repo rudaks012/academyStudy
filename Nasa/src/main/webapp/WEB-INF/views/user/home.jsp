@@ -14,6 +14,14 @@
        .cardcate {
            text-align: center;
        }
+       .powerimg {
+           width: 82px;
+           height: 82px;
+           display: block;
+           margin: 0px auto;
+           border-radius: 70%;
+           overflow: hidden;
+       }
    </style>
 </head>
 <body>
@@ -101,7 +109,7 @@
                     <div class="cardmain" >
                         <div class="card-body">
                         	<div>
-                                <img src="resources/user/assets/img/maincate/app.png" alt="" class="cardimg"> 
+                                <a href="homeCategory.do?ser_cate=CAT1"><img src="resources/user/assets/img/maincate/app.png" alt="" class="cardimg"></a> 
                             </div>
                             <br>                      
                             <div class="cardcate cat-cap"><p>앱 개발</p></div>
@@ -180,17 +188,17 @@
                                         <div>
                                             <c:choose>
                                                 <c:when test="${empty power.s_img }">
-                                                    <img src="resources/user/assets/img/profile/defaultprofileimg.png" alt="" style="width: 82px; height: 82px; display: block; margin: 0px auto;">
+                                                    <img class="powerimg" src="resources/user/assets/img/profile/defaultprofileimg.png" alt="">
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <img src="${power.s_img }" alt="" style="width: 82px; height: 82px; display: block; margin: 0px auto;">
+                                                    <img class="powerimg" src="${power.s_img }" alt="">
                                                 </c:otherwise>
                                             </c:choose>
                                         </div>
                                         <div class="cat-cap" style="padding: 10px;">
-                                            <h5><a href="catagori.html">${power.s_nickname }</a></h5>
-                                            <p>${power.power_service }</p>
-                                            <a href="catagori.html">상세보기</a>
+                                            <h5><a>${power.s_nickname }</a></h5>
+                                            <p>${power.ser_title }</p>
+                                            <a href="serviceDetail.do?ser_code=${power.ser_code }">상세보기</a>
                                         </div>
                                     </div>
                                 </div>
@@ -207,17 +215,17 @@
                                         <div>
                                             <c:choose>
                                                 <c:when test="${empty power.s_img }">
-                                                    <img src="resources/user/assets/img/profile/defaultprofileimg.png" alt="" style="width: 82px; height: 82px; display: block; margin: 0px auto;">
+                                                    <img class="powerimg" src="resources/user/assets/img/profile/defaultprofileimg.png" alt="">
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <img src="${power.s_img }" alt="" style="width: 82px; height: 82px; display: block; margin: 0px auto;">
+                                                    <img class="powerimg" src="${power.s_img }" alt="">
                                                 </c:otherwise>
                                             </c:choose>
                                         </div>
                                         <div class="cat-cap" style="padding: 10px;">
-                                            <h5><a href="catagori.html">${power.s_nickname }</a></h5>
-                                            <p>${power.power_service }</p>
-                                            <a href="catagori.html">상세보기</a>
+                                            <h5><a>${power.s_nickname }</a></h5>
+                                            <p>${power.ser_title }</p>
+                                            <a href="serviceDetail.do?ser_code=${power.ser_code }">상세보기</a>
                                         </div>
                                     </div>
                                 </div>
