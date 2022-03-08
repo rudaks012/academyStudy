@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.Nasa.prj.buyer.service.BuyerService;
 import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.PaymentVO;
+import co.Nasa.prj.comm.VO.SellerVO;
 import co.Nasa.prj.payment.service.PaymentService;
 import co.Nasa.prj.powerservice.service.PowerServiceMapper;
 import co.Nasa.prj.powerservice.service.PowerServiceService;
+import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
 
 /**
@@ -42,6 +45,12 @@ public class HomeController {
 	
 	@Autowired
 	private ServiceService serviceDao;
+	
+	@Autowired
+	SellerService sellerDAO;
+	
+	@Autowired
+	BuyerService BuyerDao;
 
 	@RequestMapping("/home.do")
 	public String home(Model model) {
@@ -130,6 +139,29 @@ public class HomeController {
 		
 		return res;
 	}
+	
+	//채팅 셀러 값가져오기
+	@RequestMapping("/sellerIdcheck.do")
+	@ResponseBody
+	public String sellerIdcheck(Model model, @RequestParam("sellerId") String sellerid,HttpSession session) {
+		System.out.println("셀러아이디 찍어보기 ||||||||||||||||" + sellerid);
+		// SellerVO vo = new SellerVO();
+		// vo = sellerDAO.SellerSelect(sellerid);
+		// model.addAttribute("sellerinfo",sellerDAO.SellerSelect(sellerid));
+		// System.out.println(vo);
+		BuyerVO bvo = new BuyerVO();
+		bvo.setB_email((String) session.getAttribute("id"));
+		bvo = BuyerDao.selectBuyer(bvo);
+		// model.addAttribute("buyerinfo",BuyerDao.selectBuyer(bvo));
+		System.out.println("이거는 bvo다||||||||||||||||||||||||||||||||" + bvo);
+		
+		JSONObject object = new JSONObject();
+		object.put("coupon", bvo.getBuyer_coupon());
+		String result = object.toJSONString();
+		
+		return result;	
+	}
+	
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 

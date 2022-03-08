@@ -346,7 +346,7 @@ input[type=date] {
 
 								<button type="button" data-toggle="modal"
 								data-target="#payModal" id="payement" class="w-btn-neon2"
-									style="float: right; display: none;">결제하기</button>
+									style="float: right; display: none;"onclick="paymentconfirm()">결제하기</button>
 								<button type="button" data-toggle="modal"
 									data-target="#reportModal" id="Chatreport" class="w-btn-neon2"
 									style="float: right; display: none;">신고하기</button>
@@ -504,7 +504,7 @@ input[type=date] {
 						<tr>
 							<td>서비스 금액</td>
 							<td><input type="number" id="chatmoney"placeholder="상대방과 협의한 금액을 입력해주세요"
-								style="width: 250px;"  onkeyup="copchatmoney"/></td>
+								style="width: 250px;"  onkeyup="copchatmoney()"/></td>
 						</tr>
 						<tr>
 							<td>서비스 진행일</td>
@@ -521,10 +521,11 @@ input[type=date] {
 						<tr>
 							<td>쿠폰</td>
 							<td>
-								<div class="default-select" id="coupon-select">
-									<select>
-										<option value="1">사용안함</option>
-										<option value="2">사용</option>
+								<div class="default-select" >
+									<select id="coupon-select">
+										<option name="coupon" value="1">사용안함</option>
+										<option id="cocopopo" name="coupon1"value="">데이터값들어감
+										</option>
 									</select>
 								</div>
 							</td>
@@ -614,7 +615,7 @@ input[type=date] {
 					.ajax({
 						url : "chatRoomList.do",
 						data : {
-							userid : "${loginMember.b_email}"
+							userid : "${loginMember.s_email}"
 						},
 						dataType : "json",
 						async : false, // async : false를 줌으로써 비동기를 동기로 처리 할 수 있다.
@@ -653,7 +654,7 @@ input[type=date] {
 								for ( var i in data) {
 									var $span; // 2단계
 									// 자신이 구매자 입장일 때
-									if (data[i].userid == "${loginMember.b_email}") {
+									if (data[i].userid == "${loginMember.s_email}") {
 										console.log("구매자 아이디 :::"
 												+ data[i].userid
 												+ "판매자 아이디 :::"
@@ -816,7 +817,7 @@ input[type=date] {
 			$.ajax({
 				url : roomid + ".do",
 				data : {
-					userid : "${loginMember.b_email}"
+					userid : "${loginMember.s_email}"
 				},
 				async : false,
 				dataType : "json",
@@ -834,6 +835,7 @@ input[type=date] {
 			var re_member = document.querySelector(".left").querySelector(".sender").getElementsByTagName("span")[0].innerText;
 			console.log("엔터룸 기멤버" + re_member); 
 			document.querySelector("#paycheckId").innerHTML = re_member;
+
 			//$(obj).attr("clickable", "false");
 			//}
 		}// 채팅방 클릭 시 방번호 배정후 웹소켓 연결
@@ -860,7 +862,7 @@ input[type=date] {
 			$.ajax({
 				url : roomid + ".do",
 				data : {
-					userid : "${loginMember.b_email}"
+					userid : "${loginMember.s_email}"
 				},
 				async : false,
 				dataType : "json",
@@ -898,8 +900,8 @@ input[type=date] {
 			const data = {
 				"roomid" : roomid,
 				"messageid" : "",
-				"sentid" : "${ loginMember.b_email }",
-				"nickname" : "${ loginMember.b_nickname }",
+				"sentid" : "${ loginMember.s_email }",
+				"nickname" : "${ loginMember.s_nickname }",
 				"message" : "ENTER-CHAT",
 			/*"unReadCount" : 0*/
 			};
@@ -914,8 +916,8 @@ input[type=date] {
 			const data = {
 				"roomid" : roomid,
 				"messageid" : "",
-				"sentid" : "${ loginMember.b_email }",
-				"nickname" : "${ loginMember.b_nickname }",
+				"sentid" : "${ loginMember.s_email }",
+				"nickname" : "${ loginMember.s_nickname }",
 				"message" : message,
 				"lr" : "left"
 			};
@@ -938,7 +940,7 @@ input[type=date] {
 				"lr" : "left"
 			};
 			console.log("수신자 :::" + data.sentid);
-			if (data.sentid != "${ loginMember.b_nickname }") {
+			if (data.sentid != "${ loginMember.s_nickname }") {
 				CheckLR(data);
 			}
 		}
@@ -948,7 +950,7 @@ input[type=date] {
 			console.log("1111111");
 			//console.log("누가보낸것이냐left")
 			// userid이 loginSession의 userid과 다르면 왼쪽, 같으면 오른쪽
-			const LR = (data.sentid != "${ loginMember.b_email }") ? "left"
+			const LR = (data.sentid != "${ loginMember.s_email }") ? "left"
 					: "right";
 			// 메세지 추가
 			console.log("LR : " + LR);
@@ -1093,6 +1095,7 @@ input[type=date] {
 
 		//채팅 결제 함수
 		function chatpaymentOK() {
+	
 			var IMP = window.IMP;
 			var code = "imp56117193";
 			IMP.init(code);
@@ -1165,6 +1168,27 @@ input[type=date] {
 			}
 			});
 
+
+		}
+		function paymentconfirm(){
+			var sellerid = document.querySelector("#paycheckId").innerText;
+			$.ajax({
+				url: "sellerIdcheck.do",
+				type: "post",
+				data: {
+					sellerId: sellerid,
+				},
+				dataType : "json",
+				success: function(data){
+					console.log("서버에서 받은 데이터 : " + data.coupon);
+					$('#coupon-select').append('<option value="'+data.coupon+'">'+data.coupon+'</option>');
+
+					document.querySelector("#cocopopo").innerHTML = data.coupon;
+				},error: function(request,status,error){
+					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+
+			})
 
 		}
 

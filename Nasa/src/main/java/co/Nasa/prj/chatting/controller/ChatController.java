@@ -24,6 +24,9 @@ import co.Nasa.prj.chatting.service.ChatMessage;
 import co.Nasa.prj.chatting.service.ChatRoom;
 import co.Nasa.prj.chatting.serviceImpl.ChatServiceImpl;
 import co.Nasa.prj.comm.VO.BuyerVO;
+import co.Nasa.prj.comm.VO.SellerVO;
+import co.Nasa.prj.seller.service.SellerService;
+import co.Nasa.prj.service.service.ServiceService;
  
  
 @Controller
@@ -33,11 +36,15 @@ public class ChatController {
     
     @Autowired
     private BuyerService BuyerDao;
+    @Autowired
+    private SellerService sellerDAO;
 //    @Autowired
 //    private LoginService serviceDao;
 //    
 //    @Autowired
 //    private ProductService pService;
+    @Autowired
+    private ServiceService serviceDao;
     
     @RequestMapping(value = "/chatting.do", method = RequestMethod.GET)
     public String viewChat(HttpSession session, Model model) {
@@ -45,13 +52,21 @@ public class ChatController {
     	System.out.println("!!!!!");
     	System.out.println(session.getAttribute("id"));
 //    	System.out.println(principal.getName());
-    	BuyerVO vo = new BuyerVO();
-    	vo.setB_email((String)session.getAttribute("id"));
-    	BuyerDao.selectBuyer(vo);
-
+//    	BuyerVO vo = new BuyerVO();
+    	SellerVO vo = new SellerVO()	;
+    	vo.setS_email((String) session.getAttribute("id"));
+//    	vo.setB_email((String) session.getAttribute("id"));
+//    	BuyerDao.selectBuyer(vo);
+    	sellerDAO.chatsellerselect(vo);
+    	
+    	
+    	
+//    	BuyerVO vo = new BuyerVO();
+//    	vo.setB_email((String)session.getAttribute("id"));
+    	//BuyerDao.selectBuyer(vo);
     	
     	if(session.getAttribute("id")!= null) {
-    		model.addAttribute("loginMember", BuyerDao.selectBuyer(vo));
+    		model.addAttribute("loginMember", sellerDAO.chatsellerselect(vo));
     		
     		return "buyer/Chatting";
     	}
@@ -105,10 +120,19 @@ public class ChatController {
      */
     @ResponseBody
     @RequestMapping("createChat.do")
-    public String createChat(ChatRoom room, String userid, int  pno, Model model){
-        
+    public String createChat(ChatRoom room, String userid, int  sno, Model model){
+        cService.getRow(sno);
     	// 상품번호로 등록한 판매자의 아이디/닉네임 가져오기 
-    	System.out.println("상품번호 :::"+pno);
+    	System.out.println("상품번호 :::"+sno);
+		BuyerVO vo = new BuyerVO();
+		vo.setB_email(userid);
+		vo = BuyerDao.selectBuyer(vo);
+		System.out.println("로그인한 아이디 :::"+userid);
+		
+		vo.getB_email();
+		SellerVO svo = new SellerVO();
+		svo = sellerDAO.SellerSelect(vo.getB_email());	
+    	
 //        ProductDTO p = pService.getRow(pno);
 //        MemberDTO m =  mService.readMemberInfo(p.getUserid());
 //        System.out.println("로그인한 아이디 :::::"+userid+"상품 판매하는 아이디:::"+m.getUserid());
@@ -121,9 +145,9 @@ public class ChatController {
         
         // 채팅방DTO에 값 저장 
         room.setUserid(userid);
-//        room.setUsernickname(mService.readMemberInfo(userid).getNickname());
-//        room.setMasterid(m.getUserid());
-//        room.setMasternickname(m.getNickname());
+        room.setUsernickname(BuyerDao.selectBuyer(vo).getB_nickname());
+        room.setMasterid(svo.getS_email());
+        room.setMasternickname(svo.getS_nickname());
  
         ChatRoom exist  = cService.searchChatRoom(room);
         
