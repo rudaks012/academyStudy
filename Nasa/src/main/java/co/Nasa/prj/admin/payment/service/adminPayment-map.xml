@@ -5,7 +5,7 @@
  <select id="getBuyerPaymentListWithPaging" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
     
     <![CDATA[
-			  SELECT rownum rn, pay_code,b_email,s_email,s_code,pay_date,pay_cate,pay_cate1,pay_type,pay_coupon,pay_price,pay_enddate,event_start,event_end,pay_originp,pay_com 
+			  SELECT rownum rn, pay_code,b_email,s_email,s_code,pay_date,pay_cate,pay_cate1,pay_type,pay_coupon,REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(pay_price)), '([0-9]{3})','\1,')), '^,','') AS pay_price,pay_enddate,event_start,event_end,pay_originp,pay_com 
 			  FROM 
 					 (
 					   select rownum rn,P.*
@@ -28,7 +28,9 @@
  
  <select id="detailBuyerPayment" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
  	SELECT
-		p.*,ser.ser_title,ser.ser_team,
+		p.pay_code,p.b_email,p.s_email,p.s_code,p.pay_date,p.pay_type,p.pay_coupon,
+		REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(p.pay_price)), '([0-9]{3})','\1,')), '^,','') AS pay_price,
+		p.pay_enddate,p.event_start,p.event_end,p.pay_originp,p.pay_com,ser.ser_title,ser.ser_team,
 		(select cat_name from category where p.pay_cate=cat_no) as cat_name,
 		(select sub_name from sub_category where p.pay_cate1=sub_no) as sub_name, 
 		(select s_name from seller where p.s_email=s_email) as s_name,

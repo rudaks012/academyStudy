@@ -114,5 +114,5 @@ public class AdminAuthorVO {
 	String sub_name;
 	
 	String total_price;
-	
+	String pay_date2;
 }
