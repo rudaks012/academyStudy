@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="co.Nasa.prj.admin.payment.service.AdminPaymentMapper">
+
+ <select id="getBuyerPaymentListWithPaging" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+    
+    <![CDATA[
+			  SELECT rownum rn, pay_code,b_email,s_email,s_code,pay_date,pay_cate,pay_cate1,pay_type,pay_coupon,pay_price,pay_enddate,event_start,event_end,pay_originp,pay_com 
+			  FROM 
+					 (
+					   select rownum rn,P.*
+                       from(select pay_code,b_email,s_email,s_code,pay_date,pay_cate,pay_cate1,pay_type,pay_coupon,pay_price,pay_enddate,event_start,event_end,pay_originp,pay_com 
+					        from payment
+                            order by pay_code desc)P
+					   WHERE ROWNUM <=#{pageNum} * #{amount}
+                       
+					   )
+				
+			 WHERE rn>(#{pageNum}-1)*#{amount}
+			 	]]>
+    
+ 
+ </select>
+ 
+ <select id="getBuyerPaymentTotal" resultType="int">
+    SELECT COUNT(*) FROM PAYMENT
+ </select>
+ 
+ <select id="detailBuyerPayment" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+ 	SELECT
+		p.*,ser.ser_title,ser.ser_team,
+		(select cat_name from category where p.pay_cate=cat_no) as cat_name,
+		(select sub_name from sub_category where p.pay_cate1=sub_no) as sub_name, 
+		(select s_name from seller where p.s_email=s_email) as s_name,
+		(select s_author from seller where p.s_email=s_email) as s_author,
+		(select s_status from seller where p.s_email=s_email) as s_status,
+		(select b_name from buyer where p.b_email=b_email) as b_name,
+		(select b_status from buyer where p.b_email=b_email) as b_status
+		FROM payment p, service ser
+		WHERE p.s_code=ser.ser_code AND pay_code=#{pay_code}
+ 
+ </select>
+</mapper>

@@ -35,6 +35,14 @@ public class Criteria {
 	private String re_date;
 	private String re_date2;
 	
+	private String ser_title;
+	private String ser_line;
+	private String ser_team;
+	
+	private String cat_no;
+	private String sub_no;
+
+	
 	public Criteria() {
 		this(1,10);
 	}
