@@ -4,9 +4,12 @@ import java.util.List;
 
 import co.Nasa.prj.comm.VO.ServiceVO;
 
+
+
 public interface AdminServiceMapper {
 
-	List<ServiceVO> getServiceListWithPaging(Criteria cri); //서비스 전체목록
+	List<AdminAuthorVO> getServiceListWithPaging(Criteria cri); //서비스 전체목록
 	public int getTotalService(Criteria cri); 
 	public AdminAuthorVO detailedService(AdminAuthorVO vo); //서비스 선택
+
 }
