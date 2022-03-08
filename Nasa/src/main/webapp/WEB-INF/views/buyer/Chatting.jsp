@@ -521,20 +521,14 @@ input[type=date] {
 						<tr>
 							<td>쿠폰</td>
 							<td>
-								<div class="default-select" >
-									<select id="coupon-select">
-										<option name="coupon" value="1">사용안함</option>
-										<option id="cocopopo" name="coupon1"value="">데이터값들어감
-										</option>
-									</select>
-								</div>
+						<input type="radio" name="coupon" value="coupon" checked>사용하지 않음 <br />
+						<input type="radio" name="coupon" value="coupon" id="couponrank">사용하기
 							</td>
 						</tr>
 						<tr>
 							<td>서비스금액</td>
 							<td id="copchatmoney1"></td>
 						</tr>
-						<tr>
 							<td>쿠폰 할인</td>
 							<td style="color: red;">5000원</td>
 						</tr>
@@ -867,7 +861,7 @@ input[type=date] {
 				async : false,
 				dataType : "json",
 				success : function(data) {
-					for (var i = 0; i < data.length; i++) {
+					for (var i = 0; i <input data.length; i++) {
 						// 채팅 목록 동적 추가
 						CheckLR(data[i]);
 					}
@@ -1181,10 +1175,11 @@ input[type=date] {
 				dataType : "json",
 				success: function(data){
 					console.log("서버에서 받은 데이터 : " + data.coupon);
-					$('#coupon-select').append('<option value="'+data.coupon+'">'+data.coupon+'</option>');
+					$("#coupon") = <input type="radio" name="coupon" value="coupon">data.coupon</input>
+				}
 
-					document.querySelector("#cocopopo").innerHTML = data.coupon;
-				},error: function(request,status,error){
+
+				,error: function(request,status,error){
 					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 
