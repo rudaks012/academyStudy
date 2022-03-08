@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.Nasa.prj.admin.service.AdminServiceMapper">
-<<<<<<< HEAD
 
- <select id="getServiceListWithPaging" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-   <![CDATA[
-  	 SELECT *
-  	 FROM 
-  	     (
-  	     SELECT rownum rn, s.*
-  	     FROM service s
-  	     WHERE
-  	      rownum <=#{pageNum} * #{amount} 
-  	  ]]> 
-  	     <!-- <include refid="criteria"></include> -->
-  	     
-  	   <![CDATA[  
-  	     )
-  	 WHERE rn > (#{pageNum}-1 )* #{amount}
-  	 ORDER BY re_date DESC
-  	 ]]>
- 
- </select>
-
-=======
 	<select id="getServiceListWithPaging" resultType="co.Nasa.prj.comm.VO.ServiceVO">
 	    <![CDATA[
 		  SELECT *
@@ -45,6 +23,6 @@
 	<select id="detailedService" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
 	   SELECT * FROM vw_selectservice WHERE SER_CODE =#{ser_code}
 	</select>
->>>>>>> 828340d27373c5251a46d01d4ffb2667eaac02e5
+
 
 </mapper>

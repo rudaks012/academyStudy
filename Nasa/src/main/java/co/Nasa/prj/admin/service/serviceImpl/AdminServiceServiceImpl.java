@@ -9,6 +9,7 @@ import co.Nasa.prj.admin.service.AdminAuthorVO;
 import co.Nasa.prj.admin.service.AdminServiceMapper;
 import co.Nasa.prj.admin.service.AdminServiceService;
 import co.Nasa.prj.admin.service.Criteria;
+import co.Nasa.prj.comm.VO.ServiceVO;
 
 @Repository("adminServiceDao")
 public class AdminServiceServiceImpl implements AdminServiceService {
@@ -19,6 +20,16 @@ public class AdminServiceServiceImpl implements AdminServiceService {
 	public List<AdminAuthorVO> getServiceListWithPaging(Criteria cri) {
 		// TODO Auto-generated method stub
 		return map.getServiceListWithPaging(cri);
+	}
+	@Override
+	public int getTotalService(Criteria cri) {
+		// TODO Auto-generated method stub
+		return map.getTotalService(cri);
+	}
+	@Override
+	public AdminAuthorVO detailedService(AdminAuthorVO vo) {
+		// TODO Auto-generated method stub
+		return map.detailedService(vo);
 	}
 
 	
