@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.Nasa.prj.admin.service.AdminServiceMapper">
+
 	<select id="getServiceListWithPaging" resultType="co.Nasa.prj.comm.VO.ServiceVO">
 	    <![CDATA[
 		  SELECT *
@@ -22,5 +23,6 @@
 	<select id="detailedService" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
 	   SELECT * FROM vw_selectservice WHERE SER_CODE =#{ser_code}
 	</select>
+
 
 </mapper>

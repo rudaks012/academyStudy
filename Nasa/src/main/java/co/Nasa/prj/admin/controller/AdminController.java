@@ -7,22 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import co.Nasa.prj.admin.service.dbtestService;
-import co.Nasa.prj.admin.service.dbtestVO;
+
 
 
 @Controller
 public class AdminController {
-	@Autowired
-	private dbtestService dbtestDao; 
-	
 
-	@RequestMapping("/ajaxdbtest.do")
-	@ResponseBody
-	public List<dbtestVO> ajaxdbtest() {
-		List<dbtestVO> list = dbtestDao.testSelect();
-		return list;
-	}
 	@RequestMapping("/ckeditor.do")
 	public String go_cheditor() {
 		System.out.println("/ckeditor.do");

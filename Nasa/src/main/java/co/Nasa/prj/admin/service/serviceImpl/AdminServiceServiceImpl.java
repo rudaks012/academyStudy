@@ -11,29 +11,26 @@ import co.Nasa.prj.admin.service.AdminServiceService;
 import co.Nasa.prj.admin.service.Criteria;
 import co.Nasa.prj.comm.VO.ServiceVO;
 
-
 @Repository("adminServiceDao")
-public class AdminServiceImpl implements AdminServiceService {
+public class AdminServiceServiceImpl implements AdminServiceService {
 
-	@Autowired AdminServiceMapper map;
-
+	@Autowired
+	AdminServiceMapper map;
 	@Override
-	public List<ServiceVO> getServiceListWithPaging(Criteria cri) {
+	public List<AdminAuthorVO> getServiceListWithPaging(Criteria cri) {
 		// TODO Auto-generated method stub
 		return map.getServiceListWithPaging(cri);
 	}
-
 	@Override
 	public int getTotalService(Criteria cri) {
 		// TODO Auto-generated method stub
 		return map.getTotalService(cri);
 	}
-
 	@Override
 	public AdminAuthorVO detailedService(AdminAuthorVO vo) {
 		// TODO Auto-generated method stub
 		return map.detailedService(vo);
 	}
-	
+
 	
 }
