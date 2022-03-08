@@ -49,6 +49,7 @@
 
 	<!-- 채팅 결제 -->
 	<insert id="insertchatpayment" parameterType="co.Nasa.prj.comm.VO.PaymentVO">
+	
 	</insert>
 	
 
