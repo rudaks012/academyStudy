@@ -503,14 +503,14 @@ input[type=date] {
 						<!--여기 결제-->
 						<tr>
 							<td>서비스 금액</td>
-							<td><input type="text" id="chatmoney"placeholder="상대방과 협의한 금액을 입력해주세요"
-								style="width: 250px;"></td>
+							<td><input type="number" id="chatmoney"placeholder="상대방과 협의한 금액을 입력해주세요"
+								style="width: 250px;"  onkeyup="copchatmoney"/></td>
 						</tr>
 						<tr>
 							<td>서비스 진행일</td>
 							<td><input type="radio" name="paydate" value="ndate" id="ndate" checked>정해진 날짜가 없어요 <br /> <input type="radio"
 									name="paydate" value="ydate" id="ydate">협의한
-								날짜가 있어요 <input type="date" id="conference" ></td>
+								날짜가 있어요 <input type="date" id="conference" > ~ <input type="date" id="endconference" ></td>
 							</tr>
 						<tr>
 							<td>결제수단</td>
@@ -531,7 +531,7 @@ input[type=date] {
 						</tr>
 						<tr>
 							<td>서비스금액</td>
-							<td></td>
+							<td id="copchatmoney1"></td>
 						</tr>
 						<tr>
 							<td>쿠폰 할인</td>
@@ -1082,6 +1082,15 @@ input[type=date] {
 
 		// })
 
+		function copchatmoney(){
+			const money = document.getelementById('chatmoney').value;
+			console.log("찍어보자 콘솔",money);
+			document.getelementById("copchatmoney1").innerText = money;
+
+
+		}
+		
+
 		//채팅 결제 함수
 		function chatpaymentOK() {
 			var IMP = window.IMP;
@@ -1097,6 +1106,10 @@ input[type=date] {
 			var paymethod = $('intpu[name="paymethod"]:checked').val(); // 인풋값 결제방법
 			console.log("결제방법",paymethod);
 			var startservice = document.querySelector("#conference").value; // 협의한 서비스 날짜
+			console.log("서비스날짜",startservice);
+			var endservice = document.querySelector("#endconference").value; // 협의한 서비스 날짜 끝
+			console.log("서비스날짜 끝",endservice);
+
 
 			//결제요청
 
@@ -1118,11 +1131,12 @@ input[type=date] {
 					var msg = '결제가 완료되었습니다.';
 
 					var result = {
-							"s_email" : masterid,
+							"s_email" : masterid,  
 							"pay_price" : chatmoney,
 							"chatdate" : chatdate,
-							"paymethod" : paymethod,
-							"startservice" : startservice
+							"pay_type" : paymethod,
+							"event_start" : startservice,
+							"event_end" : endservice
 					}
 					console.log("결제완료",result);
 					$.ajax({
