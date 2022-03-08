@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import co.Nasa.prj.admin.member.service.AdminMemberMapper;
 import co.Nasa.prj.admin.member.service.AdminMemberService;
-import co.Nasa.prj.admin.member.service.MemberCriteria;
+
 import co.Nasa.prj.admin.service.AdminAuthorVO;
 import co.Nasa.prj.admin.service.Criteria;
 import co.Nasa.prj.comm.VO.BuyerVO;
