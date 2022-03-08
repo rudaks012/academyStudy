@@ -34,9 +34,12 @@ public class ServiceVO {
 	String ser_reason;
 	String ser_end;
 	
-	// v_search_list
-	String count;
-	String avg;
+	// v_service_list
+	int reviewcount;
+	int reviewavg;
+	String sub_category; // 서브 카테고리
+	String nickname;
+	String category;
 	
 	String s_code;
 	String pay_enddate;

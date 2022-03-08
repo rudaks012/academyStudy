@@ -1,11 +1,7 @@
 package co.Nasa.prj;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,16 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import co.Nasa.prj.buyer.service.BuyerService;
-import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.SellerVO;
 import co.Nasa.prj.payment.service.PaymentService;
-import co.Nasa.prj.powerservice.service.PowerServiceMapper;
 import co.Nasa.prj.powerservice.service.PowerServiceService;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
@@ -55,7 +46,7 @@ public class HomeController {
 	@RequestMapping("/home.do")
 	public String home(Model model) {
 		model.addAttribute("powerlist", powerDao.PowerServiceList());
-//		model.addAttribute("bestservicelist", serviceDao.BestServiceList());
+		model.addAttribute("bestservicelist", serviceDao.bestServiceList());
 		return "user/home";
 	}
 
@@ -123,20 +114,21 @@ public class HomeController {
 
 		return list;
 	}
-	//채팅 결제
+
+	// 채팅 결제
 	@RequestMapping("/chatpayment.do")
 	@ResponseBody
-	public int chatpayment(@RequestBody PaymentVO vo,HttpSession session) {
+	public int chatpayment(@RequestBody PaymentVO vo, HttpSession session) {
 
 		vo.setB_email((String) session.getAttribute("id"));
-		System.out.println("vo찍어본다||||||||||||||||||||||||||"+vo);
-		
+		System.out.println("vo찍어본다||||||||||||||||||||||||||" + vo);
+
 		int res = paymentDao.insertchatpayment(vo);
-		if(res == 1) {
+		if (res == 1) {
 			System.out.println("성공적으로 인설트됨!!!!!!!!!");
-			
+
 		}
-		
+
 		return res;
 	}
 	
