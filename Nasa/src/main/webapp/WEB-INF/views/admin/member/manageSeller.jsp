@@ -578,7 +578,7 @@ $("#searchBtn").on("click",searchReport);
 				
                 $("#s_date").val(result.seller.s_date);
                 $("#s_author").val(result.seller.s_author);   
-                $
+                $("#s_img").attr("src",result.seller.s_img)
                 $("#s_school").val(result.seller.s_school); 
                 $("#s_major").val(result.seller.s_major); 
                 $("#s_grad").val(result.seller.s_grad);   
