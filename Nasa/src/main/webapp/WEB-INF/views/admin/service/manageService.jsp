@@ -26,7 +26,6 @@
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-           ${serviceLists }
            
             <div class="container-fluid">
                 <!-- *************************************************************** -->
@@ -37,68 +36,55 @@
                      </h5>
                     <div class="card mb-4">
                         <div class="card-body">
+                          <form id="searchForm" method="get">
                             <table class="table caption-top table-bordered  text-center">
                                 <tbody>
                                     <tr>
                                         <th class="align-middle table-primary">아이디</th>
-                                        <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
-                                        <th class="align-middle table-primary">이름</th>
-                                        <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
+                                        <td width="600px"><input class="form-control custom-shadow" id="" name="s_email" type="text"  value='<c:out value="${pageMaker.cri.s_email }"/>'></td>
+                                        <th class="align-middle table-primary">서비스명</th>
+                                        <td><input class="form-control custom-shadow" id="" name="ser_title" type="text" value='<c:out value="${pageMaker.cri.ser_title }"/>'></td>
+                                        
                                     </tr>
                                   
                                     <tr>
-                                        <th class="align-middle table-primary">서비스명</th>
-                                        <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
-                                        <th class="text-center align-middle table-primary">구분</th>
-                                        <td>
-                                            <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
-                                                <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="customRadio1" name="person" class="custom-control-input mr-5">
-                                                    <label class="custom-control-label" for="customRadio1">개인</label>
-                                                </div>
-                                                <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="person" class="custom-control-input mr-5">
-                                                    <label class="custom-control-label" for="customRadio2">기업</label>
-                                                </div>
-                                                
-                                               
-                                                
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="align-middle table-primary ">금액</th>
-                                        <td>
-                                        	<div class="d-flex align-items-center">
-                                        	<div class="col-5 p-0">
-                                        	<select class="custom-select  form-control custom-shadow ">
-				                                <option selected="">선택</option>
-				                                <option value="1">July 19</option>
-				                                <option value="2">Jun 19</option>
-				                            </select>
-				                            </div>
-				                            <div class="col-2">
-				                            	<span ><i class="fas fa-minus"></i></span>
-				                            </div>
-				                            <div class="col-5 p-0">
-                                        	<select class="custom-select  form-control custom-shadow ">
-				                                <option selected="">선택</option>
-				                                <option value="1">July 19</option>
-				                                <option value="2">Jun 19</option>
-				                            </select>
-				                            </div>
-				                            </div>
-                                        </td>
+                                        
                                         <th class="text-center align-middle table-primary">온/오프</th>
                                         <td>
                                             <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                 <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="onlineRadio" name="online" class="custom-control-input mr-5">
+                                                    <input type="radio" id="onlineRadio" name="ser_line" value="온라인" class="custom-control-input mr-5">
                                                     <label class="custom-control-label" for="onlineRadio">온라인</label>
                                                 </div>
+                                                <div class="custom-control custom-radio mr-3 ">
+                                                    <input type="radio" id="onlineRadio2" name="ser_line" value="오프라인" class="custom-control-input mr-5">
+                                                    <label class="custom-control-label" for="onlineRadio2">오프라인</label>
+                                                </div>
+                                                <div class="custom-control custom-radio mr-3 ">
+                                                    <input type="radio" id="onlineRadio3" name="ser_line" value="온/오프라인" class="custom-control-input mr-5">
+                                                    <label class="custom-control-label" for="onlineRadio3">온/오프라인</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                         <th class="text-center align-middle table-primary">구분</th>
+                                        <td>
+                                            <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
+                                                <div class="custom-control custom-radio mr-3 ">
+                                                    <input type="radio" id="customRadio1" name="ser_team" value="개인" class="custom-control-input mr-5">
+                                                    <label class="custom-control-label" for="customRadio1">개인</label>
+                                                </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="offlineRadio" name="online" class="custom-control-input mr-5">
-                                                    <label class="custom-control-label" for="offlineRadio">오프라인</label>
+                                                    <input type="radio" id="customRadio2" name="ser_team" value="2인이상 5인미만" class="custom-control-input mr-5">
+                                                    <label class="custom-control-label" for="customRadio2">2인이상 5인미만</label>
+                                                </div>
+                                                <div class="custom-control custom-radio mx-3">
+                                                    <input type="radio" id="customRadio2" name="ser_team" value="5인이상 20미만" class="custom-control-input mr-5">
+                                                    <label class="custom-control-label" for="customRadio2">5인이상 20인미만</label>
+                                                </div>
+                                                <div class="custom-control custom-radio mx-3">
+                                                    <input type="radio" id="customRadio2" name="ser_team" value="20인 이상" class="custom-control-input mr-5">
+                                                    <label class="custom-control-label" for="customRadio2">20인 이상</label>
                                                 </div>
                                                 
                                                
@@ -106,28 +92,30 @@
                                             </div>
                                         </td>
                                     </tr>
+                             
                                     <tr>
                                     	<th class="align-middle table-primary">1차 카테고리</th>
                                     	<td>
-                                    		<select id="searchCategory" class="custom-select  form-control custom-shadow ">
-				                                <option selected="">선택</option>
-				                                <option value="CAT1">앱</option>
-				                                <option value="CAT2">웹</option>
-				                                <option value="CAT3">게임</option>
-				                                <option value="CAT4">보안</option>
-				                                <option value="CAT5">기술지원</option>
-				                                <option value="CAT6">기획</option>
+                                    		<select id="searchCategory" name="cat_no" class="custom-select  form-control custom-shadow ">
+				                                <option value="" selected>선택</option>
+				                                <option value="CAT1" <c:out value="${pageMaker.cri.cat_no eq 'CAT1'? 'selected':'' }"/>>앱</option>
+				                                <option value="CAT2" <c:out value="${pageMaker.cri.cat_no eq 'CAT2'? 'selected':'' }"/>>웹</option>
+				                                <option value="CAT3" <c:out value="${pageMaker.cri.cat_no eq 'CAT3'? 'selected':'' }"/>>게임</option>
+				                                <option value="CAT4" <c:out value="${pageMaker.cri.cat_no eq 'CAT4'? 'selected':'' }"/>>보안</option>
+				                                <option value="CAT5" <c:out value="${pageMaker.cri.cat_no eq 'CAT5'? 'selected':'' }"/>>기술지원</option>
+				                                <option value="CAT6" <c:out value="${pageMaker.cri.cat_no eq 'CAT6'? 'selected':'' }"/>>기획</option>
 				                            </select>
                                     	</td>
                                     	<th class="align-middle table-primary">2차 카테고리</th>
                                     	<td>
-                                    		<select id="sub_cate" class="custom-select  form-control custom-shadow">
+                                    		<select id="sub_cate" name="sub_no" class="custom-select  form-control custom-shadow">
 				                                
 				                            </select>
                                     	</td>
                                     </tr>
                                 </tbody>
                             </table>
+                          </form>
                         <style>
                             .search, .reload{
                                 position: relative;
@@ -136,8 +124,8 @@
                         </style>
 
 	                     <div class="d-flex justify-content-end my-4">
-                            <button class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
-	                        <button class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
+                            <button id="resetBtn" class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
+	                        <button id="searchBtn" class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
 	                    </div>
                    </div>
                </div>
@@ -295,29 +283,17 @@
                                         <tr>                                     
                                             <th class="table-primary align-middle">누적판매</th>
                                             <td>                                              
-                                                <input class="form-control custom-shadow mb-1"  id="" name="" type="text" readonly>                 
+                                                <input class="form-control custom-shadow mb-1"  id="totalPay" name="" type="text" readonly>                 
                                             </td>
                                         </tr>
                                         <tr>
                                         	<th class="table-primary align-middle">리뷰수</th>
                                             <td > 
                                               <div class="col-5 p-0 d-flex align-items-center">                                             
-                                                <input class="form-control custom-shadow mb-1 mr-2"  id="" name="" type="text" readonly> <span>개</span>                
+                                                <input class="form-control custom-shadow mb-1 mr-2"  id="totalReview" name="" type="text" readonly> <span>개</span>                
                                               </div>
                                             </td>
                                         </tr>
-                                        <tr>                                     
-                                            <th  class="table-primary align-middle">위시수</th>
-                                             <td>
-                                               <div class="col-5 p-0 d-flex align-items-center">                                             
-                                                <input class="form-control custom-shadow mb-1 mr-2"  id="" name="" type="text" readonly> <span>개</span>                
-                                              </div>
-                                        	</td>
-                                        	 
-                                        	
-                                           
-                                        </tr>
-                                        
                                     </tbody>
                                 </table>
 		
@@ -398,33 +374,86 @@ $(".page-item a").on("click", function (e) {
     actionForm.submit();
 })
 //카테고리 select
+const getOption=()=>{
+	  var obj = {
+		   "CAT1" :{
+			   "SUB1-1":"앱개선,버그수정",
+			   "SUB1-2":"네이티브웹",
+			   "SUB1-3":"앱생성"
+		   },
+		   "CAT2" :{
+			   "SUB2-1":"웹사이트 제작",
+			   "SUB2-2":"웹사이트개선,버그수정",
+			   "SUB2-3":"프론트엔드,퍼블리싱",
+			   "SUB2-4":"검색최적화"
+		   },
+		   "CAT3":{
+			   "SUB3-1":"전체",
+			   "SUB3-2":"2D",
+			   "SUB3-3":"3D",
+			   "SUB3-4":"AR"
+		   },
+		   "CAT4":{
+			   "SUB4-1":"웹",
+			   "SUB4-2":"WINDOWS",
+			   "SUB4-3":"MAC",
+			   "SUB4-4":"안드로이드",
+			   "SUB4-5":"아이폰"
+		   },
+		   "CAT5":{
+			   "SUB5-1":"엑셀",
+			   "SUB5-2":"조립컴퓨터",
+			   "SUB5-3":"컴퓨터수리",
+			   "SUB5-4":"작업환경세팅"
+		   },
+		   "CAT6":{
+			   "SUB6-1":"엑셀",
+			   "SUB6-2":"조립컴퓨터",
+			   "SUB6-3":"컴퓨터수리"
+		   }
+	  } 
+	  return obj;
+   }
+console.log(getOption())
 const handleCategoryChange=()=>{
+	let arrType=getOption();
+	let optionType=$("#sub_cate");
+	optionType.empty();
+	
 	let val=event.target.value;
 	
-	const sub1=["앱개선,버그수정","네이티브웹","앱생성"]
-	const sub2=["웹사이트개선,버그수정","프론트엔드,퍼블리싱","검색최적화","웹사이트제작"]
-	const sub3=["전체","2D","3D","AR"]
-	const sub4=["웹","WINDOWS","MAC","안드로이드","아이폰"]
-	const sub5=["엑셀","조립컴퓨터","컴퓨터수리","작업환경세팅"]
-	const sub6=["앱,웹기획서","게임기획서","모바일UI"]
+	 if(val=="CAT1"){
+		for(prop in arrType["CAT1"]){
+			optionType.append('<option value='+prop+' >'+arrType["CAT1"][prop]+'</option>')
+		}
+	} 
+	 if(val=="CAT2"){
+			for(prop in arrType["CAT2"]){
+				optionType.append('<option value='+prop+' >'+arrType["CAT2"][prop]+'</option>')
+			}
+		} 
+	 if(val=="CAT3"){
+			for(prop in arrType["CAT3"]){
+				optionType.append('<option value='+prop+' >'+arrType["CAT3"][prop]+'</option>')
+			}
+		} 
+	 
+	 if(val=="CAT4"){
+			for(prop in arrType["CAT4"]){
+				optionType.append('<option value='+prop+' >'+arrType["CAT4"][prop]+'</option>')
+			}
+		} 
+	 if(val=="CAT5"){
+			for(prop in arrType["CAT5"]){
+				optionType.append('<option value='+prop+' >'+arrType["CAT5"][prop]+'</option>')
+			}
+		}
+	 if(val=="CAT6"){
+			for(prop in arrType["CAT6"]){
+				optionType.append('<option value='+prop+' >'+arrType["CAT6"][prop]+'</option>')
+			}
+		}
 	
-	let target=document.getElementById("sub_cate");
-	
-	if(val=="CAT1") var sub_no= sub1;
-	if(val=="CAT2") var sub_no= sub2;
-	if(val=="CAT3") var sub_no= sub3;
-	if(val=="CAT4") var sub_no= sub4;
-	if(val=="CAT5") var sub_no= sub5;
-	if(val=="CAT6") var sub_no= sub6;
-	
-	target.options.length=0;
-	
-	for(i in sub_no){
-		var opt=document.createElement("option");
-		opt.value=sub_no[0]
-		opt.textContent=sub_no[i]
-		target.appendChild(opt);
-	}
 	 
 }
 $("#searchCategory").on("change",handleCategoryChange);
@@ -437,7 +466,7 @@ const selectService=()=>{
 		type:"post",
 		data:{"ser_code":code}
 	}).done(function(result){
-		console.log(result.serviceInfo)
+		console.log(result.totalPay)
 		$("#ser_code").val(result.serviceInfo.ser_code);
 		let cat_name=result.serviceInfo.cat_name;//1차카테고리
 		let sub_name=result.serviceInfo.sub_name;//2차카테고리
@@ -462,6 +491,10 @@ const selectService=()=>{
 		$("#ser_offer").val(result.serviceInfo.ser_offer); 
 		$("#ser_sub").val(result.serviceInfo.ser_sub); 
 		
+		$("#totalPay").val(result.totalPay)
+		$("#totalReview").val(result.totalReview)
+		
+		
 	})
 }
 const serviceList = document.querySelectorAll(".serviceList");
@@ -469,6 +502,31 @@ const serviceList = document.querySelectorAll(".serviceList");
     Array.from(serviceList).forEach(function (element) {
         $(element).off("click").on('click', selectService);
     })
+
+//초기화 버튼
+const hadleResetLists =()=>{
+
+	$("input[name='s_email']").val('')
+	$("select[name='ser_title']").val('');
+	$("select[name='cat_no']").val('').prop("selected",true);
+	searchForm.action="manage_service.do";
+	searchForm.submit();
+}
+$("#resetBtn").on("click",hadleResetLists);
+    
+//검색버튼
+const searchReport=()=>{
+	
+//	if(type!="choice"||reporterId!=""||startDate!=""){
+		searchForm.action="manage_service.do";
+		searchForm.submit();
+//	}else{
+//		alert("검색어를 입력해주세요.")
+//	}
+	
+	
+}
+$("#searchBtn").on("click",searchReport);
 </script>                        
                         
                     
