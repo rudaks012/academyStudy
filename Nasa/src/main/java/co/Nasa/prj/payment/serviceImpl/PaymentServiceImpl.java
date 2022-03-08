@@ -1,5 +1,6 @@
 package co.Nasa.prj.payment.serviceImpl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,26 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public List<PaymentVO> selectdateSearch(PaymentVO vo) {
 		return map.selectdateSearch(vo);
+	}
+
+	@Override
+	public int countMonthSearch(PaymentVO vo) {
+		return map.countMonthSearch(vo);
+	}
+
+	@Override
+	public int countSixmonthSearch(PaymentVO vo) {
+		return map.countSixmonthSearch(vo);
+	}
+
+	@Override
+	public int countYearSearch(PaymentVO vo) {
+		return map.countYearSearch(vo);
+	}
+
+	@Override
+	public int countSelectdateSearch(PaymentVO vo) {
+		return map.countSelectdateSearch(vo);
 	}
 
 	

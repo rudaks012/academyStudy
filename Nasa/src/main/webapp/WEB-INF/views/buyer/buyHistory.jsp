@@ -41,11 +41,6 @@
 								</a>
 							</li>
 							<li>
-								<a href="buyerCoupons.do" class="d-flex">
-									<p>보유쿠폰</p>
-								</a>
-							</li>
-							<li>
 								<a href="wishlist.do" class="d-flex">
 									<p>위시리스트</p>
 								</a>
@@ -58,11 +53,6 @@
 							<li>
 								<a href="reportHistory.do" class="d-flex">
 									<p>신고내역</p>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="d-flex">
-									<p>회원탈퇴</p>
 								</a>
 							</li>
 						</ul>
@@ -147,11 +137,13 @@
 						<br>
 						<br>
 						<div class="row justify-content-center">							
-							<a class="genric-btn primary-border small" href="monthSearch.do">1개월</a>
-							<button class="genric-btn primary-border small" style="margin-left: 5px;">6개월</button>
-							<button class="genric-btn primary-border small" style="margin-left: 5px;">1년</button>
-							<input id="firstDate" type="date" style="margin-left: 10px">&nbsp;~&nbsp;<input id="secondDate" type="date"> 
-							<button class="genric-btn danger" style="height:30px; margin-left: 5px; padding:0 auto;" onclick="selectDateSearch()">검색</button>
+							<button class="genric-btn primary-border small" onclick="location.href = 'monthSearch.do'">1개월</button>
+							<button class="genric-btn primary-border small" style="margin-left: 5px;" onclick="location.href = 'sixmonthSearch.do'">6개월</button>
+							<button class="genric-btn primary-border small" style="margin-left: 5px;" onclick="location.href = 'yearSearch.do'">1년</button>
+							<form action="selectdateSearch.do" method="get" onsubmit="return selectdate()">
+								<input id="firstDate" name="firstDate" type="date" style="margin-left: 10px; margin-bottom: 5px;">&nbsp;~&nbsp;<input id="secondDate" name="secondDate" type="date"> 
+								<button type="submit" class="genric-btn danger">검색</button>
+							</form>
 						</div>
 						<div class="row justify-content-center" style="margin-top: 10px;">
 							<table id="paymentTable" class="table" style="width: 800px; text-align: center;">
@@ -238,6 +230,25 @@
 
 <!-- buyHistory main end  -->
 <script>
+	function selectdate() {
+		var firstDate = $("#firstDate").val();
+		var secondDate = $("#secondDate").val();
+		console.log(firstDate);
+		console.log(secondDate);
+		
+		// 직접 날짜 설정하는 input에서 설정 안해줬을 때 알리기
+		if(firstDate == "") {
+			window.alert("시작 날짜를 설정해주세요!");
+			return false;
+		} else if(secondDate == "") {
+			window.alert("종료 날짜를 설정해 주세요!");
+			return false;
+		} else if(firstDate > secondDate) {
+			window.alert("날짜를 올바르게 설정해주세요!");
+			return false;
+		}
+	}
+
 	// pagination
 	
 	 /* $(document).ready(function(){
