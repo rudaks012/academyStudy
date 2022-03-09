@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -244,6 +245,8 @@ public class BuyerController {
 		return "buyer/buyHistory";
 	}
 	
+	
+
 	@RequestMapping("/monthSearch.do")
 	public String monthSearch(Model model, HttpSession session, HttpServletResponse response,
 							  HttpServletRequest request, PagingDTO pagingdto) {
