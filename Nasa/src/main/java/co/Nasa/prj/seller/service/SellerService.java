@@ -21,4 +21,7 @@ public interface SellerService {
 	
 	//채팅 셀러 조회
 	public SellerVO chatsellerselect(SellerVO vo);
+	
+	//채팅 셀러 닉네임
+	SellerVO SellerNickSelect(String s_nickname);
 }

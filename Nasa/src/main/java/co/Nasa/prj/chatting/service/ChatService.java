@@ -75,6 +75,7 @@ public interface ChatService {
 	public int updateCount(ChatMessage message);
 
 	// 채팅에서 서비스 상세정보 상세정복확인
-	public ServiceVO getRow(int sno);
+
+	public ServiceVO getRow(String ser_code);
 
 }

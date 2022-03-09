@@ -23,11 +23,11 @@
 
 	<!-- 신규 채팅방일 때 채팅 방 생성 -->
 	<insert id="createChat">
-		insert into CHATROOM
-		values(SEQ_CHATROOM_ID.NEXTVAL,
+		INSERT INTO CHATROOM(ROOMID,USERID,USERNICKNAME,MASTERID,MASTERNICKNAME,SER_CODE)
+		VALUES((SELECT NVL(MAX(ROOMID),0)+1 FROM CHATROOM),
 		#{userid},
 		#{usernickname},
-		#{masterid}, #{masternickname})
+		#{masterid}, #{masternickname},#{ser_code})
 	</insert>
 
 	<select id="selectChatRoom" resultMap="chatRoomResultset">
@@ -92,5 +92,6 @@
 	<select id="" resultType="co.Nasa.prj.comm.VO.ServiceVO">
 	SELECT * FROM SERVICE WHERE S_CODE ={sno}
 	</select>
+	
 
 </mapper>

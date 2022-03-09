@@ -26,7 +26,7 @@ public interface ChatMapper {
 	public List<ChatMessage> messageList(String roomid); //메세지 내용 리스트 출력
 	
 	//채팅에서 서비스 상세정보 상세정복확인
-	public ServiceVO getRow(int sno);
+	public ServiceVO getRow(String ser_code);
 
 	
 	

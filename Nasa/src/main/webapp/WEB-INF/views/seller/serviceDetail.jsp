@@ -318,11 +318,11 @@
 						<aside class="single_sidebar_widget author_widget">
 							<img class="author_img rounded-circle" src="assets/img/comment/comment_1.png" 
 							alt="" style="cursor:pointer;" onclick="location='sellerDetail.do'">
-							<h4>${sellerInfo.s_name }</h4>
+							<h4 id="sellernick">${sellerInfo.s_name }</h4>
 							<p>등급 : ${sellerInfo.s_rank }</p>
 
 							<p>${sellerInfo.s_me }</p>
-							<button class="genric-btn primary small startbtn">채팅</button>
+							<button class="genric-btn primary small startbtn" onclick="chatingcheck()">채팅</button>
 							<div class="br"></div>
 						</aside>
 					</div>
@@ -348,6 +348,26 @@
 		inputImage.addEventListener("change", e => {
 			readImage(e.target);
 		});
+
+        function chatingcheck() {
+            //판매자 닉네임
+            var chatnick = document.querySelector("#sellernick").innerHTML;
+            //서비스코드
+            var ser_code = window.location.search.substr(10);
+            $.ajax({
+                url : "chatingcheck.do",
+                type : "post",
+                data : {
+                    chatnick : chatnick, //이거 판매자 닉네임
+                    ser_code : ser_code  // 페이지의 서비스코드
+                },
+                dataType : "json",
+                success : function(data){
+                    console.log(data);
+                }
+
+            })
+        }
 	</script>
 	
 </body>

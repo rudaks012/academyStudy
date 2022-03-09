@@ -35,6 +35,13 @@
 		WHERE s_email = #{s_email}
 	</select>
 	
+	<select id="SellerNickSelect" resultType="co.Nasa.prj.comm.VO.SellerVO"
+	parameterType="co.Nasa.prj.comm.VO.ServiceVO">
+		SELECT *
+		FROM SELLER 
+		WHERE S_NICKNAME = #{s_nickname}
+	</select>
+	
 	<update id="SellerProfileUpdate" parameterType="co.Nasa.prj.comm.VO.SellerVO">
 		UPDATE SELLER SET
 		S_PASSWORD = #{s_password}, S_NICKNAME = #{s_nickname},
@@ -45,11 +52,12 @@
 	</update>
 	
 	<select id="chatsellerselect" resultType="co.Nasa.prj.comm.VO.SellerVO" parameterType="co.Nasa.prj.comm.VO.SellerVO">
-		SELECT S_EMAIL ,S_NICKNAME
+		SELECT S_EMAIL ,S_NICKNAME,S_IMG
 		FROM SELLER
 		WHERE S_EMAIL = #{s_email}
 		UNION all
-		SELECT B_EMAIL AS S_EMAIL,B_NICKNAME AS S_NICKNAME FROM BUYER
+		SELECT B_EMAIL AS S_EMAIL,B_NICKNAME AS S_NICKNAME, B_IMG AS S_IMG
+		FROM BUYER
 		WHERE B_EMAIL = #{s_email}
 		
 		

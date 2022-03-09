@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -25,6 +26,7 @@ import co.Nasa.prj.chatting.service.ChatRoom;
 import co.Nasa.prj.chatting.serviceImpl.ChatServiceImpl;
 import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.SellerVO;
+import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
  
@@ -119,19 +121,21 @@ public class ChatController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("createChat.do")
-    public String createChat(ChatRoom room, String userid, int  sno, Model model){
-        cService.getRow(sno);
+    @RequestMapping("/createChat.do")
+    public String createChat(ChatRoom room, String userid, String ser_code, Model model){
     	// 상품번호로 등록한 판매자의 아이디/닉네임 가져오기 
-    	System.out.println("상품번호 :::"+sno);
+    	System.out.println("상품번호 :::"+ser_code);
+    	
+    	ServiceVO svo = serviceDao.serviceSelect(ser_code);
 		BuyerVO vo = new BuyerVO();
 		vo.setB_email(userid);
+		System.out.println(vo.getB_email());
 		vo = BuyerDao.selectBuyer(vo);
+		System.out.println("이거는 방만들기 vo다 ||||||||" + vo);
 		System.out.println("로그인한 아이디 :::"+userid);
 		
 		vo.getB_email();
-		SellerVO svo = new SellerVO();
-		svo = sellerDAO.SellerSelect(vo.getB_email());	
+		 sellerDAO.SellerSelect(vo.getB_email());	
     	
 //        ProductDTO p = pService.getRow(pno);
 //        MemberDTO m =  mService.readMemberInfo(p.getUserid());
@@ -147,7 +151,7 @@ public class ChatController {
         room.setUserid(userid);
         room.setUsernickname(BuyerDao.selectBuyer(vo).getB_nickname());
         room.setMasterid(svo.getS_email());
-        room.setMasternickname(svo.getS_nickname());
+       //room.setMasternickname(svo.());
  
         ChatRoom exist  = cService.searchChatRoom(room);
         
@@ -179,7 +183,7 @@ public class ChatController {
      * @throws JsonIOException
      * @throws IOException
      */
-    @RequestMapping("chatRoomList.do")
+    @RequestMapping("/chatRoomList.do")
     public void createChat(ChatMessage message, String userid, HttpServletResponse response) throws JsonIOException, IOException{
         System.out.println("로그인한 아이디 불러줘 ::"+userid);
     	List<ChatRoom> cList = cService.chatRoomList(userid);
@@ -198,7 +202,7 @@ public class ChatController {
     }
     
     
-    @RequestMapping("chatSession.do")
+    @RequestMapping("/chatSession.do")
     public void chatSession(HttpServletResponse response) throws JsonIOException, IOException{
         ArrayList<String> chatSessionList = ChatSession.getLoginUser(); // 현재 로그인된 유저들을 불러서 저장
         
@@ -206,6 +210,57 @@ public class ChatController {
  
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
         gson.toJson(chatSessionList,response.getWriter());
+    }
+    @ResponseBody
+    @RequestMapping("/chatingcheck.do")
+    public String chatingcheck(ChatRoom room,HttpSession session,@RequestParam("chatnick") String chatnick, @RequestParam("ser_code") String ser_code){
+    String userid = (String) session.getAttribute("id");
+    BuyerVO bvo = new BuyerVO();
+    bvo.setB_email(userid); //세션아이디야 이건  buyer에있어
+    BuyerVO buyer = BuyerDao.selectBuyer(bvo);
+    System.out.println("테스트해본다 겟닉네임 |||||||||"+buyer.getB_nickname());
+    SellerVO vo = new SellerVO();
+    //seller에 세션값 넣기
+    vo.setB_email(userid);
+    vo.setS_nickname(chatnick);
+    //셀러 닉네임조회
+    SellerVO svo = sellerDAO.SellerNickSelect(chatnick);
+    
+    //서비스 조회
+    ServiceVO servo = serviceDao.serviceSelect(ser_code);
+    System.out.println("로그인한 아디 ||||||||||" + userid);
+    System.out.println("구매자의 아이디 ||||||||" + bvo);
+    System.out.println("판매자 닉네임 ||||||||||" + svo);
+    System.out.println("판매자 아이디 ||||||" + svo.getS_nickname());
+    System.out.println("판매자 프로필||||" + svo.getS_img());
+    System.out.println("판매자 코드 ||||||||||" + servo);
+    System.out.println("들어온다.||||||||||||||||||");
+    	
+    room.setUserid(userid);
+    room.setUsernickname(buyer.getB_nickname());
+    room.setMasterid(svo.getS_email());
+    room.setMasternickname(svo.getS_nickname());
+    	
+    ChatRoom exist = cService.searchChatRoom(room);
+    	
+    	if(exist == null) {
+    		System.out.println("방이없다!");
+    		int result = cService.createChat(room);
+    		if(result == 1) {
+    			System.out.println("방만들기");
+    			String room_id = cService.searchChatRoom(room).getRoomid();
+    			return room_id;
+    		}else {
+    			return "user/home";
+    		}
+    	}
+    	//db에 방이있따
+    	else {
+    		System.out.println("방이있따");
+    		String room_id = cService.searchChatRoom(room).getRoomid();
+    		return room_id;
+    	}
+
     }
     
 }
