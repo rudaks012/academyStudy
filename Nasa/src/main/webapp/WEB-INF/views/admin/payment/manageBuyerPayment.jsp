@@ -30,19 +30,20 @@
                      </h5>
                     <div class="card mb-4">
                         <div class="card-body">
+                           <form id="searchForm" method="get">
                             <table class="table caption-top table-bordered  text-center">
                                 <tbody>
                                 	<tr>
                                         <th class="align-middle table-primary">구매자아이디</th>
                                         <td>
                                         	
-                                        		<input class="form-control custom-shadow" id="" name="b_email" type="text">
+                                        		<input class="form-control custom-shadow" id="" name="b_email" type="text" value='<c:out value="${pageMaker.cri.b_email }"/>'>
                                     		
                                     	</td>
                                         <th class="align-middle table-primary">서비스명</th>
                                         <td>
                                         	
-                                        		<input class="form-control custom-shadow" id="" name="ser_title" type="text">
+                                        		<input class="form-control custom-shadow" id="" name="ser_title" type="text" value='<c:out value="${pageMaker.cri.ser_title }"/>'>
                                     		
                                     	</td>
                                     </tr>
@@ -51,7 +52,7 @@
                                        <tr>
                                     	<th class="align-middle table-primary">1차 카테고리</th>
                                     	<td>
-                                    		<select id="searchCategory" name="cat_no" class="custom-select  form-control custom-shadow ">
+                                    		<select id="searchCategory" name="pay_cate" class="custom-select  form-control custom-shadow ">
 				                                <option value="" selected>선택</option>
 				                                <option value="CAT1" <c:out value="${pageMaker.cri.cat_no eq 'CAT1'? 'selected':'' }"/>>앱</option>
 				                                <option value="CAT2" <c:out value="${pageMaker.cri.cat_no eq 'CAT2'? 'selected':'' }"/>>웹</option>
@@ -63,7 +64,7 @@
                                     	</td>
                                     	<th class="align-middle table-primary">2차 카테고리</th>
                                     	<td>
-                                    		<select id="sub_cate" name="sub_no" class="custom-select  form-control custom-shadow">
+                                    		<select id="sub_cate" name="pay_cate1" class="custom-select  form-control custom-shadow">
 				                                
 				                            </select>
                                     	</td>
@@ -74,7 +75,7 @@
                                         <td colspan="3">
                                         	<div class="d-flex align-items-center">
                                         		<div class="col-3 p-0">
-	                                        	<input type="date" name="pay_date" class="form-control" >
+	                                        	<input type="date" name="pay_date" class="form-control"  value='<c:out value="${pageMaker.cri.pay_date }"/>'>
 	                                        	</div>
 	                                        	<span class="mx-2"><i class="fas fa-minus"></i></span>
 	                                        	<div class="col-3 p-0">
@@ -85,6 +86,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                          </form>
                         <style>
                             .search, .reload{
                                 position: relative;
@@ -93,8 +95,8 @@
                         </style>
 
 	                     <div class="d-flex justify-content-end my-4">
-                            <button class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
-	                        <button class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
+                            <button id="resetBtn" class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
+	                        <button id="searchBtn" class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
 	                    </div>
                    </div>
                </div>
@@ -160,6 +162,11 @@
 				                    <form id="actionForm" action="manage_buyerPayment.do" method="get">
 										 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 										 <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+										 <input type="hidden" name="b_email" value="${pageMaker.cri.b_email }">
+							             <input type="hidden" name="ser_title" value="${pageMaker.cri.ser_title }">
+							             <input type="hidden" name="pay_cate" value="${pageMaker.cri.pay_cate }">
+							             <input type="hidden" name="pay_cate1" value="${pageMaker.cri.pay_cate1 }">
+							             <input type="hidden" name="pay_date" value="${pageMaker.cri.pay_date }">
 										 
 									</form>
 		                   </div>
@@ -255,11 +262,32 @@ $(".page-item a").on("click", function (e) {
 //결제날짜 변경
 let startDate =$("input[name='pay_date']");
 let endDate =$("input[name='pay_date2']");
-const handleReportDate =()=>{
+const handlePayDate =()=>{
 	$(endDate).val($(startDate).val())
-	
-	
 }
+
+$("input[name='pay_date']").on("change",handlePayDate);
+
+//초기화
+const hadleResetLists =()=>{
+	$(startDate).val("")
+	$(endDate).val("")
+	$("input[name='b_email']").val('')
+	$("input[name='ser_title']").val('')
+	$("select[name='pay_cate']").val('').prop("selected",true);
+	searchForm.action="manage_buyerPayment.do";
+	searchForm.submit();
+}
+$("#resetBtn").on("click",hadleResetLists);
+
+//검색
+//검색버튼
+const searchReport=()=>{
+
+		searchForm.action="manage_buyerPayment.do";
+		searchForm.submit();
+}
+$("#searchBtn").on("click",searchReport);
 
 //카테고리 select
 const getOption=()=>{
