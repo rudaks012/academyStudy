@@ -217,7 +217,14 @@
 						<div><span style="font-weight: bold; font-size: 17px;">[판매자 자기소개]</span></div>
 						<div class="form-group">
 							<textarea class="form-control w-100" cols="60" rows="9" id="s_me" name="s_me"
-								placeholder="판매자 자기소개 입력 (경력사항, 특장점, 주의사항 등등)"></textarea>
+								placeholder="판매자 자기소개 입력"></textarea>
+						</div>
+					</div>
+					<div class="col-12">
+						<div><span style="font-weight: bold; font-size: 17px;">[경력사항]</span></div>
+						<div class="form-group">
+							<textarea class="form-control w-100" cols="60" rows="9" id="s_carrer" name="s_carrer"
+								placeholder="서비스 관련 경력사항을 입력해주세요"></textarea>
 						</div>
 					</div>										
 					<div class="col-12">
