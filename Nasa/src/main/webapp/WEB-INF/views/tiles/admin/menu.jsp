@@ -30,11 +30,15 @@
                             </ul>
                         </li>
                         
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="manage_category.do"
+                        <!-- <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="manage_category.do"
                                 aria-expanded="false"><i class=" fas fa-list-ul mr-1"></i><span
-                                    class="hide-menu">카테고리관리</span></a></li>
+                                    class="hide-menu">카테고리관리</span></a></li> -->
                         
-                        	<li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="manage_service.do"
+                                aria-expanded="false"><i class="far fa-star mr-1"></i><span
+                                    class="hide-menu">서비스관리</span></a></li>
+                                    
+                        	<!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i  class=" far fa-star"></i><span
                                     class="hide-menu">서비스관리 </span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
@@ -45,9 +49,9 @@
                                 <li class="sidebar-item"><a href="manage_powerService.do" class="sidebar-link"><span
                                             class="hide-menu"> 파워서비스 일정
                                         </span></a>
-                                </li>
+                                </li> 
                             </ul>
-                        </li>
+                        </li> -->
                          <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="manage_promotion.do"
                                 aria-expanded="false"><i class=" fas fa-gift"></i><span
                                     class="hide-menu">프로모션관리</span></a></li>
@@ -101,8 +105,20 @@
                                 </li>
                             </ul>
                         </li>
-      
+                        
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i  class=" fas fa-edit"></i><span
+                                    class="hide-menu">게시글관리 </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item"><a href="manage_sellerBoard.do" class="sidebar-link"><span
+                                            class="hide-menu"> 판매자노하우
+                                        </span></a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+      
+                      <!--   <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i class="fas fa-edit mr-1"></i><span
                                     class="hide-menu">게시글관리</span></a>
                             <ul aria-expanded="false" class="collapse first-level base-level-line">
@@ -130,7 +146,7 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         
                         
                         

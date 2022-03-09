@@ -3,31 +3,31 @@
 <mapper namespace="co.Nasa.prj.admin.service.AdminServiceMapper">
 	<sql id="serviceCriteria">
 		<if test= "s_email!=null and !s_email.equals('')">
-	  	    AND s.s_email like '%'||#{s_email}||'%'
+	  	    AND s_email like '%'||#{s_email}||'%'
 	  	 </if>
 	  	 
 	  	 <if test="ser_title!=null and !ser_title.equals('')">
-	  	     AND v.ser_title like '%'||#{ser_title}||'%'
+	  	     AND ser_title like '%'||#{ser_title}||'%'
 	  	</if>
 	  	
 	  	<if test="ser_line!=null and !ser_line.equals('')">
-	  	     AND v.ser_line = #{ser_line}
+	  	     AND ser_line = #{ser_line}
 	  	</if>
 	  	
 	  	<if test="ser_team!=null and !ser_team.equals('')">
-	  	     AND v.ser_team = #{ser_team}
+	  	     AND ser_team = #{ser_team}
 	  	</if>
 	  	
 	  	<if test="s_name!=null and !s_name.equals('')">
-	  	     AND s.s_name like '%'||#{s_name}||'%'
+	  	     AND s_name like '%'||#{s_name}||'%'
 	  	</if>
 	  	
 	  	<if test="cat_no!=null and !cat_no.equals('')">
-	  	     AND v.cat_no = #{cat_no}
+	  	     AND cat_no = #{cat_no}
 	  	</if>
 	  	
 	  	<if test="sub_no!=null and !sub_no.equals('')">
-	  	     AND v.sub_no = #{sub_no}
+	  	     AND sub_no = #{sub_no}
 	  	</if>
 	  	
 	 

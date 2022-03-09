@@ -26,7 +26,7 @@
                 <!-- Start First Cards -->
                 <!-- *************************************************************** -->
                     <h5 class="p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
-                           구매자검색
+                           판매자검색
                      </h5>
                     <div class="card mb-4">
                         <div class="card-body">
@@ -36,17 +36,17 @@
                                 	<tr>
                                         <th class="align-middle table-primary">아이디</th>
                                         <td>
-                                        	<input class="form-control custom-shadow" id="" name="s_email" type="text">
+                                        	<input class="form-control custom-shadow" id="" name="s_email" type="text" value='<c:out value="${pageMaker.cri.s_email }"/>'>
                                     	</td>
                                     	<th class="align-middle table-primary">구분</th>
                                         <td>
                                             <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                 <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="customRadio1" name="s_author" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio1" name="s_author" value="개인" class="custom-control-input mr-5"<c:out value="${pageMaker.cri.s_author eq '개인'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="customRadio1">개인</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="s_author" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio2" name="s_author" value="기업" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.s_author eq '기업'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="customRadio2">기업</label>
                                                 </div>
                                             </div>
@@ -55,7 +55,7 @@
                                      <tr>
                                         <th class="align-middle table-primary">서비스명</th>
                                         <td colspan="3">
-                                        	<input class="form-control custom-shadow" id="" name="ser_title" type="text">
+                                        	<input class="form-control custom-shadow" id="" name="ser_title" type="text" value='<c:out value="${pageMaker.cri.ser_title }"/>'>
                                     	</td>
                                     </tr>
                                     <tr>
@@ -63,12 +63,12 @@
                                     	<td>
                                     		<select id="searchCategory" name="ser_cate" class="custom-select  form-control custom-shadow ">
 				                                <option value="" selected>선택</option>
-				                                <option value="CAT1" <c:out value="${pageMaker.cri.cat_no eq 'CAT1'? 'selected':'' }"/>>앱</option>
-				                                <option value="CAT2" <c:out value="${pageMaker.cri.cat_no eq 'CAT2'? 'selected':'' }"/>>웹</option>
-				                                <option value="CAT3" <c:out value="${pageMaker.cri.cat_no eq 'CAT3'? 'selected':'' }"/>>게임</option>
-				                                <option value="CAT4" <c:out value="${pageMaker.cri.cat_no eq 'CAT4'? 'selected':'' }"/>>보안</option>
-				                                <option value="CAT5" <c:out value="${pageMaker.cri.cat_no eq 'CAT5'? 'selected':'' }"/>>기술지원</option>
-				                                <option value="CAT6" <c:out value="${pageMaker.cri.cat_no eq 'CAT6'? 'selected':'' }"/>>기획</option>
+				                                <option value="CAT1" <c:out value="${pageMaker.cri.ser_cate eq 'CAT1'? 'selected':'' }"/>>앱</option>
+				                                <option value="CAT2" <c:out value="${pageMaker.cri.ser_cate eq 'CAT2'? 'selected':'' }"/>>웹</option>
+				                                <option value="CAT3" <c:out value="${pageMaker.cri.ser_cate eq 'CAT3'? 'selected':'' }"/>>게임</option>
+				                                <option value="CAT4" <c:out value="${pageMaker.cri.ser_cate eq 'CAT4'? 'selected':'' }"/>>보안</option>
+				                                <option value="CAT5" <c:out value="${pageMaker.cri.ser_cate eq 'CAT5'? 'selected':'' }"/>>기술지원</option>
+				                                <option value="CAT6" <c:out value="${pageMaker.cri.ser_cate eq 'CAT6'? 'selected':'' }"/>>기획</option>
 				                            </select>
                                     	</td>
                                     	<th class="align-middle table-primary">2차 카테고리</th>
@@ -84,7 +84,7 @@
                                         <td colspan="3">
                                         	<div class="d-flex align-items-center">
                                         		<div class="col-3 p-0">
-	                                        	<input type="date" class="form-control" value="" name="power_date">
+	                                        	<input type="date" class="form-control" value="" name="power_date"  value='<c:out value="${pageMaker.cri.power_date }"/>'>
 	                                        	</div>
 	                                        	<span class="mx-4"><i class="fas fa-minus"></i></span>
 	                                        	<div class="col-3 p-0">
@@ -104,8 +104,8 @@
                         </style>
 
 	                     <div class="d-flex justify-content-end my-4">
-                            <button class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
-	                        <button class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
+                            <button id="resetBtn" class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
+	                        <button id="searchBtn" class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
 	                    </div>
                    </div>
                </div>
@@ -172,14 +172,12 @@
 				                    <form id="actionForm" action="manage_sellerPayment.do" method="get">
 										 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 										 <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-										 <input type="hidden" name="b_email" value="${pageMaker.cri.b_email }">
-										 <input type="hidden" name="b_nickname" value="${pageMaker.cri.b_nickname }">
-										 <input type="hidden" name="b_name" value="${pageMaker.cri.b_name }">
-										 <input type="hidden" name="b_tel" value="${pageMaker.cri.b_tel }">
-										 <input type="hidden" name="b_address" value="${pageMaker.cri.b_address }">
-										 <input type="hidden" name="b_rank" value="${pageMaker.cri.b_rank }">
-										 <input type="hidden" name="b_date" value="${pageMaker.cri.b_date }">
-										 <input type="hidden" name="b_date2" value="${pageMaker.cri.b_date2 }">
+										 <input type="hidden" name="s_email" value="${pageMaker.cri.s_email }">
+										 <input type="hidden" name="s_author" value="${pageMaker.cri.s_author }">
+										 <input type="hidden" name="ser_title" value="${pageMaker.cri.ser_title }">
+										 <input type="hidden" name="ser_cate" value="${pageMaker.cri.ser_cate }">
+										 <input type="hidden" name="ser_sub_cate" value="${pageMaker.cri.ser_sub_cate }">
+										 <input type="hidden" name="power_date" value="${pageMaker.cri.power_date }">
 									</form>
 		                   </div>
                			</div>
@@ -307,7 +305,23 @@ const searchReport=()=>{
 
 		searchForm.action="manage_sellerPayment.do";
 		searchForm.submit();
+}
+$("#searchBtn").on("click",searchReport);
 
+
+//초기화
+const hadleResetLists =()=>{
+	$(startDate).val("")
+	$(endDate).val("")
+	$("input[name='s_email']").val('')
+	$("input[name='ser_title']").val('')
+	$("input[name='power_date']").val('')
+	$("input[name='s_author']").prop("checked",false);
+	$("select[name='ser_cate']").val('').prop("selected",true);
+	searchForm.action="manage_sellerPayment.do";
+	searchForm.submit();
+}
+$("#resetBtn").on("click",hadleResetLists);
 //카테고리 select
 const getOption=()=>{
 	  var obj = {

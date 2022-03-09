@@ -50,6 +50,7 @@ public class Criteria {
 	private String ser_sub_cate;
 	private String power_date;
 	private String power_date2;
+	private String s_author;
 
 	
 	public Criteria() {

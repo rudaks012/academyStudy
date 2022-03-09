@@ -252,8 +252,11 @@
 											</td>                                 
                                         </tr>
                                         <tr >
-                                            <th width="18%" class="table-primary align-middle">첨부파일</th>
-                                            <td colspan="3" id="filecode"></td>
+                                            <th colspan="4" class="table-primary align-middle">첨부파일</th>
+                                            
+                                        </tr>
+                                        <tr>
+                                        	<td colspan="4" id="filecode"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -409,7 +412,9 @@ const selectReport=()=>{
 		console.log(result.filecode);
 		//파일
 		let filecode= result.filecode
-		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text(result.filecode)
+		let img = "<img src='"+filecode+"' style='width:5px'>"
+		
+		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").append(img)
 		
 		//신고 결과가 반려일 경우
 		 function removeTr(){

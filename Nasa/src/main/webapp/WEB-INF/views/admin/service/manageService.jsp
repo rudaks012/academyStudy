@@ -53,15 +53,15 @@
                                         <td>
                                             <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                 <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="onlineRadio" name="ser_line" value="온라인" class="custom-control-input mr-5">
+                                                    <input type="radio" id="onlineRadio" name="ser_line" value="온라인" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_line eq '온라인'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="onlineRadio">온라인</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="onlineRadio2" name="ser_line" value="오프라인" class="custom-control-input mr-5">
+                                                    <input type="radio" id="onlineRadio2" name="ser_line" value="오프라인" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_line eq '오프라인'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="onlineRadio2">오프라인</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="onlineRadio3" name="ser_line" value="온/오프라인" class="custom-control-input mr-5">
+                                                    <input type="radio" id="onlineRadio3" name="ser_line" value="온/오프라인" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_line eq '온/오프라인'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="onlineRadio3">온/오프라인</label>
                                                 </div>
                                             </div>
@@ -508,6 +508,7 @@ const hadleResetLists =()=>{
 
 	$("input[name='s_email']").val('')
 	$("select[name='ser_title']").val('');
+	$("select[name='ser_line']").prop("checked",false);
 	$("select[name='cat_no']").val('').prop("selected",true);
 	searchForm.action="manage_service.do";
 	searchForm.submit();
