@@ -82,9 +82,40 @@
    
 
 	<!-- 채팅 결제 -->
-	<insert id="insertchatpayment" parameterType="co.Nasa.prj.comm.VO.PaymentVO">
-	
-	</insert>
+	<insert id="insertchatpayment"  parameterType="co.Nasa.prj.comm.VO.PaymentVO">
+INSERT INTO	PAYMENT
+	(PAY_CODE,
+	B_EMAIL,
+	S_EMAIL,
+	S_CODE,
+	PAY_DATE,
+	PAY_CATE,
+	PAY_CATE1,
+	PAY_TYPE,
+	PAY_COUPON,
+	PAY_PRICE,
+	PAY_ENDDATE,
+	EVENT_START,
+	EVENT_END,
+	PAY_ORIGINP,
+	PAY_COM)
+	VALUES(
+	(SELECT NVL(MAX(TO_NUMBER(PAY_CODE)),0) +1 FROM PAYMENT),
+	#{b_email},
+	#{s_email},
+	#{s_code},
+	sysdate,
+	'CAT2',
+	'SUB2-3',
+	'PAY_TPYE',
+	#{pay_coupon},
+	#{pay_price},
+	#{pay_enddate},
+	#{event_start},
+	#{event_end},
+	#{pay_originp},
+	'수수료')
+</insert>
 	
 
 </mapper>

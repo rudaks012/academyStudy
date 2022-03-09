@@ -17,6 +17,8 @@ public class PaymentVO {
 	String pay_enddate; //구매확정날짜
 	String event_start;
 	String event_end;
+	String pay_originp; //원급
+	String pay_com; // 수수료
 	
 	int start; // 쿼리에 쓸 start
 	int end; // 위와 같음
