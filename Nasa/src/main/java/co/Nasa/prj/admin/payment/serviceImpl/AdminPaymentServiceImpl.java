@@ -34,4 +34,22 @@ public class AdminPaymentServiceImpl implements AdminPaymentService{
 		return map.detailBuyerPayment(code);
 	}
 
+	@Override
+	public List<AdminAuthorVO> getSellerPaymentListWithPaging(Criteria cri) {
+		// TODO Auto-generated method stub
+		return map.getSellerPaymentListWithPaging(cri);
+	}
+
+	@Override
+	public int getSellerPaymentTotal(Criteria cri) {
+		// TODO Auto-generated method stub
+		return map.getSellerPaymentTotal(cri);
+	}
+
+	@Override
+	public AdminAuthorVO detailSellerPayment(String code) {
+		// TODO Auto-generated method stub
+		return map.detailSellerPayment(code);
+	}
+
 }

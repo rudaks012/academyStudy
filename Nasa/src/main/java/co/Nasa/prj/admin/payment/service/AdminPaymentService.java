@@ -12,4 +12,9 @@ public interface AdminPaymentService {
 	List<PaymentVO> getBuyerPaymentListWithPaging(Criteria cri);
 	public int getBuyerPaymentTotal(Criteria cri);
 	public AdminAuthorVO detailBuyerPayment(String code);
+	
+	//판매자 목록
+	List<AdminAuthorVO> getSellerPaymentListWithPaging(Criteria cri);
+	public int getSellerPaymentTotal(Criteria cri);
+	public AdminAuthorVO detailSellerPayment(String code);
 }

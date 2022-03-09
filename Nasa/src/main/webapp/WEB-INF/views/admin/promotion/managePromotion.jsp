@@ -325,7 +325,7 @@
                                         </tr>
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">제목</th>
-                                            <td colspan="3"><input class="form-control custom-shadow " id="" name="" value="1234444" type="text" disabled ></td>
+                                            <td colspan="3"><input class="form-control custom-shadow " id="" name="" value="1234444" type="text"  ></td>
                                             
                                         </tr>
                                         <tr>
@@ -333,7 +333,7 @@
                                             <th width="18%" class="table-primary align-middle">할인율</th>
                                             <td colspan="3">
                                                <div class="col-3 p-0 d-flex align-items-center">
-                                            	<input class="form-control custom-shadow mr-3 " id="" name="" value="10" type="text" disabled >%
+                                            	<input class="form-control custom-shadow mr-3 " id="" name="" value="10" type="text" >%
                                         	   </div>
                                         	</td>
                                         </tr>

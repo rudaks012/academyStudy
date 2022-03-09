@@ -41,6 +41,15 @@ public class Criteria {
 	
 	private String cat_no;
 	private String sub_no;
+	
+	private String pay_cate;
+	private String pay_cate1;
+	private String pay_date;
+	
+	private String ser_cate;
+	private String ser_sub_cate;
+	private String power_date;
+	private String power_date2;
 
 	
 	public Criteria() {

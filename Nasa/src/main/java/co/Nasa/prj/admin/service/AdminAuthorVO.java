@@ -96,6 +96,8 @@ public class AdminAuthorVO {
 	String power_start;
 	String power_end;
 	String power_service;
+	String power_date;
+	String power_price;
 	
 	//신고
 	String re_code; // report code
@@ -114,5 +116,14 @@ public class AdminAuthorVO {
 	String sub_name;
 	
 	String total_price;
+	String pay_date2;
 	
+	
+	int start; // 쿼리에 쓸 start
+	int end; 
+	
+	public void calcStartEnd(int pageNum, int amount) {
+		setEnd(pageNum * amount);
+		setStart(getEnd() - amount + 1);
+	}
 }
