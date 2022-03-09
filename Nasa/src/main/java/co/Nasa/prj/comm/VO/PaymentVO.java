@@ -1,5 +1,7 @@
 package co.Nasa.prj.comm.VO;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
@@ -28,5 +30,6 @@ public class PaymentVO {
 		setStart(getEnd() - amount + 1);
 	}
 	
-	int searchMonth;
+	Date firstDate;
+	Date secondDate;
 }

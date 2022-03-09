@@ -77,11 +77,6 @@
 									</a>
 								</li>
 								<li>
-									<a href="buyerCoupons.do" class="d-flex">
-										<p>보유쿠폰</p>
-									</a>
-								</li>
-								<li>
 									<a href="wishlist.do" class="d-flex">
 										<p>위시리스트</p>
 									</a>

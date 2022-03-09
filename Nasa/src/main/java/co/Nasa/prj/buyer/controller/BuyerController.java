@@ -3,7 +3,9 @@ package co.Nasa.prj.buyer.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.Date;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -243,9 +245,334 @@ public class BuyerController {
 		return "buyer/buyHistory";
 	}
 	
+	
+
 	@RequestMapping("/monthSearch.do")
-	public String monthSearch() {
-		return "";
+	public String monthSearch(Model model, HttpSession session, HttpServletResponse response,
+							  HttpServletRequest request, PagingDTO pagingdto) {
+		BuyerVO buyervo = new BuyerVO();
+		buyervo.setB_email((String) session.getAttribute("id"));
+		buyervo = buyerDao.selectBuyer(buyervo);
+		model.addAttribute("buyerinfo", buyervo);
+		
+		PaymentVO paymentvo = new PaymentVO();
+		paymentvo.setB_email((String) session.getAttribute("id"));
+		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
+		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<PaymentVO> paymentList = paymentDao.monthSearch(paymentvo);
+		pagingdto.setTotal(paymentDao.countMonthSearch(paymentvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("address", "monthSearch.do");
+		int paysum = 0;
+		int upgrademoney = 0;
+		for (int i = 0; i < paymentList.size(); i++) {
+			PaymentVO pmvo = paymentList.get(i);
+			if(pmvo.getPay_enddate() != null) {
+				paysum += pmvo.getPay_price();
+			}
+		}
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		String upgrademoneyform = "";
+		switch (buyervo.getB_rank()) {
+			case "1":
+				System.out.println("1");
+				upgrademoney = 1000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "2":
+				System.out.println("2");
+				upgrademoney = 5000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "3":
+				System.out.println("3");
+				upgrademoney = 10000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "4":
+				System.out.println("4");
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+		}
+		
+		String paysumform = formatter.format(paysum);
+		model.addAttribute("paysum", paysumform);
+		model.addAttribute("upgrademoney",upgrademoneyform);
+		
+		return "buyer/buyHistory";
+	}
+	
+	@RequestMapping("/sixmonthSearch.do")
+	public String sixmonthSearch(Model model, HttpSession session, HttpServletResponse response,
+							  HttpServletRequest request, PagingDTO pagingdto) {
+		BuyerVO buyervo = new BuyerVO();
+		buyervo.setB_email((String) session.getAttribute("id"));
+		buyervo = buyerDao.selectBuyer(buyervo);
+		model.addAttribute("buyerinfo", buyervo);
+		
+		PaymentVO paymentvo = new PaymentVO();
+		paymentvo.setB_email((String) session.getAttribute("id"));
+		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
+		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<PaymentVO> paymentList = paymentDao.sixmonthSearch(paymentvo);
+		pagingdto.setTotal(paymentDao.countSixmonthSearch(paymentvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("address", "sixmonthSearch.do");
+		int paysum = 0;
+		int upgrademoney = 0;
+		for (int i = 0; i < paymentList.size(); i++) {
+			PaymentVO pmvo = paymentList.get(i);
+			if(pmvo.getPay_enddate() != null) {
+				paysum += pmvo.getPay_price();
+			}
+		}
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		String upgrademoneyform = "";
+		switch (buyervo.getB_rank()) {
+			case "1":
+				System.out.println("1");
+				upgrademoney = 1000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "2":
+				System.out.println("2");
+				upgrademoney = 5000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "3":
+				System.out.println("3");
+				upgrademoney = 10000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "4":
+				System.out.println("4");
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+		}
+		
+		String paysumform = formatter.format(paysum);
+		model.addAttribute("paysum", paysumform);
+		model.addAttribute("upgrademoney",upgrademoneyform);
+		
+		return "buyer/buyHistory";
+	}
+	
+	@RequestMapping("/yearSearch.do")
+	public String yearSearch(Model model, HttpSession session, HttpServletResponse response,
+							  HttpServletRequest request, PagingDTO pagingdto) {
+		BuyerVO buyervo = new BuyerVO();
+		buyervo.setB_email((String) session.getAttribute("id"));
+		buyervo = buyerDao.selectBuyer(buyervo);
+		model.addAttribute("buyerinfo", buyervo);
+		
+		PaymentVO paymentvo = new PaymentVO();
+		paymentvo.setB_email((String) session.getAttribute("id"));
+		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
+		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<PaymentVO> paymentList = paymentDao.yearSearch(paymentvo);
+		pagingdto.setTotal(paymentDao.countYearSearch(paymentvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("address", "yearSearch.do");
+		int paysum = 0;
+		int upgrademoney = 0;
+		for (int i = 0; i < paymentList.size(); i++) {
+			PaymentVO pmvo = paymentList.get(i);
+			if(pmvo.getPay_enddate() != null) {
+				paysum += pmvo.getPay_price();
+			}
+		}
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		String upgrademoneyform = "";
+		switch (buyervo.getB_rank()) {
+			case "1":
+				System.out.println("1");
+				upgrademoney = 1000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "2":
+				System.out.println("2");
+				upgrademoney = 5000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "3":
+				System.out.println("3");
+				upgrademoney = 10000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "4":
+				System.out.println("4");
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+		}
+		
+		String paysumform = formatter.format(paysum);
+		model.addAttribute("paysum", paysumform);
+		model.addAttribute("upgrademoney",upgrademoneyform);
+		
+		return "buyer/buyHistory";
+	}
+	
+	@RequestMapping("/selectdateSearch.do")
+	public String selectdateSearch(Model model, HttpSession session, HttpServletResponse response,
+							  HttpServletRequest request, PagingDTO pagingdto, PaymentVO paymentvo) {
+		BuyerVO buyervo = new BuyerVO();
+		buyervo.setB_email((String) session.getAttribute("id"));
+		buyervo = buyerDao.selectBuyer(buyervo);
+		model.addAttribute("buyerinfo", buyervo);
+		
+		if(paymentvo.getFirstDate() == null) {
+			paymentvo.setFirstDate((Date) session.getAttribute("firstDate"));
+		}
+		
+		if(paymentvo.getSecondDate() == null) {
+			paymentvo.setSecondDate((Date) session.getAttribute("secondDate"));
+		}
+		
+		paymentvo.setB_email((String) session.getAttribute("id"));
+		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
+		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<PaymentVO> paymentList = paymentDao.selectdateSearch(paymentvo);
+		pagingdto.setTotal(paymentDao.countSelectdateSearch(paymentvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("address", "selectdateSearch.do");
+		
+		session.setAttribute("firstDate", paymentvo.getFirstDate());
+		session.setAttribute("secondDate", paymentvo.getSecondDate());
+		
+		int paysum = 0;
+		int upgrademoney = 0;
+		for (int i = 0; i < paymentList.size(); i++) {
+			PaymentVO pmvo = paymentList.get(i);
+			if(pmvo.getPay_enddate() != null) {
+				paysum += pmvo.getPay_price();
+			}
+		}
+		
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		String upgrademoneyform = "";
+		switch (buyervo.getB_rank()) {
+			case "1":
+				System.out.println("1");
+				upgrademoney = 1000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "2":
+				System.out.println("2");
+				upgrademoney = 5000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "3":
+				System.out.println("3");
+				upgrademoney = 10000000;
+				upgrademoney -= paysum;
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+			case "4":
+				System.out.println("4");
+				if(upgrademoney > 0) {
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				} else {
+					upgrademoney = 0;
+					upgrademoneyform = formatter.format(upgrademoney) + "원";
+				}
+				break;
+		}
+		
+		String paysumform = formatter.format(paysum);
+		model.addAttribute("paysum", paysumform);
+		model.addAttribute("upgrademoney",upgrademoneyform);
+		
+		return "buyer/buyHistory";
 	}
 
 	// 보유 쿠폰 페이지로 이동
