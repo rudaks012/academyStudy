@@ -21,21 +21,21 @@ public class AdminBoardController {
 		model.addAttribute("boardLists", adminBoardDao.getSelelrBoardWithPaging(cri));
 		return "admin/board/mangeSellerBoard";
 	}
-	
-	@RequestMapping("/manage_notice.do")
-	public String manage_notice() {
-		return "admin/notice/manageNotice";
-	}
-	
-	
-	@RequestMapping("/InsertNoticeForm.do")
-	public String InsertNoticeForm() {
-		return "admin/notice/InsertNoticeForm";
-	}
-	
-	
-	@RequestMapping("/ModifyNoticeForm.do")
-	public String ModifyNoticeForm() {
-		return "admin/notice/modifyNoticeForm";
-	}
 }
+//	@RequestMapping("/manage_notice.do")
+//	public String manage_notice() {
+//		return "admin/notice/manageNotice";
+//	}
+	
+//	
+//	@RequestMapping("/InsertNoticeForm.do")
+//	public String InsertNoticeForm() {
+//		return "admin/notice/InsertNoticeForm";
+//	}
+//	
+//	
+//	@RequestMapping("/ModifyNoticeForm.do")
+//	public String ModifyNoticeForm() {
+//		return "admin/notice/modifyNoticeForm";
+//	}
+//}
