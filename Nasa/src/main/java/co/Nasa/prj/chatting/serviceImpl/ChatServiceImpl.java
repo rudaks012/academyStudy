@@ -63,9 +63,9 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
-	public ServiceVO getRow(int sno) {
+	public ServiceVO getRow(String ser_code) {
 		// TODO Auto-generated method stub
-		return mapper.getRow(sno);
+		return mapper.getRow(ser_code);
 	}
 
 }

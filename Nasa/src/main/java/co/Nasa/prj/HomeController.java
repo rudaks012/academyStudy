@@ -138,7 +138,7 @@ public class HomeController {
 	//채팅 셀러 값가져오기
 	@RequestMapping("/sellerIdcheck.do")
 	@ResponseBody
-	public String sellerIdcheck(Model model, @RequestParam("sellerId") String sellerid,HttpSession session) {
+	public String sellerIdcheck(Model model, @RequestParam("sellerId") String sellerid, HttpSession session) {
 		System.out.println("셀러아이디 찍어보기 ||||||||||||||||" + sellerid);
 		// SellerVO vo = new SellerVO();
 		// vo = sellerDAO.SellerSelect(sellerid);

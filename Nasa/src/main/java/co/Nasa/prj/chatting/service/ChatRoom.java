@@ -24,5 +24,5 @@ public class ChatRoom {
     private String masternickname; // 상대방 닉네임
     
     private int unReadCount;    // 안 읽은 메세지 수
-    
+    private String ser_code;	//서비스코드
 }

@@ -663,6 +663,7 @@ input[type=date] {
                                     .attr("userId",
                                           data[i].masterid);
                               $img = $("<img class='profile_img' src='resources/img/buzz.png'>");
+                                   //$img = $("<img class='profile_img' src='resources/user/assets/img/profile/${loginMember.s_img}.png'>");
                               $div.append($img);
                               $divs = $("<span class='userNameId'>")
                                     .text(data[i].masterid);
@@ -709,17 +710,14 @@ input[type=date] {
                            var $img2 = $("<img src='resources/img/exit.png' style=' width: 20px; margin-top: 4px;'>")
 
                            $btn1.append($img2);
-
                            $div.append($divs);
                            $div.append($span);
-
                            $chatWrap.append($div);
                            $chatWrap.append($btn1);
 
                            // String을 int로 바꿔주고 더해준다.
                            countAll += parseInt(data[i].unReadCount);
                            console.log("메세지 안 읽은 숫자  ::" + countAll);
-
                         }// for 태그 동적 추가 END
                      } // IF 절 END
                   } // success(data) 구문 END 
@@ -756,10 +754,8 @@ input[type=date] {
 
             if ($(this).attr("userId") == imageId) {
                $(this).find("img").attr("src", str);
-
             }
          })
-
       }
 
       // 채팅방 관련
@@ -1186,7 +1182,7 @@ input[type=date] {
             url: "sellerIdcheck.do",
             type: "post",
             data: {
-               sellerId: sellerid,
+               sellerId: sellerid
             },
             dataType : "json",
             success: function(data){
