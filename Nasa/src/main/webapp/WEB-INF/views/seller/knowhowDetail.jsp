@@ -45,7 +45,7 @@
                         <div class="blog_details">
                            <h2 class="center" style="border-bottom: 1px solid #d5c9ea; padding-bottom: 20px;">${knowhowDetail.no_title }</h2>
                            <ul class="blog-info-link mt-3 mb-4">
-                              <li><a href="#"><i class="fa fa-user"></i> ${knowhowDetail.no_id }</a></li>
+                              <li><a href="#"><i class="fa fa-user"></i> ${knowhowDetail.s_nickname }</a></li>
                               <li><a href="#"><i class="fa fa-calendar"></i>${knowhowDetail.no_date }</a></li>
                            </ul>
                            <p class="excert">
@@ -68,7 +68,7 @@
             
                            <div class="media-body">
                               <a href="#">
-                                 <h4>${sellerInfo.s_name }</h4>
+                                 <h4>${sellerInfo.s_nickname }</h4>
                               </a> &nbsp;&nbsp;&nbsp; <span>등급 : ${sellerInfo.s_rank }</span>
                               <button class="genric-btn primary small startbtn" id="stbtn" style="float: right;" data-toggle="modal" data-target="#chatModal">견적 요청</button>
                               <p>${sellerInfo.s_me }</p>

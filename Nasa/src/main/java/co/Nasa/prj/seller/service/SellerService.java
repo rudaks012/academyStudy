@@ -24,4 +24,6 @@ public interface SellerService {
 	
 	//채팅 셀러 닉네임
 	SellerVO SellerNickSelect(String s_nickname);
+	
+	List<SellerVO> bestSellerList();
 }

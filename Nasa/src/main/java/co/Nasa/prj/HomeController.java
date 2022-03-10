@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.Nasa.prj.buyer.service.BuyerService;
 import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.PaymentVO;
+import co.Nasa.prj.notice.service.NoticeService;
 import co.Nasa.prj.payment.service.PaymentService;
 import co.Nasa.prj.powerservice.service.PowerServiceService;
 import co.Nasa.prj.seller.service.SellerService;
@@ -44,11 +45,16 @@ public class HomeController {
 	
 	@Autowired
 	BuyerService BuyerDao;
+	
+	@Autowired
+	NoticeService NoticeDao;
 
 	@RequestMapping("/home.do")
 	public String home(Model model) {
 		model.addAttribute("powerlist", powerDao.PowerServiceList());
 		model.addAttribute("bestservicelist", serviceDao.bestServiceList());
+		model.addAttribute("bestsellerlist", sellerDAO.bestSellerList());
+		model.addAttribute("knowhowlist", NoticeDao.knowhowSelectList());
 		return "user/home";
 	}
 
