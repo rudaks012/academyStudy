@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/admin/assets/libs/morris.js/morris.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
 <style>
 .nice-select {
 	width: 300px;
@@ -102,7 +101,7 @@ hr{
 													<tbody>
 														<tr>
 															<th class="align-middle table-primary">서비스 선택</th>
-															<td><select name="service">
+															<td><select name="service" id="service">
 																<c:forEach items="${serviceList }" var="service">
 																	<option value="${service.ser_code }">${service.ser_title }</option>
 																</c:forEach>
@@ -111,8 +110,8 @@ hr{
 														</tr>
 														<tr>
 															<th class="align-middle table-primary">연도 선택</th>
-															<td style="text-align: left;"><select name="chart">
-																	<option selected="" value="2022">2022년</option>
+															<td style="text-align: left;"><select name="chart" id="chart">
+																	<option value="2022">2022년</option>
 																	<option value="2021">2021년</option>
 																	<option value="2020">2020년</option>
 															</select><br />
@@ -123,7 +122,7 @@ hr{
 
 
 												<div class="d-flex justify-content-end my-4">
-													<button class="genric-btn danger-border circle" >검색</button>
+													<button class="genric-btn danger-border circle" onclick="changeChart()">검색</button>
 												</div>
 											
 										
@@ -159,7 +158,7 @@ hr{
 
 									<div style="margin-top: 40px;">
 										<div class="card">
-											<div class="card-body">
+											<div class="card-body" id="myChartContainer">
 												<h4 class="card-title"></h4>
 												<div style="width: 100%;">
 													<canvas id="myChart"></canvas>
@@ -245,23 +244,34 @@ hr{
 			</div>
 		</div>
 	</section>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<script type="text/javascript">
 		var myChart;
 		createChart();
+		
+		
+		function changeChart() {
+			createChart();
+		}
+		
+		
+		/* function createChart() {
+			if (myChart != null) {
+				myChart.destory();
+			}
+
+		} */
 
 		function createChart() {
 			if (myChart != null) {
 				myChart.destory();
 			}
-
-		}
-
-
-		var context = document.getElementById('myChart').getContext('2d');
-
-		var myChart = new Chart(context, {
+			/* $("#myChart").remove(); */
+			$("#myChartContainer").append('<canvas id="myChart"></canvas>');
+			var ctx = $("#myChart");
+			var context = document.getElementById('myChart').getContext('2d');
+		
+			var myChart = new Chart(ctx, {
 			type: 'bar', // 차트의 형태
 			data: { // 차트에 들어갈 데이터
 				//x 축
@@ -350,59 +360,53 @@ hr{
 				}
 			}
 		});
-
+		}
 		//차트 데이터 추가
 
 
 		function testFnc() {
-			 var list = [10,20,30,40,50,60,70,80,90,10,11,12];
-		    	/* $.ajax({
-		    			url: "",
-		    			data : {year:$("#chartYear").val()},
-		    			type : "post",
-		    			async : false,
-		    			dataType : "json",
-		    			success: function (bookdatas) {
-		    				for(var bookdata of bookdatas){
-		    					list.push(bookdata["rr"]);
-		    				}
-		    			}
-		    		});	
-		    		console.log("list = " + list); */
-		    		return list;
+			var list = [];
+			var temp = $("select[name='service'] option:Selected").val();
+			var temp2 = $("select[name='chart'] option:Selected").val();
+	    	$.ajax({
+	    			url: "sellerSalesData.do",
+	    			data : {scode:temp, pay_enddate:temp2},
+	    			type : "post",
+	    			async : false,
+	    			dataType : "json",
+	    			success: function (datas) {
+	    				for(data of Object.keys(datas)){
+	    					list.push(datas[data]);
+	    				}
+	    			}
+	    		});	
+	    		console.log("list = " + list);
+	    		return list;
 			
 		}
 		//수수료 계산
 		function testFnc02() {
-			/* var temp = $("select[name='chart'] option:Selected").val();
-
-			if ($("select[name='chart'] option:selected").val() == "선택") {
-				var ret = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-				const url = "ajaxchartData.do";
-				$.ajax({
-						url,
-						dataType: "json",
-						async: false
-					})
-					.done(function (datas) {
-						var sum = 0;
-						for (let data of datas) {
-							var month = data["pay_date"].substring(5).substring(0, 2);
-							ret[month - 1] += parseInt(data["pay_price"]) * 0.1;
-							sum += parseInt(data["pay_price"]);
-
-						}
-
-					})
-				return ret;
-			} */
 			
-			var list2 = [10,20,30,40,50,60,70,80,90,10,11,12];
+			var list2 = [];
+			var temp = $("select[name='service'] option:Selected").val();
+			var temp2 = $("select[name='chart'] option:Selected").val();
+			$.ajax({
+    			url: "sellerCommData.do",
+    			data : {scode:temp, pay_enddate:temp2},
+    			type : "post",
+    			async : false,
+    			dataType : "json",
+    			success: function (datas) {
+    				for(data of Object.keys(datas)){
+    					list2.push(datas[data]);
+    				}
+    			}
+    		});	
+			console.log("list2 = " + list2);
 			return list2;
 		}
 		//여기는 페이지가 그려주면서 ajax 동시에 시작
-		window.addEventListener('load', function () {
+		/* window.addEventListener('load', function () {
 			$.ajax({
 				url: "ajaxsalesTable.do",
 				dataType: "json",
@@ -460,7 +464,7 @@ hr{
 				error: function (data) {
 					console.log(data);
 				}
-			})
+			}) */
 		/* 	$.ajax({
 				url: "selectYearchart.do",
 				dataType: "json",
@@ -491,7 +495,7 @@ hr{
 			}) */
 
 
-		})
+	/* 	}) */
 	
 	</script>
 </body>

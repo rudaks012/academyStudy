@@ -1,11 +1,14 @@
 package co.Nasa.prj.payment.serviceImpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.Nasa.prj.comm.VO.PaymentVO;
+import co.Nasa.prj.comm.VO.PaymonthVO;
 import co.Nasa.prj.payment.service.PaymentMapper;
 import co.Nasa.prj.payment.service.PaymentService;
 
@@ -87,6 +90,16 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public List<PaymentVO> selectdateSearch(PaymentVO vo) {
 		return map.selectdateSearch(vo);
+	}
+
+	@Override
+	public PaymonthVO sellerSalesData(HashMap<String, String> remap) {
+		return map.sellerSalesData(remap);
+	}
+
+	@Override
+	public PaymonthVO sellerCommData(HashMap<String, String> remap) {
+		return map.sellerCommData(remap);
 	}
 
 	

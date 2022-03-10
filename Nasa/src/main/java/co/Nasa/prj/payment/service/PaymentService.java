@@ -1,8 +1,11 @@
 package co.Nasa.prj.payment.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import co.Nasa.prj.comm.VO.PaymentVO;
+import co.Nasa.prj.comm.VO.PaymonthVO;
 
 public interface PaymentService {
    // 구매자 개인 구매내역 조회
@@ -37,7 +40,11 @@ public interface PaymentService {
    //연도별 누적 판매 수량
    List<Integer> countYearChart(int count);
    
-	//채팅 결제 등록
-	int insertchatpayment(PaymentVO vo);
+   //채팅 결제 등록
+   int insertchatpayment(PaymentVO vo);
 	
+   //판매자 판매금액
+   PaymonthVO sellerSalesData(HashMap<String, String> remap);
+   //판매자 수수료
+   PaymonthVO sellerCommData(HashMap<String, String> remap);
 }

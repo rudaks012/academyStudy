@@ -13,4 +13,7 @@ public class PromotionVO {
 	
 	String ser_title;
 	String ser_img;
+	String ser_status;
+	String ser_start;
+	String ser_end;
 }

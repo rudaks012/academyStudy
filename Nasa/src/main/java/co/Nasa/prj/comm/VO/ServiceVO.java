@@ -1,5 +1,7 @@
 package co.Nasa.prj.comm.VO;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
@@ -7,7 +9,7 @@ public class ServiceVO {
 	String ser_code;
 	String pro_code;
 	String s_email;
-	String ser_start;
+	Date ser_start;
 	String ser_title;
 	String ser_sub;
 	String ser_cate;

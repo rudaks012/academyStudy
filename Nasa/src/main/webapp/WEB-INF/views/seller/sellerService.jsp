@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 .servnav {
 	list-style-type: none;
@@ -34,22 +37,25 @@
 	background-color: #ddd;
 }
 
-.genric-btn.danger-border{
+.genric-btn.danger-border {
 	color: #9e68ff;
 	border: 1px solid #8a2fdb;
 }
+
 .powertb td {
 	width: 120px;
 	height: 50px;
 	font-size: 12px;
 }
-.endservtb td{
+
+.endservtb td {
 	width: 180px;
 	height: 50px;
 	font-size: 12px;
 }
+
 .powerbtn, .modal-header {
-	background-color: #d5c9ea  !important;
+	background-color: #d5c9ea !important;
 }
 
 .modal-footer {
@@ -111,24 +117,29 @@ input[type=date] {
 .paybtn {
 	margin-right: 10px;
 }
-.hr{
- 	background-color : #d5c9ea !important;
-   	margin: 10px !important;
+
+.hr {
+	background-color: #d5c9ea !important;
+	margin: 10px !important;
 }
-.pt-70{
+
+.pt-70 {
 	padding-top: 0px;
 }
-.blog_details img{
+
+.blog_details img {
 	width: 354px;
 	height: 256px;
 }
-.genric-btn.danger-border:hover{
-	background-color : #d5c9ea !important;
+
+.genric-btn.danger-border:hover {
+	background-color: #d5c9ea !important;
 	color: white;
 }
-.pl-md-5, .px-md-5{
-	padding-left : 2rem!important;
-	padding-right:2rem!important;
+
+.pl-md-5, .px-md-5 {
+	padding-left: 2rem !important;
+	padding-right: 2rem !important;
 }
 </style>
 </head>
@@ -193,166 +204,182 @@ input[type=date] {
 					<div class="blog_left_sidebar">
 						<article class="blog_item">
 							<div class="justify-content-center">
-								<a class="d-inline-block" style="margin-top:20px;">
+								<a class="d-inline-block" style="margin-top: 20px;">
 									<h3>서비스 관리</h3>
 								</a>
-								<hr class="hr"/>
+								<hr class="hr" />
 								<a href="serviceInsert.do" class="genric-btn danger">서비스 등록</a>
 								<a href="" class="genric-btn danger" data-toggle="modal"
-									data-target="#PowerModal">파워서비스 등록</a>
-								<a href="" class="genric-btn danger" data-toggle="modal"
+									data-target="#PowerModal">파워서비스 등록</a> <a href=""
+									class="genric-btn danger" data-toggle="modal"
 									data-target="#payModal">결제 등록</a>
-								
+
 								<div class="blog_details">
-										<div class="container">
-											<nav class="fables-single-nav">
-												<div class="nav nav-tabs" id="nav-tab" role="tablist">
-													<a
-														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
-														id="nav-desc-tab" data-toggle="tab" href="#nav-desc"
-														role="tab" aria-controls="nav-desc" aria-selected="true">진행중인
-														서비스</a> <a
-														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-														id="nav-info-tab" data-toggle="tab" href="#nav-info"
-														role="tab" aria-controls="nav-info" aria-selected="false">종료된
-														서비스</a> <a
-														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-														id="nav-end-tab" data-toggle="tab" href="#nav-end"
-														role="tab" aria-controls="nav-end" aria-selected="false">종료예정
-														서비스</a> <a
-														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-														id="nav-review-tab" data-toggle="tab" href="#nav-review"
-														role="tab" aria-controls="nav-review"
-														aria-selected="false">파워서비스</a>
-												</div>
-											</nav>
-											<br /> <br />
-											<div class="tab-content" id="nav-tabContent">
-												<div class="tab-pane fade show active" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
-													<div class="row">
-														<div class="listing-details-area">
-															<div class="container">
-																<div class="row">
-																
+									<div class="container">
+										<nav class="fables-single-nav">
+											<div class="nav nav-tabs" id="nav-tab" role="tablist">
+												<a
+													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
+													id="nav-desc-tab" data-toggle="tab" href="#nav-desc"
+													role="tab" aria-controls="nav-desc" aria-selected="true">진행중인
+													서비스</a> <a
+													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+													id="nav-info-tab" data-toggle="tab" href="#nav-info"
+													role="tab" aria-controls="nav-info" aria-selected="false">종료된
+													서비스</a> <a
+													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+													id="nav-end-tab" data-toggle="tab" href="#nav-end"
+													role="tab" aria-controls="nav-end" aria-selected="false">종료예정
+													서비스</a> <a
+													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+													id="nav-review-tab" data-toggle="tab" href="#nav-review"
+													role="tab" aria-controls="nav-review" aria-selected="false">파워서비스</a>
+											</div>
+										</nav>
+										<br /> <br />
+										<div class="tab-content" id="nav-tabContent">
+											<div class="tab-pane fade show active" id="nav-desc"
+												role="tabpanel" aria-labelledby="nav-desc-tab">
+												<div class="row">
+													<div class="listing-details-area">
+														<div class="container">
+															<div class="row">
+
 																<c:forEach items="${serviceList }" var="service">
-																<c:if test="${service.ser_status eq 'N' && empty service.ser_end}">
-																	<div class="col-lg-6" >
-																		<div class="single-listing mb-30">
-																			<div class="list-img">
-																				<img src="fileupload/${service.ser_img }" id="prvimg" alt="">
-																			</div>
-																			<div class="list-caption">
-																				<h3>
-																					<a href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
-																				</h3>
-																				<div>번호 : s${service.ser_code }</div>
-																		
-																				<div class="list-footer">
-																					<ul>
-																						<li style="margin-left: 140px;">
-																							<button type="button" onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'" class="genric-btn danger-border circle">수정</button>
-																						</li>
-																						<li>
-																							<button type="button" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal" 
-																							data-sercode="${service.ser_code }" data-sertitle="${service.ser_title }"  data-end="${service.pay_enddate }">종료</button>
-																							
-																						</li>
-																					</ul>
+																	<c:if
+																		test="${service.ser_status eq 'N' && empty service.ser_end}">
+																		<div class="col-lg-6">
+																			<div class="single-listing mb-30">
+																				<div class="list-img">
+																					<img src="fileupload/${service.ser_img }"
+																						id="prvimg" alt="">
+																				</div>
+																				<div class="list-caption">
+																					<h3>
+																						<a
+																							href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
+																					</h3>
+																					<div>번호 : s${service.ser_code }</div>
+
+																					<div class="list-footer">
+																						<ul>
+																							<li style="margin-left: 140px;">
+																								<button type="button"
+																									onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'"
+																									class="genric-btn danger-border circle">수정</button>
+																							</li>
+																							<li>
+																								<button type="button"
+																									class="genric-btn danger-border circle"
+																									data-toggle="modal" data-target="#endModal"
+																									data-sercode="${service.ser_code }"
+																									data-sertitle="${service.ser_title }"
+																									data-end="${service.pay_enddate }">종료</button>
+
+																							</li>
+																						</ul>
+																					</div>
 																				</div>
 																			</div>
 																		</div>
-																	</div>
-																</c:if>
-																</c:forEach>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="tab-pane fade show" id="nav-end" role="tabpanel" aria-labelledby="nav-end-tab">
-													<div class="row">
-														<div class="listing-details-area">
-															<div class="container">
-																<div class="row">
-																	
-																<c:forEach items="${serviceList }" var="service">
-																<c:if test="${service.ser_status eq 'N' && !empty service.ser_end}">
-																	<div class="col-lg-6" >
-																		<div class="single-listing mb-30">
-																			<div class="list-img">
-																				<img src="fileupload/${service.ser_img }" id="prvimg" alt="">
-																			</div>
-																			<div class="list-caption">
-																				<h3>
-																					<a href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
-																				</h3>
-																				<div>번호 : s${service.ser_code }</div>
-																		
-																				<div class="list-footer" style="display: block;">
-																					<ul>
-																						<li style="margin-left: 238px;">
-																							<button type="button" onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'" class="genric-btn danger-border circle">수정</button>
-																						</li>
-																						
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</c:if>
-																</c:forEach>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-													<div class="row">
-														<div class="listing-details-area">
-															<div class="container">
-																<div class="row">
-																
-																<c:forEach items="${serviceList }" var="service">
-																<c:if test="${service.ser_status eq 'Y'}">
-																
-																	<div class="col-lg-6">
-																		<div class="single-listing mb-30">
-																			<div class="list-img">
-																				<img src="fileupload/${service.ser_img }" alt="">
-																			</div>
-																			<div class="list-caption">
-																				<h3>
-																					<a href="serviceDetail.do">${service.ser_title }</a>
-																				</h3>
-																				<div>번호 : s${service.ser_code }</div>
-																				<div class="list-footer" >
-																					<ul > 
-																						<li >
-																						<!-- <div style="margin-left: 210px;">
-																							<a href="#" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</a>
-																						</div> -->
-																						<div>* 종료된 서비스입니다.</div>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
 																	</c:if>
 																</c:forEach>
-																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-												<div class="tab-pane fade" id="nav-review" role="tabpanel"
-													aria-labelledby="nav-info-tab">
-													<br /> <br />
-													<div class="row justify-content-center">3333</div>
+											</div>
+											<div class="tab-pane fade show" id="nav-end" role="tabpanel"
+												aria-labelledby="nav-end-tab">
+												<div class="row">
+													<div class="listing-details-area">
+														<div class="container">
+															<div class="row">
 
+																<c:forEach items="${serviceList }" var="service">
+																	<c:if
+																		test="${service.ser_status eq 'N' && !empty service.ser_end}">
+																		<div class="col-lg-6">
+																			<div class="single-listing mb-30">
+																				<div class="list-img">
+																					<img src="fileupload/${service.ser_img }"
+																						id="prvimg" alt="">
+																				</div>
+																				<div class="list-caption">
+																					<h3>
+																						<a
+																							href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
+																					</h3>
+																					<div>번호 : s${service.ser_code }</div>
+
+																					<div class="list-footer" style="display: block;">
+																						<ul>
+																							<li style="margin-left: 238px;">
+																								<button type="button"
+																									onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'"
+																									class="genric-btn danger-border circle">수정</button>
+																							</li>
+
+																						</ul>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</c:if>
+																</c:forEach>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
+											<div class="tab-pane fade" id="nav-info" role="tabpanel"
+												aria-labelledby="nav-info-tab">
+												<div class="row">
+													<div class="listing-details-area">
+														<div class="container">
+															<div class="row">
+
+																<c:forEach items="${serviceList }" var="service">
+																	<c:if test="${service.ser_status eq 'Y'}">
+
+																		<div class="col-lg-6">
+																			<div class="single-listing mb-30">
+																				<div class="list-img">
+																					<img src="fileupload/${service.ser_img }" alt="">
+																				</div>
+																				<div class="list-caption">
+																					<h3>
+																						<a href="serviceDetail.do">${service.ser_title }</a>
+																					</h3>
+																					<div>번호 : s${service.ser_code }</div>
+																					<div class="list-footer">
+																						<ul>
+																							<li>
+																								<!-- <div style="margin-left: 210px;">
+																							<a href="#" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</a>
+																						</div> -->
+																								<div>* 종료된 서비스입니다.</div>
+																							</li>
+																						</ul>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</c:if>
+																</c:forEach>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="nav-review" role="tabpanel"
+												aria-labelledby="nav-info-tab">
+												<br /> <br />
+												<div class="row justify-content-center">3333</div>
+
+											</div>
 										</div>
+									</div>
 								</div>
 							</div>
 						</article>
@@ -395,41 +422,55 @@ input[type=date] {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<p>
-						파워서비스란? <br /> 합리적 예산의 고효율형! <br /> 당신의 서비스를 메인 화면에 노출을 기대할 수
-						있습니다. <br /> 저렴한 비용으로 상위 노출을 원하시는 분들에게 추천합니다.
-					</p>
-					<p class="powerp">
-						*희망시작일로부터 일주일간 제공됩니다. <br /> *최종 결제 후 환불 불가합니다.<br /> <br />
-					</p>
-					<table class="powertb">
-						<tr>
-							<td>서비스선택</td>
-							<td><div class="default-select" id="default-select">
-									<select>
-										<c:forEach items="${serviceList }" var="service">
-											<option value="${service.ser_code }">${service.ser_title} </option>										
-										</c:forEach>
-									</select>
-								</div></td>
-						</tr>
-						<tr>
-							<td>희망시작일</td>
-							<td><input type="date"></td>
-						</tr>
-						<tr>
-							<td>비용</td>
-							<td><input type="text" value="500,000" disabled></td>
-						</tr>
-					</table>
+				<form id="frm" action="powerserviceInsert.do" method="post">
+					<div class="modal-body">
+						<p>
+							파워서비스란? <br /> 합리적 예산의 고효율형! <br /> 당신의 서비스를 메인 화면에 노출을 기대할 수
+							있습니다. <br /> 저렴한 비용으로 상위 노출을 원하시는 분들에게 추천합니다.
+						</p>
+						<p class="powerp">
+							*희망시작일로부터 일주일간 제공됩니다. <br /> *최종 결제 후 환불 불가합니다.<br /> <br />
+						</p>
 
-				</div>
-				<div class="modal-footer">
-					<a href="#" class="genric-btn primary  radius powerbtn"
-						data-toggle="modal" data-dismiss="modal">결제</a> <a href="#"
-						class="genric-btn primary  radius powerbtn" data-dismiss="modal">취소</a>
-				</div>
+						<table class="powertb">
+							<tr>
+								<td>서비스선택</td>
+								<td><div class="default-select" id="default-select">
+										<select id="powerS"  name="ser_code" onchange="enddate()">
+											<c:forEach items="${serviceList }" var="service">
+											<c:if test="${service.ser_status eq 'N'}">
+												<option value="${service.ser_code }">${service.ser_title}</option>
+												
+											</c:if>
+											</c:forEach>
+										</select>
+									</div>
+									<c:forEach items="${serviceList }" var="service">
+										<c:if test="${service.ser_status eq 'N'}">
+											<input type="hidden" id="${service.ser_code }" value="${service.ser_end }">
+										</c:if>
+									</c:forEach>
+								</td>
+							</tr>
+							<tr>
+								<td>희망시작일</td>
+								<td><input type="date" name="power_start" id="powerdate" min="" max="" step="7"></td>
+							</tr>
+							<tr>
+								<td>비용</td>
+								<td><input type="text" value="500000" disabled>
+								<input type="hidden" name="power_price" value="500000">
+								</td>
+							</tr>
+						</table>
+
+					</div>
+					<div class="modal-footer">
+						<a href="#" class="genric-btn primary  radius powerbtn"
+							id="check_module" data-toggle="modal">결제</a> <a href="#"
+							class="genric-btn primary  radius powerbtn" data-dismiss="modal">취소</a>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -457,7 +498,7 @@ input[type=date] {
 						</tr>
 						<tr>
 							<td>의뢰 종료 예정 날짜</td>
-							<td><input type="text" id="ser_end"  disabled></td>
+							<td><input type="text" id="ser_end" disabled></td>
 						</tr>
 						<tr>
 							<td>프로모션 종료 예정 날짜</td>
@@ -465,7 +506,7 @@ input[type=date] {
 						</tr>
 						<tr>
 							<td>파워서비스 종료 예정 날짜</td>
-							<td><input type="text" id="ser_powerend"  disabled></td>
+							<td><input type="text" id="ser_powerend" disabled></td>
 						</tr>
 						<tr>
 							<td>희망 종료일</td>
@@ -476,7 +517,7 @@ input[type=date] {
 				</div>
 				<div class="modal-footer">
 					<a href="#" class="genric-btn primary  radius powerbtn" id="endbtn"
-						data-toggle="modal" >확인</a> <a href="#"
+						data-toggle="modal">확인</a> <a href="#"
 						class="genric-btn primary  radius powerbtn" data-dismiss="modal">취소</a>
 				</div>
 			</div>
@@ -617,119 +658,235 @@ input[type=date] {
 			$("#ndate").click(function() {
 				console.log($("#conference").attr("style", "display: none;"))
 			})
+
+			enddate();
 		});
 
 		$("#nav-tab a").on("click", function(event) {
 			event.preventDefault();
 			$(this).tab("show");
 		})
-		
-		$(document).ready(function () {
-			
-			$("#endModal").on("show.bs.modal", function (event) {
-				
-				sercode = $(event.relatedTarget).data("sercode");
-				sertitle = $(event.relatedTarget).data("sertitle");
-				serend = $(event.relatedTarget).data("end");
-				
-				$.ajax({
-					url: "endPromotion.do",
-	  				dataType: "text",
-	  				type:"post",
-	  				data: {sercode: sercode},
-	  				success: function (result){
-	  					console.log(result);
-	  					if(result == ''){
-	  						$("#ser_proend").val('-');
-	  					}else{
-		  					$("#ser_proend").val(result);  						
-	  					}
-	  				},error: function(err){
-	  					console.log(err);
-	  				}
-				}) 
-				
-				$.ajax({
-					url: "endPower.do",
-	  				dataType: "text",
-	  				type:"post",
-	  				data: {sercode: sercode},
-	  				success: function (result){
-	  					console.log(result);
-	  					if(result == ''){
-	  						$("#ser_powerend").val('-');
-	  					}else{
-		  					$("#ser_powerend").val(result);	  						
-	  					}
-	  				},error: function(err){
-	  					console.log(err);
-	  				}
-				})   
-			   
-				var reason = document.getElementById("ser_reason");
-				reason.value = '';
-				var end = document.getElementById("ser_cal");
-				end.value = '';
-				
-				
-				if(serend.substr(0,10) != ''){
-					var today = new Date(serend.substr(0,10));
-					today.setMonth(today.getMonth() + 1);
-					today.setDate(today.getDate() + 1); 
-	
-					var year = today.getFullYear();
-					var month = (today.getMonth() < 10 ? '0' : '')+today.getMonth();
-					var day = (today.getDate() < 10 ? '0' : '')+today.getDate();
-					date = year+ '-' + month + '-' + day
-					console.log(date);
-					$("#ser_cal").attr('min', date);
-				}else{
-					var today = new Date();
-					today.setMonth(today.getMonth() + 1);
-					today.setDate(today.getDate() + 1); 
-	
-					var year = today.getFullYear();
-					var month = (today.getMonth() < 10 ? '0' : '')+today.getMonth();
-					var day = (today.getDate() < 10 ? '0' : '')+today.getDate();
-					date = year+ '-' + month + '-' + day
-					console.log(date);
-					$("#ser_cal").attr('min', date);
-				}
-				$(".endp").text(sertitle+'을(를) 종료하시겠습니까?');
-				$(".endp").attr('id',sercode);
-				$("#ser_end").val(serend.substr(0,10));
-				
-			});			
-		});
-		
-		$("#endbtn").on("click", function(){
+
+		$(document).ready(
+				function() {
+
+					$("#endModal").on(
+							"show.bs.modal",
+							function(event) {
+
+								sercode = $(event.relatedTarget).data("sercode");
+								sertitle = $(event.relatedTarget).data("sertitle");
+								serend = $(event.relatedTarget).data("end");
+
+								$.ajax({
+									url : "endPromotion.do",
+									dataType : "text",
+									type : "post",
+									data : {
+										sercode : sercode
+									},
+									success : function(result) {
+										console.log(result);
+										if (result == '') {
+											$("#ser_proend").val('-');
+										} else {
+											$("#ser_proend").val(result.substr(0, 10));
+										}
+									},
+									error : function(err) {
+										console.log(err);
+									}
+								})
+
+								$.ajax({
+									url : "endPower.do",
+									dataType : "text",
+									type : "post",
+									data : {
+										sercode : sercode
+									},
+									success : function(result) {
+										console.log(result);
+										if (result == '') {
+											$("#ser_powerend").val('-');
+										} else {
+											$("#ser_powerend").val(result.substr(0, 10));
+										}
+									},
+									error : function(err) {
+										console.log(err);
+									}
+								})
+
+								var reason = document.getElementById("ser_reason");
+								reason.value = '';
+								var end = document.getElementById("ser_cal");
+								end.value = '';
+
+								if (serend.substr(0, 10) != '') {
+									/* var today = new Date(serend.substr(0, 10));
+									today.setMonth(today.getMonth() + 1);
+									today.setDate(today.getDate() + 1);
+
+									var year = today.getFullYear();
+									var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
+									var day = (today.getDate() < 10 ? '0' : '') + today.getDate();
+									date = year + '-' + month + '-' + day
+									console.log(date);
+									$("#ser_cal").attr('min', date); */
+									console.log(serend.substr(0, 10))
+								} else {
+									var today = new Date();
+									today.setMonth(today.getMonth() + 1);
+									today.setDate(today.getDate() + 1);
+
+									var year = today.getFullYear();
+									var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
+									var day = (today.getDate() < 10 ? '0' : '')	+ today.getDate();
+									date = year + '-' + month + '-' + day
+									console.log(date);
+									$("#ser_cal").attr('min', date);
+								}
+								$(".endp").text(sertitle + '을(를) 종료하시겠습니까?');
+								$(".endp").attr('id', sercode);
+								$("#ser_end").val(serend.substr(0, 10));
+
+							});
+				});
+
+		$("#endbtn").on("click", function() {
 			let ser_code = $(".endp").attr('id');
 			let ser_reason = $("#ser_reason").val();
 			let ser_end = $("#ser_cal").val();
 
-			if(ser_reason == ''){
+			if (ser_reason == '') {
 				alert('종료사유를 작성해주세요.');
 				$("#ser_reason").focus();
 				return;
-			}else if(ser_end == ''){
+			} else if (ser_end == '') {
 				alert('희망 종료일자를 선택해주세요.');
 				return;
 			}
+			
+			
 			$.ajax({
-				url: "endService.do",
-  				dataType: "text",
-  				type:"post",
-  				data: {ser_code: ser_code, ser_reason: ser_reason, ser_end: ser_end },
-  				success: function (result){
-  					if(result == "T"){
-  						alert('종료 예약되었습니다.');
-  						$("#endbtn").data('dismiss','modal');
-  					}else{
-  						return;
-  					}
-  				}
-			}) 
+				url : "endService.do",
+				dataType : "text",
+				type : "post",
+				data : {
+					ser_code : ser_code,
+					ser_reason : ser_reason,
+					ser_end : ser_end
+				},
+				success : function(result) {
+					if (result == "T") {
+						alert('종료 예약되었습니다.');
+						$("#endbtn").data('dismiss', 'modal');
+					} else {
+						return;
+					}
+				}
+			})
 		})
+
+		function enddate() {
+			console.log($("#powerS option:selected").val());
+			var powerno = $("#powerS option:selected").val();
+			
+			var paramDate = new Date();
+			var day = paramDate.getDay();
+			var diff = paramDate.getDate() - day + (day == 0 ? -6 : 1);
+			var mon = new Date(paramDate.setDate(diff)).toISOString().substring(0, 10);
+			$("#powerdate").attr('min', mon);
+			
+			var powerend = document.getElementById(powerno).value;
+			console.log(powerend);
+			if(powerend != ''){
+				$("#powerdate").attr('max', powerend);			
+			}else{
+				$("#powerdate").attr('max', '');
+			}
+			
+		}
+
+		$("#check_module").click(
+			
+			function() {
+				if($("#powerdate").val() == ''){
+					alert('시작일을 선택해주세요.');
+					return;
+				}
+				console.log($("#powerdate").val());
+				var IMP = window.IMP; // 생략가능
+				IMP.init('imp49718054');
+				// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+				// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+				IMP.request_pay({
+					pg : 'inicis', // version 1.1.0부터 지원.
+					/*
+					'kakao':카카오페이,
+					html5_inicis':이니시스(웹표준결제)
+					'nice':나이스페이
+					'jtnet':제이티넷
+					'uplus':LG유플러스
+					'danal':다날
+					'payco':페이코
+					'syrup':시럽페이
+					'paypal':페이팔
+					 */
+					pay_method : 'card',
+					/*
+					'samsung':삼성페이,
+					'card':신용카드,
+					'trans':실시간계좌이체,
+					'vbank':가상계좌,
+					'phone':휴대폰소액결제
+					 */
+					merchant_uid : 'merchant_'
+							+ new Date().getTime(),
+					/*
+					merchant_uid에 경우
+					https://docs.iamport.kr/implementation/payment
+					위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+					참고하세요.
+					나중에 포스팅 해볼게요.
+					 */
+					name : '주문명:결제테스트',
+					//결제창에서 보여질 이름
+					amount : 500000,
+					//가격
+					//bank_name : null,
+					buyer_email : 'iamport@siot.do',
+					buyer_name : '구매자이름',
+					buyer_tel : '010-1234-5678',
+					buyer_addr : '서울특별시 강남구 삼성동',
+					buyer_postcode : '123-456',
+					m_redirect_url : 'https://www.yourdomain.com/payments/complete',
+				/*
+				모바일 결제시,
+				결제가 끝나고 랜딩되는 URL을 지정
+				(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
+				 */
+				}, function(rsp) {
+					console.log(rsp);
+					if (rsp.success) {
+						//$("#or_uid").val(rsp.imp_uid);
+						$("#frm").submit();
+						var msg = '결제가 완료되었습니다.';
+						msg += '고유ID : '
+								+ rsp.imp_uid;
+						/* msg += '상점 거래ID : ' + rsp.merchant_uid;
+						msg += '결제 금액 : ' + rsp.paid_amount;
+						msg += '카드 승인번호 : ' + rsp.apply_num; */
+					} else {
+						var msg = '결제에 실패하였습니다.';
+						/*msg += '에러내용 : ' + rsp.error_msg;
+						msg += 'ㅜㅜ' + rsp.amount;
+						msg += rsp.imp_uid; */
+					}
+					alert(msg);
+				});
+			});
 	</script>
 </body>
 </html>
