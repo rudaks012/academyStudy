@@ -69,4 +69,11 @@ public class SellerServiceImpl implements SellerService {
 		return map.SellerNickSelect(s_nickname);
 	}
 
+
+	@Override
+	public SellerVO ChatSellerselect(SellerVO vo) {
+		// TODO Auto-generated method stub
+		return map.ChatSellerselect(vo);
+	}
+
 }

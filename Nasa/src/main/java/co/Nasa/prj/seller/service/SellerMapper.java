@@ -24,4 +24,7 @@ public interface SellerMapper {
 	//채팅 셀러 닉네임
 	SellerVO SellerNickSelect(String s_nickname);
 	
+	//채팅 셀러 등급조회
+	SellerVO ChatSellerselect(SellerVO vo);
+	
 }
