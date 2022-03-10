@@ -12,6 +12,9 @@ public interface ReviewService {
 	// 구매자 리뷰 페이징 단위 조회
 	public List<ReviewVO> selectPagingReviewList(ReviewVO vo);
 	
+	// 서비스 상세 페이지에서 리뷰 조회할 때 쓸 거
+	public List<ReviewVO> selectReviewandReviewComment(ReviewVO vo);
+	
 	// total count (review)
 	int countPagingReview(ReviewVO vo);
 	

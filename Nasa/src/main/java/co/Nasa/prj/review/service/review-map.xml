@@ -21,6 +21,20 @@
 	</delete>
 	
 	<insert id="insertReview" parameterType="co.Nasa.prj.comm.VO.ReviewVO">
+		INSERT INTO REVIEW(REV_CODE, SCODE, REV_NAME, REV_SUB, REV_ID, REV_SER_NAME, REV_IMG, REV_RATE, REV_DATE)
+		VALUES ((SELECT MAX(NVL(TO_NUMBER(REV_CODE), 0)) + 1 FROM REVIEW)
+				, #{scode}
+				, #{rev_name}
+				, #{rev_sub}
+				, #{rev_id}
+				, #{rev_ser_name}
+				, #{rev_img}
+				, #{rev_rate}
+				, sysdate
+				)
+	</insert>
+	
+	<!-- <insert id="insertReview" parameterType="co.Nasa.prj.comm.VO.ReviewVO">
 		INSERT INTO REVIEW(REV_CODE, SCODE, REV_NAME, REV_SUB, REV_ID, REV_SER_NAME)
 		VALUES (#{rev_code}
 				, #{scode}
@@ -28,7 +42,7 @@
 				, #{rev_sub}
 				, #{rev_id}
 				, #{rev_ser_name})
-	</insert>
+	</insert> -->
 	
 	<update id="updateReview" parameterType="co.Nasa.prj.comm.VO.ReviewVO">
 		UPDATE	REVIEW
@@ -77,6 +91,17 @@
 		SELECT	COUNT(*)
 		FROM	REVIEW
 		WHERE	REV_ID = #{rev_id}
+	</select>
+	
+	<select id="selectReviewandReviewComment" resultType="co.Nasa.prj.comm.VO.ReviewVO">
+		SELECT		R.*, C.*, B.B_IMG
+		FROM		REVIEW R
+		LEFT JOIN	REVIEW_COMMENT C
+		ON			R.REV_CODE = C.REVIEW_CODE
+		LEFT JOIN	BUYER B
+		ON			R.REV_ID = B.B_EMAIL
+		WHERE		SCODE = #{scode}
+		ORDER BY	TO_NUMBER(REV_CODE) DESC
 	</select>
 
 </mapper>

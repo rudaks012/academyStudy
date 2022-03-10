@@ -91,6 +91,7 @@ public class AhController {
 					session.setAttribute("password", Loginvo.getB_password());
 					session.setAttribute("status", Loginvo.getToken());
 					session.setAttribute("nickname", Loginvo.getB_nickname());
+					session.setAttribute("author", Loginvo.getB_author());
 					cSession.addLoginUser(Loginvo.getB_email());
 					System.out.println("구매자");
 					path = "user/home";
@@ -100,6 +101,7 @@ public class AhController {
 				session.setAttribute("password", svo.getS_password());
 				session.setAttribute("status", svo.getS_status());
 				session.setAttribute("nickname", svo.getS_nickname());
+				session.setAttribute("author", "S");
 				cSession.addLoginUser(svo.getS_email());
 				System.out.println("판매자");
 				path = "user/home";
