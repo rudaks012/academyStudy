@@ -417,7 +417,6 @@
 			target.remove();
 			
 			target = document.getElementById(rvcode);
-			target.remove();
 			
 			var rev_code = rvcode.substr(7);
 			console.log(rev_code);

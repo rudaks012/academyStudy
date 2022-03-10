@@ -65,5 +65,10 @@ public class ReviewServiceImpl implements ReviewService {
 
 	}
 
+	@Override
+	public List<ReviewVO> selectReviewandReviewComment(ReviewVO vo) {
+		return map.selectReviewandReviewComment(vo);
+	}
+
 	
 }

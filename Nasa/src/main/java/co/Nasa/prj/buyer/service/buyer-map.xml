@@ -20,11 +20,11 @@
 		WHERE B_EMAIL = #{b_email}
 	</update>
 	
-	<delete id="deleteBuyer" parameterType="co.Nasa.prj.comm.VO.BuyerVO">
-		DELETE
-		FROM BUYER
-		WHERE B_EMAIL = #{b_email}
-	</delete>
+	<update id="deleteBuyer" parameterType="co.Nasa.prj.comm.VO.BuyerVO">
+		UPDATE 	BUYER 
+		SET		B_STATUS = 'D'
+		WHERE	B_EMAIL = #{b_email}
+	</update>
 	
 	<select id="BuyerNicknameCheck" resultType="int">
 		select count(*) from buyer

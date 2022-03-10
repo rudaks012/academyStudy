@@ -3,9 +3,11 @@ package co.Nasa.prj.service.controller;
 import java.io.File;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -23,10 +25,12 @@ import co.Nasa.prj.category.service.CategoryMapper;
 import co.Nasa.prj.category.service.CategoryService;
 import co.Nasa.prj.comm.VO.CategoryVO;
 import co.Nasa.prj.comm.VO.PaymentVO;
+import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.comm.VO.SubCategoryVO;
 import co.Nasa.prj.payment.service.PaymentMapper;
 import co.Nasa.prj.payment.service.PaymentService;
+import co.Nasa.prj.review.service.ReviewMapper;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
 import co.Nasa.prj.sub_category.service.Sub_CategoryService;
@@ -43,6 +47,8 @@ public class ServiceController {
 	private Sub_CategoryService subCategoryDao;
 	@Autowired
 	private PaymentService paymentDao;
+	@Autowired 
+	private ReviewMapper reviewDao;
 	
 	@RequestMapping("/homeCategory.do")
 	public String homeCategory(Model model, @Param("ser_cate") String ser_cate) {
@@ -446,7 +452,9 @@ public class ServiceController {
 	}	
 
 	@RequestMapping("/serviceDetail.do")
-	public String sellerDetail(Model model, @RequestParam("ser_code") String ser_code) {
+	public String sellerDetail(Model model, @RequestParam("ser_code") String ser_code,
+							   HttpSession session, HttpServletResponse response, 
+							   HttpServletRequest request) {
 		ServiceVO vo = new ServiceVO();
 		vo = serviceDao.serviceSelect(ser_code);
 		System.out.println("++++++++++++" + vo);
@@ -461,6 +469,12 @@ public class ServiceController {
 		model.addAttribute("subcate", subCategoryDao.selectSub_category(subcatevo));
 
 		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(vo.getS_email()));
+		
+		ReviewVO reviewvo = new ReviewVO();
+		reviewvo.setScode(ser_code);
+		List<ReviewVO> reviewList = reviewDao.selectReviewandReviewComment(reviewvo);
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + reviewList);
+		model.addAttribute("reviewList",reviewList);
 
 		return "seller/serviceDetail";
 	}

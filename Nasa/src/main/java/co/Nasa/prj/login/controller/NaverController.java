@@ -59,12 +59,14 @@ public class NaverController {
 					LoginVO vo = new LoginVO();
 					vo.setB_email(email);
 					vo = LoginDao.selectbuyerId(vo);
+					
 
 					String viewPage = null;
 					if (vo == null) {
 						//회원가입으로 바꿔야함
 						viewPage = "buyer/buyerJoin";
 					} else {
+						session.setAttribute("author", vo.getB_author());
 						viewPage = "user/home";
 					}
 

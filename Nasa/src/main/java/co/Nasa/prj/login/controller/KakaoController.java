@@ -81,11 +81,12 @@ public class KakaoController {
 //		    session.setAttribute("addr", userTo.getGaddress());
 //		    session.setAttribute("tel", userTo.getGtel());
 //		    session.setAttribute("img", userTo.getGimg());
-		    session.setAttribute("author", "GUEST");
+		    session.setAttribute("author", userTo.getB_author());
 		    
 		    System.out.println("회원인 경우");
 		    System.out.println("kakaoid : " + userTo.getB_email());
 		    System.out.println("nick : " + userTo.getToken());
+		    System.out.println("author : " + userTo.getB_author());
 //		    System.out.println("profile : " + userTo.getGimg());
 		    //메인페이지
 		    ViewPage = "user/home";

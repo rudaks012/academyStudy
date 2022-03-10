@@ -43,6 +43,23 @@ public class ReportController {
 		return "seller/sellerReport";
 	}
 	
+	@RequestMapping("/reportReview.do")
+	public ResponseEntity<String> reportReview(ReviewVO reviewvo, ReportVO reportvo,
+											   HttpSession session, HttpServletResponse response, 
+											   HttpServletRequest request) {
+		
+		reviewvo = reviewDao.selectReview(reviewvo);
+		reportvo.setRe_reporter((String)session.getAttribute("id"));
+		reportvo.setRe_res(reviewvo.getRev_id());
+		int i = userReportDao.insertBuyerReportsSeller(reportvo);
+		
+		if (i == 1) {
+			return new ResponseEntity<String>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
+		}
+	}
+	
 	@RequestMapping("/reportReview_comment.do")
 	public ResponseEntity<String> reportReview_comment(Review_CommentVO rcvo, ReportVO rpvo, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
 		rcvo = review_commentDao.selectReview_comment(rcvo);
