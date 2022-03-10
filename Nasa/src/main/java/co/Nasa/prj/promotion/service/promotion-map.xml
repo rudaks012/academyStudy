@@ -11,7 +11,7 @@
 </insert>
 
 <select id="promotionList" resultType="co.Nasa.prj.comm.VO.PromotionVO">
-	select p.*, s.ser_title as ser_title, s.ser_img as ser_img
+	select p.*, s.ser_title, s.ser_img 
 	from promotion p, service s 
 	where pro_service = ser_code
 </select>
@@ -22,5 +22,12 @@
 	FROM PROMOTION 
 	WHERE PRO_SERVICE = #{pro_service}
 	AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END]]>
+</select>
+
+<select id="promotionCheck" resultType="co.Nasa.prj.comm.VO.PromotionVO">
+	SELECT *
+	FROM PROMOTION
+	WHERE PRO_SERVICE = #{pro_service} 
+	AND #{pro_start} BETWEEN PRO_START AND PRO_END
 </select>
 </mapper>

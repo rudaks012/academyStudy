@@ -13,4 +13,10 @@
 		WHERE SER_CODE = #{ser_code} 
 		AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < POWER_END ]]>
 	</select>
+	
+	<insert id="powerserviceInsert" parameterType="co.Nasa.prj.comm.VO.PowerServiceVO">
+		INSERT INTO POWERSERVICE 
+		VALUES((SELECT NVL(MAX(POWER_CODE),0)+1 FROM POWERSERVICE ), #{s_email}, 
+		#{ser_code}, #{power_start}, to_date(#{power_start},'yyyy-mm-dd')+7, sysdate, #{power_price})
+	</insert>
 </mapper>

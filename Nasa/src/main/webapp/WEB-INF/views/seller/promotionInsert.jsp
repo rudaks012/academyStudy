@@ -377,7 +377,8 @@ p {
 																								<a href="" class="${service.ser_code }">${service.ser_title }</a>
 																							</h3>
 																							<p>서비스번호: s${service.ser_code }</p>
-																							
+																							<input type="hidden" id="st${service.ser_code }" value="${service.ser_start }">
+																							<input type="hidden" id="en${service.ser_code }" value="${service.ser_end }">
 																							<div class="list_footer" style="text-align: center;">
 																								<input type="radio" name="pro_service" class="pro_service" value="${service.ser_code }" >
 																							</div>
@@ -575,7 +576,25 @@ p {
 		});
 
 		function setProgressBar(curStep) {
-			if(curStep == 3){
+			if(curStep == 2){
+				let id = $("input[name=pro_service]:checked").val();
+				console.log(id);
+				let start = 'st'+id;
+				let end = 'en'+id;
+				start = document.getElementById(start).value;
+				end = document.getElementById(end).value;
+				
+				console.log(start);
+				console.log(end);
+				
+				
+				
+				$("#startdate").attr('min', start);
+				$("#startdate").attr('max', end);
+				$("#enddate").attr('min', start);
+				$("#enddate").attr('max', end);
+			}
+			else if(curStep == 3){
 				let id = $("input[name=pro_service]:checked").val();
 				let img = document.getElementsByClassName(id)[0].getAttribute('src');
 				$("#finalimg").attr("src", img);
@@ -601,6 +620,10 @@ p {
 						console.log(result);
 						if(result == "OK"){
 							
+						}else if(result == "FAIL2"){
+							$(".strong").text("FAIL!!!!");	
+							$(".form4h").text("이미 등록된 프로모션이 있습니다.");
+							$(".fit-image").attr("src","assets/img/promotion/x-mark.png");
 						}else{
 							$(".strong").text("FAIL!!!!");	
 							$(".form4h").text("일시적 오류로 등록 실패하였습니다.");
@@ -626,7 +649,6 @@ p {
 			return false;
 		})
 		
-	
 	
 	});
 		

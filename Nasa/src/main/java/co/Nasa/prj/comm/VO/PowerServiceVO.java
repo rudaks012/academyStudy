@@ -9,6 +9,8 @@ public class PowerServiceVO {
 	String ser_code;
 	String power_start;
 	String power_end;
+	String power_date;
+	String power_price;
 
 	String s_nickname;
 	String s_img;

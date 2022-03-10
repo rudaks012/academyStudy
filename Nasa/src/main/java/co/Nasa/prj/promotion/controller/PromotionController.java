@@ -24,8 +24,10 @@ public class PromotionController {
 	private ServiceService serviceDao;
 	
 	@RequestMapping("/sellerPromotion.do")
-	public String sellerPromotion(Model model) {
-		model.addAttribute("promotions",promotionDao.promotionList());
+	public String sellerPromotion(Model model, HttpSession session) {
+		PromotionVO vo = new PromotionVO();
+		vo.setS_email((String)session.getAttribute("id"));
+		model.addAttribute("promotions",promotionDao.promotionList(vo));
 		return "seller/sellerPromotion";
 	}
 	
@@ -50,12 +52,18 @@ public class PromotionController {
 		vo.setPro_end(pro_end);
 		vo.setPro_service(pro_service);
 		
-		int n = promotionDao.promotionInsert(vo);
-		System.out.println(n);
-		if(n != 1) {
-			return "FAIL";
+		List<PromotionVO> list = promotionDao.promotionCheck(vo);
+		if(list != null) {
+			int n = promotionDao.promotionInsert(vo);
+			System.out.println(n);
+			if(n != 0) {
+				return "OK";
+			}
+		}else {
+			return "FAIL2";
 		}
-		return "OK";
+		
+		return "FAIL";
 	}
 	
 	@ResponseBody

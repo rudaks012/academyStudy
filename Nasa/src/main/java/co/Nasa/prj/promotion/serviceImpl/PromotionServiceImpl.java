@@ -20,13 +20,18 @@ public class PromotionServiceImpl implements PromotionService {
 	}
 
 	@Override
-	public List<PromotionVO> promotionList() {
-		return map.promotionList();
+	public List<PromotionVO> promotionList(PromotionVO vo) {
+		return map.promotionList(vo);
 	}
 
 	@Override
 	public String endPromotion(String pro_service) {
 		return map.endPromotion(pro_service);
+	}
+
+	@Override
+	public List<PromotionVO> promotionCheck(PromotionVO vo) {
+		return map.promotionCheck(vo);
 	}
 
 }

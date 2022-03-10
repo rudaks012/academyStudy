@@ -25,4 +25,9 @@ public class PowerServiceServiceImpl implements PowerServiceService {
 		return map.endPower(ser_code);
 	}
 
+	@Override
+	public int powerserviceInsert(PowerServiceVO vo) {
+		return map.powerserviceInsert(vo);
+	}
+
 }
