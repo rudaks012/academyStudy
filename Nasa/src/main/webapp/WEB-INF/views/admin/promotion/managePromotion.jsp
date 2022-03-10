@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-            
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn" %>               
             
             <div class="page-breadcrumb">
                 <div class="row">
@@ -306,23 +307,20 @@
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">1차 카테고리</th>
                                             <td >
-                                            	<select class="custom-select  form-control custom-shadow">
-				                                <option selected="">선택</option>
-				                                <option value="1">July 19</option>
-				                                <option value="2">Jun 19</option>
+                                            		<select id="searchCategory" name="ser_cate" class="custom-select  form-control custom-shadow ">
+						                                <option value="" selected>선택</option>
+						                                <option value="CAT1" <c:out value="${pageMaker.cri.ser_cate eq 'CAT1'? 'selected':'' }"/>>앱</option>
+						                                <option value="CAT2" <c:out value="${pageMaker.cri.ser_cate eq 'CAT2'? 'selected':'' }"/>>웹</option>
+						                                <option value="CAT3" <c:out value="${pageMaker.cri.ser_cate eq 'CAT3'? 'selected':'' }"/>>게임</option>
+						                                <option value="CAT4" <c:out value="${pageMaker.cri.ser_cate eq 'CAT4'? 'selected':'' }"/>>보안</option>
+						                                <option value="CAT5" <c:out value="${pageMaker.cri.ser_cate eq 'CAT5'? 'selected':'' }"/>>기술지원</option>
+						                                <option value="CAT6" <c:out value="${pageMaker.cri.ser_cate eq 'CAT6'? 'selected':'' }"/>>기획</option>
+						                            </select>
 				                            </select>
                                             </td>
                                          
                                         </tr>
-                                        <tr>
-                                        	<th width="18%" class="table-primary align-middle">2차 카테고리</th>
-                                            <td>
-                                            	<select class="custom-select  form-control custom-shadow">
-				                                <option selected="">선택</option>
-				                                <option value="1">July 19</option>
-				                                <option value="2">Jun 19</option>
-                                            </td>
-                                        </tr>
+                                        
                                         <tr>
                                             <th width="18%" class="table-primary align-middle">제목</th>
                                             <td colspan="3"><input class="form-control custom-shadow " id="" name="" value="1234444" type="text"  ></td>

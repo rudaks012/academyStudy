@@ -54,12 +54,12 @@
                                     	<td>
                                     		<select id="searchCategory" name="pay_cate" class="custom-select  form-control custom-shadow ">
 				                                <option value="" selected>선택</option>
-				                                <option value="CAT1" <c:out value="${pageMaker.cri.cat_no eq 'CAT1'? 'selected':'' }"/>>앱</option>
-				                                <option value="CAT2" <c:out value="${pageMaker.cri.cat_no eq 'CAT2'? 'selected':'' }"/>>웹</option>
-				                                <option value="CAT3" <c:out value="${pageMaker.cri.cat_no eq 'CAT3'? 'selected':'' }"/>>게임</option>
-				                                <option value="CAT4" <c:out value="${pageMaker.cri.cat_no eq 'CAT4'? 'selected':'' }"/>>보안</option>
-				                                <option value="CAT5" <c:out value="${pageMaker.cri.cat_no eq 'CAT5'? 'selected':'' }"/>>기술지원</option>
-				                                <option value="CAT6" <c:out value="${pageMaker.cri.cat_no eq 'CAT6'? 'selected':'' }"/>>기획</option>
+				                                <option value="CAT1" <c:out value="${pageMaker.cri.pay_cate eq 'CAT1'? 'selected':'' }"/>>앱</option>
+				                                <option value="CAT2" <c:out value="${pageMaker.cri.pay_cate eq 'CAT2'? 'selected':'' }"/>>웹</option>
+				                                <option value="CAT3" <c:out value="${pageMaker.cri.pay_cate eq 'CAT3'? 'selected':'' }"/>>게임</option>
+				                                <option value="CAT4" <c:out value="${pageMaker.cri.pay_cate eq 'CAT4'? 'selected':'' }"/>>보안</option>
+				                                <option value="CAT5" <c:out value="${pageMaker.cri.pay_cate eq 'CAT5'? 'selected':'' }"/>>기술지원</option>
+				                                <option value="CAT6" <c:out value="${pageMaker.cri.pay_cate eq 'CAT6'? 'selected':'' }"/>>기획</option>
 				                            </select>
                                     	</td>
                                     	<th class="align-middle table-primary">2차 카테고리</th>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.Nasa.prj.admin.board.service.AdminBoardMapper">
+
+ <select id="getSelelrBoardWithPaging" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+    SELECT NO_CODE,NO_ID,NO_TITLE,NO_SUBJECT,NO_DATE,FILECODE,NO_STATUS,
+           NO_IMG,NO_ORIGINIMG 
+    FROM NOTICE WHERE NO_STATUS='1'
+    ORDER BY NO_CODE DESC
+ </select>
+</mapper>

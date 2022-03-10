@@ -118,6 +118,16 @@ public class AdminAuthorVO {
 	String total_price;
 	String pay_date2;
 	
+	//판매자 노하우
+	String no_code;
+	String no_id;
+	String no_title;
+	String no_subject;
+	String no_date;
+	String no_status;
+	String no_img;
+	String no_originimg;
+	
 	
 	int start; // 쿼리에 쓸 start
 	int end; 
