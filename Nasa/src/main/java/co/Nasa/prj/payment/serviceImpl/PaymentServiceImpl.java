@@ -1,6 +1,10 @@
 package co.Nasa.prj.payment.serviceImpl;
 
+<<<<<<< HEAD
 import java.util.HashMap;
+=======
+import java.sql.Date;
+>>>>>>> 9809dd3c93bcf0f41cf3e0a02391db2e2f707a95
 import java.util.List;
 import java.util.Map;
 
@@ -93,6 +97,7 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public PaymonthVO sellerSalesData(HashMap<String, String> remap) {
 		return map.sellerSalesData(remap);
 	}
@@ -100,6 +105,25 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public PaymonthVO sellerCommData(HashMap<String, String> remap) {
 		return map.sellerCommData(remap);
+=======
+	public int countMonthSearch(PaymentVO vo) {
+		return map.countMonthSearch(vo);
+	}
+
+	@Override
+	public int countSixmonthSearch(PaymentVO vo) {
+		return map.countSixmonthSearch(vo);
+	}
+
+	@Override
+	public int countYearSearch(PaymentVO vo) {
+		return map.countYearSearch(vo);
+	}
+
+	@Override
+	public int countSelectdateSearch(PaymentVO vo) {
+		return map.countSelectdateSearch(vo);
+>>>>>>> 9809dd3c93bcf0f41cf3e0a02391db2e2f707a95
 	}
 
 	

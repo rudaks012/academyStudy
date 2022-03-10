@@ -1,5 +1,7 @@
 package co.Nasa.prj.comm.VO;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
@@ -17,8 +19,13 @@ public class PaymentVO {
 	String pay_enddate; //구매확정날짜
 	String event_start;
 	String event_end;
+<<<<<<< HEAD
 	String pay_originp;
 	String pay_com;
+=======
+	String pay_originp; //원급
+	String pay_com; // 수수료
+>>>>>>> 9809dd3c93bcf0f41cf3e0a02391db2e2f707a95
 	
 	int start; // 쿼리에 쓸 start
 	int end; // 위와 같음
@@ -28,5 +35,6 @@ public class PaymentVO {
 		setStart(getEnd() - amount + 1);
 	}
 	
-	int searchMonth;
+	Date firstDate;
+	Date secondDate;
 }

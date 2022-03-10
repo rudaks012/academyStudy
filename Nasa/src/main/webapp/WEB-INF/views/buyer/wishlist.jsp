@@ -44,11 +44,6 @@
                            </a>
                         </li>
                         <li>
-                           <a href="buyerCoupons.do" class="d-flex">
-                              <p>보유쿠폰</p>
-                           </a>
-                        </li>
-                        <li>
                            <a href="wishlist.do" class="d-flex">
                               <p style="font-weight: bold;">위시리스트</p>
                            </a>
@@ -91,7 +86,7 @@
 					                        	<img src="${seller.s_img }" alt="">
 			                        		</c:when>
 			                        		<c:otherwise>
-			                        			<img src="" alt="">
+			                        			<img src="resources/user/assets/img/profile/search-default-profile.jpg" alt="">
 			                        		</c:otherwise>
 			                        	</c:choose>
 			                           <div class="media-body">

@@ -37,7 +37,16 @@ public class AdminPaymentController {
 		return adminPaymentDao.detailBuyerPayment(vo.getPay_code());
 	}
 	@RequestMapping("/manage_sellerPayment.do")
-	public String manage_sellerPayment() {
+	public String manage_sellerPayment(Model model,Criteria cri) {
+		model.addAttribute("sellerPayment", adminPaymentDao.getSellerPaymentListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, adminPaymentDao.getSellerPaymentTotal(cri)));
+		model.addAttribute("total", adminPaymentDao.getSellerPaymentTotal(cri));
 		return "admin/payment/manageSellerPayment";
+	}
+	
+	@ResponseBody
+	@PostMapping("/ajaxDetailSellerPayment.do")
+	public AdminAuthorVO ajaxDetailSellerPayment(AdminAuthorVO vo) {
+		return adminPaymentDao.detailSellerPayment(vo.getPower_code());
 	}
 }

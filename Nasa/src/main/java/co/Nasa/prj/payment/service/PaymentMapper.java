@@ -1,6 +1,10 @@
 package co.Nasa.prj.payment.service;
 
+<<<<<<< HEAD
 import java.util.HashMap;
+=======
+import java.sql.Date;
+>>>>>>> 9809dd3c93bcf0f41cf3e0a02391db2e2f707a95
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +26,12 @@ public interface PaymentMapper {
    public List<PaymentVO> sixmonthSearch(PaymentVO vo);
    public List<PaymentVO> yearSearch(PaymentVO vo);
    public List<PaymentVO> selectdateSearch(PaymentVO vo);
+   
+   //카운트
+   public int countMonthSearch(PaymentVO vo);
+   public int countSixmonthSearch(PaymentVO vo);
+   public int countYearSearch(PaymentVO vo);
+   public int countSelectdateSearch(PaymentVO vo);
    
    //차트 목록
    List<PaymentVO> selectListChart();

@@ -128,6 +128,7 @@ public class HomeController {
 		int res = paymentDao.insertchatpayment(vo);
 		if (res == 1) {
 			System.out.println("성공적으로 인설트됨!!!!!!!!!");
+			System.out.println("결과한번보자|||||||||||||||||" + res);
 
 		}
 
