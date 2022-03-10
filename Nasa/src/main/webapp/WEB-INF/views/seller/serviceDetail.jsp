@@ -363,11 +363,13 @@
                 },
                 dataType : "json",
                 success : function(data){
+                	window.location.replace("chatting.do");
                     console.log(data);
-                }
-
-            })
-        }
+                },error : function(){
+					alert("에러");
+				}
+			});
+		}
 	</script>
 	
 </body>

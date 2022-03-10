@@ -346,7 +346,7 @@ input[type=date] {
 
                         <button type="button" data-toggle="modal"
                         data-target="#payModal" id="payement" class="w-btn-neon2"
-                           style="float: right; display: none;"onclick="paymentconfirm()">결제하기</button>
+                           style="float: right; display: none;"onclick="paymentconfirm();sercodecheck();promotioncheck();selrankcheck()">결제하기</button>
                         <button type="button" data-toggle="modal"
                            data-target="#reportModal" id="Chatreport" class="w-btn-neon2"
                            style="float: right; display: none;">신고하기</button>
@@ -504,6 +504,9 @@ input[type=date] {
                   <tr>
                      <!-- 서비스코드 들어와야함 -->
                      <input type="hidden" id="servicecode" name="servicecode" value="servicecode">
+                     <input type="hidden" id="ser_cate" name="ser_cate" value="ser_cate">
+                     <input type="hidden" id="sub_cate" name="sub_cate" value="sub_cate">
+                     <input type="hidden" id="sellerrank" name="sellerrank" value="sellerrank">
                      <td>서비스 금액</td>
                      <td><input type="number" id="chatmoney"placeholder="상대방과 협의한 금액을 입력해주세요"
                         style="width: 250px;"  onkeyup="copchatmoney()"/></td>
@@ -521,11 +524,18 @@ input[type=date] {
                         <!-- <input type="radio" name="paymethod"
                         value="kakaopay">카카오페이</td> -->
                   </tr>
+				  <tr>
+					  <td>프로모션</td>
+					  <td>
+						  <input type="radio" name="promotion" value="promotion" id="adminpromotion">전체 이벤트
+						  <input type="radio" name="promotion" value="promotion" id="sellerpromo">판매자 이벤트 
+					</td>
+				  </tr>
                   <tr>
                      <td>쿠폰</td>
                      <td id="coupontest">
                   <input type="radio" name="coupon" value="coupon" checked>사용하지 않음 <br />
-                  <input type="radio" name="coupon" value="coupon" id="couponrank" onclick="couponcheck()">
+                  <input type="radio" name="coupon" value="coupon" id="couponrank" onclick="couponcheck()"><span id="couponspan"></span>
                   <!--여기서 체크-->
                      </td>
                   </tr>
@@ -661,7 +671,9 @@ input[type=date] {
                                     "<div class='chatList_box enterRoomList' style='display:inline-block; width: 80%;' onclick='enterRoom(this);'>")
                                     .attr("id", data[i].roomid)
                                     .attr("userId",
-                                          data[i].masterid);
+                                          data[i].masterid)
+										  .attr("ser_code", data[i].ser_code)
+										  ;
                               $img = $("<img class='profile_img' src='resources/img/buzz.png'>");
                                    //$img = $("<img class='profile_img' src='resources/user/assets/img/profile/${loginMember.s_img}.png'>");
                               $div.append($img);
@@ -805,7 +817,11 @@ input[type=date] {
 
          console.log("check합니다.");
          roomid = obj.getAttribute("id");
+		 ser_code = obj.getAttribute("ser_code");
          console.log("채팅 방 아이디 ::::" + roomid);
+		 console.log("서비스코드 : " + ser_code);
+		 var hiddensercode = $("#servicecode").val(ser_code);
+		 console.log(obj);
 
          // 해당 채팅 방의 메세지 목록 불러오기
          $.ajax({
@@ -1049,7 +1065,6 @@ input[type=date] {
          //console.log("신고내용:!11" + re_subject);
          var re_img = document.querySelector('#imgupload').value;
          //console.log("신고이미지 : 33333333"+ re_img);
-         
          formData.append('re_member', re_member);
          formData.append('re_subject', re_subject);
          formData.append('re_type', re_type);
@@ -1109,8 +1124,15 @@ input[type=date] {
          console.log("쿠폰 금액",couponmoney);
          var lastmoney = document.querySelector("#lastmoney").textContent;
          console.log("최종금액",lastmoney);
-         var servicecode = document.getElementById('servicecode').value; //서비스코드
+         var servicecode = document.getElementById('servicecode').value; //서비스코드 히든임
          console.log("서비스코드",servicecode);
+		 var ser_cate = document.getElementById('ser_cate').value; //서비스코드 히든임
+		 console.log("서비스카테고리",ser_cate);
+		 var sub_cate = document.getElementById('sub_cate').value; //서비스코드 히든임
+		 console.log("서비스하위카테고리",sub_cate);
+		 var adminpay = document.getElementById('sellerrank').value; // 판매자 등급
+		 console.log("판매자 등급",adminpay);
+
 
 
 
@@ -1143,7 +1165,10 @@ input[type=date] {
                      "event_end" : endservice,
                      "pay_originp" : servicemoney,
                      "pay_coupon" : coupon,
-                     "s_code" : servicecode
+                     "s_code" : servicecode,
+					 "pay_cate" : ser_cate,
+					 "pay_cate1" : sub_cate,
+					 "pay_com" : adminpay
 
                }
                console.log("결제완료",result);
@@ -1162,10 +1187,6 @@ input[type=date] {
                   } 
                });
                console.log("결제성공",result);
-               // msg += '고유ID : ' + rsp.imp_uid;
-               // msg += '상점 거래ID : ' + rsp.merchant_uid;
-               // msg += '결제 금액 : ' + rsp.paid_amount;
-               // msg += '카드 승인번호 : ' + rsp.apply_num;
                alert(msg);
             } else {
                var msg = '결제에 실패하였습니다.';
@@ -1175,9 +1196,50 @@ input[type=date] {
 
 
       }
+	  //판매자 등급확인
+	  function selrankcheck(){
+		  var sellerid = document.querySelector("#paycheckId").innerText;
+		  console.log("판매자아이디 :",sellerid);
+		  $.ajax({
+			  url : "selrankcheck.do",
+			  type : "post",
+			  data : {
+				  sellerid : sellerid
+			  },
+			  dataType : "json",
+			  success : function (data) {
+				  document.getElementById('sellerrank').innerText = data.s_rank;
+			  } 
+		   });
+		}
+	  //프로모션 등록 여부체크
+	  function promotioncheck() {
+		  
+	  }
+	  function sercodecheck() {
+		  var servicecode = document.getElementById('servicecode').value;
+		  console.log("로그찍어보자",servicecode);
+		  $.ajax({
+			  url:"sercodecheck.do",
+			  type:"post",
+			  data: {
+				  servicecode : servicecode
+			  },
+			  dataType : "json",
+			  success : function(data) {
+				  var chatmoney = $('#chatmoney').val(data.ser_price);
+				  var sercate = $('#ser_cate').val(data.ser_cate);
+				  var sub_cate =$("#sub_cate").val(data.sub_cate);
+
+				  console.log("서비스코드",data);
+			  }
+		  })
+	  }
+
       //쿠폰 가져오기
       function paymentconfirm(){
          var sellerid = document.querySelector("#paycheckId").innerText;
+
          $.ajax({
             url: "sellerIdcheck.do",
             type: "post",
@@ -1191,8 +1253,8 @@ input[type=date] {
                if(data.coupon == '1' ){
                $("#coupontest").val('5');
                   couponval.value = "2";
-                  $("#couponrank").empty();
-                  $("#coupontest").append('2% 할인 사용하기') ;
+                 var check =  $("#coupontest").append('2% 할인 사용하기') ;
+				$('#couponspan').text('');
                }else if(data.coupon == '2'){
                   couponval.value = "5";
                   $("#coupontest").append('5% 할인 사용하기') ;
@@ -1220,13 +1282,26 @@ input[type=date] {
          console.log("최종금액",lastmoney);
          var couponper = document.querySelector("#couponrank").value;
          console.log("쿠폰확율",couponper);
-
+		 
          var check = document.querySelector("#couponmoney").innerHTML = servicemoney / 100 * couponper;
          console.log(check);
          console.log("쿠폰머니2",couponmoney);
          document.querySelector("#lastmoney").innerText = servicemoney - check ;
+		 
          console.log("최종금액2",lastmoney);
-      }
+		 var adminpay = document.getElementById('sellerrank'); // 판매자 등급
+		 console.log("판매자 등급",adminpay.innerText);
+		 if(adminpay.innerText == "별" ){
+		 $('#sellerrank').val(servicemoney / 8) ;
+		 }else if(adminpay.innerText == "달"){
+		 $('#sellerrank').val(servicemoney / 5) ;
+		 }else if (adminpay.innerText == "해"){
+		 $('#sellerrank').val(servicemoney / 3) ;
+		 }else if (adminpay.innerText == "지구"){
+		 $('#sellerrank').val(servicemoney / 1) ;
+		 }
+
+		 }
 
       //keyup 이벤트
      function copchatmoney(){
