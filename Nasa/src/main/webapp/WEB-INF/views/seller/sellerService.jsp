@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,6 +142,10 @@ input[type=date] {
 	padding-left: 2rem !important;
 	padding-right: 2rem !important;
 }
+
+/* .listing-details-area .single-listing .list-footer ul{
+	justify-content: right;
+} */
 </style>
 </head>
 <body>
@@ -210,9 +215,9 @@ input[type=date] {
 								<hr class="hr" />
 								<a href="serviceInsert.do" class="genric-btn danger">서비스 등록</a>
 								<a href="" class="genric-btn danger" data-toggle="modal"
-									data-target="#PowerModal">파워서비스 등록</a> <a href=""
-									class="genric-btn danger" data-toggle="modal"
-									data-target="#payModal">결제 등록</a>
+									data-target="#PowerModal">파워서비스 등록</a> 
+								<!-- <a href="" class="genric-btn danger" data-toggle="modal"
+									data-target="#payModal">결제 등록</a> -->
 
 								<div class="blog_details">
 									<div class="container">
@@ -263,7 +268,7 @@ input[type=date] {
 
 																					<div class="list-footer">
 																						<ul>
-																							<li style="margin-left: 140px;">
+																							<li >
 																								<button type="button"
 																									onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'"
 																									class="genric-btn danger-border circle">수정</button>
@@ -447,7 +452,7 @@ input[type=date] {
 									</div>
 									<c:forEach items="${serviceList }" var="service">
 										<c:if test="${service.ser_status eq 'N'}">
-											<input type="hidden" id="${service.ser_code }" value="${service.ser_end }">
+											<input type="hidden" id="${service.ser_code }" value="${fn:substring(service.ser_end,0,10) }">
 										</c:if>
 									</c:forEach>
 								</td>
@@ -501,11 +506,11 @@ input[type=date] {
 							<td><input type="text" id="ser_end" disabled></td>
 						</tr>
 						<tr>
-							<td>프로모션 종료 예정 날짜</td>
+							<td>프로모션 종료 날짜</td>
 							<td><input type="text" id="ser_proend" disabled></td>
 						</tr>
 						<tr>
-							<td>파워서비스 종료 예정 날짜</td>
+							<td>파워서비스 종료 날짜</td>
 							<td><input type="text" id="ser_powerend" disabled></td>
 						</tr>
 						<tr>
@@ -526,7 +531,7 @@ input[type=date] {
 
 
 
-	<div class="modal fade" id="payModal" tabindex="-1" role="dialog"
+	<!-- <div class="modal fade" id="payModal" tabindex="-1" role="dialog"
 		aria-labelledby="payModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document" style="max-width: 400px;">
 			<div class="modal-content">
@@ -605,10 +610,10 @@ input[type=date] {
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 
-	<div class="modal fade" id="useModal" tabindex="-1" role="dialog"
+	<!-- <div class="modal fade" id="useModal" tabindex="-1" role="dialog"
 		aria-labelledby="useModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document"
 			style="max-width: 600px; margin: 12.75rem auto">
@@ -640,7 +645,7 @@ input[type=date] {
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<script>
 		$(function() { // actvie 활성화 
 			$(".nav-item > .active").css("color", "white");
@@ -802,6 +807,7 @@ input[type=date] {
 			var powerend = document.getElementById(powerno).value;
 			console.log(powerend);
 			if(powerend != ''){
+				console.log()
 				$("#powerdate").attr('max', powerend);			
 			}else{
 				$("#powerdate").attr('max', '');
@@ -816,7 +822,34 @@ input[type=date] {
 					alert('시작일을 선택해주세요.');
 					return;
 				}
-				console.log($("#powerdate").val());
+				//파워서비스 시작일
+				var powerstart= $("#powerdate").val();
+				
+				var powerno = $("#powerS option:selected").val();
+				//서비스 종료예정일
+				var powerend = document.getElementById(powerno).value;
+				
+				//파워서비스 종료일
+				var paramDate = new Date($("#powerdate").val());
+				var day = paramDate.getDay();
+				var diff = paramDate.getDate()+6;
+				var dateString = new Date(paramDate.setDate(diff)).toISOString().substring(0, 10);
+				
+				if(powerend !='' && powerend < dateString){
+					alert('서비스 종료 예정일 : '+powerend+'\n파워 서비스 종료일 : '+dateString+'\n서비스 종료 예정일이 파워서비스 종료일보다 빠릅니다.');
+					return;
+				}
+				
+				$.ajax({
+					url: "",
+					data: "",
+					dataType: "",
+					type:"post",
+					success: function(){
+						
+					}
+				})
+				
 				var IMP = window.IMP; // 생략가능
 				IMP.init('imp49718054');
 				// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용

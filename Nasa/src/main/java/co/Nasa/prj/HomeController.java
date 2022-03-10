@@ -19,7 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.Nasa.prj.buyer.service.BuyerService;
 import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.PaymentVO;
+
 import co.Nasa.prj.notice.service.NoticeService;
+
+import co.Nasa.prj.comm.VO.SellerVO;
+import co.Nasa.prj.comm.VO.ServiceVO;
+
 import co.Nasa.prj.payment.service.PaymentService;
 import co.Nasa.prj.powerservice.service.PowerServiceService;
 import co.Nasa.prj.seller.service.SellerService;
@@ -129,7 +134,6 @@ public class HomeController {
 	public int chatpayment(@RequestBody PaymentVO vo, HttpSession session) {
 
 		vo.setB_email((String) session.getAttribute("id"));
-		System.out.println("vo찍어본다||||||||||||||||||||||||||" + vo);
 
 		int res = paymentDao.insertchatpayment(vo);
 		if (res == 1) {
@@ -140,12 +144,22 @@ public class HomeController {
 
 		return res;
 	}
+	//서비스 코드 체크
+	@ResponseBody
+	@RequestMapping("/sercodecheck.do")
+	public ServiceVO sercodecheck(@RequestParam("servicecode") String servicecode) {
+		System.out.println("sercodecheck.do");
+		ServiceVO vo = new ServiceVO();
+		vo.setS_code(servicecode);
+		vo = serviceDao.serviceSelect(servicecode);
+		vo.getSer_price();
+		return vo;
+	}
 	
-	//채팅 셀러 값가져오기
+	//로그인 구매자 등급 가져오기
 	@RequestMapping("/sellerIdcheck.do")
 	@ResponseBody
-	public String sellerIdcheck(Model model, @RequestParam("sellerId") String sellerid, HttpSession session) {
-		System.out.println("셀러아이디 찍어보기 ||||||||||||||||" + sellerid);
+	public String sellerIdcheck(Model model, HttpSession session) {
 		// SellerVO vo = new SellerVO();
 		// vo = sellerDAO.SellerSelect(sellerid);
 		// model.addAttribute("sellerinfo",sellerDAO.SellerSelect(sellerid));
@@ -154,13 +168,23 @@ public class HomeController {
 		bvo.setB_email((String) session.getAttribute("id"));
 		bvo = BuyerDao.selectBuyer(bvo);
 		// model.addAttribute("buyerinfo",BuyerDao.selectBuyer(bvo));
-		System.out.println("이거는 bvo다||||||||||||||||||||||||||||||||" + bvo);
 		
 		JSONObject object = new JSONObject();
 		object.put("coupon", bvo.getBuyer_coupon());
 		String result = object.toJSONString();
 		
 		return result;	
+	}
+	//판매자 등급 가져오기
+	@ResponseBody
+	@RequestMapping("/selrankcheck.do")
+	public SellerVO selrankcheck(@RequestParam("sellerid") String sellerid) {
+		SellerVO vo = new SellerVO();
+		vo.setS_email(sellerid);
+		vo = sellerDAO.ChatSellerselect(vo);
+		System.out.println("판매자등급 찍어보기 ||||||||||||||||||" + vo);
+		
+		return vo;
 	}
 	
 

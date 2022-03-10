@@ -61,6 +61,12 @@
 		WHERE B_EMAIL = #{s_email}		
 	</select>
 	
+	<select id="ChatSellerselect" resultType="co.Nasa.prj.comm.VO.SellerVO">
+		SELECT * 
+		FROM SELLER
+		WHERE s_email = #{s_email}
+	</select>
+	
 	<select id="bestSellerList" resultType="co.Nasa.prj.comm.VO.SellerVO">
 		SELECT DISTINCT
 		S.*, (SELECT COUNT(S_ID) FROM WISHLIST WHERE S_STATUS='U' AND S_ID = S.S_EMAIL) AS WISHCOUNT

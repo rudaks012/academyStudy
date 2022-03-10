@@ -228,13 +228,6 @@ public class ChatController {
     
     //서비스 조회
     ServiceVO servo = serviceDao.serviceSelect(ser_code);
-    System.out.println("로그인한 아디 ||||||||||" + userid);
-    System.out.println("구매자의 아이디 ||||||||" + bvo);
-    System.out.println("판매자 닉네임 ||||||||||" + svo);
-    System.out.println("판매자 아이디 ||||||" + svo.getS_nickname());
-    System.out.println("판매자 프로필||||" + svo.getS_img());
-    System.out.println("판매자 코드 ||||||||||" + servo);
-    System.out.println("들어온다.||||||||||||||||||");
     	
     room.setUserid(userid);
     room.setUsernickname(buyer.getB_nickname());

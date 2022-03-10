@@ -77,6 +77,7 @@ public class BuyerController {
 	@RequestMapping("/goBuyerMypage.do")
 	public String goBuyerMypage(HttpSession session, HttpServletResponse response, HttpServletRequest request,
 			Model model) {
+		System.out.println("권한!!!!!!!!!!!!!!!!!!!!!!!! : "+(String) session.getAttribute("author"));
 		// 사용할 VO
 		BuyerVO vo = new BuyerVO();
 		CategoryVO cvo = new CategoryVO();

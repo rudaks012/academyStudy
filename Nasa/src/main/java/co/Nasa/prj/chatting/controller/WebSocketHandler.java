@@ -88,8 +88,10 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	            sessionTwo.add(session);
 	            // sessionList에 추가
 	            sessionList.put(session, chatRoom.getRoomid());
+	            sessionList.put(session, chatRoom.getSer_code());
 	            // RoomList에 추가
 	            RoomList.put(chatRoom.getRoomid(), sessionTwo);
+	            RoomList.put(chatRoom.getSer_code(), sessionTwo);
 	            // 확인용
 	            System.out.println("채팅방 생성");
 	        }
@@ -99,8 +101,10 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	            
 	            // RoomList에서 해당 방번호를 가진 방이 있는지 확인.
 	            RoomList.get(chatRoom.getRoomid()).add(session);
+	            RoomList.get(chatRoom.getSer_code()).add(session);
 	            // sessionList에 추가
 	            sessionList.put(session, chatRoom.getRoomid());
+	            sessionList.put(session, chatRoom.getSer_code());
 	            // 확인용
 	            System.out.println("생성된 채팅방으로 입장");
 	        }
