@@ -34,4 +34,25 @@ public class PromotionServiceImpl implements PromotionService {
 		return map.promotionCheck(vo);
 	}
 
+	@Override
+	public int promotionCancel(String pro_service) {
+		return map.promotionCancel(pro_service);
+	}
+
+	@Override
+	public int promotionEnd(String pro_service) {
+		return map.promotionEnd(pro_service);
+	}
+
+	@Override
+	public int startCheckPromotion() {
+		return map.startCheckPromotion();
+	}
+
+	@Override
+	public int endCheckPromotion() {
+		return map.endCheckPromotion();
+	}
+
+	
 }

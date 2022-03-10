@@ -10,4 +10,10 @@ public interface PromotionMapper {
 	String endPromotion(String pro_service);
 	
 	List<PromotionVO> promotionCheck(PromotionVO vo);
+	
+	int promotionCancel(String pro_service);
+	int promotionEnd(String pro_service);
+	
+	int startCheckPromotion();
+	int endCheckPromotion();
 }
