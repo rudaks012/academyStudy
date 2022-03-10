@@ -444,7 +444,7 @@ p {
 
 															</div> <br><br>
 															<h2 class="purple-text text-center">
-																<strong class="strong">SUCCESS !</strong></h2> <br>
+																<strong class="strong"></strong></h2> <br>
 															<div class="row justify-content-center">
 																<div class="col-3"> 
 																	<img src="assets/img/promotion/GwStPmg.png" class="fit-image"> 
@@ -452,7 +452,7 @@ p {
 															</div> <br><br>
 															<div class="row justify-content-center">
 																<div class="col-7 text-center">
-																	<h5 class="purple-text text-center form4h">등록 완료하였습니다!</h5>
+																	<h5 class="purple-text text-center form4h"></h5>
 																	<br/><br/>
 																</div>
 															</div>
@@ -577,6 +577,9 @@ p {
 
 		function setProgressBar(curStep) {
 			if(curStep == 2){
+				$("#startdate").val('');
+				$("#enddate").val('');
+				
 				let id = $("input[name=pro_service]:checked").val();
 				console.log(id);
 				let start = 'st'+id;
@@ -609,20 +612,33 @@ p {
 				let pro_start = $('#startdate').val();
 				let pro_end = $('#enddate').val();
 				let pro_service = $("input[name=pro_service]:checked").val();
+				let pro_status = 'N';
 				
+				var today = new Date();
+				var year = today.getFullYear();
+				var month = ('0' + (today.getMonth() + 1)).slice(-2);
+				var day = ('0' + today.getDate()).slice(-2);
+				var dateString = year + '-' + month  + '-' + day;
 				
-				$.ajax({
+				if(pro_start > dateString){
+					pro_status = 'U';
+				}
+				
+				 $.ajax({
 					url: "promoInsert.do",
-					data : {discount: discount, pro_start:pro_start, pro_end:pro_end, pro_service:pro_service},
+					data : {discount: discount, pro_start:pro_start, 
+						pro_end:pro_end, pro_service:pro_service,pro_status:pro_status},
 					type : "post",
 					dataType : "text",
 					success : function(result) {
 						console.log(result);
 						if(result == "OK"){
-							
+							$(".strong").text("SUCCESS!");	
+							$(".form4h").text("등록완료하였습니다.");
+							$(".fit-image").attr("src","assets/img/promotion/GwStPmg.png");							
 						}else if(result == "FAIL2"){
 							$(".strong").text("FAIL!!!!");	
-							$(".form4h").text("이미 등록된 프로모션이 있습니다.");
+							$(".form4h").text("해당 날짜에 등록된 프로모션이 이미 있습니다.");
 							$(".fit-image").attr("src","assets/img/promotion/x-mark.png");
 						}else{
 							$(".strong").text("FAIL!!!!");	
@@ -636,7 +652,7 @@ p {
 						$(".form4h").text("일시적 오류로 등록 실패하였습니다.");	
 						$(".fit-image").attr("src","assets/img/promotion/x-mark.png");
 					}
-				});
+				}); 
 				
 			}
 			var percent = parseFloat(100 / steps) * curStep;

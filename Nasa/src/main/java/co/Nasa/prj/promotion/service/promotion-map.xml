@@ -7,7 +7,7 @@
       SELECT NVL(MAX(TO_NUMBER(pro_code)),0)+1 FROM PROMOTION   
    </selectKey>
 	INSERT INTO PROMOTION
-	VALUES(#{pro_code},#{s_email},#{prodiscount},#{pro_start}, #{pro_end}, #{pro_service})
+	VALUES(#{pro_code},#{s_email},#{prodiscount},#{pro_start}, #{pro_end}, #{pro_service},#{pro_status})
 </insert>
 
 <select id="promotionList" resultType="co.Nasa.prj.comm.VO.PromotionVO">
@@ -30,4 +30,31 @@
 	WHERE PRO_SERVICE = #{pro_service} 
 	AND #{pro_start} BETWEEN PRO_START AND PRO_END
 </select>
+
+<delete id="promotionCancel" parameterType="String">
+	DELETE FROM PROMOTION
+	WHERE PRO_SERVICE = #{pro_service} 
+</delete>
+
+<update id="promotionEnd" parameterType="String">
+	UPDATE PROMOTION SET 
+	PRO_STATUS = 'Y', PRO_END = sysdate
+	WHERE PRO_SERVICE = #{pro_service} 
+</update>
+
+<update id="startCheckPromotion">
+	<![CDATA[
+	UPDATE PROMOTION 
+	SET PRO_STATUS='N' 
+	WHERE PRO_START < SYSDATE 
+	AND PRO_STATUS = 'U']]>
+</update>
+
+<update id="endCheckPromotion">
+	<![CDATA[
+	UPDATE PROMOTION 
+	SET PRO_STATUS = 'Y' 
+	WHERE PRO_END < SYSDATE 
+	AND PRO_STATUS = 'N']]>
+</update>
 </mapper>
