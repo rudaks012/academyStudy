@@ -25,15 +25,18 @@ INSERT INTO NOTICE(no_code,
 	</insert>
 	
 	<select id="knowhowSelectList" resultType="co.Nasa.prj.comm.VO.NoticeVO">
-		SELECT *
-		FROM NOTICE
-		WHERE NO_STATUS = '1'
+		SELECT
+		S.S_NICKNAME, N.*
+		FROM SELLER S, NOTICE N
+		WHERE S.S_EMAIL = NO_ID AND NO_STATUS='1'
+		ORDER BY NO_CODE DESC
 	</select>
 	
 	<select id="knowhowSelect" resultType="co.Nasa.prj.comm.VO.NoticeVO">
-		SELECT *
-		FROM NOTICE
-		WHERE NO_CODE = #{no_code}
+		SELECT
+		S.S_NICKNAME, N.*
+		FROM SELLER S, NOTICE N
+		WHERE S.S_EMAIL = NO_ID AND NO_CODE = #{no_code}
 	</select>
 	
 	<delete id="knowhowDelete" parameterType="String">

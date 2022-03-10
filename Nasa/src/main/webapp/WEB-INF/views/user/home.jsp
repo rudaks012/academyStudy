@@ -199,8 +199,8 @@
                                             </c:choose>
                                         </div>
                                         <div class="cat-cap" style="padding: 10px;">
-                                            <h5><a>${power.s_nickname }</a></h5>
-                                            <p>${power.ser_title }</p>
+                                            <h5><a>판매자 ${power.s_nickname }</a></h5>
+                                            <p>[서비스] ${power.ser_title }</p>
                                             <a href="serviceDetail.do?ser_code=${power.ser_code }">상세보기</a>
                                         </div>
                                     </div>
@@ -304,8 +304,8 @@
                             <img src="fileupload/${bestservice.ser_img }" alt="" style="width: 370px; height: 258px;">
                             <!-- <span>Open</span> -->
                         </div>
-                        <div class="list-caption">
-                            <span>Open</span>
+                        <div class="list-caption" style="width: 370px; height: 227px;">
+                            <span>BEST!</span>
                              <h3><a href="serviceDetail.do?ser_code=${bestservice.ser_code }">${bestservice.ser_title }</a></h3>
                             <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${bestservice.ser_sub }</p>
                             <div class="list-footer">
@@ -333,114 +333,66 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="single-listing mb-30">
-                    <div class="list-img">
-                        <img src="resources/user/assets/img/gallery/list1.png" alt="">
-                        <!-- <span>Open</span> -->
-                    </div>
-                    <div class="list-caption">
-                        <span>Open</span>
-                         <h3><a href="listing_details.html">Saintmartine</a></h3>
-                        <p>700/D, Kings road, Green lane, 85/ London</p>
-                        <div class="list-footer">
-                            <ul>
-                                <li>+10 278 367 9823</li>
-                                <li>contact@midnight.com</li>
-                            </ul>
+            <c:forEach items="${bestsellerlist }" var="bestseller" begin="0" end="2" step="1">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-listing mb-30">
+                        <div class="list-img">
+                            <c:choose>
+							    <c:when test="${empty bestseller.s_img }">
+								    <img src="resources/user/assets/img/profile/search-default-profile.jpg" alt="" style="width: 370px; height: 258px;">
+							    </c:when>
+							    <c:otherwise>
+								    <img src="${bestseller.s_img }" alt="" style="width: 370px; height: 258px;">
+							    </c:otherwise>
+						    </c:choose>
+                            <!-- <span>Open</span> -->
+                        </div>
+                        <div class="list-caption" style="width: 370px; height: 190px;">
+                            <span>BEST!</span>
+                             <h3><a href="#">${bestseller.s_nickname }</a></h3>
+                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${bestseller.s_me }</p>
+                            <div class="list-footer">
+                                <ul>
+                                    <li href="경만님이하실것....">채팅하기</li>
+                                    <li>찜하기</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-listing mb-30">
-                    <div class="list-img">
-                        <img src="resources/user/assets/img/gallery/list2.png" alt="">
-                        <!-- <span>Open</span> -->
-                    </div>
-                    <div class="list-caption">
-                        <span>Open</span>
-                         <h3><a href="listing_details.html">Saintmartine</a></h3>
-                        <p>700/D, Kings road, Green lane, 85/ London</p>
-                        <div class="list-footer">
-                            <ul>
-                                <li>+10 278 367 9823</li>
-                                <li>contact@midnight.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-listing mb-30">
-                    <div class="list-img">
-                        <img src="resources/user/assets/img/gallery/list3.png" alt="">
-                        <!-- <span>Open</span> -->
-                    </div>
-                    <div class="list-caption">
-                        <span>Open</span>
-                         <h3><a href="listing_details.html">Saintmartine</a></h3>
-                        <p>700/D, Kings road, Green lane, 85/ London</p>
-                        <div class="list-footer">
-                            <ul>
-                                <li>+10 278 367 9823</li>
-                                <li>contact@midnight.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </div>                
+            </c:forEach>            
         </div>
     </div>
 </div>
 
 <!-- Categories Area Start -->
-<div class="categories-area section">
-    <div class="container" style="margin-bottom: 30px;">
+<div class="home-blog-area section-padding30">
+    <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <!-- Section Tittle -->
-                <div class="section-tittle text-center mb-80" style="margin: 80px; margin-bottom: 30px;">
+                <div class="section-tittle text-center mb-70">
                     <span>Seller's Know-how</span>
                     <h2>판매자의 노하우</h2>
-                </div>
+                </div> 
             </div>
         </div>
-        <div class="row">                    
-            <div class="section-top-border">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="single-defination">
-                            <h4 class="mb-20">글제목</h4>
-                            <p>글내용 ...css처리하기</p>
-                                <a href="#" class="genric-btn primary">Read More</a>
+        <div class="row">
+            <c:forEach items="${knowhowlist }" var="knowhow" begin="0" end="2" step="1">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-team mb-30">
+                        <div class="team-img">
+                            <img src="editor/${knowhow.no_img }" alt="" style="width: 370px; height: 440px;">
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="single-defination">
-                            <h4 class="mb-20">Definition 02</h4>
-                            <p>Recently, the US Federal government banned online casinos from operating in America by
-                                making it illegal to
-                                transfer money to them through any US bank or payment system. As a result of this law,
-                                most of the popular
-                                online casino networks</p>
-                                <a href="#" class="genric-btn primary">Read More</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="single-defination">
-                            <h4 class="mb-20">Definition 03</h4>
-                            <p>Recently, the US Federal government banned online casinos from operating in America by
-                                making it illegal to
-                                transfer money to them through any US bank or payment system. As a result of this law,
-                                most of the popular
-                                online casino networks</p>
-                                <a href="#" class="genric-btn primary">Read More</a>
+                        <div class="team-caption">
+                            <span>${knowhow.s_nickname }</span>
+                            <h3><a href="knowhowDetail.do?no_code=${knowhow.no_code }">${knowhow.no_title }</a></h3>
+                            <p>${knowhow.no_date }</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>                
+            </c:forEach>
+        </div>
     </div>
 </div>
 </body>

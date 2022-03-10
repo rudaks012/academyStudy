@@ -23,7 +23,7 @@
 
         table {
             width: 100%;
-            height: 200px;
+            height: 225px;
         }
 
         th,
@@ -68,6 +68,7 @@
             font-weight: bold;
             font-size: 25px;
             text-align: right;
+            width: 180px;
         }
 
         .tableusername {
@@ -115,7 +116,7 @@
                     </div>
                     <div class="select-form">
                         <div class="select-itms">
-                            <select name="select" id="select1">
+                            <select name="searchSelect" id="searchSelect">
                                 <option value="">통합검색</option>
                                 <option value="">앱</option>
                                 <option value="">웹</option>
@@ -220,7 +221,16 @@
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2" class="position-relative tableusername">${all.nickname }</td>
-                                                            <td class="position-relative tableprice" style="text-align: right;">${all.ser_price }원</td>
+                                                            <c:choose>
+                                                                <c:when test="${not empty all.pro_code }">
+                                                                    <td class="position-relative tableprice" style="text-align: right; color: red;">
+                                                                    <span style="text-decoration: line-through; font-weight: bold; font-size: 23px; color: rgb(58, 57, 57);">${all.ser_price }원</span>
+                                                                    <br>${all.ser_sale }원!</td>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <td class="position-relative tableprice" style="text-align: right;">${all.ser_price }원</td>
+                                                                </c:otherwise>
+                                                            </c:choose>                                                            
                                                         </tr>
                                                         <tr>
                                                             <td class="position-relative tablecontext">${all.ser_sub }</td>

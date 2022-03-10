@@ -14,4 +14,6 @@ public class NoticeVO {
 	String no_status;
 	String no_img;
 	String no_originimg;
+	
+	String s_nickname;
 }

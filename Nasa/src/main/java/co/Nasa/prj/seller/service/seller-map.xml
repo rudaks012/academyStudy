@@ -58,7 +58,7 @@
 		UNION all
 		SELECT B_EMAIL AS S_EMAIL,B_NICKNAME AS S_NICKNAME, B_IMG AS S_IMG
 		FROM BUYER
-		WHERE B_EMAIL = #{s_email}
+		WHERE B_EMAIL = #{s_email}		
 	</select>
 	
 	<select id="ChatSellerselect" resultType="co.Nasa.prj.comm.VO.SellerVO">
@@ -66,4 +66,13 @@
 		FROM SELLER
 		WHERE s_email = #{s_email}
 	</select>
+	
+	<select id="bestSellerList" resultType="co.Nasa.prj.comm.VO.SellerVO">
+		SELECT DISTINCT
+		S.*, (SELECT COUNT(S_ID) FROM WISHLIST WHERE S_STATUS='U' AND S_ID = S.S_EMAIL) AS WISHCOUNT
+		FROM SELLER S, WISHLIST W
+		WHERE S.S_EMAIL = W.S_ID
+		ORDER BY WISHCOUNT DESC
+	</select>
+
 </mapper>

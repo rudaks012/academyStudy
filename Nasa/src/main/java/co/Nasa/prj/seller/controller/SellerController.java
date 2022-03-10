@@ -167,9 +167,7 @@ public class SellerController {
 	@RequestMapping("/ajaxSPjoin.do")
 	@ResponseBody
 	public String ajaxSPjoin(SellerVO vo) {
-		vo.setS_rank("별");
 		vo.setS_author("개인");
-		vo.setS_status("사용자");
 
 		System.out.println(vo.toString());
 		int n = sellerDAO.SellerInsert(vo);
@@ -184,9 +182,7 @@ public class SellerController {
 	@RequestMapping("/ajaxSCjoin.do")
 	@ResponseBody
 	public String ajaxSCjoin(SellerVO vo) {
-		vo.setS_rank("별");
 		vo.setS_author("기업");
-		vo.setS_status("사용자");
 
 		System.out.println(vo.toString());
 		int n = sellerDAO.SellerInsert(vo);

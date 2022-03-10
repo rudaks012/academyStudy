@@ -4,6 +4,7 @@
 
 	<select id="PowerServiceList" resultType="co.Nasa.prj.comm.VO.PowerServiceVO">
 		SELECT * FROM V_POWER_LIST
+		WHERE S_STATUS='U' AND SYSDATE BETWEEN POWER_START AND POWER_END
 	</select>
 	
 	<select id="endPower" resultType="String">
