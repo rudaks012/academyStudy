@@ -277,7 +277,6 @@
 <script type="text/javascript">
 	function searchFrm(){
 		frm.submit()
-		//$("#catePaging").attr("href", "${address }?ser_title=${}&category=${}&pageNum=${paging.startPage - 1 }&amount=${paging.amount}")
 	}
 </script>
 </html>
