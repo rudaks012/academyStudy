@@ -27,7 +27,7 @@ public class PaymentVO {
 	int end; // 위와 같음
 	
 	String ser_title;
-	
+	String b_nickname;
 	public void calcStartEnd(int pageNum, int amount) {
 		setEnd(pageNum * amount);
 		setStart(getEnd() - amount + 1);

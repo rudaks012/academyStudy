@@ -29,4 +29,9 @@ public interface ServiceMapper {
 	public int homeCategorySelectAllCount(ServiceVO vo);
 	
 	List<ServiceVO> bestServiceList();
+	
+	// 메인페이지 관심 카테고리 추천 - 구매자 로그인 시
+	List<ServiceVO> randomSelectService(String ser_sub_cate);
+	// 판매자 혹은 비 로그인 시
+	List<ServiceVO> notBuyerRandomService();
 }

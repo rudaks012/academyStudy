@@ -86,7 +86,7 @@ public class ReviewController {
 	
 	@RequestMapping(value = "/reviewUpdate.do", produces = "text/plain;charset=UTF-8")
 	public String reviewUpdate(ReviewVO vo, MultipartFile revimg,HttpSession session, HttpServletResponse response,
-			HttpServletRequest request, String pageinfo) {
+			HttpServletRequest request) {
 		ReviewVO rvvo = new ReviewVO();
 		rvvo.setRev_code(vo.getRev_code());
 		rvvo = reviewDao.selectReview(rvvo);
@@ -114,11 +114,7 @@ public class ReviewController {
 		
 		reviewDao.updateReview(vo);
 		
-		if(pageinfo.equals("servicepage")) {
-			return "redirect:serviceDetail.do";
-		}
-		
-		return "redirect:buyerReview.do";
+		return "redirect:" + request.getHeader("Referer");
 	}
 	
 	@RequestMapping("/sellerReview.do")

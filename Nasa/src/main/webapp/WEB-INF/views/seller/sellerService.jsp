@@ -245,7 +245,7 @@ input[type=date] {
 										<div class="tab-content" id="nav-tabContent">
 											<div class="tab-pane fade show active" id="nav-desc"
 												role="tabpanel" aria-labelledby="nav-desc-tab">
-												<div class="row">
+											
 													<div class="listing-details-area">
 														<div class="container">
 															<div class="row">
@@ -292,11 +292,11 @@ input[type=date] {
 															</div>
 														</div>
 													</div>
-												</div>
+												
 											</div>
 											<div class="tab-pane fade show" id="nav-end" role="tabpanel"
 												aria-labelledby="nav-end-tab">
-												<div class="row">
+											
 													<div class="listing-details-area">
 														<div class="container">
 															<div class="row">
@@ -319,7 +319,7 @@ input[type=date] {
 
 																					<div class="list-footer" style="display: block;">
 																						<ul>
-																							<li style="margin-left: 238px;">
+																							<li >
 																								<button type="button"
 																									onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'"
 																									class="genric-btn danger-border circle">수정</button>
@@ -335,11 +335,10 @@ input[type=date] {
 															</div>
 														</div>
 													</div>
-												</div>
+												
 											</div>
 											<div class="tab-pane fade" id="nav-info" role="tabpanel"
 												aria-labelledby="nav-info-tab">
-												<div class="row">
 													<div class="listing-details-area">
 														<div class="container">
 															<div class="row">
@@ -375,7 +374,7 @@ input[type=date] {
 															</div>
 														</div>
 													</div>
-												</div>
+												
 											</div>
 											<div class="tab-pane fade" id="nav-review" role="tabpanel"
 												aria-labelledby="nav-info-tab">

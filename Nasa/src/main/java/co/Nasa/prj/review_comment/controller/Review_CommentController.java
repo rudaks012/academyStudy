@@ -1,9 +1,11 @@
 package co.Nasa.prj.review_comment.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,5 +66,14 @@ public class Review_CommentController {
 		int n = reviewCommentDao.sellerReviewInsert(vo);
 		
 		return reviewCommentDao.reviewCommSelect(rvcode);
+	}
+	
+	@RequestMapping("/reviewCommentUpdate.do")
+	public String reviewCommentUpdate(Review_CommentVO vo, HttpSession session, HttpServletRequest request, Model model) {
+		System.out.println(vo);
+		vo.setRere_sel_id((String) session.getAttribute("id"));
+		reviewCommentDao.sellerReviewUpdate(vo);
+		model.addAttribute("nav", "review");
+		return "redirect:" + request.getHeader("Referer");
 	}
 }

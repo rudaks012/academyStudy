@@ -504,7 +504,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">회원정보가 삭제됩니다!</div>
+				<div class="modal-body">회원정보가 삭제됩니다!<br>탈퇴한 계정으로는 다시 가입할 수 없습니다.</div>
 				<div class="modal-footer">
 					<a href="#" class="genric-btn danger radius" data-toggle="modal" data-target="#passConfirmModal" data-dismiss="modal">탈퇴</a>
 					<a href="#" class="genric-btn primary radius"  data-dismiss="modal">취소</a>

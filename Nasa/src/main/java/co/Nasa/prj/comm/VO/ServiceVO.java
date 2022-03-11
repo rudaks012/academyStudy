@@ -46,6 +46,7 @@ public class ServiceVO {
 	String s_code;
 	String pay_enddate;
 	
+
 	// 페이징
 	int start;
 	int end;
@@ -54,4 +55,9 @@ public class ServiceVO {
 		setEnd(pageNum * amount);
 		setStart(getEnd() - amount + 1);
 	}
+
+	String cat_name;
+	String sub_name;
+	String s_nickname;
+
 }

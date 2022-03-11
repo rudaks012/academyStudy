@@ -28,6 +28,7 @@
 		SELECT * FROM SERVICE WHERE ser_code = #{ser_code}
 	</select>
 
+
 	<update id="serviceUpdate" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
 		UPDATE SERVICE SET
 		SER_TITLE = #{ser_title}, SER_SUB = #{ser_sub}, SER_PRICE = #{ser_price},
@@ -43,6 +44,11 @@
 		SER_ORIGINSUB3 = #{ser_originsub3}, SER_END = #{ser_end}
 		WHERE SER_CODE = #{ser_code}
 	</update>
+
+//<select id="serviceSelectList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	//SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email} order by ser_start desc
+//</select>
+
 
 	<select id="serviceSelectList" 	resultType="co.Nasa.prj.comm.VO.ServiceVO">
 		SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email}
@@ -127,5 +133,32 @@
 		SELECT * FROM V_SERVICE_LIST
 		ORDER BY REVIEWCOUNT DESC
 	</select>
+
+<select id="randomSelectService" resultType = "co.Nasa.prj.comm.VO.ServiceVO">
+	<![CDATA[
+	SELECT	*
+	FROM	(
+			 SELECT		S.*, C.CAT_NAME, SC.SUB_NAME, SL.S_NICKNAME
+			 FROM		SERVICE S, CATEGORY C, SUB_CATEGORY SC, SELLER SL
+			 WHERE		SER_SUB_CATE = #{ser_sub_cate}
+			 			AND S.SER_SUB_CATE = SC.SUB_NO
+			 			AND SC.CAT_NO = C.CAT_NO
+			 ORDER BY	DBMS_RANDOM.RANDOM
+	)
+	WHERE	ROWNUM < 3 ]]>
+</select>
+
+<select id="notBuyerRandomService" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	<![CDATA[
+	SELECT	*
+	FROM	(
+			 SELECT		S.*, C.CAT_NAME, SC.SUB_NAME, SL.S_NICKNAME
+			 FROM		SERVICE S, CATEGORY C, SUB_CATEGORY SC, SELLER SL
+			 WHERE		S.SER_SUB_CATE = SC.SUB_NO
+			 			AND SC.CAT_NO = C.CAT_NO
+			 ORDER BY	DBMS_RANDOM.RANDOM
+	)
+	WHERE	ROWNUM < 3 ]]>
+</select>
 
 </mapper>

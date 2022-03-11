@@ -252,7 +252,22 @@
                         <h3>이런 서비스는 어떠세요?</h3>
                         <p>고객님의 관심사에 맞추어 자동으로 추천되는 서비스입니다.</p>
                         <!--Single Visit categories -->
-                        <div class="visit-categories mb-40">
+                        <c:forEach items="${recommendService}" var="rs">
+                            <div class="visit-categories mb-40">
+                                <div class="visit-location">
+                                    <span class="flaticon-travel"></span>
+                                </div>
+                                <div class="visit-cap">
+                                    <h4>${rs.ser_title}</h4>
+                                    <p>[${rs.cat_name}] - [${rs.sub_name}]</p>
+                                    <p>판매자 ${rs.s_nickname}</p>
+                                    <br>
+                                    <a href="serviceDetail.do?ser_code=${rs.ser_code}" class="genric-btn primary">Read More</a>
+                                </div>
+                            </div>
+                            <br>
+                        </c:forEach>
+                        <!--<div class="visit-categories mb-40">
                             <div class="visit-location">
                                 <span class="flaticon-travel"></span>
                             </div>
@@ -265,7 +280,7 @@
                             </div>
                         </div>
                         <br>
-                        <!--Single Visit categories -->
+                        
                         <div class="visit-categories">
                             <div class="visit-location">
                                 <span class="flaticon-work"></span>
@@ -277,7 +292,7 @@
                                 <br>
                                 <a href="#" class="genric-btn primary">Read More</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

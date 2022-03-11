@@ -128,7 +128,7 @@
 			                                 <td class="text-danger">확정대기</td>
 			                                </c:if>
 			                                 <c:if test="${!empty payment.pay_enddate  }">
-			                                 <td class="text-primary">${payment.pay_enddate }</td>
+			                                 <td class="text-primary">${fn:substring(payment.pay_enddate,0,11) }</td>
 			                                </c:if>
 			                             </tr>
 		                             </c:forEach>
