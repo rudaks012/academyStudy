@@ -498,6 +498,10 @@ input[type=date] {
             <div class="modal-body">
                <div class="">
                   <img src="assets/img/comment/comment_1.png"> <span id="paycheckId"></span>
+                  <div>
+                      <span id="serviceid"></span>
+
+                  </div>
                </div>
                <table class="paytb">
                   <!--여기 결제-->
@@ -1179,11 +1183,7 @@ input[type=date] {
                   contentType : "application/json;charSet=utf-8",
                   dataType : "json",
                   success : function (data) {
-                     if(n == 'Y') {
-                        console.log("성공함");
-                     }else{
-                        console.log("실패함");
-                     }
+                      console.log("결제완료",data);
                   } 
                });
                console.log("결제성공",result);
@@ -1208,6 +1208,7 @@ input[type=date] {
 			  },
 			  dataType : "json",
 			  success : function (data) {
+                  console.log("판매자 등급",data);
 				  document.getElementById('sellerrank').innerText = data.s_rank;
 			  } 
 		   });
@@ -1227,9 +1228,12 @@ input[type=date] {
 			  },
 			  dataType : "json",
 			  success : function(data) {
+                  console.log("data입니다",data);
 				  var chatmoney = $('#chatmoney').val(data.ser_price);
 				  var sercate = $('#ser_cate').val(data.ser_cate);
 				  var sub_cate =$("#sub_cate").val(data.sub_cate);
+                  var serviceid = document.getElementById("serviceid").innerHTML(data.ser_title);
+                  console.log("이건 서비스 타이틀입니다",serviceid);
 
 				  console.log("서비스코드",data);
 			  }
@@ -1264,6 +1268,8 @@ input[type=date] {
                }else if(data.coupon == '4'){
                   couponval.value = "10";
                   $("#coupontest").append('10% 할인 사용하기') ;
+               }else if(data.coupon == '0'){
+                $("#couponrank").remove();
                }
                $("#coupon").val(data.coupon);
             }
@@ -1307,8 +1313,9 @@ input[type=date] {
      function copchatmoney(){
       const money = document.getElementById('chatmoney').value;
       document.getElementById('copchatmoney1').innerText = money;
+      document.getElementById('lastmoney').innerText = money;
+      }
 
-     }
 
    </script>
 </body>
