@@ -30,4 +30,14 @@ public class PowerServiceServiceImpl implements PowerServiceService {
 		return map.powerserviceInsert(vo);
 	}
 
+	@Override
+	public int powerServiceCount(String power_start) {
+		return map.powerServiceCount(power_start);
+	}
+
+	@Override
+	public PowerServiceVO powerServiceOverlap(PowerServiceVO vo) {
+		return map.powerServiceOverlap(vo);
+	}
+
 }

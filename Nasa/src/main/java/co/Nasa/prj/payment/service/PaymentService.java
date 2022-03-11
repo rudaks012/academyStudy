@@ -54,4 +54,7 @@ public interface PaymentService {
    PaymonthVO sellerSalesData(HashMap<String, String> remap);
    //판매자 수수료
    PaymonthVO sellerCommData(HashMap<String, String> remap);
+   
+   //판매자 결제조회
+   List<PaymentVO> sellerPaymentList(PaymentVO vo);
 }

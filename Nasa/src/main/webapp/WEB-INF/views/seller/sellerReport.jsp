@@ -75,7 +75,7 @@
 										<h3>신고내역</h3>
 									</a>
 								<hr class="hr"/>
-								<table class="table caption-top table-bordered thead-light  text-center" style="margin-top:40px;">
+								<table class="table caption-top table-bordered thead-light  text-center" style="margin-top:40px; font-size:12px;">
 									<thead class="thead-light">
 										<tr>
 											<th>순번</th>
@@ -89,7 +89,7 @@
 									</thead>
 									<tbody>
 									<c:forEach items="${reports }" var="report" varStatus="status">
-										<tr>
+										<tr style="font-size:12px;">
 											<th scope="row">${fn:length(reports)-status.index }</th>
 											<td>${fn:substring(report.re_date,0,11) }</td>
 											<td>${report.re_res }</td>

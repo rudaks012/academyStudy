@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +34,6 @@ input[type=date] {
  	background-color : #d5c9ea !important;
    	margin: 10px !important;
 }
-
 
 </style>
 </head>
@@ -116,14 +117,16 @@ input[type=date] {
 												</div>
 											</nav>
 											<div class="tab-content" id="nav-tabContent">
-												<div class="tab-pane fade show active" id="nav-desc"
-													role="tabpanel" aria-labelledby="nav-desc-tab">
+												<div class="tab-pane fade show active" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
+													<br />
+												<br />
+												<div class="row justify-content-center" style="margin-left:0px;">
 													<table
 														class="table table-bordered thead-light  text-center"
-														style="margin-top: 40px;">
-														<thead class="thead-light" style="font-size: 12px;">
+														style="padding: 1em;">
+														<thead class="thead-light"  style="font-size: 12px;">
 															<tr>
-																<th>거래일</th>
+																<th>거래날짜</th>
 																<th>서비스명</th>
 																<th>구매자</th>
 																<th>거래금액</th>
@@ -131,89 +134,79 @@ input[type=date] {
 																<th>수수료</th>
 																<th>수수료감면</th>
 																<th>최종금액</th>
-																<th>진행상황</th>
-																<th>구매확정</th>
+																<th>구매확정일</th>
 															</tr>
 														</thead>
-														<tbody style="font-size: 12px;">
-															<tr>
-																<td>2022.02.17</td>
-																<td>웹개발</td>
-																<td>김길동</td>
-																<td>50,000</td>
-																<td>5%</td>
-																<td>5,000</td>
-																<td>2%</td>
-																<td>45,000</td>
-																<td>대기중</td>
-																<td></td>
-															</tr>
+														<tbody  style="font-size: 12px;">
+															<c:forEach items="${sellerPayList }" var="sellerPay">
+																<c:if test="${empty sellerPay.pay_enddate }">
+																	<tr>
+																		<td>${fn:substring(sellerPay.pay_date,0,10) }</td>
+																		<td>${sellerPay.ser_title }</td>
+																		<td>${sellerPay.b_email }</td>
+																		<td>${sellerPay.pay_originp }</td>
+																		<td>${sellerPay.pay_coupon }</td>
+																		<td>10%</td>
+																		<td>${sellerPay.pay_com }</td>
+																		<td>${sellerPay.pay_price }</td>
+																		<td>${fn:substring(sellerPay.pay_enddate,0,10) }</td>
+																		
+																	</tr>
+																</c:if>
+															</c:forEach>
 														</tbody>
 													</table>
-													
-												</div>
-												<div class="tab-pane fade" id="nav-info" role="tabpanel"
-													aria-labelledby="nav-info-tab">
-													<br />
-													<br />
-													<div class="row justify-content-center">
-
-														<button class="genric-btn danger-border radius paybtn">1개월</button>
-														<button class="genric-btn danger-border radius paybtn">6개월</button>
-														<button class="genric-btn danger-border radius paybtn">1년</button>
-
-														<input type="date"> - <input type="date"
-															style="margin-left: 10px;">
-														<button class="genric-btn danger-border radius">기간검색</button>
-														<table
-															class="table table-bordered thead-light  text-center"
-															style="margin-top: 40px;">
-															<thead class="thead-light"  style="font-size: 12px;">
-																<tr>
-																	<th>번호</th>
-																	<th>거래날짜</th>
-																	<th>서비스</th>
-																	<th>구매자</th>
-																	<th>거래금액</th>
-																	<th>할인</th>
-																	<th>수수료</th>
-																	<th>수수료감면</th>
-																	<th>최종금액</th>
-																	<th>상태</th>
-																	<th>입금일</th>
-																</tr>
-															</thead>
-															<tbody  style="font-size: 12px;">
-																<tr>
-																	<th scope="row">S1</th>
-																	<td>2022.02.17</td>
-																	<td>웹개발</td>
-																	<td>김길동</td>
-																	<td>50,000</td>
-																	<td>5%</td>
-																	<td>5,000</td>
-																	<td>2%</td>
-																	<td>45,000</td>
-																	<td>구매확정</td>
-																	<td>2022.03.15</td>
-																</tr>
-																<tr>
-																	<th scope="row">S1</th>
-																	<td>2022.03.17</td>
-																	<td>앱개발</td>
-																	<td>김짱구</td>
-																	<td>40,000</td>
-																	<td>5%</td>
-																	<td>4,000</td>
-																	<td>2%</td>
-																	<td>46,000</td>
-																	<td>구매확정</td>
-																	<td>2022.03.25</td>
-																</tr>
-															</tbody>
-														</table>
 													</div>
+											</div>
+											<div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+												<br />
+												<br />
+												<div class="row justify-content-center">
+
+													<button class="genric-btn danger-border radius paybtn">1개월</button>
+													<button class="genric-btn danger-border radius paybtn">6개월</button>
+													<button class="genric-btn danger-border radius paybtn">1년</button>
+
+													<input type="date"> - <input type="date"
+														style="margin-left: 10px;">
+													<button class="genric-btn danger-border radius">기간검색</button>
+													<table
+														class="table table-bordered thead-light  text-center"
+														style="margin-top: 40px;">
+														<thead class="thead-light"  style="font-size: 12px;">
+															<tr>
+																<th>거래날짜</th>
+																<th>서비스명</th>
+																<th>구매자</th>
+																<th>거래금액</th>
+																<th>할인</th>
+																<th>수수료</th>
+																<th>수수료감면</th>
+																<th>최종금액</th>
+																<th>구매확정일</th>
+															</tr>
+														</thead>
+														<tbody  style="font-size: 12px;">
+															<c:forEach items="${sellerPayList }" var="sellerPay">
+																<c:if test="${not empty sellerPay.pay_enddate }">
+																	<tr>
+																		<td>${fn:substring(sellerPay.pay_date,0,10) }</td>
+																		<td>${sellerPay.ser_title }</td>
+																		<td>${sellerPay.b_email }</td>
+																		<td>${sellerPay.pay_originp }</td>
+																		<td>${sellerPay.pay_coupon }</td>
+																		<td>10%</td>
+																		<td>${sellerPay.pay_com }</td>
+																		<td>${sellerPay.pay_price }</td>
+																		<td>${fn:substring(sellerPay.pay_enddate,0,10) }</td>
+																		
+																	</tr>
+																</c:if>
+															</c:forEach>
+														</tbody>
+													</table>
 												</div>
+											</div>
 
 											</div>
 										</div>

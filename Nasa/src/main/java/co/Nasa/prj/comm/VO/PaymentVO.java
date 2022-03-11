@@ -26,6 +26,8 @@ public class PaymentVO {
 	int start; // 쿼리에 쓸 start
 	int end; // 위와 같음
 	
+	String ser_title;
+	
 	public void calcStartEnd(int pageNum, int amount) {
 		setEnd(pageNum * amount);
 		setStart(getEnd() - amount + 1);

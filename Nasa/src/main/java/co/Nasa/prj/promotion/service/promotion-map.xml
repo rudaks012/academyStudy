@@ -25,10 +25,14 @@
 </select>
 
 <select id="promotionCheck" resultType="co.Nasa.prj.comm.VO.PromotionVO">
-	SELECT *
+	<!-- SELECT *
 	FROM PROMOTION
 	WHERE PRO_SERVICE = #{pro_service} 
-	AND #{pro_start} BETWEEN PRO_START AND PRO_END
+	AND #{pro_start} BETWEEN PRO_START AND PRO_END -->
+	<![CDATA[
+	SELECT * FROM PROMOTION WHERE PRO_SERVICE = #{pro_service} 
+	AND (#{pro_start} >= pro_start and #{pro_start} <= pro_end
+	OR #{pro_end} >= pro_start and #{pro_end} <= pro_end)]]>
 </select>
 
 <delete id="promotionCancel" parameterType="String">
@@ -46,7 +50,7 @@
 	<![CDATA[
 	UPDATE PROMOTION 
 	SET PRO_STATUS='N' 
-	WHERE PRO_START < SYSDATE 
+	WHERE PRO_START <= SYSDATE 
 	AND PRO_STATUS = 'U']]>
 </update>
 
