@@ -31,4 +31,8 @@
 			 FROM		WISHLIST
 			 WHERE		B_ID = #{b_id}
 	</select>
+	<insert id="insertWishlist" parameterType="co.Nasa.prj.comm.VO.WishlistVO">
+		INSERT INTO	WISHLIST(S_ID, B_ID, WISH_DATE)
+		VALUES		(#{s_id}, #{b_id}, sysdate)
+	</insert>
 </mapper>

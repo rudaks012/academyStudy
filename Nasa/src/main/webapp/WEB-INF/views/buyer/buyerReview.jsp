@@ -49,6 +49,11 @@
 			width: 70px;
 			height: 70px;
 		}
+
+		.revimg {
+			width: 200px;
+			height: 100px;
+		}
 	</style>
 </head>
 
@@ -108,6 +113,7 @@
 							</a>
 							<div class="comments-area">
 								<c:forEach items="${reviewList }" var="review">
+								
 									<div id="rvcode-${review.rev_code }" class="comment-list">
 										<div class="single-comment justify-content-between d-flex">
 											<div class="user justify-content-between d-flex">
@@ -128,7 +134,9 @@
 													<span>${review.rev_name }</span>
 													<span class="ml-4">평점 : ${review.rev_rate }</span>
 													<span class="date">${review.rev_date } </span>
-													<p class="comment">${review.rev_sub }</p>
+													<div style="word-break:break-all;">
+														<p class="comment">${review.rev_sub }</p>
+													</div>
 													<c:choose>
 														<c:when test="${not empty review.rev_img }">
 															<span class="btn-reply1" style="cursor: pointer;" data-toggle="modal"
@@ -147,7 +155,9 @@
 												</div>
 											</div>
 											<c:if test="${not empty review.rev_img }">
-												<img class="revimg" src="${review.rev_img }" style="width:200px;height:100px;">
+												<div style="width:200px;height:100px; margin-left:10px;">
+													<img class="revimg" src="${review.rev_img }" style="width:200px;height:100px;">
+												</div>
 											</c:if>
 										</div>
 									</div>
@@ -156,6 +166,9 @@
 											<div id="rvcode-${rc.review_code }" class="comment-list left-padding">
 												<div class="single-comment justify-content-between d-flex">
 													<div class="user justify-content-between d-flex">
+														<div style="margin-top:5px;">
+															<img src="resources/user/assets/img/icon/review_comment_icon.png" alt="" style="width:70px;height:50px;">
+														</div>
 														<c:choose>
 															<c:when test="${not empty rc.s_img }">
 																<div class="thumb">
@@ -171,7 +184,9 @@
 														<div class="desc">
 															<span>${rc.rere_sel_name }</span>
 															<span class="date">${rc.rere_date } </span>
-															<p class="comment">${rc.rere_sel_sub }</p>
+															<div style="word-break:break-all;">
+																<p class="comment">${rc.rere_sel_sub }</p>
+															</div>
 															<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-rere_code="${rc.rere_code }"
 																style="cursor: pointer;">신고</span>
 														</div>
@@ -180,6 +195,7 @@
 											</div>
 										</c:if>
 									</c:forEach>
+								<div style="border-bottom: 1px solid rgb(202, 202, 202); margin-bottom:20px; width : 870px;"></div>
 								</c:forEach>
 								
 								<div class="row justify-content-center mt-10">

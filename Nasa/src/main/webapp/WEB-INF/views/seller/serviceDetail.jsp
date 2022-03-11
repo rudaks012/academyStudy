@@ -224,12 +224,14 @@
                                                       </div>
                                                    </c:otherwise>
                                                 </c:choose>
-                                                <div class="desc">
+                                                <div class="desc" style="width:450px;">
                                                    <span>${review.rev_ser_name }</span><br>
                                                    <span>${review.rev_name }</span>
                                                    <span class="ml-4">평점 : ${review.rev_rate }</span>
                                                    <span class="date">${review.rev_date } </span>
-                                                   <p class="comment">${review.rev_sub }</p>
+                                                   <div style="word-break:break-all;">
+                                                      <p class="comment">${review.rev_sub }</p>
+                                                   </div>
                                                    <c:choose>
                                                       <c:when test="${review.rev_id eq id}">
                                                          <c:choose>
@@ -258,7 +260,9 @@
                                                 </div>
                                              </div>
                                              <c:if test="${not empty review.rev_img }">
-                                                <img class="revimg" src="${review.rev_img }" style="width:200px;height:100px;">
+                                                <div style="width:200px;height:100px; margin-left:10px;">
+                                                   <img class="revimg" src="${review.rev_img }" style="width:200px;height:100px;">
+                                                </div>
                                              </c:if>
                                           </div>
                                        </div>
@@ -279,18 +283,22 @@
                                                       </c:otherwise>
                                                    </c:choose>
                                                    <div class="desc">
+                                                      <span>${review.rere_sel_name }</span>
+                                                      <span class="date">${review.rere_date } </span>
+                                                      <div style="word-break:break-all;">
+                                                         <p class="comment">${review.rere_sel_sub }</p>
+                                                      </div>
                                                       <c:choose>
                                                          <c:when test="${review.rere_sel_id eq id}">
                                                             <span class="btn-reply1" style="cursor: pointer;" data-toggle="modal"
                                                                   data-target="#updateReviewCommentModal" data-rvcode="${review.rere_code }" data-rvsub="${review.rere_sel_sub }" 
                                                                   data-reviewcode="${review.review_code}">수정</span>
                                                          </c:when>
+                                                         <c:otherwise>
+                                                            <span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-revtp="rc" data-report_code="${review.rere_code }"
+                                                            style="cursor: pointer;">신고</span>
+                                                         </c:otherwise>
                                                       </c:choose>
-                                                      <span>${review.rere_sel_name }</span>
-                                                      <span class="date">${review.rere_date } </span>
-                                                      <p class="comment">${review.rere_sel_sub }</p>
-                                                      <span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-revtp="rc" data-report_code="${review.rere_code }"
-                                                         style="cursor: pointer;">신고</span>
                                                    </div>
                                                 </div>
                                              </div>
@@ -433,7 +441,7 @@
       </div>
    </div>
 </div>
-
+<!-- review_comment controller -->
 <div class="modal fade bd-example-modal-lg" id="updateReviewCommentModal" tabindex="-1" role="dialog" aria-labelledby="updateReviewCommentModalLabel"
    aria-hidden="true">
    <div class="modal-dialog modal-lg" role="document">
@@ -444,18 +452,20 @@
                <span aria-hidden="true">&times;</span>
             </button>
          </div>
-         <form method = "post" action = "reviewCommentUpdate.do">
-            <input type="hidden" id = "hidden_revcode" name = "rere_code">
-            <input type="hidden" id = "hidden_reviewcode" name = "reviewcode">
-            <input type="hidden" name = "pageinfo" value="servicepage">
-                      <h5 style="font-size:15px; margin-top:20px;">내용</h5>
-                    <textarea id = "modal_rev_sub" name="rere_sel_sub" style="width:100%; height:100px; margin-top:5px" required></textarea>
-            </div>
-            <div class="modal-footer">
-               <button type="submit" class="genric-btn danger radius">수정</button>
-               <button class="genric-btn primary radius" data-dismiss="modal">취소</button>
-            </div>
-         </form>
+         <div class="modal-body">
+            <form method = "post" action = "reviewCommentUpdate.do">
+               <input type="hidden" id = "hidden_rere_code" name = "rere_code">
+               <input type="hidden" id = "hidden_reviewcode" name = "review_code">
+               <input type="hidden" name = "pageinfo" value="servicepage">
+                         <h5 style="font-size:15px; margin-top:20px;">내용</h5>
+                       <textarea id = "modal_rere_sel_sub" name="rere_sel_sub" style="width:100%; height:100px; margin-top:5px" required></textarea>
+               </div>
+               <div class="modal-footer">
+                  <button type="submit" class="genric-btn danger radius">수정</button>
+                  <button class="genric-btn primary radius" data-dismiss="modal">취소</button>
+               </div>
+            </form>
+         </div>
       </div>
    </div>
 </div>
@@ -518,9 +528,9 @@
 				rvcode = $(event.relatedTarget).data("rvcode");
 				rvsub = $(event.relatedTarget).data("rvsub");
             reviewcode = $(event.relatedTarget).data("reviewcode");
-				$("#hidden_revcode").val(rvcode);
+				$("#hidden_rere_code").val(rvcode);
             $("#hidden_reviewcode").val(reviewcode);
-				$("#modal_rev_sub").val(rvsub);			
+				$("#modal_rere_sel_sub").val(rvsub);			
 			});
 			
 			$("#reportModal").on("show.bs.modal", function (event) {

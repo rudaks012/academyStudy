@@ -16,4 +16,8 @@ public class WishlistController {
 		wishlistDao.deleteWishlist(vo);
 	}
 	
+	@RequestMapping("/insertWishlist.do")
+	public void insertWishlist(WishlistVO vo) {
+		wishlistDao.insertWishlist(vo);
+	}
 }

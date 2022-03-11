@@ -79,4 +79,14 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.bestServiceList();
 	}
 
+	@Override
+	public List<ServiceVO> randomSelectService(String ser_sub_cate) {
+		return map.randomSelectService(ser_sub_cate);
+	}
+
+	@Override
+	public List<ServiceVO> notBuyerRandomService() {
+		return map.notBuyerRandomService();
+	}
+
 }

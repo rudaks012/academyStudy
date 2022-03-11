@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -150,30 +152,30 @@
 								<thead>
 									<tr>
 										<th scope="col">결제일</th>
-										<th scope="col">서비스명</th>
+										<!--<th scope="col">서비스명</th>-->
 										<th scope="col">판매자</th>
 										<th scope="col">거래기간</th>
-										<th scope="col">거래금액</th>
+										<th scope="col">금액</th>
 										<th scope="col">진행상황</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${paymentList }" var="payment">
 										<tr>
-											<td class="paymentdate">${payment.pay_date }</td>
-											<td>payment테이블에 서비스명 추가?</td>
+											<td class="paymentdate">${fn:substring(payment.pay_date,0,10) }</td>
+											<!--<td>payment테이블에 서비스명 추가?</td>-->
 											<td>${payment.s_email }</td>
 											<td>
 												<c:choose>
 													<c:when test="${empty payment.pay_enddate }">
-														${payment.pay_date } ~
+														${fn:substring(payment.pay_date,0,10) } ~
 													</c:when>
 													<c:otherwise>
-														${payment.pay_date } ~ ${payment.pay_enddate }
+														${fn:substring(payment.pay_date,0,10) } ~ ${fn:substring(payment.pay_enddate,0,10) }
 													</c:otherwise>
 												</c:choose>
 											</td>
-											<td>${payment.pay_price }</td>
+											<td><fmt:formatNumber value="${payment.pay_price }" pattern="###,###"/></td>
 											<td>
 												<c:choose>
 													<c:when test="${empty payment.pay_enddate }">
