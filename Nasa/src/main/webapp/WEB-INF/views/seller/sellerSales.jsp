@@ -351,6 +351,7 @@ hr{
 				}]
 			},
 			options: {
+				
 				scales: {
 					yAxes: [{
 						ticks: {

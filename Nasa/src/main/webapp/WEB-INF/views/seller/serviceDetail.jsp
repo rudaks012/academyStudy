@@ -96,7 +96,7 @@
                              
                               	<br/><br/>
                                  <h5><u>서비스 소개</u></h5>
-                                 <p class="excert">
+                                 <p class="excert" id="ser_sub" style="white-space:pre;">
                                     ${detailS.ser_sub }
                                  </p>
                                  <hr />
@@ -126,7 +126,7 @@
                            		
                            		<c:if test="${detailS.ser_offer ne null}">
                              		<h5><u>제공절차</u></h5>
-                             		<p>${detailS.ser_offer }</p>
+                             		<p id="ser_offer" style="white-space:pre;">${detailS.ser_offer }</p>
                              		<hr />
                              	</c:if>
                              	
@@ -321,7 +321,7 @@
 						</aside>
 						<aside class="single_sidebar_widget author_widget">
 							<img class="author_img rounded-circle" src="assets/img/comment/comment_1.png" 
-							alt="" style="cursor:pointer;" onclick="location='sellerDetail.do'">
+							alt="" style="cursor:pointer;" onclick="location='sellerDetail.do?s_email=${detailS.s_email }'">
 							<h4 id="sellernick">${sellerInfo.s_name }</h4>
 							<p>등급 : ${sellerInfo.s_rank }</p>
 
@@ -613,6 +613,8 @@
 				}
 			});
 		}
+		
+       
 	</script>
 	
 </body>

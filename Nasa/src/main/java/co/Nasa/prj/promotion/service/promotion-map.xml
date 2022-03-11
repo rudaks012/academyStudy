@@ -50,7 +50,7 @@
 	<![CDATA[
 	UPDATE PROMOTION 
 	SET PRO_STATUS='N' 
-	WHERE PRO_START <= SYSDATE 
+	WHERE PRO_START <= TO_CHAR(sysdate,'yyyy-mm-dd')
 	AND PRO_STATUS = 'U']]>
 </update>
 
