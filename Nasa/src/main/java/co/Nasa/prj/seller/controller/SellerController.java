@@ -62,10 +62,7 @@ public class SellerController {
 		return "seller/sellerCompanyjoin";
 	}
 
-	@RequestMapping("/sellerPayment.do")
-	public String sellerPayment() {
-		return "seller/sellerPayment";
-	}
+	
 
 	@RequestMapping("/serviceInsert.do")
 	public String serviceInsert() {

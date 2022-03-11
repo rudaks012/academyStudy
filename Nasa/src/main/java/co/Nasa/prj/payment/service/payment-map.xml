@@ -222,4 +222,11 @@ INSERT INTO	PAYMENT
           WHERE s_email= #{s_email} and  SUBSTR(pay_enddate,0,4)= #{year}
           AND S_CODE = #{scode}
 	</select>
+	
+	<select id="sellerPaymentList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+		SELECT P.*, S.SER_TITLE 
+		FROM PAYMENT P, SERVICE S 
+		WHERE P.S_CODE=S.SER_CODE 
+		AND S.S_EMAIL = #{s_email}
+	</select>
 </mapper>

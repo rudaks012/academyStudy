@@ -121,6 +121,11 @@ public class PaymentServiceImpl implements PaymentService {
 		return map.countSelectdateSearch(vo);
 	}
 
+	@Override
+	public List<PaymentVO> sellerPaymentList(PaymentVO vo) {
+		return map.sellerPaymentList(vo);
+	}
+
 	
 
 }

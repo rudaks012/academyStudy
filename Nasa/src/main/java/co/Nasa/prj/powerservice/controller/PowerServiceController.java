@@ -35,4 +35,24 @@ public class PowerServiceController {
 		powerDao.powerserviceInsert(vo);
 		return "redirect:sellerService.do";
 	}
+	
+	@ResponseBody
+	@RequestMapping("/powerServiceCount.do")
+	public String powerServiceCount(@RequestParam("power_start") String power_start, @RequestParam("ser_code") String ser_code) {
+		int n = powerDao.powerServiceCount(power_start);
+		System.out.println(n);
+		if(n == 8) {
+			return "full";
+		}else {
+			PowerServiceVO vo = new PowerServiceVO();
+			vo.setSer_code(ser_code);
+			vo.setPower_start(power_start);
+			vo = powerDao.powerServiceOverlap(vo);
+			if(vo != null) {
+				System.out.println("overlap");
+				return "overlap";
+			}
+		}
+		return "T";
+	}
 }

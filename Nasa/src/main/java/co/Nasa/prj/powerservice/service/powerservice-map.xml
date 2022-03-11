@@ -18,6 +18,19 @@
 	<insert id="powerserviceInsert" parameterType="co.Nasa.prj.comm.VO.PowerServiceVO">
 		INSERT INTO POWERSERVICE 
 		VALUES((SELECT NVL(MAX(POWER_CODE),0)+1 FROM POWERSERVICE ), #{s_email}, 
-		#{ser_code}, #{power_start}, to_date(#{power_start},'yyyy-mm-dd')+7, sysdate, #{power_price})
+		#{ser_code}, #{power_start}, to_date(#{power_start},'yyyy-MM-dd')+6, sysdate, #{power_price})
 	</insert>
+	
+	<select id="powerServiceCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM POWERSERVICE 
+		GROUP BY POWER_START 
+		HAVING POWER_START= #{power_start}
+	</select>
+	
+	<select id="powerServiceOverlap" resultType="co.Nasa.prj.comm.VO.PowerServiceVO">
+		SELECT * 
+		FROM POWERSERVICE 
+		WHERE POWER_START = #{power_start} AND SER_CODE = #{ser_code}
+	</select>
 </mapper>
