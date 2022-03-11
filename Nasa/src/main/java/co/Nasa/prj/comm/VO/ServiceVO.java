@@ -45,4 +45,8 @@ public class ServiceVO {
 	
 	String s_code;
 	String pay_enddate;
+	
+	String cat_name;
+	String sub_name;
+	String s_nickname;
 }

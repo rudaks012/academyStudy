@@ -94,7 +94,7 @@ public class AhController {
 					session.setAttribute("author", Loginvo.getB_author());
 					cSession.addLoginUser(Loginvo.getB_email());
 					System.out.println("구매자");
-					path = "user/home";
+					path = "redirect:home.do";
 				}
 			} else {
 				session.setAttribute("id", svo.getS_email());

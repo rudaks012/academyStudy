@@ -35,7 +35,7 @@
    				 FROM	(
    				 		 SELECT	*
    				 		 FROM		PAYMENT
-   				 		 WHERE		B_EMAIL = #{b_email} AND PAY_DATE >= ADD_MONTHS(sysdate, -1)
+   				 		 WHERE		B_EMAIL = #{b_email} AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -1) AND SYSDATE
    				 		 ORDER BY	PAY_DATE DESC
    				 ) A
    		)
@@ -45,7 +45,7 @@
    <select id="countMonthSearch" resultType="int">
    		SELECT	COUNT(*)
    		FROM	PAYMENT
-   		WHERE	B_EMAIL = #{b_email} AND PAY_DATE >= ADD_MONTHS(sysdate, -1)
+   		WHERE	B_EMAIL = #{b_email} AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -1) AND SYSDATE
    </select>
    
    <select id="sixmonthSearch" resultType="co.Nasa.prj.comm.VO.PaymentVO">
@@ -55,7 +55,7 @@
    				 FROM	(
    				 		 SELECT	*
    				 		 FROM		PAYMENT
-   				 		 WHERE		B_EMAIL = #{b_email} AND PAY_DATE >= ADD_MONTHS(sysdate, -6)
+   				 		 WHERE		B_EMAIL = #{b_email} AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -6) AND SYSDATE
    				 		 ORDER BY	PAY_DATE DESC
    				 ) A
    		)
@@ -65,7 +65,7 @@
    <select id="countSixmonthSearch" resultType="int">
    		SELECT	COUNT(*)
    		FROM	PAYMENT
-   		WHERE	B_EMAIL = #{b_email} AND PAY_DATE >= ADD_MONTHS(sysdate, -6)
+   		WHERE	B_EMAIL = #{b_email} AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -6) AND SYSDATE
    </select>
    
    <select id="yearSearch" resultType="co.Nasa.prj.comm.VO.PaymentVO">
@@ -75,7 +75,7 @@
    				 FROM	(
    				 		 SELECT	*
    				 		 FROM		PAYMENT
-   				 		 WHERE		B_EMAIL = #{b_email} AND PAY_DATE >= ADD_MONTHS(sysdate, -12)
+   				 		 WHERE		B_EMAIL = #{b_email} AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -12) AND SYSDATE
    				 		 ORDER BY	PAY_DATE DESC
    				 ) A
    		)
@@ -85,7 +85,7 @@
    <select id="countYearSearch" resultType="int">
    		SELECT	COUNT(*)
    		FROM	PAYMENT
-   		WHERE	B_EMAIL = #{b_email} AND PAY_DATE >= ADD_MONTHS(sysdate, -12)
+   		WHERE	B_EMAIL = #{b_email} AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -12) AND SYSDATE
    </select>
    
    <select id="selectdateSearch" resultType="co.Nasa.prj.comm.VO.PaymentVO">

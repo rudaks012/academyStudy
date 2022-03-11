@@ -16,4 +16,6 @@ public interface WishlistService {
 	
 	// paging 할 위시리스트
 	List<WishlistVO> selectPagingWishlist(WishlistVO vo);
+	// insert wishlist
+	public int insertWishlist(WishlistVO vo);
 }

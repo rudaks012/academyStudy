@@ -28,6 +28,7 @@ import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.payment.service.PaymentService;
 import co.Nasa.prj.powerservice.service.PowerServiceService;
 import co.Nasa.prj.seller.service.SellerService;
+import co.Nasa.prj.service.service.ServiceMapper;
 import co.Nasa.prj.service.service.ServiceService;
 
 /**
@@ -41,25 +42,43 @@ public class HomeController {
 
 	@Autowired
 	private PaymentService paymentDao;
-	
+
 	@Autowired
 	private ServiceService serviceDao;
-	
+
 	@Autowired
 	SellerService sellerDAO;
-	
+
 	@Autowired
 	BuyerService BuyerDao;
-	
+
 	@Autowired
 	NoticeService NoticeDao;
 
 	@RequestMapping("/home.do")
-	public String home(Model model) {
+	public String home(Model model, HttpSession session) {
 		model.addAttribute("powerlist", powerDao.PowerServiceList());
 		model.addAttribute("bestservicelist", serviceDao.bestServiceList());
 		model.addAttribute("bestsellerlist", sellerDAO.bestSellerList());
 		model.addAttribute("knowhowlist", NoticeDao.knowhowSelectList());
+
+		
+		BuyerVO buyervo = new BuyerVO(); 
+		String author = "";
+		
+		author = (String) session.getAttribute("author"); 
+	
+		if("B".equals(author)) {
+			buyervo.setB_email((String) session.getAttribute("id")); 
+			buyervo = BuyerDao.selectBuyer(buyervo); 
+			List<ServiceVO> recommendService = serviceDao.randomSelectService(buyervo.getField_code());
+			model.addAttribute("recommendService", recommendService); 
+		} else {
+			List<ServiceVO> recommendService = serviceDao.notBuyerRandomService();
+			model.addAttribute("recommendService", recommendService); 
+		}
+		
+
 		return "user/home";
 	}
 
@@ -144,7 +163,8 @@ public class HomeController {
 
 		return res;
 	}
-	//서비스 코드 체크
+
+	// 서비스 코드 체크
 	@ResponseBody
 	@RequestMapping("/sercodecheck.do")
 	public ServiceVO sercodecheck(@RequestParam("servicecode") String servicecode) {
@@ -155,8 +175,8 @@ public class HomeController {
 		vo.getSer_price();
 		return vo;
 	}
-	
-	//로그인 구매자 등급 가져오기
+
+	// 로그인 구매자 등급 가져오기
 	@RequestMapping("/sellerIdcheck.do")
 	@ResponseBody
 	public String sellerIdcheck(Model model, HttpSession session) {
@@ -168,14 +188,15 @@ public class HomeController {
 		bvo.setB_email((String) session.getAttribute("id"));
 		bvo = BuyerDao.selectBuyer(bvo);
 		// model.addAttribute("buyerinfo",BuyerDao.selectBuyer(bvo));
-		
+
 		JSONObject object = new JSONObject();
 		object.put("coupon", bvo.getBuyer_coupon());
 		String result = object.toJSONString();
-		
-		return result;	
+
+		return result;
 	}
-	//판매자 등급 가져오기
+
+	// 판매자 등급 가져오기
 	@ResponseBody
 	@RequestMapping("/selrankcheck.do")
 	public SellerVO selrankcheck(@RequestParam("sellerid") String sellerid) {
@@ -183,10 +204,9 @@ public class HomeController {
 		vo.setS_email(sellerid);
 		vo = sellerDAO.ChatSellerselect(vo);
 		System.out.println("판매자등급 찍어보기 ||||||||||||||||||" + vo);
-		
+
 		return vo;
 	}
-	
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
