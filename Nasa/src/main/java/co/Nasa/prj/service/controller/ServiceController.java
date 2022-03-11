@@ -21,15 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import co.Nasa.prj.category.service.CategoryMapper;
 import co.Nasa.prj.category.service.CategoryService;
 import co.Nasa.prj.comm.VO.CategoryVO;
-import co.Nasa.prj.comm.VO.PaymentVO;
+import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.comm.VO.SubCategoryVO;
-import co.Nasa.prj.payment.service.PaymentMapper;
-import co.Nasa.prj.payment.service.PaymentService;
 import co.Nasa.prj.review.service.ReviewMapper;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
@@ -46,22 +43,32 @@ public class ServiceController {
 	@Autowired
 	private Sub_CategoryService subCategoryDao;
 	@Autowired
-	private PaymentService paymentDao;
-	@Autowired 
 	private ReviewMapper reviewDao;
-	
+
+	// 카테고리 별 서비스 목록
 	@RequestMapping("/homeCategory.do")
-	public String homeCategory(Model model, @Param("ser_cate") String ser_cate) {
-		model.addAttribute("homecatelist", serviceDao.homeCategorySelect(ser_cate));
+	public String homeCategory(Model model, @Param("ser_cate") String ser_cate, PagingDTO pagingdto) {
+		pagingdto.setAmount(8);
+		ServiceVO vo = new ServiceVO();
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		vo.setSer_cate(ser_cate);
+		pagingdto.setTotal(serviceDao.homeCategorySelectCount(vo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("homecatelist", serviceDao.homeCategorySelect(vo));
 		return "user/homeCategory";
 	}
-	
+
+	// 전체 서비스 목록
 	@RequestMapping("/homeCategoryAll.do")
-	public String homeCategoryAll(Model model) {
-		model.addAttribute("allservicelist", serviceDao.homeCategorySelectAll());
+	public String homeCategoryAll(Model model, PagingDTO pagingdto, ServiceVO vo) {
+		pagingdto.setAmount(8);
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		pagingdto.setTotal(serviceDao.homeCategorySelectAllCount(vo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("allservicelist", serviceDao.homeCategorySelectAll(vo));
 		return "user/homeCategoryAll";
 	}
-	
+
 	@RequestMapping("/sellerService.do")
 	public String sellerService(Model model, HttpSession session) {
 		String s_email = (String) session.getAttribute("id");
@@ -239,10 +246,10 @@ public class ServiceController {
 	@RequestMapping("/serviceUpdateForm.do")
 	public String serviceUpdateForm(Model model, @Param("ser_code") String ser_code, HttpSession session) {
 		model.addAttribute("service", serviceDao.serviceSelect(ser_code));
-		
+
 		ServiceVO vo = new ServiceVO();
 		vo.setSer_code(ser_code);
-		vo.setS_email((String)session.getAttribute("id"));
+		vo.setS_email((String) session.getAttribute("id"));
 		model.addAttribute("endDate", serviceDao.serviceSelectMaxEnd(vo));
 		System.out.println(serviceDao.serviceSelect(ser_code));
 		return "seller/serviceUpdateForm";
@@ -449,12 +456,11 @@ public class ServiceController {
 			return "FAIL";
 		}
 		return "OK";
-	}	
+	}
 
 	@RequestMapping("/serviceDetail.do")
-	public String sellerDetail(Model model, @RequestParam("ser_code") String ser_code,
-							   HttpSession session, HttpServletResponse response, 
-							   HttpServletRequest request) {
+	public String sellerDetail(Model model, @RequestParam("ser_code") String ser_code, HttpSession session,
+			HttpServletResponse response, HttpServletRequest request) {
 		ServiceVO vo = new ServiceVO();
 		vo = serviceDao.serviceSelect(ser_code);
 		System.out.println("++++++++++++" + vo);
@@ -469,31 +475,32 @@ public class ServiceController {
 		model.addAttribute("subcate", subCategoryDao.selectSub_category(subcatevo));
 
 		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(vo.getS_email()));
-		
+
 		ReviewVO reviewvo = new ReviewVO();
 		reviewvo.setScode(ser_code);
 		List<ReviewVO> reviewList = reviewDao.selectReviewandReviewComment(reviewvo);
 		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + reviewList);
-		model.addAttribute("reviewList",reviewList);
+		model.addAttribute("reviewList", reviewList);
 
 		return "seller/serviceDetail";
 	}
 
 	@ResponseBody
 	@RequestMapping("/endService.do")
-	public String endService(@RequestParam("ser_code") String ser_code,@RequestParam("ser_reason") String ser_reason,@RequestParam("ser_end") String ser_end ) {
+	public String endService(@RequestParam("ser_code") String ser_code, @RequestParam("ser_reason") String ser_reason,
+			@RequestParam("ser_end") String ser_end) {
 		ServiceVO vo = new ServiceVO();
 		vo.setSer_code(ser_code);
 		vo.setSer_reason(ser_reason);
 		vo.setSer_end(ser_end);
-		
+
 		int n = serviceDao.endService(vo);
-		if(n != 1) {
+		if (n != 1) {
 			return "F";
 		}
 		return "T";
 	}
-	
+
 	@Scheduled(cron = "0 0 0 * * ?")
 	public void EndDateCheck() {
 		serviceDao.schEndDateCheck();

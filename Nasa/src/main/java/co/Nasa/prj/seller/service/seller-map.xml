@@ -18,8 +18,8 @@
 	</select>
 	
 	<insert id="SellerInsert" parameterType="co.Nasa.prj.comm.VO.SellerVO">
-		insert into seller (s_email, s_rank, s_password, s_nickname, s_tel, s_address, s_zipcode, s_detailaddress, s_author, s_status, s_name)
-		values (#{s_email}, #{s_rank}, #{s_password}, #{s_nickname}, #{s_tel}, #{s_address}, #{s_zipcode}, #{s_detailaddress}, #{s_author}, #{s_status}, #{s_name})	
+		insert into seller (s_email, s_password, s_nickname, s_tel, s_address, s_zipcode, s_detailaddress, s_author, s_name)
+		values (#{s_email}, #{s_password}, #{s_nickname}, #{s_tel}, #{s_address}, #{s_zipcode}, #{s_detailaddress}, #{s_author}, #{s_name})	
 	</insert>
 	
 	<update id="SellerUpdate" parameterType="co.Nasa.prj.comm.VO.SellerVO">
