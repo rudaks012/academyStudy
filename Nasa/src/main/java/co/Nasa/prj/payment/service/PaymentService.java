@@ -55,6 +55,9 @@ public interface PaymentService {
    //판매자 수수료
    PaymonthVO sellerCommData(HashMap<String, String> remap);
    
+   //쿠폰 사용시 BUYER COUPON 0 UPDATE
+   int updateChaypayment(PaymentVO vo);
+   
    //판매자 결제조회
    List<PaymentVO> sellerPaymentList(PaymentVO vo);
 }

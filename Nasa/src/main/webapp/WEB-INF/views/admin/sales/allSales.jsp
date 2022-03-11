@@ -29,16 +29,26 @@
 	<!-- *************************************************************** -->
 	<!-- Start First Cards -->
 	<!-- *************************************************************** -->
-	<select class="custom-select  form-control custom-shadow " name="chart" id="selectchart" size="1"
+	<!-- <select class="custom-select  form-control custom-shadow " name="chart" id="selectchart" size="1"
 		style="width: 200px;">
 		<option value="선택">선택</option>
 		<c:forEach items="${names }" var="name">
 			<option value="${name }">${name }
 		</c:forEach>
 	</select>
-	<button type="button" class="chartbtn btn btn-outline-info" onclick="createChart()">확인</button>
-
-
+	<button type="button" class="chartbtn btn btn-outline-info" onclick="createChart()">확인</button> -->
+<!-- 월별 -->
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#monthchart">원별매출</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#yearchart">연도별 매출</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="monthchart">
+        
 	<div class="row my-5">
 		<div class="col-lg-12">
 			<h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">월별 매출 조회
@@ -123,9 +133,9 @@
 			</div>
 		</div>
 	</div>
-
-
-
+    </div>
+    <div class="tab-pane fade" id="yearchart">
+        
 	<div class="row my-5">
 		<div class="col-lg-12">
 			<h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">연별 매출 조회
@@ -173,6 +183,11 @@
 		</div>
 
 	</div>
+    </div>
+  </div>
+
+
+
 
 	<script type="text/javascript">
 		var myChart;
@@ -282,9 +297,9 @@
 
 
 		function testFnc() {
-			var temp = $("select[name='chart'] option:Selected").val();
+			// var temp = $("select[name='chart'] option:Selected").val();
 
-			if ($("select[name='chart'] option:selected").val() == "선택") {
+			// if ($("select[name='chart'] option:selected").val() == "선택") {
 				var ret = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 				const url = "ajaxchartData.do";
@@ -304,13 +319,13 @@
 
 					})
 				return ret;
-			}
+			// }
 		}
 		//수수료 계산
 		function testFnc02() {
-			var temp = $("select[name='chart'] option:Selected").val();
+			// var temp = $("select[name='chart'] option:Selected").val();
 
-			if ($("select[name='chart'] option:selected").val() == "선택") {
+			// if ($("select[name='chart'] option:selected").val() == "선택") {
 				var ret = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 				const url = "ajaxchartData.do";
@@ -330,7 +345,7 @@
 
 					})
 				return ret;
-			}
+			// }
 		}
 		//여기는 페이지가 그려주면서 ajax 동시에 시작
 		window.addEventListener('load', function () {
@@ -485,9 +500,9 @@
 		}
 
 		function yearfunction() {
-			var temp = $("select[name='chart'] option:Selected").val();
+			// var temp = $("select[name='chart'] option:Selected").val();
 
-			if ($("select[name='chart'] option:selected").val() == "선택") {
+			// if ($("select[name='chart'] option:selected").val() == "선택") {
 				var ret = [0, 0, 0];
 
 				const url = "ajaxyearChart.do"
@@ -497,18 +512,19 @@
 				}).done(function (datas) {
 					var sum = 0;
 					for (let data of datas) {
-						var year = data["pay_date"].substring(0, 4);
-						if (year == "2020") {
+						var year = data["pay_date"].substring(2, 4);
+                        console.log("year찍어보기" ,year)
+						if (year == "20") {
 							ret[0] += data["pay_price"];
-						} else if (year == "2021") {
+						} else if (year == "21") {
 							ret[1] += data["pay_price"];
-						} else if (year == "2022") {
+						} else if (year == "22") {
 							ret[2] += data["pay_price"];
 						}
 					}
 				});
 				return ret;
-			}
+			// }
 		}
 	</script>
 

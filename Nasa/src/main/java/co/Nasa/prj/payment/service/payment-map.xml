@@ -118,13 +118,13 @@
    <select id="selectpaymenttable" resultType="int" parameterType="int">
       SELECT NVL(SUM(PAY_PRICE),0)
       FROM PAYMENT
-      WHERE SUBSTR(PAY_DATE,6,2) =#{num}
+      WHERE SUBSTR(PAY_DATE,4,2) =#{num}
    </select>
    
    <select id="countservice" resultType="int" parameterType="int">
       SELECT COUNT(*) 
       FROM PAYMENT
-      WHERE SUBSTR(PAY_DATE,6,2) =#{num}
+      WHERE SUBSTR(PAY_DATE,4,2) =#{num}
    </select>
    
    <!-- 연도별 차트 입력 -->
@@ -136,14 +136,14 @@
    <select id="selectYearchart" resultType="int" parameterType="int">
       SELECT NVL(SUM(PAY_PRICE),0)
        FROM PAYMENT
-       WHERE SUBSTR(PAY_DATE,0,4) = #{num}
+       WHERE SUBSTR(PAY_DATE,0,2) = #{num}
    </select>
    
    <!-- 연도별 누적 판매 수량 -->
    <select id="countYearChart" resultType="int" parameterType="int">
        SELECT COUNT(*)
           FROM PAYMENT
-        WHERE SUBSTR(PAY_DATE,0,4) = #{num}
+        WHERE SUBSTR(PAY_DATE,0,2) = #{num}
    </select>
    
 
@@ -229,4 +229,10 @@ INSERT INTO	PAYMENT
 		WHERE P.S_CODE=S.SER_CODE 
 		AND S.S_EMAIL = #{s_email}
 	</select>
+	
+	<update id="updateChaypayment" parameterType="co.Nasa.prj.comm.VO.PaymentVO">
+		UPDATE BUYER SET 
+		BUYER_COUPON ='0'
+		WHERE B_EMAIL = #{b_email}
+	</update>
 </mapper>

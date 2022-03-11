@@ -51,6 +51,8 @@ public interface PaymentMapper {
    
    //채팅 결제 등록
    int insertchatpayment(PaymentVO vo);
+   //쿠폰 사용시 BUYER COUPON 0 UPDATE
+   int updateChaypayment(PaymentVO vo);
 	
    //판매자 판매금액
    PaymonthVO sellerSalesData(HashMap<String, String> remap);
@@ -58,4 +60,6 @@ public interface PaymentMapper {
    PaymonthVO sellerCommData(HashMap<String, String> remap);
    //판매자 결제조회
    List<PaymentVO> sellerPaymentList(PaymentVO vo);
+   
+   
 }

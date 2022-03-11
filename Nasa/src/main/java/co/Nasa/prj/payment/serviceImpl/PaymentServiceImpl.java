@@ -126,6 +126,12 @@ public class PaymentServiceImpl implements PaymentService {
 		return map.sellerPaymentList(vo);
 	}
 
+	@Override
+	public int updateChaypayment(PaymentVO vo) {
+		// TODO Auto-generated method stub
+		return map.updateChaypayment(vo);
+	}
+
 	
 
 }

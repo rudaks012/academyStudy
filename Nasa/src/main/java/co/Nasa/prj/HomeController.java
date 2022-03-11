@@ -107,7 +107,7 @@ public class HomeController {
 	@ResponseBody
 	public List<Integer> ajaxselectYearchart() {
 		List<Integer> list = new ArrayList<Integer>();
-		for (int i = 2020; i < 2024; i++) {
+		for (int i = 20; i < 24; i++) {
 			list.addAll(paymentDao.selectYearchart(i));
 		}
 		System.out.println("리스트 찍어보자 |||||||||||||||||||||||||||" + list);
@@ -120,7 +120,7 @@ public class HomeController {
 	public List<Integer> countYearChart() {
 
 		List<Integer> list = new ArrayList<Integer>();
-		for (int i = 2020; i < 2024; i++) {
+		for (int i = 20; i < 24; i++) {
 			list.addAll(paymentDao.countYearChart(i));
 		}
 		System.out.println("카운트찍어보자 |||||||||||||||||||||||" + list);
@@ -128,21 +128,51 @@ public class HomeController {
 		return list;
 	}
 
+//	// 채팅 결제
+//	@RequestMapping("/chatpayment.do")
+//	@ResponseBody
+//	public int chatpayment(@RequestBody PaymentVO vo, HttpSession session) {
+//
+//		vo.setB_email((String) session.getAttribute("id"));
+//		System.out.println("쿠폰 뭐라고 넘어오냐||||||||||||||||||" +vo.getPay_coupon() );
+//
+//
+//		int res = 0;
+//		if (res == 1) {
+//			if (vo.getPay_coupon() == "coupon") {
+//				paymentDao.insertchatpayment(vo);
+//			} else {
+//				paymentDao.updateChaypayment(vo);
+//				paymentDao.insertchatpayment(vo);
+//			}
+//			System.out.println("성공적으로 인설트됨!!!!!!!!!");
+//			System.out.println("결과한번보자|||||||||||||||||" + res);
+//
+//		}
+//
+//		return res;
+//	}
+	
 	// 채팅 결제
 	@RequestMapping("/chatpayment.do")
 	@ResponseBody
 	public int chatpayment(@RequestBody PaymentVO vo, HttpSession session) {
 
 		vo.setB_email((String) session.getAttribute("id"));
-
 		int res = paymentDao.insertchatpayment(vo);
-		if (res == 1) {
-			System.out.println("성공적으로 인설트됨!!!!!!!!!");
-			System.out.println("결과한번보자|||||||||||||||||" + res);
-
+		if(vo.getPay_coupon().equals("coupon")) {
+			if (res == 1) {
+				System.out.println("성공적으로 인설트됨!!!!!!!!!");
+				System.out.println("결과한번보자|||||||||||||||||" + res);
 		}
-
+		}else {
+			paymentDao.insertchatpayment(vo);
+			paymentDao.updateChaypayment(vo);
+			System.out.println("쿠폰들어와서 업데이트 시킴");
+			
+		}
 		return res;
+
 	}
 	//서비스 코드 체크
 	@ResponseBody
