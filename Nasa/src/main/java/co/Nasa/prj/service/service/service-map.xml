@@ -44,10 +44,10 @@
 		SER_ORIGINSUB3 = #{ser_originsub3}, SER_END = #{ser_end}
 		WHERE SER_CODE = #{ser_code}
 	</update>
-
-//<select id="serviceSelectList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	//SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email} order by ser_start desc
-//</select>
+	
+	<!--  <select id="serviceSelectList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email} order by ser_start desc
+	</select>-->
 
 
 	<select id="serviceSelectList" 	resultType="co.Nasa.prj.comm.VO.ServiceVO">

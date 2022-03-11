@@ -31,4 +31,11 @@ public class WishlistServiceImpl implements WishlistService {
 		return map.selectPagingWishlist(vo);
 	}
 
+	//위시리스트 확인 해야함 이거뭔지????
+	@Override
+	public int insertWishlist(WishlistVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
