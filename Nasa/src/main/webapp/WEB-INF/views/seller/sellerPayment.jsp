@@ -35,6 +35,13 @@ input[type=date] {
    	margin: 10px !important;
 }
 
+td, th {
+  text-align : center;
+  vertical-align : middle !important;
+}
+.bemail{
+	color: gray;
+}
 </style>
 </head>
 <body>
@@ -131,7 +138,6 @@ input[type=date] {
 																<th>구매자</th>
 																<th>거래금액</th>
 																<th>할인</th>
-																<th>수수료</th>
 																<th>수수료감면</th>
 																<th>최종금액</th>
 																<th>구매확정일</th>
@@ -141,12 +147,11 @@ input[type=date] {
 															<c:forEach items="${sellerPayList }" var="sellerPay">
 																<c:if test="${empty sellerPay.pay_enddate }">
 																	<tr>
-																		<td>${fn:substring(sellerPay.pay_date,0,10) }</td>
+																		<td >${fn:substring(sellerPay.pay_date,0,10) }</td>
 																		<td>${sellerPay.ser_title }</td>
-																		<td>${sellerPay.b_email }</td>
+																		<td>홍길동 <br /><span class="bemail">${sellerPay.b_email }</span></td>
 																		<td>${sellerPay.pay_originp }</td>
 																		<td>${sellerPay.pay_coupon }</td>
-																		<td>10%</td>
 																		<td>${sellerPay.pay_com }</td>
 																		<td>${sellerPay.pay_price }</td>
 																		<td>${fn:substring(sellerPay.pay_enddate,0,10) }</td>
@@ -180,7 +185,6 @@ input[type=date] {
 																<th>구매자</th>
 																<th>거래금액</th>
 																<th>할인</th>
-																<th>수수료</th>
 																<th>수수료감면</th>
 																<th>최종금액</th>
 																<th>구매확정일</th>
@@ -192,10 +196,9 @@ input[type=date] {
 																	<tr>
 																		<td>${fn:substring(sellerPay.pay_date,0,10) }</td>
 																		<td>${sellerPay.ser_title }</td>
-																		<td>${sellerPay.b_email }</td>
+																		<td>${sellerPay.b_nickname } <br /><span class="bemail">${sellerPay.b_email }</span></td>
 																		<td>${sellerPay.pay_originp }</td>
 																		<td>${sellerPay.pay_coupon }</td>
-																		<td>10%</td>
 																		<td>${sellerPay.pay_com }</td>
 																		<td>${sellerPay.pay_price }</td>
 																		<td>${fn:substring(sellerPay.pay_enddate,0,10) }</td>

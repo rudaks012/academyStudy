@@ -34,7 +34,7 @@
 </update>
 
 <select id="serviceSelectList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email}
+	SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email} order by ser_start desc
 </select>
 
 <select id="serviceMaxEnddateList" resultType="co.Nasa.prj.comm.VO.ServiceVO">

@@ -193,13 +193,11 @@ input[type="radio"] {
 												</tr>
 												<tr>
 													<td>서비스 설명<span class="spanstar">*</span></td>
-													<td colspan="3"><textarea cols="78" rows="4"
-															id="ser_sub" name="ser_sub" required></textarea></td>
+													<td colspan="3"><textarea cols="78" rows="4" id="ser_sub" name="ser_sub" required></textarea></td>
 												</tr>
 												<tr>
 													<td>서비스 제공절차</td>
-													<td colspan="3"><textarea cols="78" rows="4"
-															id="ser_offer" name="ser_offer"></textarea></td>
+													<td colspan="3"><textarea cols="78" rows="4" id="ser_offer" name="ser_offer"></textarea></td>
 												</tr>
 												<tr>
 													<td>서비스 메인이미지<span class="spanstar">*</span></td>
@@ -395,6 +393,7 @@ input[type="radio"] {
 			}); 
 			return false;
 		}
+		
 		
 		
 	</script>
