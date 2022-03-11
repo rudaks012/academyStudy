@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.SellerVO;
-import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
 
@@ -30,17 +28,16 @@ public class SellerController {
 	SellerService sellerDAO;
 	@Autowired
 	ServiceService serviceDao;
-	
+
 	@RequestMapping("/goSellerMypage.do")
 	public String goSellerMypage() {
 		return "seller/sellerMypage";
 	}
 
-	
 	@RequestMapping("/sellerSales.do")
 	public String sellerSales(Model model, HttpSession session) {
-		model.addAttribute("serviceList", serviceDao.serviceSelectList((String)session.getAttribute("id")));
-		model.addAttribute("seller", sellerDAO.SellerSelect((String)session.getAttribute("id")));
+		model.addAttribute("serviceList", serviceDao.serviceSelectList((String) session.getAttribute("id")));
+		model.addAttribute("seller", sellerDAO.SellerSelect((String) session.getAttribute("id")));
 		return "seller/sellerSales";
 	}
 
@@ -62,13 +59,10 @@ public class SellerController {
 		return "seller/sellerCompanyjoin";
 	}
 
-	
-
 	@RequestMapping("/serviceInsert.do")
 	public String serviceInsert() {
 		return "seller/serviceInsert";
 	}
-
 
 	@RequestMapping("/knowhowInsertForm.do")
 	public String knowhowInsertForm() {
@@ -80,7 +74,7 @@ public class SellerController {
 //
 //		return "seller/knowhowInsert";
 //	}
-	
+
 	@RequestMapping("/sellerDetail.do")
 	public String sellerDetail(Model model, @RequestParam("s_email") String s_email) {
 		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(s_email));
@@ -89,7 +83,7 @@ public class SellerController {
 
 	@RequestMapping("/sellerUpdate.do")
 	public String sellerUpdate(Model model, HttpSession session) {
-		model.addAttribute("sellerInfo",sellerDAO.SellerSelect((String)session.getAttribute("id")));
+		model.addAttribute("sellerInfo", sellerDAO.SellerSelect((String) session.getAttribute("id")));
 		return "seller/sellerUpdate";
 	}
 
@@ -174,7 +168,7 @@ public class SellerController {
 		}
 		return result;
 	}
-	
+
 	// 기업 판매자 회원 가입
 	@RequestMapping("/ajaxSCjoin.do")
 	@ResponseBody
@@ -210,13 +204,13 @@ public class SellerController {
 
 		try {
 			imgupload.transferTo(new File(savepath));
-			
+
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		int n = sellerDAO.SellerUpdate(vo);
 		String result = "F";
 		if (n != 0) {
@@ -224,36 +218,37 @@ public class SellerController {
 		}
 		return result;
 	}
-	
-	//판매자 전체프로필 수정
+
+	// 판매자 전체프로필 수정
 	@ResponseBody
 	@RequestMapping("/SellerProfileUpdate.do")
-	public String SellerProfileUpdate(SellerVO vo, MultipartFile imgupload, HttpSession session, @RequestParam("pwCheck") String pwCheck) {
-		System.out.println("============="+imgupload.getOriginalFilename());
+	public String SellerProfileUpdate(SellerVO vo, MultipartFile imgupload, HttpSession session,
+			@RequestParam("pwCheck") String pwCheck) {
+		System.out.println("=============" + imgupload.getOriginalFilename());
 		System.out.println(pwCheck);
 		vo.setS_email((String) session.getAttribute("id"));
-		
+
 		SellerVO svo = new SellerVO();
 		svo = sellerDAO.SellerSelect((String) session.getAttribute("id"));
 		svo = sellerDAO.SellerSelect("lee123@nasa.com");
 		String beforimg = svo.getS_img();
-		
-		if(pwCheck.equals("basic")) {
+
+		if (pwCheck.equals("basic")) {
 			vo.setS_password(svo.getS_password());
 		}
-		
+
 		String originalFileName = imgupload.getOriginalFilename();
-		if(originalFileName.equals("")) {
+		if (originalFileName.equals("")) {
 			vo.setS_img(beforimg);
 		} else {
 			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
 			String savepath = saveurl + originalFileName;
 			System.out.println(savepath);
-			
+
 			String b_img = "resources/user/assets/img/profile/" + originalFileName;
-			
+
 			vo.setS_img(b_img);
-			
+
 			try {
 				imgupload.transferTo(new File(savepath));
 			} catch (IllegalStateException e) {
@@ -262,9 +257,9 @@ public class SellerController {
 				e.printStackTrace();
 			}
 		}
-		
+
 		int n = sellerDAO.SellerProfileUpdate(vo);
-		if(n != 1) {
+		if (n != 1) {
 			return "F";
 		}
 		return "T";

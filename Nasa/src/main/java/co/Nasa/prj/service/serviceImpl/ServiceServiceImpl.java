@@ -50,7 +50,6 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	@Override
-
 	public ServiceVO serviceSelectMaxEnd(ServiceVO vo) {
 		return map.serviceSelectMaxEnd(vo);
 	}
@@ -64,20 +63,32 @@ public class ServiceServiceImpl implements ServiceService {
 	public List<ServiceVO> servicePromotion(String s_email) {
 		return map.servicePromotion(s_email);
 	}
-
-	public List<ServiceVO> homeCategorySelect(String ser_cate) {
-		return map.homeCategorySelect(ser_cate);
-	}
-
+	
 	@Override
-	public List<ServiceVO> homeCategorySelectAll() {
-		return map.homeCategorySelectAll();
-	}
+	public List<ServiceVO> homeCategorySelect(ServiceVO vo) {
+		return map.homeCategorySelect(vo);
+	}	
 
 	@Override
 	public List<ServiceVO> bestServiceList() {
 		return map.bestServiceList();
 	}
+
+	@Override
+	public List<ServiceVO> homeCategorySelectAll(ServiceVO vo) {
+		return map.homeCategorySelectAll(vo);
+	}
+
+	@Override
+	public int homeCategorySelectAllCount(ServiceVO vo) {
+		return map.homeCategorySelectAllCount(vo);
+	}
+
+	@Override
+	public int homeCategorySelectCount(ServiceVO vo) {
+		return map.homeCategorySelectCount(vo);
+	}
+
 
 	@Override
 	public List<ServiceVO> randomSelectService(String ser_sub_cate) {
@@ -88,5 +99,6 @@ public class ServiceServiceImpl implements ServiceService {
 	public List<ServiceVO> notBuyerRandomService() {
 		return map.notBuyerRandomService();
 	}
+
 
 }

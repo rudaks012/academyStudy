@@ -110,26 +110,26 @@
                     <h2>NASA</h2>
                 </div>
                 <!--Hero form -->
-                <form action="#" class="search-box search-box2">
+                <form id="frm" action="homeCategoryAll.do" class="search-box search-box2">
                     <div class="input-form">
-                        <input type="text" placeholder="어떤 서비스가 필요하세요?">
+                        <input type="text" name="ser_title" placeholder="어떤 서비스가 필요하세요?">
                     </div>
                     <div class="select-form">
                         <div class="select-itms">
-                            <select name="searchSelect" id="searchSelect">
+                            <select name="category">
                                 <option value="">통합검색</option>
-                                <option value="">앱</option>
-                                <option value="">웹</option>
-                                <option value="">게임</option>
-                                <option value="">보안</option>
-                                <option value="">기술지원</option>
-                                <option value="">기획</option>
+                                <option value="앱">앱</option>
+                                <option value="웹">웹</option>
+                                <option value="게임">게임</option>
+                                <option value="보안">보안</option>
+                                <option value="기술지원">기술지원</option>
+                                <option value="기획">기획</option>
                             </select>
                         </div>
                     </div>
                     <!-- Search box -->
-                    <div class="search-form">
-                        <a href="searchResult.do">Search</a>
+                    <div class="search-form" onclick="searchFrm()">
+                        <a href="#">Search</a>
                     </div>
                 </form>
             </div>
@@ -200,11 +200,7 @@
                         <article class="blog_item">
                             <div class="justify-content-center">
                                 <div class="blog_details" style="padding: 50px 10px 30px 10px;">
-                                    <div class="col-12">
-                                        
-                                    </div>
-                                    <div class="col-12">
-                                                                                
+                                    <div class="col-12">                                                                                
                                         <c:forEach items="${allservicelist }" var="all">
                                             <div class="searchtable" style="margin-bottom: 10px; cursor:pointer;" onclick="location.href='serviceDetail.do?ser_code=${all.ser_code }'">
                                                 <table>
@@ -245,7 +241,29 @@
                                                 </table>
                                             </div>
                                         </c:forEach>
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <c:if test="${paging.prev }">
+                                                    <li id="catePaging" class="page-item"><a class="page-link" href="${address }?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+                                                </c:if>
+                                                <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+                                                    <c:choose>
+                                                        <c:when test="${p == paging.pageNum }">
+                                                            <li class="page-item"><b class="page-link">${p }</b></li>
+                                                        </c:when>
+                                                        <c:when test="${p != paging.pageNum }">
+                                                            <li class="page-item"><a class="page-link" href="${address }?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </c:forEach>
+                                                <c:if test="${paging.next }">
+                                                    <li class="page-item"><a class="page-link" href="${address }?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+                                                </c:if>
+                                            </ul>
+                                        </nav>
                                     </div>
+                                </div>
+                                <div class="col-12">                                    
                                 </div>
                             </div>
                         </article>
@@ -256,5 +274,10 @@
     </section>
     <!--================Blog Area =================-->    
 </body>
-
+<script type="text/javascript">
+	function searchFrm(){
+		frm.submit()
+		$("#catePaging").attr("href", "${address }?ser_title=${}&category=${}&pageNum=${paging.startPage - 1 }&amount=${paging.amount}")
+	}
+</script>
 </html>

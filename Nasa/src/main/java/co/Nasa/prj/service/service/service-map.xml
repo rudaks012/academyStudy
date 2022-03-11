@@ -1,90 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.Nasa.prj.service.service.ServiceMapper">
-<select id="serviceList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT * FROM SERVICE
-</select>
 
-<insert id="serviceInsert" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
-	<selectKey keyProperty="ser_code" resultType="string" order="BEFORE">
-      SELECT NVL(MAX(TO_NUMBER(ser_code)),0)+1 FROM SERVICE   
-   </selectKey>
-      INSERT INTO SERVICE (SER_CODE, S_EMAIL, SER_TITLE, SER_SUB,SER_CATE, SER_SUB_CATE, SER_PRICE, 
-      SER_IMG, SER_OFFER, SER_IMGORIGIN, SER_LINE, SER_SKILL, SER_TEAM, SER_LANG, SER_FRAME, SER_DBMS, SER_SUBIMG, SER_SUBIMG2, SER_SUBIMG3,
-      SER_ORIGINSUB, SER_ORIGINSUB2, SER_ORIGINSUB3)
-      VALUES(#{ser_code}, #{s_email}, #{ser_title}, #{ser_sub}, #{ser_cate}, #{ser_sub_cate}, #{ser_price}, 
-      #{ser_img}, #{ser_offer}, #{ser_imgorigin}, #{ser_line}, #{ser_skill}, #{ser_team}, #{ser_lang}, #{ser_frame}, #{ser_dbms}, #{ser_subimg}, #{ser_subimg2}, #{ser_subimg3},
-      #{ser_originsub}, #{ser_originsub2}, #{ser_originsub3}
-      )
-</insert>
+	<select id="serviceList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+		SELECT * FROM SERVICE
+	</select>
 
-<select id="serviceSelect" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT * FROM SERVICE WHERE ser_code = #{ser_code}
-</select>
+	<insert id="serviceInsert" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
+		<selectKey keyProperty="ser_code" resultType="string" order="BEFORE">
+			SELECT NVL(MAX(TO_NUMBER(ser_code)),0)+1 FROM SERVICE
+		</selectKey>
+		INSERT INTO SERVICE (SER_CODE, S_EMAIL, SER_TITLE, SER_SUB,SER_CATE,
+		SER_SUB_CATE, SER_PRICE,
+		SER_IMG, SER_OFFER, SER_IMGORIGIN, SER_LINE, SER_SKILL, SER_TEAM, SER_LANG,
+		SER_FRAME, SER_DBMS, SER_SUBIMG, SER_SUBIMG2, SER_SUBIMG3,
+		SER_ORIGINSUB, SER_ORIGINSUB2, SER_ORIGINSUB3)
+		VALUES(#{ser_code}, #{s_email}, #{ser_title}, #{ser_sub}, #{ser_cate}, #{ser_sub_cate},
+		#{ser_price},
+		#{ser_img}, #{ser_offer}, #{ser_imgorigin}, #{ser_line}, #{ser_skill},
+		#{ser_team}, #{ser_lang}, #{ser_frame}, #{ser_dbms}, #{ser_subimg},
+		#{ser_subimg2}, #{ser_subimg3},
+		#{ser_originsub}, #{ser_originsub2}, #{ser_originsub3}
+		)
+	</insert>
 
-<update id="serviceUpdate" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
-	UPDATE SERVICE SET
-	SER_TITLE = #{ser_title}, SER_SUB = #{ser_sub}, SER_PRICE = #{ser_price}, SER_IMG = #{ser_img}, 
-	SER_OFFER = #{ser_offer}, SER_IMGORIGIN = #{ser_imgorigin}, SER_LINE = #{ser_line}, 
-	SER_SKILL = #{ser_skill}, SER_TEAM = #{ser_team}, SER_LANG=#{ser_lang}, SER_FRAME=#{ser_frame}, 
-	SER_DBMS = #{ser_dbms}, SER_SUBIMG=#{ser_subimg}, SER_SUBIMG2 = #{ser_subimg2}, 
-	SER_SUBIMG3 = #{ser_subimg3}, SER_ORIGINSUB=#{ser_originsub}, SER_ORIGINSUB2=#{ser_originsub2}, 
-	SER_ORIGINSUB3 = #{ser_originsub3}, SER_END = #{ser_end}
-	WHERE SER_CODE = #{ser_code}
-</update>
-
-<select id="serviceSelectList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email} order by ser_start desc
-</select>
-
-<select id="serviceMaxEnddateList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT S.*, P.* FROM SERVICE S 
-	LEFT JOIN (SELECT S_CODE, MAX(TO_DATE(EVENT_END, 'yyyy-MM-dd')) PAY_ENDDATE 
-	FROM PAYMENT GROUP BY S_CODE) P 
-	ON S.SER_CODE = P.S_CODE
-	WHERE S.S_EMAIL = #{s_email}
-</select>
-
-<update id="endService" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
-	UPDATE SERVICE SET
-	SER_REASON = #{ser_reason}, SER_END = #{ser_end}
-	WHERE SER_CODE = #{ser_code}
-</update>
-
-<select id="serviceSelectMaxEnd" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT S.*, P.* FROM SERVICE S 
-	JOIN (SELECT S_CODE, MAX(TO_DATE(EVENT_END, 'yyyy-MM-dd')) PAY_ENDDATE 
-	FROM PAYMENT GROUP BY S_CODE) P 
-	ON S.SER_CODE = P.S_CODE
-	WHERE S.S_EMAIL = #{s_email} and s.ser_code = #{ser_code}
-</select>
-
-<update id="schEndDateCheck">
-	UPDATE SERVICE SET
-	SER_STATUS = 'Y'
-	WHERE <![CDATA[SER_END < TO_CHAR(sysdate,'yyyy-mm-dd')]]>
-</update>
+	<select id="serviceSelect" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+		SELECT * FROM SERVICE WHERE ser_code = #{ser_code}
+	</select>
 
 
-<select id="servicePromotion" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email} AND SER_STATUS = 'N'
-  </select>
-  
-<select id="homeCategorySelect" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT * FROM V_SERVICE_LIST WHERE SER_CATE = #{ser_cate}
-	ORDER BY SER_CODE DESC
-</select>
+	<update id="serviceUpdate" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
+		UPDATE SERVICE SET
+		SER_TITLE = #{ser_title}, SER_SUB = #{ser_sub}, SER_PRICE = #{ser_price},
+		SER_IMG = #{ser_img},
+		SER_OFFER = #{ser_offer}, SER_IMGORIGIN = #{ser_imgorigin}, SER_LINE =
+		#{ser_line},
+		SER_SKILL = #{ser_skill}, SER_TEAM = #{ser_team}, SER_LANG=#{ser_lang},
+		SER_FRAME=#{ser_frame},
+		SER_DBMS = #{ser_dbms}, SER_SUBIMG=#{ser_subimg}, SER_SUBIMG2 =
+		#{ser_subimg2},
+		SER_SUBIMG3 = #{ser_subimg3}, SER_ORIGINSUB=#{ser_originsub},
+		SER_ORIGINSUB2=#{ser_originsub2},
+		SER_ORIGINSUB3 = #{ser_originsub3}, SER_END = #{ser_end}
+		WHERE SER_CODE = #{ser_code}
+	</update>
 
-<select id="homeCategorySelectAll" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT * FROM V_SERVICE_LIST
-	ORDER BY SER_CODE DESC
+//<select id="serviceSelectList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	//SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email} order by ser_start desc
+//</select>
+
+
+	<select id="serviceSelectList" 	resultType="co.Nasa.prj.comm.VO.ServiceVO">
+		SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email}
+	</select>
+
+	<select id="serviceMaxEnddateList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+		SELECT S.*, P.* FROM SERVICE S
+		LEFT JOIN (SELECT S_CODE, MAX(TO_DATE(EVENT_END, 'yyyy-MM-dd'))
+		PAY_ENDDATE
+		FROM PAYMENT GROUP BY S_CODE) P
+		ON S.SER_CODE = P.S_CODE
+		WHERE S.S_EMAIL = #{s_email}
+	</select>
+
+	<update id="endService" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
+		UPDATE SERVICE SET
+		SER_REASON = #{ser_reason}, SER_END = #{ser_end}
+		WHERE SER_CODE = #{ser_code}
+	</update>
+
+	<select id="serviceSelectMaxEnd" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+		SELECT S.*, P.* FROM SERVICE S
+		JOIN (SELECT S_CODE, MAX(TO_DATE(EVENT_END, 'yyyy-MM-dd')) PAY_ENDDATE
+		FROM PAYMENT GROUP BY S_CODE) P
+		ON S.SER_CODE = P.S_CODE
+		WHERE S.S_EMAIL = #{s_email} and s.ser_code = #{ser_code}
+	</select>
+
+	<update id="schEndDateCheck">
+		UPDATE SERVICE SET
+		SER_STATUS = 'Y'
+		WHERE <![CDATA[SER_END < TO_CHAR(sysdate,'yyyy-mm-dd')]]>
+	</update>
+
+	<select id="servicePromotion" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+		SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email} AND SER_STATUS = 'N'
+	</select>
+
+	<select id="homeCategorySelect" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+		SELECT	*
+   		FROM	(
+   				 SELECT ROWNUM RN, A.*
+   				 FROM	(
+   				 		 SELECT * FROM V_SERVICE_LIST WHERE SER_CATE = #{ser_cate}
+						 ORDER BY SER_CODE DESC
+   				 ) A
+   		)
+   		WHERE	RN BETWEEN #{start} AND #{end}		
+	</select>
 	
-</select>
+	<select id="homeCategorySelectCount" resultType="int">
+   		SELECT COUNT(*)
+   		FROM V_SERVICE_LIST WHERE SER_CATE = #{ser_cate}
+	</select>
 
-<select id="bestServiceList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-	SELECT * FROM V_SERVICE_LIST
-	ORDER BY REVIEWCOUNT DESC
-</select>
+	<select id="homeCategorySelectAll" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+		SELECT	*
+   		FROM	(
+   				 SELECT ROWNUM RN, A.*
+   				 FROM	(
+   				 		 SELECT * FROM V_SERVICE_LIST   				 		 
+   				 		 <trim prefix="where" prefixOverrides="and">
+	   				 		 <if test="ser_title !=null and !ser_title.equals('')">
+	   				 		 	and  ser_title like '%'||#{ser_title}||'%'
+	   				 		 </if>
+	   				 		 	 <if test="category !=null and !category.equals('')">
+	   				 		 	and  category like '%'||#{category}||'%'
+	   				 		 </if>
+   				 		 </trim>
+						 ORDER BY SER_CODE DESC
+   				 ) A
+   		)
+   		WHERE	RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="homeCategorySelectAllCount" resultType="int">
+   		SELECT COUNT(*)
+   		FROM V_SERVICE_LIST
+	</select>
+	
+	<select id="bestServiceList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+		SELECT * FROM V_SERVICE_LIST
+		ORDER BY REVIEWCOUNT DESC
+	</select>
 
 <select id="randomSelectService" resultType = "co.Nasa.prj.comm.VO.ServiceVO">
 	<![CDATA[

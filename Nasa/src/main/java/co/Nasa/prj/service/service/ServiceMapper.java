@@ -2,7 +2,6 @@ package co.Nasa.prj.service.service;
 
 import java.util.List;
 
-import co.Nasa.prj.admin.service.Criteria;
 import co.Nasa.prj.comm.VO.ServiceVO;
 
 public interface ServiceMapper {
@@ -23,8 +22,12 @@ public interface ServiceMapper {
 	List<ServiceVO> servicePromotion(String s_email);
 
 	
-	List<ServiceVO> homeCategorySelect(String ser_cate);
-	List<ServiceVO> homeCategorySelectAll();
+	List<ServiceVO> homeCategorySelect(ServiceVO vo);
+	public int homeCategorySelectCount(ServiceVO vo);
+	
+	List<ServiceVO> homeCategorySelectAll(ServiceVO vo);
+	public int homeCategorySelectAllCount(ServiceVO vo);
+	
 	List<ServiceVO> bestServiceList();
 	
 	// 메인페이지 관심 카테고리 추천 - 구매자 로그인 시

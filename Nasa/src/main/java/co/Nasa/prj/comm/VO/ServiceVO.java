@@ -39,14 +39,25 @@ public class ServiceVO {
 	// v_service_list
 	int reviewcount;
 	int reviewavg;
-	String sub_category; // 서브 카테고리
+	String sub_category;
 	String nickname;
 	String category;
 	
 	String s_code;
 	String pay_enddate;
 	
+
+	// 페이징
+	int start;
+	int end;
+	
+	public void calcStartEnd(int pageNum, int amount) {
+		setEnd(pageNum * amount);
+		setStart(getEnd() - amount + 1);
+	}
+
 	String cat_name;
 	String sub_name;
 	String s_nickname;
+
 }
