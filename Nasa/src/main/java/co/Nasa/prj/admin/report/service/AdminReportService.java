@@ -38,4 +38,8 @@ public interface AdminReportService {
 	public ReportVO detailedRefuseComplete(ReportVO vo);
 	
 	
+	//블랙리스트 한달정지
+	public void scheduleMemberBlackList();
+	
+	
 }
