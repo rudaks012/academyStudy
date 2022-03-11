@@ -180,5 +180,28 @@
 	 
   </select>
   
+  <update id="scheduleSellerBlackList" parameterType="co.Nasa.prj.admin.service.AdminAuthorVO">
+  <![CDATA[
+  	update seller
+    set s_status = 'U',r.re_rpoertdate=sysdate
+    where s_report=5 and s_email IN (
+                                      select distinct r.re_res  
+                                      from report r join seller s 
+                                      on (ADD_MONTHS(r.re_rpoertdate,1) < sysdate and r.re_res=s.s_email)
+                                     )
+  ]]>
+  </update>
+  
+    <update id="scheduleBuyerBlackList" parameterType="co.Nasa.prj.admin.service.AdminAuthorVO">
+  <![CDATA[
+  	update buyer
+    set b_status = 'U',r.re_rpoertdate=sysdate
+    where b_report=5 and b_email IN (
+                                      select distinct r.re_res  
+                                      from report r join buyer b 
+                                      on (ADD_MONTHS(r.re_rpoertdate,1) < sysdate and r.re_res=s.s_email)
+                                     )
+  ]]>
+  </update>
 
 </mapper>

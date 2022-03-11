@@ -111,6 +111,16 @@ public class AdminReportSerivceImpl implements AdminReportService {
 		return map.detailedRefuseComplete(vo);
 	}
 
+	@Override
+	public void scheduleMemberBlackList() {
+		 map.scheduleSellerBlackList();
+	     map.scheduleBuyerBlackList();
+
+		
+	}
+
+	
+
 
 
 	

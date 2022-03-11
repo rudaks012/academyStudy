@@ -37,4 +37,9 @@ public interface AdminReportMapper {
 		public int totalReportRefuse(Criteria cri);
 		public List<ReportVO> getReportRefuseListWithPaging(Criteria cri);
 		public ReportVO detailedRefuseComplete(ReportVO vo);
+		
+		
+		//블랙리스트 한달정지
+		public int scheduleSellerBlackList();
+		public int scheduleBuyerBlackList();
 }
