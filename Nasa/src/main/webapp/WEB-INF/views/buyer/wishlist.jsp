@@ -92,7 +92,7 @@
 			                           <div class="media-body">
 			                           	<div class="d-flex">
 		                                 	<h4 class="col-4">${seller.s_nickname } 
-			                              	<i id = "wishicon" class="fa fa-heart" aria-hidden="true" onclick="deleteWishlist(this)" data-sid="${wishlist.s_id }" data-bid = "${wishlist.b_id }"></i></h4>
+			                              	<i id = "wishicon" class="fa fa-heart" aria-hidden="true" onclick="deleteWishlist(this)" data-sid="${wishlist.s_id }" data-bid = "${wishlist.b_id }" data-toggle="tooltip" data-placement="top" title="위시리스트 제거"></i></h4>
 			                              	<h4 class="col-8">${seller.s_address }</h4>
 			                           	</div>
 			                              <div class="d-flex"  style="margin-top: 8px;">
@@ -172,6 +172,9 @@
 </section>
 
 <script>
+	 $(document).ready(function(){
+	          $('[data-toggle="tooltip"]').tooltip();   
+	      });
 // pagination
 	/* $(document).ready(function() {
 		var allwish = $(".blog-author").length;

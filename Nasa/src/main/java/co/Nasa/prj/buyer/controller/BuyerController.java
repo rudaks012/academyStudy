@@ -184,10 +184,14 @@ public class BuyerController {
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		model.addAttribute("paymentList", paymentList);
 		model.addAttribute("address", "buyHistory.do");
+		
+		PaymentVO pvo = new PaymentVO();
+		pvo.setB_email((String) session.getAttribute("id"));
+		List<PaymentVO> paysumList = paymentDao.buyerPaymentList(pvo);
 		int paysum = 0;
 		int upgrademoney = 0;
-		for (int i = 0; i < paymentList.size(); i++) {
-			PaymentVO pmvo = paymentList.get(i);
+		for (int i = 0; i < paysumList.size(); i++) {
+			PaymentVO pmvo = paysumList.get(i);
 			if(pmvo.getPay_enddate() != null) {
 				paysum += pmvo.getPay_price();
 			}
@@ -265,10 +269,14 @@ public class BuyerController {
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		model.addAttribute("paymentList", paymentList);
 		model.addAttribute("address", "monthSearch.do");
+		
+		PaymentVO pvo = new PaymentVO();
+		pvo.setB_email((String) session.getAttribute("id"));
+		List<PaymentVO> paysumList = paymentDao.buyerPaymentList(pvo);
 		int paysum = 0;
 		int upgrademoney = 0;
-		for (int i = 0; i < paymentList.size(); i++) {
-			PaymentVO pmvo = paymentList.get(i);
+		for (int i = 0; i < paysumList.size(); i++) {
+			PaymentVO pmvo = paysumList.get(i);
 			if(pmvo.getPay_enddate() != null) {
 				paysum += pmvo.getPay_price();
 			}
@@ -344,10 +352,14 @@ public class BuyerController {
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		model.addAttribute("paymentList", paymentList);
 		model.addAttribute("address", "sixmonthSearch.do");
+		
+		PaymentVO pvo = new PaymentVO();
+		pvo.setB_email((String) session.getAttribute("id"));
+		List<PaymentVO> paysumList = paymentDao.buyerPaymentList(pvo);
 		int paysum = 0;
 		int upgrademoney = 0;
-		for (int i = 0; i < paymentList.size(); i++) {
-			PaymentVO pmvo = paymentList.get(i);
+		for (int i = 0; i < paysumList.size(); i++) {
+			PaymentVO pmvo = paysumList.get(i);
 			if(pmvo.getPay_enddate() != null) {
 				paysum += pmvo.getPay_price();
 			}
@@ -423,10 +435,14 @@ public class BuyerController {
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		model.addAttribute("paymentList", paymentList);
 		model.addAttribute("address", "yearSearch.do");
+		
+		PaymentVO pvo = new PaymentVO();
+		pvo.setB_email((String) session.getAttribute("id"));
+		List<PaymentVO> paysumList = paymentDao.buyerPaymentList(pvo);
 		int paysum = 0;
 		int upgrademoney = 0;
-		for (int i = 0; i < paymentList.size(); i++) {
-			PaymentVO pmvo = paymentList.get(i);
+		for (int i = 0; i < paysumList.size(); i++) {
+			PaymentVO pmvo = paysumList.get(i);
 			if(pmvo.getPay_enddate() != null) {
 				paysum += pmvo.getPay_price();
 			}
@@ -513,10 +529,14 @@ public class BuyerController {
 		session.setAttribute("firstDate", paymentvo.getFirstDate());
 		session.setAttribute("secondDate", paymentvo.getSecondDate());
 		
+		PaymentVO pvo = new PaymentVO();
+		pvo.setB_email((String) session.getAttribute("id"));
+		List<PaymentVO> paysumList = paymentDao.buyerPaymentList(pvo);
+		
 		int paysum = 0;
 		int upgrademoney = 0;
-		for (int i = 0; i < paymentList.size(); i++) {
-			PaymentVO pmvo = paymentList.get(i);
+		for (int i = 0; i < paysumList.size(); i++) {
+			PaymentVO pmvo = paysumList.get(i);
 			if(pmvo.getPay_enddate() != null) {
 				paysum += pmvo.getPay_price();
 			}

@@ -86,8 +86,6 @@
 										
 									</c:otherwise>
 								</c:choose>
-								<!-- <div class="photo" style="background-image: url(resources/user/assets/img/test/sun.png)">
-								</div> -->
 								<ul class="details">
 									<c:choose>
 										<c:when test="${buyerinfo.b_rank  eq '1'}">
@@ -129,8 +127,6 @@
 										<h2>EARTH GRADE</h2>
 									</c:when>
 								</c:choose>
-								<!-- <h1>태양 등급</h1>
-								<h2>SUN GRADE</h2> -->
 								<p>
 									<br>현재 누적 금액 ${paysum }원<br>다음 등급 까지 ${upgrademoney }
 								</p>
