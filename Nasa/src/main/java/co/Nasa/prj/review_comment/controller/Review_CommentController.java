@@ -76,4 +76,12 @@ public class Review_CommentController {
 		model.addAttribute("nav", "review");
 		return "redirect:" + request.getHeader("Referer");
 	}
+	
+	@RequestMapping("/writeReview_comment.do")
+	public String writeReview_comment(Review_CommentVO vo, HttpSession session, HttpServletRequest request) {
+		vo.setRere_sel_id((String) session.getAttribute("id"));
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+vo.getReview_code());
+		reviewCommentDao.writeReview_comment(vo);
+		return "redirect:" + request.getHeader("Referer");
+	}
 }

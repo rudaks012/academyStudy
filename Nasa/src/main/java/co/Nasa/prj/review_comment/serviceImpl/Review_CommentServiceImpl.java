@@ -48,4 +48,9 @@ public class Review_CommentServiceImpl implements Review_CommentService {
 		return map.reviewCommSelect(review_code);
 	}
 
+	@Override
+	public int writeReview_comment(Review_CommentVO vo) {
+		return map.writeReview_comment(vo);
+	}
+
 }

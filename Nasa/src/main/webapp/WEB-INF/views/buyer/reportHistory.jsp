@@ -71,7 +71,7 @@
 										<th scope="col">신고일</th>
 										<th scope="col">신고대상</th>
 										<th scope="col">신고유형</th>
-										<th scope="col">신고내용</th>
+										<!--<th scope="col">신고내용</th>-->
 										<th scope="col">신고결과</th>
 									</tr>
 								</thead>
@@ -81,8 +81,8 @@
 											<%-- <th scope="row">${report.re_code }</th> --%>
 											<td>${fn:substring(report.re_date, 0, 11) }</td>
 											<td>${report.re_res }</td>
-											<td>${report.re_type }</td>
-											<td>${report.re_subject }</td>
+											<td>${report.re_type } <c:if test="${report.re_type eq '기타사유' }"> - ${report.re_subject}</c:if></td>
+											<!--<td>${report.re_subject }</td>-->
 											<c:choose>
 												<c:when test="${empty report.re_result}"><td>대기 중</td></c:when>
 												<c:when test="${report.re_result eq 'Y'}"><td>승인</td></c:when>
