@@ -211,9 +211,11 @@ public class ChatController {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
         gson.toJson(chatSessionList,response.getWriter());
     }
+    
     @ResponseBody
     @RequestMapping("/chatingcheck.do")
-    public String chatingcheck(ChatRoom room,HttpSession session,@RequestParam("chatnick") String chatnick, @RequestParam("ser_code") String ser_code){
+    public String chatingcheck(ChatRoom room,HttpSession session,@RequestParam("chatnick") String chatnick, 
+    		@RequestParam("ser_code") String ser_code){
     String userid = (String) session.getAttribute("id");
     BuyerVO bvo = new BuyerVO();
     bvo.setB_email(userid); //세션아이디야 이건  buyer에있어
@@ -254,6 +256,64 @@ public class ChatController {
     		return room_id;
     	}
 
+    }
+    
+    //메인화면 채팅 만들기
+    @ResponseBody
+    @RequestMapping("/mainchatting.do")
+    public String mainchatting(ChatRoom room,HttpSession session,@RequestParam("chatnick") String chatnick
+    		){
+    String userid = (String) session.getAttribute("id");
+    BuyerVO bvo = new BuyerVO();
+    bvo.setB_email(userid); //세션아이디야 이건  buyer에있어
+    BuyerVO buyer = BuyerDao.selectBuyer(bvo);
+    System.out.println("테스트해본다 겟닉네임 |||||||||"+buyer.getB_nickname());
+    SellerVO vo = new SellerVO();
+    //seller에 세션값 넣기
+    vo.setB_email(userid);
+    vo.setS_nickname(chatnick);
+    //셀러 닉네임조회
+    SellerVO svo = sellerDAO.SellerNickSelect(chatnick);
+    
+    //서비스 조회
+    	
+    room.setUserid(userid);
+    room.setUsernickname(buyer.getB_nickname());
+    room.setMasterid(svo.getS_email());
+    room.setMasternickname(svo.getS_nickname());
+    	
+    ChatRoom exist = cService.searchChatRoom(room);
+    	
+    	if(exist == null) {
+    		System.out.println("방이없다!");
+    		int result = cService.createChat(room);
+    		if(result == 1) {
+    			System.out.println("방만들기");
+    			String room_id = cService.searchChatRoom(room).getRoomid();
+    			return room_id;
+    		}else {
+    			return "user/home";
+    		}
+    	}
+    	//db에 방이있따
+    	else {
+    		System.out.println("방이있따");
+    		String room_id = cService.searchChatRoom(room).getRoomid();
+    		return room_id;
+    	}
+
+    }
+    
+    //프로모션 여부 체크
+    @ResponseBody
+    @RequestMapping("/promotioncheck.do")
+    public String promotioncheck(@RequestParam("promotioncheck") String promotion) {
+    	
+    	String n =cService.chatpromotion(promotion);
+    	System.out.println("찍어봅니다 n을 |||||||||||||||" + n);
+    	System.out.println("promotioncheck.do");
+    	
+    	return "";
     }
     
 }
