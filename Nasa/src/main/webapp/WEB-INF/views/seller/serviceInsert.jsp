@@ -380,7 +380,10 @@ input[type="radio"] {
 					data = JSON.parse(data);
 					if (data.result == "OK") {
 						alert("서비스 등록이 완료되었습니다.");
-						location.href="sellerService.do";
+						setTimeout(function() {
+							location.href="sellerService.do";
+							}, 5000);
+						
 					} else{
 						alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
 						console.log(data.result);

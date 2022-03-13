@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,17 +115,17 @@ td, th {
 												<div class="nav nav-tabs" id="nav-tab" role="tablist">
 													<a
 														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
-														id="nav-desc-tab" data-toggle="tab" href="#nav-desc"
-														role="tab" aria-controls="nav-desc" aria-selected="true">정산
-														대기 거래</a> <a
-														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
 														id="nav-info-tab" data-toggle="tab" href="#nav-info"
 														role="tab" aria-controls="nav-info" aria-selected="false">정산
-														완료 거래</a>
+														완료 거래</a><a
+														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+														id="nav-desc-tab" data-toggle="tab" href="#nav-desc"
+														role="tab" aria-controls="nav-desc" aria-selected="true">정산
+														대기 거래</a> 
 												</div>
 											</nav>
 											<div class="tab-content" id="nav-tabContent">
-												<div class="tab-pane fade show active" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
+												<div class="tab-pane fade" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
 													<br />
 												<br />
 												<div class="row justify-content-center" style="margin-left:0px;">
@@ -137,7 +138,7 @@ td, th {
 																<th>서비스명</th>
 																<th>구매자</th>
 																<th>거래금액</th>
-																<th>할인</th>
+																<th>쿠폰</th>
 																<th>수수료감면</th>
 																<th>최종금액</th>
 																<th>구매확정일</th>
@@ -149,11 +150,11 @@ td, th {
 																	<tr>
 																		<td >${fn:substring(sellerPay.pay_date,0,10) }</td>
 																		<td>${sellerPay.ser_title }</td>
-																		<td>홍길동 <br /><span class="bemail">${sellerPay.b_email }</span></td>
-																		<td>${sellerPay.pay_originp }</td>
+																		<td>${sellerPay.b_nickname } <br /><span class="bemail">${sellerPay.b_email }</span></td>
+																		<td><fmt:formatNumber value="${sellerPay.pay_originp }" pattern="###,###"/></td>
 																		<td>${sellerPay.pay_coupon }</td>
-																		<td>${sellerPay.pay_com }</td>
-																		<td>${sellerPay.pay_price }</td>
+																		<td><fmt:formatNumber value="${sellerPay.pay_com }" pattern="###,###"/></td>
+																		<td><fmt:formatNumber value="${sellerPay.pay_price }" pattern="###,###"/></td>
 																		<td>${fn:substring(sellerPay.pay_enddate,0,10) }</td>
 																		
 																	</tr>
@@ -163,19 +164,20 @@ td, th {
 													</table>
 													</div>
 											</div>
-											<div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+											<div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
 												<br />
 												<br />
 												<div class="row justify-content-center">
 
-													<button class="genric-btn danger-border radius paybtn">1개월</button>
-													<button class="genric-btn danger-border radius paybtn">6개월</button>
-													<button class="genric-btn danger-border radius paybtn">1년</button>
-
-													<input type="date"> - <input type="date"
+													<button class="genric-btn danger-border radius paybtn" onclick="location.href = 'sellermonthSearch.do'">1개월</button>
+													<button class="genric-btn danger-border radius paybtn" onclick="location.href = 'sixmonthSearch.do'">6개월</button>
+													<button class="genric-btn danger-border radius paybtn" onclick="location.href = 'yearSearch.do'">1년</button>
+													<form action="selectdateSearch.do" method="get" onsubmit="return selectdate()">
+													<input type="date" id="firstDate" name="firstDate"> - <input type="date" id="secondDate" name="secondDate"
 														style="margin-left: 10px;">
-													<button class="genric-btn danger-border radius">기간검색</button>
-													<table
+													<button type="submit" class="genric-btn danger-border radius">기간검색</button>
+													</form>
+													<table id="paymentTable"
 														class="table table-bordered thead-light  text-center"
 														style="margin-top: 40px;">
 														<thead class="thead-light"  style="font-size: 12px;">
@@ -184,7 +186,7 @@ td, th {
 																<th>서비스명</th>
 																<th>구매자</th>
 																<th>거래금액</th>
-																<th>할인</th>
+																<th>쿠폰</th>
 																<th>수수료감면</th>
 																<th>최종금액</th>
 																<th>구매확정일</th>
@@ -197,10 +199,10 @@ td, th {
 																		<td>${fn:substring(sellerPay.pay_date,0,10) }</td>
 																		<td>${sellerPay.ser_title }</td>
 																		<td>${sellerPay.b_nickname } <br /><span class="bemail">${sellerPay.b_email }</span></td>
-																		<td>${sellerPay.pay_originp }</td>
+																		<td><fmt:formatNumber value="${sellerPay.pay_originp }" pattern="###,###"/></td>
 																		<td>${sellerPay.pay_coupon }</td>
-																		<td>${sellerPay.pay_com }</td>
-																		<td>${sellerPay.pay_price }</td>
+																		<td><fmt:formatNumber value="${sellerPay.pay_com }" pattern="###,###"/></td>
+																		<td><fmt:formatNumber value="${sellerPay.pay_price }" pattern="###,###"/></td>
 																		<td>${fn:substring(sellerPay.pay_enddate,0,10) }</td>
 																		
 																	</tr>
@@ -208,13 +210,37 @@ td, th {
 															</c:forEach>
 														</tbody>
 													</table>
+													
 												</div>
 											</div>
 
 											</div>
 										</div>
 									</div>
+									<div class="row justify-content-center mt-10">
+									<nav aria-label="Page navigation example">
+									  <ul class="pagination">
+										  <c:if test="${paging.prev }">
+											  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+										  </c:if>
+										  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+											  <c:choose>
+												  <c:when test="${p == paging.pageNum }">
+													  <li class="page-item"><b class="page-link">${p }</b></li>
+												  </c:when>
+												  <c:when test="${p != paging.pageNum }">
+													  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+												  </c:when>
+											  </c:choose>
+										  </c:forEach>
+										  <c:if test="${paging.next }">
+											  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+										  </c:if>
+									  </ul>
+									</nav>
 								</div>
+								</div>
+								
 							</div>
 						</article>
 					</div>
@@ -223,6 +249,25 @@ td, th {
 		</div>
 	</section>
 
-
+<script>
+function selectdate() {
+	var firstDate = $("#firstDate").val();
+	var secondDate = $("#secondDate").val();
+	console.log(firstDate);
+	console.log(secondDate);
+	
+	// 직접 날짜 설정하는 input에서 설정 안해줬을 때 알리기
+	if(firstDate == "") {
+		window.alert("시작 날짜를 설정해주세요!");
+		return false;
+	} else if(secondDate == "") {
+		window.alert("종료 날짜를 설정해 주세요!");
+		return false;
+	} else if(firstDate > secondDate) {
+		window.alert("날짜를 올바르게 설정해주세요!");
+		return false;
+	}
+}
+</script>
 </body>
 </html>

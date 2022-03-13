@@ -2,6 +2,7 @@ package co.Nasa.prj.promotion.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -74,19 +75,23 @@ public class PromotionController {
 	}
 	
 	//종료날짜 최대값
-	@ResponseBody
-	@RequestMapping("/endPromotion.do")
-	public String endPromotion(@RequestParam("sercode") String pro_service) {
-		String enddate = promotionDao.endPromotion(pro_service);
-		System.out.println(enddate);
-		return enddate;
-	}
+//	@ResponseBody
+//	@RequestMapping("/endPromotion.do")
+//	public String endPromotion(@RequestParam("sercode") String pro_service) {
+//		String enddate = promotionDao.endPromotion(pro_service);
+//		System.out.println(enddate);
+//		return enddate;
+//	}
 	
 	@ResponseBody
 	@RequestMapping("/promotionCancel.do")
-	public String promotionCancel(@RequestParam("pro_service") String pro_service) {
+	public String promotionCancel(@RequestParam("pro_service") String pro_service, @RequestParam("pro_code") String pro_code) {
 		String result = "F";
-		int n = promotionDao.promotionCancel(pro_service);
+		PromotionVO vo = new PromotionVO();
+		vo.setPro_code(pro_code);
+		vo.setPro_service(pro_service);
+	
+		int n = promotionDao.promotionCancel(vo);
 		if(n != 0) {
 			result = "T";
 		}
@@ -96,9 +101,13 @@ public class PromotionController {
 	
 	@ResponseBody
 	@RequestMapping("/promotionEnd.do")
-	public String promotionEnd(@RequestParam("pro_service") String pro_service) {
+	public String promotionEnd(@RequestParam("pro_service") String pro_service, @RequestParam("pro_code") String pro_code) {
 		String result = "F";
-		int n = promotionDao.promotionEnd(pro_service);
+		PromotionVO vo = new PromotionVO();
+		vo.setPro_code(pro_code);
+		vo.setPro_service(pro_service);
+	
+		int n = promotionDao.promotionEnd(vo);
 		if(n != 0) {
 			result = "T";
 		}

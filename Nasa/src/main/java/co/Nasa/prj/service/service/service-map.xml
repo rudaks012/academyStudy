@@ -41,7 +41,7 @@
 		#{ser_subimg2},
 		SER_SUBIMG3 = #{ser_subimg3}, SER_ORIGINSUB=#{ser_originsub},
 		SER_ORIGINSUB2=#{ser_originsub2},
-		SER_ORIGINSUB3 = #{ser_originsub3}, SER_END = #{ser_end}
+		SER_ORIGINSUB3 = #{ser_originsub3}
 		WHERE SER_CODE = #{ser_code}
 	</update>
 	
@@ -52,6 +52,26 @@
 
 	<select id="serviceSelectList" 	resultType="co.Nasa.prj.comm.VO.ServiceVO">
 		SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email}
+	</select>
+	
+	<select id="sellerMainServiceList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+	<![CDATA[
+		select
+		serv."SER_CODE",serv."S_EMAIL",serv."SER_START",serv."SER_TITLE",serv."SER_SUB",serv."SER_CATE",
+		serv."SER_SUB_CATE",serv."SER_PRICE",serv."SER_IMG", serv."SER_LINE",serv."SER_STATUS",serv."SER_END",
+		(select count(scode) from review where scode=serv.ser_code) as reviewcount,
+		(select avg(rev_rate) from review where scode=serv.ser_code) as reviewavg, 
+		(select cat_name from category where cat_no=serv.ser_cate) as category,
+		(select pro_start from promotion where pro_service = ser_code and pro_status='N'  ) as pro_start,
+		(select pro_end from promotion where pro_service = ser_code and pro_status='N'  ) as pro_end,
+		(select trunc(ser_price-(ser_price * (prodiscount / 100)))  from promotion where pro_service = ser_code and pro_status='N'  ) as prodiscount,
+		(SELECT MAX(PAY_ENDDATE) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_ENDDATE,
+		(SELECT MAX(PRO_END) FROM PROMOTION  WHERE PRO_SERVICE = serv.ser_code AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END AND pro_status <> 'Y') as PRO_MAX,
+		(SELECT MAX(POWER_END) FROM POWERSERVICE  WHERE SER_CODE = serv.ser_code  AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < POWER_END) as power_max,
+		sub.sub_name as sub_category
+		from service serv, sub_category sub
+		where serv.ser_sub_cate = sub.sub_no
+		and s_email = #{s_email} order by ser_start desc]]>
 	</select>
 
 	<select id="serviceMaxEnddateList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
@@ -71,16 +91,17 @@
 
 	<select id="serviceSelectMaxEnd" resultType="co.Nasa.prj.comm.VO.ServiceVO">
 		SELECT S.*, P.* FROM SERVICE S
-		JOIN (SELECT S_CODE, MAX(TO_DATE(EVENT_END, 'yyyy-MM-dd')) PAY_ENDDATE
+		JOIN (SELECT S_CODE, MAX(EVENT_END) PAY_ENDDATE
 		FROM PAYMENT GROUP BY S_CODE) P
 		ON S.SER_CODE = P.S_CODE
 		WHERE S.S_EMAIL = #{s_email} and s.ser_code = #{ser_code}
 	</select>
 
 	<update id="schEndDateCheck">
+		<![CDATA[
 		UPDATE SERVICE SET
 		SER_STATUS = 'Y'
-		WHERE <![CDATA[SER_END < TO_CHAR(sysdate,'yyyy-mm-dd')]]>
+		WHERE SER_END < TO_CHAR(sysdate,'yyyy-mm-dd')]]>
 	</update>
 
 	<select id="servicePromotion" resultType="co.Nasa.prj.comm.VO.ServiceVO">

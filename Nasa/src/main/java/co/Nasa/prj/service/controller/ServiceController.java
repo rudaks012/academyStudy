@@ -3,6 +3,9 @@ package co.Nasa.prj.service.controller;
 import java.io.File;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,9 +27,13 @@ import org.springframework.web.multipart.MultipartFile;
 import co.Nasa.prj.category.service.CategoryService;
 import co.Nasa.prj.comm.VO.CategoryVO;
 import co.Nasa.prj.comm.VO.PagingDTO;
+import co.Nasa.prj.comm.VO.PowerServiceVO;
+import co.Nasa.prj.comm.VO.PromotionVO;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.comm.VO.SubCategoryVO;
+import co.Nasa.prj.powerservice.service.PowerServiceService;
+import co.Nasa.prj.promotion.service.PromotionService;
 import co.Nasa.prj.review.service.ReviewMapper;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
@@ -44,7 +51,11 @@ public class ServiceController {
 	private Sub_CategoryService subCategoryDao;
 	@Autowired
 	private ReviewMapper reviewDao;
-
+	@Autowired
+	private PromotionService promotionDao;
+	@Autowired
+	private PowerServiceService powerDao;
+	
 	// 카테고리 별 서비스 목록
 	@RequestMapping("/homeCategory.do")
 	public String homeCategory(Model model, @Param("ser_cate") String ser_cate, PagingDTO pagingdto) {
@@ -72,7 +83,15 @@ public class ServiceController {
 	@RequestMapping("/sellerService.do")
 	public String sellerService(Model model, HttpSession session) {
 		String s_email = (String) session.getAttribute("id");
-		model.addAttribute("serviceList", serviceDao.serviceMaxEnddateList(s_email));
+		ServiceVO vo = new ServiceVO();
+		vo.setS_email(s_email);
+		model.addAttribute("sellerMainServiceList", serviceDao.sellerMainServiceList(vo));
+		//model.addAttribute("serviceList", serviceDao.serviceMaxEnddateList(s_email));
+		
+		PowerServiceVO pvo = new PowerServiceVO();
+		pvo.setS_email(s_email);
+		model.addAttribute("powerList",powerDao.sellerPowerserviceList(pvo));
+		
 		return "seller/sellerService";
 	}
 
@@ -250,7 +269,7 @@ public class ServiceController {
 		ServiceVO vo = new ServiceVO();
 		vo.setSer_code(ser_code);
 		vo.setS_email((String) session.getAttribute("id"));
-		model.addAttribute("endDate", serviceDao.serviceSelectMaxEnd(vo));
+		//model.addAttribute("endDate", serviceDao.serviceSelectMaxEnd(vo));
 		System.out.println(serviceDao.serviceSelect(ser_code));
 		return "seller/serviceUpdateForm";
 	}
@@ -488,17 +507,76 @@ public class ServiceController {
 	@ResponseBody
 	@RequestMapping("/endService.do")
 	public String endService(@RequestParam("ser_code") String ser_code, @RequestParam("ser_reason") String ser_reason,
-			@RequestParam("ser_end") String ser_end) {
+			@RequestParam("ser_end") String ser_end, HttpSession session) throws ParseException {
 		ServiceVO vo = new ServiceVO();
 		vo.setSer_code(ser_code);
 		vo.setSer_reason(ser_reason);
 		vo.setSer_end(ser_end);
-
+		
 		int n = serviceDao.endService(vo);
-		if (n != 1) {
+		
+		if(n != 0) {
+			PromotionVO pvo = new PromotionVO();
+			pvo.setPro_service(ser_code);
+			pvo.setS_email((String)session.getAttribute("id"));
+			pvo.setPro_end(ser_end);
+			List<PromotionVO> list = promotionDao.promotionSelectList(pvo);
+			if(!list.isEmpty()) {
+				for(int i=0;i<list.size();i++) {
+					System.out.println(list.get(i));
+					PromotionVO vo2 = new PromotionVO();
+					if(list.get(i).getPro_status().equals("N")) {
+						SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+						System.out.println("+++" + ser_end);
+						Date endtoday = new Date(format.parse(ser_end).getTime());
+						Date today = new Date();
+						System.out.println("+++" + endtoday);
+						System.out.println("+++" + today);
+						int compare = endtoday.compareTo(today);
+						System.out.println(compare);
+						if(compare <= 0) {
+							vo2.setPro_code(list.get(i).getPro_code());
+							vo2.setPro_service(list.get(i).getPro_service());
+							vo2.setPro_end(ser_end);
+							System.out.println(ser_end);
+							promotionDao.serviceEndPromotion(vo2);
+						}else {
+							vo2.setPro_code(list.get(i).getPro_code());
+							vo2.setPro_service(list.get(i).getPro_service());
+							vo2.setPro_end(ser_end);
+							promotionDao.serviceEndPromotion2(vo2);
+						}
+						
+						
+					}else {
+						SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+						Date date = new Date(format.parse(list.get(i).getPro_start()).getTime()); 
+						Date today = new Date(format.parse(ser_end).getTime());
+						System.out.println(date);
+						System.out.println(today);
+						int compare = date.compareTo(today);
+						System.out.println(compare);
+						if(compare <= 0) {
+							vo2.setPro_code(list.get(i).getPro_code());
+							vo2.setPro_service(list.get(i).getPro_service());
+							vo2.setPro_end(ser_end);
+							promotionDao.serviceEndPromotion2(vo2);
+						}else {
+							vo2.setPro_code(list.get(i).getPro_code());
+							vo2.setPro_service(list.get(i).getPro_service());
+							promotionDao.promotionCancel(vo2);
+						}
+						
+					}
+				}	
+			}
+			
+			return "T";
+		}else {
 			return "F";
 		}
-		return "T";
+			
 	}
 
 	@Scheduled(cron = "0 0 0 * * ?")

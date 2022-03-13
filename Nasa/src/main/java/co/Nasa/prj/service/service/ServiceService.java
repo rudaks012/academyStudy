@@ -10,7 +10,7 @@ public interface ServiceService {
 	ServiceVO serviceSelect(String ser_code);
 	int serviceUpdate(ServiceVO vo);
 	
-	List<ServiceVO> serviceSelectList(String s_email);
+	List<ServiceVO> serviceSelectList(ServiceVO vo);
 	List<ServiceVO> serviceMaxEnddateList(String s_email);
 	
 	ServiceVO serviceSelectMaxEnd(ServiceVO vo);
@@ -27,6 +27,8 @@ public interface ServiceService {
 	
 	List<ServiceVO> homeCategorySelectAll(ServiceVO vo);
 	public int homeCategorySelectAllCount(ServiceVO vo);
+	
+	List<ServiceVO> sellerMainServiceList(ServiceVO vo);
 	
 	List<ServiceVO> bestServiceList();
 	

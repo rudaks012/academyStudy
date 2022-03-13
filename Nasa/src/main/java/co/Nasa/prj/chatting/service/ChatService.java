@@ -77,5 +77,9 @@ public interface ChatService {
 	// 채팅에서 서비스 상세정보 상세정복확인
 
 	public ServiceVO getRow(String ser_code);
+	
+	//채팅에서 프로모션 여부
+	
+	public String chatpromotion(String promotioncheck);
 
 }

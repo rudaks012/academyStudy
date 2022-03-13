@@ -16,4 +16,13 @@ public class NoticeVO {
 	String no_originimg;
 	
 	String s_nickname;
+	
+	// 페이징
+	int start;
+	int end;
+	
+	public void calcStartEnd(int pageNum, int amount) {
+		setEnd(pageNum * amount);
+		setStart(getEnd() - amount + 1);
+	}
 }

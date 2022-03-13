@@ -13,7 +13,9 @@
 <select id="promotionList" resultType="co.Nasa.prj.comm.VO.PromotionVO">
 	select p.*, s.ser_title, s.ser_img 
 	from promotion p, service s 
-	where pro_service = ser_code
+	where p.pro_service = s.ser_code
+	and s.s_email = #{s_email}
+	order by p.pro_start desc
 </select>
 
 <select id="endPromotion" resultType="co.Nasa.prj.comm.VO.PromotionVO">
@@ -32,18 +34,19 @@
 	<![CDATA[
 	SELECT * FROM PROMOTION WHERE PRO_SERVICE = #{pro_service} 
 	AND (#{pro_start} >= pro_start and #{pro_start} <= pro_end
-	OR #{pro_end} >= pro_start and #{pro_end} <= pro_end)]]>
+	OR #{pro_end} >= pro_start and #{pro_end} <= pro_end) 
+	AND pro_status <> 'Y']]>
 </select>
 
-<delete id="promotionCancel" parameterType="String">
+<delete id="promotionCancel" parameterType="co.Nasa.prj.comm.VO.PromotionVO">
 	DELETE FROM PROMOTION
-	WHERE PRO_SERVICE = #{pro_service} 
+	WHERE PRO_SERVICE = #{pro_service} AND PRO_CODE = #{pro_code}
 </delete>
 
-<update id="promotionEnd" parameterType="String">
+<update id="promotionEnd" parameterType="co.Nasa.prj.comm.VO.PromotionVO">
 	UPDATE PROMOTION SET 
 	PRO_STATUS = 'Y', PRO_END = sysdate
-	WHERE PRO_SERVICE = #{pro_service} 
+	WHERE PRO_SERVICE = #{pro_service} AND PRO_CODE = #{pro_code}
 </update>
 
 <update id="startCheckPromotion">
@@ -60,5 +63,27 @@
 	SET PRO_STATUS = 'Y' 
 	WHERE PRO_END < SYSDATE 
 	AND PRO_STATUS = 'N']]>
+</update>
+
+<select id="promotionSelectList" resultType="co.Nasa.prj.comm.VO.PromotionVO">
+	<![CDATA[
+	SELECT *
+	FROM PROMOTION
+	WHERE S_EMAIL = #{s_email}
+	AND PRO_SERVICE = #{pro_service}
+	AND PRO_END >= #{pro_end}
+	AND PRO_STATUS <> 'Y']]>
+</select>
+
+<update id="serviceEndPromotion" parameterType="co.Nasa.prj.comm.VO.PromotionVO">
+	UPDATE PROMOTION SET 
+	PRO_STATUS = 'Y' , PRO_END = #{pro_end}
+	WHERE PRO_SERVICE = #{pro_service} AND PRO_CODE = #{pro_code}
+</update>
+
+<update id="serviceEndPromotion2" parameterType="co.Nasa.prj.comm.VO.PromotionVO">
+	UPDATE PROMOTION SET 
+	PRO_END = #{pro_end}
+	WHERE PRO_SERVICE = #{pro_service} AND PRO_CODE = #{pro_code}
 </update>
 </mapper>

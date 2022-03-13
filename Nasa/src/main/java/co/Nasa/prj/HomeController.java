@@ -202,7 +202,7 @@ public class HomeController {
 		ServiceVO vo = new ServiceVO();
 		vo.setS_code(servicecode);
 		vo = serviceDao.serviceSelect(servicecode);
-		vo.getSer_price();
+//		vo.getSer_price();
 		return vo;
 	}
 
@@ -222,6 +222,7 @@ public class HomeController {
 		JSONObject object = new JSONObject();
 		object.put("coupon", bvo.getBuyer_coupon());
 		String result = object.toJSONString();
+		System.out.println("바이어쿠폰||||||||||||||||||" + result);
 
 		return result;
 	}

@@ -10,7 +10,7 @@ public interface ServiceMapper {
 	ServiceVO serviceSelect(String ser_code);
 	int serviceUpdate(ServiceVO vo);
 	
-	List<ServiceVO> serviceSelectList(String s_email);
+	List<ServiceVO> serviceSelectList(ServiceVO vo);
 	List<ServiceVO> serviceMaxEnddateList(String s_email);
 	
 	ServiceVO serviceSelectMaxEnd(ServiceVO vo);
@@ -34,4 +34,6 @@ public interface ServiceMapper {
 	List<ServiceVO> randomSelectService(String ser_sub_cate);
 	// 판매자 혹은 비 로그인 시
 	List<ServiceVO> notBuyerRandomService();
+	
+	List<ServiceVO> sellerMainServiceList(ServiceVO vo);
 }
