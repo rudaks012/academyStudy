@@ -119,6 +119,12 @@ public class AdminReportSerivceImpl implements AdminReportService {
 		
 	}
 
+	@Override
+	public List<AdminAuthorVO> getBlackListWithPaging(Criteria cri) {
+		// TODO Auto-generated method stub
+		return map.getBlackListWithPaging(cri);
+	}
+
 	
 
 

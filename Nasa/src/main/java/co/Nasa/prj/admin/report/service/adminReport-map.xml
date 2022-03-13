@@ -21,12 +21,14 @@
   </sql>
   
   <select id="getReportListWithPaging" resultType="co.Nasa.prj.comm.VO.ReportVO">
-  	<![CDATA[
+  <![CDATA[
   	 SELECT *
   	 FROM 
   	     (
   	     SELECT rownum rn, r.*
-  	     FROM report r
+  	     FROM (SELECT * 
+                            FROM report
+                            ORDER BY re_code) r
   	     WHERE
   	      rownum <=#{pageNum} * #{amount} 
   	  ]]> 
@@ -69,8 +71,10 @@
   	 SELECT *
   	 FROM 
   	     (
-  	     SELECT rownum rn, r.*
-  	     FROM report r
+  	      SELECT rownum rn, r.*
+  	     FROM (SELECT * 
+               FROM report
+               ORDER BY re_code) r
   	     WHERE re_result is null AND rownum <=#{pageNum} * #{amount}
   	     
   	     ]]>
@@ -123,7 +127,9 @@
   	 FROM 
   	     (
   	     SELECT rownum rn, r.*
-  	     FROM report r
+  	     FROM (SELECT * 
+               FROM report
+               ORDER BY re_code) r
   	     WHERE re_result ='Y' AND rownum <=#{pageNum} * #{amount}
   	     
   	     ]]>
@@ -159,7 +165,9 @@
   	 FROM 
   	     (
   	     SELECT rownum rn, r.*
-  	     FROM report r
+  	     FROM (SELECT * 
+               FROM report
+               ORDER BY re_code) r
   	     WHERE re_result ='D' AND rownum <=#{pageNum} * #{amount}
   	     
   	     ]]>
@@ -203,5 +211,27 @@
                                      )
   ]]>
   </update>
+  
+  
+  <select id="getBlackListWithPaging" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+  	<![CDATA[
+  	 SELECT *
+  	 FROM 
+  	     (
+  	     SELECT rownum rn, r.*
+  	     FROM (SELECT * 
+               FROM vw_blacklist
+               ORDER BY email) r
+  	     WHERE rownum <=#{pageNum} * #{amount}
+  	     
+  	     ]]>
+  	    <!-- <include refid="criteria"></include>-->
+  	 <![CDATA[    
+  	 	
+  	     )
+  	 WHERE rn > (#{pageNum}-1 )* #{amount}
+  	]]>
+  
+  </select>
 
 </mapper>

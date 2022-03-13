@@ -30,8 +30,8 @@ public class AdminBoardController {
 		return "admin/board/mangeSellerBoard";
 	}
 	
-	@PostMapping("/ajaxDetailBoard.do")
 	@ResponseBody
+	@PostMapping("/ajaxDetailBoard.do")
 	public AdminAuthorVO ajaxDetailBoard(AdminAuthorVO vo) {
 		return adminBoardDao.getBoardInfo(vo.getNo_code());
 	}

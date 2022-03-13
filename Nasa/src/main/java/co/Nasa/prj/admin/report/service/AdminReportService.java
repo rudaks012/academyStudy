@@ -41,5 +41,8 @@ public interface AdminReportService {
 	//블랙리스트 한달정지
 	public void scheduleMemberBlackList();
 	
+	//블랙리스트
+	public List<AdminAuthorVO> getBlackListWithPaging(Criteria cri);
+	
 	
 }

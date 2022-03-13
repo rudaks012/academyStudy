@@ -101,9 +101,7 @@
                         <li class="nav-item  mr-5">
                            <i class="icon-user mr-1"></i> 관리자님 환영합니다
                         </li>
-                        <li class="nav-item d-flex align-items-center">
-                            <a class="dropdown-item" href="javascript:void(0)"><i class=" far fa-bell mr-2"></i> 오늘의 신고 <span class="text-danger">3</span>회</a>
-                         </li>
+                        
                         <li class="nav-item">
                             <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power"
                                 class="svg-icon mr-2 ml-1"></i>

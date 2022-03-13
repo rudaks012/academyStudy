@@ -116,6 +116,12 @@ public class AdminReportController {
 		model.addAttribute("total", reportDao.totalReportRefuse(cri));
 		return "admin/report/reportRefuse";
 	}
+	
+	 @RequestMapping("/manage_blackList.do")
+	 public String manage_blackList(Model model,Criteria cri) {
+		 model.addAttribute("blackList", reportDao.getBlackListWithPaging(cri));
+		 return "admin/report/manageBlackList";
+	 }
 
 	
 	 //블랙리스트 한달정지 스케줄러
