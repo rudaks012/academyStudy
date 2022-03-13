@@ -25,6 +25,19 @@
        .card-body {
            cursor:pointer;
        }
+
+       .wishplus {
+           color: pink;
+           cursor: pointer;
+       }
+
+       .wishplus:hover {
+           color: black;
+       }
+
+       .wishminus:hover {
+           color: black;
+       }
    </style>
 </head>
 <body>
@@ -369,7 +382,11 @@
                             <div class="list-footer">
                                 <ul>
                                     <li href="경만님이하실것....">채팅하기</li>
-                                    <li>찜하기</li>
+                                    <c:if test="${author eq 'B'}">
+                                        <li><i class="fa fa-heart wishplus" data-toggle="tooltip" data-placement="top" title="위시리스트 추가" onclick="wishplus(this, '${bestseller.s_nickname}')"></i>
+                                            <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${bestseller.s_nickname}')" style="display:none"></i></li>
+                                    </c:if>
+                                    <!--<li>찜하기</li>-->
                                 </ul>
                             </div>
                         </div>
@@ -410,5 +427,43 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+	          $('[data-toggle="tooltip"]').tooltip();   
+    });
+    function wishplus(event, nickname) {
+        $.ajax({
+            url:"wishplus.do",
+            type:"post",
+            data:{
+                nickname:nickname
+            },
+            success: function(code) {
+                if(code == "plus") {
+                    $(event).hide();
+                    console.log(event.nextSibling);
+                    $(event.nextElementSibling).show();
+                }
+            }
+        })
+    }
+
+    function wishminus(event, nickname) {
+        $.ajax({
+            url:"wishminus.do",
+            type:"post",
+            data:{
+                nickname:nickname
+            },
+            success: function(code) {
+                if(code == "minus") {
+                    $(event).hide();
+                    $(event.previousElementSibling).show();
+                }
+            }
+        })
+    }
+</script>
 </body>
 </html>
