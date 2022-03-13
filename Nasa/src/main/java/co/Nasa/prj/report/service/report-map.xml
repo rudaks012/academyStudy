@@ -8,10 +8,17 @@
 	</select>
 	
 	<select id="selectSellerReportList" resultType="co.Nasa.prj.comm.VO.ReportVO">
-		SELECT *
-		FROM REPORT
-		WHERE RE_REPORTER = #{re_reporter}
-		ORDER BY RE_DATE DESC
+		SELECT	*
+		FROM	(
+				 SELECT	ROWNUM RN, A.*
+				 FROM	(
+					SELECT *
+					FROM REPORT
+					WHERE RE_REPORTER = #{re_reporter}
+					ORDER BY RE_DATE DESC
+				) A
+		)		
+		WHERE	RN BETWEEN #{start} AND #{end}
 	</select>
 	
 	<insert id="insertBuyerReportsSeller" parameterType="co.Nasa.prj.comm.VO.ReportVO">
@@ -70,5 +77,10 @@
 		FROM	REPORT
 		WHERE	RE_REPORTER = #{re_reporter}
 	</select>
-
+	
+	<select id = "countPagingSellerReport" resultType = "int">
+		SELECT	COUNT(*)
+		FROM REPORT
+		WHERE RE_REPORTER = #{re_reporter}
+	</select>
 </mapper>

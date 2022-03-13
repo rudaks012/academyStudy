@@ -133,9 +133,9 @@
 																		<!-- <span>Open</span> -->
 																	</div>
 																	<div class="list-caption">
-																		<span>Open</span>
+																		<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${promotion.pro_service }'">Open</span>
 																		<h3>
-																			<a href="listing_details.html">${promotion.ser_title }</a>
+																			<a href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
 																		</h3>
 																		<p>프로모션 코드 : p${promotion.pro_code }</p>
 																		<p>프로모션 일자 : ${fn:substring(promotion.pro_start,0,10) } ~ ${fn:substring(promotion.pro_end,0,10) }</p>
@@ -143,7 +143,7 @@
 																		<div class="list-footer" style="display: block;">
 																			<ul>
 																				<li>
-																					<button type="button" class="genric-btn danger-border circle" onclick="promEnd('${promotion.pro_service }')">종료</button>
+																					<button type="button" class="genric-btn danger-border circle" onclick="promEnd('${promotion.pro_code }','${promotion.pro_service }')">종료</button>
 																				</li>
 
 																			</ul>
@@ -173,6 +173,7 @@
 																						id="prvimg" alt="">
 																				</div>
 																				<div class="list-caption">
+																					<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${promotion.pro_service }'">Open</span>
 																					<h3>
 																						<a href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
 																					</h3>
@@ -182,7 +183,7 @@
 																					<div class="list-footer" style="display: block;">
 																						<ul>
 																							<li>
-																								<button type="button" class="genric-btn danger-border circle" onclick="promCancel('${promotion.pro_service }')">취소</button>
+																								<button type="button" class="genric-btn danger-border circle" onclick="promCancel('${promotion.pro_code }','${promotion.pro_service }')">취소</button>
 																							</li>
 
 																						</ul>
@@ -210,7 +211,7 @@
 																		<!-- <span>Open</span> -->
 																	</div>
 																	<div class="list-caption">
-																		<span>Open</span>
+																		
 																		<h3>
 																			<a href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
 																		</h3>
@@ -271,12 +272,12 @@
 	</section>
 <script>
 
-	function promCancel(pro_service){
+	function promCancel(pro_code, pro_service){
 		if(confirm("프로모션을 취소하시겠습니까?")){
 			$.ajax({
 				url:"promotionCancel.do",
 				type: "post",
-				data: {pro_service : pro_service},
+				data: {pro_code:pro_code, pro_service : pro_service},
 				dataType: "text",
 				success: function(result){
 					if(result == 'T'){
@@ -294,12 +295,12 @@
 	}
 	
 	
-	function promEnd(pro_service){
+	function promEnd(pro_code,pro_service){
 		if(confirm("프로모션을 종료하시겠습니까?" )){
 			$.ajax({
 				url:"promotionEnd.do",
 				type: "post",
-				data: {pro_service : pro_service},
+				data: {pro_code:pro_code, pro_service : pro_service},
 				dataType: "text",
 				success: function(result){
 					if(result == 'T'){

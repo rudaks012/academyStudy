@@ -132,6 +132,43 @@ public class PaymentServiceImpl implements PaymentService {
 		return map.updateChaypayment(vo);
 	}
 
+	@Override
+	public List<PaymentVO> sellermonthSearch(PaymentVO vo) {
+		return map.sellermonthSearch(vo);
+	}
+
+	@Override
+	public List<PaymentVO> sellersixmonthSearch(PaymentVO vo) {
+		return map.sellersixmonthSearch(vo);
+	}
+
+	@Override
+	public List<PaymentVO> selleryearSearch(PaymentVO vo) {
+		return map.selleryearSearch(vo);
+	}
+
+	@Override
+	public List<PaymentVO> sellerselectdateSearch(PaymentVO vo) {
+		return map.selectdateSearch(vo);
+	}
+
+
+	@Override
+	public int countPagingSellerPayment(PaymentVO vo) {
+		return map.countPagingSellerPayment(vo);
+	}
+
+	@Override
+	public int sellercountservice(HashMap<String, String> hmap) {
+		return map.sellercountservice(hmap);
+	}
+
+	@Override
+	public PaymonthVO sellerTotalservice(HashMap<String, String> totalmap) {
+		return map.sellerTotalservice(totalmap);
+	}
+
+	
 	
 
 }

@@ -128,33 +128,7 @@ hr{
 										
 								
 
-									<!-- <div style="margin-top: 40px;">
-										<div class="card mb-4">
-											<div class="container pb-0 py-lg-5">
-												<div class="row">
-													<div class="col-6 col-md-6">
-														<div class="fables-counter">
-															<h2
-																class="fables-counter-value font-40 font-weight-bold mb-3 fables-forth-text-color border fables-second-border-color d-inline-block px-4 py-2 mb-4"
-																data-count="307">123</h2>
-															<h3 class="font-14 semi-font fables-forth-text-color">총
-																매출액</h3>
-														</div>
-													</div>
-													<div class="col-6 col-md-6">
-														<div class="fables-counter">
-															<h2
-																class="fables-counter-value font-40 font-weight-bold mb-3 fables-forth-text-color border fables-second-border-color d-inline-block px-4 py-2 mb-4"
-																data-count="95">12312</h2>
-															<h3 class="font-14 semi-font fables-forth-text-color">총
-																수수료</h3>
-														</div>
-													</div>
-
-												</div>
-											</div>
-										</div>
-									</div> -->
+								
 
 									<div style="margin-top: 40px;">
 										<div class="card">
@@ -162,75 +136,97 @@ hr{
 												<h4 class="card-title"></h4>
 												<div style="width: 100%;">
 													<canvas id="myChart"></canvas>
-													<!-- <table class="table table-bordered thead-light  text-center">
+													<br /><br />
+													<table class="table table-bordered thead-light  text-center">
 													<thead>
 														<tr>
 															<th></th>
-															<th class="table-active">1월</th>
-															<th class="table-active">2월</th>
-															<th class="table-active">3월</th>
-															<th class="table-active">4월</th>
-															<th class="table-active">5월</th>
-															<th class="table-active">6월</th>
-															<th class="table-active">7월</th>
-															<th class="table-active">8월</th>
-															<th class="table-active">9월</th>
-															<th class="table-active">10월</th>
-															<th class="table-active">11월</th>
-															<th class="table-active">12월</th>
+															<th colspan="4" class="table-primary">판매수량</th>
+															<th colspan="4" class="table-primary">판매금액</th>
+															<th colspan="4" class="table-primary">판매수수료</th>
 														</tr>
 													</thead>
 													<tbody>
-														<tr class="totalsum">
-															<td class="table-primary">누적판매수량</td>
-															<td class="count1"></td>
-															<td class="count2"></td>
-															<td class="count3"></td>
-															<td class="count4"></td>
-															<td class="count5"></td>
-															<td class="count6"></td>
-															<td class="count7"></td>
-															<td class="count8"></td>
-															<td class="count9"></td>
-															<td class="count10"></td>
-															<td class="count11"></td>
-															<td class="count12"></td>
-							
+														<tr>
+															<td class="table-active">1월</td>
+															<td class="count1" colspan="4"></td>
+															<td id="sum1" colspan="4"></td>
+															<td id="susu1" colspan="4"></td>
 														</tr>
 														<tr>
-															<td class="table-primary">누적판매금액</td>
-															<td id="sum1"></td>
-															<td id="sum2"></td>
-															<td id="sum3"></td>
-															<td id="sum4"></td>
-															<td id="sum5"></td>
-															<td id="sum6"></td>
-															<td id="sum7"></td>
-															<td id="sum8"></td>
-															<td id="sum9"></td>
-															<td id="sum10"></td>
-															<td id="sum11"></td>
-															<td id="sum12"></td>
-							
+															<td class="table-active">2월</td>
+															<td class="count2" colspan="4"></td>
+															<td id="sum2" colspan="4"></td>
+															<td id="susu2" colspan="4"></td>
 														</tr>
 														<tr>
-															<td class="table-primary">누적판매수수료</td>
-															<td id="susu1"></td>
-															<td id="susu2"></td>
-															<td id="susu3"></td>
-															<td id="susu4"></td>
-															<td id="susu5"></td>
-															<td id="susu6"></td>
-															<td id="susu7"></td>
-															<td id="susu8"></td>
-															<td id="susu9"></td>
-															<td id="susu10"></td>
-															<td id="susu11"></td>
-															<td id="susu12"></td>
+															<td class="table-active">3월</td>
+															<td class="count3" colspan="4"></td>
+															<td id="sum3" colspan="4"></td>
+															<td id="susu3" colspan="4"></td>
 														</tr>
-							
+														<tr>
+															<td class="table-active">4월</td>
+															<td class="count4" colspan="4"></td>
+															<td id="sum4" colspan="4"></td>
+															<td id="susu4" colspan="4"></td>
+														</tr>
+														<tr>
+															<td class="table-active">5월</td>
+															<td class="count5" colspan="4"></td>
+															<td id="sum5" colspan="4"></td>
+															<td id="susu5" colspan="4"></td>
+														</tr>
+														<tr>
+															<td class="table-active">6월</td>
+															<td class="count6" colspan="4"></td>
+															<td id="sum6" colspan="4"></td>
+															<td id="susu6" colspan="4"></td>
+														</tr>
+														<tr>
+															<td class="table-active">7월</td>
+															<td class="count7" colspan="4"></td>
+															<td id="sum7" colspan="4"></td>
+															<td id="susu7" colspan="4"></td>
+														</tr>
+														<tr>
+															<td class="table-active">8월</td>
+															<td class="count8" colspan="4"></td>
+															<td id="sum8" colspan="4"></td>
+															<td id="susu8" colspan="4"></td>
+														</tr>
+														<tr>
+															<td class="table-active">9월</td>
+															<td class="count9" colspan="4"></td>
+															<td id="sum9" colspan="4"></td>
+															<td id="susu9" colspan="4"></td>
+														</tr>
+														<tr>
+															<td class="table-active">10월</td>
+															<td class="count10" colspan="4"></td>
+															<td id="sum10" colspan="4"></td>
+															<td id="susu10" colspan="4"></td>
+														</tr>
+														<tr>
+															<td class="table-active">11월</td>
+															<td class="count11" colspan="4"></td>
+															<td id="sum11" colspan="4"></td>
+															<td id="susu11" colspan="4"></td>
+														</tr>
+														<tr>
+															<td class="table-active">12월</td>
+															<td class="count12" colspan="4"></td>
+															<td id="sum12" colspan="4"></td>
+															<td id="susu12" colspan="4"></td>
+														</tr>
+														<tr>
+															<td class="table-active">총 합</td>
+															<td class="totalcount" colspan="4"></td>
+															<td class="totalsum" colspan="4"></td>
+															<td class="totalsusu" colspan="4"></td>
+														</tr>
 													</tbody>
-												</table> -->
+												</table> 
 												</div>
 											</div>
 										</div>
@@ -361,10 +357,52 @@ hr{
 				}
 			}
 		});
+			
+			var temp = $("select[name='service'] option:Selected").val();
+			var temp2 = $("select[name='chart'] option:Selected").val();
+			
+			$.ajax({
+				url: "sellerajaxcountService.do",
+				dataType: "json",
+				type: "POST",
+				data: {scode:temp, year:temp2},
+				success: function (data) {
+					document.querySelector(".count1").innerText = data[0];
+					document.querySelector(".count2").innerText = data[1];
+					document.querySelector(".count3").innerText = data[2];
+					document.querySelector(".count4").innerText = data[3];
+					document.querySelector(".count5").innerText = data[4];
+					document.querySelector(".count6").innerText = data[5];
+					document.querySelector(".count7").innerText = data[6];
+					document.querySelector(".count8").innerText = data[7];
+					document.querySelector(".count9").innerText = data[8];
+					document.querySelector(".count10").innerText = data[9];
+					document.querySelector(".count11").innerText = data[10];
+					document.querySelector(".count12").innerText = data[11];
+				},
+				error: function (data) {
+					console.log(data);
+				}
+			})
+			
+			$.ajax({
+				url: "sellerTotalservice.do",
+				dataType: "json",
+				type: "POST",
+				data: {scode:temp, year:temp2},
+				success: function (data) {
+					document.querySelector(".totalcount").innerText = data.totalcount;
+					document.querySelector(".totalsum").innerText = data.totalsum;
+					document.querySelector(".totalsusu").innerText = data.totalsusu;
+					
+				},
+				error: function (data) {
+					console.log(data);
+				}
+			})
+				
 		}
 		//차트 데이터 추가
-
-
 		function testFnc() {
 			var list = [];
 			var temp = $("select[name='service'] option:Selected").val();
@@ -382,6 +420,18 @@ hr{
 	    			}
 	    		});	
 	    		console.log("list = " + list);
+	    		document.querySelector("#sum1").innerHTML = list[0]
+				document.querySelector("#sum2").innerHTML = list[1]
+				document.querySelector("#sum3").innerHTML = list[2]
+				document.querySelector("#sum4").innerHTML = list[3]
+				document.querySelector("#sum5").innerHTML = list[4]
+				document.querySelector("#sum6").innerHTML = list[5]
+				document.querySelector("#sum7").innerHTML = list[6]
+				document.querySelector("#sum8").innerHTML = list[7]
+				document.querySelector("#sum9").innerHTML = list[8]
+				document.querySelector("#sum10").innerHTML = list[9]
+				document.querySelector("#sum11").innerHTML = list[10]
+				document.querySelector("#sum12").innerHTML = list[11]
 	    		return list;
 			
 		}
@@ -401,102 +451,27 @@ hr{
     				for(data of Object.keys(datas)){
     					list2.push(datas[data]);
     				}
+    				
     			}
     		});	
 			console.log("list2 = " + list2);
+			
+			document.querySelector("#susu1").innerHTML = list2[0];
+			document.querySelector("#susu2").innerHTML = list2[1];
+			document.querySelector("#susu3").innerHTML = list2[2];
+			document.querySelector("#susu4").innerHTML = list2[3];
+			document.querySelector("#susu5").innerHTML = list2[4];
+			document.querySelector("#susu6").innerHTML = list2[5];
+			document.querySelector("#susu7").innerHTML = list2[6];
+			document.querySelector("#susu8").innerHTML = list2[7];
+			document.querySelector("#susu9").innerHTML = list2[8];
+			document.querySelector("#susu10").innerHTML = list2[9];
+			document.querySelector("#susu11").innerHTML = list2[10];
+			document.querySelector("#susu12").innerHTML = list2[11];
+			
 			return list2;
 		}
-		//여기는 페이지가 그려주면서 ajax 동시에 시작
-		/* window.addEventListener('load', function () {
-			$.ajax({
-				url: "ajaxsalesTable.do",
-				dataType: "json",
-				type: "POST",
-				success: function (data) {
-					document.querySelector("#sum1").innerHTML = data[0]
-					document.querySelector("#sum2").innerHTML = data[1]
-					document.querySelector("#sum3").innerHTML = data[2]
-					document.querySelector("#sum4").innerHTML = data[3]
-					document.querySelector("#sum5").innerHTML = data[4]
-					document.querySelector("#sum6").innerHTML = data[5]
-					document.querySelector("#sum7").innerHTML = data[6]
-					document.querySelector("#sum8").innerHTML = data[7]
-					document.querySelector("#sum9").innerHTML = data[8]
-					document.querySelector("#sum10").innerHTML = data[9]
-					document.querySelector("#sum11").innerHTML = data[10]
-					document.querySelector("#sum12").innerHTML = data[11]
-
-					//여기부터는 수수료 계산
-					document.querySelector("#susu1").innerHTML = data[0] * 0.1;
-					document.querySelector("#susu2").innerHTML = data[1] * 0.1;
-					document.querySelector("#susu3").innerHTML = data[2] * 0.1;
-					document.querySelector("#susu4").innerHTML = data[3] * 0.1;
-					document.querySelector("#susu5").innerHTML = data[4] * 0.1;
-					document.querySelector("#susu6").innerHTML = data[5] * 0.1;
-					document.querySelector("#susu7").innerHTML = data[6] * 0.1;
-					document.querySelector("#susu8").innerHTML = data[7] * 0.1;
-					document.querySelector("#susu9").innerHTML = data[8] * 0.1;
-					document.querySelector("#susu10").innerHTML = data[9] * 0.1;
-					document.querySelector("#susu11").innerHTML = data[10] * 0.1;
-					document.querySelector("#susu12").innerHTML = data[11] * 0.1;
-				},
-				error: function (data) {
-					console.log(data);
-				}
-			})
-			$.ajax({
-				url: "ajaxcountService.do",
-				dataType: "json",
-				type: "POST",
-				success: function (data) {
-					document.querySelector(".count1").innerText = data[0];
-					document.querySelector(".count2").innerText = data[1];
-					document.querySelector(".count3").innerText = data[2];
-					document.querySelector(".count4").innerText = data[3];
-					document.querySelector(".count5").innerText = data[4];
-					document.querySelector(".count6").innerText = data[5];
-					document.querySelector(".count7").innerText = data[6];
-					document.querySelector(".count8").innerText = data[7];
-					document.querySelector(".count9").innerText = data[8];
-					document.querySelector(".count10").innerText = data[9];
-					document.querySelector(".count11").innerText = data[10];
-					document.querySelector(".count12").innerText = data[11];
-				},
-				error: function (data) {
-					console.log(data);
-				}
-			}) */
-		/* 	$.ajax({
-				url: "selectYearchart.do",
-				dataType: "json",
-				type: "POST",
-				success: function (data) {
-					console.log(data);
-					document.querySelector("#yearseller1").innerHTML = data[0];
-					document.querySelector("#yearseller2").innerHTML = data[1];
-					document.querySelector("#yearseller3").innerHTML = data[2];
-
-					//연도별 수수료 계산
-					document.querySelector("#yearsusu1").innerHTML = data[0] * 0.1;
-					document.querySelector("#yearsusu2").innerHTML = data[1] * 0.1;
-					document.querySelector("#yearsusu3").innerHTML = data[2] * 0.1;
-				}
-			})
-
-			$.ajax({
-				url: "countYearChart.do",
-				dataType: "json",
-				type: "POST",
-				success: function (data) {
-					console.log("카운트 data",data);
-					document.querySelector("#yearcount1").innerHTML = data[0];
-					document.querySelector("#yearcount2").innerHTML = data[1];
-					document.querySelector("#yearcount3").innerHTML = data[2];
-				}
-			}) */
-
-
-	/* 	}) */
+	
 	
 	</script>
 </body>

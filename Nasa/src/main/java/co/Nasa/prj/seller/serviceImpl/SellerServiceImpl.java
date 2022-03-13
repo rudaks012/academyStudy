@@ -79,4 +79,10 @@ public class SellerServiceImpl implements SellerService {
 
 	}
 
+
+	@Override
+	public Integer sellerRank(String s_email) {
+		return map.sellerRank(s_email);
+	}
+
 }

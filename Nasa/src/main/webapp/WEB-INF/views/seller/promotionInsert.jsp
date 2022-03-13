@@ -590,11 +590,16 @@ p {
 				console.log(start);
 				console.log(end);
 				
+				var today = new Date();
+				var year = today.getFullYear();
+				var month = ('0' + (today.getMonth() + 1)).slice(-2);
+				var day = ('0' + today.getDate()).slice(-2);
+				var dateString = year + '-' + month  + '-' + day;
+				console.log(dateString);
 				
-				
-				$("#startdate").attr('min', start);
+				$("#startdate").attr('min', dateString);
 				$("#startdate").attr('max', end);
-				$("#enddate").attr('min', start);
+				$("#enddate").attr('min', dateString);
 				$("#enddate").attr('max', end);
 			}
 			else if(curStep == 3){

@@ -24,6 +24,7 @@ import co.Nasa.prj.buyer.service.BuyerMapper;
 import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.Review_CommentVO;
+import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.review.service.ReviewMapper;
 import co.Nasa.prj.review_comment.service.Review_CommentMapper;
 import co.Nasa.prj.service.service.ServiceMapper;
@@ -120,7 +121,9 @@ public class ReviewController {
 	@RequestMapping("/sellerReview.do")
 	public String sellerReview(Model model, HttpSession session) {
 		String s_email = (String)session.getAttribute("id");
-		model.addAttribute("serviceList", serviceDao.serviceSelectList(s_email));
+		ServiceVO vo = new ServiceVO();
+		vo.setS_email(s_email);
+		model.addAttribute("serviceList", serviceDao.serviceSelectList(vo));
 		model.addAttribute("reviewList", reviewDao.sellerReviewList(s_email));
 //		
 //		Review_CommentVO vo2 = new Review_CommentVO();

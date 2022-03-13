@@ -40,4 +40,9 @@ public class PowerServiceServiceImpl implements PowerServiceService {
 		return map.powerServiceOverlap(vo);
 	}
 
+	@Override
+	public List<PowerServiceVO> sellerPowerserviceList(PowerServiceVO vo) {
+		return map.sellerPowerserviceList(vo);
+	}
+
 }

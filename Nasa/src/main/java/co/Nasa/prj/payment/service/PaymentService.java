@@ -60,4 +60,13 @@ public interface PaymentService {
    
    //판매자 결제조회
    List<PaymentVO> sellerPaymentList(PaymentVO vo);
+   
+   int sellercountservice(HashMap<String, String> hmap);
+   PaymonthVO sellerTotalservice(HashMap<String, String> totalmap);
+   
+   public int countPagingSellerPayment(PaymentVO vo);
+   public List<PaymentVO> sellermonthSearch(PaymentVO vo);
+   public List<PaymentVO> sellersixmonthSearch(PaymentVO vo);
+   public List<PaymentVO> selleryearSearch(PaymentVO vo);
+   public List<PaymentVO> sellerselectdateSearch(PaymentVO vo);
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -363,7 +364,10 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 /* 직접 설정한 스타일들!!!!!!!! */
 
-
+.des{
+	color: gray;
+	font-size: 15px;
+}
 </style>
 </head>
 <body>
@@ -376,25 +380,52 @@ Remove or comment-out the code block below to see how the browser will fall-back
 			<div class="row justify-content-center">
 				<div class="profile">
 					<div class="profile-image">
-						<img src="assets/img/test/profiletest.jpg" alt=""
-							style="width: 155px; height: 155px;">
+						<c:choose>
+							<c:when test="${empty sellerInfo.s_img }">
+								<img src="resources/user/assets/img/profile/search-default-profile.jpg" alt="" style="width: 155px; height: 155px;">
+							</c:when>
+							<c:otherwise>
+								<img src="${sellerInfo.s_img }" alt="" style="width: 155px; height: 155px;">
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div class="profile-user-settings">
-						<h1 class="profile-user-name">판매자명</h1>
+						<h1 class="profile-user-name">${sellerInfo.s_nickname }</h1>
 						<a href="sellerUpdate.do" class="bttn profile-edit-bttn" style="height: 30px; font-size: 15px;">정보 수정</a>
 					</div>
 					<div class="profile-stats">
 						<ul>
-							<li style="font-size: 20px;"><span
-								class="profile-stat-count">등급 : </span> 지구 <a
-								class="genric-btn primary-border circle arrow"
-								style="width: 30px; height: 20px;">?</a></li>
+							<li id="gradeinfo" style="font-size: 15px;">
+								<c:choose>
+									<c:when test="${sellerInfo.s_rank eq '1' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 별">등급 : 별</span><button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 2% 감면혜택</span> 
+									</c:when>
+									<c:when test="${sellerInfo.s_rank eq '2' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 달">등급 : 달</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 5% 감면혜택</span> 
+									</c:when>
+									<c:when test="${sellerInfo.s_rank eq '3' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 태양">등급 : 태양</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 7% 감면혜택</span> 
+									</c:when>
+									<c:when test="${sellerInfo.s_rank eq '4' }">
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 지구">등급 : 지구</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 10% 감면혜택</span> 
+									</c:when>
+									<c:otherwise>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 확인불가">등급 : 등급확인불가</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button>
+									</c:otherwise>
+								</c:choose>
+								</li>
 						</ul>
 					</div>
 					<div class="profile-bio">
 						<p>
-							<span class="profile-real-name">Email : </span> email@mail.net <br />
-							<span class="profile-real-name">인기순위 : </span> 1등
+							<span class="profile-real-name">Email : </span> ${sellerInfo.s_email } <br />
+							<c:if test="${empty rank }">
+								<span class="profile-real-name">인기순위 : </span> -등
+							</c:if>
+							<c:if test="${not empty rank }">
+								<span class="profile-real-name">인기순위 : </span> ${rank }등
+							</c:if>
+							
 						</p>
 					</div>
 				</div>
@@ -510,6 +541,10 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	
 	
 	<script>
+	 $(document).ready(function(){
+         $('[data-toggle="tooltip"]').tooltip();   
+     });
+	 
 		function passconfirm() {
 			var pcfrm = $("#passwordconfirm").val()
 			console.log(pcfrm);

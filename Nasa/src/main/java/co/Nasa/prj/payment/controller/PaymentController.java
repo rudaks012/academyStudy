@@ -1,7 +1,12 @@
 package co.Nasa.prj.payment.controller;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.Nasa.prj.comm.VO.BuyerVO;
+import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.PaymonthVO;
 import co.Nasa.prj.payment.service.PaymentService;
@@ -45,11 +52,82 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("/sellerPayment.do")
-	public String sellerPayment(Model model, HttpSession session) {
-		PaymentVO vo = new PaymentVO();
-		vo.setS_email((String)session.getAttribute("id"));
-		model.addAttribute("sellerPayList",paymentDao.sellerPaymentList(vo));
+	public String sellerPayment(Model model, HttpSession session, PagingDTO pagingdto) {
+		PaymentVO paymentvo = new PaymentVO();
+		paymentvo.setS_email((String)session.getAttribute("id"));
+		
+		
+		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<PaymentVO> paymentList = paymentDao.sellerPaymentList(paymentvo);
+		pagingdto.setTotal(paymentDao.countPagingSellerPayment(paymentvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+//		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("address", "sellerPayment.do");
+		
+		
+		
+		model.addAttribute("sellerPayList",paymentList);
 		return "seller/sellerPayment";
 	}
 	
+	@RequestMapping("/sellermonthSearch.do")
+	public String monthSearch(Model model, HttpSession session, HttpServletResponse response,
+							  HttpServletRequest request, PagingDTO pagingdto) {
+		
+		PaymentVO paymentvo = new PaymentVO();
+		paymentvo.setS_email((String) session.getAttribute("id"));
+		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
+		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<PaymentVO> paymentList = paymentDao.sellermonthSearch(paymentvo);
+		pagingdto.setTotal(paymentDao.countMonthSearch(paymentvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("address", "sellermonthSearch.do");
+		
+		
+		return "seller/sellerPayment";
+	}
+	
+	@RequestMapping("/sellerajaxcountService.do")
+	@ResponseBody
+	public List<Integer> ajaxcountservice(HttpSession session, @RequestParam("scode") String scode, @RequestParam("year") String year) {
+		List<Integer> list = new ArrayList<Integer>();
+		String s_email = (String)session.getAttribute("id");
+		for (int i = 1; i < 13; i++) {
+			if(i <= 9) {
+				HashMap<String, String> hmap = new HashMap<String, String>();
+				String str = "0"+ i;
+				hmap.put("str", str);
+				hmap.put("s_code", scode);
+				hmap.put("s_email", s_email);
+				hmap.put("year", year);
+				list.add(paymentDao.sellercountservice(hmap));
+				
+			}else {
+				HashMap<String, String> hmap = new HashMap<String, String>();
+				hmap.put("str", Integer.toString(i));
+				hmap.put("s_code", scode);
+				hmap.put("s_email", s_email);
+				hmap.put("year", year);
+				list.add(paymentDao.sellercountservice(hmap));
+			}
+		}
+
+		return list;
+	}
+	
+	@RequestMapping("/sellerTotalservice.do")
+	@ResponseBody
+	public PaymonthVO sellerTotalservice(HttpSession session, @RequestParam("scode") String scode, @RequestParam("year") String year) {
+		String s_email = (String)session.getAttribute("id");
+		
+		HashMap<String, String> totalmap = new HashMap<String, String>();
+		totalmap.put("s_code", scode);
+		totalmap.put("s_email", s_email);
+		totalmap.put("year", year);
+		PaymonthVO vo = new PaymonthVO();
+		vo = paymentDao.sellerTotalservice(totalmap);
+			
+		return vo;
+	}
 }

@@ -46,7 +46,12 @@ public class ServiceVO {
 	String s_code;
 	String pay_enddate;
 	
-
+	String pro_start;
+	String pro_end;
+	String prodiscount;
+	String pro_max;
+	String power_max;
+	
 	// 페이징
 	int start;
 	int end;
