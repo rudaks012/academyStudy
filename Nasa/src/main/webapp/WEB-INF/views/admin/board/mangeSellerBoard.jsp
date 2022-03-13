@@ -86,7 +86,7 @@
                         </h5>
                 	    <div class="card">
                             <div class="card-body">
-                                <div class=" mb-3">총 <span class="mx-1 text-danger">50</span>건</div>
+                                <div class=" mb-3">총 <span class="mx-1 text-danger">${searchTotal }</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
@@ -109,28 +109,36 @@
 		                        </tbody>
 		                     </table>
 		
-			                     <div class="d-flex justify-content-center mt-5">
+			                    <div class="d-flex justify-content-center mt-5">
 			                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                                                        <span aria-hidden="true">«</span>
-                                                        <span class="sr-only">Previous</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                                                        <span aria-hidden="true">»</span>
-                                                        <span class="sr-only">Next</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
+			                            <ul class="pagination">
+			                                <c:if test="${pageMaker.prev }">
+			                                    <li class="page-item"><a class="page-link" href="${pageMaker.startPage -1 }"
+			                                            aria-label="Previous"> <span aria-hidden="true">«</span> <span
+			                                                class="sr-only">이전</span>
+			                                        </a></li>
+			                                </c:if>
+			                                <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+			                                    <li class="page-item ${pageMaker.cri.pageNum == num ? 'active':''}">
+			                                        <a class="page-link" href="${num }">${num }</a>
+			                                    </li>
+			                                </c:forEach>
+			                                <c:if test="${pageMaker.next }">
+			                                    <li class="page-item"><a class="page-link" href="${pageMaker.endPage + 1 }"
+			                                            aria-label="Next"> <span aria-hidden="true">»</span> <span
+			                                                class="sr-only">다음</span>
+			                                        </a></li>
+			                                </c:if>
+			                            </ul>
+			                        </nav>
 			                    </div>
 		                   </div>
+		                   
+		                   <form id="actionForm" action="go_admin.do" method="get">
+							 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+							 <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+							 
+						</form>
                			</div>
                 	</div>
                 	<div class="col-7">
@@ -147,19 +155,26 @@
                                     <tbody>
                                         <tr>
                                             <th class="table-primary align-middle">순번</th>
-                                            <td><input class="form-control custom-shadow " id="no_code" name="" value="" type="text" ></td>
+                                            <td width="100px"><input class="form-control custom-shadow " id="no_code" name="" value="" type="text" readonly></td>
                                             <th class="table-primary align-middle">아이디</th>
-                                            <td><input class="form-control custom-shadow" id="no_id" name="" value="" type="text" ></td>
+                                            <td><input class="form-control custom-shadow" id="no_id" name="" value="" type="text" readonly></td>
+                                            
+                                        </tr>
+                                         <tr>
+                                            <th class="table-primary align-middle">신고횟수</th>
+                                            <td width="100px"><input class="form-control custom-shadow " id="no_code" name="" value="" type="text" readonly></td>
+                                            <th class="table-primary align-middle">상태</th>
+                                            <td><input class="form-control custom-shadow" id="no_id" name="" value="" type="text" readonly></td>
                                             
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">제목</th>
-                                            <td><input class="form-control custom-shadow" id="no_title" name="" value="" type="text" ></td>
+                                            <td colspan="3"><input class="form-control custom-shadow" id="no_title" name="" value="" type="text" readonly></td>
                                             
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">등록날짜</th>
-                                            <td><input class="form-control custom-shadow" id="no_date" name="" value="" type="text" readonly></td>
+                                            <td colspan="3"><input class="form-control custom-shadow" id="no_date" name="" value="" type="text" readonly></td>
                                            
                                         </tr>
                                         
@@ -187,8 +202,16 @@
              
 <script>
 
+//전체목록 페이징처리
+let actionForm = $("#actionForm");
+$(".page-item a").on("click", function (e) {
+    e.preventDefault();
+    actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+    actionForm.submit();
+})
+
 	
-const paymentList = document.querySelectorAll(".boardList")
+const boardList = document.querySelectorAll(".boardList")
 
 const selectBoard=()=>{
 	const code = event.target.parentNode.firstChild.nextSibling.innerText;
@@ -197,7 +220,7 @@ const selectBoard=()=>{
 		type:"get",
 		data:{"no_code":code}
 	}).done(function(result){
-		
+		console.log(result)
 	})
 }
 
