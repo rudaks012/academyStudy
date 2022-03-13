@@ -15,4 +15,13 @@ public class PowerServiceVO {
 	String s_nickname;
 	String s_img;
 	String ser_title;
+	String ser_img;
+	String ser_price;
+	String cat_name;
+	String sub_name;
+	String ser_line;
+	
+	int reviewcount;
+	int reviewavg;
+	
 }

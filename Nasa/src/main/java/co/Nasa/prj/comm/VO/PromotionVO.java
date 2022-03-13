@@ -17,4 +17,13 @@ public class PromotionVO {
 	String ser_status;
 	String ser_start;
 	String ser_end;
+	
+	// 페이징
+	int start;
+	int end;
+	
+	public void calcStartEnd(int pageNum, int amount) {
+		setEnd(pageNum * amount);
+		setStart(getEnd() - amount + 1);
+	}
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.comm.VO.SellerVO;
+import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
 
@@ -30,13 +31,17 @@ public class SellerController {
 	ServiceService serviceDao;
 
 	@RequestMapping("/goSellerMypage.do")
-	public String goSellerMypage() {
+	public String goSellerMypage(HttpSession session, Model model) {
+		model.addAttribute("sellerInfo", sellerDAO.SellerSelect((String) session.getAttribute("id")));
+		model.addAttribute("rank", sellerDAO.sellerRank((String) session.getAttribute("id")));
 		return "seller/sellerMypage";
 	}
 
 	@RequestMapping("/sellerSales.do")
 	public String sellerSales(Model model, HttpSession session) {
-		model.addAttribute("serviceList", serviceDao.serviceSelectList((String) session.getAttribute("id")));
+		ServiceVO vo = new ServiceVO();
+		vo.setS_email((String) session.getAttribute("id"));
+		model.addAttribute("serviceList", serviceDao.serviceSelectList(vo));
 		model.addAttribute("seller", sellerDAO.SellerSelect((String) session.getAttribute("id")));
 		return "seller/sellerSales";
 	}
@@ -78,6 +83,9 @@ public class SellerController {
 	@RequestMapping("/sellerDetail.do")
 	public String sellerDetail(Model model, @RequestParam("s_email") String s_email) {
 		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(s_email));
+		ServiceVO vo = new ServiceVO();
+		vo.setS_email(s_email);
+		model.addAttribute("serviceList", serviceDao.sellerMainServiceList(vo));
 		return "seller/sellerDetail";
 	}
 

@@ -146,6 +146,21 @@ input[type=date] {
 /* .listing-details-area .single-listing .list-footer ul{
 	justify-content: right;
 } */
+
+.price{
+	text-align: right;
+	font-size: 25px !important;
+	font-weight: bold;
+}
+.category{
+	font-size: 13px;
+	color: gray;
+}
+.line{
+	text-align: right;
+	color: gray;
+	font-size: 13px;
+}
 </style>
 </head>
 <body>
@@ -202,6 +217,8 @@ input[type=date] {
 						</aside>
 					</div>
 				</div>
+				
+				
 				<!-- Right content -->
 				<div class="col-9">
 					<jsp:useBean id="now" class="java.util.Date" />
@@ -250,7 +267,7 @@ input[type=date] {
 														<div class="container">
 															<div class="row">
 
-																<c:forEach items="${serviceList }" var="service">
+																<c:forEach items="${sellerMainServiceList }" var="service">
 																	<c:if
 																		test="${service.ser_status eq 'N' && empty service.ser_end}">
 																		<div class="col-lg-6">
@@ -260,12 +277,18 @@ input[type=date] {
 																						id="prvimg" alt="">
 																				</div>
 																				<div class="list-caption">
+																				<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${service.ser_code  }'">Open</span>
+																					<div class="category">* ${service.category } > ${service.sub_category }</div>
+																					<div class="line"> ${service.ser_line }</div>
+																					<br/>
 																					<h3>
 																						<a
 																							href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
+																							 
 																					</h3>
-																					<div>번호 : s${service.ser_code }</div>
-
+																					<div>서비스번호 : s${service.ser_code }</div>
+																					<br/>
+																					<div class="price"> ₩ ${service.ser_price }</div>
 																					<div class="list-footer">
 																						<ul>
 																							<li >
@@ -279,7 +302,9 @@ input[type=date] {
 																									data-toggle="modal" data-target="#endModal"
 																									data-sercode="${service.ser_code }"
 																									data-sertitle="${service.ser_title }"
-																									data-end="${service.pay_enddate }">종료</button>
+																									data-end="${service.pay_enddate }"
+																									data-promax="${service.pro_max }"
+																									data-powermax="${service.power_max }">종료</button>
 
 																							</li>
 																						</ul>
@@ -301,9 +326,9 @@ input[type=date] {
 														<div class="container">
 															<div class="row">
 
-																<c:forEach items="${serviceList }" var="service">
+																<c:forEach items="${sellerMainServiceList }" var="service">
 																	<c:if
-																		test="${service.ser_status eq 'N' && !empty service.ser_end}">
+																		test="${service.ser_status eq 'N' && not empty service.ser_end}">
 																		<div class="col-lg-6">
 																			<div class="single-listing mb-30">
 																				<div class="list-img">
@@ -311,6 +336,8 @@ input[type=date] {
 																						id="prvimg" alt="">
 																				</div>
 																				<div class="list-caption">
+																				<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${service.ser_code  }'">Open</span>
+																					<div class="category">* ${service.category } > ${service.sub_category }</div><br/>
 																					<h3>
 																						<a
 																							href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
@@ -343,7 +370,7 @@ input[type=date] {
 														<div class="container">
 															<div class="row">
 
-																<c:forEach items="${serviceList }" var="service">
+																<c:forEach items="${sellerMainServiceList }" var="service">
 																	<c:if test="${service.ser_status eq 'Y'}">
 
 																		<div class="col-lg-6">
@@ -352,6 +379,7 @@ input[type=date] {
 																					<img src="fileupload/${service.ser_img }" alt="">
 																				</div>
 																				<div class="list-caption">
+																					<div class="category">* ${service.category } > ${service.sub_category }</div><br/>
 																					<h3>
 																						<a href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
 																					</h3>
@@ -377,10 +405,52 @@ input[type=date] {
 												
 											</div>
 											<div class="tab-pane fade" id="nav-review" role="tabpanel"
-												aria-labelledby="nav-info-tab">
-												<br /> <br />
-												<div class="row justify-content-center">3333</div>
+												aria-labelledby="nav-review-tab">
+												<div class="listing-details-area">
+														<div class="container">
+															<div class="row">
 
+																<c:forEach items="${powerList }" var="power">
+																	
+																		<div class="col-lg-6">
+																			<div class="single-listing mb-30">
+																				<div class="list-img">
+																					<img src="fileupload/${power.ser_img }" alt="">
+																				</div>
+																				<div class="list-caption">
+																					<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${power.ser_code  }'">Open</span>
+																					<div class="category">* ${power.cat_name } > ${power.sub_name }</div><br/>
+																					<h3>
+																						<a href="serviceDetail.do?ser_code=${power.ser_code }">${power.ser_title }</a>
+																					</h3>
+																					<div>번호 : s${power.ser_code }</div>
+																					<div class="list-footer">
+																						<ul>
+																							<li>
+																								<!-- <div style="margin-left: 210px;">
+																							<a href="#" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</a>
+																						</div> -->
+																					
+																							<c:if test="${fn:substring(power.power_start,0,10) <= today && fn:substring(power.power_end,0,10) >= today}">
+																								<div style="color:red;">*제공중인 서비스입니다.</div>
+																							</c:if>
+																							<c:if test="${fn:substring(power.power_start,0,10) > today }">
+																								<div >*제공예정인 서비스입니다.</div>
+																							</c:if>
+																							<c:if test="${fn:substring(power.power_start,0,10) < today && fn:substring(power.power_end,0,10) < today}">
+																								<div>*제공완료된 서비스입니다.</div>
+																							</c:if>
+																							</li>
+																						</ul>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	
+																</c:forEach>
+															</div>
+														</div>
+													</div>
 											</div>
 										</div>
 									</div>
@@ -441,7 +511,7 @@ input[type=date] {
 								<td>서비스선택</td>
 								<td><div class="default-select" id="default-select">
 										<select id="powerS"  name="ser_code" >
-											<c:forEach items="${serviceList }" var="service">
+											<c:forEach items="${sellerMainServiceList }" var="service">
 											<c:if test="${service.ser_status eq 'N'}">
 												<option value="${service.ser_code }">${service.ser_title}</option>
 												
@@ -449,7 +519,7 @@ input[type=date] {
 											</c:forEach>
 										</select>
 									</div>
-									<c:forEach items="${serviceList }" var="service">
+									<c:forEach items="${sellerMainServiceList }" var="service">
 										<c:if test="${service.ser_status eq 'N'}">
 											<input type="hidden" id="${service.ser_code }" value="${fn:substring(service.ser_end,0,10) }">
 										</c:if>
@@ -504,10 +574,10 @@ input[type=date] {
 							<td>의뢰 종료 예정 날짜</td>
 							<td><input type="text" id="ser_end" disabled></td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<td>프로모션 종료 날짜</td>
 							<td><input type="text" id="ser_proend" disabled></td>
-						</tr>
+						</tr> -->
 						<tr>
 							<td>파워서비스 종료 날짜</td>
 							<td><input type="text" id="ser_powerend" disabled></td>
@@ -529,122 +599,6 @@ input[type=date] {
 	</div>
 
 
-
-	<!-- <div class="modal fade" id="payModal" tabindex="-1" role="dialog"
-		aria-labelledby="payModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document" style="max-width: 400px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel"
-						style="text-align: center;">결제하기</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="">
-
-						<img src="assets/img/comment/comment_1.png"> <span>홍길동</span>
-					</div>
-					<div class="br">
-						<h3>웹개발1</h3>
-						<div>예상금액 : 2000원</div>
-					</div>
-					<table class="paytb">
-						<tr>
-							<td>서비스 금액</td>
-							<td><input type="text" placeholder="상대방과 협의한 금액을 입력해주세요"
-								style="width: 250px;"></td>
-						</tr>
-						<tr>
-							<td>서비스 진행일</td>
-							<td><input type="radio" name="paydate" value="ndate"
-								id="ndate" checked>정해진 날짜가 없어요 <br /> <input
-								type="radio" name="paydate" value="ydate" id="ydate">협의한
-								날짜가 있어요 <input type="date" id="conference"
-								style="display: none;"></td>
-						</tr>
-						<tr>
-							<td>결제수단</td>
-							<td><input type="radio" name="paymethod" value="creditpay"
-								checked>신용/체크카드 <input type="radio" name="paymethod"
-								value="kakaopay">카카오페이?</td>
-						</tr>
-						<tr>
-							<td>쿠폰</td>
-							<td>
-								<div class="default-select" id="coupon-select">
-									<select>
-										<option value="1">10%</option>
-										<option value="2">20%</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>서비스금액</td>
-							<td>50000원</td>
-						</tr>
-						<tr>
-							<td>쿠폰 할인</td>
-							<td style="color: red;">5000원</td>
-						</tr>
-
-					</table>
-					<div class="br">
-						<h6 style="display: inline;">최종 결제금액</h6>
-						<span style="font-weight: 200;">45000원</span>
-					</div>
-					<div class="br">
-						<span><input type="checkbox">개인정보수집 및 이용동의(필수)</span> <a
-							style="float: right;" data-toggle="modal" data-target="#useModal">보기</a>
-					</div>
-
-				</div>
-				<div class="modal-footer">
-					<a href="#" class="genric-btn primary  radius powerbtn"
-						data-toggle="modal" data-dismiss="modal">결제</a> <a href="#"
-						class="genric-btn primary radius powerbtn" data-dismiss="modal">취소</a>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-
-	<!-- <div class="modal fade" id="useModal" tabindex="-1" role="dialog"
-		aria-labelledby="useModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document"
-			style="max-width: 600px; margin: 12.75rem auto">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel"
-						style="text-align: center;">이용약관</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div>개인정보 수집 및 이용 동의(고객)</div>
-					<p>
-					<div>분류</div>
-					필수 정보
-
-					<div>수집∙이용 동의 목적</div>
-					안전결제 서비스 제공 및 소비자 분쟁 해결, 환불 처리
-
-					<div>항목</div>
-					결제 카드 번호, 계좌 정보(은행명, 예금주명, 계좌번호)
-
-					<div>보유∙이용 기간</div>
-					개인정보 이용목적 달성 시까지 보존합니다. 단, 관계 법령의 규정에 따라 보존이 필요한 경우 해당 기간까지 보존 후
-					지체없이 파기합니다. 개인정보 제공에 동의하지 않을 수 있으며 동의하지 않을 경우 서비스 이용이 제한될 수 있습니다.
-					</p>
-				</div>
-			</div>
-		</div>
-	</div> -->
 	<script>
 		$(function() { // actvie 활성화 
 			$(".nav-item > .active").css("color", "white");
@@ -686,8 +640,34 @@ input[type=date] {
 								sercode = $(event.relatedTarget).data("sercode");
 								sertitle = $(event.relatedTarget).data("sertitle");
 								serend = $(event.relatedTarget).data("end");
-
-								$.ajax({
+								promax = $(event.relatedTarget).data("promax");
+								powermax = $(event.relatedTarget).data("powermax");
+								
+								if (serend == '') {
+									$("#ser_end").val('-');
+								}else{
+									$("#ser_end").val(serend.substr(0, 10));
+								}
+								
+								/* if(promax == ''){
+									$("#ser_proend").val('-');
+								}else{
+									$("#ser_proend").val(promax.substr(0, 10));
+								} */
+								
+								if(powermax == ''){
+									$("#ser_powerend").val('-');
+								}else{
+									$("#ser_powerend").val(powermax.substr(0, 10));
+								}
+								
+								console.log(sercode);
+								console.log(sertitle);
+								console.log(serend);
+								console.log(promax);
+								console.log(powermax);
+								
+								/* $.ajax({
 									url : "endPromotion.do",
 									dataType : "text",
 									type : "post",
@@ -725,29 +705,41 @@ input[type=date] {
 									error : function(err) {
 										console.log(err);
 									}
-								})
-
+								}) */
+								
 								var reason = document.getElementById("ser_reason");
 								reason.value = '';
 								var end = document.getElementById("ser_cal");
 								end.value = '';
-
-								if (serend.substr(0, 10) != '') {
-									/* var today = new Date(serend.substr(0, 10));
+								
+								//종료일 체크
+								if (serend >= powermax) {
+								 	var today = new Date(serend.substr(0, 10));
 									today.setMonth(today.getMonth() + 1);
-									today.setDate(today.getDate() + 1);
+									today.setDate(today.getDate());
 
 									var year = today.getFullYear();
 									var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
 									var day = (today.getDate() < 10 ? '0' : '') + today.getDate();
 									date = year + '-' + month + '-' + day
 									console.log(date);
-									$("#ser_cal").attr('min', date); */
+									$("#ser_cal").attr('min', date);
 									console.log(serend.substr(0, 10))
-								} else {
+								} else if(serend < powermax){
+									var today = new Date(powermax.substr(0, 10));
+									today.setMonth(today.getMonth() + 1);
+									today.setDate(today.getDate());
+
+									var year = today.getFullYear();
+									var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
+									var day = (today.getDate() < 10 ? '0' : '')	+ today.getDate();
+									date = year + '-' + month + '-' + day
+									console.log(date);
+									$("#ser_cal").attr('min', date);
+								}else{
 									var today = new Date();
 									today.setMonth(today.getMonth() + 1);
-									today.setDate(today.getDate() + 1);
+									today.setDate(today.getDate());
 
 									var year = today.getFullYear();
 									var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
@@ -758,7 +750,7 @@ input[type=date] {
 								}
 								$(".endp").text(sertitle + '을(를) 종료하시겠습니까?');
 								$(".endp").attr('id', sercode);
-								$("#ser_end").val(serend.substr(0, 10));
+								
 
 							});
 				});
@@ -789,9 +781,10 @@ input[type=date] {
 				},
 				success : function(result) {
 					if (result == "T") {
-						alert('종료 예약되었습니다.');
-						$("#endbtn").data('dismiss', 'modal');
-					} else {
+						alert('종료 예약되었습니다.\n'+ser_end+'일 자정까지 서비스되며 익일 종료됩니다.');
+						location.href = "sellerService.do";
+					} else{
+						alert('일시적 오류로 종료 실패하였습니다.');
 						return;
 					}
 				}

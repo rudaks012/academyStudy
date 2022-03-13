@@ -1,5 +1,6 @@
 package co.Nasa.prj.promotion.serviceImpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,13 @@ public class PromotionServiceImpl implements PromotionService {
 	}
 
 	@Override
-	public int promotionCancel(String pro_service) {
-		return map.promotionCancel(pro_service);
+	public int promotionCancel(PromotionVO vo) {
+		return map.promotionCancel(vo);
 	}
 
 	@Override
-	public int promotionEnd(String pro_service) {
-		return map.promotionEnd(pro_service);
+	public int promotionEnd(PromotionVO vo) {
+		return map.promotionEnd(vo);
 	}
 
 	@Override
@@ -52,6 +53,21 @@ public class PromotionServiceImpl implements PromotionService {
 	@Override
 	public int endCheckPromotion() {
 		return map.endCheckPromotion();
+	}
+
+	@Override
+	public int serviceEndPromotion(PromotionVO vo) {
+		return map.serviceEndPromotion(vo);
+	}
+
+	@Override
+	public List<PromotionVO> promotionSelectList(PromotionVO vo) {
+		return map.promotionSelectList(vo);
+	}
+
+	@Override
+	public int serviceEndPromotion2(PromotionVO vo) {
+		return map.serviceEndPromotion2(vo);
 	}
 
 	

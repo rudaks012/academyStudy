@@ -31,5 +31,5 @@ public interface SellerMapper {
 	//채팅 셀러 등급조회
 	SellerVO ChatSellerselect(SellerVO vo);
 
-	
+	Integer sellerRank(String s_email);
 }

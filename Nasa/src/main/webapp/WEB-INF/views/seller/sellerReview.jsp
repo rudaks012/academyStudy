@@ -144,10 +144,12 @@
 															<span class="ml-4">평점 : ${review.rev_rate }</span> 
 															<span class="date">${review.rev_date }</span>
 															<p class="comment" >${review.rev_sub }</p>
-																<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-rere_code="${review.rev_code }"
+																<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" 
+																data-rere_code="${review.rev_code }"
 																	style="cursor: pointer;">신고</span>
 															<c:if test="${empty review.rere_code}">
-																<span class="btn-reply1" data-toggle="modal" data-target="#insertModal" id="b${review.rev_code }" data-insert_code="${review.rev_code }"
+																<span class="btn-reply1" data-toggle="modal" data-target="#insertModal" 
+																id="b${review.rev_code }" data-insert_code="${review.rev_code }"
 																	style="cursor: pointer;">답댓등록</span>
 															</c:if>		
 														</div>
@@ -341,22 +343,30 @@
   							$(".blog_details").append(div1.append(div2.append(div3.append(div4.append(div5.append(img))))));
   							
   							
-  							var div6= $("<div>").attr('class','desc');
+  							var div6= $("<div>").attr('class','desc').attr('id', 're'+data.rev_code);
   							var span1= $("<span>").attr('class','date1').html(data.rev_ser_name);
   							var span2= $("<span>").html(data.rev_name);
   							var span3= $("<span>").attr('class','ml-4').html('평점 : ' + data.rev_rate);
   							var span4= $("<span>").attr('class','date').html(data.rev_date);
   							var p=$("<p>").attr('class','comment').html(data.rev_sub);
-  						
-  							div3.append(div6.append(span1).append($("<br>")).append(span2).append(span3).append(span4).append(p)
-  							.append('<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-rere_code="${review.rev_code }" style="cursor: pointer;">신고</span>'));
+  							if(data.rere_code != null){
+  								div4.append(div6.append(span1).append($("<br>")).append(span2).append(span3).append(span4).append(p)
+  								.append('<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-rere_code="'+data.rev_code+'" style="cursor: pointer;">신고</span>'));
+  								
+  							}else{
+  	  							div4.append(div6.append(span1).append($("<br>")).append(span2).append(span3).append(span4).append(p)
+  	  	  						.append('<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-rere_code="'+data.rev_code+'" style="cursor: pointer;">신고</span>&nbsp;&nbsp;')
+  	  	  						.append('<span class="btn-reply1" data-toggle="modal" data-target="#insertModal" id="b'+data.rev_code+'" data-insert_code="'+data.rev_code+'" style="cursor: pointer;">답댓등록</span>')
+  	  	  						);
+
+  							}
   							if(data.rev_img != null){
-  								div3.append('<img class="revimg" src='+data.rev_img+' style="width: 200px; height: 100px;">');
+  								div4.append('<img class="revimg" src='+data.rev_img+' style="width: 200px; height: 100px;">');
   							}
   							
   							
   							if(data.rere_code != null){
-  								var $div1 = $("<div>").attr('class','comment-list left-padding');
+  								var $div1 = $("<div>").attr('class','comment-list left-padding').attr('id', 'r'+data.rev_code);
   								var $div2 =$("<div>").attr('class','single-comment justify-content-between d-flex');
   								var $div3 =$("<div>").attr('class','user justify-content-between d-flex');
   								var $div4 =$("<div>").attr('class','thumb');
@@ -453,7 +463,7 @@
 				success: function(result) {
 					if(result){
 						alert("삭제되었습니다.");	
-						 document.getElementById(code).remove();
+						 //document.getElementById(code).remove();
 						 /*let re = document.getElementById(insert);
 						let span = document.createElement('span');
 						span.innerHTML = '<span class="btn-reply1" data-toggle="modal" data-target="#insertModal" id="b'+rvcode.substr(7)+'" data-insert_code="'+rvcode.substr(7)+'" style="cursor: pointer;">답댓등록</span>';

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,14 +109,35 @@
                      <img src="${sellerInfo.s_img }" alt="">
                      <div class="media-body">
                         <a href="#">
+
+
                            <h4 style="display: inline;" id="detailname">${sellerInfo.s_name }</h4>
+
                         </a>
 
                         <div class="col-2" style="display: inline;"></div>
                         <h4 style="display: inline; margin-left: 140px;">${sellerInfo.s_address }</h4>
                         <div>
-                           <h4 style="display: inline;margin-top: 8px;">SW개발 > 웹개발</h4>
-                           <h4 style="display: inline; margin-left: 100px;">등급 : ${sellerInfo.s_rank }</h4>
+                          
+                           <c:choose>
+								<c:when test="${sellerInfo.s_rank eq '1' }">
+									등급 : 별
+								</c:when>
+								<c:when test="${sellerInfo.s_rank eq '2' }">
+									<p>등급 : 달</p>
+								</c:when>
+								<c:when test="${sellerInfo.s_rank eq '3' }">
+									<p>등급 : 태양</p>
+								</c:when>
+								<c:when test="${sellerInfo.s_rank eq '4' }">
+									<p>등급 : 지구</p>
+								</c:when>
+								<c:otherwise>
+									<p>등급 : 등급확인 불가</p>
+								</c:otherwise>
+							</c:choose>
+                           
+                           </h4>
                         </div>
                        
                      </div>
@@ -269,51 +291,27 @@
                               <div class="row justify-content-center">
                                  <div class="container">
                                     <div class="row">
-                                       <div class="col-lg-4">
+                                    <c:forEach items="${serviceList }" var="service">
+                                    <c:if test="${service.ser_status eq 'N'}">
+                                    	 <div class="col-lg-4">
                                           <div class="single-listing mb-30">
                                              <div class="list-img">
-                                                <img src="assets/img/gallery/list1.png" alt="" class="sercimg">
-                                                <!-- <span>Open</span> -->
+                                                <img src="fileupload/${service.ser_img}" alt="" class="sercimg">
+                                              
                                              </div>
                                              <div class="list-caption">
                      
-                                                <h3><a href="listing_details.html" class="serctitle">서비스명1</a></h3>
-                                                <p>서비스번호</p>
-                                                <p>서비스일자</p>
+                                                <h3><a href="serviceDetail.do?ser_code=${service.ser_code }" class="serctitle">${service.ser_title}</a></h3>
+                                                <p>서비스코드 : s${service.ser_code}</p>
+                                                <p>가격 : ${service.ser_price}</p>
                                                
                                              </div>
                                           </div>
                                        </div>
-                                       <div class="col-lg-4">
-                                          <div class="single-listing mb-30">
-                                             <div class="list-img">
-                                                <img src="assets/img/gallery/list2.png" alt="" class="sercimg">
-                                                <!-- <span>Open</span> -->
-                                             </div>
-                                             <div class="list-caption">
-                     
-                                                <h3><a href="listing_details.html" class="serctitle">서비스명2</a></h3>
-                                                <p>서비스번호</p>
-                                                <p>서비스일자</p>
-                                                
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="col-lg-4">
-                                          <div class="single-listing mb-30">
-                                             <div class="list-img">
-                                                <img src="assets/img/gallery/list3.png" alt="" class="sercimg">
-                                                <!-- <span>Open</span> -->
-                                             </div>
-                                             <div class="list-caption">
-                     
-                                                <h3><a href="listing_details.html" class="serctitle">서비스명3</a></h3>
-                                                <p>서비스번호</p>
-                                                <p>서비스일자</p>
-                                                
-                                             </div>
-                                          </div>
-                                       </div>
+                                    </c:if>
+                                    </c:forEach>
+                                      
+                                      
                      
                                     </div>
                                  </div>

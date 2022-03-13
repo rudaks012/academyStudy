@@ -26,5 +26,7 @@ public interface ReportService {
 	
 	// total count (buyer)
 	int countPagingBuyerReport(ReportVO vo);
+	
+	int countPagingSellerReport(ReportVO vo);
 
 }

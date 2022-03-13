@@ -10,4 +10,6 @@ public interface PowerServiceMapper {
 	int powerserviceInsert(PowerServiceVO vo);
 	int powerServiceCount(String power_start);
 	PowerServiceVO powerServiceOverlap(PowerServiceVO vo);
+	
+	List<PowerServiceVO> sellerPowerserviceList(PowerServiceVO vo);
 }
