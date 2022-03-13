@@ -222,6 +222,7 @@ public class HomeController {
 		JSONObject object = new JSONObject();
 		object.put("coupon", bvo.getBuyer_coupon());
 		String result = object.toJSONString();
+		System.out.println("바이어쿠폰||||||||||||||||||" + result);
 
 		return result;
 	}
