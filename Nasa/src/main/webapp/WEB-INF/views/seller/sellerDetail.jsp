@@ -108,7 +108,7 @@
                      <img src="${sellerInfo.s_img }" alt="">
                      <div class="media-body">
                         <a href="#">
-                           <h4 style="display: inline;">${sellerInfo.s_name }</h4>
+                           <h4 style="display: inline;" id="detailname">${sellerInfo.s_name }</h4>
                         </a>
 
                         <div class="col-2" style="display: inline;"></div>
@@ -342,7 +342,7 @@
                         <div>대한상공회의소·워드프로세서 2급·2003.12</div>
                         <div>한국생산성본부·ICDL Start Certificate·2012.11</div>
                         <div style="margin-top: 20px; text-align: center;">
-                           <button class="genric-btn primary e-large">문의하기</button>
+                           <button class="genric-btn primary e-large" onclick="">문의하기</button>
                         </div>
                      </aside>
 

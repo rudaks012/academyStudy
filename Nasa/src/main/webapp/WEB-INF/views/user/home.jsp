@@ -28,6 +28,7 @@
    </style>
 </head>
 <body>
+
 <!-- Hero Start-->
 <div class="hero-area3 hero-overly2 d-flex align-items-center ">
     <div class="container" style="margin-top: 65px;">
@@ -364,11 +365,11 @@
                         </div>
                         <div class="list-caption" style="width: 370px; height: 190px;">
                             <span>BEST!</span>
-                             <h3><a href="#">${bestseller.s_nickname }</a></h3>
+                             <h3 id="bestnickname"><a href="#">${bestseller.s_nickname }</a></h3>
                             <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${bestseller.s_me }</p>
                             <div class="list-footer">
                                 <ul>
-                                    <li href="경만님이하실것....">채팅하기</li>
+                                    <li id="mainchatting" style="cursor: pointer;">채팅하기</li>
                                     <li>찜하기</li>
                                 </ul>
                             </div>
@@ -411,4 +412,10 @@
     </div>
 </div>
 </body>
+<script type="text/javascript">
+
+
+ 
+</script>
+
 </html>

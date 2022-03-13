@@ -68,4 +68,10 @@ public class ChatServiceImpl implements ChatService {
 		return mapper.getRow(ser_code);
 	}
 
+	@Override
+	public String chatpromotion(String promotioncheck) {
+		// TODO Auto-generated method stub
+		return mapper.chatpromotion(promotioncheck);
+	}
+
 }
