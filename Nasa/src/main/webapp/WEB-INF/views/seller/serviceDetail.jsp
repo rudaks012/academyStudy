@@ -212,15 +212,26 @@
                                     </div>                
                                  </div>
                               </form>
-                              <div class="revtext" style="margin-top:20px;">
-                              <h5>서비스 리뷰</h5>
-                              <!--<i class="fa fa-star" style="color: gold;"></i>-->
-                              <c:set var="sum" value="0"></c:set>
-                              <c:forEach items="${reviewList}" var="calc">
-                                    <c:set var="sum" value="${sum + calc.rev_rate}"></c:set>
-                              </c:forEach>
-                                 평점 : <c:out value="${sum / fn:length(reviewList)}"></c:out> 점
-                                || 총 ${fn:length(reviewList)}개의 리뷰</div>
+                              <c:choose>
+                                 <c:when test="${fn:length(reviewList) > 0}">
+                                    <div class="revtext" style="margin-top:20px;">
+                                    <h5>서비스 리뷰</h5>
+                                    <!--<i class="fa fa-star" style="color: gold;"></i>-->
+                                    <c:set var="sum" value="0"></c:set>
+                                    <c:forEach items="${reviewList}" var="calc">
+                                          <c:set var="sum" value="${sum + calc.rev_rate}"></c:set>
+                                    </c:forEach>
+                                       평점 : <c:out value="${sum / fn:length(reviewList)}"></c:out> 점
+                                      || 총 ${fn:length(reviewList)}개의 리뷰</div>
+                                 </c:when>
+                                 <c:otherwise>
+                                    <div class="revtext" style="margin-top:20px;">
+                                       <h5>서비스 리뷰</h5>
+                                       <!--<i class="fa fa-star" style="color: gold;"></i>-->
+                                       등록된 리뷰가 없습니다.  
+                                    </div>
+                                 </c:otherwise>
+                              </c:choose>
                               <div>
                                  <div class="comments-area">
                                     <c:forEach items="${reviewList}" var="review">

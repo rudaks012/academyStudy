@@ -104,14 +104,14 @@ public class AhController {
 				session.setAttribute("author", "S");
 				cSession.addLoginUser(svo.getS_email());
 				System.out.println("판매자");
-				path = "user/home";
+				path = "redirect:home.do";
 			}
 		} else {
 			session.setAttribute("id", avo.getAid());
 			session.setAttribute("password", avo.getApassword());
 			session.setAttribute("aname", avo.getAname());
 			System.out.println("관리자");
-			path = "user/home";
+			path = "redirect:home.do";
 		}
 		if (path == "") {
 			response.setContentType("text/html; charset=UTF-8");
