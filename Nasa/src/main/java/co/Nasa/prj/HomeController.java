@@ -202,7 +202,7 @@ public class HomeController {
 		ServiceVO vo = new ServiceVO();
 		vo.setS_code(servicecode);
 		vo = serviceDao.serviceSelect(servicecode);
-		vo.getSer_price();
+//		vo.getSer_price();
 		return vo;
 	}
 

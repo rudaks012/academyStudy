@@ -310,8 +310,12 @@ public class ChatController {
     public String promotioncheck(@RequestParam("promotioncheck") String promotion) {
     	
     	String n =cService.chatpromotion(promotion);
-    	System.out.println("찍어봅니다 n을 |||||||||||||||" + n);
     	System.out.println("promotioncheck.do");
+    	if(n != null) {
+    		System.out.println("널이다 n"+n);
+    	}else {
+    		System.out.println("찍어봅니다 n을 |||||||||||||||" + n);
+    	}
     	
     	return "";
     }
