@@ -214,11 +214,12 @@
                               </form>
                               <div class="revtext" style="margin-top:20px;">
                               <h5>서비스 리뷰</h5>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
+                              <!--<i class="fa fa-star" style="color: gold;"></i>-->
+                              <c:set var="sum" value="0"></c:set>
+                              <c:forEach items="${reviewList}" var="calc">
+                                    <c:set var="sum" value="${sum + calc.rev_rate}"></c:set>
+                              </c:forEach>
+                                 평점 : <c:out value="${sum / fn:length(reviewList)}"></c:out> 점
                                 || 총 ${fn:length(reviewList)}개의 리뷰</div>
                               <div>
                                  <div class="comments-area">
@@ -265,6 +266,10 @@
                                                             data-target="#deleteReviewModal" data-rvcode="rvcode-${review.rev_code }">삭제</span>
                                                       </c:when>
                                                       <c:otherwise>
+                                                         <c:if test="${detailS.s_email eq id}">
+                                                            <span class="btn-reply1" data-toggle="modal" data-target="#writeReview_commentModal" data-reviewcode="${review.rev_code }"
+                                                            style="cursor: pointer;">답글</span>
+                                                         </c:if>
                                                          <c:if test="${not empty author}">
                                                             <span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-revtp="r" data-report_code="${review.rev_code }"
                                                             style="cursor: pointer;">신고</span>
@@ -485,7 +490,7 @@
    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">리뷰 수정</h5>
+            <h5 class="modal-title" id="exampleModalLabel">리뷰 답글 수정</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true">&times;</span>
             </button>
@@ -500,6 +505,30 @@
                </div>
                <div class="modal-footer">
                   <button type="submit" class="genric-btn danger radius">수정</button>
+                  <button class="genric-btn primary radius" data-dismiss="modal">취소</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+
+   <div class="modal fade bd-example-modal-lg" id="writeReview_commentModal" tabindex="-1" role="dialog" aria-labelledby="writeReview_commentModalModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">리뷰 답글 작성</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form method = "post" action = "writeReview_comment.do">
+               <input type="hidden" id = "hidden_review_code" name = "review_code">
+                         <h5 style="font-size:15px; margin-top:20px;">내용</h5>
+                       <textarea id = "modal_rere_sel_sub" name="rere_sel_sub" style="width:100%; height:100px; margin-top:5px" required></textarea>
+               </div>
+               <div class="modal-footer">
+                  <button type="submit" class="genric-btn danger radius">작성</button>
                   <button class="genric-btn primary radius" data-dismiss="modal">취소</button>
                </div>
             </form>
@@ -569,6 +598,11 @@
 				$("#hidden_rere_code").val(rvcode);
             $("#hidden_reviewcode").val(reviewcode);
 				$("#modal_rere_sel_sub").val(rvsub);			
+			});
+
+         $("#writeReview_commentModal").on("show.bs.modal", function (event) {
+            reviewcode = $(event.relatedTarget).data("reviewcode");
+            $("#hidden_review_code").val(reviewcode);		
 			});
 			
 			$("#reportModal").on("show.bs.modal", function (event) {

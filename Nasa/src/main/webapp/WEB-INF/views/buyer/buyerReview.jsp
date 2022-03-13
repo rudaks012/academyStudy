@@ -107,7 +107,7 @@
 						<!-- <div style="margin-top: 40px;">
 							<p><a href="goBuyerMypage.do" style="color: black;">마이페이지</a> > 리뷰</p>
 						</div> -->
-						<div class="blog_details">
+						<div class="blog_details" style="width:900px;">
 							<a class="d-inline-block">
 								<h2>리뷰확인</h2>
 							</a>
@@ -195,7 +195,7 @@
 											</div>
 										</c:if>
 									</c:forEach>
-								<div style="border-bottom: 1px solid rgb(202, 202, 202); margin-bottom:20px; width : 870px;"></div>
+								<div style="border-bottom: 1px solid rgb(202, 202, 202); margin-bottom:20px; width : 100%;"></div>
 								</c:forEach>
 								
 								<div class="row justify-content-center mt-10">
@@ -430,7 +430,7 @@
 		function deleteReview() {
 			console.log(rvcode);
 			var target = document.getElementById(rvcode);
-			target.remove();
+			//arget.remove();
 			
 			target = document.getElementById(rvcode);
 			
@@ -439,10 +439,11 @@
 			
 			$.ajax({
 				url:"deleteReview.do",
-				type:"get",
+				type:"post",
 				data:{rev_code:rev_code},
 				success: function() {
 					console.log("삭제함!");
+					location.reload();
 				},
 				error: function() {
 					console.log("에러");

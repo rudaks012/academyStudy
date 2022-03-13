@@ -101,17 +101,17 @@
 						</div>
 					</div>
 				
-					<div style="margin-top: 20px;">
+					<div id="pwdiv" style="margin-top: 20px;">
 						<p>새로운 비밀번호</p>
 						<div class="form-group">
-							<input class="form-control" name="b_password" id="b_password" type="password" placeholder="${buyerinfo.b_password }" value=${buyerinfo.b_password } required>
+							<input class="form-control" name="b_password" id="b_password" type="password" value=${buyerinfo.b_password } required>
 						</div>
 					</div>
 				
-					<div style="margin-top: 20px;">
+					<div id="pwchkdiv" style="margin-top: 20px;">
 						<p>새로운 비밀번호 확인</p>
 						<div class="form-group">
-							<input class="form-control" name="newpassword" id="newpassword2" type="password" placeholder="${buyerinfo.b_password }" value=${buyerinfo.b_password } required>
+							<input class="form-control" name="newpassword" id="newpassword2" type="password" value=${buyerinfo.b_password } required>
 						</div>
 					</div>
 				
@@ -144,6 +144,13 @@
 		});
 		
 		function passwordCheck() {
+			var pwc = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+			var pwck = pwreg.test($("#b_password").val());
+			if(!pwck) {
+				window.alert("비밀번호는 영문+숫자 조합 8자리 이상이어야 합니다.");
+				return false;
+			}
+
 			var newpwd1 = document.getElementById("b_password").value;
 			var newpwd2 = document.getElementById("newpassword2").value; 
 			
@@ -183,6 +190,43 @@
 			})
 			
 		})
+
+	// 비밀번호 설정
+	var pwreg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+	$("#b_password")
+		.blur(
+			function () {
+				var pwchk = pwreg.test($("#b_password").val());
+				if (!pwchk) {
+					$("label").remove('#pwlabel');
+					$("#pwdiv")
+						.append(
+							'<label id="pwlabel">비밀번호는 영문+숫자 조합 8자리 이상이어야 합니다.</label>');
+					$("#pwlabel").css("color", "red");
+				} else {
+					$("label").remove('#pwlabel');
+					$("#pwchk").attr("disabled", false);
+					$('#pwchk').focus();
+				}
+		})
+
+	// 비밀번호 확인
+		$("#newpassword2").blur(
+			function () {
+				if ($("#b_password").val() == $("#newpassword2").val()) {
+					$("label").remove('#pwchklabel');
+					$("label").remove('#pwchklabelok');
+					$("#pwchkdiv").append(
+						'<label id="pwchklabelok">비밀번호가 확인되었습니다.</label>');
+				} else {
+					$("label").remove('#pwchklabel');
+					$("label").remove('#pwchklabelok');
+					$("#pwchkdiv").append(
+						'<label id="pwchklabel">비밀번호가 일치하지 않습니다.</label>');
+					$("#pwchklabel").css("color", "red");
+				}
+	})
 		
 		/* function updateProfile() {
 			var newpwd1 = document.getElementById("b_password").value;
