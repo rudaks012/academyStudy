@@ -1229,10 +1229,10 @@ input[type=date] {
 			  dataType : "json",
 			  success : function(data) {
                   console.log("data입니다",data);
-				  var chatmoney = $('#chatmoney').val(data.ser_price);
-				  var sercate = $('#ser_cate').val(data.ser_cate);
-				  var sub_cate =$("#sub_cate").val(data.sub_cate);
-                  var serviceid = document.getElementById("serviceid").innerHTML(data.ser_title);
+				       var chatmoney = $('#chatmoney').val(data.ser_price);
+				       var sercate = $('#ser_cate').val(data.ser_cate);
+				       var sub_cate =$("#sub_cate").val(data.sub_cate);
+                    var serviceid = document.getElementById("serviceid").innerHTML=data.ser_title;
                   console.log("이건 서비스 타이틀입니다",serviceid);
 
 				  console.log("서비스코드",data);
@@ -1243,6 +1243,7 @@ input[type=date] {
       //쿠폰 가져오기
       function paymentconfirm(){
          var sellerid = document.querySelector("#paycheckId").innerText;
+         console.log("판매자아이디 :||||||||||||||||",sellerid);
 
          $.ajax({
             url: "sellerIdcheck.do",

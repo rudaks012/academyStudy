@@ -35,8 +35,8 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	@Override
-	public List<ServiceVO> serviceSelectList(String s_email) {
-		return map.serviceSelectList(s_email);
+	public List<ServiceVO> serviceSelectList(ServiceVO vo) {
+		return map.serviceSelectList(vo);
 	}
 
 	@Override
@@ -98,6 +98,11 @@ public class ServiceServiceImpl implements ServiceService {
 	@Override
 	public List<ServiceVO> notBuyerRandomService() {
 		return map.notBuyerRandomService();
+	}
+
+	@Override
+	public List<ServiceVO> sellerMainServiceList(ServiceVO vo) {
+		return map.sellerMainServiceList(vo);
 	}
 
 

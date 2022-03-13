@@ -24,7 +24,7 @@
 	<!-- 신규 채팅방일 때 채팅 방 생성 -->
 	<insert id="createChat">
 		INSERT INTO CHATROOM(ROOMID,USERID,USERNICKNAME,MASTERID,MASTERNICKNAME,SER_CODE)
-		VALUES((SELECT NVL(MAX(ROOMID),0)+1 FROM CHATROOM),
+		VALUES((SELECT NVL(MAX(TO_NUMBER(ROOMID)),0)+1 FROM CHATROOM),
 		#{userid},
 		#{usernickname},
 		#{masterid}, #{masternickname},#{ser_code})
@@ -91,6 +91,15 @@
 	
 	<select id="" resultType="co.Nasa.prj.comm.VO.ServiceVO">
 	SELECT * FROM SERVICE WHERE S_CODE ={sno}
+	</select>
+	
+	<!-- 채팅 프로모션 -->
+	<select id="chatpromotion" resultType="String" parameterType="String">
+	 SELECT P.PRO_CODE
+	 FROM  SERVICE S INNER JOIN PROMOTION P
+	 ON  S.PRO_CODE = P.PRO_CODE
+	 WHERE SER_CODE = #{ser_code}
+	
 	</select>
 	
 

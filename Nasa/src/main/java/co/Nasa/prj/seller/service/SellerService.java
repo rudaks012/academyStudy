@@ -30,5 +30,6 @@ public interface SellerService {
 
 	//채팅 셀러 등급 조회
 	SellerVO ChatSellerselect(SellerVO vo);
-
+	
+	Integer sellerRank(String s_email);
 }

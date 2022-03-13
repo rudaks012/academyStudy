@@ -51,4 +51,9 @@ public class ReportServiceImpl implements ReportService {
 
 	}
 
+	@Override
+	public int countPagingSellerReport(ReportVO vo) {
+		return map.countPagingSellerReport(vo);
+	}
+
 }

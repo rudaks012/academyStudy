@@ -96,9 +96,16 @@
                              
                               	<br/><br/>
                                  <h5><u>서비스 소개</u></h5>
-                                 <p class="excert" id="ser_sub" style="white-space:pre;">
+                                 <p class="excert" id="ser_sub" style="white-space:pre-line;">
                                     ${detailS.ser_sub }
                                  </p>
+                                 <c:if test="${detailS.ser_subimg ne null || detailS.ser_subimg2 ne null || detailS.ser_subimg3 ne null}">
+                             		<h5><u>서비스 이미지</u></h5>
+                             		<p><img src="fileupload/${detailS.ser_subimg }"></p>
+                             		<p><img src="fileupload/${detailS.ser_subimg2 }"></p>
+                             		<p><img src="fileupload/${detailS.ser_subimg3 }"></p>
+                             		<hr />
+                             	</c:if>
                                  <hr />
                              	<h5><u>기술수준</u></h5>
                              	<p>${detailS.ser_skill }</p>
@@ -130,19 +137,26 @@
                              		<hr />
                              	</c:if>
                              	
-                             	<c:if test="${detailS.ser_subimg ne null || detailS.ser_subimg2 ne null || detailS.ser_subimg3 ne null}">
-                             		<h5><u>서비스 이미지</u></h5>
-                             		<p><img src="fileupload/${detailS.ser_subimg }"></p>
-                             		<p><img src="fileupload/${detailS.ser_subimg2 }"></p>
-                             		<p><img src="fileupload/${detailS.ser_subimg3 }"></p>
-                             		<hr />
-                             	</c:if>
+                             	
                            		
                            </div>
                            <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
                               <br /><br />
-                              <div class="row justify-content-center">
-                                    취소환불규정
+                              <div class="row">
+                                    	취소 및 환불 규정<br/>
+										&nbsp;가. 기본 환불 규정<br/>
+										&nbsp;&nbsp;1. 전문가와 의뢰인의 상호 협의하에 청약 철회 및 환불이 가능합니다.<br/>
+										&nbsp;&nbsp;2. 작업이 완료된 이후 또는 자료, 프로그램 등 서비스가 제공된 이후에는 환불이 불가합니다.<br/>
+										&nbsp;&nbsp;( 소비자보호법 17조 2항의 5조. 용역 또는 「문화산업진흥 기본법」 제2조 제5호의 디지털콘텐츠의 제공이 개시된 경우에 해당)<br/>
+										<br/><br/>
+										&nbsp;나. 전문가 책임 사유<br/>
+										&nbsp;&nbsp;1. 전문가의 귀책사유로 당초 약정했던 서비스 미이행 혹은 보편적인 관점에서 심각하게 잘못 이행한 경우 결제 금액 전체 환불이 가능합니다.<br/>
+										<br/><br/>
+										&nbsp;다. 의뢰인 책임 사유<br/>
+										&nbsp;&nbsp;1. 서비스 진행 도중 의뢰인의 귀책사유로 인해 환불을 요청할 경우, 사용 금액을 아래와 같이 계산 후 총 금액의 10%를 공제하여 환불합니다.<br/>
+										&nbsp;&nbsp;총 작업량의 1/3 경과 전 : 이미 납부한 요금의 2/3해당액<br/>
+										&nbsp;&nbsp;총 작업량의 1/2 경과 전 : 이미 납부한 요금의 1/2해당액<br/>
+										&nbsp;&nbsp;총 작업량의 1/2 경과 후 : 반환하지 않음<br/>
                               </div>
                            </div>
                            <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-info-tab">
@@ -343,12 +357,36 @@
 							<!-- /input-group -->
 							<div class="br"></div>
 						</aside>
-						<aside class="single_sidebar_widget author_widget">
-							<img class="author_img rounded-circle" src="assets/img/comment/comment_1.png" 
-							alt="" style="cursor:pointer;" onclick="location='sellerDetail.do?s_email=${detailS.s_email }'">
-							<h4 id="sellernick">${sellerInfo.s_name }</h4>
-							<p>등급 : ${sellerInfo.s_rank }</p>
-
+						<aside class="single_sidebar_widget author_widget" style="text-align: center;">
+						<h3> 판매자 정보 </h3>
+						<c:choose>
+							<c:when test="${empty sellerInfo.s_img }">
+								<img class="author_img rounded-circle" src="resources/user/assets/img/profile/search-default-profile.jpg" alt="" style="cursor:pointer; width: 155px; height: 155px;" style="cursor:pointer;" onclick="location='sellerDetail.do?s_email=${detailS.s_email }'">
+							</c:when>
+							<c:otherwise>
+								<img class="author_img rounded-circle" src="${sellerInfo.s_img }" alt="" style="cursor:pointer; width: 155px; height: 155px;" onclick="location='sellerDetail.do?s_email=${detailS.s_email }'">
+							</c:otherwise>
+						</c:choose>
+							<br /><br />
+							<h4 id="sellernick">${sellerInfo.s_nickname }</h4>
+							
+							<c:choose>
+								<c:when test="${sellerInfo.s_rank eq '1' }">
+									<p>등급 : 별</p>
+								</c:when>
+								<c:when test="${sellerInfo.s_rank eq '2' }">
+									<p>등급 : 달</p>
+								</c:when>
+								<c:when test="${sellerInfo.s_rank eq '3' }">
+									<p>등급 : 태양</p>
+								</c:when>
+								<c:when test="${sellerInfo.s_rank eq '4' }">
+									<p>등급 : 지구</p>
+								</c:when>
+								<c:otherwise>
+									<p>등급 : 등급확인 불가</p>
+								</c:otherwise>
+							</c:choose>
 							<p>${sellerInfo.s_me }</p>
 							<button class="genric-btn primary small startbtn" onclick="chatingcheck()">채팅</button>
 							<div class="br"></div>

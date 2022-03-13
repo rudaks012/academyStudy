@@ -2,6 +2,7 @@ package co.Nasa.prj.report.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.comm.VO.ReportVO;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.Review_CommentVO;
@@ -35,10 +37,15 @@ public class ReportController {
 	private ReviewMapper reviewDao;
 	
 	@RequestMapping("/sellerReport.do")
-	public String sellerReport(Model model, HttpSession session) {
+	public String sellerReport(Model model, HttpSession session, PagingDTO pagingdto) {
 		ReportVO vo = new ReportVO();
 		vo.setRe_reporter((String)session.getAttribute("id"));
-		model.addAttribute("reports",userReportDao.selectSellerReportList(vo));
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<ReportVO> reportList = userReportDao.selectSellerReportList(vo);
+		pagingdto.setTotal(userReportDao.countPagingSellerReport(vo));
+		
+		model.addAttribute("reports", reportList);
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		
 		return "seller/sellerReport";
 	}

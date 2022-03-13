@@ -74,5 +74,13 @@
 		WHERE S.S_EMAIL = W.S_ID
 		ORDER BY WISHCOUNT DESC
 	</select>
-
+	
+	<select id="sellerRank" resultType="int">
+		SELECT RANK 
+		FROM (SELECT S.S_EMAIL, COUNT(*), RANK() OVER (ORDER BY COUNT(*) DESC) AS RANK 
+				FROM REVIEW R, SERVICE S 
+				WHERE SER_CODE = SCODE 
+				GROUP BY S.S_EMAIL ORDER BY COUNT(*) DESC) 
+		WHERE S_EMAIL = #{s_email}
+	</select>
 </mapper>

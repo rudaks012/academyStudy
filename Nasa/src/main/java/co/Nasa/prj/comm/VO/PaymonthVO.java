@@ -16,5 +16,8 @@ public class PaymonthVO {
 	String october;
 	String november;
 	String december;
-	String MT;
+	
+	String totalcount;
+	String totalsum;
+	String totalsusu;
 }

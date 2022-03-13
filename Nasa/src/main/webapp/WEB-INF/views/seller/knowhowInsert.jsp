@@ -124,7 +124,7 @@ p {
 														class="sname" required="required"></td>
 												</tr>
 												<tr>
-													<td class="align-middle table-primary knowtd" colspan="2">메인이미지
+													<td class="align-middle table-primary knowtd" colspan="2">썸네일
 														<span class="spanstar">*</span>
 													</td>
 													<td><input type="file" id="file" name="file"
