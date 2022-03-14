@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +40,18 @@ public class Review_CommentController {
 	
 		
 		return reviewCommentDao.selectReview_comment(vo2);
+	}
+	
+	@RequestMapping("/deleteReview_comment.do")
+	public ResponseEntity<String> deleteReview_comment(String rere_code) {
+		System.out.println(rere_code);
+		int n = reviewCommentDao.deleteReviewComment(rere_code);
+		
+		if (n == 1) {
+			return new ResponseEntity<String>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
+		}
 	}
 	
 	@ResponseBody

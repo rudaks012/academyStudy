@@ -16,6 +16,9 @@ public interface ReviewService {
 	// 서비스 상세 페이지에서 리뷰 조회할 때 쓸 거
 	public List<ReviewVO> selectReviewandReviewComment(ReviewVO vo);
 	
+	public List<ReviewVO> pagingReviewandReviewComment(ReviewVO vo);
+	public int countReviewandReviewComment(ReviewVO vo);
+	
 	// total count (review)
 	int countPagingReview(ReviewVO vo);
 	
@@ -38,4 +41,6 @@ public interface ReviewService {
 	
 	int sellerReviewCount(ServiceVO vo);
 	int sellerReviewCount2(HashMap<String, String> remap);
+	
+	List<ReviewVO> calcRateList();
 }

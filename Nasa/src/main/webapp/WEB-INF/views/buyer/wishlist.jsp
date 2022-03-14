@@ -91,13 +91,24 @@
 			                        	</c:choose>
 			                           <div class="media-body">
 			                           	<div class="d-flex">
-		                                 	<h4 class="col-4">${seller.s_nickname } 
+		                                 	<h4 class="col-4"><a href="sellerDetail.do?s_email=${seller.s_email}">${seller.s_nickname } </a>
 			                              	<i id = "wishicon" class="fa fa-heart" aria-hidden="true" onclick="deleteWishlist(this)" data-sid="${wishlist.s_id }" data-bid = "${wishlist.b_id }" data-toggle="tooltip" data-placement="top" title="위시리스트 제거"></i></h4>
 			                              	<h4 class="col-8">${seller.s_address }</h4>
 			                           	</div>
 			                              <div class="d-flex"  style="margin-top: 8px;">
 			                                 <h4 class="col-4">SW개발 > 웹개발</h4>
-			                                 <h4 class="col-4">평점 : 4.5</h4>
+			                                 <h4 class="col-4">평점 : 
+												 <c:set var = "r" value="0"></c:set>
+												 <c:forEach items="${rateList}" var="rate">
+													<c:if test="${rate.s_email eq seller.s_email}">
+														<c:set var = "r" value="1"></c:set>
+														${rate.rate}
+													</c:if>
+												 </c:forEach>
+												 <c:if test="${r eq '0'}">
+												 	평가가 없습니다.
+												 </c:if>
+											 </h4>
 			                                 <h4>
 			                                 	<c:choose>
 			                                 		<c:when test="${seller.s_rank eq '1' }">별 등급</c:when>

@@ -134,8 +134,9 @@
 						</div>
 						<br>
 						<br>
-						<div class="row justify-content-center">							
-							<button class="genric-btn primary-border small" onclick="location.href = 'monthSearch.do'">1개월</button>
+						<div class="row justify-content-center">
+							<button class="genric-btn primary-border small" onclick="location.href = 'buyHistory.do'">전체</button>							
+							<button class="genric-btn primary-border small" style="margin-left: 5px;" onclick="location.href = 'monthSearch.do'">1개월</button>
 							<button class="genric-btn primary-border small" style="margin-left: 5px;" onclick="location.href = 'sixmonthSearch.do'">6개월</button>
 							<button class="genric-btn primary-border small" style="margin-left: 5px;" onclick="location.href = 'yearSearch.do'">1년</button>
 							<form action="selectdateSearch.do" method="get" onsubmit="return selectdate()">

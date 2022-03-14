@@ -628,12 +628,14 @@ public class BuyerController {
 		pagingdto.setTotal(wishlistDao.countPagingWishlist(wishlistvo));
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		
-		
+				
 		// pagination
 		
 		model.addAttribute("wishlistList", wishlistList);
 		
-
+		List<ReviewVO> rateList = reviewDao.calcRateList();
+		model.addAttribute("rateList",rateList);
+		
 		return "buyer/wishlist";
 	}
 

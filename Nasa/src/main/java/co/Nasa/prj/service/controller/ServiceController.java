@@ -484,7 +484,7 @@ public class ServiceController {
 
 	@RequestMapping("/serviceDetail.do")
 	public String sellerDetail(Model model, @RequestParam("ser_code") String ser_code, HttpSession session,
-			HttpServletResponse response, HttpServletRequest request) {
+			HttpServletResponse response, HttpServletRequest request, PagingDTO pagingdto, String pagestatus) {
 		ServiceVO vo = new ServiceVO();
 		vo = serviceDao.serviceSelect(ser_code);
 		System.out.println("++++++++++++" + vo);
@@ -502,9 +502,18 @@ public class ServiceController {
 
 		ReviewVO reviewvo = new ReviewVO();
 		reviewvo.setScode(ser_code);
-		List<ReviewVO> reviewList = reviewDao.selectReviewandReviewComment(reviewvo);
+		//List<ReviewVO> reviewList = reviewDao.selectReviewandReviewComment(reviewvo);
+		reviewvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<ReviewVO> reviewList = reviewDao.pagingReviewandReviewComment(reviewvo);
 		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + reviewList);
 		model.addAttribute("reviewList", reviewList);
+		pagingdto.setTotal(reviewDao.countReviewandReviewComment(reviewvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		
+		if("r".equals(pagestatus)) {
+			System.out.println("!!!!!!!!!@#!@#!@#!@#!@#!@#!@#!@#!@# : " + pagestatus);
+			model.addAttribute("tabcode", pagestatus);
+		}
 
 		return "seller/serviceDetail";
 	}
