@@ -34,7 +34,7 @@ public class ServiceVO {
 	String ser_originsub3;
 	String ser_status;
 	String ser_reason;
-	String ser_end;
+	String ser_end;	
 	
 	// v_service_list
 	int reviewcount;
@@ -42,6 +42,8 @@ public class ServiceVO {
 	String sub_category;
 	String nickname;
 	String category;
+	
+	String column; // 리뷰 순, 등록 순 정렬
 	
 	String s_code;
 	String pay_enddate;

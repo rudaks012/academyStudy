@@ -135,42 +135,44 @@
    		FROM	(
    				 SELECT ROWNUM RN, A.*
    				 FROM	(
-   				 		 SELECT * FROM V_SERVICE_LIST WHERE SER_CATE = #{ser_cate}
-						 ORDER BY SER_CODE DESC
-   				 ) A
-   		)
-   		WHERE	RN BETWEEN #{start} AND #{end}		
-	</select>
-	
-	<select id="homeCategorySelectCount" resultType="int">
-   		SELECT COUNT(*)
-   		FROM V_SERVICE_LIST WHERE SER_CATE = #{ser_cate}
-	</select>
-
-	<select id="homeCategorySelectAll" resultType="co.Nasa.prj.comm.VO.ServiceVO">
-		SELECT	*
-   		FROM	(
-   				 SELECT ROWNUM RN, A.*
-   				 FROM	(
-   				 		 SELECT * FROM V_SERVICE_LIST   				 		 
+   				 		 SELECT * FROM V_SERVICE_LIST 
    				 		 <trim prefix="where" prefixOverrides="and">
-	   				 		 <if test="ser_title !=null and !ser_title.equals('')">
-	   				 		 	and  ser_title like '%'||#{ser_title}||'%'
-	   				 		 </if>
-	   				 		 	 <if test="category !=null and !category.equals('')">
-	   				 		 	and  category like '%'||#{category}||'%'
-	   				 		 </if>
+   				 		 	<if test="ser_title !=null and !ser_title.equals('')">
+	   				 		 	and ser_title like '%'||#{ser_title}||'%'
+	   				 		</if>
+	   				 		<if test="ser_cate !=null and !ser_cate.equals('')">
+	   				 		 	and ser_cate like '%'||#{ser_cate}||'%'
+	   				 		</if>
    				 		 </trim>
-						 ORDER BY SER_CODE DESC
+   				 		 <if test="column == '' and column == null">
+							 ORDER BY SER_CODE DESC
+   				 		 </if>
+   				 		 <if test="column != '' and column != null">
+   				 		 	ORDER BY #{column} DESC
+   				 		 </if>
    				 ) A
    		)
    		WHERE	RN BETWEEN #{start} AND #{end}
 	</select>
 	
-	<select id="homeCategorySelectAllCount" resultType="int">
+	<select id="homeCategorySelectCount" resultType="int">
    		SELECT COUNT(*)
-   		FROM V_SERVICE_LIST
-	</select>
+   		FROM V_SERVICE_LIST 
+   		<trim prefix="where" prefixOverrides="and">
+   			<if test="ser_title !=null and !ser_title.equals('')">
+   				and ser_title like '%'||#{ser_title}||'%'
+   			</if>
+	   		<if test="ser_cate !=null and !ser_cate.equals('')">
+	   			and ser_cate like '%'||#{ser_cate}||'%'
+	   		</if>
+   		</trim>
+			<if test="column == '' and column == null">
+				ORDER BY SER_CODE DESC
+   			</if>
+   			<if test="column != '' and column != null">
+   				ORDER BY #{column} DESC
+   			</if>	   		
+	</select>	
 	
 	<select id="bestServiceList" resultType="co.Nasa.prj.comm.VO.ServiceVO">
 		SELECT * FROM V_SERVICE_LIST

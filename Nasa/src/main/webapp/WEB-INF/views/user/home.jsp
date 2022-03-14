@@ -51,27 +51,29 @@
                     <h2>NASA</h2>
                 </div>
                 <!--Hero form -->
-                <form action="#" class="search-box search-box2">
-                    <div class="input-form">
-                        <input type="text" placeholder="어떤 서비스가 필요하세요?">
-                    </div>
-                    <div class="select-form">
-                        <div class="select-itms">
-                            <select name="select" id="select1">
-                                <option value="">통합검색</option>
-                                <option value="">앱</option>
-                                <option value="">웹</option>
-                                <option value="">게임</option>
-                                <option value="">보안</option>
-                                <option value="">기술지원</option>
-                                <option value="">기획</option>
-                            </select>
+                <form id="frm" action="homeCategory.do" class="search-box search-box2">
+                	<div class="input-form">
+                		<input type="text" name="ser_title" placeholder="어떤 서비스가 필요하세요?" value="${param.ser_title}">
+                	</div>
+                		<div class="select-form">
+                			<div class="select-itms">
+                				<select name="ser_cate">
+                					<option value="" <c:if test="${param.ser_cate==''}">selected</c:if>>통합검색</option>
+                                    <option value="CAT1" <c:if test="${param.ser_cate=='CAT1'}">selected</c:if>>앱</option>
+                                    <option value="CAT2" <c:if test="${param.ser_cate=='CAT2'}">selected</c:if>>웹</option>
+                                    <option value="CAT3" <c:if test="${param.ser_cate=='CAT3'}">selected</c:if>>게임</option>
+                                    <option value="CAT4" <c:if test="${param.ser_cate=='CAT4'}">selected</c:if>>보안</option>
+                                    <option value="CAT5" <c:if test="${param.ser_cate=='CAT5'}">selected</c:if>>기술지원</option>
+                                    <option value="CAT6" <c:if test="${param.ser_cate=='CAT6'}">selected</c:if>>기획</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Search box -->
-                    <div class="search-form">
-                        <a href="searchResult.do">Search</a>
-                    </div>
+                        <input type="hidden" name="pageNum" value="1">
+                        <input type="hidden" name="amount" value="1">
+                        <!-- Search box -->
+                        <div class="search-form" onclick="searchFrm()">
+                            <a href="#">Search</a>
+                        </div>
                 </form>
             </div>
         </div>
@@ -466,6 +468,13 @@
             }
         })
     }
+
+    function searchFrm(p){
+        if(p){
+            frm.pageNum.value = p;
+        }
+		frm.submit()
+	}
 </script>
 </body>
 <script type="text/javascript">

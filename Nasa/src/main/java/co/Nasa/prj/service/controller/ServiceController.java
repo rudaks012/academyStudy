@@ -58,27 +58,14 @@ public class ServiceController {
 	
 	// 카테고리 별 서비스 목록
 	@RequestMapping("/homeCategory.do")
-	public String homeCategory(Model model, @Param("ser_cate") String ser_cate, PagingDTO pagingdto) {
-		pagingdto.setAmount(8);
-		ServiceVO vo = new ServiceVO();
-		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
-		vo.setSer_cate(ser_cate);
+	public String homeCategory(Model model, ServiceVO vo, PagingDTO pagingdto) {
+		pagingdto.setAmount(2);
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());	
 		pagingdto.setTotal(serviceDao.homeCategorySelectCount(vo));
-		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("paging",pagingdto);
 		model.addAttribute("homecatelist", serviceDao.homeCategorySelect(vo));
 		return "user/homeCategory";
-	}
-
-	// 전체 서비스 목록
-	@RequestMapping("/homeCategoryAll.do")
-	public String homeCategoryAll(Model model, PagingDTO pagingdto, ServiceVO vo) {
-		pagingdto.setAmount(8);
-		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
-		pagingdto.setTotal(serviceDao.homeCategorySelectAllCount(vo));
-		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
-		model.addAttribute("allservicelist", serviceDao.homeCategorySelectAll(vo));
-		return "user/homeCategoryAll";
-	}
+	}	
 
 	@RequestMapping("/sellerService.do")
 	public String sellerService(Model model, HttpSession session) {

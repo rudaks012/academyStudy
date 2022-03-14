@@ -38,7 +38,7 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="homeCategoryAll.do">서비스 찾기</a></li>
+                                            <li><a href="homeCategory.do">서비스 찾기</a></li>
                                             <li><a href="goSellerMypage.do">판매자마페</a></li>
                                             <li><a href="goBuyerMypage.do">구매자마페</a></li>
                                             <li><a href="go_admin.do">관리자</a></li>
