@@ -3,6 +3,7 @@ package co.Nasa.prj.review.service;
 import java.util.HashMap;
 import java.util.List;
 
+import co.Nasa.prj.admin.service.Criteria;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 
@@ -34,7 +35,7 @@ public interface ReviewMapper {
 	// 판매자 리뷰 리스트 조회
 	public List<ReviewVO> sellerReviewList(ServiceVO vo);
 	public List<ReviewVO> sellerReviewSelectList(ReviewVO vo);
-	public List<ReviewVO> reviewSearch(HashMap<String, String> remap);
+	public List<ReviewVO> reviewSearch(ServiceVO vo);
 	
 	int sellerReviewCount(ServiceVO vo);
 	int sellerReviewCount2(HashMap<String, String> remap);

@@ -12,4 +12,5 @@ public interface PowerServiceMapper {
 	PowerServiceVO powerServiceOverlap(PowerServiceVO vo);
 	
 	List<PowerServiceVO> sellerPowerserviceList(PowerServiceVO vo);
+	int countPagingPowerservice(PowerServiceVO vo);
 }

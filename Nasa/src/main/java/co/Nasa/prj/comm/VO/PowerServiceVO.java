@@ -24,4 +24,12 @@ public class PowerServiceVO {
 	int reviewcount;
 	int reviewavg;
 	
+	// 페이징
+	int start;
+	int end;
+	
+	public void calcStartEnd(int pageNum, int amount) {
+		setEnd(pageNum * amount);
+		setStart(getEnd() - amount + 1);
+	}
 }

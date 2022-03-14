@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.comm.VO.PowerServiceVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.powerservice.service.PowerServiceService;
@@ -44,13 +45,19 @@ public class PowerServiceController {
 	}
 	
 	@RequestMapping("/powerservice.do")
-	public String powerservice(PowerServiceVO vo, HttpSession session, Model model) {
+	public String powerservice(PowerServiceVO vo, HttpSession session, Model model, PagingDTO pagingdto) {
 		ServiceVO vo2 = new ServiceVO();
 		vo2.setS_email((String)session.getAttribute("id"));
-		
 		vo.setS_email((String)session.getAttribute("id"));
-		model.addAttribute("powerList",powerDao.sellerPowerserviceList(vo));
+		
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<PowerServiceVO> powerList = powerDao.sellerPowerserviceList(vo);
+		pagingdto.setTotal(powerDao.countPagingPowerservice(vo));
+		
+		model.addAttribute("powerList", powerList);
 		model.addAttribute("sellerMainServiceList", serviceDao.sellerMainServiceList(vo2));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		
 		return "seller/sellerPower";
 	}
 	

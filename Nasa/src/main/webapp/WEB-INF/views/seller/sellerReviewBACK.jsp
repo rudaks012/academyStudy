@@ -117,7 +117,7 @@
 												<tr>
 													<th class="align-middle table-primary">서비스 선택</th>
 													<td><select id="reviewChange" onchange="change()">
-															<option value="">전체</option>
+															<option value="all">전체</option>
 															<c:forEach items="${serviceList }" var="service">
 																<option value="${service.ser_code }">${service.ser_title }</option>
 															</c:forEach>
@@ -188,27 +188,27 @@
 												</div>
 											</c:forEach>
 											<div class="row justify-content-center mt-10" id="reviewdiv">
-											<nav aria-label="Page navigation example">
-											  <ul class="pagination">
-												  <c:if test="${paging.prev }">
-													  <li class="page-item"><a class="page-link" href="${address }pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
-												  </c:if>
-												  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-													  <c:choose>
-														  <c:when test="${p == paging.pageNum }">
-															  <li class="page-item"><b class="page-link">${p }</b></li>
-														  </c:when>
-														  <c:when test="${p != paging.pageNum }">
-															  <li class="page-item"><a class="page-link" href="${address }pageNum=${p }&amount=${paging.amount}">${p }</a></li>
-														  </c:when>
-													  </c:choose>
-												  </c:forEach>
-												  <c:if test="${paging.next }">
-													  <li class="page-item"><a class="page-link" href="${address }pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
-												  </c:if>
-											  </ul>
-											</nav>
-										</div>
+												<nav aria-label="Page navigation example">
+												  <ul class="pagination">
+													  <c:if test="${paging.prev }">
+														  <li class="page-item"><a class="page-link" href="sellerReview.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+													  </c:if>
+													  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+														  <c:choose>
+															  <c:when test="${p == paging.pageNum }">
+																  <li class="page-item"><b class="page-link">${p }</b></li>
+															  </c:when>
+															  <c:when test="${p != paging.pageNum }">
+																  <li class="page-item"><a class="page-link" href="sellerReview.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+															  </c:when>
+														  </c:choose>
+													  </c:forEach>
+													  <c:if test="${paging.next }">
+														  <li class="page-item"><a class="page-link" href="sellerReview.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+													  </c:if>
+												  </ul>
+												</nav>
+											</div>
 										</div>
 									
 								</div>
@@ -341,11 +341,11 @@
 		function change(){
 			console.log($('.selected').attr('data-value'));
 			var re_code = $('.selected').attr('data-value');
-			//if(re_code == 'all'){
-				location.href="sellerReview.do?scode="+re_code;
-				//return;
-			//}
-			/* $.ajax({
+			if(re_code == 'all'){
+				location.href="sellerReview.do";
+				return;
+			}
+			$.ajax({
 				url: "reviewSearch.do",
   				dataType: "json",
   				type:"post",
@@ -416,7 +416,7 @@
   					alert('일시적인 장애로 삭제2 실패하였습니다. \n잠시 후 다시 시도해주세요.');
   				}
 				
-			}) */
+			})
 		}
 		
 		
@@ -469,8 +469,7 @@
 						alert('수정되었습니다.');
 						$("#upbtn").data('dismiss','modal');
 						document.getElementById(result.rere_code).innerHTML = result.rere_sel_sub;
-						var re_code = $('.selected').attr('data-value');
-						location.href="sellerReview.do?scode="+re_code;
+						
 					}
 				}
 			})
@@ -487,8 +486,12 @@
 				success: function(result) {
 					if(result){
 						alert("삭제되었습니다.");	
-						var re_code = $('.selected').attr('data-value');
-						location.href="sellerReview.do?scode="+re_code;
+						 //document.getElementById(code).remove();
+						 /*let re = document.getElementById(insert);
+						let span = document.createElement('span');
+						span.innerHTML = '<span class="btn-reply1" data-toggle="modal" data-target="#insertModal" id="b'+rvcode.substr(7)+'" data-insert_code="'+rvcode.substr(7)+'" style="cursor: pointer;">답댓등록</span>';
+						re.append(span); */
+						 change();
 					}
 				},
 				error: function() {
@@ -556,8 +559,7 @@
 				.append('<span class="btn-reply1" style="cursor: pointer;" data-toggle="modal" data-target="#updateReviewModal" data-rvcode='+data.rere_code+' data-rvsub='+data.rere_sel_sub+' data-rvimg="none">수정</span>&nbsp;&nbsp;')
 				.append('<span class="btn-reply1" style="cursor: pointer;" data-toggle="modal" data-target="#deleteReviewModal" data-rvcode="rvcode-'+data.rere_code+'">삭제</span>')
 				); */
-				var re_code = $('.selected').attr('data-value');
-				location.href="sellerReview.do?scode="+re_code;
+				 change();
 				
 			},
 			error: function() {

@@ -52,6 +52,8 @@ public class ServiceVO {
 	String pro_max;
 	String power_max;
 	
+	String scode;
+	
 	// 페이징
 	int start;
 	int end;

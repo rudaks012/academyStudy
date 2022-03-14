@@ -50,6 +50,7 @@
 		WHERE	REV_CODE = #{rev_code}
 	</update>
 	
+	
 	<select id="sellerReviewList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
 	SELECT	*
 		FROM	(
@@ -57,7 +58,10 @@
 				 FROM	(
 					SELECT m.* FROM SERVICE s ,
 					(SELECT * FROM REVIEW r , REVIEW_COMMENT c WHERE REV_CODE = REVIEW_CODE(+) ORDER BY REV_DATE DESC) m
-					WHERE s.s_email = #{s_email} and s.ser_code = scode
+					WHERE s.s_email = #{s_email} and s.ser_code = scode 
+					<if test="ser_code!=null and !ser_code.equals('')">
+				  	     AND s.ser_code = #{ser_code}
+				  	</if>
 			) A
 		)
 		WHERE	RN BETWEEN #{start} AND #{end}
@@ -74,7 +78,7 @@
 	<select id="reviewSearch" resultType="co.Nasa.prj.comm.VO.ReviewVO">
 		SELECT m.* FROM SERVICE s ,
 		(SELECT * FROM REVIEW r , REVIEW_COMMENT c WHERE REV_CODE = REVIEW_CODE(+) ORDER BY REV_DATE DESC) m
-		WHERE s.s_email = #{s_email} and s.ser_code = scode and scode = #{scode}
+		WHERE s.s_email = #{s_email} and s.ser_code = scode and s.ser_code = #{ser_code}
 	</select>
 	
 
@@ -117,7 +121,11 @@
 			(SELECT * FROM REVIEW r , REVIEW_COMMENT c 
 			WHERE REV_CODE = REVIEW_CODE(+) 
 			ORDER BY REV_DATE DESC) m
-		WHERE s.s_email = #{s_email} and s.ser_code = scode)
+		WHERE s.s_email = #{s_email} and s.ser_code = scode
+		<if test="ser_code!=null and !ser_code.equals('')">
+	  	     AND s.ser_code = #{ser_code}
+	  	</if>
+		)
 	</select>
 	
 	
