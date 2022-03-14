@@ -255,7 +255,7 @@
                                           <c:set var="sum" value="${sum + calc.rev_rate}"></c:set>
                                     </c:forEach>
                                        평점 : <fmt:formatNumber type="number" pattern="0.00" value="${ (((sum/fn:length(reviewList))*100) - (((sum/fn:length(reviewList))*100)%1)) * (1/100)   }"></fmt:formatNumber> 점
-                                      || 총 ${fn:length(reviewList)}개의 리뷰</div>
+                                      || 총 ${cntReviews}개의 리뷰</div>
                                  </c:when>
                                  <c:otherwise>
                                     <div class="revtext" style="margin-top:20px;">
