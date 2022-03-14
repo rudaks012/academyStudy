@@ -10,7 +10,20 @@
                         <div class="mb-3 ">
                             <h6><i  class="icon-pin mr-2"></i>판매자노하우관리 <i class="fas fa-chevron-right mx-2"></i>전체 노하우 조회</h6>
                         </div>
+                        
+                        <ul class="list-style-none d-flex mt-4">
+			                <li class="mr-1">총 게시글 <span class="text-danger mx-1">${total }</span>개
+			                </li>
+			                <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
+			                
+			                    <li class="mx-2">오늘 등록된 게시글 <span class="text-danger mx-1"></span>개
+			                    </li>
+			               
+			                
+			            </ul>
                     </div>
+                    
+                    
                 </div>
             </div>
 	<div class="container-fluid">
@@ -23,6 +36,7 @@
                      </h5>
                     <div class="card mb-5">
                         <div class="card-body">
+                          <form id="searchForm" method="get">
                             <table class="table caption-top table-bordered  text-center">
                                 <tbody>
                                     <tr>
@@ -37,7 +51,7 @@
                                         <th class="align-middle table-primary">제목</th>
                                         <td>
                                         	<div class="col-6">
-                                        		<input class="form-control custom-shadow" id="" name="" type="text">
+                                        		<input class="form-control custom-shadow" id="" name="no_title" type="text">
                                     		</div>
                                     	</td>
                                     </tr>
@@ -46,17 +60,18 @@
                                         <td>
                                         	<div class="d-flex align-items-center">
                                         		<div class="col-3">
-	                                        	<input type="date" class="form-control" value="2018-05-13">
+	                                        	<input type="date" class="form-control" value="" name="no_date">
 	                                        	</div>
 	                                        	<span class="mx-2"><i class="fas fa-minus"></i></span>
 	                                        	<div class="col-3">
-	                                        	<input type="date" class="form-control" value="2018-05-13">
+	                                        	<input type="date" class="form-control" value="" name="no_date2">
 	                                        	</div>
                                         	</div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                           </form>
                         <style>
                             .search, .reload{
                                 position: relative;
@@ -65,8 +80,8 @@
                         </style>
 
 	                     <div class="d-flex justify-content-end my-4">
-                            <button class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
-	                        <button class="btn btn-outline-dark">검색<i class="ml-2 icon-magnifier search"></i></button>
+                            <button id="resetBtn" class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
+	                        <button id="searchBtn" class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
 	                    </div>
                    </div>
                </div>
@@ -86,12 +101,12 @@
                         </h5>
                 	    <div class="card">
                             <div class="card-body">
-                                <div class=" mb-3">총 <span class="mx-1 text-danger">50</span>건</div>
+                                <div class=" mb-3">총 <span class="mx-1 text-danger">${searchTotal }</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
-		                         		<th width="10%">선택</th>
-		                         		<th width="120px">순번</th>
+		                         		<th width="10%">순번</th>
+		                         		<th width="120px">제목</th>
 		                         		<th>제목</th>       		
 		                         		<th width="120px">등록일자</th>
 		                         	</tr>
@@ -109,28 +124,36 @@
 		                        </tbody>
 		                     </table>
 		
-			                     <div class="d-flex justify-content-center mt-5">
+			                    <div class="d-flex justify-content-center mt-5">
 			                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                                                        <span aria-hidden="true">«</span>
-                                                        <span class="sr-only">Previous</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                                                        <span aria-hidden="true">»</span>
-                                                        <span class="sr-only">Next</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
+			                            <ul class="pagination">
+			                                <c:if test="${pageMaker.prev }">
+			                                    <li class="page-item"><a class="page-link" href="${pageMaker.startPage -1 }"
+			                                            aria-label="Previous"> <span aria-hidden="true">«</span> <span
+			                                                class="sr-only">이전</span>
+			                                        </a></li>
+			                                </c:if>
+			                                <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+			                                    <li class="page-item ${pageMaker.cri.pageNum == num ? 'active':''}">
+			                                        <a class="page-link" href="${num }">${num }</a>
+			                                    </li>
+			                                </c:forEach>
+			                                <c:if test="${pageMaker.next }">
+			                                    <li class="page-item"><a class="page-link" href="${pageMaker.endPage + 1 }"
+			                                            aria-label="Next"> <span aria-hidden="true">»</span> <span
+			                                                class="sr-only">다음</span>
+			                                        </a></li>
+			                                </c:if>
+			                            </ul>
+			                        </nav>
 			                    </div>
 		                   </div>
+		                   
+		                   <form id="actionForm" action="go_admin.do" method="get">
+							 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+							 <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+							 
+						</form>
                			</div>
                 	</div>
                 	<div class="col-7">
@@ -147,29 +170,36 @@
                                     <tbody>
                                         <tr>
                                             <th class="table-primary align-middle">순번</th>
-                                            <td><input class="form-control custom-shadow " id="no_code" name="" value="" type="text" ></td>
+                                            <td width="100px"><input class="form-control custom-shadow " id="no_code" name="" value="" type="text" readonly></td>
                                             <th class="table-primary align-middle">아이디</th>
-                                            <td><input class="form-control custom-shadow" id="no_id" name="" value="" type="text" ></td>
+                                            <td><input class="form-control custom-shadow" id="no_id" name="no_id" value="" type="text" readonly></td>
+                                            
+                                        </tr>
+                                         <tr>
+                                            <th class="table-primary align-middle">신고횟수</th>
+                                            <td width="100px"><input class="form-control custom-shadow " id="s_report" name="" value="" type="text" readonly></td>
+                                            <th class="table-primary align-middle">상태</th>
+                                            <td><input class="form-control custom-shadow" id="s_status" name="" value="" type="text" readonly></td>
                                             
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">제목</th>
-                                            <td><input class="form-control custom-shadow" id="no_title" name="" value="" type="text" ></td>
+                                            <td colspan="3"><input class="form-control custom-shadow" id="no_title" name="" value="" type="text" readonly></td>
                                             
                                         </tr>
                                         <tr>
                                             <th class="table-primary align-middle">등록날짜</th>
-                                            <td><input class="form-control custom-shadow" id="no_date" name="" value="" type="text" readonly></td>
+                                            <td colspan="3"><input class="form-control custom-shadow" id="no_date" name="" value="" type="text" readonly></td>
                                            
                                         </tr>
                                         
                                         <tr>                                     
-                                            <th colspan="4" class="table-primary align-middle">공지내용</th>
+                                            <th colspan="4" class="table-primary align-middle">내용</th>
                                             
                                         </tr>
                                         <tr>
-                                        	<td colspan="4">                                              
-                                                <textarea rows="20" class="form-control" id="no_subject" readonly></textarea>
+                                        	<td colspan="4" id="no_subject" id="no_subject" style="height:500px">                                              
+                                                
                                                
                                             </td>
                                         </tr>
@@ -187,17 +217,53 @@
              
 <script>
 
+//전체목록 페이징처리
+let actionForm = $("#actionForm");
+$(".page-item a").on("click", function (e) {
+    e.preventDefault();
+    actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+    actionForm.submit();
+})
+
+//등록날짜 변경
+let startDate =$("input[name='no_date']");
+let endDate =$("input[name='no_date2']");
+const handleBoardDate =()=>{
+	$(endDate).val($(startDate).val())
 	
-const paymentList = document.querySelectorAll(".boardList")
+	
+}
+$("input[name='no_date']").on("change",handleBoardDate);
+
+//검색버튼
+const searchReport=()=>{
+
+		searchForm.action="manage_sellerBoard.do";
+		searchForm.submit();
+}
+
+$("#searchBtn").on("click",searchReport);
+
+	
+const boardList = document.querySelectorAll(".boardList")
 
 const selectBoard=()=>{
 	const code = event.target.parentNode.firstChild.nextSibling.innerText;
 	$.ajax({
 		url:"ajaxDetailBoard.do",
-		type:"get",
+		type:"post",
 		data:{"no_code":code}
 	}).done(function(result){
-		
+		$("#no_code").val(result.no_code)
+		$("#no_id").val(result.no_id)
+		$("#s_report").val(result.s_report)
+		let status= result.s_status
+		status=="U"?$("#s_status").val("이용중"):
+				"M"?("#s_status").val("한달정지"):("#s_status").val("영구정지")
+		$("#no_title").val(result.no_title)
+		$("#no_date").val(result.no_date)
+		let str=result.no_subject;
+		$("#no_subject").html(result.no_subject)
 	})
 }
 

@@ -129,6 +129,13 @@ public class AdminAuthorVO {
 	String no_originimg;
 	
 	
+	String email;
+	String gb;
+	String name;
+	String status;
+	String report;
+	String date;
+	
 	int start; // 쿼리에 쓸 start
 	int end; 
 	

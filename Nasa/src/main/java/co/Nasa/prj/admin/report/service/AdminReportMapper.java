@@ -19,6 +19,7 @@ public interface AdminReportMapper {
 		
 		//신고승인
 		public Map<String, Object> updateConfirmReport(Map<String, Object>reportMap);
+		public AdminAuthorVO selectMember(String id);
 		
 		//신고대기조회
 		public int totalReportWait(Criteria cri);
@@ -42,4 +43,8 @@ public interface AdminReportMapper {
 		//블랙리스트 한달정지
 		public int scheduleSellerBlackList();
 		public int scheduleBuyerBlackList();
+		
+		
+		//블랙리스트
+		public List<AdminAuthorVO> getBlackListWithPaging(Criteria cri);
 }

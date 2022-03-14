@@ -22,11 +22,11 @@
                 </li>
                 <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
                 <a href="#">
-                    <li class="mx-2">블랙리스트 <span class="text-danger mx-1">100</span>명
+                    <li class="mx-2">블랙리스트 <span class="text-danger mx-1"></span>명
                     </li>
                 </a>
                 <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
-                <li class="mx-2">탈퇴 <span class="text-danger mx-1">3</span>명
+                <li class="mx-2">탈퇴 <span class="text-danger mx-1"></span>명
                 </li>
             </ul>
 

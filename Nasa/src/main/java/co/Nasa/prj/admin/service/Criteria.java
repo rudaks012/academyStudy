@@ -49,6 +49,35 @@ public class Criteria {
 	private String power_date2;
 	private String s_author;
 	
+	private String no_id;
+	private String no_title;
+	private String no_date;
+	private String no_date2;
+	
+	public String getNo_id() {
+		return no_id;
+	}
+	public void setNo_id(String no_id) {
+		this.no_id = no_id;
+	}
+	public String getNo_title() {
+		return no_title;
+	}
+	public void setNo_title(String no_title) {
+		this.no_title = no_title;
+	}
+	public String getNo_date() {
+		return no_date;
+	}
+	public void setNo_date(String no_date) {
+		this.no_date = no_date;
+	}
+	public String getNo_date2() {
+		return no_date2;
+	}
+	public void setNo_date2(String no_date2) {
+		this.no_date2 = no_date2;
+	}
 	public Criteria() {
 		this(1,10);
 	}

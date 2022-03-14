@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>           
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>      
 <div class="page-breadcrumb">
                         <div class="row">
                             <div class="col-7 align-self-center">
@@ -99,102 +101,63 @@
                                                  <th width="250px">아이디</th>
                                                  <th>이름</th>
                                                  <th>구분</th>
-                                                 <th>일수</th>        		
+                                                 <th>상태</th>	
                                              </tr>
                                          </thead>
                                          <tbody>
-                                             <tr>
-                                                <td>2222</td>
-                                                <td>2222</td>
-                                                <td>구매자</td>
-                                                <td class="text-danger">영구정지</td>
+                                           <c:forEach var="black" items="${blackList }">
+                                             <tr class="black">
+                                                <td>${black.email }</td>
+                                                <td>${black.name }</td>
                                                 
+                                                 <c:if test="${black.gb eq 's' }">
+                                                   <td>판매자</td>
+                                                 </c:if>
+                                                 
+                                                 <c:if test="${black.gb eq 'b' }">
+                                                   <td>구매자</td>
+                                                 </c:if>
                                                 
+                                                <c:if test="${black.status eq 'M' }">
+                                                 <td>한달정지</td>
+                                                 </c:if>
+                                                 
+                                                 <c:if test="${black.status eq 'D' }">
+                                                   <td>영구정지</td>
+                                                 </c:if>
                                              </tr>
-                                             <tr>
-                                                <td>2222</td>
-                                                <td>2222</td>
-                                                <td>판매자</td>
-                                                <td class="text-primary">4일</td>
-                                               
-                                                
-                                             </tr>
-                                             <tr>
-                                                <td>2222</td>
-                                                <td>2222</td>
-                                                <td>구매자</td>
-                                                <td>지구</td>
-                                                
-                                                
-                                             </tr>
-                                            <tr>
-                                                <td>2222</td>
-                                                <td>2222</td>
-                                                <td>판매자</td>
-                                                <td>지구</td>
-                                                
-                                                
-                                             </tr>
-                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                             </tr>
-                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                             </tr>
-                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                             </tr>
-                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                             </tr>
-                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                             </tr>
-                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                             </tr>
+                                            </c:forEach>
+                                            
                                         </tbody>
                                      </table>
                 
-                                         <div class="d-flex justify-content-center mt-5">
-                                            <nav aria-label="Page navigation example">
-                                                    <ul class="pagination">
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                                                                <span aria-hidden="true">«</span>
-                                                                <span class="sr-only">Previous</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                                                                <span aria-hidden="true">»</span>
-                                                                <span class="sr-only">Next</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
-                                        </div>
+                                                   <div class="d-flex justify-content-center mt-5">
+								                        <nav aria-label="Page navigation example">
+								                            <ul class="pagination">
+								                                <c:if test="${pageMaker.prev }">
+								                                    <li class="page-item">
+								                                        <a class="page-link" href="${pageMaker.startPage -1 }" aria-label="Previous">
+								                                            <span aria-hidden="true">«</span>
+								                                            <span class="sr-only">이전</span>
+								                                        </a>
+								                                    </li>
+								                                </c:if>
+								                                <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+								                                    <li class="page-item ${pageMaker.cri.pageNum == num ? 'active':''}">
+								                                        <a class="page-link" href="${num }">${num }</a>
+								                                    </li>
+								                                </c:forEach>
+								                                <c:if test="${pageMaker.next }">
+								                                    <li class="page-item">
+								                                        <a class="page-link" href="${pageMaker.endPage + 1 }" aria-label="Next">
+								                                            <span aria-hidden="true">»</span>
+								                                            <span class="sr-only">다음</span>
+								                                        </a>
+								                                    </li>
+								                                </c:if>
+								                            </ul>
+								                        </nav>
+								                    </div>
                                    </div>
                                    </div>
                             </div>
