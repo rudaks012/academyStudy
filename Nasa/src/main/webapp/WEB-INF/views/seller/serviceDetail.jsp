@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -79,20 +80,45 @@
                      </div>
                      <div class="blog_details">
                         <nav class="fables-single-nav">
-                           <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                              <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
-                                 id="nav-desc-tab" data-toggle="tab" href="#nav-desc" role="tab" aria-controls="nav-desc"
-                                 aria-selected="true">서비스설명</a>
-                              <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-                                 id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info"
-                                 aria-selected="false">취소환불규정</a>
-                              <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-                                 id="nav-review-tab" data-toggle="tab" href="#nav-review" role="tab" aria-controls="nav-review"
-                                 aria-selected="false">리뷰</a>
-                           </div>
+                           <c:choose>
+                              <c:when test="${tabcode eq 'r'}">
+                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 rounded-0 py-3"
+                                       id="nav-desc-tab" data-toggle="tab" href="#nav-desc" role="tab" aria-controls="nav-desc"
+                                       aria-selected="false">서비스설명</a>
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+                                       id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info"
+                                       aria-selected="false">취소환불규정</a>
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3 active"
+                                       id="nav-review-tab" data-toggle="tab" href="#nav-review" role="tab" aria-controls="nav-review"
+                                       aria-selected="true">리뷰</a>
+                                 </div>
+                              </c:when>
+                              <c:otherwise>
+                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
+                                       id="nav-desc-tab" data-toggle="tab" href="#nav-desc" role="tab" aria-controls="nav-desc"
+                                       aria-selected="true">서비스설명</a>
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+                                       id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info"
+                                       aria-selected="false">취소환불규정</a>
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+                                       id="nav-review-tab" data-toggle="tab" href="#nav-review" role="tab" aria-controls="nav-review"
+                                       aria-selected="false">리뷰</a>
+                                 </div>
+                              </c:otherwise>
+                           </c:choose>
+
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                           <div class="tab-pane fade show active" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
+                           <c:choose>
+                              <c:when test="${tabcode eq 'r'}">
+                                 <div class="tab-pane fade" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
+                              </c:when>
+                              <c:otherwise>
+                                 <div class="tab-pane fade show active" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
+                              </c:otherwise>
+                           </c:choose>
                              
                               	<br/><br/>
                                  <h5><u>서비스 소개</u></h5>
@@ -159,7 +185,14 @@
 										&nbsp;&nbsp;총 작업량의 1/2 경과 후 : 반환하지 않음<br/>
                               </div>
                            </div>
-                           <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-info-tab">
+                           <c:choose>
+                              <c:when test="${tabcode eq 'r'}">
+                                 <div class="tab-pane fade show active" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
+                              </c:when>
+                              <c:otherwise>
+                                 <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
+                              </c:otherwise>
+                           </c:choose>
                               <br /><br />
                               <!-- 여기에 바이어 로그인 돼 있으면 리뷰작성 뜨게 작성 -->
                               <c:if test="${author eq 'B'}">
@@ -221,7 +254,7 @@
                                     <c:forEach items="${reviewList}" var="calc">
                                           <c:set var="sum" value="${sum + calc.rev_rate}"></c:set>
                                     </c:forEach>
-                                       평점 : <c:out value="${sum / fn:length(reviewList)}"></c:out> 점
+                                       평점 : <fmt:formatNumber type="number" pattern="0.00" value="${ (((sum/fn:length(reviewList))*100) - (((sum/fn:length(reviewList))*100)%1)) * (1/100)   }"></fmt:formatNumber> 점
                                       || 총 ${fn:length(reviewList)}개의 리뷰</div>
                                  </c:when>
                                  <c:otherwise>
@@ -241,12 +274,12 @@
                                                 <c:choose>
                                                    <c:when test="${not empty review.b_img }">
                                                       <div class="thumb">
-                                                         <img class = "profileimg" src="${review.b_img }" alt="">
+                                                         <img class = "profileimg" src="${review.b_img }" alt="" style="width:70px; height:70px;">
                                                       </div>
                                                    </c:when>
                                                    <c:otherwise>
                                                       <div class="thumb">
-                                                         <img class = "profileimg" src="resources/user/assets/img/profile/search-default-profile.jpg" alt="">
+                                                         <img class = "profileimg" src="resources/user/assets/img/profile/search-default-profile.jpg" alt="" style="width:70px; height:70px;">
                                                       </div>
                                                    </c:otherwise>
                                                 </c:choose>
@@ -323,6 +356,8 @@
                                                             <span class="btn-reply1" style="cursor: pointer;" data-toggle="modal"
                                                                   data-target="#updateReviewCommentModal" data-rvcode="${review.rere_code }" data-rvsub="${review.rere_sel_sub }" 
                                                                   data-reviewcode="${review.review_code}">수정</span>
+                                                            <span class="btn-reply1" style="cursor: pointer;" data-toggle="modal"
+                                                                  data-target="#deleteReviewcommentModal" data-deletecode="${review.rere_code }">삭제</span>
                                                          </c:when>
                                                          <c:otherwise>
                                                             <span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-revtp="rc" data-report_code="${review.rere_code }"
@@ -336,6 +371,28 @@
                                        </c:if>
                                     </c:forEach>
                                  </div>
+                              </div>
+                              <div class="row justify-content-center mt-10">
+                                 <nav aria-label="Page navigation example">
+                                   <ul class="pagination">
+                                      <c:if test="${paging.prev }">
+                                         <li class="page-item"><a class="page-link" href="serviceDetail.do?ser_code=${detailS.ser_code}&pageNum=${paging.startPage - 1 }&amount=${paging.amount}&pagestatus=r">&lt;</a></li>
+                                      </c:if>
+                                      <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+                                         <c:choose>
+                                            <c:when test="${p == paging.pageNum }">
+                                               <li class="page-item"><b class="page-link">${p }</b></li>
+                                            </c:when>
+                                            <c:when test="${p != paging.pageNum }">
+                                               <li class="page-item"><a class="page-link" href="serviceDetail.do?ser_code=${detailS.ser_code}&pageNum=${p }&amount=${paging.amount}&pagestatus=r">${p }</a></li>
+                                            </c:when>
+                                         </c:choose>
+                                      </c:forEach>
+                                      <c:if test="${paging.next }">
+                                         <li class="page-item"><a class="page-link" href="serviceDetail.do?ser_code=${detailS.ser_code}&pageNum=${paging.endPage+1 }&amount=${paging.amount}&pagestatus=r">&gt;</a></li>
+                                      </c:if>
+                                   </ul>
+                                 </nav>
                               </div>
                            </div>
                         </div>
@@ -447,6 +504,25 @@
          <div class="modal-body">리뷰가 삭제됩니다!</div>
          <div class="modal-footer">
             <a href="#" class="genric-btn danger radius" onclick="deleteReview()" data-dismiss="modal">삭제</a>
+            <a href="#" class="genric-btn primary radius" data-dismiss="modal">취소</a>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="deleteReviewcommentModal" tabindex="-1" role="dialog" aria-labelledby="deleteReviewcommentModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">답글 삭제</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">답글이 삭제됩니다!</div>
+         <div class="modal-footer">
+            <a href="#" class="genric-btn danger radius" onclick="deleteReview_comment()" data-dismiss="modal">삭제</a>
             <a href="#" class="genric-btn primary radius" data-dismiss="modal">취소</a>
          </div>
       </div>
@@ -573,6 +649,7 @@
 	
 		var rvcode = "";
 		var rvsub = "";
+      var deletecode = "";
 		/* 신고 사유 textarea 끄고 켜는 함수 */
 		function radiodisabled() {
 			$("#reportSubject").attr("disabled", true);
@@ -593,6 +670,10 @@
 		$(document).ready(function () {
 			$("#deleteReviewModal").on("show.bs.modal", function (event) {
 				rvcode = $(event.relatedTarget).data("rvcode");
+			});
+
+         $("#deleteReviewcommentModal").on("show.bs.modal", function (event) {
+				deletecode = $(event.relatedTarget).data("deletecode");
 			});
 			
 			$("#updateReviewModal").on("show.bs.modal", function (event) {
@@ -664,9 +745,9 @@
 		}
 
 		function deleteReview() {
-			console.log(rvcode);
+			/*console.log(rvcode);
 			var target = document.getElementById(rvcode);
-			target.remove();
+			target.remove();*/
 			
 			var rev_code = rvcode.substr(7);
 			console.log(rev_code);
@@ -677,6 +758,22 @@
 				data:{rev_code:rev_code},
 				success: function() {
 					console.log("삭제함!");
+               location.reload();
+				},
+				error: function() {
+					console.log("에러");
+				}
+			})
+		}
+
+      function deleteReview_comment() {				
+			$.ajax({
+				url:"deleteReview_comment.do",
+				type:"get",
+				data:{rere_code:deletecode},
+				success: function() {
+					console.log("삭제함!");
+               location.reload();
 				},
 				error: function() {
 					console.log("에러");

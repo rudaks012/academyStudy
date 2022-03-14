@@ -68,11 +68,12 @@
 	</select>
 	
 	<select id="sellerReviewSelectList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
-		SELECT r.* 
-		FROM REVIEW r, SERVICE s 
-		WHERE S_EMAIL= #{s_email} AND SCODE = SER_CODE
-		AND SCODE = #{scode}
-		ORDER BY r.rev_date DESC
+		SELECT		r.* 
+		FROM 		REVIEW r, SERVICE s 
+		WHERE 		S_EMAIL= #{s_email} 
+					AND SCODE = SER_CODE
+					AND SCODE = #{scode}
+		ORDER BY 	r.rev_date DESC
 	</select>
 	
 	<select id="reviewSearch" resultType="co.Nasa.prj.comm.VO.ReviewVO">
@@ -92,7 +93,7 @@
 				 		 SELECT		R.*, B.B_IMG
 				 		 FROM		REVIEW R, BUYER B
 				 		 WHERE		R.REV_ID = #{rev_id} AND R.REV_ID = B.B_EMAIL
-						 ORDER BY 	R.REV_CODE DESC
+						 ORDER BY 	R.REV_DATE DESC
 				 ) A
 		)
 		WHERE	RN BETWEEN #{start} AND #{end}
@@ -115,6 +116,38 @@
 		ORDER BY	TO_NUMBER(REV_CODE) DESC
 	</select>
 	
+	<select id="pagingReviewandReviewComment" resultType="co.Nasa.prj.comm.VO.ReviewVO">
+		SELECT	*
+		FROM	(
+				 SELECT	ROWNUM RN, A.*
+				 FROM	(
+				 		 SELECT		R.*, C.*, B.B_IMG
+						 FROM		REVIEW R
+						 LEFT JOIN	REVIEW_COMMENT C
+						 ON			R.REV_CODE = C.REVIEW_CODE
+						 LEFT JOIN	BUYER B
+						 ON			R.REV_ID = B.B_EMAIL
+						 WHERE		SCODE = #{scode}
+						 ORDER BY	TO_NUMBER(REV_CODE) DESC
+				 ) A
+		)
+		WHERE	RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="countReviewandReviewComment" resultType="int">
+		SELECT 	COUNT(*)
+		FROM	(
+				 SELECT		R.*, C.*, B.B_IMG
+				 FROM		REVIEW R
+				 LEFT JOIN	REVIEW_COMMENT C
+				 ON			R.REV_CODE = C.REVIEW_CODE
+				 LEFT JOIN	BUYER B
+				 ON			R.REV_ID = B.B_EMAIL
+				 WHERE		SCODE = #{scode}
+				 ORDER BY	TO_NUMBER(REV_CODE) DESC
+		)
+	</select>
+	
 	<select id="sellerReviewCount" resultType="int">
 	    SELECT COUNT(*) FROM (
         SELECT m.* FROM SERVICE s ,
@@ -128,5 +161,10 @@
 		)
 	</select>
 	
-	
+	<select id="calcRateList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
+		SELECT		S.S_EMAIL AS S_EMAIL, ROUND(AVG(R.REV_RATE), 2) AS RATE
+		FROM		REVIEW R, SERVICE S
+		WHERE		R.SCODE = S.SER_CODE
+		GROUP BY	S.S_EMAIL
+	</select>
 </mapper>

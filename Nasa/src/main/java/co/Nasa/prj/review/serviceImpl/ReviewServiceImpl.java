@@ -82,5 +82,20 @@ public class ReviewServiceImpl implements ReviewService {
 		return map.sellerReviewCount2(remap);
 	}
 
+	@Override
+	public List<ReviewVO> calcRateList() {
+		return map.calcRateList();
+	}
+
+	@Override
+	public List<ReviewVO> pagingReviewandReviewComment(ReviewVO vo) {
+		return map.pagingReviewandReviewComment(vo);
+	}
+
+	@Override
+	public int countReviewandReviewComment(ReviewVO vo) {
+		return map.countReviewandReviewComment(vo);
+	}
+
 	
 }

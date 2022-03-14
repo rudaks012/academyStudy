@@ -26,6 +26,8 @@ public class ReviewVO {
 
 	String b_img;
 	
+	double rate;
+	
 	int start; // 쿼리에 쓸 start
 	int end; // 위와 같음
 	
