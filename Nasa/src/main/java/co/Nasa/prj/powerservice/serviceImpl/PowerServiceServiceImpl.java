@@ -45,4 +45,9 @@ public class PowerServiceServiceImpl implements PowerServiceService {
 		return map.sellerPowerserviceList(vo);
 	}
 
+	@Override
+	public int countPagingPowerservice(PowerServiceVO vo) {
+		return map.countPagingPowerservice(vo);
+	}
+
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.Nasa.prj.admin.service.Criteria;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.review.service.ReviewMapper;
@@ -46,8 +47,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewVO> reviewSearch(HashMap<String, String> remap) {
-		return map.reviewSearch(remap);
+	public List<ReviewVO> reviewSearch(ServiceVO vo) {
+		return map.reviewSearch(vo);
 	}
 
 	@Override

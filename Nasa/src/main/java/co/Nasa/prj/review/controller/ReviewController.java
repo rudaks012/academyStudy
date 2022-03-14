@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import co.Nasa.prj.admin.service.Criteria;
+import co.Nasa.prj.admin.service.PageDTO;
 import co.Nasa.prj.buyer.service.BuyerMapper;
 import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.PagingDTO;
@@ -119,38 +121,36 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/sellerReview.do")
-	public String sellerReview(Model model, HttpSession session, PagingDTO pagingdto) {
+	public String sellerReview(Model model, HttpSession session,  HttpServletRequest request, PagingDTO pagingdto) {
 		String s_email = (String)session.getAttribute("id");
 		ServiceVO vo = new ServiceVO();
 		vo.setS_email(s_email);
-		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		vo.setSer_code(request.getParameter("scode"));
 		
-		model.addAttribute("serviceList", serviceDao.serviceSelectList(vo));
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		
 		List<ReviewVO> reviewList = reviewDao.sellerReviewList(vo);
 		pagingdto.setTotal(reviewDao.sellerReviewCount(vo));
-		
+
+		model.addAttribute("serviceList", serviceDao.serviceSelectList(vo));
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
-		
-//		Review_CommentVO vo2 = new Review_CommentVO();
-//		vo2.setRere_sel_id(s_email);
-//		model.addAttribute("re_comList", review_commentDao.sellerReviewCommentList(vo2));
+		model.addAttribute("address", "sellerReview.do?scode="+request.getParameter("scode")+"&");
 		
 		return "seller/sellerReview";
 	}
 	
 	
 	
-	@ResponseBody
-	@RequestMapping("/reviewSearch.do")
-	public List<ReviewVO> reviewSearch(Model model, @RequestParam("scode") String scode, HttpSession session) {
-		HashMap<String, String> remap = new HashMap<String, String>();
-		remap.put("s_email", (String)session.getAttribute("id"));
-		remap.put("scode", scode);
-		
-		return reviewDao.reviewSearch(remap); 
-	}
+//	@ResponseBody
+//	@RequestMapping("/reviewSearch.do")
+//	public List<ReviewVO> reviewSearch(Model model, @RequestParam("scode") String scode, HttpSession session) {
+//		HashMap<String, String> remap = new HashMap<String, String>();
+//		remap.put("s_email", (String)session.getAttribute("id"));
+//		remap.put("scode", scode);
+//		
+//		return reviewDao.reviewSearch(remap); 
+//	}
 	
 //	@RequestMapping("/reviewSearch.do")
 //	public String reviewSearch(Model model, @RequestParam("scode") String scode, HttpSession session, PagingDTO pagingdto) {
