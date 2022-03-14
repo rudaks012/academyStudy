@@ -2,10 +2,8 @@ package co.Nasa.prj.buyer.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,17 +14,15 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 
 import co.Nasa.prj.buyer.service.BuyerMapper;
 import co.Nasa.prj.category.service.CategoryMapper;
@@ -72,6 +68,11 @@ public class BuyerController {
 	WishlistMapper wishlistDao;
 	@Autowired
 	SellerMapper sellerDao;
+	
+	//스프링시큐리티 암호화
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
+
 
 	// 구매자 마이페이지로 이동
 	@RequestMapping("/goBuyerMypage.do")
@@ -768,15 +769,22 @@ public class BuyerController {
 		return num;
 	}
 
+	@Bean
+	BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 	// 구매자 회원 가입
 	@RequestMapping("/ajaxBjoin.do")
 	@ResponseBody
-	public String ajaxBjoin(BuyerVO vo) {
+	public String ajaxBjoin(BuyerVO vo, BCryptPasswordEncoder passwordEncoder) {
 		vo.setB_rank("1");
 		vo.setB_author("구매자");
 		vo.setB_status("사용자");
 		//vo.setToken("t");
 		vo.setField_code("1");
+		String encodedPassword = passwordEncoder.encode(vo.getB_password());
+		vo.setB_password(encodedPassword);
+		System.out.println(vo.getB_password());
 
 		System.out.println("여기를 확인해보세여" + vo.toString());
 		

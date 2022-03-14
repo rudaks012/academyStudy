@@ -469,6 +469,19 @@
 </script>
 </body>
 <script type="text/javascript">
+    $("#mainchatting").on("click", function(){
+        var chatnick = document.querySelector('#bestnickname').children[0].innerHTML;
+        $.ajax({
+            url:"mainchatting.do",
+            type:"post",   
+            data:{
+                chatnick:chatnick
+            },
+            success: function(code) {
+                   location.replace('chatting.do');
+            }
+        })
+    })
 
 
  
