@@ -11,4 +11,7 @@ public interface NoticeMapper {
 	int knowhowInsert(NoticeVO vo);
 	int knowhowDelete(String no_code);
 	int knowhowUpdate(NoticeVO vo);
+	
+	List<NoticeVO> knowhowList(NoticeVO vo);
+	int countPagingKnowhow(NoticeVO vo);
 }

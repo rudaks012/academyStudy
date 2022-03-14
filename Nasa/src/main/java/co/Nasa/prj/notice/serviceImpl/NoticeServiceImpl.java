@@ -45,4 +45,14 @@ public class NoticeServiceImpl implements NoticeService {
 		return map.knowhowUpdate(vo);
 	}
 
+	@Override
+	public List<NoticeVO> knowhowList(NoticeVO vo) {
+		return map.knowhowList(vo);
+	}
+
+	@Override
+	public int countPagingKnowhow(NoticeVO vo) {
+		return map.countPagingKnowhow(vo);
+	}
+
 }

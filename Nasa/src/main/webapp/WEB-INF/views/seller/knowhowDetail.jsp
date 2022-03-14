@@ -51,11 +51,12 @@
                            <p class="excert">
                               ${knowhowDetail.no_subject }
                            </p>
-                          
+                          <c:if test="${knowhowDetail.no_id eq id }">
                            <div style="text-align: center;">
                               <button class="genric-btn primary small startbtn" onclick="location.href='knowhowUpdateForm.do?no_code=${knowhowDetail.no_code}'">수정</button>
                               <button id="knowDelete" class="genric-btn primary small startbtn">삭제</button>
                            </div>
+                          </c:if>
                           
                         </div>
                      
@@ -69,7 +70,23 @@
                            <div class="media-body">
                               <a href="#">
                                  <h4>${sellerInfo.s_nickname }</h4>
-                              </a> &nbsp;&nbsp;&nbsp; <span>등급 : ${sellerInfo.s_rank }</span>
+                              </a> &nbsp;&nbsp;&nbsp; <span>  <c:choose>
+								<c:when test="${sellerInfo.s_rank eq '1' }">
+									등급 : 별
+								</c:when>
+								<c:when test="${sellerInfo.s_rank eq '2' }">
+									<p>등급 : 달</p>
+								</c:when>
+								<c:when test="${sellerInfo.s_rank eq '3' }">
+									<p>등급 : 태양</p>
+								</c:when>
+								<c:when test="${sellerInfo.s_rank eq '4' }">
+									<p>등급 : 지구</p>
+								</c:when>
+								<c:otherwise>
+									<p>등급 : 등급확인 불가</p>
+								</c:otherwise>
+							</c:choose></span>
                               <button class="genric-btn primary small startbtn" id="stbtn" style="float: right;" data-toggle="modal" data-target="#chatModal">견적 요청</button>
                               <p>${sellerInfo.s_me }</p>
                            </div>

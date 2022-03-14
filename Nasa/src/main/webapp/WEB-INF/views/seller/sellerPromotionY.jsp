@@ -103,35 +103,43 @@
 									<div class="container">
 										<nav class="fables-single-nav">
 											<div class="nav nav-tabs" id="nav-tab" role="tablist">
-												<!-- <a
-													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
-													id="nav-desc-tab" data-toggle="tab" href="#nav-desc"
-													role="tab" aria-controls="nav-desc" aria-selected="true">진행중인
-													프로모션</a><a
-													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-													id="nav-end-tab" data-toggle="tab" href="#nav-end"
-													role="tab" aria-controls="nav-end" aria-selected="false">진행예정
-													프로모션</a>  <a
-													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-													id="nav-info-tab" data-toggle="tab" href="#nav-info"
-													role="tab" aria-controls="nav-info" aria-selected="false">종료된
-													프로모션</a> -->
-													<a
-													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font active  border-0 rounded-0 py-3"
+												<a
+													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 rounded-0 py-3"
 													id="nav-desc-tab"  href="sellerPromotion.do" >진행중인
 													프로모션</a><a
 													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
 													id="nav-end-tab" href="sellerPromotionU.do"
 													>진행예정
 													프로모션</a>  <a
-													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font active rounded-0 py-3"
 													id="nav-info-tab" href="sellerPromotionY.do" >종료된
 													프로모션</a>
 											</div>
 										</nav>
 										<br /> <br />
 										<div class="tab-content" id="nav-tabContent">
-											<div class="tab-pane fade show active" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
+											<div class="tab-pane fade " id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
+												<div class="listing-details-area">
+													<div class="container">
+														<div class="row">
+														
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade show" id="nav-end" role="tabpanel" aria-labelledby="nav-end-tab">
+												
+													<div class="listing-details-area">
+														<div class="container">
+															<div class="row">
+
+																
+															</div>
+														</div>
+													</div>
+												
+											</div>
+											<div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
 												<div class="listing-details-area">
 													<div class="container">
 														<div class="row">
@@ -144,7 +152,7 @@
 																		<!-- <span>Open</span> -->
 																	</div>
 																	<div class="list-caption">
-																		<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${promotion.pro_service }'">Open</span>
+																		
 																		<h3>
 																			<a href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
 																		</h3>
@@ -153,37 +161,14 @@
 																		<div>할인율: ${promotion.prodiscount }%</div>
 																		<div class="list-footer" style="display: block;">
 																			<ul>
-																				<li>
-																					<button type="button" class="genric-btn danger-border circle" onclick="promEnd('${promotion.pro_code }','${promotion.pro_service }')">종료</button>
-																				</li>
-
+																				<li>* 종료된 프로모션입니다.</li>
 																			</ul>
 																		</div>
 																	</div>
 																</div>
 															</div>
+															
 														</c:forEach>
-														
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="tab-pane fade show" id="nav-end" role="tabpanel" aria-labelledby="nav-end-tab">
-												
-													<div class="listing-details-area">
-														<div class="container">
-															<div class="row">
-
-															</div>
-														</div>
-													</div>
-												
-											</div>
-											<div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-												<div class="listing-details-area">
-													<div class="container">
-														<div class="row">
-														
 														
 														</div>
 													</div>
@@ -213,6 +198,8 @@
 											</nav>
 										</div>
 									</div>
+
+									
 								</div>
 							</div>
 						</article>

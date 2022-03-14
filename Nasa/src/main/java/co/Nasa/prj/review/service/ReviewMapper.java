@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import co.Nasa.prj.comm.VO.ReviewVO;
+import co.Nasa.prj.comm.VO.ServiceVO;
 
 public interface ReviewMapper {
 	// 구매자 리뷰 리스트 조회
@@ -31,7 +32,10 @@ public interface ReviewMapper {
 	public int updateReview(ReviewVO vo);
 	
 	// 판매자 리뷰 리스트 조회
-	public List<ReviewVO> sellerReviewList(String s_email);
+	public List<ReviewVO> sellerReviewList(ServiceVO vo);
 	public List<ReviewVO> sellerReviewSelectList(ReviewVO vo);
 	public List<ReviewVO> reviewSearch(HashMap<String, String> remap);
+	
+	int sellerReviewCount(ServiceVO vo);
+	int sellerReviewCount2(HashMap<String, String> remap);
 }

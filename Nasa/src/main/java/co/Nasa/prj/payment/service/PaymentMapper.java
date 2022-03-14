@@ -66,6 +66,10 @@ public interface PaymentMapper {
    
    public int countPagingSellerPayment(PaymentVO vo);
    
+   
+   List<PaymentVO> sellerPaymentListN(PaymentVO vo);
+   public int countPagingSellerPaymentN(PaymentVO vo);
+   
    public List<PaymentVO> sellermonthSearch(PaymentVO vo);
    public List<PaymentVO> sellersixmonthSearch(PaymentVO vo);
    public List<PaymentVO> selleryearSearch(PaymentVO vo);

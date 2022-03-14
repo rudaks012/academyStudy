@@ -50,4 +50,26 @@ INSERT INTO NOTICE(no_code,
 		NO_IMG = #{no_img}, NO_ORIGINIMG = #{no_originimg}
 		WHERE NO_CODE = #{no_code}
 	</update>
+	
+	<select id="knowhowList" resultType="co.Nasa.prj.comm.VO.NoticeVO">
+	SELECT	*
+	FROM	(
+			 SELECT ROWNUM RN, A.*
+			 FROM	(
+				SELECT *
+				FROM NOTICE
+				WHERE NO_ID = #{no_id} AND NO_STATUS = '1'
+				ORDER BY NO_DATE DESC
+		 	) A
+   		)
+	WHERE	RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="countPagingKnowhow" resultType="int">
+   		SELECT COUNT(*) 
+   		FROM ( 
+	   		SELECT *
+			FROM NOTICE
+			WHERE NO_ID = #{no_id} AND NO_STATUS = '1')
+   </select>
 </mapper>

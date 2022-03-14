@@ -70,5 +70,30 @@ public class PromotionServiceImpl implements PromotionService {
 		return map.serviceEndPromotion2(vo);
 	}
 
+	@Override
+	public int countPagingPromotion(PromotionVO vo) {
+		return map.countPagingPromotion(vo);
+	}
+
+	@Override
+	public List<PromotionVO> promotionListU(PromotionVO vo) {
+		return map.promotionListU(vo);
+	}
+
+	@Override
+	public int countPagingPromotionU(PromotionVO vo) {
+		return map.countPagingPromotionU(vo);
+	}
+
+	@Override
+	public List<PromotionVO> promotionListY(PromotionVO vo) {
+		return map.promotionListY(vo);
+	}
+
+	@Override
+	public int countPagingPromotionY(PromotionVO vo) {
+		return map.countPagingPromotionY(vo);
+	}
+
 	
 }

@@ -36,4 +36,6 @@ public interface ServiceService {
 	List<ServiceVO> randomSelectService(String ser_sub_cate);
 	// 판매자 혹은 비 로그인 시
 	List<ServiceVO> notBuyerRandomService();
+	
+	int countPagingSellerService(ServiceVO vo);
 }

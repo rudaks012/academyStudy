@@ -187,6 +187,28 @@
 												</c:if>
 												</div>
 											</c:forEach>
+											<div class="row justify-content-center mt-10" id="reviewdiv">
+												<nav aria-label="Page navigation example">
+												  <ul class="pagination">
+													  <c:if test="${paging.prev }">
+														  <li class="page-item"><a class="page-link" href="sellerReview.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+													  </c:if>
+													  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+														  <c:choose>
+															  <c:when test="${p == paging.pageNum }">
+																  <li class="page-item"><b class="page-link">${p }</b></li>
+															  </c:when>
+															  <c:when test="${p != paging.pageNum }">
+																  <li class="page-item"><a class="page-link" href="sellerReview.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+															  </c:when>
+														  </c:choose>
+													  </c:forEach>
+													  <c:if test="${paging.next }">
+														  <li class="page-item"><a class="page-link" href="sellerReview.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+													  </c:if>
+												  </ul>
+												</nav>
+											</div>
 										</div>
 									
 								</div>
@@ -331,6 +353,7 @@
   				success: function (result) {
   					console.log(result);
  					$(".comments-area").remove();
+ 					$("#reviewdiv").remove();
   					if(result.length != 0){
   						for(data of result){
   							var div1= $("<div>").attr('class','comments-area').attr('id', 'c'+data.rev_code);

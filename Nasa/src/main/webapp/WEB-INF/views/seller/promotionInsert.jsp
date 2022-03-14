@@ -586,7 +586,7 @@ p {
 				let end = 'en'+id;
 				start = document.getElementById(start).value;
 				end = document.getElementById(end).value;
-				
+				end = end.substr(0,10);
 				console.log(start);
 				console.log(end);
 				

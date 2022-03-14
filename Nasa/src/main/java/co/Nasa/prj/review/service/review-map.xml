@@ -51,9 +51,16 @@
 	</update>
 	
 	<select id="sellerReviewList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
-		SELECT m.* FROM SERVICE s ,
-		(SELECT * FROM REVIEW r , REVIEW_COMMENT c WHERE REV_CODE = REVIEW_CODE(+) ORDER BY REV_DATE DESC) m
-		WHERE s.s_email = #{s_email} and s.ser_code = scode
+	SELECT	*
+		FROM	(
+				 SELECT	ROWNUM RN, A.*
+				 FROM	(
+					SELECT m.* FROM SERVICE s ,
+					(SELECT * FROM REVIEW r , REVIEW_COMMENT c WHERE REV_CODE = REVIEW_CODE(+) ORDER BY REV_DATE DESC) m
+					WHERE s.s_email = #{s_email} and s.ser_code = scode
+			) A
+		)
+		WHERE	RN BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="sellerReviewSelectList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
@@ -103,5 +110,15 @@
 		WHERE		SCODE = #{scode}
 		ORDER BY	TO_NUMBER(REV_CODE) DESC
 	</select>
-
+	
+	<select id="sellerReviewCount" resultType="int">
+	    SELECT COUNT(*) FROM (
+        SELECT m.* FROM SERVICE s ,
+			(SELECT * FROM REVIEW r , REVIEW_COMMENT c 
+			WHERE REV_CODE = REVIEW_CODE(+) 
+			ORDER BY REV_DATE DESC) m
+		WHERE s.s_email = #{s_email} and s.ser_code = scode)
+	</select>
+	
+	
 </mapper>

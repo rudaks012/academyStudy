@@ -22,7 +22,7 @@
 	</insert>
 	
 	<select id="powerServiceCount" resultType="int">
-		SELECT COUNT(*) 
+		SELECT NVL(COUNT(*),0) 
 		FROM POWERSERVICE 
 		GROUP BY POWER_START 
 		HAVING POWER_START= #{power_start}
