@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -69,12 +70,16 @@ public class AhController {
 	// 로그인 체크
 	@RequestMapping("/main.do")
 	public String main(LoginVO Loginvo, AdminVO avo, SellerVO svo, HttpServletResponse response, HttpSession session,
-			@RequestParam("id") String id, @RequestParam("pw") String password, Model model) throws IOException {
+			@RequestParam("id") String id, @RequestParam("pw") String password, Model model,
+			BCryptPasswordEncoder passwordEncoder) throws IOException {
 		logger.info("debug - login");
 		String path = "";
 		avo = new AdminVO();
 		avo.setAid(id);
+		//vo 아이디 값 찾아서 한행 나오면
+		
 		avo.setApassword(password);
+		System.out.println("check|||||||||||||||||||||||||||||||" + avo.getApassword());
 		avo = LoginDao.selectadmin(avo);
 		if (avo == null) {
 			svo = new SellerVO();
