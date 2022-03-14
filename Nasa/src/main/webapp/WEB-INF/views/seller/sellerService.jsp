@@ -161,6 +161,10 @@ input[type=date] {
 	color: gray;
 	font-size: 13px;
 }
+.price img{
+	width: 100px;
+	height: 28px;
+}
 </style>
 </head>
 <body>
@@ -286,9 +290,16 @@ input[type=date] {
 																							href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
 																							 
 																					</h3>
-																					<div>서비스번호 : s${service.ser_code }</div>
+																					<div>서비스코드 : s${service.ser_code }</div>
 																					<br/>
-																					<div class="price"> ₩ ${service.ser_price }</div>
+																					<c:if test="${not empty service.prodiscount }">
+																						<div class="price">₩ <del><fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></del> </div>
+																						<div class="price" style="color:red;"><img src="resources/user/assets/img/promotion.png"> ₩<fmt:formatNumber value="${service.prodiscount }" pattern="###,###"/></div>
+																			
+																					</c:if>
+																					<c:if test="${empty service.prodiscount }">
+																						<div class="price"> ₩ ${service.ser_price }</div>
+																					</c:if>
 																					<div class="list-footer">
 																						<ul>
 																							<li >
@@ -337,13 +348,23 @@ input[type=date] {
 																				</div>
 																				<div class="list-caption">
 																				<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${service.ser_code  }'">Open</span>
-																					<div class="category">* ${service.category } > ${service.sub_category }</div><br/>
+																					<div class="category">* ${service.category } > ${service.sub_category }</div>
+																					<div class="line"> ${service.ser_line }</div>
+																					<br/>
 																					<h3>
 																						<a
 																							href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
 																					</h3>
-																					<div>번호 : s${service.ser_code }</div>
-
+																					<div>서비스코드 : s${service.ser_code }</div>
+																					<br/>
+																					<c:if test="${not empty service.prodiscount }">
+																						<div class="price">₩ <del><fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></del> </div>
+																						<div class="price" style="color:red;"><img src="resources/user/assets/img/promotion.png"> ₩<fmt:formatNumber value="${service.prodiscount }" pattern="###,###"/></div>
+																						
+																					</c:if>
+																					<c:if test="${empty service.prodiscount }">
+																						<div class="price"> ₩ ${service.ser_price }</div>
+																					</c:if>
 																					<div class="list-footer" style="display: block;">
 																						<ul>
 																							<li >
@@ -379,11 +400,15 @@ input[type=date] {
 																					<img src="fileupload/${service.ser_img }" alt="">
 																				</div>
 																				<div class="list-caption">
-																					<div class="category">* ${service.category } > ${service.sub_category }</div><br/>
+																					<div class="category">* ${service.category } > ${service.sub_category }</div>
+																					<div class="line"> ${service.ser_line }</div>
+																					<br/>
 																					<h3>
 																						<a href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
 																					</h3>
-																					<div>번호 : s${service.ser_code }</div>
+																					<div>서비스코드 : s${service.ser_code }</div>
+																					<br/>
+																					<div class="price"> ₩ ${service.ser_price }</div>
 																					<div class="list-footer">
 																						<ul>
 																							<li>
@@ -419,11 +444,13 @@ input[type=date] {
 																				</div>
 																				<div class="list-caption">
 																					<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${power.ser_code  }'">Open</span>
-																					<div class="category">* ${power.cat_name } > ${power.sub_name }</div><br/>
+																					<div class="line"> ${power.ser_line }</div>
+																					<br/>
 																					<h3>
 																						<a href="serviceDetail.do?ser_code=${power.ser_code }">${power.ser_title }</a>
 																					</h3>
-																					<div>번호 : s${power.ser_code }</div>
+																					<div>서비스코드 : s${power.ser_code }</div>
+																					
 																					<div class="list-footer">
 																						<ul>
 																							<li>
@@ -453,30 +480,33 @@ input[type=date] {
 													</div>
 											</div>
 										</div>
+										 
 									</div>
 								</div>
 							</div>
 						</article>
 					</div>
-					<div class="pagination-area pt-70 text-center">
-						<div class="container">
-							<div class="row">
-								<div class="col-xl-12">
-									<div class="single-wrap d-flex justify-content-center">
-										<nav aria-label="Page navigation example">
-											<ul class="pagination justify-content-start">
-												<li class="page-item active"><a class="page-link"
-													href="#">01</a></li>
-												<li class="page-item"><a class="page-link" href="#">02</a></li>
-												<li class="page-item"><a class="page-link" href="#">03</a></li>
-												<li class="page-item"><a class="page-link" href="#"><span
-														class="ti-angle-right"></span></a></li>
-											</ul>
-										</nav>
-									</div>
-								</div>
-							</div>
-						</div>
+					<div class="row justify-content-center mt-10">
+						<nav aria-label="Page navigation example">
+						  <ul class="pagination">
+							  <c:if test="${paging.prev }">
+								  <li class="page-item"><a class="page-link" href="sellerService.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+							  </c:if>
+							  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+								  <c:choose>
+									  <c:when test="${p == paging.pageNum }">
+										  <li class="page-item"><b class="page-link">${p }</b></li>
+									  </c:when>
+									  <c:when test="${p != paging.pageNum }">
+										  <li class="page-item"><a class="page-link" href="sellerService.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+									  </c:when>
+								  </c:choose>
+							  </c:forEach>
+							  <c:if test="${paging.next }">
+								  <li class="page-item"><a class="page-link" href="sellerService.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+							  </c:if>
+						  </ul>
+						</nav>
 					</div>
 					<!--Pagination End  -->
 				</div>

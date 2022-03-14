@@ -332,13 +332,14 @@
                         <h4>판매자 정보</h4><br/>
                         <h5>활동정보</h5>
                         <div>회원구분 : ${sellerInfo.s_author }</div>
-                        <div>총 작업수 : 12건</div>
+                       <!--  <div>총 작업수 : 12건</div> -->
                         <div>주소 : ${sellerInfo.s_address } </div>
                         <br/>
-                        <h5>자격증</h5>
-                        <div>한국산업인력공단·사무자동화산업기사</div>
+                        <h5>기타 경력</h5>
+                        <!-- <div>한국산업인력공단·사무자동화산업기사</div>
                         <div>대한상공회의소·워드프로세서 2급·2003.12</div>
-                        <div>한국생산성본부·ICDL Start Certificate·2012.11</div>
+                        <div>한국생산성본부·ICDL Start Certificate·2012.11</div> -->
+                        <div style="white-space:pre-line;">${sellerInfo.s_carrer }</div>
                         <div style="margin-top: 20px; text-align: center;">
                            <button class="genric-btn primary e-large" onclick="">문의하기</button>
                         </div>

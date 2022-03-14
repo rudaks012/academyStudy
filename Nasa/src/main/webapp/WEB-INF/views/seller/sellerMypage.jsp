@@ -439,6 +439,9 @@ Remove or comment-out the code block below to see how the browser will fall-back
 							<li><a href="sellerService.do" class="d-flex">
 									<p>서비스관리</p>
 							</a></li>
+							<li><a href="powerservice.do" class="d-flex">
+									<p>파워서비스 내역</p>
+							</a></li>
 							<li><a href="sellerPromotion.do" class="d-flex">
 									<p>프로모션관리</p>
 							</a></li>

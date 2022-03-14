@@ -1,20 +1,27 @@
 package co.Nasa.prj.powerservice.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.Nasa.prj.comm.VO.PowerServiceVO;
+import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.powerservice.service.PowerServiceService;
+import co.Nasa.prj.service.service.ServiceService;
 
 @Controller
 public class PowerServiceController {
 	@Autowired
 	private PowerServiceService powerDao;
+	@Autowired
+	private ServiceService serviceDao;
 	
 	@ResponseBody
 	@RequestMapping("/endPower.do")
@@ -34,6 +41,17 @@ public class PowerServiceController {
 		
 		powerDao.powerserviceInsert(vo);
 		return "redirect:sellerService.do";
+	}
+	
+	@RequestMapping("/powerservice.do")
+	public String powerservice(PowerServiceVO vo, HttpSession session, Model model) {
+		ServiceVO vo2 = new ServiceVO();
+		vo2.setS_email((String)session.getAttribute("id"));
+		
+		vo.setS_email((String)session.getAttribute("id"));
+		model.addAttribute("powerList",powerDao.sellerPowerserviceList(vo));
+		model.addAttribute("sellerMainServiceList", serviceDao.sellerMainServiceList(vo2));
+		return "seller/sellerPower";
 	}
 	
 	@ResponseBody

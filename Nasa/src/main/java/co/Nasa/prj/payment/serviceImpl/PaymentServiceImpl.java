@@ -168,6 +168,16 @@ public class PaymentServiceImpl implements PaymentService {
 		return map.sellerTotalservice(totalmap);
 	}
 
+	@Override
+	public List<PaymentVO> sellerPaymentListN(PaymentVO vo) {
+		return map.sellerPaymentListN(vo);
+	}
+
+	@Override
+	public int countPagingSellerPaymentN(PaymentVO vo) {
+		return map.countPagingSellerPaymentN(vo);
+	}
+
 	
 	
 

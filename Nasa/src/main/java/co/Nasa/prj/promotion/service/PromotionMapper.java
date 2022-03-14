@@ -21,4 +21,12 @@ public interface PromotionMapper {
 	List<PromotionVO> promotionSelectList(PromotionVO vo);
 	int serviceEndPromotion(PromotionVO vo);
 	int serviceEndPromotion2(PromotionVO vo);
+	
+	int countPagingPromotion(PromotionVO vo);
+	
+	List<PromotionVO> promotionListU(PromotionVO vo);
+	int countPagingPromotionU(PromotionVO vo);
+	
+	List<PromotionVO> promotionListY(PromotionVO vo);
+	int countPagingPromotionY(PromotionVO vo);
 }

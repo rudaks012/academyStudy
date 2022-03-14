@@ -3,11 +3,10 @@ package co.Nasa.prj.notice.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.comm.VO.NoticeVO;
+import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.notice.service.NoticeService;
 import co.Nasa.prj.seller.service.SellerService;
 
@@ -31,10 +31,18 @@ public class NoticeController {
 	private SellerService sellerDAO;
 	
 	@RequestMapping("/sellerKnowhow.do")
-	public String sellerKnowhow(Model model) {
+	public String sellerKnowhow(Model model, HttpSession session, PagingDTO pagingdto) {
 		//String no_id = (String)session.getAttribute("id");
-
-		model.addAttribute("knowhows", NoticeDao.knowhowSelectList());
+		NoticeVO vo = new NoticeVO();
+		vo.setNo_id((String)session.getAttribute("id"));
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		
+		List<NoticeVO> list = NoticeDao.knowhowList(vo);
+		pagingdto.setTotal(NoticeDao.countPagingKnowhow(vo));
+		
+		model.addAttribute("knowhows", list);
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		
 		return "seller/sellerKnowhow";
 	}
 	

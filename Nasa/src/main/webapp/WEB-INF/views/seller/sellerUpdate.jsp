@@ -348,9 +348,8 @@
 	    			processData : false,
 					success: function (data) {
 						if (data == "T") {
-							console.log("수정 성공");
-							alert("추가 정보 입력 완료! 메인 화면으로 이동합니다.");
-							location.href='home.do';
+							console.log("수정 완료하였습니다.");
+							location.href='goSellerMypage.do';
 						} else {
 							console.log("수정 실패");
 						}

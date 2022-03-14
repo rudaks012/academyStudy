@@ -117,14 +117,14 @@
 													role="tab" aria-controls="nav-info" aria-selected="false">종료된
 													프로모션</a> -->
 													<a
-													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font active  border-0 rounded-0 py-3"
+													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 rounded-0 py-3"
 													id="nav-desc-tab"  href="sellerPromotion.do" >진행중인
 													프로모션</a><a
 													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
 													id="nav-end-tab" href="sellerPromotionU.do"
 													>진행예정
 													프로모션</a>  <a
-													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font active rounded-0 py-3"
 													id="nav-info-tab" href="sellerPromotionY.do" >종료된
 													프로모션</a>
 											</div>
@@ -136,7 +136,7 @@
 													<div class="container">
 														<div class="row">
 														<c:forEach items="${promotions }" var="promotion">
-														
+														<c:if test="${promotion.pro_status eq 'N'}">
 															<div class="col-lg-6 ">
 																<div class="single-listing mb-30">
 																	<div class="list-img">
@@ -149,8 +149,8 @@
 																			<a href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
 																		</h3>
 																		<p>프로모션 코드 : p${promotion.pro_code }</p>
-																		<div>프로모션 일자 : ${fn:substring(promotion.pro_start,0,10) } ~ ${fn:substring(promotion.pro_end,0,10) }</div>
-																		<div>할인율: ${promotion.prodiscount }%</div>
+																		<p>프로모션 일자 : ${fn:substring(promotion.pro_start,0,10) } ~ ${fn:substring(promotion.pro_end,0,10) }</p>
+																		<p>할인율: ${promotion.prodiscount }%</p>
 																		<div class="list-footer" style="display: block;">
 																			<ul>
 																				<li>
@@ -162,6 +162,7 @@
 																	</div>
 																</div>
 															</div>
+															</c:if>
 														</c:forEach>
 														
 														</div>
@@ -174,6 +175,35 @@
 														<div class="container">
 															<div class="row">
 
+																<c:forEach items="${promotions }" var="promotion">
+																<c:if test="${promotion.pro_status eq 'U'}">
+																		<div class="col-lg-6">
+																			<div class="single-listing mb-30">
+																				<div class="list-img">
+																					<img src="fileupload/${promotion.ser_img }"
+																						id="prvimg" alt="">
+																				</div>
+																				<div class="list-caption">
+																					<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${promotion.pro_service }'">Open</span>
+																					<h3>
+																						<a href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
+																					</h3>
+																					<p>프로모션 코드 : p${promotion.pro_code }</p>
+																					<p>프로모션 일자 : ${fn:substring(promotion.pro_start,0,10) } ~ ${fn:substring(promotion.pro_end,0,10) }</p>
+																					<p>할인율: ${promotion.prodiscount }%</p>
+																					<div class="list-footer" style="display: block;">
+																						<ul>
+																							<li>
+																								<button type="button" class="genric-btn danger-border circle" onclick="promCancel('${promotion.pro_code }','${promotion.pro_service }')">취소</button>
+																							</li>
+
+																						</ul>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</c:if>
+																</c:forEach>
 															</div>
 														</div>
 													</div>
@@ -183,34 +213,60 @@
 												<div class="listing-details-area">
 													<div class="container">
 														<div class="row">
-														
+														<c:forEach items="${promotions }" var="promotion">
+														<c:if test="${promotion.pro_status eq 'Y'}">
+															<div class="col-lg-6 ">
+																<div class="single-listing mb-30">
+																	<div class="list-img">
+																		<img src="fileupload/${promotion.ser_img }" alt="">
+																		<!-- <span>Open</span> -->
+																	</div>
+																	<div class="list-caption">
+																		
+																		<h3>
+																			<a href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
+																		</h3>
+																		<p>프로모션 코드 : p${promotion.pro_code }</p>
+																		<p>프로모션 일자 : ${fn:substring(promotion.pro_start,0,10) } ~ ${fn:substring(promotion.pro_end,0,10) }</p>
+																		<p>할인율: ${promotion.prodiscount }%</p>
+																		<div class="list-footer" style="display: block;">
+																			<ul>
+																				<li>* 종료된 프로모션입니다.</li>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															</c:if>
+														</c:forEach>
 														
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-										<div class="row justify-content-center mt-10" id="reviewdiv">
-											<nav aria-label="Page navigation example">
-											  <ul class="pagination">
-												  <c:if test="${paging.prev }">
-													  <li class="page-item"><a class="page-link" href="sellerReview.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
-												  </c:if>
-												  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-													  <c:choose>
-														  <c:when test="${p == paging.pageNum }">
-															  <li class="page-item"><b class="page-link">${p }</b></li>
-														  </c:when>
-														  <c:when test="${p != paging.pageNum }">
-															  <li class="page-item"><a class="page-link" href="sellerReview.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
-														  </c:when>
-													  </c:choose>
-												  </c:forEach>
-												  <c:if test="${paging.next }">
-													  <li class="page-item"><a class="page-link" href="sellerReview.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
-												  </c:if>
-											  </ul>
-											</nav>
+									</div>
+
+									<!-- listing Details End -->
+									<!--Pagination Start  -->
+									<div class="pagination-area pt-70 text-center">
+										<div class="container">
+											<div class="row">
+												<div class="col-xl-12">
+													<div class="single-wrap d-flex justify-content-center">
+														<nav aria-label="Page navigation example">
+															<ul class="pagination justify-content-start">
+																<li class="page-item active"><a class="page-link"
+																	href="#">01</a></li>
+																<li class="page-item"><a class="page-link" href="#">02</a></li>
+																<li class="page-item"><a class="page-link" href="#">03</a></li>
+																<li class="page-item"><a class="page-link" href="#"><span
+																		class="ti-angle-right"></span></a></li>
+															</ul>
+														</nav>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -218,6 +274,9 @@
 						</article>
 					</div>
 				</div>
+
+
+
 
 			</div>
 		</div>

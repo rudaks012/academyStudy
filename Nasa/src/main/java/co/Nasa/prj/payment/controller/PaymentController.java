@@ -70,6 +70,25 @@ public class PaymentController {
 		return "seller/sellerPayment";
 	}
 	
+	@RequestMapping("/sellerPaymentN.do")
+	public String sellerPaymentN(Model model, HttpSession session, PagingDTO pagingdto) {
+		PaymentVO paymentvo = new PaymentVO();
+		paymentvo.setS_email((String)session.getAttribute("id"));
+		
+		
+		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<PaymentVO> paymentList = paymentDao.sellerPaymentListN(paymentvo);
+		pagingdto.setTotal(paymentDao.countPagingSellerPaymentN(paymentvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+//		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("address", "sellerPaymentN.do");
+		
+		
+		
+		model.addAttribute("sellerPayList",paymentList);
+		return "seller/sellerPaymentN";
+	}
+	
 	@RequestMapping("/sellermonthSearch.do")
 	public String monthSearch(Model model, HttpSession session, HttpServletResponse response,
 							  HttpServletRequest request, PagingDTO pagingdto) {

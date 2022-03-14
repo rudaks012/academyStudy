@@ -22,8 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.buyer.service.BuyerMapper;
 import co.Nasa.prj.comm.VO.BuyerVO;
+import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.comm.VO.ReviewVO;
-import co.Nasa.prj.comm.VO.Review_CommentVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.review.service.ReviewMapper;
 import co.Nasa.prj.review_comment.service.Review_CommentMapper;
@@ -119,13 +119,20 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/sellerReview.do")
-	public String sellerReview(Model model, HttpSession session) {
+	public String sellerReview(Model model, HttpSession session, PagingDTO pagingdto) {
 		String s_email = (String)session.getAttribute("id");
 		ServiceVO vo = new ServiceVO();
 		vo.setS_email(s_email);
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		
 		model.addAttribute("serviceList", serviceDao.serviceSelectList(vo));
-		model.addAttribute("reviewList", reviewDao.sellerReviewList(s_email));
-//		
+		
+		List<ReviewVO> reviewList = reviewDao.sellerReviewList(vo);
+		pagingdto.setTotal(reviewDao.sellerReviewCount(vo));
+		
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		
 //		Review_CommentVO vo2 = new Review_CommentVO();
 //		vo2.setRere_sel_id(s_email);
 //		model.addAttribute("re_comList", review_commentDao.sellerReviewCommentList(vo2));
@@ -144,4 +151,22 @@ public class ReviewController {
 		
 		return reviewDao.reviewSearch(remap); 
 	}
+	
+//	@RequestMapping("/reviewSearch.do")
+//	public String reviewSearch(Model model, @RequestParam("scode") String scode, HttpSession session, PagingDTO pagingdto) {
+//		HashMap<String, String> remap = new HashMap<String, String>();
+//		remap.put("s_email", (String)session.getAttribute("id"));
+//		remap.put("scode", scode);
+//		ReviewVO vo = new ReviewVO();
+//		vo.setScode(scode);
+//		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+//		List<ReviewVO> reviewList = reviewDao.reviewSearch(remap);
+//		
+//		pagingdto.setTotal(reviewDao.sellerReviewCount2(remap));
+//		
+//		model.addAttribute("reviewList", reviewList);
+//		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+//		model.addAttribute("selectcode", scode);
+//		return "seller/sellerReviewD"; 
+//	}
 }

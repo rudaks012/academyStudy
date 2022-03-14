@@ -85,11 +85,16 @@ public class ServiceController {
 		String s_email = (String) session.getAttribute("id");
 		ServiceVO vo = new ServiceVO();
 		vo.setS_email(s_email);
-		model.addAttribute("sellerMainServiceList", serviceDao.sellerMainServiceList(vo));
-		//model.addAttribute("serviceList", serviceDao.serviceMaxEnddateList(s_email));
+		
+		//vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<ServiceVO> sellerMainServiceList = serviceDao.sellerMainServiceList(vo);
+		//pagingdto.setTotal(serviceDao.countPagingSellerService(vo));
+		model.addAttribute("sellerMainServiceList", sellerMainServiceList);
+		//model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		
 		PowerServiceVO pvo = new PowerServiceVO();
 		pvo.setS_email(s_email);
+		
 		model.addAttribute("powerList",powerDao.sellerPowerserviceList(pvo));
 		
 		return "seller/sellerService";
