@@ -113,7 +113,7 @@
 		                         </thead>
 		                         <tbody>
 		                           <c:forEach var="board" items="${boardLists }">
-		                             <tr class="boardList">
+		                             <tr class="boardList" onclick="javascript:clickTrRow(this);">
 		                                <td>${board.no_code }</td>
 		                                <td>${board.no_title }</td>
 		                                <td>${board.no_id }</td>
@@ -224,6 +224,17 @@ $(".page-item a").on("click", function (e) {
     actionForm.find("input[name='pageNum']").val($(this).attr("href"));
     actionForm.submit();
 })
+
+function clickTrRow(target){
+	const tbody= target.parentNode;
+	const trs = tbody.getElementsByTagName('tr');
+	
+	for(var i=0; i<trs.length;i++){
+		trs[i].style.backgroundColor="";
+	} 
+	target.style.backgroundColor="#dadde0";
+}
+
 
 //등록날짜 변경
 let startDate =$("input[name='no_date']");

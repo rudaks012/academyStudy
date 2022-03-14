@@ -125,6 +125,24 @@ public class AdminReportSerivceImpl implements AdminReportService {
 		return map.getBlackListWithPaging(cri);
 	}
 
+	@Override
+	public int searchBlackListTotal(Criteria cri) {
+		// TODO Auto-generated method stub
+		return map.searchBlackListTotal(cri);
+	}
+
+	@Override
+	public int blackListTotal() {
+		// TODO Auto-generated method stub
+		return map.blackListTotal();
+	}
+
+	@Override
+	public AdminAuthorVO detailBlackMember(String email) {
+		// TODO Auto-generated method stub
+		return map.detailBlackMember(email);
+	}
+
 	
 
 

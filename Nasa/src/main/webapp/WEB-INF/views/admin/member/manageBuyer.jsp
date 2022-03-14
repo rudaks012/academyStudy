@@ -147,7 +147,7 @@
                         </thead>
                         <tbody>
                             <c:forEach var="buyer" items="${buyerList }" varStatus="status">
-                                <tr class="member-list">
+                                <tr class="member-list" onclick="javascript:clickTrRow(this);">
                                     <td>${buyer.b_email }</td>
                                     <td>${buyer.b_name }</td>
                                     <td>${buyer.b_tel }</td>
@@ -390,6 +390,16 @@ const handleReportDate =()=>{
 	
 }
 $("input[name='b_date']").on("change",handleReportDate);
+
+function clickTrRow(target){
+	const tbody= target.parentNode;
+	const trs = tbody.getElementsByTagName('tr');
+	
+	for(var i=0; i<trs.length;i++){
+		trs[i].style.backgroundColor="";
+	} 
+	target.style.backgroundColor="#dadde0";
+}
 
 //초기화버튼
 const hadleResetLists =()=>{

@@ -158,7 +158,7 @@
                                 <div class=" mb-3">총 <span class="mx-1 text-danger">${total }</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
-		                         	<tr>
+		                         	<tr >
 		                         		<th>순번</th>
 		                         		<th width="250px">판매자</th>
 		                         		<th>서비스명</th>
@@ -167,7 +167,7 @@
 		                         </thead>
 		                         <tbody>
 		                          <c:forEach var="service" items="${serviceLists }">
-		                             <tr class="serviceList">
+		                             <tr class="serviceList" onclick="javascript:clickTrRow(this);">
 		                                <td>${service.ser_code}</td>
 		                                <td>${service.s_email }</td>
 		                                <td>${service.ser_title }</td>
@@ -373,6 +373,17 @@ $(".page-item a").on("click", function (e) {
     actionForm.find("input[name='pageNum']").val($(this).attr("href"));
     actionForm.submit();
 })
+
+
+	function clickTrRow(target){
+		const tbody= target.parentNode;
+		const trs = tbody.getElementsByTagName('tr');
+		
+		for(var i=0; i<trs.length;i++){
+			trs[i].style.backgroundColor="";
+		} 
+		target.style.backgroundColor="#dadde0";
+	}
 //카테고리 select
 const getOption=()=>{
 	  var obj = {
@@ -460,7 +471,7 @@ $("#searchCategory").on("change",handleCategoryChange);
 
 const selectService=()=>{
 	const code = event.target.parentNode.firstChild.nextSibling.innerText;
-    
+	
 	$.ajax({
 		url:"ajaxSelectService.do",
 		type:"post",

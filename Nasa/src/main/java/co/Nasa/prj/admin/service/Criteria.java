@@ -42,6 +42,7 @@ public class Criteria {
 	private String pay_cate;
 	private String pay_cate1;
 	private String pay_date;
+	private String pay_date2;
 	
 	private String ser_cate;
 	private String ser_sub_cate;
@@ -54,6 +55,42 @@ public class Criteria {
 	private String no_date;
 	private String no_date2;
 	
+	private String email;
+	private String name;
+	private String nickname;
+	private String status;
+	private String gb;
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getGb() {
+		return gb;
+	}
+	public void setGb(String gb) {
+		this.gb = gb;
+	}
 	public String getNo_id() {
 		return no_id;
 	}

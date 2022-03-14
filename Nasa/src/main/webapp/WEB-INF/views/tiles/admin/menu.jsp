@@ -99,7 +99,7 @@
                                             class="hide-menu"> 신고관리
                                         </span></a>
                                 </li>
-                                <li class="sidebar-item"><a href="manage_blackList.do" class="sidebar-link"><span
+                                <li class="sidebar-item"><a href="manageBlackList.do" class="sidebar-link"><span
                                             class="hide-menu"> 블랙리스트관리
                                         </span></a>
                                 </li>

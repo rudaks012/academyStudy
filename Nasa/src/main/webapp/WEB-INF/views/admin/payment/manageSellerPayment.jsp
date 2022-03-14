@@ -133,7 +133,7 @@
 		                         <tbody>
 		                           <c:forEach var="payment" items="${sellerPayment   }">
 		                   
-		                             <tr class="paymentList">
+		                             <tr class="paymentList" onclick="javascript:clickTrRow(this);">
 		                                <td>${payment.power_code }</td>
 		                                <td>${payment.s_email }</td>
 		                                <td>${payment.sub_name }</td>
@@ -289,6 +289,19 @@ $(".page-item a").on("click", function (e) {
     actionForm.find("input[name='pageNum']").val($(this).attr("href"));
     actionForm.submit();
 })
+
+
+function clickTrRow(target){
+		const tbody= target.parentNode;
+		const trs = tbody.getElementsByTagName('tr');
+		
+		for(var i=0; i<trs.length;i++){
+			trs[i].style.backgroundColor="";
+		} 
+		target.style.backgroundColor="#dadde0";
+	}
+
+
 
 //결제날짜 변경
 let startDate =$("input[name='power_date']");
