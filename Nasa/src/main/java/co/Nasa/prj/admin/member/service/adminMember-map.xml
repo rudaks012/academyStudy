@@ -46,7 +46,10 @@
 		  SELECT *
 			FROM 
 			    (
-			    select rownum rn, b.*
+			    select rownum rn, b.pay_code, b.b_email, b.s_email, b.s_code,b.pay_date,b.pay_cate, b.pay_cate1,b.pay_type,b.pay_coupon,
+			                      b.pay_price,b.pay_enddate,b.event_start,b.event_end,
+			                      b.ser_code,b.pro_code,b.ser_start,b.ser_title,b.ser_sub,b.ser_price,
+			                      b.ser_sale,b.ser_date,b.ser_line,b.ser_team
 			    from v_buyerpayment b
 			    WHERE b_email=#{b_email} AND ROWNUM <=#{pageNum} * #{amount}
 			    )
@@ -159,6 +162,14 @@
 	
 	<select id="getBuyerTotal" resultType="int">
 		select count(*) as total from buyer
+	</select>
+	
+	<select id="searchBuyerTotal" resultType="int">
+		select count(*)
+		from buyer
+		<trim prefix="where" prefixOverrides="and">
+			<include refid="buyerCriteria"></include>
+		</trim>
 	</select>
 	
 	<select id="selectSeller" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">

@@ -14,6 +14,7 @@ public interface AdminMemberMapper {
 		public List<AdminAuthorVO> selectBuyerPayment(Criteria cri); //구매자 정보와 결제내역
 		public List<BuyerVO> getListWithPaging(Criteria cri); //구매자목록 페이징
 		public int getBuyerTotal();
+		public int searchBuyerTotal(Criteria cri);
 		
 		public int updateMemberRank(BuyerVO vo);
 		

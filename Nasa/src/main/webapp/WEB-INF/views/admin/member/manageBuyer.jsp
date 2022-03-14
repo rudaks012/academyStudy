@@ -134,7 +134,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class=" mb-3">
-                        총 <span class="mx-1 text-danger">${totalBuyer } </span>건
+                        총 <span class="mx-1 text-danger">${searchTotal } </span>건
                     </div>
                     <table class="table table-bordered thead-light text-center table-hover">
                         <thead class="table-active">
@@ -223,7 +223,7 @@
                             <tbody>
                                 <tr>
                                     <td rowspan="4" width="200px">
-                                       <img id="b_img"  width="200px" height="250px">
+                                       <img id="b_img"  src="resources/user/assets/img/search-default-profile.jpg" width="200px" height="250px">
                                     </td>
 
                                 </tr>
@@ -472,6 +472,7 @@ $("#searchBtn").on("click",searchReport);
                     let nowPage = 1; // 현재 페이지 
                     let visibleBlock = 5;
                     
+                    console.log(result)
                     totalPages = totalCount / pageSize;
 
                     if (totalCount % pageSize > 0) {
@@ -597,7 +598,8 @@ $("#searchBtn").on("click",searchReport);
                 $("#b_date").val(result.buyer.b_date);
                 
                 //프로필
-                $("#b_img").attr("src",result.buyer.b_img)
+                let b_img = result.buyer.b_img;
+                b_img!=null? $("#b_img").attr("src",b_img):$("#b_img").attr("src","resources/user/assets/img/search-default-profile.jpg")
                 //구매내역 총수
                 $("#paymentListLength").text(result.payment.length);
                 //구매내역 누적금액
