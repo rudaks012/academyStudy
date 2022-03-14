@@ -378,7 +378,7 @@
                         </div>
                         <div class="list-caption" style="width: 370px; height: 190px;">
                             <span>BEST!</span>
-                             <h3 id="bestnickname"><a href="#">${bestseller.s_nickname }</a></h3>
+                             <h3 id="bestnickname"><a href="sellerDetail.do?s_email=${bestseller.s_email }">${bestseller.s_nickname }</a></h3>
                             <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${bestseller.s_me }</p>
                             <div class="list-footer">
                                 <ul>
