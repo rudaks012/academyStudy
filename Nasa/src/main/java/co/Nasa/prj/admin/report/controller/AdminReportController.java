@@ -117,11 +117,19 @@ public class AdminReportController {
 		return "admin/report/reportRefuse";
 	}
 	
-//	 @RequestMapping("/manage_blackList.do")
-//	 public String manage_blackList(Model model,Criteria cri) {
-//		 model.addAttribute("blackList", reportDao.getBlackListWithPaging(cri));
-//		 return "admin/report/manageBlackList";
-//	 }
+	 @RequestMapping("/manageBlackList.do")
+	 public String manage_blackList(Model model,Criteria cri) {
+		 model.addAttribute("blackList", reportDao.getBlackListWithPaging(cri));
+		 model.addAttribute("pageMaker", new PageDTO(cri, reportDao.searchBlackListTotal(cri)));
+		 model.addAttribute("total", reportDao.blackListTotal());
+		 return "admin/report/manageBlackList";
+	 }
+	 
+	 @ResponseBody
+	 @PostMapping("/ajaxSelectBlack.do")
+	 public AdminAuthorVO ajaxSelectBlack(AdminAuthorVO vo) {
+		 return reportDao.detailBlackMember(vo.getEmail());
+	 }
 
 	
 	 //블랙리스트 한달정지 스케줄러

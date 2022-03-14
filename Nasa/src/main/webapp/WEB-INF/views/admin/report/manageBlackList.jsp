@@ -9,11 +9,11 @@
                                     <h6><i  class=" icon-user-unfollow mr-1"></i>신고관리 <i class="fas fa-chevron-right mx-2"></i>블랙리스트 관리</h6>
                                 </div>
                                 <ul class="list-style-none d-flex">
-                                    <li class="mr-1">총 블랙리스트 <span class="text-danger mx-1">3</span>명</li>
+                                    <li class="mr-1">총 블랙리스트 <span class="text-danger mx-1">${total }</span>명</li>
                                     <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
-                                    <li class="mx-2">오늘의 블랙리스트 <span class="text-danger mx-1">100</span>명</li>
+                                    <li class="mx-2">오늘의 블랙리스트 <span class="text-danger mx-1"></span>명</li>
                                     <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
-                                    <li class="mx-2">영구정지 <span class="text-danger mx-1">100</span>명</li>
+                                    <li class="mx-2">영구정지 <span class="text-danger mx-1"></span>명</li>
                                     
                                 </ul>
                             
@@ -36,41 +36,63 @@
                              </h5>
                             <div class="card mb-4">
                                 <div class="card-body">
+                                  <form id="searchForm" method="get">
                                     <table class="table caption-top table-bordered  text-center">
                                         <tbody>
                                             <tr>
                                                 <th class="align-middle table-primary">아이디</th>
-                                                <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
+                                                <td><input class="form-control custom-shadow" id="" name="email" type="text"></td>
                                                 
                                             </tr>
                                             <tr>
                                                 <th class="align-middle table-primary">이름</th>
-                                                <td><input class="form-control custom-shadow" id="" name="" type="text"></td>
+                                                <td><input class="form-control custom-shadow" id="" name="name" type="text"></td>
+                                                <th class="align-middle table-primary">닉네임</th>
+                                                <td><input class="form-control custom-shadow" id="" name="nickname" type="text"></td>
                                             </tr>
-                                          
-                                            <tr>
+                                            
+                                             <tr>
                                                 
-                                                <th class="text-center align-middle table-primary">구분</th>
+                                                <th class="text-center align-middle table-primary">상태</th>
                                                 <td>
                                                     <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                         <div class="custom-control custom-radio mr-3 ">
-                                                            <input type="radio" id="customRadio1" name="person" class="custom-control-input mr-5">
-                                                            <label class="custom-control-label" for="customRadio1">구매자</label>
+                                                            <input type="radio" id="customRadio1" name="status" class="custom-control-input mr-5" value="M">
+                                                            <label class="custom-control-label" for="customRadio1">한달정지</label>
                                                         </div>
                                                         <div class="custom-control custom-radio mx-3">
-                                                            <input type="radio" id="customRadio2" name="person" class="custom-control-input mr-5">
-                                                            <label class="custom-control-label" for="customRadio2">판매자</label>
+                                                            <input type="radio" id="customRadio2" name="status" class="custom-control-input mr-5" value="D">
+                                                            <label class="custom-control-label" for="customRadio2">영구정지</label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                
+                                                 <th class="text-center align-middle table-primary">구분</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
+                                                        <div class="custom-control custom-radio mr-3 ">
+                                                            <input type="radio" id="customRadio3" name="gb" class="custom-control-input mr-5" value="b">
+                                                            <label class="custom-control-label" for="customRadio3">구매자</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio mx-3">
+                                                            <input type="radio" id="customRadio4" name="gb" class="custom-control-input mr-5" value="s">
+                                                            <label class="custom-control-label" for="customRadio4">판매자</label>
                                                         </div>
                                                         
                                                        
                                                         
                                                     </div>
                                                 </td>
+                                                
+                                                
                                             </tr>
+                                          
+                                    
                                             
                                         
                                         </tbody>
                                     </table>
+                                   </form>
                                 <style>
                                     .search, .reload{
                                         position: relative;
@@ -79,8 +101,8 @@
                                 </style>
         
                                  <div class="d-flex justify-content-end my-4">
-                                    <button class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
-                                    <button class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
+                                   <button id="resetBtn" class="btn btn-outline-warning mr-3">초기화<i class="ml-2 icon-reload reload"></i></button>
+	                        <button id="searchBtn" class="btn btn-outline-secondary">검색<i class="ml-2 icon-magnifier search"></i></button>
                                 </div>
                            </div>
                        </div>
@@ -106,7 +128,7 @@
                                          </thead>
                                          <tbody>
                                            <c:forEach var="black" items="${blackList }">
-                                             <tr class="black">
+                                             <tr class="blackList" onclick="javascript:clickTrRow(this);">
                                                 <td>${black.email }</td>
                                                 <td>${black.name }</td>
                                                 
@@ -171,22 +193,33 @@
                                    		<table class="table  table-bordered thead-light  text-center">
                                    			<tbody>
                                    				<tr>
-                                   					<th width="20%" class="table-primary align-middle">회원코드</th>
-                                   					<td>2222</td>
+                                   					
                                    					<th width="20%" class="table-primary align-middle">회원아이디</th>
-                                   					<td>2222222</td>
+                                   					<td><input class="form-control custom-shadow " id="email" name="email" value="" type="text" readonly ></td>
+                                   					<th width="20%" class="table-primary align-middle">회원등급</th>
+                                   					<td><input class="form-control custom-shadow " id="rank"  value="" type="text" readonly ></td>
+                                   				</tr>
+                                   				<tr>
+                                   					<th width="20%" class="table-primary align-middle">회원이름</th>
+                                   					<td><input class="form-control custom-shadow " id="name" name="" value="" type="text" readonly ></td>
+                                   					<th width="20%" class="table-primary align-middle">회원닉네임</th>
+                                   					<td><input class="form-control custom-shadow " id="nickname" name="" value="" type="text" readonly ></td>
                                    				</tr>
                                    				<tr>
                                    					<th width="20%" class="table-primary align-middle">회원구분</th>
-                                   					<td>구매자</td>
+                                   					<td><input class="form-control custom-shadow " id="gb" name="" value="" type="text" readonly ></td>
                                    					<th width="20%" class="table-primary align-middle">가입일자</th>
-                                   					<td>2222222</td>
+                                   					<td><input class="form-control custom-shadow " id="joindate" name="" value="" type="text" readonly ></td>
+                                   				</tr>
+                                   				<tr>
+                                   					<th width="20%" class="table-primary align-middle">회원상태</th>
+                                   					<td><input class="form-control custom-shadow " id="status" name="" value="" type="text" readonly ></td>
                                    				</tr>
                                    				<tr>
                                    					<th width="20%" class="table-primary align-middle">신고횟수</th>
-                                   					<td>3일</td>
-                                   					<th width="20%" class="table-primary align-middle">정지일수</th>
-                                   					<td>2222222</td>
+                                   					<td><input class="form-control custom-shadow " id="report" name="" value="" type="text" readonly ></td>
+                                   					<th width="20%" class="table-primary align-middle">정지일자</th>
+                                   					<td><input class="form-control custom-shadow " id="date" name="" value="" type="text" readonly ></td>
                                    				</tr>
                                    			</tbody>
                                    		</table>
@@ -194,24 +227,7 @@
                                    			<div>신고횟수: <span class="">4</span>건</div>
                                    			
                                    		</div> -->
-                                        <table class="table border  table-bordered thead-light  text-center">		                        
-                                            <thead >
-                                            	<tr>
-	                                            	<th class="table-secondary">블랙리스트코드</th>
-	                                            	<th class="table-secondary">신고유형</th>
-	                                            	<th class="table-secondary">신고일자</th>
-	                                            	<th class="table-secondary">처리일자</th>
-                                            	</tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                   <td>dd</td>
-                                                   <td>dd</td>
-                                                   <td>dd</td> 
-                                                </tr>
-                                                
-                                            </tbody>
-                                        </table>
+                                 
                 
                                          
                                    </div>
@@ -224,3 +240,66 @@
         
         
                  </div>
+                 
+    <script>
+    	
+    let actionForm = $("#actionForm");
+    $(".page-item a").on("click", function (e) {
+        e.preventDefault();
+        actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+        actionForm.submit();
+    })
+    
+    //검색버튼
+	const searchReport=()=>{
+	
+			searchForm.action="manageBlackList.do";
+			searchForm.submit();
+	}
+	
+	$("#searchBtn").on("click",searchReport);
+	
+	
+	function clickTrRow(target){
+		const tbody= target.parentNode;
+		const trs = tbody.getElementsByTagName('tr');
+		
+		for(var i=0; i<trs.length;i++){
+			trs[i].style.backgroundColor="";
+		} 
+		target.style.backgroundColor="#dadde0";
+	}
+    
+    const blackList = document.querySelectorAll(".blackList");
+    
+    const selectBlackList=()=>{
+    	
+    	const email = event.target.parentNode.firstChild.nextSibling.innerText;
+    	$.ajax({
+    		url:"ajaxSelectBlack.do",
+    		type:"post",
+    		data:{"email":email}
+    	}).done(function(result){
+    		$("#email").val(result.email)
+    		let gb = result.gb;
+    		gb=="b"?$("#gb").val("구매자"):$("#gb").val("판매자")
+    		$("#name").val(result.name)
+    		$("#nickname").val(result.nickname)
+    		$("#report").val(result.report)
+    		let status = result.status;
+    		status=="M"?$("#status").val("한달정지"):$("#status").val("영구정지")
+    		$("#date").val(result.date)
+    		$("#joindate").val(result.joindate)
+    		let rank = result.rank;
+    		rank=="1"?$("#rank").val("별"):
+    			rank=="2"?$("#rank").val("달"):
+    				rank=="3"?$("#rank").val("지구"):$("#rank").val("태양")
+    		
+    	})
+    }
+    
+    Array.from(blackList).forEach(function (element) {
+        $(element).off("click").on('click', selectBlackList);
+    })
+    
+    </script>

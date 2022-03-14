@@ -134,7 +134,7 @@
 		                         </thead>
 		                         <tbody>
 		                           <c:forEach var="report" items="${reportWaitLists }">
-		                           	 <tr class="reportList">
+		                           	 <tr class="reportList" onclick="javascript:clickTrRow(this);">
 		                           	 	<input type="hidden" value="${report.re_code }">
 		                                <td>${report.re_reporter }</td>
 		                                <td>${report.re_type }</td>
@@ -344,6 +344,18 @@ const handleReportDate =()=>{
 	
 }
 $("input[name='re_date']").on("change",handleReportDate);
+
+
+function clickTrRow(target){
+	const tbody= target.parentNode;
+	const trs = tbody.getElementsByTagName('tr');
+	
+	for(var i=0; i<trs.length;i++){
+		trs[i].style.backgroundColor="";
+	} 
+	target.style.backgroundColor="#dadde0";
+}
+
 
 //초기화 버튼
 

@@ -135,7 +135,7 @@
 		                         </thead>
 		                         <tbody>
 		                           <c:forEach var="report" items="${reportLists }">
-		                           	 <tr class="reportList">
+		                           	 <tr class="reportList" onclick="javascript:clickTrRow(this);">
 		                           	 	<input type="hidden" value="${report.re_code }">
 		                                <td>${report.re_reporter }</td>
 		                                <td>${report.re_type }</td>
@@ -346,6 +346,18 @@ const handleReportDate =()=>{
 }
 $("input[name='re_date']").on("change",handleReportDate);
 
+
+function clickTrRow(target){
+	const tbody= target.parentNode;
+	const trs = tbody.getElementsByTagName('tr');
+	
+	for(var i=0; i<trs.length;i++){
+		trs[i].style.backgroundColor="";
+	} 
+	target.style.backgroundColor="#dadde0";
+}
+
+
 //초기화 버튼
 
 const hadleResetLists =()=>{
@@ -466,8 +478,15 @@ const confirmReport=()=>{
 			type:"post"
 		    
 		}).done(function(data){
-			if(data.result!=0){
-				alert("해당신고를 승인했습니다.")
+			if(data.result==5){
+				alert("해당 피신고자가 서비스를 이용 중입니다.")
+				
+			}else if (data.result==4){
+				alert("해당 피신고자가 구매내역 확정을 받지 못했습니다.")				
+			}else if (data.result==3){
+				alert("해당 피신고자가 파워서비스를 이용 중입니다.")
+			}else{
+				alert("해당 신고를 승인했습니다.")
 				window.location.reload();
 			}
 		}).fail(function(){

@@ -212,6 +212,29 @@
   ]]>
   </update>
   
+  <sql id="blackListCriteria">
+		<if test= "email!=null and !email.equals('')">
+	  	    AND email like '%'||#{email}||'%'
+	  	 </if>
+	  	 
+	  	 <if test="name!=null and !name.equals('')">
+	  	     AND name like '%'||#{name}||'%'
+	  	</if>
+	  	
+	  	<if test="nickname!=null and !nickname.equals('')">
+	  	     AND nickname = #{nickname}
+	  	</if>
+	  	
+	  	<if test="status!=null and !status.equals('')">
+	  	     AND status = #{status}
+	  	</if>
+	  	
+	  	<if test="gb!=null and !gb.equals('')">
+	  	     AND gb like '%'||#{gb}||'%'
+	  	</if>
+
+	</sql>
+  
   
   <select id="getBlackListWithPaging" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
   	<![CDATA[
@@ -225,7 +248,7 @@
   	     WHERE rownum <=#{pageNum} * #{amount}
   	     
   	     ]]>
-  	    <!-- <include refid="criteria"></include>-->
+  	     <include refid="blackListCriteria"></include>
   	 <![CDATA[    
   	 	
   	     )
@@ -233,5 +256,28 @@
   	]]>
   
   </select>
+  
+  <select id="searchBlackListTotal" resultType="int">
+    SELECT COUNT(*)
+    FROM VW_BLACKLIST
+    <trim prefix="where" prefixOverrides="and">
+    	<include refid="blackListCriteria"></include>
+    </trim> 
+  </select>
+  
+  <select id="blackListTotal" resultType="int">
+	   SELECT COUNT(*)
+	   FROM VW_BLACKLIST
+  </select>
+  
+  
+  <select id="detailBlackMember" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+    SELECT *
+    FROM VW_BLACKLIST
+    WHERE email=#{email}
+  </select>
+  
+  
+  
 
 </mapper>

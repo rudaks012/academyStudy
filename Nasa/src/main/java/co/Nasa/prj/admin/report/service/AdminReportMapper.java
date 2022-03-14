@@ -47,4 +47,7 @@ public interface AdminReportMapper {
 		
 		//블랙리스트
 		public List<AdminAuthorVO> getBlackListWithPaging(Criteria cri);
+		public int searchBlackListTotal(Criteria cri);
+		public int blackListTotal();
+		public AdminAuthorVO detailBlackMember(String email);
 }

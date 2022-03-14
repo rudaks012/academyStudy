@@ -149,7 +149,7 @@
 		                         </thead>
 		                         <tbody>
 		                         	<c:forEach var="seller" items="${sellerList }">
-			                             <tr class="member-list">
+			                             <tr class="member-list" onclick="javascript:clickTrRow(this);">
 			                                <td>${seller.s_email }</td>
 			                                <td>${seller.s_name }</td>
 			                                <td>${seller.s_nickname }</td>
@@ -397,6 +397,16 @@ $(".page-item a").on("click", function (e) {
     actionForm.find("input[name='pageNum']").val($(this).attr("href"));
     actionForm.submit();
 })
+
+	function clickTrRow(target){
+		const tbody= target.parentNode;
+		const trs = tbody.getElementsByTagName('tr');
+		
+		for(var i=0; i<trs.length;i++){
+			trs[i].style.backgroundColor="";
+		} 
+		target.style.backgroundColor="#dadde0";
+	}
 
 //가입날짜 변경
 let startDate =$("input[name='s_date']");

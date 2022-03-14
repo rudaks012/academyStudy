@@ -135,6 +135,9 @@ public class AdminAuthorVO {
 	String status;
 	String report;
 	String date;
+	String nickname;
+	String rank;
+	String joindate;
 	
 	int start; // 쿼리에 쓸 start
 	int end; 
