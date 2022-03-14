@@ -389,10 +389,6 @@
                                             <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${bestseller.s_nickname}')" style="display:none"></i></li>
                                     </c:if>
                                     <!--<li>찜하기</li>-->
-
-                                 
-                                    <li>찜하기</li>
-
                                 </ul>
                             </div>
                         </div>
