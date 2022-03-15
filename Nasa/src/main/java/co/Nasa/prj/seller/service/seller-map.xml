@@ -25,7 +25,7 @@
 	<update id="SellerUpdate" parameterType="co.Nasa.prj.comm.VO.SellerVO">
 		update seller
 		set
-		s_me = #{s_me}, s_school = #{s_school}, s_major = #{s_major}, s_grad = #{s_grad}, s_img = #{s_img}
+		s_me = #{s_me}, s_school = #{s_school}, s_major = #{s_major}, s_carrer = #{s_carrer}, s_grad = #{s_grad}, s_img = #{s_img}
 		where s_email = #{s_email}
 	</update>
 	
