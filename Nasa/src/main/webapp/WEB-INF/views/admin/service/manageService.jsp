@@ -384,6 +384,8 @@ $(".page-item a").on("click", function (e) {
 		} 
 		target.style.backgroundColor="#dadde0";
 	}
+	
+	
 //카테고리 select
 const getOption=()=>{
 	  var obj = {
