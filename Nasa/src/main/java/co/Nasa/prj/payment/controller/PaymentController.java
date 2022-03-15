@@ -223,11 +223,17 @@ public class PaymentController {
 			map.put("title", sc.getSer_title());
 			map.put("start", sc.getEvent_start());
 			map.put("end", sc.getEvent_end());
-			
+			map.put("pay_code", sc.getPay_code());			
 			list.add(map);
 		}
 		System.out.println(list);
 		return list;
 	}
 	
+//	@RequestMapping("/ajaxGetCalServList.do")
+//	@ResponseBody
+//	public ajaxGetCalServList() {
+//		
+//	}
+//	
 }
