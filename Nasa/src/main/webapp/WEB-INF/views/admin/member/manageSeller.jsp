@@ -11,11 +11,11 @@
                             <h6><i  class=" far fa-user mr-1"></i>회원관리 <i class="fas fa-chevron-right mx-2"></i>판매자관리</h6>
                         </div>
                         <ul class="list-style-none d-flex">
-                            <li class="mr-1">총 회원수 <span class="text-danger mx-1">${fn:length(sellerList) }</span>명</li>
+                            <li class="mr-1">총 회원 <span class="text-danger mx-1">${total }</span>명</li>
                             <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
-                            <a href="#"><li class="mx-2">블랙리스트 <span class="text-danger mx-1">100</span>명</li></a>
+                            <li class="mx-2">오늘 가입한 회원 <span class="text-danger mx-1">${todayNew }</span>명</li>
                             <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
-                            <li class="mx-2">탈퇴 <span class="text-danger mx-1">3</span>명</li>
+                            <li class="mx-2">탈퇴 회원 <span class="text-danger mx-1">${withdraw }</span>명</li>
                         </ul>
                     
                     </div>
@@ -43,36 +43,36 @@
                                 <tbody>
                                     <tr>
                                         <th class="align-middle table-primary">아이디</th>
-                                        <td><input class="form-control custom-shadow" id="" name="s_email" type="text"></td>
+                                        <td><input class="form-control custom-shadow" id="" name="s_email" type="text" value='<c:out value="${pageMaker.cri.s_email }"/>'></td>
                                         <th class="align-middle table-primary">닉네임</th>
-                                        <td><input class="form-control custom-shadow" id="" name="s_nickname" type="text"></td>
+                                        <td><input class="form-control custom-shadow" id="" name="s_nickname" type="text" value='<c:out value="${pageMaker.cri.s_nickname }"/>'></td>
                                     </tr>
                                     <tr>
                                         <th class="text-center align-middle table-primary">이름</th>
-                                        <td><input class="form-control custom-shadow" id="" name="s_name" type="text"></td>
+                                        <td><input class="form-control custom-shadow" id="" name="s_name" type="text" value='<c:out value="${pageMaker.cri.s_name }"/>'></td>
                                         <th class="align-middle table-primary">연락처</th>
-                                        <td><input class="form-control custom-shadow" id="" name="s_tel" type="tel"></td>
+                                        <td><input class="form-control custom-shadow" id="" name="s_tel" type="tel" value='<c:out value="${pageMaker.cri.s_tel }"/>'></td>
                                     </tr>
                                     <tr>
                                         <th class="align-middle table-primary">주소</th>
-                                        <td><input class="form-control custom-shadow" id="" name="s_address" type="text"></td>
+                                        <td><input class="form-control custom-shadow" id="" name="s_address" type="text" value='<c:out value="${pageMaker.cri.s_address }"/>'></td>
                                         <th class="text-center align-middle table-primary">등급</th>
                                         <td>
                                             <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                 <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="customRadio1" name="s_rank" value="1" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio1" name="s_rank" value="1" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.s_rank eq '1'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="customRadio1">별</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="s_rank" value="2" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio2" name="s_rank" value="2" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.s_rank eq '2'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="customRadio2">달</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio3" name="s_rank" value="3" class="custom-control-input">
+                                                    <input type="radio" id="customRadio3" name="s_rank" value="3" class="custom-control-input" <c:out value="${pageMaker.cri.s_rank eq '3'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="customRadio3">지구</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio4" name="s_rank" value="4" class="custom-control-input">
+                                                    <input type="radio" id="customRadio4" name="s_rank" value="4" class="custom-control-input" <c:out value="${pageMaker.cri.s_rank eq '4'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="customRadio4">해</label>
                                                 </div>
                                                 
@@ -85,11 +85,11 @@
 			                            <td colspan="3">
 			                                <div class="d-flex align-items-center">
 			                                     <div class="col-3 p-0">
-				                                     <input type="date" class="form-control" name="s_date" value='<c:out value="${pageMaker.cri.b_date }"/>'>
+				                                     <input type="date" class="form-control" name="s_date" value='<c:out value="${pageMaker.cri.s_date }"/>'>
 				                                  </div>
 				                                  <span class="mx-2"><i class="fas fa-minus"></i></span>
 				                                  <div class="col-3 p-0">
-				                                       <input type="date" class="form-control" name="s_date2" value='<c:out value="${pageMaker.cri.b_date2 }"/>'>
+				                                       <input type="date" class="form-control" name="s_date2" value='<c:out value="${pageMaker.cri.s_date2 }"/>'>
 				                                   </div>
 			                                  </div>
 			                               </td>
@@ -136,7 +136,7 @@
                         </h5>
                 	    <div class="card">
                             <div class="card-body">
-                                <div class=" mb-3">총 <span class="mx-1 text-danger">${fn:length(sellerList) }</span>건</div>
+                                <div class=" mb-3">총 <span class="mx-1 text-danger">${searchTotalSeller }</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
@@ -148,30 +148,38 @@
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
-		                         	<c:forEach var="seller" items="${sellerList }">
-			                             <tr class="member-list" onclick="javascript:clickTrRow(this);">
-			                                <td>${seller.s_email }</td>
-			                                <td>${seller.s_name }</td>
-			                                <td>${seller.s_nickname }</td>
-			                                <td>${seller.s_author }</td>
-			                                <td>
-		                                        <c:choose>
-		                                            <c:when test="${seller.s_rank eq '1' }">
-		                                                별
-		                                            </c:when>
-		                                            <c:when test="${seller.s_rank eq '2' }">
-		                                                달
-		                                            </c:when>
-		                                            <c:when test="${seller.s_rank eq '3' }">
-		                                                지구
-		                                            </c:when>
-		                                            <c:when test="${seller.s_rank eq '4' }">
-		                                                해
-		                                            </c:when>
-		                                        </c:choose>
-		                                    </td>
-			                             </tr>
-		                             </c:forEach>
+		                            <c:if test="${!empty sellerList }">
+			                         	<c:forEach var="seller" items="${sellerList }">
+				                             <tr class="member-list" onclick="javascript:clickTrRow(this);">
+				                                <td>${seller.s_email }</td>
+				                                <td>${seller.s_name }</td>
+				                                <td>${seller.s_nickname }</td>
+				                                <td>${seller.s_author }</td>
+				                                <td>
+			                                        <c:choose>
+			                                            <c:when test="${seller.s_rank eq '1' }">
+			                                                별
+			                                            </c:when>
+			                                            <c:when test="${seller.s_rank eq '2' }">
+			                                                달
+			                                            </c:when>
+			                                            <c:when test="${seller.s_rank eq '3' }">
+			                                                지구
+			                                            </c:when>
+			                                            <c:when test="${seller.s_rank eq '4' }">
+			                                                해
+			                                            </c:when>
+			                                        </c:choose>
+			                                    </td>
+				                             </tr>
+			                             </c:forEach>
+			                           </c:if>
+			                           
+			                           <c:if test="${empty sellerList }">
+			                           		<tr>
+			                           			<td colspan="5">조회된 데이터가 없습니다.</td>
+			                           		</tr>
+			                           </c:if> 
 		                        </tbody>
 		                     </table>
 		
@@ -413,6 +421,7 @@ let startDate =$("input[name='s_date']");
 let endDate =$("input[name='s_date2']");
 const handleReportDate =()=>{
 	$(endDate).val($(startDate).val())
+	$(endDate).attr("min",$(startDate).val())
 	
 	
 }
@@ -427,6 +436,7 @@ const hadleResetLists =()=>{
 	$("input[name='s_nickname']").val('')
 	$("input[name='s_tel']").val('')
 	$("input[name='s_address']").val('')
+	$("input[name='s_rank']").val('')
 	
 	searchForm.action="manage_seller.do";
 	searchForm.submit();
@@ -569,13 +579,35 @@ $("#searchBtn").on("click",searchReport);
                 $("#s_email").val(result.seller.s_email);
                 $("#s_name").val(result.seller.s_name);
                 $("#s_nickname").val(result.seller.s_nickname);
-                $("#s_tel").val(result.seller.s_tel);
+                
+                let tel=result.seller.s_tel;
+                let phone=""
+                phone += tel.substr(0, 3); 
+                phone += "-"; 
+                phone += tel.substr(3, 4); 
+                phone += "-"; 
+                phone += tel.substr(7);
+
+                $("#s_tel").val(phone);
 
                 let report = result.seller.s_report; //신고횟수
-                report >= "5" ? $("#s_report").addClass("text-danger").val(result.seller.s_report) : $(
-                    "#s_report").val(result.seller.s_report);
-
-                $("#s_status").val(result.seller.s_status);
+            
+                if(report >= "5"){
+                	$("#s_report").addClass("text-danger").val(report)
+                }else{
+                	$("#s_report").removeClass("text-danger").val(report);
+                }
+                
+                let status=result.seller.s_status;
+                if (status=="U"){
+                	$("#s_status").removeClass("text-danger").val("이용 중");
+                }else if(status=="M"){
+                	$("#s_status").addClass("text-danger").val("한달정지");
+                }else{
+                	$("#s_status").addClass("text-danger").val("영구정지");
+                }
+                
+         
                 $("#s_zipcode").val(result.seller.s_zipcode);
                 $("#s_address").val(result.seller.s_address);
                 $("#s_detailaddress").val(result.seller.s_detailaddress);
