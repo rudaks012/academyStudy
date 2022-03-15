@@ -132,10 +132,10 @@ public class AdminReportController {
 	 }
 
 	
-	 //블랙리스트 한달정지 스케줄러
-//	  @Scheduled(cron = "0 * * * * *")
-//	  public void updateBlackListMember() {
-//	     reportDao.scheduleMemberBlackList();
-//	 }
+	// 블랙리스트 한달정지 스케줄러
+	  @Scheduled(cron = "0 * * * * *")
+	  public void updateBlackListMember() {
+	     reportDao.scheduleMemberBlackList();
+	 }
 	 
 }

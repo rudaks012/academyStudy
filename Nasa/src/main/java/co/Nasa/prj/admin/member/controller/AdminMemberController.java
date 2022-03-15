@@ -36,7 +36,8 @@ public class AdminMemberController {
 	public String go_admin(Criteria cri,Model model) {
 
 		model.addAttribute("buyerList",memberDao.getListWithPaging(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, memberDao.getBuyerTotal()));
+		model.addAttribute("pageMaker", new PageDTO(cri, memberDao.searchBuyerTotal(cri)));
+		model.addAttribute("searchTotal", memberDao.searchBuyerTotal(cri));
 		model.addAttribute("totalBuyer",memberDao.getBuyerTotal());
 		return "admin/member/manageBuyer";
 	}

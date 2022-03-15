@@ -74,8 +74,8 @@ public class AdminAuthorVO {
 	String ser_sub;
 	String ser_cate;
 	String ser_sub_cate;
-	int ser_price;
-	int ser_sale;
+	String ser_price;
+	String ser_sale;
 	String filecode;
 	String ser_img;
 	String ser_offer;
