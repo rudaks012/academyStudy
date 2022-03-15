@@ -419,8 +419,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 									</c:when>
 									<c:otherwise>
 										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 확인불가">등급 : 등급확인불가</span>
-									</c:otherwise>
-                                    <!-- <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a> 등급설명페이지 이동 버튼이었던 것-->
+									</c:otherwise>                                   
 								</c:choose>
 								<c:choose>
                                     <c:when test="${empty buyerinfo.buyer_coupon }">

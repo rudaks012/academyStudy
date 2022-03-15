@@ -1134,7 +1134,7 @@ input[type=date] {
 		 console.log("서비스카테고리",ser_cate);
 		 var sub_cate = document.getElementById('sub_cate').value; //서비스코드 히든임
 		 console.log("서비스하위카테고리",sub_cate);
-		 var adminpay = document.getElementById('sellerrank').value; // 판매자 등급
+		 var adminpay = document.getElementById('sellerrank').innerText; // 판매자 등급
 		 console.log("판매자 등급",adminpay);
 
 
