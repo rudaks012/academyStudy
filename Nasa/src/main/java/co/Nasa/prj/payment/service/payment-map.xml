@@ -14,9 +14,13 @@
    </select>
    <select id = "endPaymentList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
    		<![CDATA[
-   		SELECT *
-   		FROM PAYMENT
-   		WHERE B_EMAIL = #{b_email} AND (EVENT_END < SYSDATE OR (EVENT_END IS NULL AND PAY_ENDDATE IS NULL))
+   		SELECT	*
+   		FROM	(
+   				 SELECT	*
+   				 FROM	PAYMENT
+   				 WHERE	B_EMAIL = #{b_email} AND PAY_ENDDATE IS NULL
+   		)
+   		WHERE	EVENT_END < SYSDATE OR EVENT_END IS NULL
    		]]>
    </select>
    <update id = "paycomplete" parameterType="co.Nasa.prj.comm.VO.PaymentVO">
