@@ -36,6 +36,11 @@ public interface ServiceMapper {
 	List<ServiceVO> notBuyerRandomService();
 	
 	List<ServiceVO> sellerMainServiceList(ServiceVO vo);
-	
 	int countPagingSellerService(ServiceVO vo);
+	
+	List<ServiceVO> sellerMainServiceListU(ServiceVO vo);
+	int countPagingSellerServiceU(ServiceVO vo);
+	
+	List<ServiceVO> sellerMainServiceListY(ServiceVO vo);
+	int countPagingSellerServiceY(ServiceVO vo);
 }

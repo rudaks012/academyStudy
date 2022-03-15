@@ -68,23 +68,57 @@ public class ServiceController {
 	}	
 
 	@RequestMapping("/sellerService.do")
-	public String sellerService(Model model, HttpSession session) {
+	public String sellerService(Model model, HttpSession session, PagingDTO pagingdto) {
 		String s_email = (String) session.getAttribute("id");
 		ServiceVO vo = new ServiceVO();
 		vo.setS_email(s_email);
 		
-		//vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		//pagingdto.setAmount(6);
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		List<ServiceVO> sellerMainServiceList = serviceDao.sellerMainServiceList(vo);
-		//pagingdto.setTotal(serviceDao.countPagingSellerService(vo));
+		
+		pagingdto.setTotal(serviceDao.countPagingSellerService(vo));
 		model.addAttribute("sellerMainServiceList", sellerMainServiceList);
-		//model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		
-		PowerServiceVO pvo = new PowerServiceVO();
-		pvo.setS_email(s_email);
-		
-		model.addAttribute("powerList",powerDao.sellerPowerserviceList(pvo));
 		
 		return "seller/sellerService";
+	}
+	
+	@RequestMapping("/sellerServiceU.do")
+	public String sellerServiceU(Model model, HttpSession session, PagingDTO pagingdto) {
+		String s_email = (String) session.getAttribute("id");
+		ServiceVO vo = new ServiceVO();
+		vo.setS_email(s_email);
+		
+		//pagingdto.setAmount(6);
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<ServiceVO> sellerMainServiceList = serviceDao.sellerMainServiceListU(vo);
+		
+		pagingdto.setTotal(serviceDao.countPagingSellerServiceU(vo));
+		model.addAttribute("sellerMainServiceList", sellerMainServiceList);
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		
+		
+		return "seller/sellerServiceU";
+	}
+	
+	@RequestMapping("/sellerServiceY.do")
+	public String sellerServiceY(Model model, HttpSession session, PagingDTO pagingdto) {
+		String s_email = (String) session.getAttribute("id");
+		ServiceVO vo = new ServiceVO();
+		vo.setS_email(s_email);
+		
+		//pagingdto.setAmount(6);
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<ServiceVO> sellerMainServiceList = serviceDao.sellerMainServiceListY(vo);
+		
+		pagingdto.setTotal(serviceDao.countPagingSellerServiceY(vo));
+		model.addAttribute("sellerMainServiceList", sellerMainServiceList);
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		
+		
+		return "seller/sellerServiceY";
 	}
 
 	@ResponseBody

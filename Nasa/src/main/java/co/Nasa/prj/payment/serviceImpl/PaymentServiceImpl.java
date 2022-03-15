@@ -149,7 +149,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public List<PaymentVO> sellerselectdateSearch(PaymentVO vo) {
-		return map.selectdateSearch(vo);
+		return map.sellerselectdateSearch(vo);
 	}
 
 
@@ -176,6 +176,26 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public int countPagingSellerPaymentN(PaymentVO vo) {
 		return map.countPagingSellerPaymentN(vo);
+	}
+
+	@Override
+	public int countsellermonthSearch(PaymentVO vo) {
+		return map.countsellermonthSearch(vo);
+	}
+
+	@Override
+	public int countsellersixmonthSearch(PaymentVO vo) {
+		return map.countsellersixmonthSearch(vo);
+	}
+
+	@Override
+	public int countselleryearSearch(PaymentVO vo) {
+		return map.countselleryearSearch(vo);
+	}
+
+	@Override
+	public int countsellerselectdateSearch(PaymentVO vo) {
+		return map.countsellerselectdateSearch(vo);
 	}
 
 	
