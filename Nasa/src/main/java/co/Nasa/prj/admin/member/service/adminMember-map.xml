@@ -145,7 +145,8 @@
 		     (
 		      SELECT rownum rn, b.*
 		      FROM 
-		          (  SELECT b_email,b_rank,b_password,b_nickname,b_tel,b_address,b_zipcode,b_detailaddress,b_author,b_img,
+		          (  SELECT b_email,b_rank,b_password,b_nickname,substr(b_tel,1,3)||'-'||substr(b_tel,4,4)||'-'||substr(b_tel,8) as b_tel,
+		                    b_address,b_zipcode,b_detailaddress,b_author,b_img,
 					        b_status,b_date,b_report,token,field_code,buyer_coupon,b_name,blacklistdate
 					 FROM buyer
 					 ORDER BY b_email
