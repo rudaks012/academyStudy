@@ -136,7 +136,7 @@ public class ReviewController {
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		model.addAttribute("address", "sellerReview.do?scode="+request.getParameter("scode")+"&");
-		
+		model.addAttribute("scode", request.getParameter("scode"));
 		return "seller/sellerReview";
 	}
 	

@@ -127,9 +127,9 @@
                                  </p>
                                  <c:if test="${detailS.ser_subimg ne null || detailS.ser_subimg2 ne null || detailS.ser_subimg3 ne null}">
                              		<h5><u>서비스 이미지</u></h5>
-                             		<p><img src="fileupload/${detailS.ser_subimg }"></p>
-                             		<p><img src="fileupload/${detailS.ser_subimg2 }"></p>
-                             		<p><img src="fileupload/${detailS.ser_subimg3 }"></p>
+                             		<c:if test="${detailS.ser_subimg ne null}"><p><img src="fileupload/${detailS.ser_subimg }"></p></c:if>
+                             		<c:if test="${detailS.ser_subimg2 ne null}"><p><img src="fileupload/${detailS.ser_subimg2 }"></p></c:if>
+                             		<c:if test="${detailS.ser_subimg3 ne null}"><p><img src="fileupload/${detailS.ser_subimg3 }"></p></c:if>
                              		<hr />
                              	</c:if>
                                  <hr />

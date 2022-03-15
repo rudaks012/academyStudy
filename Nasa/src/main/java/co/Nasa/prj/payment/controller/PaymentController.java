@@ -1,5 +1,6 @@
 package co.Nasa.prj.payment.controller;
 
+import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,12 +62,9 @@ public class PaymentController {
 		List<PaymentVO> paymentList = paymentDao.sellerPaymentList(paymentvo);
 		pagingdto.setTotal(paymentDao.countPagingSellerPayment(paymentvo));
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
-//		model.addAttribute("paymentList", paymentList);
 		model.addAttribute("address", "sellerPayment.do");
-		
-		
-		
 		model.addAttribute("sellerPayList",paymentList);
+		
 		return "seller/sellerPayment";
 	}
 	
@@ -74,7 +72,6 @@ public class PaymentController {
 	public String sellerPaymentN(Model model, HttpSession session, PagingDTO pagingdto) {
 		PaymentVO paymentvo = new PaymentVO();
 		paymentvo.setS_email((String)session.getAttribute("id"));
-		
 		
 		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		List<PaymentVO> paymentList = paymentDao.sellerPaymentListN(paymentvo);
@@ -90,18 +87,84 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("/sellermonthSearch.do")
-	public String monthSearch(Model model, HttpSession session, HttpServletResponse response,
-							  HttpServletRequest request, PagingDTO pagingdto) {
+	public String sellermonthSearch(Model model, HttpSession session, PagingDTO pagingdto) {
 		
 		PaymentVO paymentvo = new PaymentVO();
 		paymentvo.setS_email((String) session.getAttribute("id"));
-		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
+		
 		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		List<PaymentVO> paymentList = paymentDao.sellermonthSearch(paymentvo);
-		pagingdto.setTotal(paymentDao.countMonthSearch(paymentvo));
+		pagingdto.setTotal(paymentDao.countsellermonthSearch(paymentvo));
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
-		model.addAttribute("paymentList", paymentList);
 		model.addAttribute("address", "sellermonthSearch.do");
+		model.addAttribute("sellerPayList",paymentList);
+		
+		
+		return "seller/sellerPayment";
+	}
+	
+	
+	
+	@RequestMapping("/sellersixmonthSearch.do")
+	public String sellersixmonthSearch(Model model, HttpSession session, PagingDTO pagingdto) {
+		
+		PaymentVO paymentvo = new PaymentVO();
+		paymentvo.setS_email((String) session.getAttribute("id"));
+		
+		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<PaymentVO> paymentList = paymentDao.sellersixmonthSearch(paymentvo);
+		pagingdto.setTotal(paymentDao.countsellersixmonthSearch(paymentvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("address", "sellersixmonthSearch.do");
+		model.addAttribute("sellerPayList",paymentList);
+		
+		
+		return "seller/sellerPayment";
+	}
+	
+	@RequestMapping("/selleryearSearch.do")
+	public String selleryearSearch(Model model, HttpSession session, PagingDTO pagingdto) {
+		
+		PaymentVO paymentvo = new PaymentVO();
+		paymentvo.setS_email((String) session.getAttribute("id"));
+		
+		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<PaymentVO> paymentList = paymentDao.selleryearSearch(paymentvo);
+		pagingdto.setTotal(paymentDao.countselleryearSearch(paymentvo));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("address", "selleryearSearch.do");
+		model.addAttribute("sellerPayList",paymentList);
+		
+		
+		return "seller/sellerPayment";
+	}
+	
+	
+	
+	@RequestMapping("/sellerselectdateSearch.do")
+	public String sellerselectdateSearch(Model model, HttpSession session, PagingDTO pagingdto, PaymentVO paymentvo) {
+		
+		paymentvo.setS_email((String) session.getAttribute("id"));
+		
+		if(paymentvo.getFirstDate() == null) {
+			paymentvo.setFirstDate((Date) session.getAttribute("firstDate"));
+		}
+		
+		if(paymentvo.getSecondDate() == null) {
+			paymentvo.setSecondDate((Date) session.getAttribute("secondDate"));
+		}
+		
+		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		
+		List<PaymentVO> paymentList = paymentDao.sellerselectdateSearch(paymentvo);
+		pagingdto.setTotal(paymentDao.countsellerselectdateSearch(paymentvo));
+		
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("address", "sellerselectdateSearch.do");
+		model.addAttribute("sellerPayList",paymentList);
+		
+		session.setAttribute("firstDate", paymentvo.getFirstDate());
+		session.setAttribute("secondDate", paymentvo.getSecondDate());
 		
 		
 		return "seller/sellerPayment";

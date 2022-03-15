@@ -106,9 +106,15 @@ input[type=date] {
 	height: 256px;
 }
 
-.genric-btn.danger-border:hover {
-	background-color: #d5c9ea !important;
-	color: white;
+.genric-btn:hover {
+	background-color: white;
+	color:#9e68ff !important;
+	border: 1px solid #9e68ff !important;
+}
+.genric-btn.danger{
+	margin-top: 15px;
+	float: right;
+	background: #e0d6f2;
 }
 </style>
 </head>
@@ -169,8 +175,8 @@ input[type=date] {
 								<a class="d-inline-block" style="margin-top:20px;">
 										<h3>파워서비스 내역</h3>
 									</a>
-									<a href="" class="genric-btn danger" data-toggle="modal"
-									data-target="#PowerModal">파워서비스 등록</a> 
+									<button class="genric-btn danger circle" data-toggle="modal"
+									data-target="#PowerModal">파워서비스 등록</button> 
 								<hr class="hr"/>
 								<table class="table caption-top table-bordered thead-light  text-center" style="margin-top:40px; font-size:12px;">
 									<thead class="thead-light">

@@ -245,12 +245,17 @@ input[type=date] {
 										<nav class="fables-single-nav">
 											<div class="nav nav-tabs" id="nav-tab" role="tablist">
 												<a
-													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font active  border-0 rounded-0 py-3"
-													id="nav-desc-tab"  href="sellerService.do"> 진행중인
-													서비스</a> <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-													id="nav-info-tab"  href="sellerServiceY.do">종료된
-													서비스</a> <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-													id="nav-end-tab" href="sellerServiceU.do">종료예정
+													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
+													id="nav-desc-tab" data-toggle="tab" href="#nav-desc"
+													role="tab" aria-controls="nav-desc" aria-selected="true">진행중인
+													서비스</a> <a
+													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+													id="nav-info-tab" data-toggle="tab" href="#nav-info"
+													role="tab" aria-controls="nav-info" aria-selected="false">종료된
+													서비스</a> <a
+													class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+													id="nav-end-tab" data-toggle="tab" href="#nav-end"
+													role="tab" aria-controls="nav-end" aria-selected="false">종료예정
 													서비스</a> 
 											</div>
 										</nav>
@@ -264,7 +269,8 @@ input[type=date] {
 															<div class="row">
 
 																<c:forEach items="${sellerMainServiceList }" var="service">
-																	
+																	<c:if
+																		test="${service.ser_status eq 'N' && empty service.ser_end}">
 																		<div class="col-lg-6">
 																			<div class="single-listing mb-30">
 																				<div class="list-img">
@@ -314,6 +320,7 @@ input[type=date] {
 																				</div>
 																			</div>
 																		</div>
+																	</c:if>
 																</c:forEach>
 															</div>
 														</div>
@@ -327,7 +334,49 @@ input[type=date] {
 														<div class="container">
 															<div class="row">
 
-															
+																<c:forEach items="${sellerMainServiceList }" var="service">
+																	<c:if
+																		test="${service.ser_status eq 'N' && not empty service.ser_end}">
+																		<div class="col-lg-6">
+																			<div class="single-listing mb-30">
+																				<div class="list-img">
+																					<img src="fileupload/${service.ser_img }"
+																						id="prvimg" alt="">
+																				</div>
+																				<div class="list-caption">
+																				<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${service.ser_code  }'">Open</span>
+																					<div class="category">* ${service.category } > ${service.sub_category }</div>
+																					<div class="line"> ${service.ser_line }</div>
+																					<br/>
+																					<h3>
+																						<a
+																							href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
+																					</h3>
+																					<div>서비스코드 : s${service.ser_code }</div>
+																					<br/>
+																					<c:if test="${not empty service.prodiscount }">
+																						<div class="price">₩ <del><fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></del> </div>
+																						<div class="price" style="color:red;"><img src="resources/user/assets/img/promotion.png"> ₩<fmt:formatNumber value="${service.prodiscount }" pattern="###,###"/></div>
+																						
+																					</c:if>
+																					<c:if test="${empty service.prodiscount }">
+																						<div class="price"> ₩ ${service.ser_price }</div>
+																					</c:if>
+																					<div class="list-footer" style="display: block;">
+																						<ul>
+																							<li >
+																								<button type="button"
+																									onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'"
+																									class="genric-btn danger-border circle">수정</button>
+																							</li>
+
+																						</ul>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</c:if>
+																</c:forEach>
 															</div>
 														</div>
 													</div>
@@ -339,7 +388,39 @@ input[type=date] {
 														<div class="container">
 															<div class="row">
 
-																
+																<c:forEach items="${sellerMainServiceList }" var="service">
+																	<c:if test="${service.ser_status eq 'Y'}">
+
+																		<div class="col-lg-6">
+																			<div class="single-listing mb-30">
+																				<div class="list-img">
+																					<img src="fileupload/${service.ser_img }" alt="">
+																				</div>
+																				<div class="list-caption">
+																					<div class="category">* ${service.category } > ${service.sub_category }</div>
+																					<div class="line"> ${service.ser_line }</div>
+																					<br/>
+																					<h3>
+																						<a href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
+																					</h3>
+																					<div>서비스코드 : s${service.ser_code }</div>
+																					<br/>
+																					<div class="price"> ₩ ${service.ser_price }</div>
+																					<div class="list-footer">
+																						<ul>
+																							<li>
+																								<!-- <div style="margin-left: 210px;">
+																							<a href="#" class="genric-btn danger-border circle" data-toggle="modal" data-target="#endModal">종료</a>
+																						</div> -->
+																								<div>* 종료된 서비스입니다.</div>
+																							</li>
+																						</ul>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</c:if>
+																</c:forEach>
 															</div>
 														</div>
 													</div>
@@ -347,34 +428,35 @@ input[type=date] {
 											</div>
 											
 										</div>
-										 <div class="row justify-content-center mt-10">
-											<nav aria-label="Page navigation example">
-											  <ul class="pagination">
-												  <c:if test="${paging.prev }">
-													  <li class="page-item"><a class="page-link" href="sellerService.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
-												  </c:if>
-												  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-													  <c:choose>
-														  <c:when test="${p == paging.pageNum }">
-															  <li class="page-item"><b class="page-link">${p }</b></li>
-														  </c:when>
-														  <c:when test="${p != paging.pageNum }">
-															  <li class="page-item"><a class="page-link" href="sellerService.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
-														  </c:when>
-													  </c:choose>
-												  </c:forEach>
-												  <c:if test="${paging.next }">
-													  <li class="page-item"><a class="page-link" href="sellerService.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
-												  </c:if>
-											  </ul>
-											</nav>
-										</div>
+										 
 									</div>
 								</div>
 							</div>
 						</article>
 					</div>
-					
+					<div class="row justify-content-center mt-10">
+						<nav aria-label="Page navigation example">
+						  <ul class="pagination">
+							  <c:if test="${paging.prev }">
+								  <li class="page-item"><a class="page-link" href="sellerService.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+							  </c:if>
+							  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+								  <c:choose>
+									  <c:when test="${p == paging.pageNum }">
+										  <li class="page-item"><b class="page-link">${p }</b></li>
+									  </c:when>
+									  <c:when test="${p != paging.pageNum }">
+										  <li class="page-item"><a class="page-link" href="sellerService.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+									  </c:when>
+								  </c:choose>
+							  </c:forEach>
+							  <c:if test="${paging.next }">
+								  <li class="page-item"><a class="page-link" href="sellerService.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+							  </c:if>
+						  </ul>
+						</nav>
+					</div>
+					<!--Pagination End  -->
 				</div>
 			</div>
 		</div>
@@ -544,7 +626,13 @@ input[type=date] {
 								}else{
 									$("#ser_end").val(serend.substr(0, 10));
 								}
-							
+								
+								/* if(promax == ''){
+									$("#ser_proend").val('-');
+								}else{
+									$("#ser_proend").val(promax.substr(0, 10));
+								} */
+								
 								if(powermax == ''){
 									$("#ser_powerend").val('-');
 								}else{
@@ -556,7 +644,46 @@ input[type=date] {
 								console.log(serend);
 								console.log(promax);
 								console.log(powermax);
-							
+								
+								/* $.ajax({
+									url : "endPromotion.do",
+									dataType : "text",
+									type : "post",
+									data : {
+										sercode : sercode
+									},
+									success : function(result) {
+										console.log(result);
+										if (result == '') {
+											$("#ser_proend").val('-');
+										} else {
+											$("#ser_proend").val(result.substr(0, 10));
+										}
+									},
+									error : function(err) {
+										console.log(err);
+									}
+								})
+
+								$.ajax({
+									url : "endPower.do",
+									dataType : "text",
+									type : "post",
+									data : {
+										sercode : sercode
+									},
+									success : function(result) {
+										console.log(result);
+										if (result == '') {
+											$("#ser_powerend").val('-');
+										} else {
+											$("#ser_powerend").val(result.substr(0, 10));
+										}
+									},
+									error : function(err) {
+										console.log(err);
+									}
+								}) */
 								
 								var reason = document.getElementById("ser_reason");
 								reason.value = '';
@@ -641,12 +768,144 @@ input[type=date] {
 				}
 			})
 		})
-		
-		$("#nav-info-tab").click(function(){
-			location.href = "sellerServiceY.do";
-		})
-		
-		
+
+		/* function enddate() {
+			console.log($("#powerS option:selected").val());
+			var powerno = $("#powerS option:selected").val();
+			
+			var paramDate = new Date();
+			var day = paramDate.getDay();
+			var diff = paramDate.getDate() - day + (day == 0 ? -6 : 1);
+			var mon = new Date(paramDate.setDate(diff)).toISOString().substring(0, 10);
+			$("#powerdate").attr('min', mon);
+			
+			var powerend = document.getElementById(powerno).value;
+			console.log(powerend);
+			if(powerend != ''){
+				console.log()
+				$("#powerdate").attr('max', powerend);			
+			}else{
+				$("#powerdate").attr('max', '');
+			}
+			
+		} */
+
+		$("#check_module").click(
+			
+			function() {
+				if($("#powerdate").val() == ''){
+					alert('시작일을 선택해주세요.');
+					return;
+				}
+				//파워서비스 시작일
+				var powerstart= $("#powerdate").val();
+				
+				var powerno = $("#powerS option:selected").val();
+				//서비스 종료예정일
+				var powerend = document.getElementById(powerno).value;
+				
+				//파워서비스 종료일
+				var paramDate = new Date($("#powerdate").val());
+				var day = paramDate.getDay();
+				var diff = paramDate.getDate()+6;
+				var dateString = new Date(paramDate.setDate(diff)).toISOString().substring(0, 10);
+				
+				if(powerend !='' && powerend < dateString){
+					alert('서비스 종료 예정일 : '+powerend+'\n파워 서비스 종료일 : '+dateString+'\n서비스 종료 예정일이 파워서비스 종료일보다 빠릅니다.');
+					return;
+				}
+				
+				$.ajax({
+					url: "powerServiceCount.do",
+					data: {power_start : powerstart, ser_code : powerno},
+					dataType: "text",
+					type:"post",
+					success: function(result){
+						if(result == 'full'){
+							alert('정원이 다 찼습니다. 다른 날짜를 선택해주세요.');
+							return;
+						}else if(result == 'overlap'){
+							alert('이미 해당날짜에 등록되어있습니다.');
+							return;
+						}else{
+
+							var IMP = window.IMP; // 생략가능
+							IMP.init('imp49718054');
+							// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+							// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+							IMP.request_pay({
+								pg : 'inicis', // version 1.1.0부터 지원.
+								/*
+								'kakao':카카오페이,
+								html5_inicis':이니시스(웹표준결제)
+								'nice':나이스페이
+								'jtnet':제이티넷
+								'uplus':LG유플러스
+								'danal':다날
+								'payco':페이코
+								'syrup':시럽페이
+								'paypal':페이팔
+								 */
+								pay_method : 'card',
+								/*
+								'samsung':삼성페이,
+								'card':신용카드,
+								'trans':실시간계좌이체,
+								'vbank':가상계좌,
+								'phone':휴대폰소액결제
+								 */
+								merchant_uid : 'merchant_'
+										+ new Date().getTime(),
+								/*
+								merchant_uid에 경우
+								https://docs.iamport.kr/implementation/payment
+								위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+								참고하세요.
+								나중에 포스팅 해볼게요.
+								 */
+								name : '주문명:결제테스트',
+								//결제창에서 보여질 이름
+								amount : 500000,
+								//가격
+								//bank_name : null,
+								buyer_email : 'iamport@siot.do',
+								buyer_name : '구매자이름',
+								buyer_tel : '010-1234-5678',
+								buyer_addr : '서울특별시 강남구 삼성동',
+								buyer_postcode : '123-456',
+								m_redirect_url : 'https://www.yourdomain.com/payments/complete',
+							/*
+							모바일 결제시,
+							결제가 끝나고 랜딩되는 URL을 지정
+							(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
+							 */
+							}, function(rsp) {
+								console.log(rsp);
+								if (rsp.success) {
+									//$("#or_uid").val(rsp.imp_uid);
+									$("#frm").submit();
+									var msg = '결제가 완료되었습니다.';
+									msg += '고유ID : '
+											+ rsp.imp_uid;
+									/* msg += '상점 거래ID : ' + rsp.merchant_uid;
+									msg += '결제 금액 : ' + rsp.paid_amount;
+									msg += '카드 승인번호 : ' + rsp.apply_num; */
+								} else {
+									var msg = '결제에 실패하였습니다.';
+									/*msg += '에러내용 : ' + rsp.error_msg;
+									msg += 'ㅜㅜ' + rsp.amount;
+									msg += rsp.imp_uid; */
+								}
+								alert(msg);
+							});
+						}
+					},error: function(){
+						alert("일시적 오류로 실패하였습니다.");
+						return;
+					}
+				})
+				
+			});
 	</script>
 </body>
 </html>
