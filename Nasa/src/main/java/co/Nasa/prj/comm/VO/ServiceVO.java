@@ -42,6 +42,8 @@ public class ServiceVO {
 	String sub_category;
 	String nickname;
 	String category;
+	String ser_price_com;
+	String ser_sale_com;
 	
 	String column; // 리뷰 순, 등록 순 정렬
 	
