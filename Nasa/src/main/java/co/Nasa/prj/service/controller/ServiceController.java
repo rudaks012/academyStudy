@@ -473,11 +473,11 @@ public class ServiceController {
 	public String sellerDetail(Model model, @RequestParam("ser_code") String ser_code, HttpSession session,
 			HttpServletResponse response, HttpServletRequest request, PagingDTO pagingdto, String pagestatus) {
 		ServiceVO vo = new ServiceVO();
+		CategoryVO catevo = new CategoryVO();
 		vo = serviceDao.serviceSelect(ser_code);
 		System.out.println("++++++++++++" + vo);
 		model.addAttribute("detailS", serviceDao.serviceSelect(ser_code));
 
-		CategoryVO catevo = new CategoryVO();
 		catevo.setCat_no(vo.getSer_cate());
 		model.addAttribute("cate", categoryDao.selectCategory(catevo));
 
@@ -489,7 +489,11 @@ public class ServiceController {
 
 		ReviewVO reviewvo = new ReviewVO();
 		reviewvo.setScode(ser_code);
-		//List<ReviewVO> reviewList = reviewDao.selectReviewandReviewComment(reviewvo);
+		
+		List<ReviewVO> reviews = reviewDao.selectReviewandReviewComment(reviewvo);
+		int cntReviews = reviews.size();
+		model.addAttribute("cntReviews", cntReviews);
+		
 		reviewvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		List<ReviewVO> reviewList = reviewDao.pagingReviewandReviewComment(reviewvo);
 		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + reviewList);
