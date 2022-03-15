@@ -144,11 +144,10 @@
 							</form>
 						</div>
 						<div class="row justify-content-center" style="margin-top: 10px;">
-							<table id="paymentTable" class="table" style="width: 800px; text-align: center;">
+							<table id="paymentTable" class="table" style="width: 100%; text-align: center;">
 								<thead>
 									<tr>
 										<th scope="col">결제일</th>
-										<!--<th scope="col">서비스명</th>-->
 										<th scope="col">판매자</th>
 										<th scope="col">거래기간</th>
 										<th scope="col">금액</th>
@@ -159,7 +158,6 @@
 									<c:forEach items="${paymentList }" var="payment">
 										<tr>
 											<td class="paymentdate">${fn:substring(payment.pay_date,0,10) }</td>
-											<!--<td>payment테이블에 서비스명 추가?</td>-->
 											<td>${payment.s_email }</td>
 											<td>
 												<c:choose>
@@ -174,6 +172,9 @@
 											<td><fmt:formatNumber value="${payment.pay_price }" pattern="###,###"/></td>
 											<td>
 												<c:choose>
+													<c:when test="${payment.event_end eq 'notend'}">
+														<button class = "genric-btn primary-border small" onclick="paycomplete('${payment.pay_code}')">구매확정</button>
+													</c:when>
 													<c:when test="${empty payment.pay_enddate }">
 														거래중
 													</c:when>
@@ -184,14 +185,7 @@
 											</td>
 										</tr>
 									</c:forEach>
-									<!-- <tr>
-										<td>2022.02.18</td>
-										<td>웹개발 해드립니다.</td>
-										<td>IT고수</td>
-										<td>2022.01.01~2022.02.18</td>
-										<td>1,000,000</td>
-										<td>결제완료</td>
-									</tr> -->
+
 								</tbody>
 							</table>
 							<nav aria-label="Page navigation example">
@@ -214,9 +208,6 @@
 									  </c:if>
 								  </ul>
 							</nav>
-							<!-- <nav aria-label="Page navigation example">
-								<ul class="pagination"></ul>
-							</nav> -->
 						</div>
 					</div>
 					
@@ -226,8 +217,17 @@
 	</div>
 </section>
 
-<!-- buyHistory main end  -->
 <script>
+	function paycomplete(code){
+		$.ajax({
+			url:"paycomplete.do",
+			type : "GET",
+			data : {pay_code : code},
+			success : function() {
+				location.reload();
+			}
+		})
+	}
 	function selectdate() {
 		var firstDate = $("#firstDate").val();
 		var secondDate = $("#secondDate").val();

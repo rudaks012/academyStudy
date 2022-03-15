@@ -199,4 +199,19 @@ public class PaymentServiceImpl implements PaymentService {
 		return map.CalendarList(id);
 	}
 
+	@Override
+	public List<PaymentVO> sellerPaymentDList(PaymentVO vo) {
+		return map.sellerPaymentDList(vo);
+	}
+
+	@Override
+	public List<PaymentVO> endPaymentList(PaymentVO vo) {
+		return map.endPaymentList(vo);
+	}
+
+	@Override
+	public int paycomplete(PaymentVO vo) {
+		return map.paycomplete(vo);
+	}
+
 }

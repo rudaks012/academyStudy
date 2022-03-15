@@ -575,20 +575,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 		function passconfirm() {
 			var pcfrm = $("#passwordconfirm").val()
-			console.log(pcfrm);
-            /* if (pcfrm == '1234') {
-            	window.alert("탈퇴되었습니다.");
-                location.href="home.do";
-            } else if(pcfrm == ""){
-            	window.alert("비밀번호를 입력해주세요!");
-            } else if(pcfrm == "1") {
-            	$("#passConfirmModal").modal('hide');
-            	$("#noservice").modal('show');
-            	$("#passwordconfirm").val("");
-            } else {r
-            	window.alert("비밀번호가 틀렸습니다!");
-            } */
-            
+			console.log(pcfrm);       
             if(pcfrm == "") {
             	alert("비밀번호를 입력해주세요");
             }else {

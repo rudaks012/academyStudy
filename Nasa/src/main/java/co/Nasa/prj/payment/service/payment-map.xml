@@ -7,6 +7,23 @@
       WHERE B_EMAIL = #{b_email}
       ORDER BY PAY_DATE DESC
    </select>
+   <select id="sellerPaymentDList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+   		SELECT *
+   		FROM PAYMENT
+   		WHERE S_EMAIL = #{s_email}
+   </select>
+   <select id = "endPaymentList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+   		<![CDATA[
+   		SELECT *
+   		FROM PAYMENT
+   		WHERE B_EMAIL = #{b_email} AND (EVENT_END < SYSDATE OR (EVENT_END IS NULL AND PAY_ENDDATE IS NULL))
+   		]]>
+   </select>
+   <update id = "paycomplete" parameterType="co.Nasa.prj.comm.VO.PaymentVO">
+   		UPDATE 	PAYMENT
+   		SET		PAY_ENDDATE = SYSDATE
+   		WHERE	PAY_CODE = #{pay_code}
+   </update>
    
    <select id="selectPagingBuyerPaymentList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
    		SELECT	*

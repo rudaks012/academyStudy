@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -228,6 +230,15 @@ public class PaymentController {
 		}
 		System.out.println(list);
 		return list;
+	}
+	
+	@RequestMapping("/paycomplete.do")
+	public String paycomplete(PaymentVO vo, HttpSession session, HttpServletResponse response,
+			  HttpServletRequest request) {
+		paymentDao.paycomplete(vo);
+		
+		return "redirect:buyHistory.do";
+		
 	}
 	
 }
