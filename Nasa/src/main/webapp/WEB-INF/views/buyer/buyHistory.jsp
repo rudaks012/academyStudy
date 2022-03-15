@@ -105,7 +105,6 @@
 											<li>10% 할인 혜택</li>
 										</c:when>
 									</c:choose>
-									<li><a href="#">등급에 대해서 궁금하다면?</a></li>
 								</ul>
 							</div>
 							<div class="description">
