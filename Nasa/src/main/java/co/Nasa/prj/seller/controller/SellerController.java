@@ -235,18 +235,21 @@ public class SellerController {
 	@ResponseBody
 	@RequestMapping("/SellerProfileUpdate.do")
 	public String SellerProfileUpdate(SellerVO vo, MultipartFile imgupload, HttpSession session,
-			@RequestParam("pwCheck") String pwCheck) {
+			@RequestParam("pwCheck") String pwCheck, BCryptPasswordEncoder passwordEncoder) {
 		System.out.println("=============" + imgupload.getOriginalFilename());
 		System.out.println(pwCheck);
 		vo.setS_email((String) session.getAttribute("id"));
 
 		SellerVO svo = new SellerVO();
 		svo = sellerDAO.SellerSelect((String) session.getAttribute("id"));
-		svo = sellerDAO.SellerSelect("lee123@nasa.com");
+		
 		String beforimg = svo.getS_img();
 
 		if (pwCheck.equals("basic")) {
 			vo.setS_password(svo.getS_password());
+		}else {
+			String encodedPassword = passwordEncoder.encode(vo.getS_password());
+			vo.setS_password(encodedPassword);
 		}
 
 		String originalFileName = imgupload.getOriginalFilename();

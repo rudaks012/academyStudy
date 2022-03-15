@@ -58,10 +58,12 @@
 						<div class="form-group">
 							<input class="form-control" name="s_nickname" id="s_nickname" type="text"
 								 value="${sellerInfo.s_nickname }" required>
+							
 							<input type="button" value="확인" id="nickCheckbtn"
 									class="position-relative genric-btn primary radius" onclick="nicknameCheck()"
 									style="float: right; bottom: 40px; left: 10px;" >
 						</div>
+						<label id="nicklabelok">인증된 닉네임입니다.</label>
 					</div>
 
 					<div style="margin-top: 20px;">
@@ -205,11 +207,13 @@
 			if (!($("#s_nickname").val())) { // 닉네임에 아무것도 적혀있지 않으면
 				$("label").remove('#nicklabel');
 				$("label").remove('#nicklabelok');
+				$("label").remove('#nicklabelok2');
 				$("#nickdiv").append('<label id="nicklabel">닉네임은 필수 입력값입니다.</label>');
 				$("#nicklabel").css("color", "red");
 			} else { // 뭐라도 적혀있으면
 				$("label").remove('#nicklabel');
 				$("label").remove('#nicklabelok');
+				$("label").remove('#nicklabelok2');
 			}
 		})
 	
@@ -348,7 +352,7 @@
 	    			processData : false,
 					success: function (data) {
 						if (data == "T") {
-							console.log("수정 완료하였습니다.");
+							alert("수정 완료하였습니다.");
 							location.href='goSellerMypage.do';
 						} else {
 							console.log("수정 실패");

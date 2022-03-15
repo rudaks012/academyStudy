@@ -528,13 +528,6 @@ input[type=date] {
                         <!-- <input type="radio" name="paymethod"
                         value="kakaopay">카카오페이</td> -->
                   </tr>
-				  <tr>
-					  <td>프로모션</td>
-					  <td>
-						  <input type="radio" name="promotion" value="promotion" id="adminpromotion">전체 이벤트
-						  <input type="radio" name="promotion" value="promotion" id="sellerpromo">판매자 이벤트 
-					</td>
-				  </tr>
                   <tr>
                      <td>쿠폰</td>
                      <td id="coupontest">
