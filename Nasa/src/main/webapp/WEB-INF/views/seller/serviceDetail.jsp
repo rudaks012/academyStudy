@@ -360,8 +360,10 @@
                                                                   data-target="#deleteReviewcommentModal" data-deletecode="${review.rere_code }">삭제</span>
                                                          </c:when>
                                                          <c:otherwise>
-                                                            <span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-revtp="rc" data-report_code="${review.rere_code }"
-                                                            style="cursor: pointer;">신고</span>
+                                                            <c:if test="${not empty author}">
+                                                               <span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-revtp="rc" data-report_code="${review.rere_code }"
+                                                               style="cursor: pointer;">신고</span>
+                                                            </c:if>
                                                          </c:otherwise>
                                                       </c:choose>
                                                    </div>
