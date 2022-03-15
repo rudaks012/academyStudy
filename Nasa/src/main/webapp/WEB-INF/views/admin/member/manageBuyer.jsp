@@ -501,7 +501,10 @@ $("#searchBtn").on("click",searchReport);
                         innerHtml += "<td>" + result[j].ser_title + "</td>";
                         innerHtml += "<td>" + result[j].s_email + "</td>";
                         innerHtml += "<td>" + result[j].event_start + " ~ " + result[j].event_end + "</td>";
-                        innerHtml += "<td>" + result[j].pay_price + "</td>";
+                         
+                        let price=result[j].pay_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        
+                        innerHtml += "<td>" + price + "</td>";
                         innerHtml += "<td>" + result[j].pay_date + "</td>";
                         result[j].pay_enddate == null ? //구매확정날짜
                             innerHtml += "<td class='text-danger'>확정전</td>" : 
@@ -583,7 +586,15 @@ $("#searchBtn").on("click",searchReport);
                 report >= "5" ? $("#b_report").addClass("text-danger").val(result.buyer.b_report) : $(
                     "#b_report").val(result.buyer.b_report);
 
-                $("#b_status").val(result.buyer.b_status);
+                let status=result.buyer.b_status;
+                if (status=="U"){
+                	$("#b_status").val("이용 중");
+                }else if(status=="M"){
+                	$("#b_status").val("한달정지");
+                }else{
+                	$("#b_status").val("영구정지");
+                }
+                
                 $("#b_zipcode").val(result.buyer.b_zipcode);
                 $("#b_address").val(result.buyer.b_address);
                 $("#b_detailaddress").val(result.buyer.b_detailaddress);
@@ -607,7 +618,8 @@ $("#searchBtn").on("click",searchReport);
                 for(i=0;i<result.payment.length;i++){
                 	cnt+=parseInt(result.payment[i].pay_price)
                 }
-                $("#totalPrice").text(cnt);
+                let price=cnt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                $("#totalPrice").text(price);
 
                 //구매내역 페이징
                 if (result.payment.length != 0) {
@@ -645,29 +657,32 @@ $("#searchBtn").on("click",searchReport);
     })
 
 
+    //수정버튼 이벤트
     const modifyBtn = document.querySelector("#modifyBtn");
-    const modifyeMemberRank = () => { //수정버튼 이벤트 함수
+    const modifyeMemberRank = () => {
         var rankVal = $('input[name="buyer_rank"]:checked').val();
-        var buyerEmail = $('input[name="b_email"]').val();
-        console.log(rankVal);
-        console.log(buyerEmail);
-        console.log(typeof (rankVal));
-        $.ajax({
-            url: "ajaxUpdateBuyerRank.do",
-            type: "post",
-            data: {
-                "b_rank": rankVal,
-                "b_email": buyerEmail
-            },
-
-        }).done(function (result) {
-
-            if (result == 0) {
-                alert("현재 등급과 같습니다.")
-            } else {
-                alert("수정 완")
-            }
-        })
+        var buyerEmail = $('input[id="b_email"]').val();
+        if(buyerEmail!=''){
+        	
+	        $.ajax({
+	            url: "ajaxUpdateBuyerRank.do",
+	            type: "post",
+	            data: {
+	                "b_rank": rankVal,
+	                "b_email": buyerEmail
+	            },
+	
+	        }).done(function (result) {
+	
+	            if (result == 0) {
+	                alert("현재 등급과 같습니다.")
+	            } else {
+	                alert("등급을 수정했습니다.")
+	            }
+	        })
+        }else{
+        	alert("회원을 선택해주세요.")
+        }
     }
     modifyBtn.addEventListener("click", modifyeMemberRank);
 </script>

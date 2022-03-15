@@ -144,9 +144,14 @@
 		 FROM 
 		     (
 		      SELECT rownum rn, b.*
-		      FROM
-		        buyer b
-		      where
+		      FROM 
+		          (  SELECT b_email,b_rank,b_password,b_nickname,b_tel,b_address,b_zipcode,b_detailaddress,b_author,b_img,
+					        b_status,b_date,b_report,token,field_code,buyer_coupon,b_name,blacklistdate
+					 FROM buyer
+					 ORDER BY b_email
+				  )b
+		          
+		      WHERE
 			   rownum <= #{pageNum} * #{amount}
 			   
 	    ]]>
