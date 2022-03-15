@@ -78,5 +78,5 @@ public interface PaymentService {
    public int countselleryearSearch(PaymentVO vo);
    public int countsellerselectdateSearch(PaymentVO vo);
    
-   List<PaymentVO> CalendarList();
+   List<PaymentVO> CalendarList(String id);
 }

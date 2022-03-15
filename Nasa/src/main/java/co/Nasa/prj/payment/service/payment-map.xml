@@ -397,7 +397,8 @@ INSERT INTO	PAYMENT
    </select>
    
 	<select id="CalendarList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
-		SELECT * FROM V_CALENDAR WHERE B_EMAIL = #{b_email}
+		SELECT * FROM V_CALENDAR
+		WHERE B_EMAIL = #{b_email}
 	</select>
 	
 </mapper>
