@@ -1127,8 +1127,20 @@ input[type=date] {
 		 console.log("서비스카테고리",ser_cate);
 		 var sub_cate = document.getElementById('sub_cate').value; //서비스코드 히든임
 		 console.log("서비스하위카테고리",sub_cate);
-		 var adminpay = document.getElementById('sellerrank').innerText; // 판매자 등급
-		 console.log("판매자 등급",adminpay);
+		//  var adminpay = document.getElementById('sellerrank').innerText; // 판매자 등급
+		//  console.log("판매자 등급",adminpay);
+       var adminpay = document.getElementById('sellerrank'); // 판매자 등급
+		 console.log("판매자 등급",adminpay.innerText);
+		 if(adminpay.innerText == "1" ){
+		 $('#sellerrank').val(servicemoney / 8) ;
+		 }else if(adminpay.innerText == "2"){
+		 $('#sellerrank').val(servicemoney / 5) ;
+		 }else if (adminpay.innerText == "3"){
+		 $('#sellerrank').val(servicemoney / 3) ;
+		 }else if (adminpay.innerText == "4"){
+		 $('#sellerrank').val(servicemoney / 1) ;
+		 }
+       var adminpat1 = adminpay.value;
 
 
 
@@ -1168,7 +1180,7 @@ input[type=date] {
                      "s_code" : servicecode,
 					 "pay_cate" : ser_cate,
 					 "pay_cate1" : sub_cate,
-					 "pay_com" : adminpay
+					 "pay_com" : adminpat1
 
                }
                console.log("결제완료",result);
@@ -1294,13 +1306,13 @@ input[type=date] {
          console.log("최종금액2",lastmoney);
 		 var adminpay = document.getElementById('sellerrank'); // 판매자 등급
 		 console.log("판매자 등급",adminpay.innerText);
-		 if(adminpay.innerText == "별" ){
+		 if(adminpay.innerText == "1" ){
 		 $('#sellerrank').val(servicemoney / 8) ;
-		 }else if(adminpay.innerText == "달"){
+		 }else if(adminpay.innerText == "2"){
 		 $('#sellerrank').val(servicemoney / 5) ;
-		 }else if (adminpay.innerText == "해"){
+		 }else if (adminpay.innerText == "3"){
 		 $('#sellerrank').val(servicemoney / 3) ;
-		 }else if (adminpay.innerText == "지구"){
+		 }else if (adminpay.innerText == "4"){
 		 $('#sellerrank').val(servicemoney / 1) ;
 		 }
 
