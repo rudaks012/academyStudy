@@ -115,7 +115,7 @@ public class BuyerController {
 	@RequestMapping("/deleteBuyer.do")
 	@ResponseBody
 	public String deleteBuyer(Model model, HttpSession session, HttpServletResponse response,
-			HttpServletRequest request, @Param("dPassword") String dPassword) {
+			HttpServletRequest request, @Param("dPassword") String dPassword, BCryptPasswordEncoder passwordEncoder) {
 		// 값 넘어왔는지 체크
 		System.out.println(dPassword);
 
@@ -135,8 +135,8 @@ public class BuyerController {
 		buyervo = buyerDao.selectBuyer(buyervo);
 
 		// 탈퇴 조건 실행
-		// 1. 입력한 비밀번호와 일치하는가?
-		if (!buyervo.getB_password().equals(dPassword)) {
+		// 1. 입력한 비밀번호와 일치하는가? !buyervo.getB_password().equals(dPassword)
+		if (!passwordEncoder.matches(dPassword, buyervo.getB_password())) {
 			System.out.println(buyervo.getB_password());
 			deleteStatus = "codeP";
 			return deleteStatus;
@@ -668,7 +668,7 @@ public class BuyerController {
 
 	@RequestMapping(value = "/profileUpdate.do", produces = "text/plain;charset=UTF-8")
 	public String profileUpdate(BuyerVO vo, MultipartFile imgupload, HttpSession session, HttpServletResponse response,
-			HttpServletRequest request) {
+			HttpServletRequest request, BCryptPasswordEncoder passwordEncoder) {
 		if(vo.getField_code() == null) {
 			BuyerVO bvo = new BuyerVO();
 			bvo.setB_email((String) session.getAttribute("id"));
@@ -677,6 +677,24 @@ public class BuyerController {
 		}
 		System.out.println(vo.getField_code());
 		
+		System.out.println("처음 들어온 패스워드" + vo.getB_password());
+		String changePassword = "";
+		if(vo.getB_password().equals("")) {
+			System.out.println("1번 if");
+			BuyerVO buyervo = new BuyerVO();
+			buyervo.setB_email((String) session.getAttribute("id"));
+			buyervo = buyerDao.selectBuyer(buyervo);
+			changePassword = buyervo.getB_password();
+		}
+		
+		if(!vo.getB_password().equals("")) {
+			System.out.println("2번 if");
+			changePassword = passwordEncoder.encode(vo.getB_password());
+		}
+		System.out.println(changePassword);
+		vo.setB_password(changePassword);
+		
+		System.out.println("설정 끝난 패스워드" + vo.getB_password());
 		// img upload
 		BuyerVO voforimg = new BuyerVO();
 		voforimg.setB_email((String) session.getAttribute("id"));
