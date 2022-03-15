@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.PaymonthVO;
@@ -213,20 +212,21 @@ public class PaymentController {
 	
 	@RequestMapping("/CalendarList.do")
 	@ResponseBody
-	public List<Map<String, String>> CalendarList() {
-		BuyerVO vo = new BuyerVO();
-		vo.setB_email("wja36750@gmail.com");
+	public List<Map<String, String>> CalendarList(HttpSession session) {
+		String b_email = (String)session.getAttribute("id");
 		List<Map<String, String>> list = null;
 		list = new ArrayList<>();
-		List<PaymentVO> list2 = paymentDao.CalendarList();
+		List<PaymentVO> list2 = paymentDao.CalendarList(b_email);
 		System.out.println(list2);
 		for (PaymentVO sc : list2) {
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("title", sc.getSer_title());
 			map.put("start", sc.getEvent_start());
 			map.put("end", sc.getEvent_end());
+			
 			list.add(map);
 		}
+		System.out.println(list);
 		return list;
 	}
 	

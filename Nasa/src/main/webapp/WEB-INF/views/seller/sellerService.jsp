@@ -292,7 +292,7 @@ input[type=date] {
 																			
 																					</c:if>
 																					<c:if test="${empty service.prodiscount }">
-																						<div class="price"> ₩ ${service.ser_price }</div>
+																						<div class="price"> ₩ <fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></div>
 																					</c:if>
 																					<div class="list-footer">
 																						<ul>

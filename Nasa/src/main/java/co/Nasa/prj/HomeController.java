@@ -70,8 +70,17 @@ public class HomeController {
 	
 		if("B".equals(author)) {
 			buyervo.setB_email((String) session.getAttribute("id")); 
-			buyervo = BuyerDao.selectBuyer(buyervo); 
+			buyervo = BuyerDao.selectBuyer(buyervo);
+			if(buyervo.getField_code() == "") {
+				List<ServiceVO> recommendService = serviceDao.notBuyerRandomService();
+				model.addAttribute("recommendService", recommendService);
+				return "user/home";
+			}
 			List<ServiceVO> recommendService = serviceDao.randomSelectService(buyervo.getField_code());
+			if(recommendService.size() < 1) {
+				recommendService = serviceDao.notBuyerRandomService();
+				model.addAttribute("recommendService", recommendService); 
+			}
 			model.addAttribute("recommendService", recommendService); 
 		} else {
 			List<ServiceVO> recommendService = serviceDao.notBuyerRandomService();
