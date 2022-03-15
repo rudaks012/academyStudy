@@ -59,7 +59,7 @@ public class ServiceController {
 	// 카테고리 별 서비스 목록
 	@RequestMapping("/homeCategory.do")
 	public String homeCategory(Model model, ServiceVO vo, PagingDTO pagingdto) {
-		pagingdto.setAmount(2);
+		pagingdto.setAmount(6);
 		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());	
 		pagingdto.setTotal(serviceDao.homeCategorySelectCount(vo));
 		model.addAttribute("paging",pagingdto);

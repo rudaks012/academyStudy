@@ -152,12 +152,14 @@
 	   				 		 	and ser_cate like '%'||#{ser_cate}||'%'
 	   				 		</if>
    				 		 </trim>
-   				 		 <if test="column == '' and column == null">
-							 ORDER BY SER_CODE DESC
-   				 		 </if>
-   				 		 <if test="column != '' and column != null">
-   				 		 	ORDER BY #{column} DESC
-   				 		 </if>
+   				 		 <choose>
+   				 		 	<when test="column != '' and column != null">
+   				 		 		ORDER BY REVIEWCOUNT DESC
+                			</when>
+                			<otherwise>
+                				ORDER BY SER_CODE DESC
+                			</otherwise>
+   				 		 </choose>
    				 ) A
    		)
    		WHERE	RN BETWEEN #{start} AND #{end}
