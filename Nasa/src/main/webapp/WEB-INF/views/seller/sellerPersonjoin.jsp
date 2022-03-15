@@ -483,7 +483,8 @@
 				$("#nickdiv").append('<label id="nicklabel">닉네임 중복체크를 해주세요.</label>');
 				$("#nicklabel").css("color", "red");
 				$("#s_nickname").focus();
-			} else if (!($("#emaillabelok").length)) {
+			} 
+			else if (!($("#emaillabelok").length)) {
 				$("label").remove('#emaillabel');				
 				$("#emaildiv").append('<label id="emaillabel">이메일 인증이 필요합니다.</label>');
 				$("#nicklabel").css("color", "red");
@@ -493,7 +494,8 @@
 				$("#emailchkdiv").append('<label id="emailchklabel">이메일 인증번호를 확인해주세요.</label>');
 				$("#emailchklabel").css("color", "red");
 				$("#emailchk").focus();
-			} else if (!($("#pwchklabelok").length)) {
+			}
+			else if (!($("#pwchklabelok").length)) {
 				$("label").remove('#pwlabel');
 				$("label").remove('#pwchklabel');
 				$("#pwdiv").append('<label id="pwlabel">비밀번호를 확인해주세요.</label>');
