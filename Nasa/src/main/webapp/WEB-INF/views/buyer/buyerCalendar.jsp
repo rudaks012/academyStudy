@@ -24,26 +24,13 @@
     .tdtext {
         bottom: 10px;
     }
-</style>
-<script src='resources/user/fullcalendar-5.10.1/lib/main.js'></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-	let xhtp = new XMLHttpRequest();
-	xhtp.open('get', 'CalendarList.do');
-	xhtp.send();
-	xhtp.onload = function() {
-		let dbData = JSON.parse(xhtp.responseText);
-		var calendarEl = document.getElementById('calendar');
 
-		var calendar = new FullCalendar.Calendar(calendarEl, {
-			initialView: 'dayGridMonth',			
-			dayMaxEvents: true, // allow "more" link when too many events
-			events: dbData
-	});
-		calendar.render();
-	}	
-});
-</script>
+    .fc-event-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>
 
 <!-- Hero Start-->
 <div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
@@ -136,3 +123,47 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </section>
 <!--================Blog Area =================-->
+
+<script src='resources/user/fullcalendar-5.10.1/lib/main.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let xhtp = new XMLHttpRequest();
+        xhtp.open('get', 'CalendarList.do');
+        xhtp.send();
+        xhtp.onload = function () {
+            let dbData = JSON.parse(xhtp.responseText);
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                
+                initialView: 'dayGridMonth',
+                dayMaxEvents: true, // allow "more" link when too many events
+                eventClick : function () {
+						getCalServList ();
+				},
+                events: dbData
+            });
+            calendar.render();
+            $("div").remove(".fc-event-time");
+            console.log(dbData);
+
+        }
+    });
+
+    function getCalServList() {
+        var ser_title = $(event.target).text();
+        console.log(ser_title);
+        
+
+
+        $.ajax({
+            url: "ajaxGetCalServList.do",
+			type: "post",
+			data: {"ser_title" : ser_title},
+            success: function (data) {
+                
+			}
+        })
+    }
+    
+</script>
