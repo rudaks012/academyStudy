@@ -1,13 +1,11 @@
 package co.Nasa.prj.payment.controller;
 
 import java.sql.Date;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -212,4 +210,24 @@ public class PaymentController {
 			
 		return vo;
 	}
+	
+	@RequestMapping("/CalendarList.do")
+	@ResponseBody
+	public List<Map<String, String>> CalendarList() {
+		BuyerVO vo = new BuyerVO();
+		vo.setB_email("wja36750@gmail.com");
+		List<Map<String, String>> list = null;
+		list = new ArrayList<>();
+		List<PaymentVO> list2 = paymentDao.CalendarList();
+		System.out.println(list2);
+		for (PaymentVO sc : list2) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("title", sc.getSer_title());
+			map.put("start", sc.getEvent_start());
+			map.put("end", sc.getEvent_end());
+			list.add(map);
+		}
+		return list;
+	}
+	
 }

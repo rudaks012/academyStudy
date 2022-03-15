@@ -418,8 +418,10 @@ Remove or comment-out the code block below to see how the browser will fall-back
 										<span class="profile-real-name">등급 : 지구</span>
 									</c:when>
 									<c:otherwise>
-										<span class="profile-real-name">등급 : 등급확인불가</span>
-									</c:otherwise>
+
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 확인불가">등급 : 등급확인불가</span>
+									</c:otherwise>                                   
+
 								</c:choose>
 								<c:choose>
                                     <c:when test="${empty buyerinfo.buyer_coupon }">

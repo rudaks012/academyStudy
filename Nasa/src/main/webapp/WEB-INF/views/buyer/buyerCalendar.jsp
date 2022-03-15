@@ -27,23 +27,22 @@
 </style>
 <script src='resources/user/fullcalendar-5.10.1/lib/main.js'></script>
 <script>
-    // 수정할 것...
-    document.addEventListener('DOMContentLoaded', function () {
-        let xhtp = new XMLHttpRequest();
-        xhtp.open('get', 'CalendarList.do');
-        xhtp.send();
-        xhtp.onload = function () {
-            let dbData = JSON.parse(xhtp.responseText);
-            var calendarEl = document.getElementById('calendar');
+document.addEventListener('DOMContentLoaded', function () {
+	let xhtp = new XMLHttpRequest();
+	xhtp.open('get', 'CalendarList.do');
+	xhtp.send();
+	xhtp.onload = function() {
+		let dbData = JSON.parse(xhtp.responseText);
+		var calendarEl = document.getElementById('calendar');
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                dayMaxEvents: true, // allow "more" link when too many events
-                events: dbData
-            });
-            calendar.render();
-        }
-    });
+		var calendar = new FullCalendar.Calendar(calendarEl, {
+			initialView: 'dayGridMonth',			
+			dayMaxEvents: true, // allow "more" link when too many events
+			events: dbData
+	});
+		calendar.render();
+	}	
+});
 </script>
 
 <!-- Hero Start-->
