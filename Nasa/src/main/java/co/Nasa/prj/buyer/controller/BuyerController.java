@@ -786,11 +786,7 @@ public class BuyerController {
 	@RequestMapping("/ajaxBjoin.do")
 	@ResponseBody
 	public String ajaxBjoin(BuyerVO vo, BCryptPasswordEncoder passwordEncoder) {
-		vo.setB_rank("1");
-		vo.setB_author("구매자");
-		vo.setB_status("사용자");
-		//vo.setToken("t");
-		vo.setField_code("1");
+		
 		String encodedPassword = passwordEncoder.encode(vo.getB_password());
 		vo.setB_password(encodedPassword);
 		System.out.println(vo.getB_password());
