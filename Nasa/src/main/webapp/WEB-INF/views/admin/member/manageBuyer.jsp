@@ -386,6 +386,7 @@ let startDate =$("input[name='b_date']");
 let endDate =$("input[name='b_date2']");
 const handleReportDate =()=>{
 	$(endDate).val($(startDate).val())
+	$(endDate).attr("min",$(startDate).val())
 	
 	
 }
@@ -472,7 +473,7 @@ $("#searchBtn").on("click",searchReport);
                     let nowPage = 1; // 현재 페이지 
                     let visibleBlock = 5;
                     
-                    console.log(result)
+                 
                     totalPages = totalCount / pageSize;
 
                     if (totalCount % pageSize > 0) {
@@ -502,7 +503,7 @@ $("#searchBtn").on("click",searchReport);
                         innerHtml += "<td>" + result[j].s_email + "</td>";
                         innerHtml += "<td>" + result[j].event_start + " ~ " + result[j].event_end + "</td>";
                          
-                        let price=result[j].pay_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        let price=result[j].pay_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //금액 정규식
                         
                         innerHtml += "<td>" + price + "</td>";
                         innerHtml += "<td>" + result[j].pay_date + "</td>";
@@ -580,12 +581,24 @@ $("#searchBtn").on("click",searchReport);
                 $("#b_email").val(result.buyer.b_email);
                 $("#b_name").val(result.buyer.b_name);
                 $("#b_nickname").val(result.buyer.b_nickname);
-                $("#b_tel").val(result.buyer.b_tel);
+                
+                let tel=result.buyer.b_tel;
+                let phone=""
+                phone += tel.substr(0, 3); 
+                phone += "-"; 
+                phone += tel.substr(3, 4); 
+                phone += "-"; 
+                phone += tel.substr(7);
+
+                $("#b_tel").val(phone);
 
                 let report = result.buyer.b_report; //신고횟수
-                report >= "5" ? $("#b_report").addClass("text-danger").val(result.buyer.b_report) : $(
-                    "#b_report").val(result.buyer.b_report);
-
+                if(report >= "5"){
+                	$("#b_report").addClass("text-danger").val(result.buyer.b_report)
+                }else{
+                	$("#b_report").removeClass("text-danger").val(result.buyer.b_report);
+                }
+                //구매자 권한
                 let status=result.buyer.b_status;
                 if (status=="U"){
                 	$("#b_status").val("이용 중");
