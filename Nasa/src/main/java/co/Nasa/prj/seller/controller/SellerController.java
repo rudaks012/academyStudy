@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -165,9 +166,10 @@ public class SellerController {
 	// 개인 판매자 회원 가입
 	@RequestMapping("/ajaxSPjoin.do")
 	@ResponseBody
-	public String ajaxSPjoin(SellerVO vo) {
+	public String ajaxSPjoin(SellerVO vo,BCryptPasswordEncoder passwordEncoder) {
 		vo.setS_author("개인");
-
+		String encodedPassword = passwordEncoder.encode(vo.getS_password());
+		vo.setS_password(encodedPassword);
 		System.out.println(vo.toString());
 		int n = sellerDAO.SellerInsert(vo);
 		String result = "F";
@@ -180,8 +182,10 @@ public class SellerController {
 	// 기업 판매자 회원 가입
 	@RequestMapping("/ajaxSCjoin.do")
 	@ResponseBody
-	public String ajaxSCjoin(SellerVO vo) {
+	public String ajaxSCjoin(SellerVO vo,BCryptPasswordEncoder passwordEncoder) {
 		vo.setS_author("기업");
+		String encodedPassword = passwordEncoder.encode(vo.getS_password());
+		vo.setS_password(encodedPassword);
 
 		System.out.println(vo.toString());
 		int n = sellerDAO.SellerInsert(vo);
