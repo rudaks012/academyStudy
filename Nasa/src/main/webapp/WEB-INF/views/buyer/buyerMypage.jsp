@@ -406,22 +406,26 @@ Remove or comment-out the code block below to see how the browser will fall-back
 							<!-- data-toggle="tooltip" data-placement="top" title="등급" -->
 								<c:choose>
 									<c:when test="${buyerinfo.b_rank eq '1' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 별">등급 : 별</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 별">등급 : 별</span>
 									</c:when>
 									<c:when test="${buyerinfo.b_rank eq '2' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 달">등급 : 달</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 달">등급 : 달</span>
 									</c:when>
 									<c:when test="${buyerinfo.b_rank eq '3' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 태양">등급 : 태양</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 태양">등급 : 태양</span>
 									</c:when>
 									<c:when test="${buyerinfo.b_rank eq '4' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 지구">등급 : 지구</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 지구">등급 : 지구</span>
 									</c:when>
 									<c:otherwise>
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 확인불가">등급 : 등급확인불가</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 확인불가">등급 : 등급확인불가</span>
 									</c:otherwise>
+                                    <!-- <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a> 등급설명페이지 이동 버튼이었던 것-->
 								</c:choose>
 								<c:choose>
+                                    <c:when test="${empty buyerinfo.buyer_coupon }">
+                                        <span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="쿠폰이 없습니다.">쿠폰이 없습니다.</span>
+                                    </c:when>
 									<c:when test="${buyerinfo.buyer_coupon eq '0' }">
 										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="쿠폰을 이미 사용하였습니다.">쿠폰을 이미 사용하였습니다.</span>
 									</c:when>

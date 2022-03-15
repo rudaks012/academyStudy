@@ -89,19 +89,25 @@ public class BuyerController {
 		vo = buyerDao.selectBuyer(vo);
 		
 		// 마이페이지에 관심 카테고리 정보 전달(구매자 테이블에 관련 정보가 서브카테고리밖에 없어서 다른 VO 가져와야함)
-		scvo.setSub_no(vo.getField_code());
-		scvo = sub_categoryDao.selectSub_category(scvo);
-		
-		cvo.setCat_no(scvo.getCat_no());
-		cvo = categoryDao.selectCategory(cvo);
-		
-		String categoryName = cvo.getCat_name();
-		String subcategoryName = scvo.getSub_name();
+		if(vo.getField_code() == null) {
+			model.addAttribute("categoryName", "미설정");
+			model.addAttribute("subcategoryName", "계정설정에서 변경 가능");
+		} else {
+			scvo.setSub_no(vo.getField_code());
+			scvo = sub_categoryDao.selectSub_category(scvo);
+			
+			cvo.setCat_no(scvo.getCat_no());
+			cvo = categoryDao.selectCategory(cvo);
+			
+			String categoryName = cvo.getCat_name();
+			String subcategoryName = scvo.getSub_name();
+
+			model.addAttribute("categoryName", categoryName);
+			model.addAttribute("subcategoryName", subcategoryName);
+		}
 		
 		// 모델
 		model.addAttribute("buyerinfo", vo);
-		model.addAttribute("categoryName", categoryName);
-		model.addAttribute("subcategoryName", subcategoryName);
 		
 		return "buyer/buyerMypage";
 	}
