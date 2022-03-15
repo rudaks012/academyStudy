@@ -109,7 +109,7 @@ p {
 						<article class="blog_item">
 							<div class="justify-content-center">
 								<a class="d-inline-block" style="margin-top:20px;">
-										<h3>노하우 등록</h3>
+										<h3>판매자 노하우 등록</h3>
 									</a>
 								<hr class="hr"/>
 								<div class="blog_details">
