@@ -197,6 +197,7 @@ public class BuyerController {
 				paysum += pmvo.getPay_price();
 			}
 		}
+		
 		DecimalFormat formatter = new DecimalFormat("###,###");
 		String upgrademoneyform = "";
 		switch (buyervo.getB_rank()) {

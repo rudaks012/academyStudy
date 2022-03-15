@@ -127,9 +127,9 @@
                                  </p>
                                  <c:if test="${detailS.ser_subimg ne null || detailS.ser_subimg2 ne null || detailS.ser_subimg3 ne null}">
                              		<h5><u>서비스 이미지</u></h5>
-                             		<p><img src="fileupload/${detailS.ser_subimg }"></p>
-                             		<p><img src="fileupload/${detailS.ser_subimg2 }"></p>
-                             		<p><img src="fileupload/${detailS.ser_subimg3 }"></p>
+                             		<c:if test="${detailS.ser_subimg ne null}"><p><img src="fileupload/${detailS.ser_subimg }"></p></c:if>
+                             		<c:if test="${detailS.ser_subimg2 ne null}"><p><img src="fileupload/${detailS.ser_subimg2 }"></p></c:if>
+                             		<c:if test="${detailS.ser_subimg3 ne null}"><p><img src="fileupload/${detailS.ser_subimg3 }"></p></c:if>
                              		<hr />
                              	</c:if>
                                  <hr />
@@ -255,7 +255,7 @@
                                           <c:set var="sum" value="${sum + calc.rev_rate}"></c:set>
                                     </c:forEach>
                                        평점 : <fmt:formatNumber type="number" pattern="0.00" value="${ (((sum/fn:length(reviewList))*100) - (((sum/fn:length(reviewList))*100)%1)) * (1/100)   }"></fmt:formatNumber> 점
-                                      || 총 ${fn:length(reviewList)}개의 리뷰</div>
+                                      || 총 ${cntReviews}개의 리뷰</div>
                                  </c:when>
                                  <c:otherwise>
                                     <div class="revtext" style="margin-top:20px;">

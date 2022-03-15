@@ -25,11 +25,11 @@
 input[type=date] {
 	border: 1px solid lightgray;
 	color: lightgray;
-	margin-right: 10px;
+	margin-right: 2px;
 }
 
 .paybtn {
-	margin-right: 10px;
+	margin-right: 5px;
 }
 .hr{
  	background-color : #d5c9ea !important;
@@ -130,14 +130,14 @@ td, th {
 											<div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
 												<br />
 												<br />
-												<div class="row justify-content-center">
-
-													<button class="genric-btn danger-border radius paybtn" onclick="location.href = 'sellermonthSearch.do'">1개월</button>
-													<button class="genric-btn danger-border radius paybtn" onclick="location.href = 'sixmonthSearch.do'">6개월</button>
-													<button class="genric-btn danger-border radius paybtn" onclick="location.href = 'yearSearch.do'">1년</button>
-													<form action="selectdateSearch.do" method="get" onsubmit="return selectdate()">
-													<input type="date" id="firstDate" name="firstDate"> - <input type="date" id="secondDate" name="secondDate"
-														style="margin-left: 10px;">
+												<div class="row ">
+													<button class="genric-btn danger-border circle paybtn" onclick="location.href = 'sellerPayment.do'">전체</button>			
+													<button class="genric-btn danger-border circle paybtn" onclick="location.href = 'sellermonthSearch.do'">1개월</button>
+													<button class="genric-btn danger-border circle paybtn" onclick="location.href = 'sellersixmonthSearch.do'">6개월</button>
+													<button class="genric-btn danger-border circle paybtn" onclick="location.href = 'selleryearSearch.do'" style="margin-right:8px;">1년</button>
+													<form action="sellerselectdateSearch.do" method="get" onsubmit="return selectdate()">
+														<input type="date" id="first" name="firstDate"> - <input type="date" id="second" name="secondDate"
+															style="margin-left: 5px;">
 													<button type="submit" class="genric-btn danger-border radius">기간검색</button>
 													</form>
 													<table id="paymentTable"
@@ -176,7 +176,7 @@ td, th {
 													<nav aria-label="Page navigation example">
 													  <ul class="pagination">
 														  <c:if test="${paging.prev }">
-															  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+															  <li class="page-item"><a class="page-link" href="${address }?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
 														  </c:if>
 														  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 															  <c:choose>
@@ -184,12 +184,12 @@ td, th {
 																	  <li class="page-item"><b class="page-link">${p }</b></li>
 																  </c:when>
 																  <c:when test="${p != paging.pageNum }">
-																	  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+																	  <li class="page-item"><a class="page-link" href="${address }?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
 																  </c:when>
 															  </c:choose>
 														  </c:forEach>
 														  <c:if test="${paging.next }">
-															  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+															  <li class="page-item"><a class="page-link" href="${address }?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
 														  </c:if>
 													  </ul>
 													</nav>
@@ -211,8 +211,8 @@ td, th {
 
 <script>
 function selectdate() {
-	var firstDate = $("#firstDate").val();
-	var secondDate = $("#secondDate").val();
+	var firstDate = $("#first").val();
+	var secondDate = $("#second").val();
 	console.log(firstDate);
 	console.log(secondDate);
 	

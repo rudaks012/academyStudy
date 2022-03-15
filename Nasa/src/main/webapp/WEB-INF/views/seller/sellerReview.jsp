@@ -117,9 +117,9 @@
 												<tr>
 													<th class="align-middle table-primary">서비스 선택</th>
 													<td><select id="reviewChange" onchange="change()">
-															<option value="">전체</option>
+															<option value="0" <c:if test="${scode eq 0}">selected</c:if>>전체</option>
 															<c:forEach items="${serviceList }" var="service">
-																<option value="${service.ser_code }">${service.ser_title }</option>
+																<option value="${service.ser_code }" <c:if test="${service.ser_code eq scode}">selected</c:if>>${service.ser_title }</option>
 															</c:forEach>
 													</select></td>
 												</tr>

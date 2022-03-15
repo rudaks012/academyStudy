@@ -74,4 +74,9 @@ public interface PaymentMapper {
    public List<PaymentVO> sellersixmonthSearch(PaymentVO vo);
    public List<PaymentVO> selleryearSearch(PaymentVO vo);
    public List<PaymentVO> sellerselectdateSearch(PaymentVO vo);
+   
+   public int countsellermonthSearch(PaymentVO vo);
+   public int countsellersixmonthSearch(PaymentVO vo);
+   public int countselleryearSearch(PaymentVO vo);
+   public int countsellerselectdateSearch(PaymentVO vo);
 }

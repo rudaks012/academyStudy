@@ -110,5 +110,25 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.countPagingSellerService(vo);
 	}
 
+	@Override
+	public List<ServiceVO> sellerMainServiceListY(ServiceVO vo) {
+		return map.sellerMainServiceListY(vo);
+	}
+
+	@Override
+	public int countPagingSellerServiceY(ServiceVO vo) {
+		return map.countPagingSellerServiceY(vo);
+	}
+
+	@Override
+	public List<ServiceVO> sellerMainServiceListU(ServiceVO vo) {
+		return map.sellerMainServiceListU(vo);
+	}
+
+	@Override
+	public int countPagingSellerServiceU(ServiceVO vo) {
+		return map.countPagingSellerServiceU(vo);
+	}
+
 
 }

@@ -59,7 +59,7 @@ public class ServiceController {
 	// 카테고리 별 서비스 목록
 	@RequestMapping("/homeCategory.do")
 	public String homeCategory(Model model, ServiceVO vo, PagingDTO pagingdto) {
-		pagingdto.setAmount(2);
+		pagingdto.setAmount(6);
 		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());	
 		pagingdto.setTotal(serviceDao.homeCategorySelectCount(vo));
 		model.addAttribute("paging",pagingdto);
@@ -68,23 +68,57 @@ public class ServiceController {
 	}	
 
 	@RequestMapping("/sellerService.do")
-	public String sellerService(Model model, HttpSession session) {
+	public String sellerService(Model model, HttpSession session, PagingDTO pagingdto) {
 		String s_email = (String) session.getAttribute("id");
 		ServiceVO vo = new ServiceVO();
 		vo.setS_email(s_email);
 		
-		//vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		//pagingdto.setAmount(6);
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		List<ServiceVO> sellerMainServiceList = serviceDao.sellerMainServiceList(vo);
-		//pagingdto.setTotal(serviceDao.countPagingSellerService(vo));
+		
+		pagingdto.setTotal(serviceDao.countPagingSellerService(vo));
 		model.addAttribute("sellerMainServiceList", sellerMainServiceList);
-		//model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		
-		PowerServiceVO pvo = new PowerServiceVO();
-		pvo.setS_email(s_email);
-		
-		model.addAttribute("powerList",powerDao.sellerPowerserviceList(pvo));
 		
 		return "seller/sellerService";
+	}
+	
+	@RequestMapping("/sellerServiceU.do")
+	public String sellerServiceU(Model model, HttpSession session, PagingDTO pagingdto) {
+		String s_email = (String) session.getAttribute("id");
+		ServiceVO vo = new ServiceVO();
+		vo.setS_email(s_email);
+		
+		//pagingdto.setAmount(6);
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<ServiceVO> sellerMainServiceList = serviceDao.sellerMainServiceListU(vo);
+		
+		pagingdto.setTotal(serviceDao.countPagingSellerServiceU(vo));
+		model.addAttribute("sellerMainServiceList", sellerMainServiceList);
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		
+		
+		return "seller/sellerServiceU";
+	}
+	
+	@RequestMapping("/sellerServiceY.do")
+	public String sellerServiceY(Model model, HttpSession session, PagingDTO pagingdto) {
+		String s_email = (String) session.getAttribute("id");
+		ServiceVO vo = new ServiceVO();
+		vo.setS_email(s_email);
+		
+		//pagingdto.setAmount(6);
+		vo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<ServiceVO> sellerMainServiceList = serviceDao.sellerMainServiceListY(vo);
+		
+		pagingdto.setTotal(serviceDao.countPagingSellerServiceY(vo));
+		model.addAttribute("sellerMainServiceList", sellerMainServiceList);
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		
+		
+		return "seller/sellerServiceY";
 	}
 
 	@ResponseBody
@@ -473,11 +507,11 @@ public class ServiceController {
 	public String sellerDetail(Model model, @RequestParam("ser_code") String ser_code, HttpSession session,
 			HttpServletResponse response, HttpServletRequest request, PagingDTO pagingdto, String pagestatus) {
 		ServiceVO vo = new ServiceVO();
+		CategoryVO catevo = new CategoryVO();
 		vo = serviceDao.serviceSelect(ser_code);
 		System.out.println("++++++++++++" + vo);
 		model.addAttribute("detailS", serviceDao.serviceSelect(ser_code));
 
-		CategoryVO catevo = new CategoryVO();
 		catevo.setCat_no(vo.getSer_cate());
 		model.addAttribute("cate", categoryDao.selectCategory(catevo));
 
@@ -489,7 +523,11 @@ public class ServiceController {
 
 		ReviewVO reviewvo = new ReviewVO();
 		reviewvo.setScode(ser_code);
-		//List<ReviewVO> reviewList = reviewDao.selectReviewandReviewComment(reviewvo);
+		
+		List<ReviewVO> reviews = reviewDao.selectReviewandReviewComment(reviewvo);
+		int cntReviews = reviews.size();
+		model.addAttribute("cntReviews", cntReviews);
+		
 		reviewvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		List<ReviewVO> reviewList = reviewDao.pagingReviewandReviewComment(reviewvo);
 		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + reviewList);

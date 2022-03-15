@@ -59,7 +59,7 @@
 					SELECT m.* FROM SERVICE s ,
 					(SELECT * FROM REVIEW r , REVIEW_COMMENT c WHERE REV_CODE = REVIEW_CODE(+) ORDER BY REV_DATE DESC) m
 					WHERE s.s_email = #{s_email} and s.ser_code = scode 
-					<if test="ser_code!=null and !ser_code.equals('')">
+					<if test="ser_code != 0">
 				  	     AND s.ser_code = #{ser_code}
 				  	</if>
 			) A
@@ -155,7 +155,7 @@
 			WHERE REV_CODE = REVIEW_CODE(+) 
 			ORDER BY REV_DATE DESC) m
 		WHERE s.s_email = #{s_email} and s.ser_code = scode
-		<if test="ser_code!=null and !ser_code.equals('')">
+		<if test="ser_code != 0">
 	  	     AND s.ser_code = #{ser_code}
 	  	</if>
 		)

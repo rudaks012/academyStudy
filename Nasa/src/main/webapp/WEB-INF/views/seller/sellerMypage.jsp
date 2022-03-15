@@ -398,19 +398,19 @@ Remove or comment-out the code block below to see how the browser will fall-back
 							<li id="gradeinfo" style="font-size: 15px;">
 								<c:choose>
 									<c:when test="${sellerInfo.s_rank eq '1' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 별">등급 : 별</span><button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 2% 감면혜택</span> 
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 별">등급 : 별</span>&nbsp;&nbsp;<button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 2% 감면혜택</span> 
 									</c:when>
 									<c:when test="${sellerInfo.s_rank eq '2' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 달">등급 : 달</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 5% 감면혜택</span> 
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 달">등급 : 달</span>&nbsp;&nbsp; <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 5% 감면혜택</span> 
 									</c:when>
 									<c:when test="${sellerInfo.s_rank eq '3' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 태양">등급 : 태양</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 7% 감면혜택</span> 
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 태양">등급 : 태양</span> &nbsp;&nbsp;<button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 7% 감면혜택</span> 
 									</c:when>
 									<c:when test="${sellerInfo.s_rank eq '4' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 지구">등급 : 지구</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 10% 감면혜택</span> 
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 지구">등급 : 지구</span>&nbsp;&nbsp; <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 10% 감면혜택</span> 
 									</c:when>
 									<c:otherwise>
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 확인불가">등급 : 등급확인불가</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 확인불가">등급 : 등급확인불가</span>&nbsp;&nbsp; <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button>
 									</c:otherwise>
 								</c:choose>
 								</li>
@@ -448,7 +448,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 							<li><a href="sellerCalendar.do" class="d-flex">
 									<p>일정관리</p>
 							</a></li>
-							<li><a href="sellerReview.do" class="d-flex">
+							<li><a href="sellerReview.do?scode=0" class="d-flex">
 									<p>리뷰관리</p>
 							</a></li>
 							<li><a href="sellerPayment.do" class="d-flex">

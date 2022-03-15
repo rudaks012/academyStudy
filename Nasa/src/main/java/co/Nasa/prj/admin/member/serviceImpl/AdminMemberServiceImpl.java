@@ -88,6 +88,12 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		return map.selectSellerServiceList(cri);
 	}
 
+	@Override
+	public int searchBuyerTotal(Criteria cri) {
+		// TODO Auto-generated method stub
+		return map.searchBuyerTotal(cri);
+	}
+
 	
 
 	

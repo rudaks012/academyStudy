@@ -38,4 +38,10 @@ public interface ServiceService {
 	List<ServiceVO> notBuyerRandomService();
 	
 	int countPagingSellerService(ServiceVO vo);
+	
+	List<ServiceVO> sellerMainServiceListU(ServiceVO vo);
+	int countPagingSellerServiceU(ServiceVO vo);
+	
+	List<ServiceVO> sellerMainServiceListY(ServiceVO vo);
+	int countPagingSellerServiceY(ServiceVO vo);
 }

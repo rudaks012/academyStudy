@@ -231,8 +231,8 @@ INSERT INTO	PAYMENT
 				FROM PAYMENT P, SERVICE S 
 				WHERE P.S_CODE=S.SER_CODE 
 				AND S.S_EMAIL =  #{s_email}) P , BUYER B 
-			WHERE P.B_EMAIL = B.B_EMAIL AND PAY_ENDDATE IS NOT NULL
-			ORDER BY P.PAY_DATE DESC) A
+				WHERE P.B_EMAIL = B.B_EMAIL AND PAY_ENDDATE IS NOT NULL
+				ORDER BY P.PAY_DATE DESC) A
 		)
    		WHERE	RN BETWEEN #{start} AND #{end}
 	</select>
@@ -245,15 +245,16 @@ INSERT INTO	PAYMENT
 	
 	<select id="sellermonthSearch" resultType="co.Nasa.prj.comm.VO.PaymentVO">
    		SELECT	*
-   		FROM	(
-   				 SELECT ROWNUM RN, A.*
-   				 FROM	(
-   				 		 SELECT	*
-   				 		 FROM		PAYMENT
-   				 		 WHERE		S_EMAIL = #{s_email} AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -1) AND SYSDATE
-   				 		 ORDER BY	PAY_DATE DESC
-   				 ) A
-   		)
+   		FROM	( 
+			SELECT ROWNUM RN, A.* FROM 
+				( SELECT P.*, B.B_NICKNAME FROM 
+					( SELECT P.*, S.SER_TITLE FROM PAYMENT P, SERVICE S 
+						WHERE P.S_CODE=S.SER_CODE AND S.S_EMAIL = 'lee123@nasa.com') P , 
+						BUYER B WHERE P.B_EMAIL = B.B_EMAIL AND PAY_ENDDATE IS NOT NULL  
+						AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -1) AND SYSDATE 
+						ORDER BY P.PAY_DATE DESC
+					) A 
+			)
    		WHERE	RN BETWEEN #{start} AND #{end}
    </select>
   
@@ -303,4 +304,96 @@ INSERT INTO	PAYMENT
 					BUYER B WHERE P.B_EMAIL = B.B_EMAIL AND PAY_ENDDATE IS NULL 
 					ORDER BY P.PAY_DATE DESC)
    </select>
+   
+   
+   <select id="countsellermonthSearch" resultType="int">
+   		SELECT	COUNT(*)
+   		FROM	(SELECT P.*, B.B_NICKNAME FROM 
+			( SELECT P.*, S.SER_TITLE FROM PAYMENT P, SERVICE S 
+			WHERE P.S_CODE=S.SER_CODE AND S.S_EMAIL = #{s_email}) P , 
+			BUYER B WHERE P.B_EMAIL = B.B_EMAIL AND PAY_ENDDATE IS NOT NULL  
+			AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -1) AND SYSDATE 
+			ORDER BY P.PAY_DATE DESC)
+   </select>
+   
+   
+   <select id="sellersixmonthSearch" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+   		SELECT	*
+   		FROM	(
+   				 SELECT ROWNUM RN, A.*
+   				 FROM	(
+   				 	SELECT P.*, B.B_NICKNAME FROM 
+					( SELECT P.*, S.SER_TITLE FROM PAYMENT P, SERVICE S 
+						WHERE P.S_CODE=S.SER_CODE AND S.S_EMAIL = #{s_email}) P , 
+						BUYER B WHERE P.B_EMAIL = B.B_EMAIL AND PAY_ENDDATE IS NOT NULL  
+						AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -6) AND SYSDATE
+						ORDER BY P.PAY_DATE DESC
+   				 ) A
+   		)
+   		
+   		WHERE	RN BETWEEN #{start} AND #{end}
+   </select>
+   
+   <select id="countsellersixmonthSearch" resultType="int">
+   		SELECT	COUNT(*)
+   		FROM	(SELECT P.*, B.B_NICKNAME FROM 
+				(SELECT P.*, S.SER_TITLE FROM PAYMENT P, SERVICE S 
+					WHERE P.S_CODE=S.SER_CODE AND S.S_EMAIL = #{s_email}) P , 
+					BUYER B WHERE P.B_EMAIL = B.B_EMAIL AND PAY_ENDDATE IS NOT NULL  
+					AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -6) AND SYSDATE
+					ORDER BY P.PAY_DATE DESC)
+   </select>
+   
+   <select id="selleryearSearch" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+   		SELECT	*
+   		FROM	(
+   				 SELECT ROWNUM RN, A.*
+   				 FROM	(
+   				 		SELECT P.*, B.B_NICKNAME FROM 
+						( SELECT P.*, S.SER_TITLE FROM PAYMENT P, SERVICE S 
+						WHERE P.S_CODE=S.SER_CODE AND S.S_EMAIL = #{s_email}) P , 
+						BUYER B WHERE P.B_EMAIL = B.B_EMAIL AND PAY_ENDDATE IS NOT NULL  
+						AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -12) AND SYSDATE
+						ORDER BY P.PAY_DATE DESC
+   				 ) A
+   		)
+   		WHERE	RN BETWEEN #{start} AND #{end}
+   </select>
+   
+   <select id="countselleryearSearch" resultType="int">
+   		SELECT	COUNT(*)
+   		FROM	(SELECT P.*, B.B_NICKNAME FROM 
+				( SELECT P.*, S.SER_TITLE FROM PAYMENT P, SERVICE S 
+				WHERE P.S_CODE=S.SER_CODE AND S.S_EMAIL = #{s_email}) P , 
+				BUYER B WHERE P.B_EMAIL = B.B_EMAIL AND PAY_ENDDATE IS NOT NULL  
+				AND PAY_DATE BETWEEN ADD_MONTHS(sysdate, -12) AND SYSDATE
+				ORDER BY P.PAY_DATE DESC)
+   </select>
+   
+   <select id="sellerselectdateSearch" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+   		SELECT	*
+   		FROM	(
+   				 SELECT ROWNUM RN, A.*
+   				 FROM	(
+   				 		SELECT P.*, B.B_NICKNAME FROM 
+						( SELECT P.*, S.SER_TITLE FROM PAYMENT P, SERVICE S 
+						WHERE P.S_CODE=S.SER_CODE AND S.S_EMAIL = #{s_email}) P , 
+						BUYER B WHERE P.B_EMAIL = B.B_EMAIL AND PAY_ENDDATE IS NOT NULL  
+						AND PAY_DATE BETWEEN #{firstDate} AND #{secondDate}
+						ORDER BY P.PAY_DATE DESC
+   				 ) A
+   		)
+   		WHERE	RN BETWEEN #{start} AND #{end}
+   </select>
+   
+   <select id="countsellerselectdateSearch" resultType="int">
+   		SELECT	COUNT(*)
+   		FROM	(SELECT P.*, B.B_NICKNAME FROM 
+				( SELECT P.*, S.SER_TITLE FROM PAYMENT P, SERVICE S 
+				WHERE P.S_CODE=S.SER_CODE AND S.S_EMAIL = #{s_email}) P , 
+				BUYER B WHERE P.B_EMAIL = B.B_EMAIL AND PAY_ENDDATE IS NOT NULL  
+				AND PAY_DATE BETWEEN #{firstDate} AND #{secondDate}
+				ORDER BY P.PAY_DATE DESC)
+   </select>
+   
 </mapper>
