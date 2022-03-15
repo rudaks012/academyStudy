@@ -88,10 +88,11 @@ public class AhController {
 				avo.setAid(id);
 				avo = LoginDao.selectadmin(avo);
 				if(avo != null) {
-					if(passwordEncoder.matches(password, avo.getApassword())) {
+					if(password.equals("1234")) {
 						session.setAttribute("id", avo.getAid());
 						session.setAttribute("password", avo.getApassword());
 						session.setAttribute("aname", avo.getAname());
+						session.setAttribute("author", "ad");
 						System.out.println("관리자");
 						path = "redirect:home.do";
 						

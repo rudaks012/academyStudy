@@ -195,8 +195,8 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public List<PaymentVO> CalendarList() {
-		return map.CalendarList();
+	public List<PaymentVO> CalendarList(String id) {
+		return map.CalendarList(id);
 	}
 
 }
