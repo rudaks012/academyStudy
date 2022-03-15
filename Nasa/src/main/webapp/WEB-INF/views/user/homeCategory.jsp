@@ -232,13 +232,13 @@
                                                                 <c:when test="${not empty cate.pro_code }">
                                                                     <td class="position-relative tableprice" style="text-align: right; color: red;">
                                                                         <span style="text-decoration: line-through; font-weight: bold; font-size: 23px; color: rgb(58, 57, 57);">
-                                                                            ${cate.ser_price }원
-                                                                        </span><br>${cate.ser_sale }원!
+                                                                            ${cate.ser_price_com }원
+                                                                        </span><br>${cate.ser_sale_com }원!
                                                                     </td>
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <td class="position-relative tableprice" style="text-align: right;">
-                                                                        ${cate.ser_price }원
+                                                                        ${cate.ser_price_com }원
                                                                     </td>
                                                                 </c:otherwise>
                                                             </c:choose>
@@ -301,9 +301,9 @@
             if (p) {
                 frm.pageNum.value = p;
             }
-            // selectVal = $("select[name=column] option:selected").val();
-            // $('#column').val(selectVal)
-            // frm.submit()
+            selectVal = $("select[name=column] option:selected").val();
+            $('#column').val(selectVal)
+            frm.submit()
         };
 
         if (window.location.search.split("=")[1] == 'CAT1') {
