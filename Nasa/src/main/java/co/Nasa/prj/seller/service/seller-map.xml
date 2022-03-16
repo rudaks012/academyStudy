@@ -83,4 +83,10 @@
 				GROUP BY S.S_EMAIL ORDER BY COUNT(*) DESC) 
 		WHERE S_EMAIL = #{s_email}
 	</select>
+	
+	<update id = "deleteSeller" parameterType="co.Nasa.prj.comm.VO.SellerVO">
+		UPDATE	SELLER
+		SET		S_STATUS = 'D'
+		WHERE	S_EMAIL = #{s_email}
+	</update>
 </mapper>

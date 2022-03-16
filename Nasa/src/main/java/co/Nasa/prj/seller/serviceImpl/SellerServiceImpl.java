@@ -85,4 +85,10 @@ public class SellerServiceImpl implements SellerService {
 		return map.sellerRank(s_email);
 	}
 
+
+	@Override
+	public int deleteSeller(SellerVO vo) {
+		return map.deleteSeller(vo);
+	}
+
 }

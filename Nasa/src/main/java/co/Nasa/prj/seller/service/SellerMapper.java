@@ -32,4 +32,6 @@ public interface SellerMapper {
 	SellerVO ChatSellerselect(SellerVO vo);
 
 	Integer sellerRank(String s_email);
+	
+	public int deleteSeller(SellerVO vo);
 }

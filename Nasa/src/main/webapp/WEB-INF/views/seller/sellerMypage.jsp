@@ -548,21 +548,36 @@ Remove or comment-out the code block below to see how the browser will fall-back
          $('[data-toggle="tooltip"]').tooltip();   
      });
 	 
-		function passconfirm() {
+     function passconfirm() {
 			var pcfrm = $("#passwordconfirm").val()
-			console.log(pcfrm);
-            if (pcfrm == '1234') {
-            	window.alert("탈퇴되었습니다.")
-                location.href="home.do";
-            } else if(pcfrm == ""){
-            	window.alert("비밀번호를 입력해주세요!")
-            } else if(pcfrm == "1") {
-            	$("#passConfirmModal").modal('hide');
-            	$("#noservice").modal('show');
-            	$("#passwordconfirm").val("");
-            } else {
-                $("#passConfirmModal").modal('hide');
+			console.log(pcfrm);       
+            if(pcfrm == "") {
+            	alert("비밀번호를 입력해주세요");
+            }else {
+	            $.ajax ({
+	            	url: "deleteSeller.do",
+	            	type: "POST",
+	            	data: {
+	            		dPassword: pcfrm
+	            	},
+	            	dataType: "text",
+	            	success: function(data) {
+	            		console.log(data);
+	            		if(data == "codeP") {
+	            			alert("비밀번호가 틀렸습니다.");
+	            		} else if(data == "codeS") {
+	            			$("#passConfirmModal").modal('hide');
+	                    	$("#noservice").modal('show');
+	                    	$("#passwordconfirm").val("");
+	            		} else if(data == "codeD") {
+	            			sessionStorage.clear();
+	            			location.href = "home.do"
+	            			alert("탈퇴되었습니다.");
+	            		}
+	            	}
+	            })            	
             }
+            
 		}
 	</script>
 <!-- Modal End -->

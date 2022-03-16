@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -234,6 +236,16 @@ public class PaymentController {
 		return list;
 	}
 	
+
+	@RequestMapping("/paycomplete.do")
+	public String paycomplete(PaymentVO vo, HttpSession session, HttpServletResponse response,
+			  HttpServletRequest request) {
+		paymentDao.paycomplete(vo);
+		
+		return "redirect:buyHistory.do";
+  }
+		
+
 	@RequestMapping("/ajaxGetCalServList.do")
 	@ResponseBody
 	public PaymentVO ajaxGetCalServList(PaymentVO vo, HttpSession session) {
@@ -241,6 +253,7 @@ public class PaymentController {
 		vo.setB_email(b_email);
 		vo = paymentDao.selectBuyerCalendar(vo);		
 		return vo;		
+
 	}
 	
 }
