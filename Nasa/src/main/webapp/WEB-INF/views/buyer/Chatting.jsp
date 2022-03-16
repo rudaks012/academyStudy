@@ -1162,7 +1162,7 @@ input[type=date] {
             m_redirect_url : 'http://localhost:8080/project/chat/chatPayComplete.do'
          }, function(rsp) {
             if (!($('#primary-checkbox').is(':checked'))) {
-			alert("약관에 동의하지 않으면 가입할 수 없습니다.");
+			alert("약관에 동의하지 않으면 결제할 수 없습니다.");
 		}
            else if ( rsp.success ) { // 결제 성공시
                var msg = '결제가 완료되었습니다.';
