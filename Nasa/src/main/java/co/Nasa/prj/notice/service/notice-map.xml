@@ -72,4 +72,23 @@ INSERT INTO NOTICE(no_code,
 			FROM NOTICE
 			WHERE NO_ID = #{no_id} AND NO_STATUS = '1')
    </select>
+   
+   <select id="pagingKnowhowList" resultType="co.Nasa.prj.comm.VO.NoticeVO">
+   		SELECT	*
+   		FROM	(
+   				 SELECT	ROWNUM RN, A.*
+   				 FROM	(
+   				 		 SELECT	N.*, S.S_NICKNAME
+   				 		 FROM	NOTICE N, SELLER S
+   				 		 WHERE	NO_STATUS = '1'
+   				 		 AND	N.NO_ID = S.S_EMAIL
+   				 ) A
+   		)
+   		WHERE	RN BETWEEN #{start} AND #{end}
+   </select>
+   <select id="countPagingKnowhowList" resultType="int">
+   		SELECT	COUNT(*)
+   		FROM	NOTICE
+   		WHERE	NO_STATUS = '1'
+   </select>
 </mapper>

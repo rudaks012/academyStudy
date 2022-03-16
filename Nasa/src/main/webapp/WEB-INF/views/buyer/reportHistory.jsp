@@ -8,6 +8,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+
+	<style>
+		.modal-open {
+		padding-right:0px !important;
+		}
+		
+		body {
+			padding-right:0px !important;
+		}
+	</style>
 </head>
 
 <body>
@@ -86,7 +96,8 @@
 											<c:choose>
 												<c:when test="${empty report.re_result}"><td>대기 중</td></c:when>
 												<c:when test="${report.re_result eq 'Y'}"><td>승인</td></c:when>
-												<c:when test="${report.re_result eq 'D'}"><td>반려</td></c:when>
+												<c:when test="${report.re_result eq 'D'}"><td data-toggle="modal" 
+												data-target="#re_deniedmodal" data-sub="${report.re_denied}" style="cursor: pointer;">반려</td></c:when>
 											</c:choose>
 											<%-- <td>${report.re_result }</td> --%>
 										</tr>
@@ -123,8 +134,34 @@
 	</div>
 </section>
 
+<div id="re_deniedmodal" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title">반려 사유</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		  <p id="denied"></p>
+		</div>
+		<div class="modal-footer">
+			<button class="genric-btn danger radius" data-dismiss="modal">닫기</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 
 
+<script>
+$(document).ready(function () {
+	$("#re_deniedmodal").on("show.bs.modal", function (event) {
+		sub = $(event.relatedTarget).data("sub");
+		$("#denied").html(sub);
+	});
+});
+</script>
 </body>
 
 </html>

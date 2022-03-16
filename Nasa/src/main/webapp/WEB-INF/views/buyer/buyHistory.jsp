@@ -133,6 +133,7 @@
 						</div>
 						<br>
 						<br>
+						<div><p style="margin-bottom : 5px;">*검색 기준 : 결제일</p></div>
 						<div class="row justify-content-center">
 							<button class="genric-btn primary-border small" onclick="location.href = 'buyHistory.do'">전체</button>							
 							<button class="genric-btn primary-border small" style="margin-left: 5px;" onclick="location.href = 'monthSearch.do'">1개월</button>

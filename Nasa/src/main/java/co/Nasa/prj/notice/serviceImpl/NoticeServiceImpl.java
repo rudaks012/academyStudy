@@ -55,4 +55,14 @@ public class NoticeServiceImpl implements NoticeService {
 		return map.countPagingKnowhow(vo);
 	}
 
+	@Override
+	public List<NoticeVO> pagingKnowhowList(NoticeVO vo) {
+		return map.pagingKnowhowList(vo);
+	}
+
+	@Override
+	public int countPagingKnowhowList() {
+		return map.countPagingKnowhowList();
+	}
+
 }

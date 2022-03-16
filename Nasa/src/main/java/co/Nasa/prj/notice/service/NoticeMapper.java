@@ -14,4 +14,7 @@ public interface NoticeMapper {
 	
 	List<NoticeVO> knowhowList(NoticeVO vo);
 	int countPagingKnowhow(NoticeVO vo);
+	
+	List<NoticeVO> pagingKnowhowList(NoticeVO vo);
+	int countPagingKnowhowList();
 }

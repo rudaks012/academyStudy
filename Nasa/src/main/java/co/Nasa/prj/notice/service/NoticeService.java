@@ -13,4 +13,7 @@ public interface NoticeService {
 	int knowhowUpdate(NoticeVO vo);
 	List<NoticeVO> knowhowList(NoticeVO vo);
 	int countPagingKnowhow(NoticeVO vo);
+	
+	List<NoticeVO> pagingKnowhowList(NoticeVO vo);
+	int countPagingKnowhowList();
 }
