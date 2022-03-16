@@ -27,7 +27,7 @@ import co.Nasa.prj.login.service.LoginService;
 import co.Nasa.prj.login.service.LoginVO;
 import co.Nasa.prj.login.service.NaverLoginBO;
 
-@SessionAttributes({ "loginUser", "master2", "rankPic", "Loginvo", "avo", "svo" })
+//@SessionAttributes({ "loginUser", "master2", "rankPic", "Loginvo", "avo", "svo" })
 @Controller
 public class AhController {
 	
@@ -160,19 +160,20 @@ public class AhController {
 	}
 
 	 @RequestMapping("/logout.do")
-	    public String logout(HttpSession session) {
+	    public String logout(LoginVO loginVO, HttpSession session) {
 	        
 	        /* 채팅 */
-	        LoginVO loginvo =  (LoginVO) session.getAttribute("loginUser");
-	        SellerVO svo = (SellerVO) session.getAttribute("loginUser");
-	        AdminVO avo = (AdminVO) session.getAttribute("loginUser");
-	        
+	        //LoginVO loginvo = (LoginVO) session.getAttribute("loginUser") ;
+//	        SellerVO svo = (SellerVO) session.getAttribute("loginUser");
+//	        AdminVO avo = (AdminVO) session.getAttribute("loginUser");
+	        session.invalidate();
 	                
 	        /* 채팅 */
 	        // 로그아웃한 User를 채팅 Session ArrayList에서 삭제.
-	        cSession.removeLoginUser(svo.getS_email());
-	        cSession.removeLoginUser(avo.getAid());
-	        cSession.removeLoginUser(loginvo.getB_email());
+	      //  System.out.println("찾아보자"+loginvo.getB_email());
+	       // cSession.removeLoginUser(loginvo.getB_email());
+	       //cSession.removeLoginUser(avo.getAid());
+	        //cSession.removeLoginUser(svo.getS_email());
 	        
 			return "user/Login";
 	    }
