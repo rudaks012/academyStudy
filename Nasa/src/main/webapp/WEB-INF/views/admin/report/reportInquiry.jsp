@@ -9,6 +9,22 @@
                         <div class="mb-3 ">
                             <h6><i  class=" far fa-bell mr-1"></i>신고관리 <i class="fas fa-chevron-right mx-2"></i>전체신고조회</h6>
                         </div>
+                        
+                         <ul class="list-style-none d-flex mt-4">
+			                <li class="mr-1">총 신고 <span class="text-danger mx-1">${realTotal }</span>개
+			                </li>
+			                <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
+			                
+			                 <li class="mx-2">오늘의 신고 <span class="text-danger mx-1">${todayReport }</span>개
+			                 </li>
+			                 
+			                 <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
+			                
+			                 <li class="mx-2">대기 중인 신고 <span class="text-danger mx-1">${waitTotal }</span>개
+			                 </li>
+			
+			                
+			            </ul>
                     </div>
                 </div>
             </div>
@@ -126,7 +142,7 @@
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
-		                         		<th>신고자아이디</th>       		
+		                         		<th>신고코드</th>       		
 		                         		<th>신고유형</th>
 		                         		<th>피신고자아이디</th>
 		                         		<th>신고일자</th>
@@ -134,25 +150,29 @@
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
-		                           <c:forEach var="report" items="${reportLists }">
-		                           	 <tr class="reportList" onclick="javascript:clickTrRow(this);">
-		                           	 	<input type="hidden" value="${report.re_code }">
-		                                <td>${report.re_reporter }</td>
-		                                <td>${report.re_type }</td>
-		                                <td>${report.re_res }</td>
-		                                <td>${fn:substring(report.re_date,0,11) }</td>
-		                                <c:if test="${empty report.re_result }">
-		                                	<td class="text-primary">대기</td>
-		                                </c:if>
-		                                <c:if test="${report.re_result eq 'Y'}">
-		                                	<td>승인</td>
-		                                </c:if>
-		                                <c:if test="${report.re_result eq 'D'}">
-		                                	<td class="text-danger">반려</td>
-		                                </c:if>
-		                             </tr>
-		                           </c:forEach>
-		                             
+		                            <c:if test="${!empty reportLists }">
+			                           <c:forEach var="report" items="${reportLists }">
+			                           	 <tr class="reportList" onclick="javascript:clickTrRow(this);">
+			                           	 	
+			                                <td>${report.re_code }</td>
+			                                <td>${report.re_type }</td>
+			                                <td>${report.re_res }</td>
+			                                <td>${fn:substring(report.re_date,0,11) }</td>
+			                                <c:if test="${empty report.re_result }">
+			                                	<td class="text-primary">대기</td>
+			                                </c:if>
+			                                <c:if test="${report.re_result eq 'Y'}">
+			                                	<td>승인</td>
+			                                </c:if>
+			                                <c:if test="${report.re_result eq 'D'}">
+			                                	<td class="text-danger">반려</td>
+			                                </c:if>
+			                             </tr>
+			                           </c:forEach>
+		                             </c:if>
+		                             <c:if test="${empty reportLists }">
+		                             	<td colspan="5">조회 된 데이터가 없습니다.</td>
+		                             </c:if>
                                      
 		                        </tbody>
 		                     </table>
@@ -341,6 +361,7 @@ let startDate =$("input[name='re_date']");
 let endDate =$("input[name='re_date2']");
 const handleReportDate =()=>{
 	$(endDate).val($(startDate).val())
+	$(endDate).attr("min",$(startDate).val())
 	
 	
 }
@@ -384,7 +405,8 @@ const reportList = document.querySelectorAll(".reportList");
 const selectReport=()=>{
 	
 	const res = event.target.parentNode.lastChild.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerText;
-	const reCode=event.target.parentElement.firstElementChild.value;
+	const reCode=event.target.parentElement.firstElementChild.innerText;
+
 	$.ajax({
 		url:"ajaxDetailedReport.do",
 		type:"post",
@@ -424,9 +446,9 @@ const selectReport=()=>{
 		console.log(result.filecode);
 		//파일
 		let filecode= result.filecode
-		let img = "<img src='"+filecode+"' style='width:5px'>"
+		let img = "<img src='"+filecode+"' style='width:300px'>"
 		
-		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").append(img)
+		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text('').append(img)
 		
 		//신고 결과가 반려일 경우
 		 function removeTr(){

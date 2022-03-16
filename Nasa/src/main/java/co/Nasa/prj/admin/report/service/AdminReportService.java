@@ -14,6 +14,10 @@ public interface AdminReportService {
 	public List<ReportVO> getReportListWithPaging(Criteria cri);
 	public ReportVO detailedReport(ReportVO vo); //상세조회
 	
+	public int todayReportTotal();
+	public int waitReportTotal();
+	public int realTotalReport();
+	
 	//신고반려
 	public int updateDeniedReport(ReportVO vo);
 	
@@ -46,6 +50,8 @@ public interface AdminReportService {
 	public int searchBlackListTotal(Criteria cri);
 	public int blackListTotal();
 	public AdminAuthorVO detailBlackMember(String email);
+	public int todayBlackListMember();
+	public int todayPermanentStop(); //오늘의 영구정지
 	
 	
 }

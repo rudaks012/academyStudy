@@ -9,6 +9,21 @@
                         <div class="mb-3 ">
                             <h6><i  class=" far fa-bell mr-1"></i>신고관리 <i class="fas fa-chevron-right mx-2"></i>전체신고조회</h6>
                         </div>
+                        <ul class="list-style-none d-flex mt-4">
+			                <li class="mr-1">총 신고 <span class="text-danger mx-1">${realTotal }</span>개
+			                </li>
+			                <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
+			                
+			                 <li class="mx-2">오늘의 신고 <span class="text-danger mx-1">${todayReport }</span>개
+			                 </li>
+			                 
+			                 <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
+			                
+			                 <li class="mx-2">대기 중인 신고 <span class="text-danger mx-1">${waitTotal }</span>개
+			                 </li>
+			
+			                
+			            </ul>
                     </div>
                 </div>
             </div>
@@ -133,25 +148,29 @@
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
-		                           <c:forEach var="report" items="${reportWaitLists }">
-		                           	 <tr class="reportList" onclick="javascript:clickTrRow(this);">
-		                           	 	<input type="hidden" value="${report.re_code }">
-		                                <td>${report.re_reporter }</td>
-		                                <td>${report.re_type }</td>
-		                                <td>${report.re_res }</td>
-		                                <td>${fn:substring(report.re_date,0,11) }</td>
-		                                <c:if test="${empty report.re_result }">
-		                                	<td class="text-primary">대기</td>
-		                                </c:if>
-		                                <c:if test="${report.re_result eq 'Y'}">
-		                                	<td>완료</td>
-		                                </c:if>
-		                                <c:if test="${report.re_result eq 'D'}">
-		                                	<td class="text-danger">반려</td>
-		                                </c:if>
-		                             </tr>
-		                           </c:forEach>
-		                             
+		                           <c:if test="${!empty reportWaitLists }">
+			                           <c:forEach var="report" items="${reportWaitLists }">
+			                           	 <tr class="reportList" onclick="javascript:clickTrRow(this);">
+			                           	 	<input type="hidden" value="${report.re_code }">
+			                                <td>${report.re_reporter }</td>
+			                                <td>${report.re_type }</td>
+			                                <td>${report.re_res }</td>
+			                                <td>${fn:substring(report.re_date,0,11) }</td>
+			                                <c:if test="${empty report.re_result }">
+			                                	<td class="text-primary">대기</td>
+			                                </c:if>
+			                                <c:if test="${report.re_result eq 'Y'}">
+			                                	<td>완료</td>
+			                                </c:if>
+			                                <c:if test="${report.re_result eq 'D'}">
+			                                	<td class="text-danger">반려</td>
+			                                </c:if>
+			                             </tr>
+			                           </c:forEach>
+			                         </c:if>
+		                           <c:if test="${empty reportWaitLists }">
+		                             	<td colspan="5">조회 된 데이터가 없습니다.</td>
+		                            </c:if>
                                      
 		                        </tbody>
 		                     </table>
@@ -340,6 +359,7 @@ let startDate =$("input[name='re_date']");
 let endDate =$("input[name='re_date2']");
 const handleReportDate =()=>{
 	$(endDate).val($(startDate).val())
+	$(endDate).attr("min",$(startDate).val())
 	
 	
 }
@@ -447,8 +467,15 @@ const confirmReport=()=>{
 			type:"post"
 		    
 		}).done(function(data){
-			if(data.result!=0){
-				alert("해당신고를 승인했습니다.")
+			if(data.result==5){
+				alert("해당 피신고자가 서비스를 이용 중입니다.")
+				
+			}else if (data.result==4){
+				alert("해당 피신고자가 구매내역 확정을 받지 못했습니다.")				
+			}else if (data.result==3){
+				alert("해당 피신고자가 파워서비스를 이용 중입니다.")
+			}else{
+				alert("해당 신고를 승인했습니다.")
 				window.location.reload();
 			}
 		}).fail(function(){

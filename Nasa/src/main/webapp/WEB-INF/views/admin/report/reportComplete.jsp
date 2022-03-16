@@ -9,6 +9,21 @@
                         <div class="mb-3 ">
                             <h6><i  class=" far fa-bell mr-1"></i>신고관리 <i class="fas fa-chevron-right mx-2"></i>전체신고조회</h6>
                         </div>
+                        <ul class="list-style-none d-flex mt-4">
+			                <li class="mr-1">총 신고 <span class="text-danger mx-1">${realTotal }</span>개
+			                </li>
+			                <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
+			                
+			                 <li class="mx-2">오늘의 신고 <span class="text-danger mx-1">${todayReport }</span>개
+			                 </li>
+			                 
+			                 <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
+			                
+			                 <li class="mx-2">대기 중인 신고 <span class="text-danger mx-1">${waitTotal }</span>개
+			                 </li>
+			
+			                
+			            </ul>
                     </div>
                 </div>
             </div>
@@ -133,6 +148,7 @@
 			                         	</tr>
 			                         </thead>
 			                         <tbody>
+			                          <c:if test="${!empty reportCompleteLists  }">
 			                             <c:forEach var="report" items="${reportCompleteLists }">
 			                           	 <tr class="reportList" onclick="javascript:clickTrRow(this);">
 			                           	 	<input type="hidden" value="${report.re_code }">
@@ -145,6 +161,11 @@
 		                                	</c:if>
 			                             </tr>
 			                           </c:forEach>
+			                          </c:if>
+			                           
+			                         <c:if test="${empty reportCompleteLists }">
+		                             	<td colspan="5">조회 된 데이터가 없습니다.</td>
+		                            </c:if>
 			                        </tbody>
 			                     </table>
 			
@@ -267,6 +288,7 @@ let startDate =$("input[name='re_date']");
 let endDate =$("input[name='re_date2']");
 const handleReportDate =()=>{
 	$(endDate).val($(startDate).val())
+	$(endDate).attr("min",$(startDate).val())
 	
 	
 }

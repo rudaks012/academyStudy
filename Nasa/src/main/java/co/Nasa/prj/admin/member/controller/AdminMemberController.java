@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +66,12 @@ public class AdminMemberController {
 		}
 		return map;
 	}
+	
+//	@GetMapping("/excel")
+//	public void downloadExcel(HttpServletResponse resp) {
+//		List<AdminAuthorVO> list=memberDao.getListWithPaging(null);
+//		Workbook workbook = new HSSFWorkbook();
+//	}
 	
 	
 	

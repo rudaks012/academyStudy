@@ -6,9 +6,9 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="index.html"
+                    <!--     <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="index.html"
                                 aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
-                                    class="hide-menu">Dashboard</span></a></li>
+                                    class="hide-menu">Dashboard</span></a></li> -->
                        
 
                     
@@ -80,10 +80,10 @@
                                 aria-expanded="false"><i  class="fas fa-chart-line"></i><span
                                     class="hide-menu">매출조회 </span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                                <li class="sidebar-item"><a href="sales_category.do" class="sidebar-link"><span
+                               <!--  <li class="sidebar-item"><a href="sales_category.do" class="sidebar-link"><span
                                             class="hide-menu"> 카테고리별매출
                                         </span></a>
-                                </li>
+                                </li> -->
                                 <li class="sidebar-item"><a href="all_sales.do" class="sidebar-link"><span
                                             class="hide-menu"> 전체매출
                                         </span></a>

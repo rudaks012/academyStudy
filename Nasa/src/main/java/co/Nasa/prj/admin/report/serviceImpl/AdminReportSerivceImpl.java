@@ -143,6 +143,36 @@ public class AdminReportSerivceImpl implements AdminReportService {
 		return map.detailBlackMember(email);
 	}
 
+	@Override
+	public int todayBlackListMember() {
+		// TODO Auto-generated method stub
+		return map.todayBlackListMember();
+	}
+
+	@Override
+	public int todayPermanentStop() {
+		// TODO Auto-generated method stub
+		return map.todayPermanentStop();
+	}
+
+	@Override
+	public int todayReportTotal() {
+		// TODO Auto-generated method stub
+		return map.todayReportTotal();
+	}
+
+	@Override
+	public int waitReportTotal() {
+		// TODO Auto-generated method stub
+		return map.waitReportTotal();
+	}
+
+	@Override
+	public int realTotalReport() {
+		// TODO Auto-generated method stub
+		return map.realTotalReport();
+	}
+
 	
 
 

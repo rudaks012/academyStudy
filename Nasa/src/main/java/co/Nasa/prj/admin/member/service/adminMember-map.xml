@@ -242,4 +242,8 @@
 		where s_email=#{s_email}
 	
 	</update>
+	
+	<select id="buyerAllList" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+		
+	</select>
 </mapper>

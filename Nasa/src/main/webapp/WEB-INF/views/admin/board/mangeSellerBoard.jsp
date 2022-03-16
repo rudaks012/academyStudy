@@ -16,7 +16,7 @@
 			                </li>
 			                <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
 			                
-			                    <li class="mx-2">오늘 등록된 게시글 <span class="text-danger mx-1"></span>개
+			                    <li class="mx-2">오늘 등록된 게시글 <span class="text-danger mx-1">${todayTotal }</span>개
 			                    </li>
 			               
 			                
@@ -43,7 +43,7 @@
                                         <th class="align-middle table-primary">아이디</th>
                                         <td>
                                         	<div class="col-6">
-                                        		<input class="form-control custom-shadow" id="" name="no_id" type="text">
+                                        		<input class="form-control custom-shadow" id="" name="no_id" type="text" value='<c:out value="${pageMaker.cri.no_id }"/>'>
                                     		</div>
                                     	</td>
                                     </tr>
@@ -51,7 +51,7 @@
                                         <th class="align-middle table-primary">제목</th>
                                         <td>
                                         	<div class="col-6">
-                                        		<input class="form-control custom-shadow" id="" name="no_title" type="text">
+                                        		<input class="form-control custom-shadow" id="" name="no_title" type="text" value='<c:out value="${pageMaker.cri.no_title }"/>'>
                                     		</div>
                                     	</td>
                                     </tr>
@@ -60,11 +60,11 @@
                                         <td>
                                         	<div class="d-flex align-items-center">
                                         		<div class="col-3">
-	                                        	<input type="date" class="form-control" value="" name="no_date">
+	                                        	<input type="date" class="form-control"  name="no_date" value='<c:out value="${pageMaker.cri.no_date }"/>'>
 	                                        	</div>
 	                                        	<span class="mx-2"><i class="fas fa-minus"></i></span>
 	                                        	<div class="col-3">
-	                                        	<input type="date" class="form-control" value="" name="no_date2">
+	                                        	<input type="date" class="form-control"  name="no_date2" value='<c:out value="${pageMaker.cri.no_date2 }"/>'>
 	                                        	</div>
                                         	</div>
                                         </td>
@@ -152,6 +152,10 @@
 		                   <form id="actionForm" action="go_admin.do" method="get">
 							 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 							 <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+							 <input type="hidden" name="no_id" value="${pageMaker.cri.no_id }">
+							 <input type="hidden" name="no_title" value="${pageMaker.cri.no_title }">
+							 <input type="hidden" name="no_date" value="${pageMaker.cri.no_date }">
+							  <input type="hidden" name="no_date2" value="${pageMaker.cri.no_date2 }">
 							 
 						</form>
                			</div>
@@ -245,6 +249,18 @@ const handleBoardDate =()=>{
 	
 }
 $("input[name='no_date']").on("change",handleBoardDate);
+
+//초기화
+const hadleResetLists =()=>{
+	$(startDate).val("")
+	$(endDate).val("")
+	$("input[name='b_email']").val('')
+	$("input[name='ser_title']").val('')
+	$("select[name='pay_cate']").val('').prop("selected",true);
+	searchForm.action="manage_buyerPayment.do";
+	searchForm.submit();
+}
+$("#resetBtn").on("click",hadleResetLists);
 
 //검색버튼
 const searchReport=()=>{

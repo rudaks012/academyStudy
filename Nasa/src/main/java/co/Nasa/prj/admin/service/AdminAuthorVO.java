@@ -134,7 +134,7 @@ public class AdminAuthorVO {
 	String name;
 	String status;
 	String report;
-	String date;
+	String blackdate;
 	String nickname;
 	String rank;
 	String joindate;

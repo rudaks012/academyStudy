@@ -15,10 +15,10 @@
    font-family: "Nunito", sans-serif;
 }
 
-html, body {
+ html, body {
    background: linear-gradient(120deg, #443d43, #ed8ffa);
    overflow: hidden;
-}
+} 
 
 .container {
    background: rgba(255, 255, 255, 0.05);
@@ -311,8 +311,7 @@ input[type=date] {
 </style>
 
 
-<link rel="stylesheet" href="./resources/chat/css/chat.css" />
-
+ <link rel="stylesheet" href="./resources/chat/css/chat.css" /> 
 
 <script
    src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
