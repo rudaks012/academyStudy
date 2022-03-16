@@ -22,6 +22,11 @@
            border-radius: 70%;
            overflow: hidden;
        }
+       .powerp {
+           overflow: hidden;
+           text-overflow: ellipsis;
+           white-space: nowrap;
+       }
        .card-body {
            cursor:pointer;
        }
@@ -41,6 +46,9 @@
 
        #knohowlink {
            color:black !important;
+       }
+       .rprp {
+           text-shadow: 1px 1px 2px #7d64aa, 0 0 10px #7d64aa, 0 0 5px #7d64aa;
        }
    </style>
 </head>
@@ -92,16 +100,31 @@
                 <!-- Section Tittle -->
                 <div class="col-lg-12 col-md-6 col-sm-6" style="margin-top: 30px;">
                     <div class="h1-testimonial-active">
-                        <c:forEach items="${randompromptionlist }" var="rp" begin="0" end="1" step="1">
+                        <c:forEach items="${rplist }" var="rp" begin="0" end="0" step="1">
                             <!-- Single Testimonial -->
                             <div class="single-testimonial text-center">
                                 <!-- Testimonial Content -->
-                                <div class="single-location mb-30">
+                                <div class="single-location mb-30" style="text-align: left;">
                                     <div class="location-img">
-                                        <img src="resources/user/assets/img/event1.png" alt="">
+                                        <img src="resources/user/assets/img/mainevent3.jpg" alt="" style="height: 380px">
                                     </div>
                                     <div class="location-details">
-                                        <p>${rp.nickname } 님의 [ ${rp.ser_title } ] 서비스 할인 중!</p>
+                                        <p class="rprp">${rp.nickname } 님의 [ ${rp.ser_title } ] 서비스 할인 중!</p>
+                                        <a href="serviceDetail.do?ser_code=${rp.ser_code }" class="location-btn"> <i class="ti-plus"></i>더보기</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                        <c:forEach items="${rplist }" var="rp" begin="1" end="1" step="1">
+                            <!-- Single Testimonial -->
+                            <div class="single-testimonial text-center">
+                                <!-- Testimonial Content -->
+                                <div class="single-location mb-30" style="text-align: left;">
+                                    <div class="location-img">
+                                        <img src="resources/user/assets/img/mainevent.jpg" alt="" style="height: 380px">
+                                    </div>
+                                    <div class="location-details">
+                                        <p class="rprp">${rp.nickname } 님의 [ ${rp.ser_title } ] 서비스 할인 중!</p>
                                         <a href="serviceDetail.do?ser_code=${rp.ser_code }" class="location-btn"> <i class="ti-plus"></i>더보기</a>
                                     </div>
                                 </div>
@@ -208,8 +231,8 @@
                                             </c:choose>
                                         </div>
                                         <div class="cat-cap" style="padding: 10px;">
-                                            <h5><a>판매자 ${power.s_nickname }</a></h5>
-                                            <p>[서비스] ${power.ser_title }</p>
+                                            <h5><a>${power.s_nickname }</a></h5>
+                                            <p class="powerp">${power.ser_title }</p>
                                             <a href="serviceDetail.do?ser_code=${power.ser_code }">상세보기</a>
                                         </div>
                                     </div>
@@ -363,7 +386,7 @@
                         <div class="list-img">
                             <c:choose>
 							    <c:when test="${empty bestseller.s_img }">
-								    <img src="resources/user/assets/img/profile/search-default-profile.jpg" alt="" style="width: 370px; height: 370px;">
+								    <img src="resources/user/assets/img/search-default-profile-s.jpg" alt="" style="width: 370px; height: 370px;">
 							    </c:when>
 							    <c:otherwise>
 								    <img src="${bestseller.s_img }" alt="" style="width: 370px; height: 258px;">
