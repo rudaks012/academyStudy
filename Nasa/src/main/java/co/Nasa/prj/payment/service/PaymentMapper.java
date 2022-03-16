@@ -79,4 +79,5 @@ public interface PaymentMapper {
    public int countsellerselectdateSearch(PaymentVO vo);
    
    List<PaymentVO> CalendarList(String id);
+   PaymentVO selectBuyerCalendar(PaymentVO vo);
 }
