@@ -38,6 +38,10 @@
        .wishminus:hover {
            color: black;
        }
+
+       #knohowlink {
+           color:black !important;
+       }
    </style>
 </head>
 <body>
@@ -409,7 +413,7 @@
                 <!-- Section Tittle -->
                 <div class="section-tittle text-center mb-70">
                     <span>Seller's Know-how</span>
-                    <h2>판매자의 노하우</h2>
+                    <h2>판매자의 노하우</h2><a id="knohowlink" href="go_knowhowlist.do" style="width:100px; margin-left:90%;">전체 보기</a>
                 </div> 
             </div>
         </div>

@@ -57,4 +57,29 @@ public class PagingDTO {
 			this.startPage = 1;
 		}
 	}
+	
+	// 노하우용
+	public PagingDTO(int total, int page, int amount) {
+		this.pageNum= page;
+		System.out.println("dto pageNum = " + this.pageNum);
+		
+		this.amount= amount;
+		this.total=total;
+		
+		this.endPage = (int)(Math.ceil(this.pageNum/10.0))*10;
+		this.startPage  = this.endPage-9;
+		int realEnd = (int)Math.ceil(this.total/(double)this.amount);
+		
+		if(realEnd < this.endPage) {
+			this.endPage = realEnd;
+		}
+		
+		this.prev = this.startPage > 1;
+		
+		this.next = this.endPage < realEnd;
+		
+		if(startPage < 0) {
+			this.startPage = 1;
+		}
+	}
 }

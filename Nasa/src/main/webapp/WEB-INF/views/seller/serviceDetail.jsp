@@ -57,6 +57,9 @@
 .subimg{
 	max-width: 100%
 }
+.comment {
+   white-space: pre-line;
+}
 </style>
 </head>
 <body>

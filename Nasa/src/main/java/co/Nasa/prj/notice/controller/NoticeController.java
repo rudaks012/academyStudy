@@ -208,4 +208,19 @@ public class NoticeController {
 		
 		return result;
 	}
+	
+	@RequestMapping("/go_knowhowlist.do")
+	public String go_knowhowlist(Model model, PagingDTO pagingdto) {
+		NoticeVO noticevo = new NoticeVO();
+		pagingdto.setAmount(6);
+		noticevo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<NoticeVO> knowhowlist = NoticeDao.pagingKnowhowList(noticevo);
+		
+		pagingdto.setTotal(NoticeDao.countPagingKnowhowList());
+		System.out.println(new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum(), 6));
+		model.addAttribute("knowhowlist",knowhowlist);
+		
+		return "seller/knowhowList";
+	}
 }

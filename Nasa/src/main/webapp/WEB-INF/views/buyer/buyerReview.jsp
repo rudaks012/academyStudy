@@ -55,6 +55,10 @@
 			width: 200px;
 			height: 100px;
 		}
+
+		.comment {
+			white-space: pre-line;
+		}
 	</style>
 </head>
 
