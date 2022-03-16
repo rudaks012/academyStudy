@@ -47,7 +47,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 
 
 	@Override
-	public List<BuyerVO> getListWithPaging(Criteria cri) {
+	public List<AdminAuthorVO> getListWithPaging(Criteria cri) {
 		// TODO Auto-generated method stub
 		return map.getListWithPaging(cri);
 	}
@@ -59,9 +59,9 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	}
 
 	@Override
-	public int getSellerTotal() {
+	public int getSellerTotal(Criteria cri) {
 		// TODO Auto-generated method stub
-		return map.getSellerTotal();
+		return map.getSellerTotal(cri);
 	}
 
 	@Override
@@ -94,7 +94,39 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		return map.searchBuyerTotal(cri);
 	}
 
-	
+	@Override
+	public int todayNewBuyer() {
+		// TODO Auto-generated method stub
+		return map.todayNewBuyer();
+	}
+
+	@Override
+	public int todayWithdrawalBuyer() {
+		// TODO Auto-generated method stub
+		return map.todayWithdrawalBuyer();
+	}
+
+	@Override
+	public int todayNewSeller() {
+		// TODO Auto-generated method stub
+		return map.todayNewSeller();
+	}
+
+	@Override
+	public int todayWithdrawalSeller() {
+		// TODO Auto-generated method stub
+		return map.todayWithdrawalSeller();
+	}
+
+	@Override
+	public int totalSeller() {
+		// TODO Auto-generated method stub
+		return map.totalSeller();
+	}
+
+
+
+
 
 	
 

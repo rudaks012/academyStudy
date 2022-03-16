@@ -550,7 +550,7 @@ input[type=date] {
                   <span style="font-weight: 200;" id="lastmoney">--원</span>
                </div>
                <div class="br">
-                  <span><input type="checkbox">개인정보수집 및 이용동의(필수)</span> <a
+                  <span><input type="checkbox" id="primary-checkbox">개인정보수집 및 이용동의(필수)</span> <a
                      style="float: right;" data-toggle="modal" data-target="#useModal">보기</a>
                </div>
 
@@ -1127,8 +1127,20 @@ input[type=date] {
 		 console.log("서비스카테고리",ser_cate);
 		 var sub_cate = document.getElementById('sub_cate').value; //서비스코드 히든임
 		 console.log("서비스하위카테고리",sub_cate);
-		 var adminpay = document.getElementById('sellerrank').innerText; // 판매자 등급
-		 console.log("판매자 등급",adminpay);
+		//  var adminpay = document.getElementById('sellerrank').innerText; // 판매자 등급
+		//  console.log("판매자 등급",adminpay);
+       var adminpay = document.getElementById('sellerrank'); // 판매자 등급
+		 console.log("판매자 등급",adminpay.innerText);
+		 if(adminpay.innerText == "1" ){
+		 $('#sellerrank').val(servicemoney / 8) ;
+		 }else if(adminpay.innerText == "2"){
+		 $('#sellerrank').val(servicemoney / 5) ;
+		 }else if (adminpay.innerText == "3"){
+		 $('#sellerrank').val(servicemoney / 3) ;
+		 }else if (adminpay.innerText == "4"){
+		 $('#sellerrank').val(servicemoney / 1) ;
+		 }
+       var adminpat1 = adminpay.value;
 
 
 
@@ -1150,7 +1162,10 @@ input[type=date] {
             //결제완료후 이동할 페이지
             m_redirect_url : 'http://localhost:8080/project/chat/chatPayComplete.do'
          }, function(rsp) {
-            if ( rsp.success ) { // 결제 성공시
+            if (!($('#primary-checkbox').is(':checked'))) {
+			alert("약관에 동의하지 않으면 가입할 수 없습니다.");
+		}
+           else if ( rsp.success ) { // 결제 성공시
                var msg = '결제가 완료되었습니다.';
 
                var result = {
@@ -1165,7 +1180,7 @@ input[type=date] {
                      "s_code" : servicecode,
 					 "pay_cate" : ser_cate,
 					 "pay_cate1" : sub_cate,
-					 "pay_com" : adminpay
+					 "pay_com" : adminpat1
 
                }
                console.log("결제완료",result);
@@ -1247,21 +1262,21 @@ input[type=date] {
             dataType : "json",
             success: function(data){
                var couponval = document.querySelector("#couponrank");
+               $('#couponspan').text('');
                console.log("서버에서 받은 데이터 : " + data.coupon); // data.coupon 1
                if(data.coupon == '1' ){
                $("#coupontest").val('5');
                   couponval.value = "2";
-                 var check =  $("#coupontest").append('2% 할인 사용하기') ;
-				$('#couponspan').text('');
+				$('#couponspan').text('2% 할인 사용하기');
                }else if(data.coupon == '2'){
                   couponval.value = "5";
-                  $("#coupontest").append('5% 할인 사용하기') ;
+              	$('#couponspan').text('5% 할인 사용하기');
                }else if(data.coupon == '3'){
                   couponval.value = "7";
-                  $("#coupontest").append('7% 할인 사용하기') ;
+                  $('#couponspan').text('7% 할인 사용하기');
                }else if(data.coupon == '4'){
                   couponval.value = "10";
-                  $("#coupontest").append('10% 할인 사용하기') ;
+                  $('#couponspan').text('10% 할인 사용하기');
                }else if(data.coupon == '0'){
                 $("#couponrank").remove();
                }
@@ -1291,13 +1306,13 @@ input[type=date] {
          console.log("최종금액2",lastmoney);
 		 var adminpay = document.getElementById('sellerrank'); // 판매자 등급
 		 console.log("판매자 등급",adminpay.innerText);
-		 if(adminpay.innerText == "별" ){
+		 if(adminpay.innerText == "1" ){
 		 $('#sellerrank').val(servicemoney / 8) ;
-		 }else if(adminpay.innerText == "달"){
+		 }else if(adminpay.innerText == "2"){
 		 $('#sellerrank').val(servicemoney / 5) ;
-		 }else if (adminpay.innerText == "해"){
+		 }else if (adminpay.innerText == "3"){
 		 $('#sellerrank').val(servicemoney / 3) ;
-		 }else if (adminpay.innerText == "지구"){
+		 }else if (adminpay.innerText == "4"){
 		 $('#sellerrank').val(servicemoney / 1) ;
 		 }
 

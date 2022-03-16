@@ -18,15 +18,15 @@
                 </h6>
             </div>
             <ul class="list-style-none d-flex">
-                <li class="mr-1">총 회원수 <span class="text-danger mx-1">${totalBuyer }</span>명
+                <li class="mr-1">총 회원 <span class="text-danger mx-1">${totalBuyer }</span>명
                 </li>
                 <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
-                <a href="#">
-                    <li class="mx-2">블랙리스트 <span class="text-danger mx-1"></span>명
+                
+                    <li class="mx-2">오늘 가입한 회원 <span class="text-danger mx-1">${todayNewBuyer }</span>명
                     </li>
-                </a>
+                
                 <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
-                <li class="mx-2">탈퇴 <span class="text-danger mx-1"></span>명
+                <li class="mx-2">탈퇴 회원 <span class="text-danger mx-1">${withdraw }</span>명
                 </li>
             </ul>
 
@@ -71,21 +71,21 @@
                         <td>
                             <div class="d-flex align-items-center position-relative" style="top: 5px; left: 10px;">
                                 <div class="custom-control custom-radio mr-3 ">
-                                    <input type="radio" id="customRadio1" name="b_rank"
+                                    <input type="radio" id="customRadio1" name="b_rank" <c:out value="${pageMaker.cri.b_rank eq '1'? 'checked':'' }"/>
                                         class="custom-control-input mr-5" value="1"> <label class="custom-control-label"
                                         for="customRadio1">별</label>
                                 </div>
                                 <div class="custom-control custom-radio mx-3">
-                                    <input type="radio" id="customRadio2" name="b_rank"
+                                    <input type="radio" id="customRadio2" name="b_rank" <c:out value="${pageMaker.cri.b_rank eq '2'? 'checked':'' }"/>
                                         class="custom-control-input mr-5" value="2"> <label class="custom-control-label"
                                         for="customRadio2">달</label>
                                 </div>
                                 <div class="custom-control custom-radio mx-3">
-                                    <input type="radio" id="customRadio3" name="b_rank" class="custom-control-input" value="3">
+                                    <input type="radio" id="customRadio3" name="b_rank" class="custom-control-input" value="3" <c:out value="${pageMaker.cri.b_rank eq '3'? 'checked':'' }"/>>
                                     <label class="custom-control-label" for="customRadio3">지구</label>
                                 </div>
                                 <div class="custom-control custom-radio mx-3">
-                                    <input type="radio" id="customRadio4" name="b_rank" class="custom-control-input" value="4">
+                                    <input type="radio" id="customRadio4" name="b_rank" class="custom-control-input" value="4" <c:out value="${pageMaker.cri.b_rank eq '4'? 'checked':'' }"/>>
                                     <label class="custom-control-label" for="customRadio4">해</label>
                                 </div>
 
@@ -146,6 +146,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                          <c:if test="${!empty buyerList }">
                             <c:forEach var="buyer" items="${buyerList }" varStatus="status">
                                 <tr class="member-list" onclick="javascript:clickTrRow(this);">
                                     <td>${buyer.b_email }</td>
@@ -169,6 +170,12 @@
                                     </td>
                                 </tr>
                             </c:forEach>
+                           </c:if>
+                           <c:if test="${empty buyerList }">
+                           		<tr>
+                           			<td colspan="4">조회 된 구매자가 없습니다.</td>
+                           		</tr>
+                           </c:if>
                         </tbody>
                     </table>
 
@@ -223,7 +230,7 @@
                             <tbody>
                                 <tr>
                                     <td rowspan="4" width="200px">
-                                       <img id="b_img"  src="resources/user/assets/img/search-default-profile.jpg" width="200px" height="250px">
+                                       <img id="b_img"   width="200px" height="250px">
                                     </td>
 
                                 </tr>
@@ -281,6 +288,21 @@
 
                                         </div>
                                     </td>
+                                    
+                                    <tr>
+                                            <th class="table-primary align-middle">카테고리</th>
+                                            <td colspan="3" >
+                                               <div class="d-flex">
+                                            	<div class="col-5 p-0">
+                                            		<input class="form-control custom-shadow " id="cat_name" name="" value="" type="text" readonly>
+                                            	</div>
+                                            	<div class="col-6 ml-3 p-0">
+                                            		<input class="form-control custom-shadow " id="field_code" name="" value="" type="text" readonly>
+                                            	</div>
+                                               </div>
+                                            </td>
+                                            
+                                        </tr>
                                     
                                     <tr>
 	                                    <th class="table-primary align-middle">가입일자</th>
@@ -411,6 +433,7 @@ const hadleResetLists =()=>{
 	$("input[name='b_nickname']").val('')
 	$("input[name='b_tel']").val('')
 	$("input[name='b_address']").val('')
+	$("input[name='b_rank']").val('')
 	
 	searchForm.action="go_admin.do";
 	searchForm.submit();
@@ -601,11 +624,11 @@ $("#searchBtn").on("click",searchReport);
                 //구매자 권한
                 let status=result.buyer.b_status;
                 if (status=="U"){
-                	$("#b_status").val("이용 중");
+                	$("#b_status").removeClass("text-danger").val("이용 중");
                 }else if(status=="M"){
-                	$("#b_status").val("한달정지");
+                	$("#b_status").addClass("text-danger").val("한달정지");
                 }else{
-                	$("#b_status").val("영구정지");
+                	$("#b_status").addClass("text-danger").val("영구정지");
                 }
                 
                 $("#b_zipcode").val(result.buyer.b_zipcode);
@@ -617,6 +640,16 @@ $("#searchBtn").on("click",searchReport);
                     rank == "2" ? $("#range_moon").prop("checked", true) :
                     rank == "3" ? $("#range_earth").prop("checked", true) :
                     rank == "4" ? $("#range_sun").prop("checked", true) : alert("해당 등급이 없습니다.");
+                //카테고리
+                let cat_name= result.buyer.cat_name
+                let field_code= result.buyer.field_code
+                if(field_code!=null&&cat_name!=null){
+                	$("#cat_name").val(cat_name)
+                	$("#field_code").val(field_code)
+                }else{
+                	$("#cat_name").val("없음")
+                	$("#field_code").val("없음")
+                }
 				
                 //가입일자
                 $("#b_date").val(result.buyer.b_date);

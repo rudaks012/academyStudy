@@ -22,9 +22,9 @@ public class AdminServiceServiceImpl implements AdminServiceService {
 		return map.getServiceListWithPaging(cri);
 	}
 	@Override
-	public int getTotalService(Criteria cri) {
+	public int searchTotalService(Criteria cri) {
 		// TODO Auto-generated method stub
-		return map.getTotalService(cri);
+		return map.searchTotalService(cri);
 	}
 	@Override
 	public AdminAuthorVO detailedService(AdminAuthorVO vo) {
@@ -40,6 +40,16 @@ public class AdminServiceServiceImpl implements AdminServiceService {
 	public int totalReview(String code) {
 		// TODO Auto-generated method stub
 		return map.totalReview(code);
+	}
+	@Override
+	public int totalService() {
+		// TODO Auto-generated method stub
+		return map.totalService();
+	}
+	@Override
+	public int todayService() {
+		// TODO Auto-generated method stub
+		return map.todayService();
 	}
 
 	

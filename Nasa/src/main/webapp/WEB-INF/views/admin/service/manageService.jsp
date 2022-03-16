@@ -12,7 +12,7 @@
                         <ul class="list-style-none d-flex">
                             <li class="mr-1">총 서비스 <span class="text-danger mx-1">${total }</span>개</li>
                             <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
-                            <li class="mx-2">오늘 등록된 서비스 <span class="text-danger mx-1">100</span>개</li>
+                            <li class="mx-2">오늘 등록된 서비스 <span class="text-danger mx-1">${today }</span>개</li>
                             
                         </ul>
                     
@@ -71,19 +71,19 @@
                                         <td>
                                             <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                 <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="customRadio1" name="ser_team" value="개인" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio1" name="ser_team" value="개인" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_team eq '개인'? 'checked':'' }"/>> 
                                                     <label class="custom-control-label" for="customRadio1">개인</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="ser_team" value="2인이상 5인미만" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio2" name="ser_team" value="2인이상 5인미만" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_team eq '2인이상 5인미만'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="customRadio2">2인이상 5인미만</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="ser_team" value="5인이상 20미만" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio2" name="ser_team" value="5인이상 20미만" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_team eq '5인이상 20미만'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="customRadio2">5인이상 20인미만</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="ser_team" value="20인 이상" class="custom-control-input mr-5">
+                                                    <input type="radio" id="customRadio2" name="ser_team" value="20인 이상" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_team eq '20인 이상'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="customRadio2">20인 이상</label>
                                                 </div>
                                                 
@@ -155,14 +155,14 @@
                         </h5>
                 	    <div class="card">
                             <div class="card-body">
-                                <div class=" mb-3">총 <span class="mx-1 text-danger">${total }</span>건</div>
+                                <div class=" mb-3">총 <span class="mx-1 text-danger">${searchTotal }</span>건</div>
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr >
 		                         		<th>순번</th>
 		                         		<th width="250px">판매자</th>
 		                         		<th>서비스명</th>
-		                         		<th>온/오프</th>       		
+		                         		<th>상태</th>       		
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
@@ -170,8 +170,20 @@
 		                             <tr class="serviceList" onclick="javascript:clickTrRow(this);">
 		                                <td>${service.ser_code}</td>
 		                                <td>${service.s_email }</td>
-		                                <td>${service.ser_title }</td>
-		                                <td>${service.ser_line }</td>
+		                                <c:choose>
+		                                	<c:when test="${fn:length(service.ser_title)>11 }">
+		                                		<td>${fn:substring(service.ser_title,0,10) }...</td>
+		                                	</c:when>
+		                                	<c:otherwise>
+		                                		<td>${service.ser_title }</td>
+		                                	</c:otherwise>
+		                                </c:choose>
+		                                <c:if test="${empty service.ser_end }">
+		                                	<td>진행</td>
+		                                </c:if>
+		                                <c:if test="${!empty service.ser_end }">
+		                                	<td class="text-danger">종료</td>
+		                                </c:if>
 		                             </tr>
 		                          </c:forEach>
                                      
@@ -210,6 +222,11 @@
 			                    <form id="actionForm" action="manage_service.do" method="get">
 						            <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 						            <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+						            <input type="hidden" name="s_email" value="${pageMaker.cri.s_email }">
+						            <input type="hidden" name="ser_title" value="${pageMaker.cri.ser_title }">
+						            <input type="hidden" name="ser_line" value="${pageMaker.cri.ser_line }">
+						            <input type="hidden" name="ser_team" value="${pageMaker.cri.ser_team }">
+						            <input type="hidden" name="cat_no" value="${pageMaker.cri.cat_no }">
 						        </form>
 		                   </div>
                			</div>
@@ -220,9 +237,9 @@
                         </h5>
                 	    <div class="card">
                 	    <!-- 유효기간이 남아있을 경우 / 유효기간 종료되면 버튼 안보임 -->
-                          <div class="d-flex justify-content-end mr-4">
+                          <!-- <div class="d-flex justify-content-end mr-4">
                                 <button class="btn btn-outline-primary mr-3 mt-3">종료</button>
-                            </div>
+                            </div> -->
 		                   <div class="card-body">
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
@@ -240,7 +257,7 @@
                                             		<input class="form-control custom-shadow " id="ser_cate" name="" value="" type="text" readonly>
                                             	</div>
                                             	<div class="col-6 ml-3 p-0">
-                                            		<input class="form-control custom-shadow " id="sub_cate" name="" value="" type="text" readonly>
+                                            		<input class="form-control custom-shadow " id="sub_name" name="" value="" type="text" readonly>
                                             	</div>
                                                </div>
                                             </td>
@@ -282,8 +299,10 @@
                                        
                                         <tr>                                     
                                             <th class="table-primary align-middle">누적판매</th>
-                                            <td>                                              
-                                                <input class="form-control custom-shadow mb-1"  id="totalPay" name="" type="text" readonly>                 
+                                            <td>
+                                              <div class="col-5 p-0 d-flex align-items-center">                                                
+                                                <input class="form-control custom-shadow mb-1"  id="totalPay" name="" type="text" readonly> <span class="ml-2">원</span>               
+                                              </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -483,13 +502,16 @@ const selectService=()=>{
 		$("#ser_code").val(result.serviceInfo.ser_code);
 		let cat_name=result.serviceInfo.cat_name;//1차카테고리
 		let sub_name=result.serviceInfo.sub_name;//2차카테고리
-		
+		console.log(sub_name)
 		$("#ser_cate").val(cat_name);
-		$("#sub_cate").val(sub_name);
+		$("#sub_name").val(sub_name);
 		$("#ser_email").val(result.serviceInfo.s_email);
 		$("#ser_title").val(result.serviceInfo.ser_title);
 		$("#ser_price").val(result.serviceInfo.ser_price);
-		$("#ser_date").val(result.serviceInfo.ser_start +" ~ "+result.serviceInfo.ser_start);
+		let end_date=result.serviceInfo.ser_end;
+		let end;
+		end_date!=null?end=end_date:end="상시진행"
+		$("#ser_date").val(result.serviceInfo.ser_start +" ~ "+end);
 		
 		//구분
 		let author= result.serviceInfo.ser_team
@@ -504,7 +526,12 @@ const selectService=()=>{
 		$("#ser_offer").val(result.serviceInfo.ser_offer); 
 		$("#ser_sub").val(result.serviceInfo.ser_sub); 
 		
-		$("#totalPay").val(result.totalPay)
+		let totalPay = result.totalPay;
+		if (totalPay!=null){
+			$("#totalPay").val(result.totalPay)
+		}else{
+			$("#totalPay").val('0')
+		}
 		$("#totalReview").val(result.totalReview)
 		
 		
@@ -520,8 +547,10 @@ const serviceList = document.querySelectorAll(".serviceList");
 const hadleResetLists =()=>{
 
 	$("input[name='s_email']").val('')
-	$("select[name='ser_title']").val('');
-	$("select[name='ser_line']").prop("checked",false);
+	$("input[name='ser_title']").val('');
+	$("input[name='ser_team']").val('');
+	$("input[name='ser_line']").val('');
+	
 	$("select[name='cat_no']").val('').prop("selected",true);
 	searchForm.action="manage_service.do";
 	searchForm.submit();
