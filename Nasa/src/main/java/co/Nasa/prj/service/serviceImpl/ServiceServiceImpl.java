@@ -130,5 +130,10 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.countPagingSellerServiceU(vo);
 	}
 
+	@Override
+	public int DirectendService(ServiceVO vo) {
+		return map.DirectendService(vo);
+	}
+
 
 }

@@ -56,9 +56,9 @@ INSERT INTO NOTICE(no_code,
 	FROM	(
 			 SELECT ROWNUM RN, A.*
 			 FROM	(
-				SELECT *
-				FROM NOTICE
-				WHERE NO_ID = #{no_id} AND NO_STATUS = '1'
+				SELECT n.*, s.s_nickname
+				FROM NOTICE n, seller s
+				WHERE NO_ID = #{no_id} AND NO_ID = S_EMAIL AND NO_STATUS = '1'
 				ORDER BY NO_DATE DESC
 		 	) A
    		)

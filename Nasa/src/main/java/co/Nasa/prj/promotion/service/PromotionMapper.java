@@ -29,4 +29,7 @@ public interface PromotionMapper {
 	
 	List<PromotionVO> promotionListY(PromotionVO vo);
 	int countPagingPromotionY(PromotionVO vo);
+	
+	int DirectPromCancel(PromotionVO vo);
+	int DirectPromEnd(PromotionVO vo);
 }

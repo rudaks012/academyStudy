@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -237,6 +238,14 @@ public class PaymentController {
 	}
 	
 
+	@Scheduled(cron = "0 0 0 * * ?")
+	public void purchaseconfirm() {
+		int n = paymentDao.purchaseconfirm();
+		System.out.println(n);
+		System.out.println("구매확정 체크");
+	}
+
+
 	@RequestMapping("/paycomplete.do")
 	public String paycomplete(PaymentVO vo, HttpSession session, HttpServletResponse response,
 			  HttpServletRequest request) {
@@ -256,4 +265,5 @@ public class PaymentController {
 
 	}
 	
+
 }

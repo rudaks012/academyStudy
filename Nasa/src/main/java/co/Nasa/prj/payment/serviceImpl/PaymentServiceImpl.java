@@ -201,6 +201,11 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 
+	public int purchaseconfirm() {
+		return map.purchaseconfirm();
+  }
+
+  	@Override
 	public List<PaymentVO> sellerPaymentDList(PaymentVO vo) {
 		return map.sellerPaymentDList(vo);
 	}
@@ -218,6 +223,7 @@ public class PaymentServiceImpl implements PaymentService {
  	@Override
 	public PaymentVO selectBuyerCalendar(PaymentVO vo) {
 		return map.selectBuyerCalendar(vo);
+
 
 	}
 

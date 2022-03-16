@@ -82,5 +82,10 @@ public interface PaymentService {
    public int countsellerselectdateSearch(PaymentVO vo);
    
    List<PaymentVO> CalendarList(String id);
+
+   
+   int purchaseconfirm();
+
    PaymentVO selectBuyerCalendar(PaymentVO vo);
+
 }

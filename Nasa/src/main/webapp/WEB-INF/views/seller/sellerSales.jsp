@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -395,8 +396,8 @@ hr{
 				data: {scode:temp, year:temp2},
 				success: function (data) {
 					document.querySelector(".totalcount").innerText = data.totalcount;
-					document.querySelector(".totalsum").innerText = data.totalsum;
-					document.querySelector(".totalsusu").innerText = data.totalsusu;
+					document.querySelector(".totalsum").innerText = data.totalsum.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+					document.querySelector(".totalsusu").innerText = data.totalsusu.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 					
 				},
 				error: function (data) {
@@ -423,18 +424,18 @@ hr{
 	    			}
 	    		});	
 	    		console.log("list = " + list);
-	    		document.querySelector("#sum1").innerHTML = list[0]
-				document.querySelector("#sum2").innerHTML = list[1]
-				document.querySelector("#sum3").innerHTML = list[2]
-				document.querySelector("#sum4").innerHTML = list[3]
-				document.querySelector("#sum5").innerHTML = list[4]
-				document.querySelector("#sum6").innerHTML = list[5]
-				document.querySelector("#sum7").innerHTML = list[6]
-				document.querySelector("#sum8").innerHTML = list[7]
-				document.querySelector("#sum9").innerHTML = list[8]
-				document.querySelector("#sum10").innerHTML = list[9]
-				document.querySelector("#sum11").innerHTML = list[10]
-				document.querySelector("#sum12").innerHTML = list[11]
+	    		document.querySelector("#sum1").innerHTML = list[0].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum2").innerHTML = list[1].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum3").innerHTML = list[2].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum4").innerHTML = list[3].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum5").innerHTML = list[4].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum6").innerHTML = list[5].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum7").innerHTML = list[6].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum8").innerHTML = list[7].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum9").innerHTML = list[8].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum10").innerHTML = list[9].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum11").innerHTML = list[10].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum12").innerHTML = list[11].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
 	    		return list;
 			
 		}
@@ -459,18 +460,18 @@ hr{
     		});	
 			console.log("list2 = " + list2);
 			
-			document.querySelector("#susu1").innerHTML = list2[0];
-			document.querySelector("#susu2").innerHTML = list2[1];
-			document.querySelector("#susu3").innerHTML = list2[2];
-			document.querySelector("#susu4").innerHTML = list2[3];
-			document.querySelector("#susu5").innerHTML = list2[4];
-			document.querySelector("#susu6").innerHTML = list2[5];
-			document.querySelector("#susu7").innerHTML = list2[6];
-			document.querySelector("#susu8").innerHTML = list2[7];
-			document.querySelector("#susu9").innerHTML = list2[8];
-			document.querySelector("#susu10").innerHTML = list2[9];
-			document.querySelector("#susu11").innerHTML = list2[10];
-			document.querySelector("#susu12").innerHTML = list2[11];
+			document.querySelector("#susu1").innerHTML = list2[0].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu2").innerHTML = list2[1].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu3").innerHTML = list2[2].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu4").innerHTML = list2[3].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu5").innerHTML = list2[4].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu6").innerHTML = list2[5].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu7").innerHTML = list2[6].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu8").innerHTML = list2[7].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu9").innerHTML = list2[8].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu10").innerHTML = list2[9].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu11").innerHTML = list2[10].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu12").innerHTML = list2[11].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 			
 			return list2;
 		}

@@ -50,6 +50,7 @@ public class ServiceVO {
 	String s_code;
 	String pay_enddate;
 	
+	String pay_max;
 	String pro_start;
 	String pro_end;
 	String prodiscount;

@@ -70,6 +70,11 @@
 	border-bottom: 1px solid #999294;
 }
 
+.serp {
+	color: red;
+	font-size: 8px;
+}
+
 .endp {
 	padding: 30px 0px 20px 0px;
 }
@@ -285,13 +290,13 @@ input[type=date] {
 																							 
 																					</h3>
 																					<div>서비스코드 : s${service.ser_code }</div>
-																					<br/>
 																					<c:if test="${not empty service.prodiscount }">
 																						<div class="price">₩ <del><fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></del> </div>
 																						<div class="price" style="color:red;"><img src="resources/user/assets/img/promotion.png"> ₩<fmt:formatNumber value="${service.prodiscount }" pattern="###,###"/></div>
 																			
 																					</c:if>
 																					<c:if test="${empty service.prodiscount }">
+																						<div style="height: 37.5px;"></div>
 																						<div class="price"> ₩ <fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></div>
 																					</c:if>
 																					<div class="list-footer">
@@ -307,7 +312,7 @@ input[type=date] {
 																									data-toggle="modal" data-target="#endModal"
 																									data-sercode="${service.ser_code }"
 																									data-sertitle="${service.ser_title }"
-																									data-end="${service.pay_enddate }"
+																									data-end="${service.pay_max }"
 																									data-promax="${service.pro_max }"
 																									data-powermax="${service.power_max }">종료</button>
 
@@ -462,15 +467,16 @@ input[type=date] {
 				</div>
 				<div class="modal-body">
 
-					<p class="endp">서비스명(웹개발1)을 종료하시겠습니까?</p>
-
+					<p class="endp" >서비스명(웹개발1)을 종료하시겠습니까?</p>
+					<span class="serp">* 구매자의 의뢰종료예정일 혹은 파워서비스 종료예정일이 있을 경우 <br/>&nbsp;&nbsp; - 해당 종료예정일 이 후 서비스가 자동종료됩니다. </span>
+					<hr class="hr" style="margin-bottom: 25px !important;"/>
 					<table class="endservtb">
 						<tr>
 							<td>서비스종료사유</td>
 							<td><textarea cols="30" rows="3" id="ser_reason"></textarea></td>
 						</tr>
 						<tr>
-							<td>의뢰 종료 예정 날짜</td>
+							<td>의뢰종료 예정일</td>
 							<td><input type="text" id="ser_end" disabled></td>
 						</tr>
 						<!-- <tr>
@@ -478,13 +484,13 @@ input[type=date] {
 							<td><input type="text" id="ser_proend" disabled></td>
 						</tr> -->
 						<tr>
-							<td>파워서비스 종료 날짜</td>
+							<td>파워서비스 종료일</td>
 							<td><input type="text" id="ser_powerend" disabled></td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<td>희망 종료일</td>
 							<td><input type="date" id="ser_cal"></td>
-						</tr>
+						</tr> -->
 					</table>
 
 				</div>
@@ -554,54 +560,11 @@ input[type=date] {
 									$("#ser_powerend").val(powermax.substr(0, 10));
 								}
 								
-								console.log(sercode);
-								console.log(sertitle);
-								console.log(serend);
-								console.log(promax);
-								console.log(powermax);
 							
-								
 								var reason = document.getElementById("ser_reason");
 								reason.value = '';
-								var end = document.getElementById("ser_cal");
-								end.value = '';
 								
-								//종료일 체크
-								if (serend >= powermax) {
-								 	var today = new Date(serend.substr(0, 10));
-									today.setMonth(today.getMonth() + 1);
-									today.setDate(today.getDate());
-
-									var year = today.getFullYear();
-									var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
-									var day = (today.getDate() < 10 ? '0' : '') + today.getDate();
-									date = year + '-' + month + '-' + day
-									console.log(date);
-									$("#ser_cal").attr('min', date);
-									console.log(serend.substr(0, 10))
-								} else if(serend < powermax){
-									var today = new Date(powermax.substr(0, 10));
-									today.setMonth(today.getMonth() + 1);
-									today.setDate(today.getDate());
-
-									var year = today.getFullYear();
-									var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
-									var day = (today.getDate() < 10 ? '0' : '')	+ today.getDate();
-									date = year + '-' + month + '-' + day
-									console.log(date);
-									$("#ser_cal").attr('min', date);
-								}else{
-									var today = new Date();
-									today.setMonth(today.getMonth() + 1);
-									today.setDate(today.getDate());
-
-									var year = today.getFullYear();
-									var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
-									var day = (today.getDate() < 10 ? '0' : '')	+ today.getDate();
-									date = year + '-' + month + '-' + day
-									console.log(date);
-									$("#ser_cal").attr('min', date);
-								}
+							
 								$(".endp").text(sertitle + '을(를) 종료하시겠습니까?');
 								$(".endp").attr('id', sercode);
 								
@@ -612,20 +575,98 @@ input[type=date] {
 		$("#endbtn").on("click", function() {
 			let ser_code = $(".endp").attr('id');
 			let ser_reason = $("#ser_reason").val();
-			let ser_end = $("#ser_cal").val();
+			
+			let url;
 
 			if (ser_reason == '') {
 				alert('종료사유를 작성해주세요.');
 				$("#ser_reason").focus();
 				return;
-			} else if (ser_end == '') {
-				alert('희망 종료일자를 선택해주세요.');
-				return;
+			} 
+			
+			let serend = $("#ser_end").val();
+			let powerend = $("#ser_powerend").val();
+			console.log(serend);
+			console.log(powerend);
+			
+			
+			if(serend == '-'){
+				if(powerend == '-'){
+					var today = new Date();
+					today.setMonth(today.getMonth() + 1);
+					today.setDate(today.getDate());
+
+					var year = today.getFullYear();
+					var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
+					var day = (today.getDate() < 10 ? '0' : '')	+ today.getDate();
+					date = year + '-' + month + '-' + day
+					ser_end = date;
+					url = "DirectendService.do";
+				}else{
+					var today = new Date(powermax.substr(0, 10));
+					today.setMonth(today.getMonth() + 1);
+					today.setDate(today.getDate());
+
+					var year = today.getFullYear();
+					var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
+					var day = (today.getDate() < 10 ? '0' : '')	+ today.getDate();
+					date = year + '-' + month + '-' + day
+					ser_end = date;
+					url = "endService.do";
+				}
+			}else if(powerend == '-'){
+				if(serend == '-'){
+					var today = new Date();
+					today.setMonth(today.getMonth() + 1);
+					today.setDate(today.getDate());
+
+					var year = today.getFullYear();
+					var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
+					var day = (today.getDate() < 10 ? '0' : '')	+ today.getDate();
+					date = year + '-' + month + '-' + day
+					ser_end = date;
+					url = "DirectendService.do";
+				}else{
+					var today = new Date(serend.substr(0, 10));
+					today.setMonth(today.getMonth() + 1);
+					today.setDate(today.getDate());
+
+					var year = today.getFullYear();
+					var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
+					var day = (today.getDate() < 10 ? '0' : '')	+ today.getDate();
+					date = year + '-' + month + '-' + day
+					ser_end = date;
+					url = "endService.do";
+				}
+			}else{
+				if(serend >= powermax){
+					var today = new Date(serend.substr(0, 10));
+					today.setMonth(today.getMonth() + 1);
+					today.setDate(today.getDate());
+
+					var year = today.getFullYear();
+					var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
+					var day = (today.getDate() < 10 ? '0' : '') + today.getDate();
+					date = year + '-' + month + '-' + day
+					ser_end = date;
+					url = "endService.do";
+				}else{
+					var today = new Date(powermax.substr(0, 10));
+					today.setMonth(today.getMonth() + 1);
+					today.setDate(today.getDate());
+
+					var year = today.getFullYear();
+					var month = (today.getMonth() < 10 ? '0' : '') + today.getMonth();
+					var day = (today.getDate() < 10 ? '0' : '') + today.getDate();
+					date = year + '-' + month + '-' + day
+					ser_end = date;
+					url = "endService.do";
+				}
 			}
 			
 			
-			$.ajax({
-				url : "endService.do",
+			 $.ajax({
+				url : url,
 				dataType : "text",
 				type : "post",
 				data : {
@@ -637,18 +678,17 @@ input[type=date] {
 					if (result == "T") {
 						alert('종료 예약되었습니다.\n'+ser_end+'일 자정까지 서비스되며 익일 종료됩니다.');
 						location.href = "sellerService.do";
-					} else{
+					} else if(result == "TT"){
+						alert('종료되었습니다.');
+						location.href = "sellerService.do";
+					}else{
 						alert('일시적 오류로 종료 실패하였습니다.');
 						return;
 					}
 				}
-			})
+			}) 
 		})
-		
-		$("#nav-info-tab").click(function(){
-			location.href = "sellerServiceY.do";
-		})
-		
+	
 		
 	</script>
 </body>

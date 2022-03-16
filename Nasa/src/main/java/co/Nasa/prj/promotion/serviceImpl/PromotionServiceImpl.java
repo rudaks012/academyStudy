@@ -95,5 +95,15 @@ public class PromotionServiceImpl implements PromotionService {
 		return map.countPagingPromotionY(vo);
 	}
 
+	@Override
+	public int DirectPromCancel(PromotionVO vo) {
+		return map.DirectPromCancel(vo);
+	}
+
+	@Override
+	public int DirectPromEnd(PromotionVO vo) {
+		return map.DirectPromEnd(vo);
+	}
+
 	
 }
