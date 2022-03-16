@@ -287,7 +287,7 @@
                                                    <span>${review.rev_ser_name }</span><br>
                                                    <span>${review.rev_name }</span>
                                                    <span class="ml-4">평점 : ${review.rev_rate }</span>
-                                                   <span class="date">${review.rev_date } </span>
+                                                   <span class="date">${fn:substring(review.rev_date,0,10) } </span>
                                                    <div style="word-break:break-all;">
                                                       <p class="comment">${review.rev_sub }</p>
                                                    </div>
@@ -347,7 +347,7 @@
                                                    </c:choose>
                                                    <div class="desc">
                                                       <span>${review.rere_sel_name }</span>
-                                                      <span class="date">${review.rere_date } </span>
+                                                      <span class="date">${fn:substring(review.rere_date, 0 , 10) } </span>
                                                       <div style="word-break:break-all;">
                                                          <p class="comment">${review.rere_sel_sub }</p>
                                                       </div>
