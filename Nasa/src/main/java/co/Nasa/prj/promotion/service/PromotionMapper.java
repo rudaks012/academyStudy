@@ -1,6 +1,5 @@
 package co.Nasa.prj.promotion.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import co.Nasa.prj.comm.VO.PromotionVO;
@@ -32,4 +31,6 @@ public interface PromotionMapper {
 	
 	int DirectPromCancel(PromotionVO vo);
 	int DirectPromEnd(PromotionVO vo);
+	
+	
 }

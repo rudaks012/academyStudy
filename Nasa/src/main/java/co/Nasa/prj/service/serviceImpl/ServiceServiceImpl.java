@@ -135,5 +135,10 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.DirectendService(vo);
 	}
 
+	@Override
+	public List<ServiceVO> randomPromotion() {
+		return map.randomPromotion();
+	}
+
 
 }

@@ -2,6 +2,7 @@ package co.Nasa.prj.service.service;
 
 import java.util.List;
 
+import co.Nasa.prj.comm.VO.PromotionVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 
 public interface ServiceService {
@@ -46,4 +47,7 @@ public interface ServiceService {
 	int countPagingSellerServiceY(ServiceVO vo);
 	
 	int DirectendService(ServiceVO vo);
+	
+	// 메인페이지 랜덤 프로모션 표시
+	List<ServiceVO> randomPromotion();
 }

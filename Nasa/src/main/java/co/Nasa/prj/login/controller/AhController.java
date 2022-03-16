@@ -93,6 +93,7 @@ public class AhController {
 						session.setAttribute("password", avo.getApassword());
 						session.setAttribute("aname", avo.getAname());
 						session.setAttribute("author", "ad");
+						session.setAttribute("nickname", "관리자");
 						System.out.println("관리자");
 						path = "redirect:home.do";
 						

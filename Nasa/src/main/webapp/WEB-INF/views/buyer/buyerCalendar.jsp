@@ -9,6 +9,7 @@
 
     .servicetable {
         width: 800px;
+        border: 1px solid #dddddd;
     }
 
     .imgtd {
@@ -17,7 +18,7 @@
     }
 
     th {
-        width: 70px;
+        width: 80px;
     }
 
     .fc-event-title {
@@ -78,32 +79,37 @@
                                     <h2>일정관리</h2>
                                 </a>
                                 <br>
-                                <!-- 달력 자리 -->
-                                <div id='calendar'></div>
                                 <br>
-                                <!-- <a class="d-inline-block">
-                                    <h2>현재 진행중인 서비스</h2>
-                                </a> -->
+                                <!-- 달력 자리 -->
+                                <div id='calendar' style="margin-bottom: 30px;"></div>
+                                <br>
+                                <a class="d-inline-block">
+                                    <h2>일정 상세정보 조회</h2>
+                                </a>
                                 <table class="servicetable">
                                     <tbody>
                                         <tr>
-                                            <th rowspan="4" class="imgtd"><img id="ser_img"
+                                            <th rowspan="5" class="imgtd" style="text-align: center;"><img id="ser_img"
                                                     src="resources/user/assets/img/search-default-profile.jpg"
-                                                    style="height: 150px; width: 150px;"></td>
+                                                    style="height: 175px; width: 175px; border-radius: 8px;"></td>
                                             <th>서비스 : </th>
-                                            <td id="ser_title">서비스 제목</th>
+                                            <td><a id="ser_title"></a></th>
+                                        </tr>
+                                        <tr>
+                                            <th>카테고리 : </th>
+                                            <td id="cate"></td>
                                         </tr>
                                         <tr>
                                             <th>판매자 : </th>
-                                            <td id="s_nickname">판매자 이름</td>
+                                            <td><a id="s_nickname"></a></td>
                                         </tr>
                                         <tr>
                                             <th>가 격 : </th>
-                                            <td id="pay_price_tochar">1000</td>
+                                            <td id="pay_price_tochar"></td>
                                         </tr>
                                         <tr>
                                             <th>기 간 : </th>
-                                            <td>넣어야댐....</td>
+                                            <td id="paydate"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -130,14 +136,14 @@
             var calendar = new FullCalendar.Calendar(calendarEl, {
 
                 initialView: 'dayGridMonth',
-                dayMaxEvents: true, // allow "more" link when too many events
+                dayMaxEvents: true, // allow "more" link when too many events               
+                locale: 'kor',
                 eventClick: function () {
                     getCalServList();
                 },
                 events: dbData
             });
             calendar.render();
-            $("div").remove(".fc-event-time");
 
             function getCalServList() {                
                 var ser_title = $(event.target).text();
@@ -157,9 +163,15 @@
                         console.log("여기주목밑에밑에");
                         console.log(data);
                         $("#ser_title").text(data.ser_title);
+                        $("#ser_title").attr("onclick", "location.href='serviceDetail.do?ser_code=" + data.s_code + "'");
+                        $("#ser_title").attr("style", "cursor:pointer; background-color: #dddddd;");  
+                        $("#cate").text(data.category + " > " + data.sub_category);
                         $("#s_nickname").text(data.s_nickname);
+                        $("#s_nickname").attr("onclick", "location.href='sellerDetail.do?s_email=" + data.s_email + "'");
+                        $("#s_nickname").attr("style", "cursor:pointer; background-color: #dddddd;");  
                         $("#pay_price_tochar").text(data.pay_price_tochar + "원");
                         $("#ser_img").attr("src", "fileupload/" + data.ser_img);
+                        $("#paydate").text(data.event_start + " ~ " + data.event_end_original);
 
                     }
                 })

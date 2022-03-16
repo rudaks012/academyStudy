@@ -37,13 +37,15 @@ public class ServiceVO {
 	String ser_end;	
 	
 	// v_service_list
-	int reviewcount;
-	int reviewavg;
-	String sub_category;
 	String nickname;
 	String category;
+	String sub_category;
 	String ser_price_com;
+	String pro_status;
 	String ser_sale_com;
+	Date ser_ent;
+	int reviewcount;
+	int reviewavg;
 	
 	String column; // 리뷰 순, 등록 순 정렬
 	
