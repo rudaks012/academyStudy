@@ -50,12 +50,30 @@
 		]]>
 	</select>
 	
-	<select id="getTotalService" resultType="int">
+	<select id="searchTotalService" resultType="int">
+		SELECT COUNT(*) FROM vw_selectservice
+		<trim prefix="WHERE" prefixOverrides="AND">
+			 <include refid="serviceCriteria"></include> 
+		</trim>
+	</select>
+	
+	<select id="totalService" resultType="int">
 		SELECT COUNT(*) FROM SERVICE
 	</select>
 	
+	<select id="todayService" resultType="int">
+		SELECT COUNT(*) FROM SERVICE 
+		WHERE to_char(ser_start,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd') 
+	</select>
+	
 	<select id="detailedService" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
-	   SELECT * FROM vw_selectservice WHERE SER_CODE =#{ser_code}
+	     SELECT ser_code,pro_code,s_email,cat_no,cat_name,sub_no,sub_name,ser_start,ser_end,
+		        ser_title,ser_sub,to_char(ser_price,'fm999,999,999,999') as ser_price,ser_sale,
+		        ser_date,ser_img,ser_offer,ser_imgorigin,ser_line,
+		        ser_skill,ser_team, ser_lang,ser_frame,ser_subimg,ser_subimg2,ser_subimg3,ser_originsub,
+		        ser_originsub3,ser_status,ser_reason
+	    FROM vw_selectservice
+	    WHERE SER_CODE =#{ser_code}
 	</select>
 	
 	<select id="totalPay" resultType="String">

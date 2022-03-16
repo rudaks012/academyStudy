@@ -45,6 +45,7 @@
                                             <li><a href="buyerJoin.do">구매자 회원가입</a></li>
                                             <li><a href="sellerJoin.do">판매자 회원가입</a></li>
                                               <li><a href="chatting.do">채팅하기</a></li>
+                                              <li><a href="logout.do">로그아웃</a></li>
                                             <li class="login"><a href="Login.do"> <i class="ti-user"></i> 로그인</a></li>
                                         </ul>
                                     </nav>

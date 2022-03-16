@@ -9,6 +9,9 @@ import co.Nasa.prj.comm.VO.PaymonthVO;
 public interface PaymentService {
    // 구매자 개인 구매내역 조회
    public List<PaymentVO> buyerPaymentList(PaymentVO vo);
+   public List<PaymentVO> sellerPaymentDList(PaymentVO vo);
+   public List<PaymentVO> endPaymentList(PaymentVO vo);
+   public int paycomplete(PaymentVO vo);
    
    // 구매자 paging lisg select
    public List<PaymentVO> selectPagingBuyerPaymentList(PaymentVO vo);
@@ -79,6 +82,10 @@ public interface PaymentService {
    public int countsellerselectdateSearch(PaymentVO vo);
    
    List<PaymentVO> CalendarList(String id);
+
    
    int purchaseconfirm();
+
+   PaymentVO selectBuyerCalendar(PaymentVO vo);
+
 }

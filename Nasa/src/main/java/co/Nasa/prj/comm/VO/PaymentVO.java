@@ -27,7 +27,13 @@ public class PaymentVO {
 	int end; // 위와 같음
 	
 	String ser_title;
+	String category;
+	String sub_category;
 	String b_nickname;
+	String s_nickname;
+	String pay_price_tochar;
+	String ser_img;
+
 	public void calcStartEnd(int pageNum, int amount) {
 		setEnd(pageNum * amount);
 		setStart(getEnd() - amount + 1);

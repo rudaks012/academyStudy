@@ -6,16 +6,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.Nasa.prj.admin.service.AdminAuthorVO;
+import co.Nasa.prj.admin.service.Criteria;
 import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.PaymonthVO;
@@ -224,17 +230,40 @@ public class PaymentController {
 			map.put("title", sc.getSer_title());
 			map.put("start", sc.getEvent_start());
 			map.put("end", sc.getEvent_end());
-			
+			map.put("pay_code", sc.getPay_code());			
 			list.add(map);
 		}
 		System.out.println(list);
 		return list;
 	}
 	
+
 	@Scheduled(cron = "0 0 0 * * ?")
 	public void purchaseconfirm() {
 		int n = paymentDao.purchaseconfirm();
 		System.out.println(n);
 		System.out.println("구매확정 체크");
 	}
+
+
+	@RequestMapping("/paycomplete.do")
+	public String paycomplete(PaymentVO vo, HttpSession session, HttpServletResponse response,
+			  HttpServletRequest request) {
+		paymentDao.paycomplete(vo);
+		
+		return "redirect:buyHistory.do";
+  }
+		
+
+	@RequestMapping("/ajaxGetCalServList.do")
+	@ResponseBody
+	public PaymentVO ajaxGetCalServList(PaymentVO vo, HttpSession session) {
+		String b_email = (String)session.getAttribute("id");
+		vo.setB_email(b_email);
+		vo = paymentDao.selectBuyerCalendar(vo);		
+		return vo;		
+
+	}
+	
+
 }

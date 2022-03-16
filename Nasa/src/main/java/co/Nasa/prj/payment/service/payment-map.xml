@@ -7,6 +7,27 @@
       WHERE B_EMAIL = #{b_email}
       ORDER BY PAY_DATE DESC
    </select>
+   <select id="sellerPaymentDList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+   		SELECT *
+   		FROM PAYMENT
+   		WHERE S_EMAIL = #{s_email}
+   </select>
+   <select id = "endPaymentList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+   		<![CDATA[
+   		SELECT	*
+   		FROM	(
+   				 SELECT	*
+   				 FROM	PAYMENT
+   				 WHERE	B_EMAIL = #{b_email} AND PAY_ENDDATE IS NULL
+   		)
+   		WHERE	EVENT_END < SYSDATE OR EVENT_END IS NULL
+   		]]>
+   </select>
+   <update id = "paycomplete" parameterType="co.Nasa.prj.comm.VO.PaymentVO">
+   		UPDATE 	PAYMENT
+   		SET		PAY_ENDDATE = SYSDATE
+   		WHERE	PAY_CODE = #{pay_code}
+   </update>
    
    <select id="selectPagingBuyerPaymentList" resultType="co.Nasa.prj.comm.VO.PaymentVO">
    		SELECT	*
@@ -401,6 +422,7 @@ INSERT INTO	PAYMENT
 		WHERE B_EMAIL = #{b_email}
 	</select>
 	
+
 	<update id="purchaseconfirm" >
 	<![CDATA[
 		UPDATE PAYMENT SET PAY_ENDDATE = sysdate
@@ -411,4 +433,11 @@ INSERT INTO	PAYMENT
 			 AND EVENT_END IS NULL AND PAY_ENDDATE IS NULL)
 	]]>
 	</update>
+
+	<select id="selectBuyerCalendar" parameterType="String" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+		select * from v_calendar
+		where b_email = #{b_email} and ser_title = #{ser_title} and pay_code = #{pay_code}
+	</select>
+
+  
 </mapper>

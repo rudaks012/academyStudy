@@ -2,8 +2,11 @@ package co.Nasa.prj.seller.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -18,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.SellerVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
+import co.Nasa.prj.payment.service.PaymentMapper;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
 
@@ -30,6 +35,8 @@ public class SellerController {
 	SellerService sellerDAO;
 	@Autowired
 	ServiceService serviceDao;
+	@Autowired
+	PaymentMapper paymentDao;
 
 	@RequestMapping("/goSellerMypage.do")
 	public String goSellerMypage(HttpSession session, Model model) {
@@ -89,6 +96,39 @@ public class SellerController {
 		
 		model.addAttribute("serviceList", serviceDao.servicePromotion(s_email));
 		return "seller/sellerDetail";
+	}
+	
+	@RequestMapping("/deleteSeller.do")
+	@ResponseBody
+	public String deleteSeller(Model model, HttpSession session, HttpServletResponse response,
+			HttpServletRequest request, @Param("dPassword") String dPassword, BCryptPasswordEncoder passwordEncoder) {
+		String deleteStatus = "codeD";
+		
+		PaymentVO paymentvo = new PaymentVO();
+		SellerVO sellervo = new SellerVO();
+		
+		paymentvo.setS_email((String) session.getAttribute("id"));
+		sellervo.setS_email((String) session.getAttribute("id"));
+		
+		List<PaymentVO> paymentDList = paymentDao.sellerPaymentDList(paymentvo);
+		sellervo = sellerDAO.ChatSellerselect(sellervo);
+		
+		if(!passwordEncoder.matches(dPassword, sellervo.getS_password())) {
+			System.out.println(sellervo.getS_password());
+			deleteStatus = "codeP";
+			return deleteStatus;
+		}
+		
+		for(int i = 0; i < paymentDList.size(); i++) {
+			if(paymentDList.get(i).getPay_enddate() == null) {
+				deleteStatus = "codeS";
+				return deleteStatus;
+			}
+		}
+		
+		sellerDAO.deleteSeller(sellervo);
+		
+		return deleteStatus;
 	}
 
 	@RequestMapping("/sellerUpdate.do")

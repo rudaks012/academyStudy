@@ -23,7 +23,7 @@ public class AdminAuthorVO {
 	String filed_code;
 	String buyer_coupon;
 	String b_name;
-	
+	String field_code;
 	
 	//판매자
 	
