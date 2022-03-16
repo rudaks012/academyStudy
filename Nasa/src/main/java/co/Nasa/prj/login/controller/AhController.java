@@ -71,7 +71,8 @@ public class AhController {
 	@RequestMapping("/main.do")
 	public String main(LoginVO Loginvo, AdminVO avo, SellerVO svo, HttpServletResponse response, HttpSession session,
 			@RequestParam("id") String id, @RequestParam("pw") String password, Model model,
-			BCryptPasswordEncoder passwordEncoder) throws IOException {
+			BCryptPasswordEncoder passwordEncoder
+			) throws IOException {
 		logger.info("debug - login");
 		String path = "";
 		
