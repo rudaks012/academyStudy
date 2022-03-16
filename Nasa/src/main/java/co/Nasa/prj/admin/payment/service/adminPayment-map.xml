@@ -98,14 +98,14 @@
 			  FROM 
 					 (
 					   select rownum rn,P.*
-                       from(select p.power_code, p.s_email, p.ser_code, p.power_start,p.power_end,p.power_date, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(p.power_price)), '([0-9]{3})','\1,')), '^,',''),
+                       from(SELECT p.power_code, p.s_email, p.ser_code, p.power_start,p.power_end,p.power_date, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(p.power_price)), '([0-9]{3})','\1,')), '^,',''),
 					       		   s.ser_title,s.ser_cate,s.ser_sub_cate,
 					       		   (select s_name from seller where p.s_email=s_email) as s_name,
 					               (select s_author from seller where p.s_email=s_email) as s_author,
 					               (select cat_name from category where s.ser_cate=cat_no) as cat_name,
 					               (select sub_name from sub_category where s.ser_sub_cate=sub_no) as sub_name
-							from powerservice p join service s
-						    on (p.ser_code=s.ser_code)
+							FROM powerservice p join service s
+						    ON (p.ser_code=s.ser_code)
 						    order by p.power_code desc)p
 					   WHERE ROWNUM <=#{pageNum} * #{amount}
            ]]>
