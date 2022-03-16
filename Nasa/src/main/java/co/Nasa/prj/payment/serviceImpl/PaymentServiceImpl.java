@@ -199,4 +199,9 @@ public class PaymentServiceImpl implements PaymentService {
 		return map.CalendarList(id);
 	}
 
+	@Override
+	public PaymentVO selectBuyerCalendar(PaymentVO vo) {
+		return map.selectBuyerCalendar(vo);
+	}
+
 }
