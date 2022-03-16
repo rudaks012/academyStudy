@@ -56,12 +56,28 @@
 		FROM	(
 				 SELECT	ROWNUM RN, A.*
 				 FROM	(
-					SELECT m.* FROM SERVICE s ,
+					<!-- SELECT m.* FROM SERVICE s ,
 					(SELECT * FROM REVIEW r , REVIEW_COMMENT c WHERE REV_CODE = REVIEW_CODE(+) ORDER BY REV_DATE DESC) m
 					WHERE s.s_email = #{s_email} and s.ser_code = scode 
 					<if test="ser_code != 0">
 				  	     AND s.ser_code = #{ser_code}
-				  	</if>
+				  	</if> -->
+				  	
+				  	
+				  	SELECT      R.*, C.*, B.B_IMG, S.S_IMG
+					FROM      (SELECT RE.* FROM REVIEW RE, SERVICE SER 
+					            WHERE RE.SCODE = SER.SER_CODE 
+					            <if test="ser_code != 0">
+							  	     AND RE.SCODE = #{ser_code}
+							  	</if>
+					            AND SER.S_EMAIL=#{s_email}) R
+					LEFT JOIN   REVIEW_COMMENT C
+					ON         R.REV_CODE = C.REVIEW_CODE
+					LEFT JOIN   BUYER B
+					ON         R.REV_ID = B.B_EMAIL
+					LEFT JOIN   SELLER S
+					ON          C.RERE_SEL_ID = S.S_EMAIL
+					ORDER BY   TO_NUMBER(REV_CODE) DESC
 			) A
 		)
 		WHERE	RN BETWEEN #{start} AND #{end}
@@ -150,14 +166,19 @@
 	
 	<select id="sellerReviewCount" resultType="int">
 	    SELECT COUNT(*) FROM (
-        SELECT m.* FROM SERVICE s ,
-			(SELECT * FROM REVIEW r , REVIEW_COMMENT c 
-			WHERE REV_CODE = REVIEW_CODE(+) 
-			ORDER BY REV_DATE DESC) m
-		WHERE s.s_email = #{s_email} and s.ser_code = scode
-		<if test="ser_code != 0">
-	  	     AND s.ser_code = #{ser_code}
-	  	</if>
+     		SELECT      R.*, C.*, B.B_IMG, S.S_IMG
+			FROM      (SELECT RE.* FROM REVIEW RE, SERVICE SER 
+			            WHERE RE.SCODE = SER.SER_CODE 
+			            <if test="ser_code != 0">
+					  	     AND RE.SCODE = #{ser_code}
+					  	</if>
+			            AND SER.S_EMAIL=#{s_email}) R
+			LEFT JOIN   REVIEW_COMMENT C
+			ON         R.REV_CODE = C.REVIEW_CODE
+			LEFT JOIN   BUYER B
+			ON         R.REV_ID = B.B_EMAIL
+			LEFT JOIN   SELLER S
+			ON          C.RERE_SEL_ID = S.S_EMAIL
 		)
 	</select>
 	

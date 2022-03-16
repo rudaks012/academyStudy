@@ -94,7 +94,7 @@ public class SellerController {
 		ServiceVO vo = new ServiceVO();
 		vo.setS_email(s_email);
 		
-		model.addAttribute("serviceList", serviceDao.servicePromotion(s_email));
+		model.addAttribute("serviceList", serviceDao.servicePromotion(vo));
 		return "seller/sellerDetail";
 	}
 	

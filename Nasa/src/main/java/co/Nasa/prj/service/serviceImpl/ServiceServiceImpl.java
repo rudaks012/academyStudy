@@ -60,8 +60,8 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	@Override
-	public List<ServiceVO> servicePromotion(String s_email) {
-		return map.servicePromotion(s_email);
+	public List<ServiceVO> servicePromotion(ServiceVO vo) {
+		return map.servicePromotion(vo);
 	}
 	
 	@Override

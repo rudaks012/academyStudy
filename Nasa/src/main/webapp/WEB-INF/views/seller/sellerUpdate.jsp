@@ -82,7 +82,7 @@
 						</div>
 					</div>
 				
-					<div style="margin-top: 20px;">
+					<div style="margin-top: 20px;" id="addressdiv">
 						<p>주소</p>
 						<div class="form-group">
 							<input class="form-control col-8" name="s_zipcode" id="s_zipcode"
@@ -216,7 +216,7 @@
 				$("label").remove('#nicklabelok2');
 			}
 		})
-	
+		
 		// 닉네임 중복 체크
 		function nicknameCheck() {
 			if($('#s_nickname').val() == "${sellerInfo.s_nickname}"){
@@ -267,7 +267,13 @@
 		});
 
 		$("#s_detailaddress").blur(function () {
-			$("label").remove('#addresslabel');
+			console.log($("#s_detailaddress").val());
+			if (($("#s_detailaddress").val() != '')) {
+				$("label").remove('#addresslabel');				
+			}else{
+				$("#addressdiv").append('<label id="addresslabel">상세주소는 필수 입력값입니다.</label>');
+				$("#addresslabel").css("color", "red");
+			}
 		})
 		
 		// 비밀번호 설정
@@ -335,10 +341,11 @@
 				$("#phonediv").append('<label id="phonelabel">연락처는 필수 입력값입니다.</label>');
 				$("#phonelabel").css("color", "red");
 				$("#s_tel").focus();
-			} else if (!($("#s_address").val())) {
+			} else if (!($("#s_detailaddress").val())) {
 				$("label").remove('#addresslabel');
-				$("#addressdiv").append('<label id="addresslabel">주소는 필수 입력값입니다.</label>');
+				$("#addressdiv").append('<label id="addresslabel">상세주소는 필수 입력값입니다.</label>');
 				$("#addresslabel").css("color", "red");
+				$("#s_detailaddress").focus();
 			} else {
 				console.log('111');
 				var form = $('#sellerProfileU')[0];
@@ -377,6 +384,8 @@
 				$('#newpwdiv').attr('style','display: none;');
 			}
 		})
+		
+		
 	</script>
 </body>
 </html>

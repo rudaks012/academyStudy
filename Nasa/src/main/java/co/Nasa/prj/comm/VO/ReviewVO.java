@@ -25,6 +25,7 @@ public class ReviewVO {
 	String s_email;
 
 	String b_img;
+	String s_img;
 	
 	double rate;
 	
