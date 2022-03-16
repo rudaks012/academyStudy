@@ -9,6 +9,21 @@
                         <div class="mb-3 ">
                             <h6><i  class=" far fa-bell mr-1"></i>신고관리 <i class="fas fa-chevron-right mx-2"></i>전체신고조회</h6>
                         </div>
+                        <ul class="list-style-none d-flex mt-4">
+			                <li class="mr-1">총 신고 <span class="text-danger mx-1">${realTotal }</span>개
+			                </li>
+			                <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
+			                
+			                 <li class="mx-2">오늘의 신고 <span class="text-danger mx-1">${todayReport }</span>개
+			                 </li>
+			                 
+			                 <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
+			                
+			                 <li class="mx-2">대기 중인 신고 <span class="text-danger mx-1">${waitTotal }</span>개
+			                 </li>
+			
+			                
+			            </ul>
                     </div>
                 </div>
             </div>
@@ -133,24 +148,29 @@
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
-		                             <c:forEach var="report" items="${reportRefuseLists }">
-		                           	 <tr class="reportList">
-		                           	 	<input type="hidden" value="${report.re_code }" onclick="javascript:clickTrRow(this);">
-		                                <td>${report.re_reporter }</td>
-		                                <td>${report.re_type }</td>
-		                                <td>${report.re_res }</td>
-		                                <td>${fn:substring(report.re_date,0,11) }</td>
-		                                <c:if test="${empty report.re_result }">
-		                                	<td class="text-primary">대기</td>
-		                                </c:if>
-		                                <c:if test="${report.re_result eq 'Y'}">
-		                                	<td>완료</td>
-		                                </c:if>
-		                                <c:if test="${report.re_result eq 'D'}">
-		                                	<td class="text-danger">반려</td>
-		                                </c:if>
-		                             </tr>
-		                           </c:forEach>
+		                            <c:if test="${!empty reportRefuseLists }">
+			                             <c:forEach var="report" items="${reportRefuseLists }">
+			                           	 <tr class="reportList">
+			                           	 	<input type="hidden" value="${report.re_code }" onclick="javascript:clickTrRow(this);">
+			                                <td>${report.re_reporter }</td>
+			                                <td>${report.re_type }</td>
+			                                <td>${report.re_res }</td>
+			                                <td>${fn:substring(report.re_date,0,11) }</td>
+			                                <c:if test="${empty report.re_result }">
+			                                	<td class="text-primary">대기</td>
+			                                </c:if>
+			                                <c:if test="${report.re_result eq 'Y'}">
+			                                	<td>완료</td>
+			                                </c:if>
+			                                <c:if test="${report.re_result eq 'D'}">
+			                                	<td class="text-danger">반려</td>
+			                                </c:if>
+			                             </tr>
+			                           </c:forEach>
+			                         </c:if>
+		                           <c:if test="${empty reportRefuseLists }">
+		                             	<td colspan="5">조회 된 데이터가 없습니다.</td>
+		                             </c:if>
 		                        </tbody>
 		                     </table>
 		
@@ -252,8 +272,8 @@
                                             <th colspan="4" class="table-danger align-middle">신고반려사유</th>
                                         </tr>
                                         <tr>
-                                        	<td class="text-start" colspan="4" height="300px">
-                                        		<textarea rows="10" class="form-control" id="r_denied" wrap="hard" readonly></textarea>
+                                        	<td class="text-start" colspan="4" height="300px" id="r_denied">
+                                        		
                                         	
                                         	</td>
                                         </tr>
@@ -282,6 +302,7 @@ let startDate =$("input[name='re_date']");
 let endDate =$("input[name='re_date2']");
 const handleReportDate =()=>{
 	$(endDate).val($(startDate).val())
+	$(endDate).attr("min",$(startDate).val())
 	
 	
 }
@@ -358,7 +379,7 @@ const reCode=event.target.parentElement.firstElementChild.value;
 				
 				
 		//반려사유
-		$("#r_denied").val(result.re_denied);
+		$("#r_denied").html(result.re_denied);
 	})
 }
 Array.from(reportList).forEach(function (element) {

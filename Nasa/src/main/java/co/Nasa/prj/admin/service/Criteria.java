@@ -44,6 +44,14 @@ public class Criteria {
 	private String pay_date;
 	private String pay_date2;
 	
+
+	
+	public String getPay_date2() {
+		return pay_date2;
+	}
+	public void setPay_date2(String pay_date2) {
+		this.pay_date2 = pay_date2;
+	}
 	private String ser_cate;
 	private String ser_sub_cate;
 	private String power_date;
@@ -61,6 +69,21 @@ public class Criteria {
 	private String status;
 	private String gb;
 	
+	private String blackdate;
+	private String blackdate2;
+	
+	public String getBlackdate() {
+		return blackdate;
+	}
+	public void setBlackdate(String blackdate) {
+		this.blackdate = blackdate;
+	}
+	public String getBlackdate2() {
+		return blackdate2;
+	}
+	public void setBlackdate2(String blackdate2) {
+		this.blackdate2 = blackdate2;
+	}
 	public String getEmail() {
 		return email;
 	}

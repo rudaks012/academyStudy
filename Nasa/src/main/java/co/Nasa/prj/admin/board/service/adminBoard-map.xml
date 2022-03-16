@@ -59,5 +59,11 @@
     	  FROM NOTICE n WHERE NO_STATUS='1' and no_code=#{no_code}
  </select>
  
+ <select id="todayTotalBoard" resultType="int">
+  	 SELECT count(*)
+     FROM NOTICE 
+     WHERE NO_STATUS='1' and to_char(no_date,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')
+ </select>
+ 
 
 </mapper>

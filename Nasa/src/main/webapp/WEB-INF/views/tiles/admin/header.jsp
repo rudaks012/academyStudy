@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style>
+.logIn-a:hover .logBtn{
+	color:red
+}
+
+</style>
  <header class="topbar" data-navbarbg="skin6">
 
  
@@ -102,12 +108,17 @@
                            <i class="icon-user mr-1"></i> 관리자님 환영합니다
                         </li>
                         
-                        <li class="nav-item">
-                            <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power"
-                                class="svg-icon mr-2 ml-1"></i>
+                        <li class="nav-item d-flex justify-content-center"  >
+                            <a class="dropdown-item logIn-a" href="javascript:void(0)" data-toggle="modal" data-target="#logOutModal">
+                            <i data-feather="power" class="svg-icon logBtn mr-2 ml-1"></i>
                             Logout</a>
                          </li>
                     </ul>
                 </div>
             </nav>
+            
+			
+
+						
+			
         </header>

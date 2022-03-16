@@ -79,12 +79,12 @@
                                                     <label class="custom-control-label" for="customRadio2">2인이상 5인미만</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="ser_team" value="5인이상 20미만" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_team eq '5인이상 20미만'? 'checked':'' }"/>>
-                                                    <label class="custom-control-label" for="customRadio2">5인이상 20인미만</label>
+                                                    <input type="radio" id="customRadio3" name="ser_team" value="5인이상 20미만" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_team eq '5인이상 20미만'? 'checked':'' }"/>>
+                                                    <label class="custom-control-label" for="customRadio3">5인이상 20인미만</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="ser_team" value="20인 이상" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_team eq '20인 이상'? 'checked':'' }"/>>
-                                                    <label class="custom-control-label" for="customRadio2">20인 이상</label>
+                                                    <input type="radio" id="customRadio4" name="ser_team" value="20인 이상" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_team eq '20인 이상'? 'checked':'' }"/>>
+                                                    <label class="custom-control-label" for="customRadio4">20인 이상</label>
                                                 </div>
                                                 
                                                
@@ -384,7 +384,7 @@
 			</div>
          </div>
                         
-<<script type="text/javascript">
+<script type="text/javascript">
 //전체목록 페이징처리
 let actionForm = $("#actionForm");
 $(".page-item a").on("click", function (e) {
@@ -392,6 +392,8 @@ $(".page-item a").on("click", function (e) {
     actionForm.find("input[name='pageNum']").val($(this).attr("href"));
     actionForm.submit();
 })
+
+
 
 
 	function clickTrRow(target){
@@ -446,13 +448,14 @@ const getOption=()=>{
 	  } 
 	  return obj;
    }
-console.log(getOption())
+
+
 const handleCategoryChange=()=>{
 	let arrType=getOption();
 	let optionType=$("#sub_cate");
 	optionType.empty();
 	
-	let val=event.target.value;
+	let val=$("#searchCategory").val();
 	
 	 if(val=="CAT1"){
 		for(prop in arrType["CAT1"]){
@@ -488,6 +491,9 @@ const handleCategoryChange=()=>{
 	
 	 
 }
+
+handleCategoryChange();
+
 $("#searchCategory").on("change",handleCategoryChange);
 
 const selectService=()=>{

@@ -11,4 +11,5 @@ public interface AdminBoardService {
 	public int totalBoard(Criteria cri); 
 	public int searchBoardTotal(Criteria cri);
 	public AdminAuthorVO getBoardInfo(String code);
+	public int todayTotalBoard();
 }

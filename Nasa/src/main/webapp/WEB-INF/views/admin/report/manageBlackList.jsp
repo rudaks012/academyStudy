@@ -11,9 +11,9 @@
                                 <ul class="list-style-none d-flex">
                                     <li class="mr-1">총 블랙리스트 <span class="text-danger mx-1">${total }</span>명</li>
                                     <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
-                                    <li class="mx-2">오늘의 블랙리스트 <span class="text-danger mx-1"></span>명</li>
+                                    <li class="mx-2">오늘의 블랙리스트 <span class="text-danger mx-1">${todayBlack }</span>명</li>
                                     <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top:3px"></div>
-                                    <li class="mx-2">영구정지 <span class="text-danger mx-1"></span>명</li>
+                                    <li class="mx-2">오늘의 영구정지 <span class="text-danger mx-1">${todayStop }</span>명</li>
                                     
                                 </ul>
                             
@@ -41,14 +41,14 @@
                                         <tbody>
                                             <tr>
                                                 <th class="align-middle table-primary">아이디</th>
-                                                <td><input class="form-control custom-shadow" id="" name="email" type="text"></td>
+                                                <td><input class="form-control custom-shadow" id="" name="email" type="text" value='<c:out value="${pageMaker.cri.email }"/>'></td>
                                                 
                                             </tr>
                                             <tr>
                                                 <th class="align-middle table-primary">이름</th>
-                                                <td><input class="form-control custom-shadow" id="" name="name" type="text"></td>
+                                                <td><input class="form-control custom-shadow" id="" name="name" type="text" value='<c:out value="${pageMaker.cri.name }"/>'></td>
                                                 <th class="align-middle table-primary">닉네임</th>
-                                                <td><input class="form-control custom-shadow" id="" name="nickname" type="text"></td>
+                                                <td><input class="form-control custom-shadow" id="" name="nickname" type="text" value='<c:out value="${pageMaker.cri.nickname }"/>'></td>
                                             </tr>
                                             
                                              <tr>
@@ -57,11 +57,11 @@
                                                 <td>
                                                     <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                         <div class="custom-control custom-radio mr-3 ">
-                                                            <input type="radio" id="customRadio1" name="status" class="custom-control-input mr-5" value="M">
+                                                            <input type="radio" id="customRadio1" name="status" class="custom-control-input mr-5" value="M" <c:out value="${pageMaker.cri.status eq 'M'? 'checked':'' }"/>>
                                                             <label class="custom-control-label" for="customRadio1">한달정지</label>
                                                         </div>
                                                         <div class="custom-control custom-radio mx-3">
-                                                            <input type="radio" id="customRadio2" name="status" class="custom-control-input mr-5" value="D">
+                                                            <input type="radio" id="customRadio2" name="status" class="custom-control-input mr-5" value="D" <c:out value="${pageMaker.cri.status eq 'D'? 'checked':'' }"/>>
                                                             <label class="custom-control-label" for="customRadio2">영구정지</label>
                                                         </div>
                                                     </div>
@@ -71,11 +71,11 @@
                                                 <td>
                                                     <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                         <div class="custom-control custom-radio mr-3 ">
-                                                            <input type="radio" id="customRadio3" name="gb" class="custom-control-input mr-5" value="b">
+                                                            <input type="radio" id="customRadio3" name="gb" class="custom-control-input mr-5" value="b" <c:out value="${pageMaker.cri.gb eq 'b'? 'checked':'' }"/>>
                                                             <label class="custom-control-label" for="customRadio3">구매자</label>
                                                         </div>
                                                         <div class="custom-control custom-radio mx-3">
-                                                            <input type="radio" id="customRadio4" name="gb" class="custom-control-input mr-5" value="s">
+                                                            <input type="radio" id="customRadio4" name="gb" class="custom-control-input mr-5" value="s" value="b" <c:out value="${pageMaker.cri.gb eq 's'? 'checked':'' }"/>>
                                                             <label class="custom-control-label" for="customRadio4">판매자</label>
                                                         </div>
                                                         
@@ -86,6 +86,21 @@
                                                 
                                                 
                                             </tr>
+                                            
+                                            <tr>
+						                           <th class="align-middle table-primary">정지일자</th>
+						                            <td colspan="3">
+						                                <div class="d-flex align-items-center">
+						                                     <div class="col-3 p-0">
+							                                     <input type="date" class="form-control" name="blackdate" value='<c:out value="${pageMaker.cri.blackdate }"/>'>
+							                                  </div>
+							                                  <span class="mx-2"><i class="fas fa-minus"></i></span>
+							                                  <div class="col-3 p-0">
+							                                       <input type="date" class="form-control" name="blackdate2" value='<c:out value="${pageMaker.cri.blackdate2 }"/>'>
+							                                   </div>
+						                                  </div>
+						                               </td>
+						                     </tr>
                                           
                                     
                                             
@@ -115,7 +130,7 @@
                                 </h5>
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class=" mb-3">총 <span class="mx-1 text-danger">50</span>건</div>
+                                        <div class=" mb-3">총 <span class="mx-1 text-danger">${searchTotal }</span>건</div>
                                      <table class="table table-bordered thead-light text-center table-hover">		                        
                                          <thead class="table-active">
                                              <tr>
@@ -127,29 +142,33 @@
                                              </tr>
                                          </thead>
                                          <tbody>
-                                           <c:forEach var="black" items="${blackList }">
-                                             <tr class="blackList" onclick="javascript:clickTrRow(this);">
-                                                <td>${black.email }</td>
-                                                <td>${black.name }</td>
-                                                
-                                                 <c:if test="${black.gb eq 's' }">
-                                                   <td>판매자</td>
-                                                 </c:if>
-                                                 
-                                                 <c:if test="${black.gb eq 'b' }">
-                                                   <td>구매자</td>
-                                                 </c:if>
-                                                
-                                                <c:if test="${black.status eq 'M' }">
-                                                 <td>한달정지</td>
-                                                 </c:if>
-                                                 
-                                                 <c:if test="${black.status eq 'D' }">
-                                                   <td>영구정지</td>
-                                                 </c:if>
-                                             </tr>
-                                            </c:forEach>
-                                            
+                                           <c:if test="${!empty blackList }">
+	                                           <c:forEach var="black" items="${blackList }">
+	                                             <tr class="blackList" onclick="javascript:clickTrRow(this);">
+	                                                <td>${black.email }</td>
+	                                                <td>${black.name }</td>
+	                                                
+	                                                 <c:if test="${black.gb eq 's' }">
+	                                                   <td>판매자</td>
+	                                                 </c:if>
+	                                                 
+	                                                 <c:if test="${black.gb eq 'b' }">
+	                                                   <td>구매자</td>
+	                                                 </c:if>
+	                                                
+	                                                <c:if test="${black.status eq 'M' }">
+	                                                 <td>한달정지</td>
+	                                                 </c:if>
+	                                                 
+	                                                 <c:if test="${black.status eq 'D' }">
+	                                                   <td>영구정지</td>
+	                                                 </c:if>
+	                                             </tr>
+	                                            </c:forEach>
+                                             </c:if>
+                                             <c:if test="${empty blackList }">
+                                             	<td colspan="4">조회된 데이터가 없습니다.</td>
+                                             </c:if>
                                         </tbody>
                                      </table>
                 
@@ -180,6 +199,15 @@
 								                            </ul>
 								                        </nav>
 								                    </div>
+								                    
+								                      <form id="actionForm" action="go_admin.do" method="get">
+														 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+														 <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+														 <input type="hidden" name="email" value="${pageMaker.cri.email }">
+														 <input type="hidden" name="nickname" value="${pageMaker.cri.nickname }">
+														 <input type="hidden" name="status" value="${pageMaker.cri.status }">
+														 <input type="hidden" name="gb" value="${pageMaker.cri.gb }">
+													</form>
                                    </div>
                                    </div>
                             </div>
@@ -249,6 +277,32 @@
         actionForm.find("input[name='pageNum']").val($(this).attr("href"));
         actionForm.submit();
     })
+    
+    //정지날짜 변경
+	let startDate =$("input[name='blackdate']");
+	let endDate =$("input[name='blackdate2']");
+	const handleReportDate =()=>{
+		$(endDate).val($(startDate).val())
+		$(endDate).attr("min",$(startDate).val())
+		
+		
+	}
+	$("input[name='blackdate']").on("change",handleReportDate);
+    //초기화버튼
+	const hadleResetLists =()=>{
+
+		$("input[name='email']").val('')
+		$("input[name='name']").val('')
+		$("input[name='nickname']").val('')
+		$("input[name='status']").val('')
+		$("input[name='gb']").val('')
+	
+		
+		searchForm.action="manageBlackList.do";
+		searchForm.submit();
+	}
+	$("#resetBtn").on("click",hadleResetLists);
+
     
     //검색버튼
 	const searchReport=()=>{

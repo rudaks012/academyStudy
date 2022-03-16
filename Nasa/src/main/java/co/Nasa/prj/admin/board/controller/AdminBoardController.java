@@ -27,6 +27,7 @@ public class AdminBoardController {
 		model.addAttribute("pageMaker", new PageDTO(cri, adminBoardDao.searchBoardTotal(cri)));
 		model.addAttribute("total",adminBoardDao.totalBoard(cri));
 		model.addAttribute("searchTotal",adminBoardDao.searchBoardTotal(cri));
+		model.addAttribute("todayTotal", adminBoardDao.todayTotalBoard());
 		return "admin/board/mangeSellerBoard";
 	}
 	
