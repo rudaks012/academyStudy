@@ -137,6 +137,15 @@
 	<select id="servicePromotion" resultType="co.Nasa.prj.comm.VO.ServiceVO">
 		SELECT * FROM SERVICE WHERE S_EMAIL = #{s_email} AND SER_STATUS = 'N'
 	</select>
+	
+	<select id="randomPromotion" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+		<![CDATA[
+		SELECT * FROM
+		(SELECT * FROM v_service_list
+		WHERE pro_status='N'
+		ORDER BY DBMS_RANDOM.RANDOM)
+		WHERE ROWNUM < 3 ]]>
+	</select>
 
 	<select id="homeCategorySelect" resultType="co.Nasa.prj.comm.VO.ServiceVO">
 		SELECT	*

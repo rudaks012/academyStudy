@@ -45,4 +45,7 @@ public interface ServiceMapper {
 	int countPagingSellerServiceY(ServiceVO vo);
 	
 	int DirectendService(ServiceVO vo);
+	
+	// 메인페이지 랜덤 프로모션 표시
+	List<ServiceVO> randomPromotion();
 }

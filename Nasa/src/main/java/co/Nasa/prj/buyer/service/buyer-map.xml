@@ -32,8 +32,7 @@
 	</select>
 	
 	<select id="BuyerEmailCheck" resultType="int">
-		select count(*) from buyer
-		where b_email=#{b_email}
+		select count(email) from vw_member_report where email=#{b_email}
 	</select>
 	
 	<insert id="BuyerInsert" parameterType="co.Nasa.prj.comm.VO.BuyerVO">

@@ -229,7 +229,7 @@
                                                                 ${cate.nickname }
                                                             </td>
                                                             <c:choose>
-                                                                <c:when test="${not empty cate.pro_code }">
+                                                                <c:when test="${not empty cate.pro_status }">
                                                                     <td class="position-relative tableprice" style="text-align: right; color: red;">
                                                                         <span style="text-decoration: line-through; font-weight: bold; font-size: 23px; color: rgb(58, 57, 57);">
                                                                             ${cate.ser_price_com }원
@@ -249,7 +249,7 @@
                                                             </td>
                                                             <td class="tablewish"></td>
                                                             <td class="tablebtn">
-                                                                <c:if test="${not empty cate.pro_code }">
+                                                                <c:if test="${not empty cate.pro_status }">
                                                                     <img src="resources/user/assets/img/promotion.png" style="width: 100px;">
                                                                 </c:if>
                                                             </td>
