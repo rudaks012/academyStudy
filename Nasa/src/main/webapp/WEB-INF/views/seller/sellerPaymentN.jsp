@@ -115,11 +115,11 @@ td, th {
 													<a
 														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0  rounded-0 py-3"
 														id="nav-info-tab" href="sellerPayment.do">정산
-														완료 거래</a><a
+														완료</a><a
 														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font active rounded-0 py-3"
 														id="nav-desc-tab" href="sellerPaymentN.do"
 														>정산
-														대기 거래</a> 
+														대기</a> 
 												</div>
 											</nav>
 											<div class="tab-content" id="nav-tabContent">

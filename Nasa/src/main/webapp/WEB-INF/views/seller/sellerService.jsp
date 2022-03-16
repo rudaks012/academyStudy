@@ -170,6 +170,16 @@ input[type=date] {
 	width: 100px;
 	height: 28px;
 }
+.genric-btn:hover {
+	background-color: white;
+	color:#9e68ff !important;
+	border: 1px solid #9e68ff !important;
+}
+.genric-btn.danger{
+	margin-top: 15px;
+	float: right;
+	background: #e0d6f2;
+}
 </style>
 </head>
 <body>
@@ -241,8 +251,9 @@ input[type=date] {
 								<a class="d-inline-block" style="margin-top: 20px;">
 									<h3>서비스 관리</h3>
 								</a>
+									<button href="serviceInsert.do" class="genric-btn danger circle">서비스 등록</button>
 								<hr class="hr" />
-								<a href="serviceInsert.do" class="genric-btn danger">서비스 등록</a>
+								
 								<!-- <a href="" class="genric-btn danger" data-toggle="modal"
 									data-target="#PowerModal">파워서비스 등록</a>  -->
 								<!-- <a href="" class="genric-btn danger" data-toggle="modal"

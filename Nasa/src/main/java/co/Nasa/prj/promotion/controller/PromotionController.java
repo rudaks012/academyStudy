@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.comm.VO.PromotionVO;
+import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.promotion.service.PromotionService;
 import co.Nasa.prj.service.service.ServiceService;
 
@@ -80,7 +81,9 @@ public class PromotionController {
 	
 	@RequestMapping("/promotionInsert.do")
 	public String promotionInsert(Model model, HttpSession session) {
-		model.addAttribute("serviceList",serviceDao.servicePromotion((String)session.getAttribute("id")));
+		ServiceVO vo = new ServiceVO();
+		vo.setS_email((String)session.getAttribute("id"));
+		model.addAttribute("serviceList",serviceDao.servicePromotion(vo));
 		return "seller/promotionInsert";
 	}
 	

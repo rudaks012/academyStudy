@@ -19,7 +19,7 @@ public interface ServiceService {
 
 	int schEndDateCheck();
 	
-	List<ServiceVO> servicePromotion(String s_email);
+	List<ServiceVO> servicePromotion(ServiceVO vo);
 
 	
 	List<ServiceVO> homeCategorySelect(ServiceVO vo);

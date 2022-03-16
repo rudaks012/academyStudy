@@ -55,7 +55,7 @@ public class PowerServiceController {
 		pagingdto.setTotal(powerDao.countPagingPowerservice(vo));
 		
 		model.addAttribute("powerList", powerList);
-		model.addAttribute("sellerMainServiceList", serviceDao.sellerMainServiceList(vo2));
+		model.addAttribute("sellerMainServiceList", serviceDao.servicePromotion(vo2));
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		
 		return "seller/sellerPower";
