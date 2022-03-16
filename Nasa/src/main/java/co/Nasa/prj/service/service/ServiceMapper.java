@@ -43,4 +43,6 @@ public interface ServiceMapper {
 	
 	List<ServiceVO> sellerMainServiceListY(ServiceVO vo);
 	int countPagingSellerServiceY(ServiceVO vo);
+	
+	int DirectendService(ServiceVO vo);
 }

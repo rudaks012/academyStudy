@@ -623,4 +623,27 @@ public class ServiceController {
 		serviceDao.schEndDateCheck();
 		System.out.println("enddate 스케쥴러 체크");
 	}
+	
+	@ResponseBody
+	@RequestMapping("/DirectendService.do")
+	public String DirectendService(@RequestParam("ser_code") String ser_code, @RequestParam("ser_reason") String ser_reason,
+			@RequestParam("ser_end") String ser_end, HttpSession session) throws ParseException {
+		ServiceVO vo = new ServiceVO();
+		vo.setSer_code(ser_code);
+		vo.setSer_reason(ser_reason);
+		
+		int n = serviceDao.DirectendService(vo);
+		
+		if(n != 0) {
+			PromotionVO pvo = new PromotionVO();
+			pvo.setPro_service(ser_code);
+			pvo.setS_email((String)session.getAttribute("id"));
+			promotionDao.DirectPromCancel(pvo);
+			promotionDao.DirectPromEnd(pvo);
+			return "TT";
+		}else {
+			return "FF";
+		}
+			
+	}
 }

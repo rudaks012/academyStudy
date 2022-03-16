@@ -95,7 +95,7 @@
 																<img src="editor/${knowhow.no_img }" alt="" style="width: 238px; height: 238px;">
 															</div>
 															<div class="team-caption">
-																<span>${knowhow.no_title }</span>
+																<span>${knowhow.s_nickname }</span>
 																<h3>
 																	<a href="knowhowDetail.do?no_code=${knowhow.no_code } ">${knowhow.no_title }</a>
 																</h3>

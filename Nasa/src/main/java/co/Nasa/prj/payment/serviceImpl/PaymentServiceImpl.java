@@ -199,4 +199,9 @@ public class PaymentServiceImpl implements PaymentService {
 		return map.CalendarList(id);
 	}
 
+	@Override
+	public int purchaseconfirm() {
+		return map.purchaseconfirm();
+	}
+
 }

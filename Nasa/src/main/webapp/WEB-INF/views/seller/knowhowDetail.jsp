@@ -35,7 +35,7 @@
          <div class="container">
             <div class="row justify-content-center">
             
-               <div class="col-lg-8 posts-list"  style="border: 1px solid #d5c9ea; padding: 3em">
+               <div class="col-lg-8 posts-list"  padding: 3em">
                   <div class="single-post">
 
                         <div class="feature-img">

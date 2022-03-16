@@ -44,4 +44,6 @@ public interface ServiceService {
 	
 	List<ServiceVO> sellerMainServiceListY(ServiceVO vo);
 	int countPagingSellerServiceY(ServiceVO vo);
+	
+	int DirectendService(ServiceVO vo);
 }

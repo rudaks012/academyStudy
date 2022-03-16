@@ -151,4 +151,19 @@
 	AND S.S_EMAIL = #{s_email} AND P.PRO_STATUS = 'Y' )
 </select>
 
+<update id="DirectPromEnd" parameterType="co.Nasa.prj.comm.VO.PromotionVO">
+	<![CDATA[
+	UPDATE PROMOTION SET
+	PRO_END = sysdate, PRO_STATUS = 'Y'
+	WHERE PRO_SERVICE = #{pro_service} AND PRO_STATUS <> 'Y'
+	AND S_EMAIL = #{s_email}
+	]]>
+</update>
+
+<delete id="DirectPromCancel" parameterType="co.Nasa.prj.comm.VO.PromotionVO">
+	DELETE FROM PROMOTION
+	WHERE PRO_SERVICE = #{pro_service}
+	AND PRO_STATUS = 'U'
+	AND S_EMAIL = #{s_email}
+</delete>
 </mapper>

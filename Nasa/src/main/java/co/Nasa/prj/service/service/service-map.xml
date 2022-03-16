@@ -69,7 +69,7 @@
 					(select pro_start from promotion where pro_service = ser_code and pro_status='N'  ) as pro_start,
 					(select pro_end from promotion where pro_service = ser_code and pro_status='N'  ) as pro_end,
 					(select trunc(ser_price-(ser_price * (prodiscount / 100)))  from promotion where pro_service = ser_code and pro_status='N'  ) as prodiscount,
-					(SELECT MAX(PAY_ENDDATE) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_ENDDATE,
+					(SELECT MAX(EVENT_END) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_MAX,
 					(SELECT MAX(PRO_END) FROM PROMOTION  WHERE PRO_SERVICE = serv.ser_code AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END AND pro_status <> 'Y') as PRO_MAX,
 					(SELECT MAX(POWER_END) FROM POWERSERVICE  WHERE SER_CODE = serv.ser_code  AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < POWER_END) as power_max,
 					SUB.SUB_NAME AS SUB_CATEGORY
@@ -95,7 +95,7 @@
 			(select pro_start from promotion where pro_service = ser_code and pro_status='N'  ) as pro_start,
 			(select pro_end from promotion where pro_service = ser_code and pro_status='N'  ) as pro_end,
 			(select trunc(ser_price-(ser_price * (prodiscount / 100)))  from promotion where pro_service = ser_code and pro_status='N'  ) as prodiscount,
-			(SELECT MAX(PAY_ENDDATE) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_ENDDATE,
+			(SELECT MAX(EVENT_END) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_MAX,
 			(SELECT MAX(PRO_END) FROM PROMOTION  WHERE PRO_SERVICE = serv.ser_code AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END AND pro_status <> 'Y') as PRO_MAX,
 			(SELECT MAX(POWER_END) FROM POWERSERVICE  WHERE SER_CODE = serv.ser_code  AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < POWER_END) as power_max,
 			sub.sub_name as sub_category
@@ -231,7 +231,7 @@
 					(select pro_start from promotion where pro_service = ser_code and pro_status='N'  ) as pro_start,
 					(select pro_end from promotion where pro_service = ser_code and pro_status='N'  ) as pro_end,
 					(select trunc(ser_price-(ser_price * (prodiscount / 100)))  from promotion where pro_service = ser_code and pro_status='N'  ) as prodiscount,
-					(SELECT MAX(PAY_ENDDATE) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_ENDDATE,
+					(SELECT MAX(EVENT_END) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_MAX,
 					(SELECT MAX(PRO_END) FROM PROMOTION  WHERE PRO_SERVICE = serv.ser_code AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END AND pro_status <> 'Y') as PRO_MAX,
 					(SELECT MAX(POWER_END) FROM POWERSERVICE  WHERE SER_CODE = serv.ser_code  AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < POWER_END) as power_max,
 					SUB.SUB_NAME AS SUB_CATEGORY
@@ -257,7 +257,7 @@
 			(select pro_start from promotion where pro_service = ser_code and pro_status='N'  ) as pro_start,
 			(select pro_end from promotion where pro_service = ser_code and pro_status='N'  ) as pro_end,
 			(select trunc(ser_price-(ser_price * (prodiscount / 100)))  from promotion where pro_service = ser_code and pro_status='N'  ) as prodiscount,
-			(SELECT MAX(PAY_ENDDATE) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_ENDDATE,
+			(SELECT MAX(EVENT_END) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_MAX,
 			(SELECT MAX(PRO_END) FROM PROMOTION  WHERE PRO_SERVICE = serv.ser_code AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END AND pro_status <> 'Y') as PRO_MAX,
 			(SELECT MAX(POWER_END) FROM POWERSERVICE  WHERE SER_CODE = serv.ser_code  AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < POWER_END) as power_max,
 			sub.sub_name as sub_category
@@ -282,7 +282,7 @@
 					(select pro_start from promotion where pro_service = ser_code and pro_status='N'  ) as pro_start,
 					(select pro_end from promotion where pro_service = ser_code and pro_status='N'  ) as pro_end,
 					(select trunc(ser_price-(ser_price * (prodiscount / 100)))  from promotion where pro_service = ser_code and pro_status='N'  ) as prodiscount,
-					(SELECT MAX(PAY_ENDDATE) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_ENDDATE,
+					(SELECT MAX(EVENT_END) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_MAX,
 					(SELECT MAX(PRO_END) FROM PROMOTION  WHERE PRO_SERVICE = serv.ser_code AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END AND pro_status <> 'Y') as PRO_MAX,
 					(SELECT MAX(POWER_END) FROM POWERSERVICE  WHERE SER_CODE = serv.ser_code  AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < POWER_END) as power_max,
 					SUB.SUB_NAME AS SUB_CATEGORY
@@ -308,7 +308,7 @@
 			(select pro_start from promotion where pro_service = ser_code and pro_status='N'  ) as pro_start,
 			(select pro_end from promotion where pro_service = ser_code and pro_status='N'  ) as pro_end,
 			(select trunc(ser_price-(ser_price * (prodiscount / 100)))  from promotion where pro_service = ser_code and pro_status='N'  ) as prodiscount,
-			(SELECT MAX(PAY_ENDDATE) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_ENDDATE,
+			(SELECT MAX(EVENT_END) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_MAX,
 			(SELECT MAX(PRO_END) FROM PROMOTION  WHERE PRO_SERVICE = serv.ser_code AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END AND pro_status <> 'Y') as PRO_MAX,
 			(SELECT MAX(POWER_END) FROM POWERSERVICE  WHERE SER_CODE = serv.ser_code  AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < POWER_END) as power_max,
 			sub.sub_name as sub_category
@@ -317,4 +317,10 @@
 			AND S_EMAIL = #{s_email} AND SER_STATUS = 'Y'
 			ORDER BY SER_START DESC)]]>
 	</select>
+	
+	<update id="DirectendService" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
+		UPDATE SERVICE SET
+		SER_REASON = #{ser_reason}, SER_END = TO_CHAR(sysdate,'YYYY-MM-DD'), SER_STATUS = 'Y'
+		WHERE SER_CODE = #{ser_code}
+	</update>
 </mapper>

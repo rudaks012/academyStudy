@@ -401,4 +401,14 @@ INSERT INTO	PAYMENT
 		WHERE B_EMAIL = #{b_email}
 	</select>
 	
+	<update id="purchaseconfirm" >
+	<![CDATA[
+		UPDATE PAYMENT SET PAY_ENDDATE = sysdate
+		WHERE  (TO_CHAR(EVENT_END+7, 'YYYY-MM-DD') <= TO_CHAR(SYSDATE, 'YYYY-MM-DD') 
+				AND EVENT_END IS NOT NULL AND PAY_ENDDATE IS NULL)
+			OR
+			 (TO_CHAR(PAY_DATE+7, 'YYYY-MM-DD') <= TO_CHAR(SYSDATE, 'YYYY-MM-DD') 
+			 AND EVENT_END IS NULL AND PAY_ENDDATE IS NULL)
+	]]>
+	</update>
 </mapper>

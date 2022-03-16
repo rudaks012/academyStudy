@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -230,4 +231,10 @@ public class PaymentController {
 		return list;
 	}
 	
+	@Scheduled(cron = "0 0 0 * * ?")
+	public void purchaseconfirm() {
+		int n = paymentDao.purchaseconfirm();
+		System.out.println(n);
+		System.out.println("구매확정 체크");
+	}
 }
