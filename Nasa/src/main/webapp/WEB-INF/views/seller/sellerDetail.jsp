@@ -127,7 +127,7 @@
                         <a href="#">
 
 
-                           <h4 style="display: inline;" id="detailname" class="sellernick">${sellerInfo.s_name }</h4>
+                           <h4 style="display: inline;" id="detailname" class="sellernick">${sellerInfo.s_nickname }</h4>
 
                         </a>
 
