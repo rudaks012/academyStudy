@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.Nasa.prj.comm.VO.BuyerVO;
+import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.SellerVO;
@@ -98,7 +99,7 @@ public class SellerController {
 //	}
 
 	@RequestMapping("/sellerDetail.do")
-	public String sellerDetail(Model model, @RequestParam("s_email") String s_email, HttpSession session) {
+	public String sellerDetail(Model model, @RequestParam("s_email") String s_email, HttpSession session, PagingDTO pagingdto, String pagestatus) {
 		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(s_email));
 		ServiceVO vo = new ServiceVO();
 		String w = "no";
@@ -113,11 +114,20 @@ public class SellerController {
 				}
 			}
 		}
+		ReviewVO reviewvo = new ReviewVO();
+		reviewvo.setS_email(s_email);
+		int cntReviews = reviewDao.countAllSellerDetailReview(reviewvo);
+		model.addAttribute("cntReviews", cntReviews);
 		
-//		List<ReviewVO> reviews = reviewDao.selectReviewandReviewComment(reviewvo);
-//		int cntReviews = reviews.size();
-//		model.addAttribute("cntReviews", cntReviews);
+		reviewvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
+		List<ReviewVO> reviewList = reviewDao.sellerDetailReview(reviewvo);
+		model.addAttribute("reviewList", reviewList);
+		pagingdto.setTotal(cntReviews);
+		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		
+		if("r".equals(pagestatus)) {
+			model.addAttribute("tabcode", pagestatus);
+		}
 		model.addAttribute("wish", w);
 		model.addAttribute("serviceList", serviceDao.servicePromotion(vo));
 		return "seller/sellerDetail";

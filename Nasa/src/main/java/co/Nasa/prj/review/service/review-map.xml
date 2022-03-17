@@ -181,6 +181,30 @@
 			ON          C.RERE_SEL_ID = S.S_EMAIL
 		)
 	</select>
+	<select id="countAllSellerDetailReview" resultType = "int">
+		SELECT	COUNT(*)
+		FROM	REVIEW R, SERVICE SR
+		WHERE	R.SCODE = SR.SER_CODE
+		AND		SR.S_EMAIL = #{s_email}
+	</select>
+	<select id="countSellerDetailReview" resultType="int">
+	</select>
+	<select id="sellerDetailReview" resultType="co.Nasa.prj.comm.VO.ReviewVO">
+		SELECT	*
+		FROM	(
+				 SELECT	ROWNUM RN, A.*
+				 FROM	(
+				 		 SELECT		R.*, C.*
+				 		 FROM		REVIEW R
+				 		 LEFT JOIN	REVIEW_COMMENT C
+				 		 ON			R.REV_CODE = C.REVIEW_CODE
+				 		 LEFT JOIN	SERVICE S
+				 		 ON			R.SCODE = S.SER_CODE
+				 		 WHERE		S.S_EMAIL = #{s_email}
+				 ) A
+		)
+		WHERE	RN BETWEEN #{start} AND #{end}
+	</select>
 	
 	<select id="calcRateList" resultType="co.Nasa.prj.comm.VO.ReviewVO">
 		SELECT		S.S_EMAIL AS S_EMAIL, ROUND(AVG(R.REV_RATE), 2) AS RATE
