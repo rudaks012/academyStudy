@@ -214,7 +214,7 @@
                               <br /><br />
                               <!-- 여기에 바이어 로그인 돼 있으면 리뷰작성 뜨게 작성 -->
                               <c:if test="${author eq 'B'}">
-                                 <form action="writeReview.do" method="post" onsubmit="return reviewQualifications('${detailS.ser_code}')" enctype="multipart/form-data">
+                                 <form id = "reviewform" action="writeReview.do" method="post" onsubmit="return false " enctype="multipart/form-data">
                                     <div id="writeReview">
                                        <h5>리뷰 작성</h5>
                                        <div class="d-flex">
@@ -234,7 +234,7 @@
                                           <input type="file" id="reviewimgUpload" name="reviewimg" accept="image/*" style="display:none;">
                                           <label class="genric-btn primary" for="reviewimgUpload">사진등록</label>
                                           <img id="reviewimg" alt="" style="width: 42px; height:42px; margin-left:10px; overflow: hidden; border-color:white;">
-                                          <button type="submit" class="genric-btn primary float-right">리뷰 작성</button>
+                                          <button type="submit" class="genric-btn primary float-right" onclick = "reviewQualifications('${detailS.ser_code}')">리뷰 작성</button>
                                        </div>                
                                     </div>
                                  </form>
@@ -883,21 +883,18 @@
                console.log(result);
                if(result == "OK") {
                   console.log("ifOK");
-                  submitcode = "OK";                 
+                  submitcode = "OK";
+                  alert("리뷰를 작성하였습니다.");
+                  $("#reviewform").submit();               
                } else if(result=="NO") {
                   console.log("ifNO");
                   submitcode = "NO";
+                  alert("구매한 서비스만 리뷰를 작성할 수 있습니다.")
                }
             }
          });
 
-         if(submitcode = "OK") {
-            console.log("submitOK");
-            return true;
-         } else if(submitcode = "NO"){
-            console.log("submitNO");
-            return false;
-         }
+         
       }
 	</script>
 	

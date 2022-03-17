@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,10 @@ public class ReviewController {
 	@Autowired Review_CommentMapper review_commentDao;
 	@Autowired BuyerMapper buyerDao;
 	@Autowired PaymentMapper paymentDao;
+	
+	@Value("#{upload['reviewupload']}")
+	private String reviewupload;
+	
 	
 	@RequestMapping("/deleteReview.do" )
 	public ResponseEntity<String> deleteReview(ReviewVO vo) {
@@ -102,10 +107,11 @@ public class ReviewController {
 		if(originalFileName.equals("")) {
 			vo.setRev_img(rvvo.getRev_img());
 		} else {
-			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\review\\";
+			String saveurl = reviewupload;
+//			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\review\\";
 			String savepath = saveurl + originalFileName;
-			
-			String rev_img = "resources/user/assets/img/review/" + originalFileName;
+			String rev_img = reviewupload + originalFileName;
+			//String rev_img = "resources/user/assets/img/review/" + originalFileName;
 			
 			vo.setRev_img(rev_img);
 			
