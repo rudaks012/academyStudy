@@ -110,7 +110,7 @@ public class ReviewController {
 			String saveurl = reviewupload;
 //			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\review\\";
 			String savepath = saveurl + originalFileName;
-			String rev_img = reviewupload + originalFileName;
+			String rev_img = "/upload/review/" + originalFileName;
 			//String rev_img = "resources/user/assets/img/review/" + originalFileName;
 			
 			vo.setRev_img(rev_img);
