@@ -676,6 +676,7 @@ input[type=date] {
                         dataType : "json",
                         success : function(data) {
                            for (var i = 0; i < data.length; i++) {
+                               console.log("로그인유저",data[i]);
                               loginList += data[i];
                               console.log(data[i]);
                            }
@@ -694,11 +695,12 @@ input[type=date] {
                         countAll = 0;
 
                         // 태그 동적 추가
-                        console.log(data);
+                        console.log("태그동적추카",data);
                         for ( var i in data) {
                            var $span; // 2단계
                            // 자신이 구매자 입장일 때
                            if (data[i].userid == "${loginMember.s_email}") {
+                               var s_img = data[i].s_img;
                               console.log("구매자 아이디 :::"
                                     + data[i].userid
                                     + "판매자 아이디 :::"
@@ -710,7 +712,7 @@ input[type=date] {
                                           data[i].masterid)
 										  .attr("ser_code", data[i].ser_code)
 										  ;
-                              $img = $("<img class='profile_img' src='resources/img/buzz.png'>");
+                              $img = $("<img class='profile_img' src=''${s_img}''>");
                                    //$img = $("<img class='profile_img' src='resources/user/assets/img/profile/${loginMember.s_img}.png'>");
                               $div.append($img);
                               $divs = $("<span class='userNameId'>")
@@ -882,7 +884,7 @@ input[type=date] {
          console.log("엔터룸 기멤버" + re_member); 
          document.querySelector("#paycheckId").innerHTML = re_member;
 
-         //$(obj).attr("clickable", "false");
+         $(obj).attr("clickable", "false");
          //}
       }// 채팅방 클릭 시 방번호 배정후 웹소켓 연결
       // 채팅 방 클릭 시 방번호 배정 후 웹소켓 연결
@@ -955,6 +957,7 @@ input[type=date] {
          let jsonData = JSON.stringify(data);
          websocket.send(jsonData);
          console.log("웹소켓 연결되었을때 ::::" + websocket);
+         console.log("웹소켓 연결되었을때123123123 ::::" + jsonData);
       }
 
       // * 1 메시지 전송
