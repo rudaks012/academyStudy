@@ -113,7 +113,7 @@
                
                
                   <div class="row my-5">
-                	<div class="col-5">
+                	<div class="col-6">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             판매자내역조회
                         </h5>
@@ -186,7 +186,7 @@
 		                   </div>
                			</div>
                 	</div>
-                	<div class="col-7">
+                	<div class="col-6">
                            <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             상세조회
                         </h5>

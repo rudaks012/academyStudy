@@ -53,11 +53,11 @@
                                         	<select name="re_type" class="custom-select  form-control custom-shadow ">
                                         		<option value="" id="choice" selected>선택</option>
 				                                <option value="욕설/비방" <c:out value="${pageMaker.cri.re_type eq '욕설/비방'? 'selected':'' }"/>>비방/욕설</option>
-				                                <option value="스팸/부적절한광고" <c:out value="${pageMaker.cri.re_type eq '스팸/부적절한 광고'? 'selected':'' }"/>>스팸/부적절한 광고</option>
-				                                <option value="혐오/잔인한사진" <c:out value="${pageMaker.cri.re_type eq '혐오/잔인한사진'? 'selected':'' }"/>>혐오/잔인한사진</option>
+				                                <option value="스팸, 부적절한 광고" <c:out value="${pageMaker.cri.re_type eq '스팸, 부적절한 광고'? 'selected':'' }"/>>스팸/부적절한 광고</option>
+				                                <option value="혐오/잔인한 사진" <c:out value="${pageMaker.cri.re_type eq '혐오/잔인한 사진'? 'selected':'' }"/>>혐오/잔인한사진</option>
 				                                <option value="음란물" <c:out value="${pageMaker.cri.re_type eq '음란물'? 'selected':'' }"/>>음란물</option>
 				                                <option value="채팅신고" <c:out value="${pageMaker.cri.re_type eq '채팅신고'? 'selected':'' }"/>>채팅신고</option>
-				                                <option value="기타" <c:out value="${pageMaker.cri.re_type eq '기타'? 'selected':'' }"/>>기타</option>r
+				                                <option value="기타" <c:out value="${pageMaker.cri.re_type eq '기타'? 'selected':'' }"/>>기타</option>
 				                            </select>
 				                            </div>
                                         </td>

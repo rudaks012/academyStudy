@@ -656,7 +656,7 @@ $("#searchBtn").on("click",searchReport);
                 
                 //프로필
                 let b_img = result.buyer.b_img;
-                b_img!=null? $("#b_img").attr("src",b_img):$("#b_img").attr("src","resources/user/assets/img/search-default-profile.jpg")
+                b_img!=null? $("#b_img").attr("src",b_img):$("#b_img").attr("src","resources/user/assets/img/search-default-profile-s.jpg")
                 //구매내역 총수
                 $("#paymentListLength").text(result.payment.length);
                 //구매내역 누적금액

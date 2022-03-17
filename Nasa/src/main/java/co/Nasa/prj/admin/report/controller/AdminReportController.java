@@ -100,7 +100,7 @@ public class AdminReportController {
 	@RequestMapping("/report_complete.do")
 	public String report_complete(Model model, Criteria cri) {
 
-		model.addAttribute("reportCompleteLists", reportDao.getReportListWithPaging(cri));
+		model.addAttribute("reportCompleteLists", reportDao.getReportCompleteListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportComplete(cri)));
 		model.addAttribute("total", reportDao.totalReportComplete(cri));
 		model.addAttribute("todayReport", reportDao.todayReportTotal());

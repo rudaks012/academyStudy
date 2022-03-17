@@ -342,7 +342,7 @@
     		$("#report").val(result.report)
     		let status = result.status;
     		status=="M"?$("#status").val("한달정지"):$("#status").val("영구정지")
-    		$("#date").val(result.date)
+    		$("#date").val(result.blackdate)
     		$("#joindate").val(result.joindate)
     		let rank = result.rank;
     		rank=="1"?$("#rank").val("별"):

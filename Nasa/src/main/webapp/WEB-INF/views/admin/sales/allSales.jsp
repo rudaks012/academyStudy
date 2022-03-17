@@ -40,7 +40,7 @@
 <!-- 월별 -->
 <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#monthchart">원별매출</a>
+      <a class="nav-link active" data-toggle="tab" href="#monthchart">월별매출</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#yearchart">연도별 매출</a>
