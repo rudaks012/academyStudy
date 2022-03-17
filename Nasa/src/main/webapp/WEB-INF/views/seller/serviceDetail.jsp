@@ -214,7 +214,7 @@
                               <br /><br />
                               <!-- 여기에 바이어 로그인 돼 있으면 리뷰작성 뜨게 작성 -->
                               <c:if test="${author eq 'B'}">
-                                 <form id = "reviewform" action="writeReview.do" method="post" onsubmit="return false " enctype="multipart/form-data">
+                                 <form id = "reviewform" action="writeReview.do" method="post" enctype="multipart/form-data">
                                     <div id="writeReview">
                                        <h5>리뷰 작성</h5>
                                        <div class="d-flex">
@@ -234,12 +234,12 @@
                                           <input type="file" id="reviewimgUpload" name="reviewimg" accept="image/*" style="display:none;">
                                           <label class="genric-btn primary" for="reviewimgUpload">사진등록</label>
                                           <img id="reviewimg" alt="" style="width: 42px; height:42px; margin-left:10px; overflow: hidden; border-color:white;">
-                                          <button type="submit" class="genric-btn primary float-right" onclick = "reviewQualifications('${detailS.ser_code}')">리뷰 작성</button>
+                                          <button type="button" class="genric-btn primary float-right" onclick = "reviewQualifications('${detailS.ser_code}')">리뷰 작성</button>
                                        </div>                
                                     </div>
                                  </form>
                               </c:if>
-                              <form action="writeReview.do" method="post", enctype="multipart/form-data" style="display:none;">
+                              <form style="display:none;">
                                  <div id="writeReview">
                                     <h5>리뷰 작성</h5>
                                     <div class="d-flex">

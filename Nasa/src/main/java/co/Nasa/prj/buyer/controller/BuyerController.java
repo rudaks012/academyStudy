@@ -722,7 +722,7 @@ public class BuyerController {
 			// String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
 			String savepath = saveurl + saveFileName;
 			System.out.println(savepath);
-			String b_img = profileupload + saveFileName;
+			String b_img = "/upload/profile/" + saveFileName;
 			//String b_img = "resources/user/assets/img/profile/" + saveFileName;
 			
 			vo.setB_img(b_img);
