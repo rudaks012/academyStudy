@@ -117,6 +117,9 @@
 								<h2>리뷰확인</h2>
 							</a>
 							<div class="comments-area">
+								<c:if test="${fn:length(reviewList) == 0}">
+									<p>등록된 리뷰가 없습니다.</p>
+								</c:if>
 								<c:forEach items="${reviewList }" var="review">
 								
 									<div id="rvcode-${review.rev_code }" class="comment-list">
@@ -135,7 +138,7 @@
 													</c:otherwise>
 												</c:choose>
 												<div class="desc">
-													<span>${review.rev_ser_name }</span><br>
+													<span style="font-weight: 800;">${review.rev_ser_name }</span><br>
 													<span>${review.rev_name }</span>
 													<span class="ml-4">평점 : ${review.rev_rate }</span>
 													<span class="date">${fn:substring(review.rev_date, 0 , 10) } </span>
@@ -425,6 +428,7 @@
 					re_subject : re_subject},
 				success: function() {
 					console.log("신고함!");
+					alert("신고하였습니다.");
 				},
 				error: function() {
 					console.log("신고에러")

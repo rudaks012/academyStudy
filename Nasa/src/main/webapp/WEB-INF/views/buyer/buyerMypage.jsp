@@ -374,7 +374,6 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 </head>
 <body>
-<div id="bmail">${id }</div>
 <!-- Hero Start-->
 <div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
 </div>

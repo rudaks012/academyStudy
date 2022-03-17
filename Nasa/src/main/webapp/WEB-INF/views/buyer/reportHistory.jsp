@@ -86,6 +86,9 @@
 									</tr>
 								</thead>
 								<tbody>
+									<c:if test="${fn:length(reportList) == 0}">
+										<td colspan="4">신고 내역이 없습니다.</td>
+									</c:if>
 									<c:forEach items="${reportList }" var="report">
 										<tr>
 											<%-- <th scope="row">${report.re_code }</th> --%>

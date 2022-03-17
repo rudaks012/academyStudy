@@ -33,12 +33,14 @@ import co.Nasa.prj.comm.VO.PromotionVO;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 import co.Nasa.prj.comm.VO.SubCategoryVO;
+import co.Nasa.prj.comm.VO.WishlistVO;
 import co.Nasa.prj.powerservice.service.PowerServiceService;
 import co.Nasa.prj.promotion.service.PromotionService;
 import co.Nasa.prj.review.service.ReviewMapper;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
 import co.Nasa.prj.sub_category.service.Sub_CategoryService;
+import co.Nasa.prj.wishlist.service.WishlistMapper;
 
 @Controller
 public class ServiceController {
@@ -56,6 +58,8 @@ public class ServiceController {
 	private PromotionService promotionDao;
 	@Autowired
 	private PowerServiceService powerDao;
+	@Autowired
+	private WishlistMapper wishlistDao;
 	
 	// 카테고리 별 서비스 목록
 	@RequestMapping("/homeCategory.do")
@@ -535,6 +539,22 @@ public class ServiceController {
 		model.addAttribute("reviewList", reviewList);
 		pagingdto.setTotal(reviewDao.countReviewandReviewComment(reviewvo));
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
+		
+		String w = "no";
+		if("B".equals((String)session.getAttribute("author"))) {
+			WishlistVO wishlistvo = new WishlistVO();
+			wishlistvo.setB_id((String)session.getAttribute("id"));
+			List<WishlistVO> wishlist = wishlistDao.selectBuyerWishlist(wishlistvo);
+			for(int i = 0; i < wishlist.size(); i++) {
+				if(wishlist.get(i).getS_id().equals(vo.getS_email())) {
+					w = "exist";
+				}
+			}
+		}
+		model.addAttribute("wish", w);
+		
+		// 구매내역 비교
+		
 		
 		if("r".equals(pagestatus)) {
 			System.out.println("!!!!!!!!!@#!@#!@#!@#!@#!@#!@#!@#!@# : " + pagestatus);
