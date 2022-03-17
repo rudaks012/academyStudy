@@ -346,9 +346,9 @@ input[type=date] {
 <body>
   <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
    </div>
-   <div class="my-5" style="margin-left:100px"><!-- listing-area -->
+   <div class="" style="margin-top:50px; margin-bottom:100px ;margin-left:200px "><!-- listing-area -->
       <div class="container" ng-cloak ng-app="chatApp" style="max-width: 2000px" >
-         <div class="row channer" style="border-radius: 2px; height: 650px;">
+         <div class="row channer" style="border-radius: 2px; height: 750px;">
             <div class="col-3 channer" style="box-shadow: 0px 15px 14px  rgba(178 178 194 / 64%);border-radius: 20px;">
                <div class="row">
                   <div class="col-12 mb-4" style="background-color:#0D0F36; padding:10px 0px;border-radius: 15px 15px 0px 0px;">

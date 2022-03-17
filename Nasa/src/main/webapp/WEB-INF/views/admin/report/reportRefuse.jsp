@@ -50,13 +50,13 @@
                                         <td>
                                         	<div class="col-6">
                                         	<select name="re_type" class="custom-select  form-control custom-shadow ">
-                                        		<option value="" id="choice" selected>선택</option>
+                                        	    <option value="" id="choice" selected>선택</option>
 				                                <option value="욕설/비방" <c:out value="${pageMaker.cri.re_type eq '욕설/비방'? 'selected':'' }"/>>비방/욕설</option>
-				                                <option value="스팸/부적절한광고" <c:out value="${pageMaker.cri.re_type eq '스팸/부적절한 광고'? 'selected':'' }"/>>스팸/부적절한 광고</option>
-				                                <option value="혐오/잔인한사진" <c:out value="${pageMaker.cri.re_type eq '혐오/잔인한사진'? 'selected':'' }"/>>혐오/잔인한사진</option>
+				                                <option value="스팸, 부적절한 광고" <c:out value="${pageMaker.cri.re_type eq '스팸, 부적절한 광고'? 'selected':'' }"/>>스팸/부적절한 광고</option>
+				                                <option value="혐오/잔인한 사진" <c:out value="${pageMaker.cri.re_type eq '혐오/잔인한 사진'? 'selected':'' }"/>>혐오/잔인한사진</option>
 				                                <option value="음란물" <c:out value="${pageMaker.cri.re_type eq '음란물'? 'selected':'' }"/>>음란물</option>
 				                                <option value="채팅신고" <c:out value="${pageMaker.cri.re_type eq '채팅신고'? 'selected':'' }"/>>채팅신고</option>
-				                                <option value="기타" <c:out value="${pageMaker.cri.re_type eq '기타'? 'selected':'' }"/>>기타</option>r
+				                                <option value="기타" <c:out value="${pageMaker.cri.re_type eq '기타'? 'selected':'' }"/>>기타</option>
 				                            </select>
 				                            </div>
                                         </td>
@@ -142,7 +142,7 @@
 		                         	<tr>
 		                         		<th>신고코드</th>
 		                         		<th>신고유형</th>
-		                         		<th>신고자아이디</th>       		
+		                         		<th>피신고자아이디</th>       		
 		                         		<th>신고일자</th>
 		                         		<th>신고처리</th>
 		                         	</tr>
@@ -150,9 +150,9 @@
 		                         <tbody>
 		                            <c:if test="${!empty reportRefuseLists }">
 			                             <c:forEach var="report" items="${reportRefuseLists }">
-			                           	 <tr class="reportList">
-			                           	 	<input type="hidden" value="${report.re_code }" onclick="javascript:clickTrRow(this);">
-			                                <td>${report.re_reporter }</td>
+			                           	 <tr class="reportList" onclick="javascript:clickTrRow(this);">
+			                           	 	
+			                                <td>${report.re_code }</td>
 			                                <td>${report.re_type }</td>
 			                                <td>${report.re_res }</td>
 			                                <td>${fn:substring(report.re_date,0,11) }</td>
@@ -263,10 +263,12 @@
 											
 											</td>                                 
                                         </tr>
-                                        <tr>
-                                            <th width="18%" class="table-primary align-middle">첨부파일</th>
-                                            <td colspan="3" id="filecode"></td>
+                                       	<tr >
+                                            <th colspan="4" class="table-primary align-middle">첨부파일</th>
                                             
+                                        </tr>
+                                        <tr>
+                                        	<td colspan="4" id="filecode"></td>
                                         </tr>
                                         <tr>
                                             <th colspan="4" class="table-danger align-middle">신고반려사유</th>
@@ -345,8 +347,9 @@ const reportList = document.querySelectorAll(".reportList");
 
 const selectReport=()=>{
 
-const res = event.target.parentNode.lastChild.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerText;
-const reCode=event.target.parentElement.firstElementChild.value;
+	const res = event.target.parentNode.lastChild.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerText;
+	const reCode=event.target.parentElement.firstElementChild.innerText;
+	
 	console.log(reCode)
 	$.ajax({
 		url:"ajaxDetailedReport.do",
@@ -375,7 +378,9 @@ const reCode=event.target.parentElement.firstElementChild.value;
 		console.log(result.filecode);
 		//파일
 		let filecode= result.filecode
-		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text(result.filecode)
+		let img = "<img src='"+filecode+"' style='width:300px'>"
+		
+		result.filecode==null?$("#filecode").text("해당없음"):$("#filecode").text('').append(img)
 				
 				
 		//반려사유

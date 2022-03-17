@@ -621,9 +621,10 @@ $("#searchBtn").on("click",searchReport);
                 $("#s_date").val(result.seller.s_date);
                 $("#s_author").val(result.seller.s_author);   
 
-                $("#s_img").attr("src",result.seller.s_img)
 
-                $("#s_img").attr("src",result.seller.s_img);
+                //프로필
+                let s_img = result.seller.s_img;
+                s_img!=null? $("#s_img").attr("src",s_img):$("#s_img").attr("src","resources/user/assets/img/search-default-profile-s.jpg")
 
                 $("#s_school").val(result.seller.s_school); 
                 $("#s_major").val(result.seller.s_major); 
@@ -662,7 +663,7 @@ $("#searchBtn").on("click",searchReport);
             if (result == 0) {
                 alert("현재 등급과 같습니다.")
             } else {
-                alert("수정 완")
+                alert("등급을 수정했습니다.")
                 window.location.reload();
             }
         })

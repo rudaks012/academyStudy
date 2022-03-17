@@ -138,8 +138,9 @@
   	     SELECT rownum rn, r.*
   	     FROM (SELECT * 
                FROM report
-               ORDER BY re_code) r
-  	     WHERE re_result ='Y' AND rownum <=#{pageNum} * #{amount}
+               WHERE re_result ='Y'
+               ORDER BY re_code DESC) r
+  	     WHERE rownum <=#{pageNum} * #{amount}
   	     
   	     ]]>
   	     <include refid="criteria"></include>

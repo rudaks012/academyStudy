@@ -95,7 +95,7 @@
                             
                             
                    <div class="row my-5">
-                	<div class="col-5">
+                	<div class="col-6">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             판매자노하우 목록
                         </h5>
@@ -105,22 +105,36 @@
 		                     <table class="table table-bordered thead-light text-center table-hover">		                        
 		                         <thead class="table-active">
 		                         	<tr>
-		                         		<th width="10%">순번</th>
-		                         		<th width="120px">제목</th>
+		                         		<th width="70px">순번</th>
+		                         		<th width="120px">아이디</th>
 		                         		<th>제목</th>       		
-		                         		<th width="120px">등록일자</th>
+		                         		<th width="150px">등록일자</th>
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
-		                           <c:forEach var="board" items="${boardLists }">
-		                             <tr class="boardList" onclick="javascript:clickTrRow(this);">
-		                                <td>${board.no_code }</td>
-		                                <td>${board.no_title }</td>
-		                                <td>${board.no_id }</td>
-		                                <td>${fn:substring(board.no_date,0,11) }</td>
-		                             </tr>
-		                           </c:forEach>     
-                                    
+		                          <c:if test="${!empty boardLists }">
+			                           <c:forEach var="board" items="${boardLists }">
+			                             <tr class="boardList" onclick="javascript:clickTrRow(this);">
+			                                <td>${board.no_code }</td>
+			                                <td>${board.no_id }</td>
+			                                <c:choose>
+		                                	<c:when test="${fn:length(board.no_title)>11 }">
+		                                		<td>${fn:substring(board.no_title,0,10) }...</td>
+		                                	</c:when>
+		                                	<c:otherwise>
+		                                		<td>${board.no_title }</td>
+		                                	</c:otherwise>
+		                                </c:choose>
+			                                <td>${fn:substring(board.no_date,0,11) }</td>
+			                             </tr>
+			                           </c:forEach>     
+                                   </c:if> 
+                                   <c:if test="${empty boardLists }">
+                                   		<tr>
+                                   			<td colspan="4">조회된 데이터가 없습니다. </td>
+                                   		</tr>
+                                   	
+                                   </c:if>
 		                        </tbody>
 		                     </table>
 		
@@ -149,7 +163,7 @@
 			                    </div>
 		                   </div>
 		                   
-		                   <form id="actionForm" action="go_admin.do" method="get">
+		                   <form id="actionForm" action="manage_sellerBoard.do" method="get">
 							 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 							 <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 							 <input type="hidden" name="no_id" value="${pageMaker.cri.no_id }">
@@ -160,15 +174,15 @@
 						</form>
                			</div>
                 	</div>
-                	<div class="col-7">
+                	<div class="col-6">
                            <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             상세조회
                         </h5>
                 	    <div class="card">
-                           <div class="d-flex justify-content-end mr-4">
+                           <!-- <div class="d-flex justify-content-end mr-4">
                                 <button id="modifyBtn" class="btn btn-outline-primary mt-3">수정</button>
                                  <button class="btn btn-outline-secondary ml-2 mt-3">삭제</button>
-                            </div>
+                            </div> -->
 		                   <div class="card-body">
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
@@ -257,7 +271,7 @@ const hadleResetLists =()=>{
 	$("input[name='b_email']").val('')
 	$("input[name='ser_title']").val('')
 	$("select[name='pay_cate']").val('').prop("selected",true);
-	searchForm.action="manage_buyerPayment.do";
+	searchForm.action="manage_sellerBoard.do";
 	searchForm.submit();
 }
 $("#resetBtn").on("click",hadleResetLists);
