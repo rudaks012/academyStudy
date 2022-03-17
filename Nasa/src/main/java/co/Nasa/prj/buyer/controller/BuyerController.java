@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -73,7 +74,9 @@ public class BuyerController {
 //	@Autowired
 //	private PasswordEncoder passwordEncoder;
 
-
+	@Value("#{upload['profileupload']}")
+	private String profileupload;
+	
 	// 구매자 마이페이지로 이동
 	@RequestMapping("/goBuyerMypage.do")
 	public String goBuyerMypage(HttpSession session, HttpServletResponse response, HttpServletRequest request,
@@ -715,11 +718,12 @@ public class BuyerController {
 		} else {
 			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
 			String saveFileName = UUID.randomUUID() + extension;
-			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+			String saveurl = profileupload;
+			// String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
 			String savepath = saveurl + saveFileName;
 			System.out.println(savepath);
-			
-			String b_img = "resources/user/assets/img/profile/" + saveFileName;
+			String b_img = profileupload + saveFileName;
+			//String b_img = "resources/user/assets/img/profile/" + saveFileName;
 			
 			vo.setB_img(b_img);
 			System.out.println(vo.getB_img());
