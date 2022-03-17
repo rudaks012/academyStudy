@@ -126,7 +126,7 @@ input[type="radio"] {
 												<tr>
 													<td>서비스명 <span class="spanstar">*</span></td>
 													<td colspan="3"><input type="text" id="sname"
-														name="ser_title" required></td>
+														name="ser_title" required="required"></td>
 												</tr>
 												<tr>
 													<td>1차 카테고리<span class="spanstar">*</span></td>

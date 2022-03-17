@@ -129,7 +129,7 @@ p {
 													</td>
 												</tr>
 												<tr>
-													<td class="align-middle table-primary knowtd" colspan="2">메인이미지
+													<td class="align-middle table-primary knowtd" colspan="2">썸네일
 														<span class="spanstar">*</span>
 													</td>
 													<td><input type="file" id="file" name="file"
@@ -238,6 +238,17 @@ p {
 		})
 	
 		$("#knowhowUbtn").on("click", function(){
+			if($("#no_title").val() == ''){
+				alert('제목을 입력해주세요.');
+				return;
+			}else if($("#file").val() == ''){
+				alert('썸네일을 선택해주세요.');
+				return;
+			}else if($("#summernote").val() == ''){
+				alert('내용을 입력해주세요.');
+				return;
+			}
+			
 			var form = $("form")[0];
 			var formData = new FormData(form);
 		

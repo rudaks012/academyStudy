@@ -287,10 +287,17 @@ INSERT INTO	PAYMENT
    </select>
    
    <select id="sellerTotalservice" parameterType="hashmap" resultType="co.Nasa.prj.comm.VO.PaymonthVO">
-   	SELECT NVL(COUNT(PAY_DATE),0) totalcount, NVL(SUM(PAY_PRICE),0) totalsum, NVL(SUM(PAY_COM),0) totalsusu
+   	SELECT NVL(COUNT(PAY_DATE),0) totalcount
    	FROM PAYMENT  
    	WHERE SUBSTR(TO_CHAR(PAY_DATE,'yyyy-mm-dd'),0,4)= #{year} AND S_CODE = #{s_code} 
    	and S_EMAIL= #{s_email}
+   </select>
+   
+   <select id="sellerTotalservice2" parameterType="hashmap" resultType="co.Nasa.prj.comm.VO.PaymonthVO">
+   	SELECT NVL(SUM(PAY_PRICE),0) totalsum, NVL(SUM(PAY_COM),0) totalsusu
+   	FROM PAYMENT  
+   	WHERE SUBSTR(TO_CHAR(PAY_DATE,'yyyy-mm-dd'),0,4)= #{year} AND S_CODE = #{s_code} 
+   	and S_EMAIL= #{s_email} AND PAY_ENDDATE IS NOT NULL
    </select>
    
    <select id="countPagingSellerPayment" resultType="int">
@@ -422,6 +429,10 @@ INSERT INTO	PAYMENT
 		WHERE B_EMAIL = #{b_email}
 	</select>
 	
+	<select id="CalendarListS" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+		SELECT * FROM V_CALENDAR
+		WHERE S_EMAIL = #{s_email}
+	</select>
 
 	<update id="purchaseconfirm" >
 	<![CDATA[
@@ -438,6 +449,10 @@ INSERT INTO	PAYMENT
 		select * from v_calendar
 		where b_email = #{b_email} and ser_title = #{ser_title} and pay_code = #{pay_code}
 	</select>
-
+	
+	<select id="selectSellerCalendar" parameterType="String" resultType="co.Nasa.prj.comm.VO.PaymentVO">
+		select * from v_calendar
+		where s_email = #{s_email} and ser_title = #{ser_title} and pay_code = #{pay_code}
+	</select>
   
 </mapper>

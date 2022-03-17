@@ -93,29 +93,33 @@
                                 <div id='calendar'></div>
                                 <br>
                                 <a class="d-inline-block">
-                                    <h2>현재 진행중인 서비스</h2>
+                                    <h2>일정 조회</h2>
                                 </a>
                                 <table class="servicetable">
                                     <tbody>
-                                        <tr class="thtext position-relative">
-                                            <th rowspan="4" class="imgtd"><img src="resources/user/assets/img/search-default-profile.jpg" style="height: 150px; width: 150px;"></td>
-                                            <th>서비스 명</th>
-                                            <th colspan="2">판매자명</th>                                                
+                                        <tr>
+                                            <th rowspan="5" class="imgtd" style="text-align: center;"><img id="ser_img"
+                                                    src="resources/user/assets/img/search-default-profile.jpg"
+                                                    style="height: 175px; width: 175px; border-radius: 8px;"></td>
+                                            <th>서비스 : </th>
+                                            <td><a id="ser_title"></a></th>
                                         </tr>
-                                        <tr class="tdtext position-relative">
-                                            <td>웹개발해드립니다</td>
-                                            <td colspan="2">IT고수</td>                                                
+                                        <tr>
+                                            <th>카테고리 : </th>
+                                            <td id="cate"></td>
                                         </tr>
-                                        <tr class="thtext position-relative">
-                                            <th>진행 상황</th>
-                                            <th>거래 기간</th>
-                                            <th>거래 금액</th>                                            
+                                        <tr>
+                                            <th>판매자 : </th>
+                                            <td><a id="s_nickname"></a></td>
                                         </tr>
-                                        <tr class="tdtext position-relative">
-                                            <td>진행 중</td>
-                                            <td>2022-01-14~2022-01-15</td>
-                                            <td>10,000,000원</td>
-                                        </tr>                                        
+                                        <tr>
+                                            <th>가 격 : </th>
+                                            <td id="pay_price_tochar"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>기 간 : </th>
+                                            <td id="paydate"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>                                                       
@@ -128,20 +132,57 @@
 </section>
 <script>
     // 수정할 것...
-    document.addEventListener('DOMContentLoaded', function () {
+   document.addEventListener('DOMContentLoaded', function () {
         let xhtp = new XMLHttpRequest();
-        xhtp.open('get', 'CalendarList.do');
+        xhtp.open('get', 'CalendarListS.do');
         xhtp.send();
         xhtp.onload = function () {
             let dbData = JSON.parse(xhtp.responseText);
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
+
                 initialView: 'dayGridMonth',
-                dayMaxEvents: true, // allow "more" link when too many events
+                dayMaxEvents: true, // allow "more" link when too many events               
+                locale: 'kor',
+                eventClick: function () {
+                    getCalServList();
+                },
                 events: dbData
             });
             calendar.render();
+
+            function getCalServList() {                
+                var ser_title = $(event.target).text();
+                var info = dbData.find(function (data) {
+                    return data.title === ser_title
+                });
+                var pay_code = info.pay_code;
+
+                $.ajax({
+                    url: "ajaxGetCalServListS.do",
+                    type: "post",
+                    data: {
+                        "ser_title": ser_title,
+                        "pay_code": pay_code
+                    },
+                    success: function (data) {
+                        console.log("여기주목밑에밑에");
+                        console.log(data);
+                        $("#ser_title").text(data.ser_title);
+                        $("#ser_title").attr("onclick", "location.href='serviceDetail.do?ser_code=" + data.s_code + "'");
+                        $("#ser_title").attr("style", "cursor:pointer; background-color: #dddddd;");  
+                        $("#cate").text(data.category + " > " + data.sub_category);
+                        $("#s_nickname").text(data.s_nickname);
+                        $("#s_nickname").attr("onclick", "location.href='sellerDetail.do?s_email=" + data.s_email + "'");
+                        $("#s_nickname").attr("style", "cursor:pointer; background-color: #dddddd;");  
+                        $("#pay_price_tochar").text(data.pay_price_tochar + "원");
+                        $("#ser_img").attr("src", "fileupload/" + data.ser_img);
+                        $("#paydate").text(data.event_start + " ~ " + data.event_end_original);
+
+                    }
+                })
+            }
         }
     });
 </script>

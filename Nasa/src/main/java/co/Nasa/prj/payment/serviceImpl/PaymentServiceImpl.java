@@ -227,4 +227,19 @@ public class PaymentServiceImpl implements PaymentService {
 
 	}
 
+	@Override
+	public PaymonthVO sellerTotalservice2(HashMap<String, String> totalmap) {
+		return map.sellerTotalservice2(totalmap);
+	}
+
+	@Override
+	public PaymentVO selectSellerCalendar(PaymentVO vo) {
+		return map.selectSellerCalendar(vo);
+	}
+
+	@Override
+	public List<PaymentVO> CalendarListS(String id) {
+		return map.CalendarListS(id);
+	}
+
 }

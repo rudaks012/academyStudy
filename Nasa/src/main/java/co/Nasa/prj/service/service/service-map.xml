@@ -131,7 +131,9 @@
 		<![CDATA[
 		UPDATE SERVICE SET
 		SER_STATUS = 'Y'
-		WHERE SER_END < TO_CHAR(sysdate,'yyyy-mm-dd')]]>
+		WHERE SER_END < TO_CHAR(sysdate,'yyyy-mm-dd')
+		AND SER_STATUS <> 'Y'
+		]]>
 	</update>
 
 	<select id="servicePromotion" resultType="co.Nasa.prj.comm.VO.ServiceVO">

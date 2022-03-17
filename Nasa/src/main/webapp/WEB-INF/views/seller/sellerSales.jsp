@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <style>
 .nice-select {
 	width: 300px;
@@ -396,6 +395,18 @@ hr{
 				data: {scode:temp, year:temp2},
 				success: function (data) {
 					document.querySelector(".totalcount").innerText = data.totalcount;
+				},
+				error: function (data) {
+					console.log(data);
+				}
+			})
+			
+			$.ajax({
+				url: "sellerTotalservice2.do",
+				dataType: "json",
+				type: "POST",
+				data: {scode:temp, year:temp2},
+				success: function (data) {
 					document.querySelector(".totalsum").innerText = data.totalsum.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 					document.querySelector(".totalsusu").innerText = data.totalsusu.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 					
