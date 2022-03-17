@@ -595,7 +595,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	                    	$("#passwordconfirm").val("");
 	            		} else if(data == "codeD") {
 	            			sessionStorage.clear();
-	            			location.href = "home.do"
+	            			location.href = "logout.do"
 	            			alert("탈퇴되었습니다.");
 	            		}
 	            	}

@@ -74,10 +74,10 @@ public class ReviewController {
 		} else {
 			extension = originalFileName.substring(originalFileName.lastIndexOf("."));
 			String saveFileName = UUID.randomUUID() + extension;
-			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\review\\";
+			String saveurl = reviewupload;
 			String savepath = saveurl + saveFileName;
 			
-			String rev_img = "resources/user/assets/img/review/" + saveFileName;
+			String rev_img = "/upload/review/" + saveFileName;
 			
 			vo.setRev_img(rev_img);
 			
