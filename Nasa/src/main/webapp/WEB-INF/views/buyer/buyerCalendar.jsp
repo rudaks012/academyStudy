@@ -91,8 +91,13 @@
                                         <tr>
                                             <th rowspan="5" class="imgtd" style="text-align: center;"><img id="ser_img"
                                                     src="resources/user/assets/img/search-default-profile.jpg"
-                                                    style="height: 175px; width: 175px; border-radius: 8px;"></td>
-                                            <th>서비스 : </th>
+                                                    style="height: 175px; width: 175px; border-radius: 8px;"></th>
+                                            <th>판 매 자 : </th>
+                                            <td><a id="s_nickname"></a></td>
+                                                    
+                                        </tr>
+                                        <tr>
+                                            <th>서 비 스 : </th>
                                             <td><a id="ser_title"></a></th>
                                         </tr>
                                         <tr>
@@ -100,15 +105,11 @@
                                             <td id="cate"></td>
                                         </tr>
                                         <tr>
-                                            <th>판매자 : </th>
-                                            <td><a id="s_nickname"></a></td>
-                                        </tr>
-                                        <tr>
-                                            <th>가 격 : </th>
+                                            <th>가  격 : </th>
                                             <td id="pay_price_tochar"></td>
                                         </tr>
                                         <tr>
-                                            <th>기 간 : </th>
+                                            <th>거래기간 : </th>
                                             <td id="paydate"></td>
                                         </tr>
                                     </tbody>
@@ -143,6 +144,7 @@
                 },
                 events: dbData
             });
+            console.log(dbData);
             calendar.render();
 
             function getCalServList() {                

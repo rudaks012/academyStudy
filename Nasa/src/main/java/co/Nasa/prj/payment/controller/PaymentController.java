@@ -262,10 +262,11 @@ public class PaymentController {
 		System.out.println(list2);
 		for (PaymentVO sc : list2) {
 			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("title", sc.getSer_title());
+			map.put("title", sc.getB_nickname());
 			map.put("start", sc.getEvent_start());
 			map.put("end", sc.getEvent_end());
-			map.put("pay_code", sc.getPay_code());			
+			map.put("pay_code", sc.getPay_code());
+			map.put("s_code", sc.getS_code());
 			list.add(map);
 		}
 		System.out.println(list);

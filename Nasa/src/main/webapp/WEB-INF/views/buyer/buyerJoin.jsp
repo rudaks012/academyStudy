@@ -368,15 +368,13 @@
 	}
 
 	// 비밀번호 설정
-	var pwreg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+	var pwreg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
 	$("#b_password").blur(function () {
 		var pwchk = pwreg.test($("#b_password").val());
 		if (!pwchk) {
 			$("label").remove('#pwlabel');
-			$("#pwdiv")
-				.append(
-					'<label id="pwlabel">비밀번호는 영문+숫자 조합 8자리 이상이어야 합니다.</label>');
+			$("#pwdiv").append('<label id="pwlabel">비밀번호는 영문+숫자 또는 특수문자 조합 8자리 이상이어야 합니다.</label>');
 			$("#pwlabel").css("color", "red");
 		} else {
 			$("label").remove('#pwlabel');
@@ -390,13 +388,11 @@
 		if ($("#b_password").val() == $("#pwchk").val()) {
 			$("label").remove('#pwchklabel');
 			$("label").remove('#pwchklabelok');
-			$("#pwchkdiv").append(
-				'<label id="pwchklabelok">비밀번호가 확인되었습니다.</label>');
+			$("#pwchkdiv").append('<label id="pwchklabelok">비밀번호가 확인되었습니다.</label>');
 		} else {
 			$("label").remove('#pwchklabel');
 			$("label").remove('#pwchklabelok');
-			$("#pwchkdiv").append(
-				'<label id="pwchklabel">비밀번호가 일치하지 않습니다.</label>');
+			$("#pwchkdiv").append('<label id="pwchklabel">비밀번호가 일치하지 않습니다.</label>');
 			$("#pwchklabel").css("color", "red");
 		}
 	})

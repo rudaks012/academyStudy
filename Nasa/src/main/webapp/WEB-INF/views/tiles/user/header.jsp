@@ -39,13 +39,14 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="homeCategory.do">서비스 찾기</a></li>                                            
+                                            <li><a href="homeCategory.do">서비스 찾기</a></li>
+                                            <li><a href="go_knowhowlist.do">판매자의 노하우</a></li>
                                             <!--가입-->
                                             <c:if test="${empty id }">
                                                 <li><a>회원가입</a>
                                                     <ul class="submenu">
-                                                        <li><a href="buyerJoin.do">구매자</a></li>
-                                                        <li><a href="sellerJoin.do">판매자</a></li>
+                                                        <li><a href="buyerJoin.do" style="text-shadow: 1px 1px 2px #5c5a5a, 0 0 10px #5c5a5a, 0 0 5px #5c5a5a;">구매자</a></li>
+                                                        <li><a href="sellerJoin.do" style="text-shadow: 1px 1px 2px #5c5a5a, 0 0 10px #5c5a5a, 0 0 5px #5c5a5a;">판매자</a></li>
                                                     </ul>
                                                 </li>
                                             </c:if>                                            

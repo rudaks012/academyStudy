@@ -26,7 +26,8 @@ INSERT INTO NOTICE(no_code,
 	
 	<select id="knowhowSelectList" resultType="co.Nasa.prj.comm.VO.NoticeVO">
 		SELECT
-		S.S_NICKNAME, N.*
+		S.S_NICKNAME, N.NO_CODE, N.NO_ID, N.NO_TITLE, N.NO_SUBJECT, TO_CHAR(N.NO_DATE, 'YYYY-MM-DD') NO_DATE,
+		N.FILECODE, N.NO_STATUS, N.NO_IMG, N.NO_ORIGINIMG
 		FROM SELLER S, NOTICE N
 		WHERE S.S_EMAIL = NO_ID AND NO_STATUS='1'
 		ORDER BY NO_CODE DESC
@@ -34,7 +35,8 @@ INSERT INTO NOTICE(no_code,
 	
 	<select id="knowhowSelect" resultType="co.Nasa.prj.comm.VO.NoticeVO">
 		SELECT
-		S.S_NICKNAME, N.*
+		S.S_NICKNAME, N.NO_CODE, N.NO_ID, N.NO_TITLE, N.NO_SUBJECT, TO_CHAR(N.NO_DATE, 'YYYY-MM-DD') NO_DATE,
+		N.FILECODE, N.NO_STATUS, N.NO_IMG, N.NO_ORIGINIMG
 		FROM SELLER S, NOTICE N
 		WHERE S.S_EMAIL = NO_ID AND NO_CODE = #{no_code}
 	</select>
@@ -78,7 +80,9 @@ INSERT INTO NOTICE(no_code,
    		FROM	(
    				 SELECT	ROWNUM RN, A.*
    				 FROM	(
-   				 		 SELECT	N.*, S.S_NICKNAME
+   				 		 SELECT
+   				 		 S.S_NICKNAME, N.NO_CODE, N.NO_ID, N.NO_TITLE, N.NO_SUBJECT, TO_CHAR(N.NO_DATE, 'YYYY-MM-DD') NO_DATE,
+						 N.FILECODE, N.NO_STATUS, N.NO_IMG, N.NO_ORIGINIMG
    				 		 FROM	NOTICE N, SELLER S
    				 		 WHERE	NO_STATUS = '1'
    				 		 AND	N.NO_ID = S.S_EMAIL

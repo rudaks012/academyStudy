@@ -156,7 +156,7 @@
 									onclick="sellerPersonJoin()">가입하기</button>
 							</div>
 							<div style="margin-top: 40px;">
-								<a href="#" style="color: #1f2b7b;">기업 판매자로 가입하시나요?</a>
+								<a href="sellerCompanyjoin.do" style="color: #1f2b7b;">기업 판매자로 가입하시나요?</a>
 							</div>
 						</div>
 					</div>
@@ -258,7 +258,7 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		window.onload = function () {
-			$('#s_name').focus();
+			// $('#s_name').focus();
 			document.getElementById("page2").style.display = "none";
 			document.getElementById("addressSearch").addEventListener("click", function () { //주소입력칸을 클릭하면
 				$("#s_zipcode").attr("disabled", false);
@@ -423,13 +423,13 @@
 
 
 		// 비밀번호 설정
-		var pwreg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+		var pwreg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
 		$("#s_password").blur(function () {
 			var pwchk = pwreg.test($("#s_password").val());
 			if (!pwchk) {
 				$("label").remove('#pwlabel');
-				$("#pwdiv").append('<label id="pwlabel">비밀번호는 영문+숫자 조합 8자리 이상이어야 합니다.</label>');
+				$("#pwdiv").append('<label id="pwlabel">비밀번호는 영문+숫자 또는 특수문자 조합 8자리 이상이어야 합니다.</label>');
 				$("#pwlabel").css("color", "red");
 			} else {
 				$("label").remove('#pwlabel');
@@ -484,17 +484,17 @@
 				$("#nicklabel").css("color", "red");
 				$("#s_nickname").focus();
 			} 
-			else if (!($("#emaillabelok").length)) {
-				$("label").remove('#emaillabel');				
-				$("#emaildiv").append('<label id="emaillabel">이메일 인증이 필요합니다.</label>');
-				$("#nicklabel").css("color", "red");
-				$("#s_email").focus();
-			} else if (!($("#emailchklabelok").length)) {
-				$("label").remove('#emailchklabel');				
-				$("#emailchkdiv").append('<label id="emailchklabel">이메일 인증번호를 확인해주세요.</label>');
-				$("#emailchklabel").css("color", "red");
-				$("#emailchk").focus();
-			}
+			// else if (!($("#emaillabelok").length)) {
+			// 	$("label").remove('#emaillabel');				
+			// 	$("#emaildiv").append('<label id="emaillabel">이메일 인증이 필요합니다.</label>');
+			// 	$("#nicklabel").css("color", "red");
+			// 	$("#s_email").focus();
+			// } else if (!($("#emailchklabelok").length)) {
+			// 	$("label").remove('#emailchklabel');				
+			// 	$("#emailchkdiv").append('<label id="emailchklabel">이메일 인증번호를 확인해주세요.</label>');
+			// 	$("#emailchklabel").css("color", "red");
+			// 	$("#emailchk").focus();
+			// }
 			else if (!($("#pwchklabelok").length)) {
 				$("label").remove('#pwlabel');
 				$("label").remove('#pwchklabel');
