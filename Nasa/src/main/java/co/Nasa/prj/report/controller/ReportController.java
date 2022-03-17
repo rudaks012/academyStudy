@@ -39,6 +39,8 @@ public class ReportController {
 	
 	@Value("#{upload['upload']}")
 	private String upload;
+	@Value("#{upload['loupload']}")
+	private String loupload;
 	
 	
 	@RequestMapping("/sellerReport.do")
@@ -113,11 +115,16 @@ public class ReportController {
 		if(originaFileName.equals("")) {
 
 		}else {
+			//외부 업로드
 			String saveurl =upload;
+			
+			//내부업로드
+//			String saveurl =loupload;
+			
 			String savepath =saveurl +originaFileName;
 			System.out.println(savepath);
 
-			String r_img = upload + originaFileName;
+			String r_img = "/upload/" + originaFileName;
 			vo.setFilecode(r_img);
 			System.out.println("파일코드 입력" + vo.getFilecode());
 			
