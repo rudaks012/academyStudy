@@ -1,6 +1,7 @@
 package co.Nasa.prj.service.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
@@ -162,7 +163,7 @@ public class ServiceController {
 					FileUtils.deleteQuietly(targetFile); // 저장된 현재 파일 삭제
 					e.printStackTrace();
 				}
-
+				
 				strResult = "{ \"result\":\"OK\" }";
 			}
 			// 파일 아무것도 첨부 안했을때 탄다.(게시판일때, 업로드 없이 글을 등록하는경우)

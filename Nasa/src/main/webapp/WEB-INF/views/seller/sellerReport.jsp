@@ -16,6 +16,15 @@
 .table thead th{
 	background-color : #e0d6f2 !important;
 }
+.powerbtn, .modal-header {
+	background-color: #d5c9ea !important;
+}
+
+.modal-footer {
+	display: block !important;
+	text-align: center;
+}
+                
 </style>
 </head>
 <body>
@@ -105,7 +114,8 @@
 												<td>완료</td>
 											</c:if>
 											<c:if test="${report.re_result eq 'D'}">
-												<td>반려</td>
+												<td data-toggle="modal" 
+												data-target="#re_deniedmodal" data-sub="${report.re_denied}" style="cursor: pointer; color:red;">반려</td>
 											</c:if>
 											<td>${fn:substring(report.re_rpoertdate,0,11) }</td>
 										</tr>
@@ -145,8 +155,35 @@
 	    </div>
 	</section>
 	
-	
-            
-                
+	<div class="modal fade" id="re_deniedmodal" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title">반려 사유</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		  <p id="denied"></p>
+		</div>
+		<div class="modal-footer">
+			<button class="genric-btn primary  radius powerbtn" data-dismiss="modal">닫기</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+  
+  
+  
+  
+<script>
+$(document).ready(function () {
+	$("#re_deniedmodal").on("show.bs.modal", function (event) {
+		sub = $(event.relatedTarget).data("sub");
+		$("#denied").html(sub);
+	});
+});
+</script>	
 </body>
 </html>

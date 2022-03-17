@@ -217,6 +217,21 @@ public class PaymentController {
 		return vo;
 	}
 	
+	@RequestMapping("/sellerTotalservice2.do")
+	@ResponseBody
+	public PaymonthVO sellerTotalservice2(HttpSession session, @RequestParam("scode") String scode, @RequestParam("year") String year) {
+		String s_email = (String)session.getAttribute("id");
+		
+		HashMap<String, String> totalmap = new HashMap<String, String>();
+		totalmap.put("s_code", scode);
+		totalmap.put("s_email", s_email);
+		totalmap.put("year", year);
+		PaymonthVO vo = new PaymonthVO();
+		vo = paymentDao.sellerTotalservice2(totalmap);
+			
+		return vo;
+	}
+	
 	@RequestMapping("/CalendarList.do")
 	@ResponseBody
 	public List<Map<String, String>> CalendarList(HttpSession session) {
@@ -237,6 +252,25 @@ public class PaymentController {
 		return list;
 	}
 	
+	@RequestMapping("/CalendarListS.do")
+	@ResponseBody
+	public List<Map<String, String>> CalendarListS(HttpSession session) {
+		String s_email = (String)session.getAttribute("id");
+		List<Map<String, String>> list = null;
+		list = new ArrayList<>();
+		List<PaymentVO> list2 = paymentDao.CalendarListS(s_email);
+		System.out.println(list2);
+		for (PaymentVO sc : list2) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("title", sc.getSer_title());
+			map.put("start", sc.getEvent_start());
+			map.put("end", sc.getEvent_end());
+			map.put("pay_code", sc.getPay_code());			
+			list.add(map);
+		}
+		System.out.println(list);
+		return list;
+	}
 
 	@Scheduled(cron = "0 0 0 * * ?")
 	public void purchaseconfirm() {
@@ -265,5 +299,14 @@ public class PaymentController {
 
 	}
 	
+	@RequestMapping("/ajaxGetCalServListS.do")
+	@ResponseBody
+	public PaymentVO ajaxGetCalServListS(PaymentVO vo, HttpSession session) {
+		String s_email = (String)session.getAttribute("id");
+		vo.setS_email(s_email);
+		vo = paymentDao.selectSellerCalendar(vo);		
+		return vo;		
+
+	}
 
 }

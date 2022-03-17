@@ -64,6 +64,7 @@ public interface PaymentMapper {
    
    int sellercountservice(HashMap<String, String> hmap);
    PaymonthVO sellerTotalservice(HashMap<String, String> totalmap);
+   PaymonthVO sellerTotalservice2(HashMap<String, String> totalmap);
    
    public int countPagingSellerPayment(PaymentVO vo);
    
@@ -82,9 +83,10 @@ public interface PaymentMapper {
    public int countsellerselectdateSearch(PaymentVO vo);
    
    List<PaymentVO> CalendarList(String id);
-
+   List<PaymentVO> CalendarListS(String id);
+   
    int purchaseconfirm();
 
    PaymentVO selectBuyerCalendar(PaymentVO vo);
-
+   PaymentVO selectSellerCalendar(PaymentVO vo);
 }
