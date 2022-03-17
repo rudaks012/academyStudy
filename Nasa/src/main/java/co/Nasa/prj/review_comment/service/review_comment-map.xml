@@ -31,9 +31,9 @@
 	</delete>
 	
 	<insert id="sellerReviewInsert" parameterType="co.Nasa.prj.comm.VO.Review_CommentVO">
-		INSERT INTO REVIEW_COMMENT
+		INSERT INTO REVIEW_COMMENT(RERE_CODE, REVIEW_CODE, RERE_SEL_NAME, RERE_SEL_ID,RERE_SEL_SUB )
 		VALUES((SELECT NVL(MAX(TO_NUMBER(RERE_CODE)), 0)+1 FROM REVIEW_COMMENT),
-		#{review_code}, #{rere_sel_name}, #{rere_sel_id}, #{rere_sel_sub}, sysdate)
+		#{review_code}, #{rere_sel_name}, #{rere_sel_id}, #{rere_sel_sub})
 	</insert>
 	
 	<select id="reviewCommSelect" resultType="co.Nasa.prj.comm.VO.Review_CommentVO">

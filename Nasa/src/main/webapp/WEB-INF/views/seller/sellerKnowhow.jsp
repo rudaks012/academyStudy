@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,6 +88,9 @@
 										<div class="container">
 											
 											<div class="row">
+												<c:if test="${empty knowhows}">
+													<div style="text-align: center;">작성된 글이 없습니다.</div>
+												</c:if>
 												<c:forEach items="${knowhows }" var="knowhow">
 												<c:if test="${knowhow.no_id eq id }">
 													<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
