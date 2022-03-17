@@ -89,4 +89,6 @@ public interface PaymentMapper {
 
    PaymentVO selectBuyerCalendar(PaymentVO vo);
    PaymentVO selectSellerCalendar(PaymentVO vo);
+   
+   public int countReviewPayment(PaymentVO vo);
 }

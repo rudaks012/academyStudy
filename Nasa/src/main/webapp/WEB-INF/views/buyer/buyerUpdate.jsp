@@ -189,7 +189,7 @@
 		});
 		
 		function passwordCheck() {
-			var pwc = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+			var pwc = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 			var pwck = pwc.test($("#b_password").val());
 			if($("#basic").is(':checked')) {
 				console.log('chkif');
@@ -197,7 +197,7 @@
 			}
 
 			if(!pwck) {
-				window.alert("비밀번호는 영문+숫자 조합 8자리 이상이어야 합니다.");
+				window.alert("비밀번호는 영문,숫자,특수문자 조합 8자리 이상이어야 합니다.");
 				return false;
 			}
 
