@@ -454,5 +454,13 @@ INSERT INTO	PAYMENT
 		select * from v_calendar
 		where s_email = #{s_email} and b_nickname = #{b_nickname} and pay_code = #{pay_code}
 	</select>
+	
+	<select id="countReviewPayment" resultType = "int">
+		SELECT	COUNT(*)
+		FROM	PAYMENT
+		WHERE	B_EMAIL = #{b_email}
+		AND		PAY_ENDDATE IS NOT NULL
+		AND		S_CODE = #{s_code}
+	</select>
   
 </mapper>
