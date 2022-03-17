@@ -97,27 +97,28 @@
                                 </a>
                                 <table class="servicetable">
                                     <tbody>
+                                        
                                         <tr>
                                             <th rowspan="5" class="imgtd" style="text-align: center;"><img id="ser_img"
                                                     src="resources/user/assets/img/search-default-profile.jpg"
-                                                    style="height: 175px; width: 175px; border-radius: 8px;"></td>
-                                            <th>서비스 : </th>
-                                            <td><a id="ser_title"></a></th>
+                                                    style="height: 175px; width: 175px; border-radius: 8px;"></th>
+                                            <th>구 매 자 : </th>
+                                            <td id="b_nickname"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>서 비 스 : </th>
+                                            <td><a id="ser_title"></a></th>                                            
                                         </tr>
                                         <tr>
                                             <th>카테고리 : </th>
                                             <td id="cate"></td>
                                         </tr>
                                         <tr>
-                                            <th>판매자 : </th>
-                                            <td><a id="s_nickname"></a></td>
-                                        </tr>
-                                        <tr>
-                                            <th>가 격 : </th>
+                                            <th>가  격 : </th>
                                             <td id="pay_price_tochar"></td>
                                         </tr>
                                         <tr>
-                                            <th>기 간 : </th>
+                                            <th>거래기간 : </th>
                                             <td id="paydate"></td>
                                         </tr>
                                     </tbody>
@@ -150,34 +151,35 @@
                 },
                 events: dbData
             });
-            calendar.render();
+            calendar.render();            
+            console.log(dbData);
 
             function getCalServList() {                
-                var ser_title = $(event.target).text();
+                var b_nickname = $(event.target).text();
                 var info = dbData.find(function (data) {
-                    return data.title === ser_title
+                    return data.title === b_nickname
                 });
                 var pay_code = info.pay_code;
+                var s_code = info.s_code;
 
                 $.ajax({
                     url: "ajaxGetCalServListS.do",
                     type: "post",
                     data: {
-                        "ser_title": ser_title,
-                        "pay_code": pay_code
+                        "b_nickname": b_nickname,
+                        "pay_code": pay_code,
+                        "s_code": s_code,
                     },
                     success: function (data) {
                         console.log("여기주목밑에밑에");
                         console.log(data);
+                        $("#ser_img").attr("src", "fileupload/" + data.ser_img);
+                        $("#b_nickname").text(data.b_nickname);
                         $("#ser_title").text(data.ser_title);
                         $("#ser_title").attr("onclick", "location.href='serviceDetail.do?ser_code=" + data.s_code + "'");
                         $("#ser_title").attr("style", "cursor:pointer; background-color: #dddddd;");  
-                        $("#cate").text(data.category + " > " + data.sub_category);
-                        $("#s_nickname").text(data.s_nickname);
-                        $("#s_nickname").attr("onclick", "location.href='sellerDetail.do?s_email=" + data.s_email + "'");
-                        $("#s_nickname").attr("style", "cursor:pointer; background-color: #dddddd;");  
+                        $("#cate").text(data.category + " > " + data.sub_category);                      
                         $("#pay_price_tochar").text(data.pay_price_tochar + "원");
-                        $("#ser_img").attr("src", "fileupload/" + data.ser_img);
                         $("#paydate").text(data.event_start + " ~ " + data.event_end_original);
 
                     }

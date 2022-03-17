@@ -452,7 +452,7 @@ INSERT INTO	PAYMENT
 	
 	<select id="selectSellerCalendar" parameterType="String" resultType="co.Nasa.prj.comm.VO.PaymentVO">
 		select * from v_calendar
-		where s_email = #{s_email} and ser_title = #{ser_title} and pay_code = #{pay_code}
+		where s_email = #{s_email} and b_nickname = #{b_nickname} and pay_code = #{pay_code}
 	</select>
   
 </mapper>

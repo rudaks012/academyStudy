@@ -97,7 +97,7 @@
 				<button type="button" class="genric-btn primary e-large" onclick="nextPage()">다음</button>
 			</div>
 			<div>
-				<a href="#" style="color: #1f2b7b;">개인 판매자로 가입하시나요?</a>
+				<a href="sellerPersonjoin.do" style="color: #1f2b7b;">개인 판매자로 가입하시나요?</a>
 			</div>					
 		</div>
 	</div>	
@@ -179,7 +179,7 @@
 									onclick="sellerPersonJoin()">가입하기</button>
 							</div>
 							<div style="margin-top: 40px;">
-								<a href="#" style="color: #1f2b7b;">개인 판매자로 가입하시나요?</a>
+								<a href="sellerPersonjoin.do" style="color: #1f2b7b;">개인 판매자로 가입하시나요?</a>
 							</div>
 						</div>
 					</div>
@@ -542,13 +542,13 @@
 
 
 		// 비밀번호 설정
-		var pwreg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+		var pwreg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
 		$("#s_password").blur(function () {
 			var pwchk = pwreg.test($("#s_password").val());
 			if (!pwchk) {
 				$("label").remove('#pwlabel');
-				$("#pwdiv").append('<label id="pwlabel">비밀번호는 영문+숫자 조합 8자리 이상이어야 합니다.</label>');
+				$("#pwdiv").append('<label id="pwlabel">비밀번호는 영문+숫자 또는 특수문자 조합 8자리 이상이어야 합니다.</label>');
 				$("#pwlabel").css("color", "red");
 			} else {
 				$("label").remove('#pwlabel');
@@ -602,16 +602,16 @@
 				$("#nickdiv").append('<label id="nicklabel">닉네임 중복체크를 해주세요.</label>');
 				$("#nicklabel").css("color", "red");
 				$("#s_nickname").focus();
-			} else if (!($("#emaillabelok").length)) {
-				$("label").remove('#emaillabel');				
-				$("#emaildiv").append('<label id="emaillabel">이메일 인증이 필요합니다.</label>');
-				$("#nicklabel").css("color", "red");
-				$("#s_email").focus();
-			} else if (!($("#emailchklabelok").length)) {
-				$("label").remove('#emailchklabel');				
-				$("#emailchkdiv").append('<label id="emailchklabel">이메일 인증번호를 확인해주세요.</label>');
-				$("#emailchklabel").css("color", "red");
-				$("#emailchk").focus();
+			// } else if (!($("#emaillabelok").length)) {
+			// 	$("label").remove('#emaillabel');				
+			// 	$("#emaildiv").append('<label id="emaillabel">이메일 인증이 필요합니다.</label>');
+			// 	$("#nicklabel").css("color", "red");
+			// 	$("#s_email").focus();
+			// } else if (!($("#emailchklabelok").length)) {
+			// 	$("label").remove('#emailchklabel');				
+			// 	$("#emailchkdiv").append('<label id="emailchklabel">이메일 인증번호를 확인해주세요.</label>');
+			// 	$("#emailchklabel").css("color", "red");
+			// 	$("#emailchk").focus();
 			} else if (!($("#pwchklabelok").length)) {
 				$("label").remove('#pwlabel');
 				$("label").remove('#pwchklabel');
