@@ -183,6 +183,10 @@ input[type=date] {
 									<button class="genric-btn danger circle" data-toggle="modal"
 									data-target="#PowerModal">파워서비스 등록</button> 
 								<hr class="hr"/>
+									<c:if test="${empty powerList }">
+										
+									</c:if>
+								<c:if test="${not empty powerList }">
 								<table class="table caption-top table-bordered thead-light  text-center" style="margin-top:40px; font-size:12px;">
 									<thead class="thead-light">
 										<tr>
@@ -196,6 +200,8 @@ input[type=date] {
 										</tr>
 									</thead>
 									<tbody>
+									
+									
 									<c:forEach items="${powerList }" var="power">
 										<tr style="font-size:12px;">
 											<td>${fn:substring(power.power_date,0,11) }</td>
@@ -215,10 +221,10 @@ input[type=date] {
 											</c:if>
 										</tr>
 									</c:forEach>
-										
+											
 									</tbody>
 								</table>
-								
+								</c:if>
 							</div>
 							
                     	</article>

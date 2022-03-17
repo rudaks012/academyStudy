@@ -195,22 +195,6 @@ input[type="radio"] {
 														<input type="radio" name="ser_line" value="오프라인"  <c:if test="${service.ser_line eq '오프라인'}">checked="checked"</c:if>>오프라인 
 														<input type="radio" name="ser_line" value="온/오프라인" <c:if test="${service.ser_line eq '온/오프라인'}">checked="checked"</c:if>>온/오프라인</td>
 												</tr>
-												<c:if test="${!empty service.ser_end }">
-													<tr>
-														<td>종료예정일</td>
-														<td colspan="3">
-															<input type="date" name="ser_end" id="ser_end" value="${service.ser_end }" >
-															<span class="endDate"></span>
-													</tr>
-												</c:if>
-												<c:if test="${empty service.ser_end }">
-													<tr  style="display: none">
-														<td>종료예정일</td>
-														<td colspan="3">
-															<input type="hidden" name="ser_end" id="ser_end" value="" >
-														
-													</tr>
-												</c:if>
 												<tr>
 													<td>서비스 기본가격<span class="spanstar">*</span></td>
 													<td colspan="3">
@@ -294,32 +278,6 @@ input[type="radio"] {
 		 * 첨부파일로직
 		 */
 		$(function() {
-			var serend = '${endDate.pay_enddate }';
-			if(serend != ''){
-				var today = new Date(serend.substr(0,10));
-				today.setMonth(today.getMonth() + 1);
-				today.setDate(today.getDate() + 1); 
-
-				var year = today.getFullYear();
-				var month = (today.getMonth() < 10 ? '0' : '')+today.getMonth();
-				var day = (today.getDate() < 10 ? '0' : '')+today.getDate();
-				date = year+ '-' + month + '-' + day
-				console.log(date);
-				$("#ser_end").attr('min', serend)
-				$(".endDate").text('* '+serend.substr(0,10)+' 이 후부터 종료가능합니다.');				
-			}else{
-				var today = new Date();
-				today.setMonth(today.getMonth() + 1);
-				today.setDate(today.getDate() + 1); 
-
-				var year = today.getFullYear();
-				var month = (today.getMonth() < 10 ? '0' : '')+today.getMonth();
-				var day = (today.getDate() < 10 ? '0' : '')+today.getDate();
-				date = year+ '-' + month + '-' + day
-				console.log(date);
-				$("#ser_end").attr('min', date);
-				$(".endDate").text('* 익일부터 종료가능합니다.');	
-			}
 			
 			
 			
@@ -399,11 +357,21 @@ input[type="radio"] {
 		 * 폼 submit 로직
 		 */
 		function registerAction() {
-			if($('#ser_cate').val() == '' ){
-				alert('1차 카테고리를 선택해주세요!');
+			
+			if($("#sname").val() == ''){
+				alert('서비스명을 입력해주세요!');
 				return;
 			}else if($('#ser_cate').val() == '' ){
+				alert('1차 카테고리를 선택해주세요!');
+				return;
+			}else if($('#ser_sub_cate').val() == '' ){
 				alert('2차 카테고리를 선택해주세요!');
+				return;
+			}else if($('#ser_price').val() == '' ){
+				alert('가격을 입력해주세요!');
+				return;
+			}else if($('#ser_sub').val() == '' ){
+				alert('서비스에 대한 설명을 입력해주세요!');
 				return;
 			}
 			

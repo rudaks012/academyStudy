@@ -30,7 +30,7 @@
 	<![CDATA[
 	SELECT MAX(PRO_END) 
 	FROM PROMOTION 
-	WHERE PRO_SERVICE = TO_DATE(#{pro_service}, 'YYYY-MM-DD')
+	WHERE PRO_SERVICE = #{pro_service}
 	AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END]]>
 </select>
 
@@ -40,7 +40,7 @@
 	WHERE PRO_SERVICE = #{pro_service} 
 	AND #{pro_start} BETWEEN PRO_START AND PRO_END -->
 	<![CDATA[
-	SELECT * FROM PROMOTION WHERE PRO_SERVICE = TO_DATE(#{pro_service}, 'YYYY-MM-DD')
+	SELECT * FROM PROMOTION WHERE PRO_SERVICE = #{pro_service}
 	AND (TO_DATE(#{pro_start}, 'YYYY-MM-DD') >= pro_start and TO_DATE(#{pro_start}, 'YYYY-MM-DD') <= pro_end
 	OR TO_DATE(#{pro_end}, 'YYYY-MM-DD') >= pro_start and TO_DATE(#{pro_end}, 'YYYY-MM-DD') <= pro_end) 
 	AND pro_status <> 'Y']]>

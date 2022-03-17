@@ -89,7 +89,7 @@
 											
 											<div class="row">
 												<c:if test="${empty knowhows}">
-													<div style="text-align: center;">작성된 글이 없습니다.</div>
+													<img src="resources/user/assets/img/nodata.jpg" style="width: 100%">
 												</c:if>
 												<c:forEach items="${knowhows }" var="knowhow">
 												<c:if test="${knowhow.no_id eq id }">
