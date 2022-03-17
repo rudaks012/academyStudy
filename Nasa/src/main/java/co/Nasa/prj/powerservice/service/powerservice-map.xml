@@ -25,7 +25,7 @@
 		SELECT NVL(COUNT(*),0) 
 		FROM POWERSERVICE 
 		GROUP BY POWER_START 
-		HAVING POWER_START= to_date(#{power_start}, 'YYYY-MM-DD')
+		HAVING POWER_START = to_date(#{power_start}, 'YYYY-MM-DD')
 	</select>
 	
 	<select id="powerServiceOverlap" resultType="co.Nasa.prj.comm.VO.PowerServiceVO">
