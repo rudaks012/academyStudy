@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,6 +61,11 @@ public class ServiceController {
 	private PowerServiceService powerDao;
 	@Autowired
 	private WishlistMapper wishlistDao;
+	
+	@Value("#{upload['fileServ']}")
+	private String upload;
+	@Value("#{upload['loServupload']}")
+	private String loupload;
 	
 	// 카테고리 별 서비스 목록
 	@RequestMapping("/homeCategory.do")
@@ -142,29 +148,58 @@ public class ServiceController {
 
 		String fileRoot;
 		String strResult = "{ \"result\":\"FAIL\" }";
-
+		
+		String originaFileName = file.getOriginalFilename();
 		// 메인
 		try {
 			// 파일이 있을때 탄다.
 			if (file.getSize() > 0 && !file.getOriginalFilename().equals("")) {
 
-				fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
-				System.out.println(fileRoot);
-
-				String originalFileName = file.getOriginalFilename(); // 오리지날 파일명
-				String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
+//				fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
+//				System.out.println(fileRoot);
+//
+//				String originalFileName = file.getOriginalFilename(); // 오리지날 파일명
+//				String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
+//				String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+//
+//				File targetFile = new File(fileRoot + savedFileName);
+//				try {
+//					InputStream fileStream = file.getInputStream();
+//					FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
+//					vo.setSer_img(savedFileName); // uuid
+//					vo.setSer_imgorigin(originalFileName); // 원본
+//
+//				} catch (Exception e) {
+//					// 파일삭제
+//					FileUtils.deleteQuietly(targetFile); // 저장된 현재 파일 삭제
+//					e.printStackTrace();
+//				}
+				
+				//외부 업로드
+				String saveurl = upload;
+				
+				//내부업로드
+				//String saveurl =loupload;
+				
+				String extension = originaFileName.substring(originaFileName.lastIndexOf(".")); // 파일 확장자
 				String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
-
-				File targetFile = new File(fileRoot + savedFileName);
+				
+				String savepath =saveurl + savedFileName;
+				System.out.println(savepath);
+				
+				String r_img = "/upload/service/" + savedFileName;
+				//uuid
+				vo.setSer_img(savedFileName);
+				
+				//원본파일명
+				vo.setSer_imgorigin(originaFileName);
+				
+				
 				try {
-					InputStream fileStream = file.getInputStream();
-					FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-					vo.setSer_img(savedFileName); // uuid
-					vo.setSer_imgorigin(originalFileName); // 원본
-
-				} catch (Exception e) {
-					// 파일삭제
-					FileUtils.deleteQuietly(targetFile); // 저장된 현재 파일 삭제
+					file.transferTo(new File(savepath));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				
