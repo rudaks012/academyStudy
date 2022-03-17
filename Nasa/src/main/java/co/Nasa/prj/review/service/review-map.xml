@@ -188,4 +188,10 @@
 		WHERE		R.SCODE = S.SER_CODE
 		GROUP BY	S.S_EMAIL
 	</select>
+	
+	<select id = "countScodeReview" resultType = "int">
+		SELECT	COUNT(*)
+		FROM	REVIEW
+		WHERE	SCODE = #{scode} AND REV_ID = #{rev_id}
+	</select>
 </mapper>

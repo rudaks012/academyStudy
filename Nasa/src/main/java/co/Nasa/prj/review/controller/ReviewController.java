@@ -25,8 +25,10 @@ import co.Nasa.prj.admin.service.PageDTO;
 import co.Nasa.prj.buyer.service.BuyerMapper;
 import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.PagingDTO;
+import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.ReviewVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
+import co.Nasa.prj.payment.service.PaymentMapper;
 import co.Nasa.prj.review.service.ReviewMapper;
 import co.Nasa.prj.review_comment.service.Review_CommentMapper;
 import co.Nasa.prj.service.service.ServiceMapper;
@@ -37,6 +39,7 @@ public class ReviewController {
 	@Autowired ServiceMapper serviceDao;
 	@Autowired Review_CommentMapper review_commentDao;
 	@Autowired BuyerMapper buyerDao;
+	@Autowired PaymentMapper paymentDao;
 	
 	@RequestMapping("/deleteReview.do" )
 	public ResponseEntity<String> deleteReview(ReviewVO vo) {
@@ -140,6 +143,33 @@ public class ReviewController {
 		return "seller/sellerReview";
 	}
 	
+	@RequestMapping("reviewQualifications.do")
+	@ResponseBody
+	public String reviewQualifications(String scode, HttpSession session) {
+		String result = "";
+		
+		PaymentVO paymentvo = new PaymentVO();
+		ReviewVO reviewvo = new ReviewVO();
+		
+		paymentvo.setB_email((String) session.getAttribute("id"));
+		paymentvo.setS_code(scode);
+		reviewvo.setRev_id((String) session.getAttribute("id"));
+		reviewvo.setScode(scode);
+		
+		int paymentcount = paymentDao.countReviewPayment(paymentvo);
+		int reviewcount = reviewDao.countScodeReview(reviewvo);
+		System.out.println("paymentcount : " + paymentcount + "//// reviewcount : " + reviewcount);
+		
+		if(reviewcount < paymentcount) {
+			result = "OK";
+		} else {
+			result = "NO";
+		}
+		
+		System.out.println(result);
+		
+		return result;
+	}
 	
 	
 //	@ResponseBody
