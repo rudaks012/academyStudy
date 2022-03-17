@@ -242,4 +242,9 @@ public class PaymentServiceImpl implements PaymentService {
 		return map.CalendarListS(id);
 	}
 
+	@Override
+	public int countReviewPayment(PaymentVO vo) {
+		return map.countReviewPayment(vo);
+	}
+
 }

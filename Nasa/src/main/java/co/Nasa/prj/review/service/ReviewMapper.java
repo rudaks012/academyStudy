@@ -43,4 +43,6 @@ public interface ReviewMapper {
 	int sellerReviewCount2(HashMap<String, String> remap);
 	
 	List<ReviewVO> calcRateList();
+	
+	public int countScodeReview(ReviewVO vo);
 }

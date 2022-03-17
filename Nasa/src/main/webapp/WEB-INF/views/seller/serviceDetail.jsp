@@ -214,11 +214,11 @@
                               <br /><br />
                               <!-- 여기에 바이어 로그인 돼 있으면 리뷰작성 뜨게 작성 -->
                               <c:if test="${author eq 'B'}">
-                                 <form action="writeReview.do" method="post", enctype="multipart/form-data">
+                                 <form action="writeReview.do" method="post" onsubmit="return reviewQualifications('${detailS.ser_code}')" enctype="multipart/form-data">
                                     <div id="writeReview">
                                        <h5>리뷰 작성</h5>
                                        <div class="d-flex">
-                                          <input type="hidden" name="scode" value="${detailS.ser_code}">
+                                          <input type="hidden" id="hscode" name="scode" value="${detailS.ser_code}">
                                           <input type="hidden" name="rev_ser_name" value="${detailS.ser_title}">
                                           <h5 style="font-size:15px; margin-right:10px; margin-top:10px;">평점</h5>
                                           <select id="rev_rate" name="rev_rate" style="width:200px;">
@@ -445,8 +445,10 @@
 							</c:otherwise>
 						</c:choose>
 							<br /><br />
-							<h4 id="sellernick">${sellerInfo.s_nickname }
-                        <c:if test="${author eq 'B'}">
+                     <div class="d-flex justify-content-center">
+                        <h4 id="sellernick">${sellerInfo.s_nickname }</h4>
+                        <h4>
+                           <c:if test="${author eq 'B'}">
                               <c:if test="${wish eq 'exist'}">
                                  <i class="fa fa-heart wishplus" data-toggle="tooltip" data-placement="top" title="위시리스트 추가" onclick="wishplus(this, '${sellerInfo.s_nickname}')" style="display:none"></i>
                                  <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${sellerInfo.s_nickname}')"></i>
@@ -456,8 +458,8 @@
                                  <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${sellerInfo.s_nickname}')" style="display:none"></i>
                               </c:if>
                            </c:if>
-                     </h4>
-							
+                        </h4>
+							</div>
 							<c:choose>
 								<c:when test="${sellerInfo.s_rank eq '1' }">
 									<p>등급 : 별</p>
@@ -870,8 +872,33 @@
 				}
 			});
 		}
-		
-       
+      
+      function reviewQualifications(scode) {
+         var submitcode = "";
+         $.ajax({
+            url:"reviewQualifications.do",
+            data:{scode : scode},
+            dataType:"text",
+            success: function(result) {
+               console.log(result);
+               if(result == "OK") {
+                  console.log("ifOK");
+                  submitcode = "OK";                 
+               } else if(result=="NO") {
+                  console.log("ifNO");
+                  submitcode = "NO";
+               }
+            }
+         });
+
+         if(submitcode = "OK") {
+            console.log("submitOK");
+            return true;
+         } else if(submitcode = "NO"){
+            console.log("submitNO");
+            return false;
+         }
+      }
 	</script>
 	
 </body>
