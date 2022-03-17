@@ -18,14 +18,14 @@
 	<insert id="powerserviceInsert" parameterType="co.Nasa.prj.comm.VO.PowerServiceVO">
 		INSERT INTO POWERSERVICE 
 		VALUES((SELECT NVL(MAX(POWER_CODE),0)+1 FROM POWERSERVICE ), #{s_email}, 
-		#{ser_code}, #{power_start}, to_date(#{power_start},'yyyy-MM-dd')+6, to_char(sysdate,'yyyy-mm-dd'), #{power_price})
+		#{ser_code}, #{power_start}, to_date(#{power_start}, 'YYYY-MM-DD')+6, to_char(sysdate, 'YYYY-MM-DD'), #{power_price})
 	</insert>
 	
 	<select id="powerServiceCount" resultType="int">
 		SELECT NVL(COUNT(*),0) 
 		FROM POWERSERVICE 
 		GROUP BY POWER_START 
-		HAVING POWER_START= #{power_start}
+		HAVING POWER_START= TO_CHAR(#{power_start}, 'YYYY-MM-DD')
 	</select>
 	
 	<select id="powerServiceOverlap" resultType="co.Nasa.prj.comm.VO.PowerServiceVO">
