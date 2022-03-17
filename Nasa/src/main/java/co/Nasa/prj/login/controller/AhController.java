@@ -27,7 +27,7 @@ import co.Nasa.prj.login.service.LoginService;
 import co.Nasa.prj.login.service.LoginVO;
 import co.Nasa.prj.login.service.NaverLoginBO;
 
-//@SessionAttributes({ "loginUser", "master2", "rankPic", "Loginvo", "avo", "svo" })
+@SessionAttributes({ "loginUser", "master2", "rankPic", "Loginvo", "avo", "svo" })
 @Controller
 public class AhController {
 	

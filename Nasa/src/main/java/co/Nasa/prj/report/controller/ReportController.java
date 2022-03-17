@@ -119,7 +119,7 @@ public class ReportController {
 			String saveurl =upload;
 			
 			//내부업로드
-//			String saveurl =loupload;
+			//String saveurl =loupload;
 			
 			String savepath =saveurl +originaFileName;
 			System.out.println(savepath);
