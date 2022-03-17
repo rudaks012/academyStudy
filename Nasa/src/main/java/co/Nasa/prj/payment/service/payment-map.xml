@@ -191,7 +191,7 @@ INSERT INTO	PAYMENT
 	#{b_email},
 	#{s_email},
 	#{s_code},
-	sysdate,
+	TO_CHAR(sysdate,'YYYY-MM-DD'),
 	#{pay_cate},
 	'SUB2-3',
 	'PAY_TPYE',
