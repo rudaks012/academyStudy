@@ -20,8 +20,10 @@ public class WishlistController {
 	@Autowired SellerMapper sellerDao;
 	
 	@RequestMapping("/wishlistDelete.do")
-	public void wishlistDelete(WishlistVO vo) {
+	@ResponseBody
+	public String wishlistDelete(WishlistVO vo) {
 		wishlistDao.deleteWishlist(vo);
+		return "d";
 	}
 	
 	@RequestMapping("/insertWishlist.do")

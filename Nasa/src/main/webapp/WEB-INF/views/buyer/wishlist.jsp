@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,6 +75,9 @@
                      <h2>위시리스트</h2>
                   </a>
                   <section class="blog_area single-post-area section-padding" style="padding-top:0 !important;">
+					<c:if test="${fn:length(wishlistList) == 0}">
+						<p>위시리스트에 등록된 판매자가 없습니다.</p>
+					</c:if>
                   	<c:forEach items="${wishlistList }" var="wishlist">
                   		<c:forEach items="${sellerList }" var="seller">
                   			<c:if test="${wishlist.s_id eq seller.s_email }">
@@ -233,19 +237,23 @@
 		var bid = $(event).data("bid");
 		var wid = sid + bid;
 		console.log(wid);
-		var target = document.getElementById(wid);
-		target.remove();
+		// var target = document.getElementById(wid);
+		// target.remove();
 		
 		$.ajax({
 			url:"wishlistDelete.do",
-			type:"get",
+			type:"post",
 			data:
 				{
 					s_id:sid,
 					b_id:bid
 				},
-			success: function() {
-				console.log("삭제");	
+			dataType : "text",
+			success: function(d) {
+				if(d = "d"){
+					console.log("삭제");
+					location.reload();
+				}
 			}
 		})
 	}

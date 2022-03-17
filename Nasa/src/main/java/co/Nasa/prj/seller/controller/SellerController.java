@@ -21,12 +21,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.SellerVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
+import co.Nasa.prj.comm.VO.WishlistVO;
 import co.Nasa.prj.payment.service.PaymentMapper;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceService;
+import co.Nasa.prj.wishlist.service.WishlistMapper;
 
 @Controller
 public class SellerController {
@@ -37,6 +40,8 @@ public class SellerController {
 	ServiceService serviceDao;
 	@Autowired
 	PaymentMapper paymentDao;
+	@Autowired
+	WishlistMapper wishlistDao;
 
 	@RequestMapping("/goSellerMypage.do")
 	public String goSellerMypage(HttpSession session, Model model) {
@@ -89,11 +94,23 @@ public class SellerController {
 //	}
 
 	@RequestMapping("/sellerDetail.do")
-	public String sellerDetail(Model model, @RequestParam("s_email") String s_email) {
+	public String sellerDetail(Model model, @RequestParam("s_email") String s_email, HttpSession session) {
 		model.addAttribute("sellerInfo", sellerDAO.SellerSelect(s_email));
 		ServiceVO vo = new ServiceVO();
+		String w = "no";
 		vo.setS_email(s_email);
+		if("B".equals((String)session.getAttribute("author"))) {
+			WishlistVO wishlistvo = new WishlistVO();
+			wishlistvo.setB_id((String)session.getAttribute("id"));
+			List<WishlistVO> wishlist = wishlistDao.selectBuyerWishlist(wishlistvo);
+			for(int i = 0; i < wishlist.size(); i++) {
+				if(wishlist.get(i).getS_id().equals(s_email)) {
+					w = "exist";
+				}
+			}
+		}
 		
+		model.addAttribute("wish", w);
 		model.addAttribute("serviceList", serviceDao.servicePromotion(vo));
 		return "seller/sellerDetail";
 	}

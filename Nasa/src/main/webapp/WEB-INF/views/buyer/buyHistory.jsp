@@ -156,6 +156,11 @@
 									</tr>
 								</thead>
 								<tbody>
+									<c:if test="${fn:length(paymentList) == 0}">
+										<tr>
+											<td colspan="5">결제한 서비스가 없습니다.</td>
+										</tr>
+									</c:if>
 									<c:forEach items="${paymentList }" var="payment">
 										<tr>
 											<td class="paymentdate">${fn:substring(payment.pay_date,0,10) }</td>

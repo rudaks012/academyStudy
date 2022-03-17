@@ -85,6 +85,22 @@
        font-weight: 700;
        font-size: 25px;
     }
+   .wishplus {
+      color: pink;
+      cursor: pointer;
+   }
+
+   .wishplus:hover {
+      color: black;
+   }
+
+   .wishminus:hover {
+      color: black;
+   }
+
+   #knohowlink {
+      color:black !important;
+   }
 </style>
 </head>
 <body>
@@ -329,7 +345,19 @@
                   <div class="blog_right_sidebar">
                      <aside class="single_sidebar_widget author_widget">
 
-                        <h4>판매자 정보</h4><br/>
+                        <h4>
+                           판매자 정보
+                           <c:if test="${author eq 'B'}">
+                              <c:if test="${wish eq 'exist'}">
+                                 <i class="fa fa-heart wishplus" data-toggle="tooltip" data-placement="top" title="위시리스트 추가" onclick="wishplus(this, '${sellerInfo.s_nickname}')" style="display:none"></i>
+                                 <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${sellerInfo.s_nickname}')"></i>
+                              </c:if>
+                              <c:if test="${wish eq 'no'}">
+                                 <i class="fa fa-heart wishplus" data-toggle="tooltip" data-placement="top" title="위시리스트 추가" onclick="wishplus(this, '${sellerInfo.s_nickname}')"></i>
+                                 <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${sellerInfo.s_nickname}')" style="display:none"></i>
+                              </c:if>
+                           </c:if>
+                        </h4><br/>
                         <h5>활동정보</h5>
                         <div>회원구분 : ${sellerInfo.s_author }</div>
                        <!--  <div>총 작업수 : 12건</div> -->
@@ -369,6 +397,43 @@
         	  }
       		})
    	}
+
+
+      $(document).ready(function(){
+	          $('[data-toggle="tooltip"]').tooltip();   
+    });
+    function wishplus(event, nickname) {
+        $.ajax({
+            url:"wishplus.do",
+            type:"post",
+            data:{
+                nickname:nickname
+            },
+            success: function(code) {
+                if(code == "plus") {
+                    $(event).hide();
+                    console.log(event.nextSibling);
+                    $(event.nextElementSibling).show();
+                }
+            }
+        })
+    }
+
+    function wishminus(event, nickname) {
+        $.ajax({
+            url:"wishminus.do",
+            type:"post",
+            data:{
+                nickname:nickname
+            },
+            success: function(code) {
+                if(code == "minus") {
+                    $(event).hide();
+                    $(event.previousElementSibling).show();
+                }
+            }
+        })
+    }
       </script>
 </body>
 </html>

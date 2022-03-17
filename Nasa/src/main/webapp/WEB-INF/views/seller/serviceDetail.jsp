@@ -60,6 +60,19 @@
 .comment {
    white-space: pre-line;
 }
+
+.wishplus {
+   color: pink;
+   cursor: pointer;
+}
+
+.wishplus:hover {
+   color: black;
+}
+
+.wishminus:hover {
+   color: black;
+}
 </style>
 </head>
 <body>
@@ -432,7 +445,18 @@
 							</c:otherwise>
 						</c:choose>
 							<br /><br />
-							<h4 id="sellernick">${sellerInfo.s_nickname }</h4>
+							<h4 id="sellernick">${sellerInfo.s_nickname }
+                        <c:if test="${author eq 'B'}">
+                              <c:if test="${wish eq 'exist'}">
+                                 <i class="fa fa-heart wishplus" data-toggle="tooltip" data-placement="top" title="위시리스트 추가" onclick="wishplus(this, '${sellerInfo.s_nickname}')" style="display:none"></i>
+                                 <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${sellerInfo.s_nickname}')"></i>
+                              </c:if>
+                              <c:if test="${wish eq 'no'}">
+                                 <i class="fa fa-heart wishplus" data-toggle="tooltip" data-placement="top" title="위시리스트 추가" onclick="wishplus(this, '${sellerInfo.s_nickname}')"></i>
+                                 <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${sellerInfo.s_nickname}')" style="display:none"></i>
+                              </c:if>
+                           </c:if>
+                     </h4>
 							
 							<c:choose>
 								<c:when test="${sellerInfo.s_rank eq '1' }">
@@ -636,7 +660,41 @@
 <!-- Modal End -->
 	
 	<script>
+      $(document).ready(function(){
+	          $('[data-toggle="tooltip"]').tooltip();   
+    });
+    function wishplus(event, nickname) {
+        $.ajax({
+            url:"wishplus.do",
+            type:"post",
+            data:{
+                nickname:nickname
+            },
+            success: function(code) {
+                if(code == "plus") {
+                    $(event).hide();
+                    console.log(event.nextSibling);
+                    $(event.nextElementSibling).show();
+                }
+            }
+        })
+    }
 
+    function wishminus(event, nickname) {
+        $.ajax({
+            url:"wishminus.do",
+            type:"post",
+            data:{
+                nickname:nickname
+            },
+            success: function(code) {
+                if(code == "minus") {
+                    $(event).hide();
+                    $(event.previousElementSibling).show();
+                }
+            }
+        })
+    }
 		function readImage(input) {
 			if(input.files && input.files[0]) {
 				const reader = new FileReader();
@@ -727,6 +785,7 @@
                      re_subject : re_subject},
                success: function() {
                   console.log("신고함!");
+                  alert("신고하였습니다.");
                },
                error: function() {
                   console.log("신고에러")
@@ -743,6 +802,7 @@
                   re_subject : re_subject},
                success: function() {
                   console.log("신고함!");
+                  alert("신고하였습니다.");
                },
                error: function() {
                   console.log("신고에러")
