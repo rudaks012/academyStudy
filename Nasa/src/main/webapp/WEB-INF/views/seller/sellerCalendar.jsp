@@ -54,7 +54,7 @@
                         <h4 class="widget_title">MYPAGE MENU</h4>
                         <ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
-									<p >서비스 관리</p>
+									    <p>서비스 관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
 										<p>프로모션 관리</p>
@@ -130,6 +130,8 @@
             </div>            
         </div>
     </div>
+    <input type="hidden" name="pay_code_input" value="">
+    <input type="hidden" name="s_code_input" value="">
 </section>
 <script>
     // 수정할 것...
@@ -146,21 +148,22 @@
                 initialView: 'dayGridMonth',
                 dayMaxEvents: true, // allow "more" link when too many events               
                 locale: 'kor',
-                eventClick: function () {
+                eventClick: function (ev) {
+                    console.log(ev.event.extendedProps.pay_code);
+                    console.log(ev.event.extendedProps.s_code);
+                    $('input[name=pay_code_input]').attr('value', ev.event.extendedProps.pay_code);
+                    $('input[name=s_code_input]').attr('value', ev.event.extendedProps.s_code);   
                     getCalServList();
                 },
                 events: dbData
             });
-            calendar.render();            
+            calendar.render();
             console.log(dbData);
 
-            function getCalServList() {                
+            function getCalServList() {
                 var b_nickname = $(event.target).text();
-                var info = dbData.find(function (data) {
-                    return data.title === b_nickname
-                });
-                var pay_code = info.pay_code;
-                var s_code = info.s_code;
+                var pay_code = $('input[name=pay_code_input]').val();
+                var s_code = $('input[name=s_code_input]').val();
 
                 $.ajax({
                     url: "ajaxGetCalServListS.do",
@@ -170,8 +173,7 @@
                         "pay_code": pay_code,
                         "s_code": s_code,
                     },
-                    success: function (data) {
-                        console.log("여기주목밑에밑에");
+                    success: function (data) {                        
                         console.log(data);
                         $("#ser_img").attr("src", "fileupload/" + data.ser_img);
                         $("#b_nickname").text(data.b_nickname);

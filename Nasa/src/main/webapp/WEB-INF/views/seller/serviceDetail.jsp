@@ -214,7 +214,7 @@
                               <br /><br />
                               <!-- 여기에 바이어 로그인 돼 있으면 리뷰작성 뜨게 작성 -->
                               <c:if test="${author eq 'B'}">
-                                 <form id = "reviewform" action="writeReview.do" method="post" onsubmit="return false " enctype="multipart/form-data">
+                                 <form id = "reviewform" action="writeReview.do" method="post" enctype="multipart/form-data">
                                     <div id="writeReview">
                                        <h5>리뷰 작성</h5>
                                        <div class="d-flex">
