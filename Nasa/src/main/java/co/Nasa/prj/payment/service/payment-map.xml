@@ -197,9 +197,9 @@ INSERT INTO	PAYMENT
 	'PAY_TPYE',
 	#{pay_coupon},
 	#{pay_price},
-	#{pay_enddate},
-	#{event_start},
-	#{event_end},
+	TO_CHAR(#{pay_enddate},'YYYY-MM-DD'),
+	TO_CHAR(#{event_start},'YYYY-MM-DD'),
+	TO_CHAR(#{event_end},'YYYY-MM-DD'),
 	#{pay_originp},
 	#{pay_com})
 </insert>
