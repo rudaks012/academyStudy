@@ -331,7 +331,7 @@
 	
 	<update id="DirectendService" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
 		UPDATE SERVICE SET
-		SER_REASON = #{ser_reason}, SER_END = TO_CHAR(sysdate,'YYYY-MM-DD'), SER_STATUS = 'Y'
+		SER_REASON = #{ser_reason}, SER_END = TO_DATE(TO_CHAR(sysdate,'YYYY-MM-DD')), SER_STATUS = 'Y'
 		WHERE SER_CODE = #{ser_code}
 	</update>
 </mapper>
