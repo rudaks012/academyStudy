@@ -184,7 +184,7 @@ input[type="radio"] {
 												</tr>
 												<tr>
 													<td>서비스방식<span class="spanstar">*</span></td>
-													<td colspan="3"><input type="radio" name="ser_line"
+													<td colspan="3"><input type="radio" name="ser_line" 
 														value="온라인" checked="checked">온라인 <input
 														type="radio" name="ser_line" value="오프라인">오프라인 <input
 														type="radio" name="ser_line" value="온/오프라인">온/오프라인</td>
@@ -272,6 +272,7 @@ input[type="radio"] {
 							ul.removeChild(ul.firstChild);
 						}
 						ul.innerHTML = "<li data-value class='option selected'>선택하세요.</li>";
+						$('#ser_sub_cate').append("<option value=''>선택하세요.</option>");
 						for(data of datas){
 							$('#ser_sub_cate').append("<option value='"+ data.sub_no+"'>" + data.sub_name + "</option>");
 							
@@ -339,28 +340,30 @@ input[type="radio"] {
 		} */
 
 		
-		$('#ser_start').click(function(){
-			var today = new Date();
-			var year = today.getFullYear();
-			var month = ('0' + (today.getMonth() + 1)).slice(-2);
-			var day = ('0' + today.getDate()).slice(-2);
-
-			var dateString = year + '-' + month  + '-' + day;
-			$('#ser_start').attr("min", dateString);
-			
-		})
-		
 		
 		/*
 		 * 폼 submit 로직
 		 */
 		function registerAction() {
 			console.log($('#ser_cate').val());
-			if($('#ser_cate').val() == '' ){
-				alert('1차 카테고리를 선택해주세요!');
+			console.log($('#ser_sub_cate').val());
+			if($("#sname").val() == ''){
+				alert('서비스명을 입력해주세요!');
 				return;
 			}else if($('#ser_cate').val() == '' ){
+				alert('1차 카테고리를 선택해주세요!');
+				return;
+			}else if($('#ser_sub_cate').val() == '' ){
 				alert('2차 카테고리를 선택해주세요!');
+				return;
+			}else if($('#ser_price').val() == '' ){
+				alert('가격을 입력해주세요!');
+				return;
+			}else if($('#ser_sub').val() == '' ){
+				alert('서비스에 대한 설명을 입력해주세요!');
+				return;
+			}else if($('#file').val() == '' ){
+				alert('메인이미지를 선택해주세요!');
 				return;
 			}
 			

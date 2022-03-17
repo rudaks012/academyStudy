@@ -139,6 +139,7 @@ td, th {
 															style="margin-left: 5px;">
 													<button type="submit" class="genric-btn danger-border radius">기간검색</button>
 													</form>
+													<span>* 현재일 기준으로 검색됩니다.</span>
 													<table id="paymentTable"
 														class="table table-bordered thead-light  text-center"
 														style="margin-top: 40px;">
