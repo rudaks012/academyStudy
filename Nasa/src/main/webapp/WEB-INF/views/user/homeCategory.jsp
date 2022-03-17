@@ -192,7 +192,7 @@
                 <div class="col-9">
                     <div class="position-relative d-flex justify-content-between">
                         <div class="ml-4" style="margin-bottom: 10px;">
-                            <h3 id="cat-title" style="font-weight: bold;"></h3>
+                            <h3 id="cat-title" style="font-weight: bold; border-bottom: 5px solid #7d64aa;"></h3>
                         </div>
                         <select class="mr-3" name="column" onchange="selectList()">
                             <option value="" <c:if test="${param.column eq ''}">selected</c:if>>등록 순</option>

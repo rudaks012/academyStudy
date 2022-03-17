@@ -65,7 +65,7 @@ public class HomeController {
 		model.addAttribute("bestservicelist", serviceDao.bestServiceList());
 		model.addAttribute("bestsellerlist", sellerDAO.bestSellerList());
 		model.addAttribute("knowhowlist", NoticeDao.knowhowSelectList());
-		model.addAttribute("randompromptionlist", serviceDao.randomPromotion());
+		model.addAttribute("rplist", serviceDao.randomPromotion());
 
 		
 		BuyerVO buyervo = new BuyerVO(); 

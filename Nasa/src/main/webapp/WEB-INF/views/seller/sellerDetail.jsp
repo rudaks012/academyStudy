@@ -111,7 +111,7 @@
                         <a href="#">
 
 
-                           <h4 style="display: inline;" id="detailname">${sellerInfo.s_name }</h4>
+                           <h4 style="display: inline;" id="detailname" class="sellernick">${sellerInfo.s_name }</h4>
 
                         </a>
 
@@ -341,7 +341,7 @@
                         <div>한국생산성본부·ICDL Start Certificate·2012.11</div> -->
                         <div style="white-space:pre-line;">${sellerInfo.s_carrer }</div>
                         <div style="margin-top: 20px; text-align: center;">
-                           <button class="genric-btn primary e-large" onclick="">문의하기</button>
+                           <button class="genric-btn primary e-large" onclick="chatingcheck()">문의하기</button>
                         </div>
                      </aside>
 
@@ -350,5 +350,25 @@
             </div>
          </div>
       </section>
+      
+      <script>
+      //채팅이동
+      function chatingcheck() {
+          //판매자 닉네임
+          var chatnick = document.querySelector(".sellernick").innerHTML;
+          //서비스코드
+          var ser_code = 0;
+          $.ajax({
+          url:"mainchatting.do",
+          type:"post",   
+          data:{
+              chatnick:chatnick
+          },
+          success: function(code) {
+                 location.replace('chatting.do');
+        	  }
+      		})
+   	}
+      </script>
 </body>
 </html>
