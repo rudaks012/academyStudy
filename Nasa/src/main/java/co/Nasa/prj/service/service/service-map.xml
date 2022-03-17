@@ -115,7 +115,7 @@
 
 	<update id="endService" parameterType="co.Nasa.prj.comm.VO.ServiceVO">
 		UPDATE SERVICE SET
-		SER_REASON = #{ser_reason}, SER_END = #{ser_end}
+		SER_REASON = #{ser_reason}, SER_END = TO_DATE(#{ser_end},'YYYY-MM-DD')
 		WHERE SER_CODE = #{ser_code}
 	</update>
 
@@ -131,7 +131,7 @@
 		<![CDATA[
 		UPDATE SERVICE SET
 		SER_STATUS = 'Y'
-		WHERE SER_END < TO_CHAR(sysdate,'yyyy-mm-dd')
+		WHERE TO_CHAR(SER_END,'YYYY-MM-DD') < TO_CHAR(sysdate,'yyyy-mm-dd')
 		AND SER_STATUS <> 'Y'
 		]]>
 	</update>

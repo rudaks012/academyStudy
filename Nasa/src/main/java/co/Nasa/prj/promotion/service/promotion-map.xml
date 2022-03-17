@@ -7,7 +7,7 @@
       SELECT NVL(MAX(TO_NUMBER(pro_code)),0)+1 FROM PROMOTION   
    </selectKey>
 	INSERT INTO PROMOTION
-	VALUES(#{pro_code},#{s_email},#{prodiscount},#{pro_start}, #{pro_end}, #{pro_service},#{pro_status})
+	VALUES(#{pro_code},#{s_email},#{prodiscount},TO_DATE(#{pro_start},'YYYY-MM-DD'), TO_DATE(#{pro_end},'YYYY-MM-DD'), #{pro_service},#{pro_status})
 </insert>
 
 <select id="promotionList" resultType="co.Nasa.prj.comm.VO.PromotionVO">
@@ -30,7 +30,7 @@
 	<![CDATA[
 	SELECT MAX(PRO_END) 
 	FROM PROMOTION 
-	WHERE PRO_SERVICE = #{pro_service}
+	WHERE PRO_SERVICE = TO_DATE(#{pro_service}, 'YYYY-MM-DD')
 	AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END]]>
 </select>
 
@@ -40,9 +40,9 @@
 	WHERE PRO_SERVICE = #{pro_service} 
 	AND #{pro_start} BETWEEN PRO_START AND PRO_END -->
 	<![CDATA[
-	SELECT * FROM PROMOTION WHERE PRO_SERVICE = #{pro_service} 
-	AND (#{pro_start} >= pro_start and #{pro_start} <= pro_end
-	OR #{pro_end} >= pro_start and #{pro_end} <= pro_end) 
+	SELECT * FROM PROMOTION WHERE PRO_SERVICE = TO_DATE(#{pro_service}, 'YYYY-MM-DD')
+	AND (TO_DATE(#{pro_start}, 'YYYY-MM-DD') >= pro_start and TO_DATE(#{pro_start}, 'YYYY-MM-DD') <= pro_end
+	OR TO_DATE(#{pro_end}, 'YYYY-MM-DD') >= pro_start and TO_DATE(#{pro_end}, 'YYYY-MM-DD') <= pro_end) 
 	AND pro_status <> 'Y']]>
 </select>
 
@@ -61,7 +61,7 @@
 	<![CDATA[
 	UPDATE PROMOTION 
 	SET PRO_STATUS='N' 
-	WHERE PRO_START <= TO_CHAR(sysdate,'yyyy-mm-dd')
+	WHERE TO_CHAR(PRO_START, 'YYYY-MM-DD') <= TO_CHAR(sysdate,'yyyy-mm-dd')
 	AND PRO_STATUS = 'U']]>
 </update>
 
@@ -69,7 +69,7 @@
 	<![CDATA[
 	UPDATE PROMOTION 
 	SET PRO_STATUS = 'Y' 
-	WHERE PRO_END < SYSDATE 
+	WHERE TO_CHAR(PRO_END, 'YYYY-MM-DD') < TO_CHAR(SYSDATE, 'YYYY-MM-DD') 
 	AND PRO_STATUS = 'N']]>
 </update>
 
@@ -79,19 +79,19 @@
 	FROM PROMOTION
 	WHERE S_EMAIL = #{s_email}
 	AND PRO_SERVICE = #{pro_service}
-	AND PRO_END >= #{pro_end}
+	AND PRO_END >= TO_DATE(#{pro_end}, 'YYYY-MM-DD')
 	AND PRO_STATUS <> 'Y']]>
 </select>
 
 <update id="serviceEndPromotion" parameterType="co.Nasa.prj.comm.VO.PromotionVO">
 	UPDATE PROMOTION SET 
-	PRO_STATUS = 'Y' , PRO_END = #{pro_end}
+	PRO_STATUS = 'Y' , PRO_END = TO_DATE(#{pro_end}, 'YYYY-MM-DD')
 	WHERE PRO_SERVICE = #{pro_service} AND PRO_CODE = #{pro_code}
 </update>
 
 <update id="serviceEndPromotion2" parameterType="co.Nasa.prj.comm.VO.PromotionVO">
 	UPDATE PROMOTION SET 
-	PRO_END = #{pro_end}
+	PRO_END = TO_DATE(#{pro_end}, 'YYYY-MM-DD')
 	WHERE PRO_SERVICE = #{pro_service} AND PRO_CODE = #{pro_code}
 </update>
 
