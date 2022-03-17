@@ -88,7 +88,7 @@
 								</c:otherwise>
 							</c:choose></span>
 
-                              <button class="genric-btn primary small startbtn" id="stbtn" style="float: right;" data-toggle="modal" data-target="#chatModal" onclick="chatingcheck()">견적 요청</button>
+                              <button class="genric-btn primary small startbtn" id="stbtn" style="float: right;" data-toggle="modal" data-target="#chatModal" onclick="chatingcheck()">채팅</button>
 
                               <p>${sellerInfo.s_me }</p>
                            </div>

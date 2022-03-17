@@ -64,7 +64,7 @@ public class PowerServiceController {
 	@ResponseBody
 	@RequestMapping("/powerServiceCount.do")
 	public String powerServiceCount(@RequestParam("power_start") String power_start, @RequestParam("ser_code") String ser_code) {
-		int n = powerDao.powerServiceCount(power_start);
+		Integer n = powerDao.powerServiceCount(power_start);
 		System.out.println(n);
 		if(n == 8) {
 			return "full";

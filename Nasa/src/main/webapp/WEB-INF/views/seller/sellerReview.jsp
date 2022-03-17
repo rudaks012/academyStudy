@@ -146,13 +146,18 @@
 												<div class="single-comment justify-content-between d-flex">
 													<div class="user justify-content-between d-flex">
 														<div class="thumb">
-															<img src="${review.b_img }" alt="">
+															<c:if test="${empty review.b_img }">
+																<img src="resources/user/assets/img/profile/search-default-profile.jpg" alt="">
+															</c:if>
+															<c:if test="${not empty review.b_img }">
+																<img src="${review.b_img }" alt="">
+															</c:if>
 														</div>
 														<div class="desc" id="re${review.rev_code }" >
 															<span class="date1">서비스 : ${review.rev_ser_name }</span><br> 
 															<span>${review.rev_name }</span>
 															<span class="ml-4">평점 : ${review.rev_rate }</span> 
-															<span class="date">${review.rev_date }</span>
+															<span class="date">${review.rev_date }</span>	
 															<p class="comment" >${review.rev_sub }</p>
 																<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" 
 																data-rere_code="${review.rev_code }"
@@ -176,7 +181,12 @@
 														<div class="single-comment justify-content-between d-flex">
 															<div class="user justify-content-between d-flex">
 																<div class="thumb">
-																	<img src="${review.s_img }" alt="">
+																	<c:if test="${empty review.s_img }">
+																		<img src="resources/user/assets/img/profile/search-default-profile.jpg" alt="">
+																	</c:if>
+																	<c:if test="${empty review.s_img }">
+																		<img src="${review.s_img }" alt="">
+																	</c:if>																	
 																</div>
 																<div class="desc">
 																	<span>${review.rere_sel_name }</span> 

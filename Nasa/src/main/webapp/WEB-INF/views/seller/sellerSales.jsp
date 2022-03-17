@@ -34,6 +34,10 @@ hr{
  	border-bottom : 1px solid #d5c9ea !important;
    	margin: 10px !important;
 }
+.sales{
+	color : red;
+	font-size: 13px;
+}
 </style>
 </head>
 <body>
@@ -140,6 +144,7 @@ hr{
 												<div style="width: 100%;">
 													<canvas id="myChart"></canvas>
 													<br /><br />
+													<span class="sales">* 판매금액 및 수수료는 구매자가 구매확정한 거래에 대해서만 합산됩니다.</span>
 													<table class="table table-bordered thead-light  text-center">
 													<thead>
 														<tr>
