@@ -31,7 +31,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                    <a href="home.do"><img src="resources/user/assets/img/logo/logo.png" alt=""></a>
+                                    <a href="home.do"><img src="resources/user/assets/img/nasalogo2.png" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-8">
