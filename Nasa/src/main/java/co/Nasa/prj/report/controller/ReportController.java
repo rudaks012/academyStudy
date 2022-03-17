@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,10 @@ public class ReportController {
 	private Review_CommentMapper review_commentDao;
 	@Autowired
 	private ReviewMapper reviewDao;
+	
+	@Value("#{upload['upload']}")
+	private String upload;
+	
 	
 	@RequestMapping("/sellerReport.do")
 	public String sellerReport(Model model, HttpSession session, PagingDTO pagingdto) {
@@ -108,11 +113,11 @@ public class ReportController {
 		if(originaFileName.equals("")) {
 
 		}else {
-			String saveurl ="C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\resources\\chat\\report\\";
+			String saveurl =upload;
 			String savepath =saveurl +originaFileName;
 			System.out.println(savepath);
 
-			String r_img = "resources/chat/report/" + originaFileName;
+			String r_img = upload + originaFileName;
 			vo.setFilecode(r_img);
 			System.out.println("파일코드 입력" + vo.getFilecode());
 			
