@@ -149,7 +149,7 @@
 															<div class="col-lg-6 ">
 																<div class="single-listing mb-30">
 																	<div class="list-img">
-																		<img src="fileupload/${promotion.ser_img }" alt="">
+																		<img src="${promotion.ser_img }" alt="">
 																		<!-- <span>Open</span> -->
 																	</div>
 																	<div class="list-caption">
