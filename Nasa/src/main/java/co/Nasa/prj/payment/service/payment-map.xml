@@ -135,12 +135,18 @@
       SELECT PAY_DATE,PAY_PRICE FROM PAYMENT
    </select>
    
+   
+   
+   
    <!-- 테이블 입력할때 씀 -->
    <select id="selectpaymenttable" resultType="int" parameterType="int">
       SELECT NVL(SUM(PAY_PRICE),0)
       FROM PAYMENT
       WHERE SUBSTR(TO_CHAR(PAY_DATE,'yyyy-mm-dd'),6,2) =#{num}
    </select>
+   
+   
+   
    
    <select id="countservice" resultType="int" parameterType="int">
       SELECT COUNT(*) 
