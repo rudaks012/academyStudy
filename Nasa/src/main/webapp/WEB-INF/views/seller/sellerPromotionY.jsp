@@ -35,6 +35,14 @@
 	width: 354px;
 	height: 256px;
 }
+
+.promotiona {
+	width: 308px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+	white-space: nowrap;
+}
 </style>
 </head>
 <body>
@@ -96,7 +104,7 @@
 				<div class="col-9">
 					<div class="blog_left_sidebar">
 						<article class="blog_item">
-							<div class="justify-content-center">
+							<div class="justify-content-center" style="width: 870px;">
 								<a class="d-inline-block" style="margin-top: 20px;">
 									<h3>프로모션 관리</h3>
 								</a>
@@ -162,7 +170,7 @@
 																	<div class="list-caption">
 																		
 																		<h3>
-																			<a href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
+																			<a class="promotiona" href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
 																		</h3>
 																		<p>프로모션 코드 : p${promotion.pro_code }</p>
 																		<div>프로모션 일자 : ${fn:substring(promotion.pro_start,0,10) } ~ ${fn:substring(promotion.pro_end,0,10) }</div>
