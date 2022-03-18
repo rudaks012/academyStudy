@@ -368,7 +368,7 @@ input[type=date] {
                        <!-- <span>list</span> -->
                        <div class="col-3">
                         <button type="button" id="chatout" class="genric-btn danger-border circle mr-2 px-3"
-                           style="float: left; display: none; font-size:15px;">채팅나가기</button>
+                           style="float: left; display: none; font-size:15px;" onclick="history.back()">채팅나가기</button>
                         </div>
                         <div class="col-5"></div>
 						<div class="col-4 ">
@@ -536,7 +536,7 @@ input[type=date] {
          
             <div class="modal-body">
                <div class="">
-                  <img src="assets/img/comment/comment_1.png"> <span id="paycheckId"></span>
+                  <img id="sellerpay" src="assets/img/comment/comment_1.png"> <span id="paycheckId"></span>
                   <div>
                       <span id="serviceid"></span>
 
@@ -700,6 +700,7 @@ input[type=date] {
                            var $span; // 2단계
                            // 자신이 구매자 입장일 때
                            if (data[i].userid == "${loginMember.s_email}") {
+                               var sellerimg = document.querySelector("#sellerpay"); 
                                var s_img = data[i].s_img;
                               console.log("구매자 아이디 :::"
                                     + data[i].userid
@@ -713,6 +714,8 @@ input[type=date] {
 										  .attr("ser_code", data[i].ser_code)
 										  ;
                               $img = $("<img class='profile_img' src='"+data[i].s_img+"'>");
+                             $("#sellerpay").attr("src","data[i].s_img");
+                              
                                    //$img = $("<img class='profile_img' src='resources/user/assets/img/profile/${loginMember.s_img}.png'>");
                               $div.append($img);
                               $divs = $("<span class='userNameId'>")
@@ -1157,7 +1160,8 @@ input[type=date] {
          console.log("서비스날짜 끝",endservice);
          var coupon = $('input[name="coupon"]:checked').val(); // 쿠폰 사용 여부
          console.log("쿠폰",coupon);
-         var servicemoney = document.querySelector("#copchatmoney1").textContent; // 서비스 금액
+         var servicemoney2= document.querySelector("#copchatmoney1").textContent;
+         var servicemoney = servicemoney2.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") // 서비스 금액
          console.log("서비스 금액",servicemoney);
          var couponmoney = document.querySelector("#couponmoney").textContent; // 쿠폰 금액
          console.log("쿠폰 금액",couponmoney);
@@ -1260,6 +1264,7 @@ input[type=date] {
 			  success : function (data) {
                   console.log("판매자 등급",data);
 				  document.getElementById('sellerrank').innerText = data.s_rank;
+              $("#sellerpay").attr("src",data.s_img);
 			  } 
 		   });
 		}
@@ -1362,7 +1367,8 @@ input[type=date] {
 
       //keyup 이벤트
      function copchatmoney(){
-      const money = document.getElementById('chatmoney').value;
+      var money = document.getElementById('chatmoney').value
+      money = money.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
       document.getElementById('copchatmoney1').innerText = money;
       document.getElementById('lastmoney').innerText = money;
       }

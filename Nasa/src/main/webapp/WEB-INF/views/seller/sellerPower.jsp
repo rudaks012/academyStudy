@@ -86,7 +86,6 @@
 
 input[type=date] {
 	border: 1px solid lightgray;
-	color: lightgray;
 	margin-right: 10px;
 }
 

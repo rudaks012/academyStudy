@@ -91,6 +91,7 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	            sessionList.put(session, chatRoom.getSer_code());
 	            // RoomList에 추가
 	            RoomList.put(chatRoom.getRoomid(), sessionTwo);
+	            System.out.println("-------------------------------------!!!"+session);
 	            RoomList.put(chatRoom.getSer_code(), sessionTwo);
 	            // 확인용
 	            System.out.println("채팅방 생성");
@@ -120,6 +121,7 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	 
 	            // 해당 채팅방의 session에 뿌려준다.
 	            for(WebSocketSession sess : RoomList.get(chatRoom.getRoomid())) {
+	            	System.out.println(sess);
 	                sess.sendMessage(textMessage);
 	                sessionCount++;
 	            }
