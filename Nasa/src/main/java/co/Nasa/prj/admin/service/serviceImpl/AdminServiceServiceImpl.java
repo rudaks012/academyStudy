@@ -52,9 +52,9 @@ public class AdminServiceServiceImpl implements AdminServiceService {
 		return map.todayService();
 	}
 	@Override
-	public AdminAuthorVO powerService(String code) {
+	public AdminAuthorVO promotionService(String code) {
 		// TODO Auto-generated method stub
-		return map.powerService(code);
+		return map.promotionService(code);
 	}
 
 	

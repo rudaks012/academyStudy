@@ -354,7 +354,7 @@
                         <div class="list-caption" style="width: 370px; height: 200px;">
                             <span>BEST!</span>
                              <h3 style="padding: 0px"><a href="serviceDetail.do?ser_code=${bestservice.ser_code }">${bestservice.ser_title }</a></h3>
-                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${bestservice.ser_sub }</p>
+                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 30px;">${bestservice.ser_sub }</p>
                             <div class="list-footer">
                                 <ul>
                                     <li>${bestservice.category }</li>
@@ -389,7 +389,7 @@
 								    <img src="resources/user/assets/img/search-default-profile-s.jpg" alt="" style="width: 370px; height: 370px;">
 							    </c:when>
 							    <c:otherwise>
-								    <img src="${bestseller.s_img }" alt="" style="width: 370px; height: 258px;">
+								    <img src="${bestseller.s_img }" alt="" style="width: 370px; height: 370px;">
 							    </c:otherwise>
 						    </c:choose>
                             <!-- <span>Open</span> -->
