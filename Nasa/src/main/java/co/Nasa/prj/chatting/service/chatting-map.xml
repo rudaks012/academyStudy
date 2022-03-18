@@ -40,18 +40,9 @@
 	</select>
 
 	<insert id="insertMessage">
-		<if test="sessionCount == 1">
 			INSERT INTO CHATMESSAGE VALUES(
 			(SELECT NVL(MAX(TO_NUMBER(MSSAGEID)),0)+1 FROM CHATMESSAGE),
 			#{roomid},#{message}, #{sentid}, #{nickname}, DEFAULT)
-		</if>
-		<if test="sessionCount == 2">
-			INSERT INTO CHATMESSAGE
-			VALUES(
-					(SELECT NVL(MAX(TO_NUMBER(MSSAGEID)),0)+1 FROM CHATMESSAGE),
-			#{roomid},#{message}, #{sentid},
-			#{nickname}, DEFAULT)
-		</if>
 	</insert>
 	<!-- <delete id="chatroomDelete"> delete from chatroom where roomid=#{roomid} 
 		</delete> -->
