@@ -19,7 +19,7 @@
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
-                        <a href="index.html">
+                        <a href="home.do">
                             <b class="logo-icon">
                                 <img src="resources/user/assets/img/logo/loder.jpg" alt="">
                             </b>
@@ -60,7 +60,7 @@
                         <!-- ============================================================== -->
                        
                         <li class="nav-item d-none d-md-block">
-                            <a href="home.do">메인으로 가기</a>
+                            <a href="home.do"><i class="icon-home mr-2"></i>메인으로 가기</a>
                         </li>
                         
                     </ul>

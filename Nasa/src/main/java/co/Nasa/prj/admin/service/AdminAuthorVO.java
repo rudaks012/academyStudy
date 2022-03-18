@@ -139,6 +139,12 @@ public class AdminAuthorVO {
 	String rank;
 	String joindate;
 	
+	String pro_status;
+	String prodiscount;
+	String ser_sale_com;
+	String pro_start;
+	String pro_end;
+	
 	int start; // 쿼리에 쓸 start
 	int end; 
 	

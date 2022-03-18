@@ -88,8 +88,12 @@
 		WHERE scode=#{scode}
 	</select>
 	
-	<select id="powerService" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
-	
+	<select id="promotionService" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+		SELECT ser_code,pro_status,prodiscount,ser_sale_com ,
+		       (select pro_start from promotion where pro_code=v.ser_code) pro_start,
+		       (select pro_end from promotion where pro_code=v.ser_code) pro_end
+		FROM v_service_list v
+		WHERE SER_CODE=#{ser_code}
 		
 	</select>
 
