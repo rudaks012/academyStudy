@@ -73,6 +73,15 @@
 .wishminus:hover {
    color: black;
 }
+.price img{
+	width: 100px;
+	height: 28px;
+}
+.price{
+	float: right;
+	font-size: 25px !important;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -95,7 +104,7 @@
 				<div class="col-lg-8 posts-list">
 					<div class="single-post">
                      <div class="feature-img">
-                        <img class="img-fluid" src="fileupload/${detailS.ser_img }" alt="">
+                        <img class="img-fluid" src="${detailS.ser_img }" alt="">
                      </div>
                      <div class="blog_details">
                         <nav class="fables-single-nav">
@@ -146,9 +155,9 @@
                                  </p>
                                  <c:if test="${detailS.ser_subimg ne null || detailS.ser_subimg2 ne null || detailS.ser_subimg3 ne null}">
                              		<h5><u>서비스 이미지</u></h5>
-                             		<c:if test="${detailS.ser_subimg ne null}"><p><img class="subimg" src="fileupload/${detailS.ser_subimg }"></p></c:if>
-                             		<c:if test="${detailS.ser_subimg2 ne null}"><p><img class="subimg" src="fileupload/${detailS.ser_subimg2 }"></p></c:if>
-                             		<c:if test="${detailS.ser_subimg3 ne null}"><p><img class="subimg" src="fileupload/${detailS.ser_subimg3 }"></p></c:if>
+                             		<c:if test="${detailS.ser_subimg ne null}"><p><img class="subimg" src="${detailS.ser_subimg }"></p></c:if>
+                             		<c:if test="${detailS.ser_subimg2 ne null}"><p><img class="subimg" src="${detailS.ser_subimg2 }"></p></c:if>
+                             		<c:if test="${detailS.ser_subimg3 ne null}"><p><img class="subimg" src="${detailS.ser_subimg3 }"></p></c:if>
                              	</c:if>
                                  <hr />
                              	<h5><u>기술수준</u></h5>
@@ -428,7 +437,18 @@
 								<br/><br/>
 								<h1>${detailS.ser_title }</h1>
 								<br /><br />
-								<span style="font-size:25px; font-weight: bold;">가격 : ${detailS.ser_price }원 ~ </span>
+								<c:if test="${empty goingPromo }">
+									<span style="font-size:25px; font-weight: bold; float: right;">
+										₩<fmt:formatNumber value="${detailS.ser_price }" pattern="###,###"/> ~ 
+									</span>
+								</c:if>
+								<c:if test="${not empty goingPromo }">
+									<span style="font-size:25px; font-weight: bold; float: right;">
+										₩<del><fmt:formatNumber value="${detailS.ser_price }" pattern="###,###"/>~ <del> 
+									</span><br /><br />
+									<div class="price" style="color:red; float: right;"><img src="resources/user/assets/img/promotion.png"> ₩<fmt:formatNumber value="${goingPromo.prodiscount }" pattern="###,###"/></div>
+								</c:if>
+								
 								<br /><br />
 							</div>
 							<!-- /input-group -->
@@ -477,7 +497,7 @@
 									<p>등급 : 등급확인 불가</p>
 								</c:otherwise>
 							</c:choose>
-							<p>${sellerInfo.s_me }</p>
+							<p style="white-space:pre-line;">${sellerInfo.s_me }</p>
 							<button class="genric-btn primary small startbtn" onclick="chatingcheck()">채팅</button>
 							<div class="br"></div>
 						</aside>
@@ -852,6 +872,10 @@
 		/* 리뷰 삭제 기능 test 함수 */
 
         function chatingcheck() {
+			if(${author ne 'B'}){
+				alert('구매자만 채팅 요청할 수 있습니다.');
+				return;
+			}
             //판매자 닉네임
             var chatnick = document.querySelector("#sellernick").innerHTML;
             //서비스코드
