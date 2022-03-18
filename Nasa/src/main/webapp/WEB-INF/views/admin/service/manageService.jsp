@@ -276,7 +276,9 @@
                                         <tr>
                                          <th class="table-primary align-middle">금액</th>
                                             <td colspan="3">
-                                             	<input class="form-control custom-shadow" id="ser_price" name="" value="" type="text" readonly>
+                                              <div class="col-6 p-0 d-flex align-items-center">
+                                             	<input class="form-control custom-shadow" id="ser_price" name="" value="" type="text" readonly><span class="ml-2">원</span>
+                                           	  </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -289,8 +291,54 @@
                                     </tbody>
                                 </table>
                                 
+                                 <div class="mt-3">
+		                     		<i class="fas fa-chevron-circle-right mb-3 mr-2" style="color:#8771ea"></i>프로모션
+		                     	</div>
+		                     	
+                                <table class="table caption-top table-bordered thead-light  text-center">		                        
+                                    <tbody>
+                                       
+                                        <tr>                                     
+                                            <th width="130px" class="table-primary align-middle">상태</th>
+                                            <td>
+                                              <div class="col-6 p-0 d-flex align-items-center">                                                
+                                                <input class="form-control custom-shadow mb-1"  id="pro_status" name="" type="text" readonly> <span class="ml-2"></span>               
+                                              </div>
+                                            </td>
+                                            <th width="90px" class="table-primary align-middle">할인율</th>
+                                            <td > 
+                                              <div class="col-5 p-0 d-flex align-items-center">                                             
+                                                <input class="form-control custom-shadow mb-1 mr-2"  id="prodiscount" name="" type="text" readonly> <span>%</span>                
+                                              </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        	<th class="table-primary align-middle">할인가격</th>
+                                            <td colspan="3"> 
+                                              <div class="col-7 p-0 d-flex align-items-center">                                             
+                                                <input class="form-control custom-shadow mb-1 mr-2"  id="ser_sale_com" name="" type="text" readonly> <span>원</span>                
+                                              </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        	<th class="table-primary align-middle">유효기간</th>
+                                            <td colspan="3">
+                                            	<div class="d-flex align-items-center">
+	                                        		<div class="col-5 p-0">
+		                                        		<input class="form-control custom-shadow " id="pro_start" name="" value="" type="text" readonly>
+		                                        	</div>
+		                                        	<span class="mx-4"><i class="fas fa-minus"></i></span>
+		                                        	<div class="col-5 p-0">
+		                                        		<input class="form-control custom-shadow " id="pro_end" name="" value="" type="text" readonly>
+		                                        	</div>
+	                                        	</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                                 
-                                <div class="mt-5">
+                                
+                                <div class="">
 		                     		<i class="fas fa-chevron-circle-right mb-3 mr-2" style="color:#8771ea"></i>추가정보
 		                     	</div>
 		                     	
@@ -504,7 +552,7 @@ const selectService=()=>{
 		type:"post",
 		data:{"ser_code":code}
 	}).done(function(result){
-		console.log(result.totalPay)
+		console.log(result)
 		$("#ser_code").val(result.serviceInfo.ser_code);
 		let cat_name=result.serviceInfo.cat_name;//1차카테고리
 		let sub_name=result.serviceInfo.sub_name;//2차카테고리
@@ -538,7 +586,25 @@ const selectService=()=>{
 		}else{
 			$("#totalPay").val('0')
 		}
-		$("#totalReview").val(result.totalReview)
+		$("#totalReview").val(result.totalReview);
+		
+	    let status = result.promotion.pro_status;
+	    status=="N"? $("#pro_status").val("진행 중") :
+	    		status=="Y"?$("#pro_status").val("종료"):$("#pro_status").val("없음")
+	    			 
+	    
+	    let discount = result.promotion.prodiscount;
+	    discount!=null?$("#prodiscount").val(discount):$("#prodiscount").val("없음");
+	    
+	    let sale = result.promotion.ser_sale_com;
+	    sale!=null?$("#ser_sale_com").val(sale):$("#ser_sale_com").val("없음");
+	    
+	    let proStart = result.promotion.pro_start;
+	    proStart!=null?$("#pro_start").val(proStart):$("#pro_start").val("없음");
+	    
+	    let proEnd = result.promotion.pro_end;
+	    proEnd!=null?$("#pro_end ").val(proEnd):$("#pro_end").val("없음");
+		
 		
 		
 	})

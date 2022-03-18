@@ -15,6 +15,6 @@ public interface AdminServiceService {
 	
 	public String totalPay(String code);//누적구매금액
 	public int totalReview(String code); //누적리뷰수
-	public AdminAuthorVO powerService(String code);
+	public AdminAuthorVO promotionService(String code);
 
 }
