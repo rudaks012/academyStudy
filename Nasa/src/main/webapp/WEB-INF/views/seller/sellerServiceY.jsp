@@ -299,17 +299,21 @@ input[type=date] {
 													<div class="listing-details-area">
 														<div class="container">
 															<div class="row">
-
+																<c:if test="${empty sellerMainServiceList}">
+																	<img src="resources/user/assets/img/nodata.jpg" style="width: 100%">
+																</c:if>
+																<c:if test="${not empty sellerMainServiceList}">
 																<c:forEach items="${sellerMainServiceList }" var="service">
 																
 																		<div class="col-lg-6">
 																			<div class="single-listing mb-30">
 																				<div class="list-img">
-																					<img src="fileupload/${service.ser_img }" alt="">
+																					<img src="${service.ser_img }" alt="">
 																				</div>
 																				<div class="list-caption">
 																					<div class="category">* ${service.category } > ${service.sub_category }</div>
-																					<div class="line"> ${service.ser_line }</div>
+																					<div class="line"> <div>${service.ser_line }</div>
+																					<div>${service.reviewcount }개의 리뷰</div></div>
 																					<br/>
 																					<h3>
 																						<a href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
@@ -338,6 +342,7 @@ input[type=date] {
 																			</div>
 																		</div>
 																</c:forEach>
+																</c:if>
 															</div>
 														</div>
 													</div>

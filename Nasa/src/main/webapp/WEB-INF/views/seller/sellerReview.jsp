@@ -139,7 +139,9 @@
 
 
 									<br />
-
+									<c:if test="${empty reviewList}">
+										<img src="resources/user/assets/img/nodata.jpg" style="width: 100%">
+									</c:if>
 									<c:forEach items="${reviewList}" var="review">
 										<div class="comments-area" id="c${review.rev_code }">
 											<div class="comment-list">

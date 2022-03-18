@@ -32,5 +32,5 @@ public interface PromotionMapper {
 	int DirectPromCancel(PromotionVO vo);
 	int DirectPromEnd(PromotionVO vo);
 	
-	
+	PromotionVO goingSelectPromo(String ser_code);
 }

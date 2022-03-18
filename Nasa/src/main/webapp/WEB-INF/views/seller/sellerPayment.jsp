@@ -43,6 +43,10 @@ td, th {
 .bemail{
 	color: gray;
 }
+.sales{
+	color : red;
+	font-size: 13px;
+}
 </style>
 </head>
 <body>
@@ -129,6 +133,7 @@ td, th {
 											<div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
 												<br />
 												<br />
+												<span class="sales">* 현재일 기준으로 검색됩니다.</span>
 												<div class="row ">
 													<button class="genric-btn danger-border circle paybtn" onclick="location.href = 'sellerPayment.do'">전체</button>			
 													<button class="genric-btn danger-border circle paybtn" onclick="location.href = 'sellermonthSearch.do'">1개월</button>
@@ -139,7 +144,13 @@ td, th {
 															style="margin-left: 5px;">
 													<button type="submit" class="genric-btn danger-border radius">기간검색</button>
 													</form>
-													<span>* 현재일 기준으로 검색됩니다.</span>
+
+													<c:if test="${empty sellerPayList}">
+														<img src="resources/user/assets/img/nodata.jpg" style="width: 100%">
+													</c:if>
+													<c:if test="${not empty sellerPayList}">
+														
+												
 													<table id="paymentTable"
 														class="table table-bordered thead-light  text-center"
 														style="margin-top: 40px;">
@@ -161,16 +172,22 @@ td, th {
 																		<td>${fn:substring(sellerPay.pay_date,0,10) }</td>
 																		<td>${sellerPay.ser_title }</td>
 																		<td>${sellerPay.b_nickname } <br /><span class="bemail">${sellerPay.b_email }</span></td>
-																		<td><fmt:formatNumber value="${sellerPay.pay_originp }" pattern="###,###"/></td>
-																		<td>${sellerPay.pay_coupon }</td>
-																		<td><fmt:formatNumber value="${sellerPay.pay_com }" pattern="###,###"/></td>
-																		<td><fmt:formatNumber value="${sellerPay.pay_price }" pattern="###,###"/></td>
+																		<td><fmt:formatNumber value="${sellerPay.pay_originp }" pattern="###,###"/>원</td>
+																		<c:if test="${sellerPay.pay_coupon eq 'coupon'}">
+																			<td>-</td>
+																		</c:if>
+																		<c:if test="${sellerPay.pay_coupon ne 'coupon'}">
+																			<td>${sellerPay.pay_coupon }%</td>
+																		</c:if>
+																		<td><fmt:formatNumber value="${sellerPay.pay_com }" pattern="###,###"/>원</td>
+																		<td><fmt:formatNumber value="${sellerPay.pay_price }" pattern="###,###"/>원</td>
 																		<td>${fn:substring(sellerPay.pay_enddate,0,10) }</td>
 																		
 																	</tr>
 															</c:forEach>
 														</tbody>
 													</table>
+													</c:if>
 												</div>
 												<div class="row justify-content-center mt-10">
 													<nav aria-label="Page navigation example">

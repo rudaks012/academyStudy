@@ -102,8 +102,6 @@ hr{
 								</a>
 								<hr class="hr"/>
 								<div class="blog_details">
-								
-										
 												<table class="table caption-top table-bordered  text-center">
 													<tbody>
 														<tr>
