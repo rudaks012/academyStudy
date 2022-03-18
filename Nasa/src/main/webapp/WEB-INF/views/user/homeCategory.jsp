@@ -230,7 +230,7 @@
                                                             </td>
                                                             <c:choose>
                                                                 <c:when test="${not empty cate.pro_status }">
-                                                                    <td class="position-relative tableprice" style="text-align: right; color: red;">
+                                                                    <td class="position-relative tableprice" style="text-align: right; rgb(214, 13, 13);">
                                                                         <span style="text-decoration: line-through; font-weight: bold; font-size: 23px; color: rgb(58, 57, 57);">
                                                                             ${cate.ser_price_com }원
                                                                         </span><br>${cate.ser_sale_com }원!
