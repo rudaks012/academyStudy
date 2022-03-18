@@ -336,11 +336,11 @@ public class SellerController {
 		if (originalFileName.equals("")) {
 			vo.setS_img(beforimg);
 		} else {
-			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+			String saveurl = profileupload;
 			String savepath = saveurl + originalFileName;
 			System.out.println(savepath);
 
-			String b_img = "resources/user/assets/img/profile/" + originalFileName;
+			String b_img = "/upload/profile/" + originalFileName;
 
 			vo.setS_img(b_img);
 
