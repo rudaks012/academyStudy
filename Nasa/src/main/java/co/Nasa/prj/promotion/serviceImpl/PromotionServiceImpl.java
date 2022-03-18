@@ -102,6 +102,11 @@ public class PromotionServiceImpl implements PromotionService {
 	@Override
 	public int DirectPromEnd(PromotionVO vo) {
 		return map.DirectPromEnd(vo);
+	}
+
+	@Override
+	public PromotionVO goingSelectPromo(String ser_code) {
+		return map.goingSelectPromo(ser_code);
 	}	
 	
 }
