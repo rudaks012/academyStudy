@@ -419,7 +419,7 @@ const selectPayment=()=>{
 		$("#ser_team").val(result.ser_team)
 		$("#pay_price").val(result.pay_price)
 		let coupon= result.pay_coupon;
-		coupon!=null?$("#pay_coupon").val("없음"):$("#pay_coupon").val(result.pay_coupon)
+		coupon!=null?$("#pay_coupon").val(result.pay_coupon+"% 쿠폰"):$("#pay_coupon").val("없음")
 	})
 }
 
