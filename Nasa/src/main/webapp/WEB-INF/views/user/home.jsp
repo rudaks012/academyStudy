@@ -22,6 +22,11 @@
            border-radius: 70%;
            overflow: hidden;
        }
+       .powerp {
+           overflow: hidden;
+           text-overflow: ellipsis;
+           white-space: nowrap;
+       }
        .card-body {
            cursor:pointer;
        }
@@ -37,6 +42,13 @@
 
        .wishminus:hover {
            color: black;
+       }
+
+       #knohowlink {
+           color:black !important;
+       }
+       .rprp {
+           text-shadow: 1px 1px 2px #7d64aa, 0 0 10px #7d64aa, 0 0 5px #7d64aa;
        }
    </style>
 </head>
@@ -88,32 +100,36 @@
                 <!-- Section Tittle -->
                 <div class="col-lg-12 col-md-6 col-sm-6" style="margin-top: 30px;">
                     <div class="h1-testimonial-active">
-                        <!-- Single Testimonial -->
-                        <div class="single-testimonial text-center">
-                            <!-- Testimonial Content -->
-                            <div class="single-location mb-30">
-                                <div class="location-img">
-                                    <img src="resources/user/assets/img/event1.png" alt="">
-                                </div>
-                                <div class="location-details">
-                                    <p>메인 이벤트</p>
-                                    <a href="#" class="location-btn"> <i class="ti-plus"></i>더보기</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single Testimonial -->
-                        <div class="single-testimonial text-center">
-                            <!-- Testimonial Content -->
-                            <div class="single-location mb-30">
-                                <div class="location-img">
-                                    <img src="resources/user/assets/img/event2.png" alt="">
-                                </div>
-                                <div class="location-details">
-                                    <p>메인 이벤트</p>
-                                    <a href="#" class="location-btn"> <i class="ti-plus"></i>더보기</a>
+                        <c:forEach items="${rplist }" var="rp" begin="0" end="0" step="1">
+                            <!-- Single Testimonial -->
+                            <div class="single-testimonial text-center">
+                                <!-- Testimonial Content -->
+                                <div class="single-location mb-30" style="text-align: left;">
+                                    <div class="location-img">
+                                        <img src="resources/user/assets/img/mainevent3.jpg" alt="" style="height: 380px">
+                                    </div>
+                                    <div class="location-details">
+                                        <p class="rprp">${rp.nickname } 님의 [ ${rp.ser_title } ] 서비스 할인 중!</p>
+                                        <a href="serviceDetail.do?ser_code=${rp.ser_code }" class="location-btn"> <i class="ti-plus"></i>더보기</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
+                        <c:forEach items="${rplist }" var="rp" begin="1" end="1" step="1">
+                            <!-- Single Testimonial -->
+                            <div class="single-testimonial text-center">
+                                <!-- Testimonial Content -->
+                                <div class="single-location mb-30" style="text-align: left;">
+                                    <div class="location-img">
+                                        <img src="resources/user/assets/img/mainevent.jpg" alt="" style="height: 380px">
+                                    </div>
+                                    <div class="location-details">
+                                        <p class="rprp">${rp.nickname } 님의 [ ${rp.ser_title } ] 서비스 할인 중!</p>
+                                        <a href="serviceDetail.do?ser_code=${rp.ser_code }" class="location-btn"> <i class="ti-plus"></i>더보기</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
                     </div>                            
                 </div>                        
             </div>
@@ -215,8 +231,8 @@
                                             </c:choose>
                                         </div>
                                         <div class="cat-cap" style="padding: 10px;">
-                                            <h5><a>판매자 ${power.s_nickname }</a></h5>
-                                            <p>[서비스] ${power.ser_title }</p>
+                                            <h5><a>${power.s_nickname }</a></h5>
+                                            <p class="powerp">${power.ser_title }</p>
                                             <a href="serviceDetail.do?ser_code=${power.ser_code }">상세보기</a>
                                         </div>
                                     </div>
@@ -335,10 +351,10 @@
                             <img src="fileupload/${bestservice.ser_img }" alt="" style="width: 370px; height: 258px;">
                             <!-- <span>Open</span> -->
                         </div>
-                        <div class="list-caption" style="width: 370px; height: 227px;">
+                        <div class="list-caption" style="width: 370px; height: 200px;">
                             <span>BEST!</span>
-                             <h3><a href="serviceDetail.do?ser_code=${bestservice.ser_code }">${bestservice.ser_title }</a></h3>
-                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${bestservice.ser_sub }</p>
+                             <h3 style="padding: 0px"><a href="serviceDetail.do?ser_code=${bestservice.ser_code }">${bestservice.ser_title }</a></h3>
+                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 30px;">${bestservice.ser_sub }</p>
                             <div class="list-footer">
                                 <ul>
                                     <li>${bestservice.category }</li>
@@ -370,10 +386,10 @@
                         <div class="list-img">
                             <c:choose>
 							    <c:when test="${empty bestseller.s_img }">
-								    <img src="resources/user/assets/img/profile/search-default-profile.jpg" alt="" style="width: 370px; height: 258px;">
+								    <img src="resources/user/assets/img/search-default-profile-s.jpg" alt="" style="width: 370px; height: 370px;">
 							    </c:when>
 							    <c:otherwise>
-								    <img src="${bestseller.s_img }" alt="" style="width: 370px; height: 258px;">
+								    <img src="${bestseller.s_img }" alt="" style="width: 370px; height: 370px;">
 							    </c:otherwise>
 						    </c:choose>
                             <!-- <span>Open</span> -->
@@ -381,7 +397,7 @@
                         <div class="list-caption" style="width: 370px; height: 190px;">
                             <span>BEST!</span>
                              <h3 id="bestnickname"><a href="sellerDetail.do?s_email=${bestseller.s_email }">${bestseller.s_nickname }</a></h3>
-                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${bestseller.s_me }</p>
+                            <p style="height: 30px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${bestseller.s_me }</p>
                             <div class="list-footer">
                                 <ul>
 
@@ -409,7 +425,7 @@
                 <!-- Section Tittle -->
                 <div class="section-tittle text-center mb-70">
                     <span>Seller's Know-how</span>
-                    <h2>판매자의 노하우</h2>
+                    <h2>판매자의 노하우</h2><a id="knohowlink" href="go_knowhowlist.do" style="width:100px; margin-left:90%; padding-bottom: 4px; border-bottom: 5px solid #7d64aa;">전체 보기</a>
                 </div> 
             </div>
         </div>

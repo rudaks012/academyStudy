@@ -32,7 +32,9 @@ public class AdminReportController {
 		model.addAttribute("reportLists", reportDao.getReportListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReport(cri)));
 		model.addAttribute("total", reportDao.totalReport(cri));
-
+		model.addAttribute("todayReport", reportDao.todayReportTotal());
+		model.addAttribute("waitTotal", reportDao.waitReportTotal());
+		model.addAttribute("realTotal", reportDao.realTotalReport());
 		return "admin/report/reportInquiry";
 	}
 
@@ -72,6 +74,9 @@ public class AdminReportController {
 		model.addAttribute("reportWaitLists", reportDao.getReportWaitListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportWait(cri)));
 		model.addAttribute("total", reportDao.totalReportWait(cri));
+		model.addAttribute("todayReport", reportDao.todayReportTotal());
+		model.addAttribute("waitTotal", reportDao.waitReportTotal());
+		model.addAttribute("realTotal", reportDao.realTotalReport());
 
 		return "admin/report/reportWait";
 	}
@@ -95,9 +100,12 @@ public class AdminReportController {
 	@RequestMapping("/report_complete.do")
 	public String report_complete(Model model, Criteria cri) {
 
-		model.addAttribute("reportCompleteLists", reportDao.getReportListWithPaging(cri));
+		model.addAttribute("reportCompleteLists", reportDao.getReportCompleteListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportComplete(cri)));
 		model.addAttribute("total", reportDao.totalReportComplete(cri));
+		model.addAttribute("todayReport", reportDao.todayReportTotal());
+		model.addAttribute("waitTotal", reportDao.waitReportTotal());
+		model.addAttribute("realTotal", reportDao.realTotalReport());
 		return "admin/report/reportComplete";
 	}
 
@@ -114,6 +122,9 @@ public class AdminReportController {
 		model.addAttribute("reportRefuseLists", reportDao.getReportRefuseListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, reportDao.totalReportRefuse(cri)));
 		model.addAttribute("total", reportDao.totalReportRefuse(cri));
+		model.addAttribute("todayReport", reportDao.todayReportTotal());
+		model.addAttribute("waitTotal", reportDao.waitReportTotal());
+		model.addAttribute("realTotal", reportDao.realTotalReport());
 		return "admin/report/reportRefuse";
 	}
 	
@@ -122,6 +133,9 @@ public class AdminReportController {
 		 model.addAttribute("blackList", reportDao.getBlackListWithPaging(cri));
 		 model.addAttribute("pageMaker", new PageDTO(cri, reportDao.searchBlackListTotal(cri)));
 		 model.addAttribute("total", reportDao.blackListTotal());
+		 model.addAttribute("searchTotal", reportDao.searchBlackListTotal(cri));
+		 model.addAttribute("todayBlack", reportDao.todayBlackListMember());
+		 model.addAttribute("todayStop", reportDao.todayPermanentStop());
 		 return "admin/report/manageBlackList";
 	 }
 	 
@@ -132,10 +146,12 @@ public class AdminReportController {
 	 }
 
 	
+
 	 //블랙리스트 한달정지 스케줄러
 	  @Scheduled(cron = "0 * * * * *")
 	  public void updateBlackListMember() {
 	     reportDao.scheduleMemberBlackList();
 	 }
+
 	 
 }

@@ -27,6 +27,7 @@ import co.Nasa.prj.comm.VO.ServiceVO;
 
 import co.Nasa.prj.payment.service.PaymentService;
 import co.Nasa.prj.powerservice.service.PowerServiceService;
+import co.Nasa.prj.promotion.service.PromotionService;
 import co.Nasa.prj.seller.service.SellerService;
 import co.Nasa.prj.service.service.ServiceMapper;
 import co.Nasa.prj.service.service.ServiceService;
@@ -54,6 +55,9 @@ public class HomeController {
 
 	@Autowired
 	NoticeService NoticeDao;
+	
+	@Autowired
+	PromotionService promotionDao;
 
 	@RequestMapping("/home.do")
 	public String home(Model model, HttpSession session) {
@@ -61,6 +65,7 @@ public class HomeController {
 		model.addAttribute("bestservicelist", serviceDao.bestServiceList());
 		model.addAttribute("bestsellerlist", sellerDAO.bestSellerList());
 		model.addAttribute("knowhowlist", NoticeDao.knowhowSelectList());
+		model.addAttribute("rplist", serviceDao.randomPromotion());
 
 		
 		BuyerVO buyervo = new BuyerVO(); 
@@ -70,8 +75,17 @@ public class HomeController {
 	
 		if("B".equals(author)) {
 			buyervo.setB_email((String) session.getAttribute("id")); 
-			buyervo = BuyerDao.selectBuyer(buyervo); 
+			buyervo = BuyerDao.selectBuyer(buyervo);
+			if(buyervo.getField_code() == "") {
+				List<ServiceVO> recommendService = serviceDao.notBuyerRandomService();
+				model.addAttribute("recommendService", recommendService);
+				return "user/home";
+			}
 			List<ServiceVO> recommendService = serviceDao.randomSelectService(buyervo.getField_code());
+			if(recommendService.size() < 1) {
+				recommendService = serviceDao.notBuyerRandomService();
+				model.addAttribute("recommendService", recommendService); 
+			}
 			model.addAttribute("recommendService", recommendService); 
 		} else {
 			List<ServiceVO> recommendService = serviceDao.notBuyerRandomService();

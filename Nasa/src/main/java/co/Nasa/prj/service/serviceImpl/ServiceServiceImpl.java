@@ -60,8 +60,8 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	@Override
-	public List<ServiceVO> servicePromotion(String s_email) {
-		return map.servicePromotion(s_email);
+	public List<ServiceVO> servicePromotion(ServiceVO vo) {
+		return map.servicePromotion(vo);
 	}
 	
 	@Override
@@ -108,6 +108,36 @@ public class ServiceServiceImpl implements ServiceService {
 	@Override
 	public int countPagingSellerService(ServiceVO vo) {
 		return map.countPagingSellerService(vo);
+	}
+
+	@Override
+	public List<ServiceVO> sellerMainServiceListY(ServiceVO vo) {
+		return map.sellerMainServiceListY(vo);
+	}
+
+	@Override
+	public int countPagingSellerServiceY(ServiceVO vo) {
+		return map.countPagingSellerServiceY(vo);
+	}
+
+	@Override
+	public List<ServiceVO> sellerMainServiceListU(ServiceVO vo) {
+		return map.sellerMainServiceListU(vo);
+	}
+
+	@Override
+	public int countPagingSellerServiceU(ServiceVO vo) {
+		return map.countPagingSellerServiceU(vo);
+	}
+
+	@Override
+	public int DirectendService(ServiceVO vo) {
+		return map.DirectendService(vo);
+	}
+
+	@Override
+	public List<ServiceVO> randomPromotion() {
+		return map.randomPromotion();
 	}
 
 

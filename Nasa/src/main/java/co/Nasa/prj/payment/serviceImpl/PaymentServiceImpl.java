@@ -1,9 +1,7 @@
 package co.Nasa.prj.payment.serviceImpl;
 
 import java.util.HashMap;
-import java.sql.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,48 +14,46 @@ import co.Nasa.prj.payment.service.PaymentService;
 @Repository("paymentDao")
 
 public class PaymentServiceImpl implements PaymentService {
-   @Autowired
-   PaymentMapper map;
+	@Autowired
+	PaymentMapper map;
 
-   @Override
-   public List<PaymentVO> buyerPaymentList(PaymentVO vo) {
-      return map.buyerPaymentList(vo);
-   }
+	@Override
+	public List<PaymentVO> buyerPaymentList(PaymentVO vo) {
+		return map.buyerPaymentList(vo);
+	}
 
-   @Override
-   public List<PaymentVO> selectListChart() {
-      return map.selectListChart();
-   }
+	@Override
+	public List<PaymentVO> selectListChart() {
+		return map.selectListChart();
+	}
 
-   @Override
-   public List<Integer> selectpaymenttable(int month) {
-      return map.selectpaymenttable(month);
-   }
+	@Override
+	public List<Integer> selectpaymenttable(int month) {
+		return map.selectpaymenttable(month);
+	}
 
-   @Override
-   public List<Integer> countservice(int count) {
-      // TODO Auto-generated method stub
-      return map.countservice(count);
-   }
+	@Override
+	public List<Integer> countservice(int count) {
+		// TODO Auto-generated method stub
+		return map.countservice(count);
+	}
 
-   @Override
-   public List<PaymentVO> selectListYearChart() {
-      return map.selectListYearChart();
-   }
+	@Override
+	public List<PaymentVO> selectListYearChart() {
+		return map.selectListYearChart();
+	}
 
-   @Override
-   public List<Integer> selectYearchart(int year) {
-      return map.selectYearchart(year);
-   }
+	@Override
+	public List<Integer> selectYearchart(int year) {
+		return map.selectYearchart(year);
+	}
 
-   @Override
-   public List<Integer> countYearChart(int count) {
-      return map.countYearChart(count);
-   }
+	@Override
+	public List<Integer> countYearChart(int count) {
+		return map.countYearChart(count);
+	}
 
-   
-
-	//채팅 결제
+	// 채팅 결제
 	@Override
 	public int insertchatpayment(PaymentVO vo) {
 		return map.insertchatpayment(vo);
@@ -102,6 +98,7 @@ public class PaymentServiceImpl implements PaymentService {
 	public PaymonthVO sellerCommData(HashMap<String, String> remap) {
 		return map.sellerCommData(remap);
 	}
+
 	public int countMonthSearch(PaymentVO vo) {
 		return map.countMonthSearch(vo);
 	}
@@ -149,9 +146,8 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public List<PaymentVO> sellerselectdateSearch(PaymentVO vo) {
-		return map.selectdateSearch(vo);
+		return map.sellerselectdateSearch(vo);
 	}
-
 
 	@Override
 	public int countPagingSellerPayment(PaymentVO vo) {
@@ -178,7 +174,77 @@ public class PaymentServiceImpl implements PaymentService {
 		return map.countPagingSellerPaymentN(vo);
 	}
 
-	
-	
+	@Override
+	public int countsellermonthSearch(PaymentVO vo) {
+		return map.countsellermonthSearch(vo);
+	}
+
+	@Override
+	public int countsellersixmonthSearch(PaymentVO vo) {
+		return map.countsellersixmonthSearch(vo);
+	}
+
+	@Override
+	public int countselleryearSearch(PaymentVO vo) {
+		return map.countselleryearSearch(vo);
+	}
+
+	@Override
+	public int countsellerselectdateSearch(PaymentVO vo) {
+		return map.countsellerselectdateSearch(vo);
+	}
+
+	@Override
+	public List<PaymentVO> CalendarList(String id) {
+		return map.CalendarList(id);
+	}
+
+	@Override
+
+	public int purchaseconfirm() {
+		return map.purchaseconfirm();
+  }
+
+  	@Override
+	public List<PaymentVO> sellerPaymentDList(PaymentVO vo) {
+		return map.sellerPaymentDList(vo);
+	}
+
+	@Override
+	public List<PaymentVO> endPaymentList(PaymentVO vo) {
+		return map.endPaymentList(vo);
+	}
+
+	@Override
+	public int paycomplete(PaymentVO vo) {
+		return map.paycomplete(vo);
+  }
+  
+ 	@Override
+	public PaymentVO selectBuyerCalendar(PaymentVO vo) {
+		return map.selectBuyerCalendar(vo);
+
+
+	}
+
+	@Override
+	public PaymonthVO sellerTotalservice2(HashMap<String, String> totalmap) {
+		return map.sellerTotalservice2(totalmap);
+	}
+
+	@Override
+	public PaymentVO selectSellerCalendar(PaymentVO vo) {
+		return map.selectSellerCalendar(vo);
+	}
+
+	@Override
+	public List<PaymentVO> CalendarListS(String id) {
+		return map.CalendarListS(id);
+	}
+
+	@Override
+	public int countReviewPayment(PaymentVO vo) {
+		return map.countReviewPayment(vo);
+	}
 
 }

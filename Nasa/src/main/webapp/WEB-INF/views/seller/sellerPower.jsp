@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript"
+	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 .hr{
  	background-color : #d5c9ea !important;
@@ -106,9 +108,15 @@ input[type=date] {
 	height: 256px;
 }
 
-.genric-btn.danger-border:hover {
-	background-color: #d5c9ea !important;
-	color: white;
+.genric-btn:hover {
+	background-color: white;
+	color:#9e68ff !important;
+	border: 1px solid #9e68ff !important;
+}
+.genric-btn.danger{
+	margin-top: 15px;
+	float: right;
+	background: #e0d6f2;
 }
 </style>
 </head>
@@ -135,25 +143,28 @@ input[type=date] {
 	                        <h4 class="widget_title">MYPAGE MENU</h4>
 	                        <ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
-										<p>서비스관리</p>
+									<p >서비스 관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
-										<p>프로모션관리</p>
+										<p>프로모션 관리</p>
+								</a></li>
+								<li><a href="powerservice.do" class="d-flex">
+										<p style="font-weight: bold;">파워서비스 내역</p>
 								</a></li>
 								<li><a href="sellerCalendar.do" class="d-flex">
-										<p>일정관리</p>
+										<p>일정 관리</p>
 								</a></li>
-								<li><a href="sellerReview.do" class="d-flex">
-										<p>리뷰관리</p>
+								<li><a href="sellerReview.do?scode=0" class="d-flex">
+										<p>리뷰 관리</p>
 								</a></li>
 								<li><a href="sellerPayment.do" class="d-flex">
-										<p>결제조회</p>
+										<p >결제 조회</p>
 								</a></li>
 								<li><a href="sellerSales.do" class="d-flex">
-										<p>매출확인</p>
+										<p>매출 확인</p>
 								</a></li>
 								<li><a href="sellerReport.do" class="d-flex">
-										<p style="font-weight: bold;">신고관리</p>
+										<p>신고 관리</p>
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p>판매자 노하우</p>
@@ -169,9 +180,14 @@ input[type=date] {
 								<a class="d-inline-block" style="margin-top:20px;">
 										<h3>파워서비스 내역</h3>
 									</a>
-									<a href="" class="genric-btn danger" data-toggle="modal"
-									data-target="#PowerModal">파워서비스 등록</a> 
+									<button class="genric-btn danger circle" data-toggle="modal"
+									data-target="#PowerModal">파워서비스 등록</button> 
 								<hr class="hr"/>
+								<div class="blog_details">
+								<c:if test="${empty powerList }">
+									<img src="resources/user/assets/img/nodata.jpg" style="width: 100%; height: 100%">
+								</c:if>
+								<c:if test="${not empty powerList }">
 								<table class="table caption-top table-bordered thead-light  text-center" style="margin-top:40px; font-size:12px;">
 									<thead class="thead-light">
 										<tr>
@@ -185,6 +201,8 @@ input[type=date] {
 										</tr>
 									</thead>
 									<tbody>
+									
+									
 									<c:forEach items="${powerList }" var="power">
 										<tr style="font-size:12px;">
 											<td>${fn:substring(power.power_date,0,11) }</td>
@@ -204,36 +222,37 @@ input[type=date] {
 											</c:if>
 										</tr>
 									</c:forEach>
-										
+											
 									</tbody>
 								</table>
-								
+								<div class="row justify-content-center mt-10">
+									<nav aria-label="Page navigation example">
+									  <ul class="pagination">
+										  <c:if test="${paging.prev }">
+											  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+										  </c:if>
+										  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+											  <c:choose>
+												  <c:when test="${p == paging.pageNum }">
+													  <li class="page-item"><b class="page-link">${p }</b></li>
+												  </c:when>
+												  <c:when test="${p != paging.pageNum }">
+													  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+												  </c:when>
+											  </c:choose>
+										  </c:forEach>
+										  <c:if test="${paging.next }">
+											  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+										  </c:if>
+									  </ul>
+									</nav>
+								</div>
+								</c:if>
 							</div>
-							
+							</div>
                     	</article>
                     </div>
-                    <div class="row justify-content-center mt-10">
-						<nav aria-label="Page navigation example">
-						  <ul class="pagination">
-							  <c:if test="${paging.prev }">
-								  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
-							  </c:if>
-							  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-								  <c:choose>
-									  <c:when test="${p == paging.pageNum }">
-										  <li class="page-item"><b class="page-link">${p }</b></li>
-									  </c:when>
-									  <c:when test="${p != paging.pageNum }">
-										  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
-									  </c:when>
-								  </c:choose>
-							  </c:forEach>
-							  <c:if test="${paging.next }">
-								  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
-							  </c:if>
-						  </ul>
-						</nav>
-					</div>
+                    
 	        	</div>
 	        </div>
 	    </div>
@@ -409,8 +428,8 @@ input[type=date] {
  									//$("#or_uid").val(rsp.imp_uid);
  									$("#frm").submit();
  									var msg = '결제가 완료되었습니다.';
- 									msg += '고유ID : '
- 											+ rsp.imp_uid;
+ 									/* msg += '고유ID : '
+ 											+ rsp.imp_uid; */
  									/* msg += '상점 거래ID : ' + rsp.merchant_uid;
  									msg += '결제 금액 : ' + rsp.paid_amount;
  									msg += '카드 승인번호 : ' + rsp.apply_num; */

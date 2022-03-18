@@ -58,10 +58,12 @@
 						<div class="form-group">
 							<input class="form-control" name="s_nickname" id="s_nickname" type="text"
 								 value="${sellerInfo.s_nickname }" required>
+							
 							<input type="button" value="확인" id="nickCheckbtn"
 									class="position-relative genric-btn primary radius" onclick="nicknameCheck()"
 									style="float: right; bottom: 40px; left: 10px;" >
 						</div>
+						<label id="nicklabelok">인증된 닉네임입니다.</label>
 					</div>
 
 					<div style="margin-top: 20px;">
@@ -80,7 +82,7 @@
 						</div>
 					</div>
 				
-					<div style="margin-top: 20px;">
+					<div style="margin-top: 20px;" id="addressdiv">
 						<p>주소</p>
 						<div class="form-group">
 							<input class="form-control col-8" name="s_zipcode" id="s_zipcode"
@@ -205,14 +207,16 @@
 			if (!($("#s_nickname").val())) { // 닉네임에 아무것도 적혀있지 않으면
 				$("label").remove('#nicklabel');
 				$("label").remove('#nicklabelok');
+				$("label").remove('#nicklabelok2');
 				$("#nickdiv").append('<label id="nicklabel">닉네임은 필수 입력값입니다.</label>');
 				$("#nicklabel").css("color", "red");
 			} else { // 뭐라도 적혀있으면
 				$("label").remove('#nicklabel');
 				$("label").remove('#nicklabelok');
+				$("label").remove('#nicklabelok2');
 			}
 		})
-	
+		
 		// 닉네임 중복 체크
 		function nicknameCheck() {
 			if($('#s_nickname').val() == "${sellerInfo.s_nickname}"){
@@ -263,7 +267,13 @@
 		});
 
 		$("#s_detailaddress").blur(function () {
-			$("label").remove('#addresslabel');
+			console.log($("#s_detailaddress").val());
+			if (($("#s_detailaddress").val() != '')) {
+				$("label").remove('#addresslabel');				
+			}else{
+				$("#addressdiv").append('<label id="addresslabel">상세주소는 필수 입력값입니다.</label>');
+				$("#addresslabel").css("color", "red");
+			}
 		})
 		
 		// 비밀번호 설정
@@ -331,10 +341,11 @@
 				$("#phonediv").append('<label id="phonelabel">연락처는 필수 입력값입니다.</label>');
 				$("#phonelabel").css("color", "red");
 				$("#s_tel").focus();
-			} else if (!($("#s_address").val())) {
+			} else if (!($("#s_detailaddress").val())) {
 				$("label").remove('#addresslabel');
-				$("#addressdiv").append('<label id="addresslabel">주소는 필수 입력값입니다.</label>');
+				$("#addressdiv").append('<label id="addresslabel">상세주소는 필수 입력값입니다.</label>');
 				$("#addresslabel").css("color", "red");
+				$("#s_detailaddress").focus();
 			} else {
 				console.log('111');
 				var form = $('#sellerProfileU')[0];
@@ -348,7 +359,7 @@
 	    			processData : false,
 					success: function (data) {
 						if (data == "T") {
-							console.log("수정 완료하였습니다.");
+							alert("수정 완료하였습니다.");
 							location.href='goSellerMypage.do';
 						} else {
 							console.log("수정 실패");
@@ -373,6 +384,8 @@
 				$('#newpwdiv').attr('style','display: none;');
 			}
 		})
+		
+		
 	</script>
 </body>
 </html>

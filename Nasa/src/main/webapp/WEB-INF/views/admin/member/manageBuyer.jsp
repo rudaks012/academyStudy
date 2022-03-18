@@ -18,15 +18,15 @@
                 </h6>
             </div>
             <ul class="list-style-none d-flex">
-                <li class="mr-1">총 회원수 <span class="text-danger mx-1">${totalBuyer }</span>명
+                <li class="mr-1">총 회원 <span class="text-danger mx-1">${totalBuyer }</span>명
                 </li>
                 <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
-                <a href="#">
-                    <li class="mx-2">블랙리스트 <span class="text-danger mx-1"></span>명
+                
+                    <li class="mx-2">오늘 가입한 회원 <span class="text-danger mx-1">${todayNewBuyer }</span>명
                     </li>
-                </a>
+                
                 <div class="mx-3 bg-light position-relative" style="height: 20px; width: 3px; top: 3px"></div>
-                <li class="mx-2">탈퇴 <span class="text-danger mx-1"></span>명
+                <li class="mx-2">탈퇴 회원 <span class="text-danger mx-1">${withdraw }</span>명
                 </li>
             </ul>
 
@@ -71,21 +71,21 @@
                         <td>
                             <div class="d-flex align-items-center position-relative" style="top: 5px; left: 10px;">
                                 <div class="custom-control custom-radio mr-3 ">
-                                    <input type="radio" id="customRadio1" name="b_rank"
+                                    <input type="radio" id="customRadio1" name="b_rank" <c:out value="${pageMaker.cri.b_rank eq '1'? 'checked':'' }"/>
                                         class="custom-control-input mr-5" value="1"> <label class="custom-control-label"
                                         for="customRadio1">별</label>
                                 </div>
                                 <div class="custom-control custom-radio mx-3">
-                                    <input type="radio" id="customRadio2" name="b_rank"
+                                    <input type="radio" id="customRadio2" name="b_rank" <c:out value="${pageMaker.cri.b_rank eq '2'? 'checked':'' }"/>
                                         class="custom-control-input mr-5" value="2"> <label class="custom-control-label"
                                         for="customRadio2">달</label>
                                 </div>
                                 <div class="custom-control custom-radio mx-3">
-                                    <input type="radio" id="customRadio3" name="b_rank" class="custom-control-input" value="3">
+                                    <input type="radio" id="customRadio3" name="b_rank" class="custom-control-input" value="3" <c:out value="${pageMaker.cri.b_rank eq '3'? 'checked':'' }"/>>
                                     <label class="custom-control-label" for="customRadio3">지구</label>
                                 </div>
                                 <div class="custom-control custom-radio mx-3">
-                                    <input type="radio" id="customRadio4" name="b_rank" class="custom-control-input" value="4">
+                                    <input type="radio" id="customRadio4" name="b_rank" class="custom-control-input" value="4" <c:out value="${pageMaker.cri.b_rank eq '4'? 'checked':'' }"/>>
                                     <label class="custom-control-label" for="customRadio4">해</label>
                                 </div>
 
@@ -127,16 +127,18 @@
             </form>
         </div>
     </div>
+    
 
-    <div class="row my-5">
+
+    <div class="row">
         <div class="col-6">
             <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">회원조회</h5>
             <div class="card">
                 <div class="card-body">
                     <div class=" mb-3">
-                        총 <span class="mx-1 text-danger">${totalBuyer } </span>건
+                        총 <span class="mx-1 text-danger">${searchTotal } </span>건
                     </div>
-                    <table class="table table-bordered thead-light text-center table-hover">
+                    <table class="table table-bordered thead-light text-center table-hover" id="table01">
                         <thead class="table-active">
                             <tr>
                                 <th>아이디</th>
@@ -146,6 +148,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                          <c:if test="${!empty buyerList }">
                             <c:forEach var="buyer" items="${buyerList }" varStatus="status">
                                 <tr class="member-list" onclick="javascript:clickTrRow(this);">
                                     <td>${buyer.b_email }</td>
@@ -169,6 +172,12 @@
                                     </td>
                                 </tr>
                             </c:forEach>
+                           </c:if>
+                           <c:if test="${empty buyerList }">
+                           		<tr>
+                           			<td colspan="4">조회 된 구매자가 없습니다.</td>
+                           		</tr>
+                           </c:if>
                         </tbody>
                     </table>
 
@@ -197,6 +206,10 @@
                     </div>
                 </div>
             </div>
+               <div class="mt-5">
+          <button class="btn waves-effect waves-light btn-success" onclick="download();">EXCEL</button>
+          <!-- <button class="btn waves-effect waves-light btn-danger" id="savePdfBtn">PDF</button> -->
+      </div>
         </div>
 
         <form id="actionForm" action="go_admin.do" method="get">
@@ -219,11 +232,12 @@
                 </div>
                 <div class="card-body">
                     <form id="buyerInfo">
+                     <div id="pdfDiv">
                         <table class="table caption-top table-bordered thead-light  text-center">
                             <tbody>
                                 <tr>
                                     <td rowspan="4" width="200px">
-                                       <img id="b_img"  width="200px" height="250px">
+                                       <img id="b_img"   width="200px" height="250px">
                                     </td>
 
                                 </tr>
@@ -283,6 +297,21 @@
                                     </td>
                                     
                                     <tr>
+                                            <th class="table-primary align-middle">카테고리</th>
+                                            <td colspan="3" >
+                                               <div class="d-flex">
+                                            	<div class="col-5 p-0">
+                                            		<input class="form-control custom-shadow " id="cat_name" name="" value="" type="text" readonly>
+                                            	</div>
+                                            	<div class="col-6 ml-3 p-0">
+                                            		<input class="form-control custom-shadow " id="field_code" name="" value="" type="text" readonly>
+                                            	</div>
+                                               </div>
+                                            </td>
+                                            
+                                        </tr>
+                                    
+                                    <tr>
 	                                    <th class="table-primary align-middle">가입일자</th>
 	                                    <td colspan="3"><input class="form-control custom-shadow" id="b_date" name="b_date" value=""
 	                                            type="text" readonly></td>
@@ -311,6 +340,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                       </div>
                     </form>
 
                 </div>
@@ -380,12 +410,16 @@
 
 
 <script src="resources/admin/dist/js/jquery.twbsPagination.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 <script type="text/javascript">
 //신고날짜 변경
 let startDate =$("input[name='b_date']");
 let endDate =$("input[name='b_date2']");
 const handleReportDate =()=>{
 	$(endDate).val($(startDate).val())
+	$(endDate).attr("min",$(startDate).val())
 	
 	
 }
@@ -410,6 +444,7 @@ const hadleResetLists =()=>{
 	$("input[name='b_nickname']").val('')
 	$("input[name='b_tel']").val('')
 	$("input[name='b_address']").val('')
+	$("input[name='b_rank']").val('')
 	
 	searchForm.action="go_admin.do";
 	searchForm.submit();
@@ -472,6 +507,7 @@ $("#searchBtn").on("click",searchReport);
                     let nowPage = 1; // 현재 페이지 
                     let visibleBlock = 5;
                     
+                 
                     totalPages = totalCount / pageSize;
 
                     if (totalCount % pageSize > 0) {
@@ -500,7 +536,10 @@ $("#searchBtn").on("click",searchReport);
                         innerHtml += "<td>" + result[j].ser_title + "</td>";
                         innerHtml += "<td>" + result[j].s_email + "</td>";
                         innerHtml += "<td>" + result[j].event_start + " ~ " + result[j].event_end + "</td>";
-                        innerHtml += "<td>" + result[j].pay_price + "</td>";
+                         
+                        let price=result[j].pay_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //금액 정규식
+                        
+                        innerHtml += "<td>" + price + "</td>";
                         innerHtml += "<td>" + result[j].pay_date + "</td>";
                         result[j].pay_enddate == null ? //구매확정날짜
                             innerHtml += "<td class='text-danger'>확정전</td>" : 
@@ -576,13 +615,33 @@ $("#searchBtn").on("click",searchReport);
                 $("#b_email").val(result.buyer.b_email);
                 $("#b_name").val(result.buyer.b_name);
                 $("#b_nickname").val(result.buyer.b_nickname);
-                $("#b_tel").val(result.buyer.b_tel);
+                
+                let tel=result.buyer.b_tel;
+                let phone=""
+                phone += tel.substr(0, 3); 
+                phone += "-"; 
+                phone += tel.substr(3, 4); 
+                phone += "-"; 
+                phone += tel.substr(7);
+
+                $("#b_tel").val(phone);
 
                 let report = result.buyer.b_report; //신고횟수
-                report >= "5" ? $("#b_report").addClass("text-danger").val(result.buyer.b_report) : $(
-                    "#b_report").val(result.buyer.b_report);
-
-                $("#b_status").val(result.buyer.b_status);
+                if(report >= "5"){
+                	$("#b_report").addClass("text-danger").val(result.buyer.b_report)
+                }else{
+                	$("#b_report").removeClass("text-danger").val(result.buyer.b_report);
+                }
+                //구매자 권한
+                let status=result.buyer.b_status;
+                if (status=="U"){
+                	$("#b_status").removeClass("text-danger").val("이용 중");
+                }else if(status=="M"){
+                	$("#b_status").addClass("text-danger").val("한달정지");
+                }else{
+                	$("#b_status").addClass("text-danger").val("영구정지");
+                }
+                
                 $("#b_zipcode").val(result.buyer.b_zipcode);
                 $("#b_address").val(result.buyer.b_address);
                 $("#b_detailaddress").val(result.buyer.b_detailaddress);
@@ -592,12 +651,23 @@ $("#searchBtn").on("click",searchReport);
                     rank == "2" ? $("#range_moon").prop("checked", true) :
                     rank == "3" ? $("#range_earth").prop("checked", true) :
                     rank == "4" ? $("#range_sun").prop("checked", true) : alert("해당 등급이 없습니다.");
+                //카테고리
+                let cat_name= result.buyer.cat_name
+                let field_code= result.buyer.field_code
+                if(field_code!=null&&cat_name!=null){
+                	$("#cat_name").val(cat_name)
+                	$("#field_code").val(field_code)
+                }else{
+                	$("#cat_name").val("없음")
+                	$("#field_code").val("없음")
+                }
 				
                 //가입일자
                 $("#b_date").val(result.buyer.b_date);
                 
                 //프로필
-                $("#b_img").attr("src",result.buyer.b_img)
+                let b_img = result.buyer.b_img;
+                b_img!=null? $("#b_img").attr("src",b_img):$("#b_img").attr("src","resources/user/assets/img/search-default-profile-s.jpg")
                 //구매내역 총수
                 $("#paymentListLength").text(result.payment.length);
                 //구매내역 누적금액
@@ -605,7 +675,8 @@ $("#searchBtn").on("click",searchReport);
                 for(i=0;i<result.payment.length;i++){
                 	cnt+=parseInt(result.payment[i].pay_price)
                 }
-                $("#totalPrice").text(cnt);
+                let price=cnt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                $("#totalPrice").text(price);
 
                 //구매내역 페이징
                 if (result.payment.length != 0) {
@@ -643,29 +714,107 @@ $("#searchBtn").on("click",searchReport);
     })
 
 
+    //수정버튼 이벤트
     const modifyBtn = document.querySelector("#modifyBtn");
-    const modifyeMemberRank = () => { //수정버튼 이벤트 함수
+    const modifyeMemberRank = () => {
         var rankVal = $('input[name="buyer_rank"]:checked').val();
-        var buyerEmail = $('input[name="b_email"]').val();
-        console.log(rankVal);
-        console.log(buyerEmail);
-        console.log(typeof (rankVal));
-        $.ajax({
-            url: "ajaxUpdateBuyerRank.do",
-            type: "post",
-            data: {
-                "b_rank": rankVal,
-                "b_email": buyerEmail
-            },
-
-        }).done(function (result) {
-
-            if (result == 0) {
-                alert("현재 등급과 같습니다.")
-            } else {
-                alert("수정 완")
-            }
-        })
+        var buyerEmail = $('input[id="b_email"]').val();
+        if(buyerEmail!=''){
+        	
+	        $.ajax({
+	            url: "ajaxUpdateBuyerRank.do",
+	            type: "post",
+	            data: {
+	                "b_rank": rankVal,
+	                "b_email": buyerEmail
+	            },
+	
+	        }).done(function (result) {
+	
+	            if (result == 0) {
+	                alert("현재 등급과 같습니다.")
+	            } else {
+	                alert("등급을 수정했습니다.")
+	            }
+	        })
+        }else{
+        	alert("회원을 선택해주세요.")
+        }
     }
     modifyBtn.addEventListener("click", modifyeMemberRank);
+    
+    var doc = new jsPDF();
+    var specialElementHandlers = {
+        '#editor': function(element, renderer) {
+            return true;
+        }
+    }
+     
+    $('#savePdfBtn').click(function() {
+        html2canvas($("#pdfDiv"), {
+            onrendered : function(canvas) {   // 한글깨짐현상때문에 jpeg->jspdf 전환
+                var imgData = canvas.toDataURL('image/jpeg');
+                var pageWidth = 210;
+                var pageHeight = pageWidth * 1.414;
+                var imgWidth = pageWidth - 20;
+                var imgHeight = $('#pdfDiv').height() * imgWidth / $('#pdfDiv').width();
+                var doc = new jsPDF('p','mm',[pageHeight, pageWidth]);
+                doc.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+                doc.save('화면.pdf');
+            }
+        });
+    });
+    
+    
+    
+    
+    /** * 엑셀 다운로드 * @param fileName 엑셀파일명 (ex. excel.xls) * @param sheetName 시트명 * @param headers 시트내용(html - table) */
+    function _excelDown(fileName, sheetName, sheetHtml) {
+       var html = '';
+       html += '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
+       html += ' <head>';
+       html += ' <meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">';
+       html += ' <xml>';
+       html += ' <x:ExcelWorkbook>';
+       html += ' <x:ExcelWorksheets>';
+       html += ' <x:ExcelWorksheet>'
+       html += ' <x:Name>' + sheetName +
+          '</x:Name>'; // 시트이름 
+       html += ' <x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions>';
+       html += ' </x:ExcelWorksheet>';
+       html += ' </x:ExcelWorksheets>';
+       html += ' </x:ExcelWorkbook>';
+       html += ' </xml>';
+       html += ' </head>';
+       html +=
+          ' <body>'; 
+             // ----------------- 시트 내용 부분 ----------------- 
+       html += sheetHtml; // ----------------- 
+       //시트 내용 부분 ----------------- 
+       html += ' </body>';
+       html += '</html>';
+       // 데이터 타입 
+       var data_type = 'data:application/vnd.ms-excel';
+       var ua = window.navigator.userAgent;
+       var blob = new Blob([html], {
+          type: "application/csv;charset=utf-8;"
+       });
+       if ((ua.indexOf("MSIE ") > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) && window.navigator
+          .msSaveBlob) { // ie이고 msSaveBlob 기능을 지원하는 경우 
+          navigator.msSaveBlob(blob, fileName);
+       } else { // ie가 아닌 경우 (바로 다운이 되지 않기 때문에 클릭 버튼을 만들어 클릭을 임의로 수행하도록 처리) 
+          var anchor = window.document.createElement('a');
+          anchor.href = window.URL.createObjectURL(blob);
+          anchor.download = fileName;
+          document.body.appendChild(anchor);
+          anchor.click(); // 클릭(다운) 후 요소 제거
+          document.body.removeChild(anchor);
+       }
+    }
+    
+    function download(){ // 대상 테이블을 가져옴 
+			var table = document.getElementById("table01"); if(table){ 
+				// CASE 대상 테이블이 존재하는 경우 
+				// 엑셀다운 (엑셀파일명, 시트명, 내부데이터HTML) 
+				_excelDown("엑셀파일명.xls", "시트명", table.outerHTML) } }
 </script>

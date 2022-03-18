@@ -20,4 +20,6 @@ public class PaymonthVO {
 	String totalcount;
 	String totalsum;
 	String totalsusu;
+	
+	String ser_title;
 }

@@ -42,11 +42,11 @@
                                         <td>
                                             <div class="d-flex align-items-center position-relative" style="top:5px; left: 10px;">
                                                 <div class="custom-control custom-radio mr-3 ">
-                                                    <input type="radio" id="customRadio1" name="s_author" value="개인" class="custom-control-input mr-5"<c:out value="${pageMaker.cri.s_author eq '개인'? 'checked':'' }"/>>
+                                                    <input type="radio" id="customRadio1" name="ser_team" value="개인" class="custom-control-input mr-5"<c:out value="${pageMaker.cri.ser_team eq '개인'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="customRadio1">개인</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mx-3">
-                                                    <input type="radio" id="customRadio2" name="s_author" value="기업" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.s_author eq '기업'? 'checked':'' }"/>>
+                                                    <input type="radio" id="customRadio2" name="ser_team" value="기업" class="custom-control-input mr-5" <c:out value="${pageMaker.cri.ser_team eq '기업'? 'checked':'' }"/>>
                                                     <label class="custom-control-label" for="customRadio2">기업</label>
                                                 </div>
                                             </div>
@@ -80,15 +80,15 @@
                                     </tr>
                                    
                                     <tr>
-                                        <th class="align-middle table-primary">등록일자</th>
+                                        <th class="align-middle table-primary">결제일자</th>
                                         <td colspan="3">
                                         	<div class="d-flex align-items-center">
                                         		<div class="col-3 p-0">
-	                                        	<input type="date" class="form-control" value="" name="power_date"  value='<c:out value="${pageMaker.cri.power_date }"/>'>
+	                                        	<input type="date" class="form-control" name="power_date"  value='<c:out value="${pageMaker.cri.power_date }"/>'>
 	                                        	</div>
 	                                        	<span class="mx-4"><i class="fas fa-minus"></i></span>
 	                                        	<div class="col-3 p-0">
-	                                        	<input type="date" class="form-control" value="" name="power_date2">
+	                                        	<input type="date" class="form-control"name="power_date2" value='<c:out value="${pageMaker.cri.power_date2 }"/>'>
 	                                        	</div>
                                         	</div>
                                         </td>
@@ -113,7 +113,7 @@
                
                
                   <div class="row my-5">
-                	<div class="col-5">
+                	<div class="col-6">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             판매자내역조회
                         </h5>
@@ -131,6 +131,7 @@
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
+		                          <c:if test="${!empty sellerPayment  }">
 		                           <c:forEach var="payment" items="${sellerPayment   }">
 		                   
 		                             <tr class="paymentList" onclick="javascript:clickTrRow(this);">
@@ -141,7 +142,10 @@
 		                                
 		                             </tr>
 		                           </c:forEach>
-                                     
+		                          </c:if>
+                                  <c:if test="${empty sellerPayment }">
+		                             	<td colspan="5">조회 된 데이터가 없습니다.</td>
+		                            </c:if>
 		                        </tbody>
 		                     </table>
 		
@@ -182,7 +186,7 @@
 		                   </div>
                			</div>
                 	</div>
-                	<div class="col-7">
+                	<div class="col-6">
                            <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
                             상세조회
                         </h5>
@@ -191,7 +195,7 @@
                                 <table class="table caption-top table-bordered thead-light  text-center">		                        
                                     <tbody>
                                         <tr>
-                                            <th width="20%" class="table-primary align-middle">파워코드</th>
+                                            <th width="20%" class="table-primary align-middle">결제코드</th>
                                             <td><input class="form-control custom-shadow " id="power_code" name="" value="" type="text" readonly ></td>
                                             <th class="table-primary align-middle">결제금액</th>
                                             <td><input class="form-control custom-shadow " id="power_price" name="" value="" type="text" readonly></td>
@@ -308,6 +312,7 @@ let startDate =$("input[name='power_date']");
 let endDate =$("input[name='power_date2']");
 const handlePower_date =()=>{
 	$(endDate).val($(startDate).val())
+	$(endDate).attr("min",$(startDate).val())
 }
 
 $("input[name='power_date']").on("change",handlePower_date);
@@ -329,6 +334,7 @@ const hadleResetLists =()=>{
 	$("input[name='s_email']").val('')
 	$("input[name='ser_title']").val('')
 	$("input[name='power_date']").val('')
+	$("input[name='ser_team']").val('')
 	$("input[name='s_author']").prop("checked",false);
 	$("select[name='ser_cate']").val('').prop("selected",true);
 	searchForm.action="manage_sellerPayment.do";
@@ -381,7 +387,7 @@ const handleCategoryChange=()=>{
 	let optionType=$("#sub_cate");
 	optionType.empty();
 	
-	let val=event.target.value;
+	let val=$("#searchCategory").val();
 	
 	 if(val=="CAT1"){
 		for(prop in arrType["CAT1"]){
@@ -417,6 +423,7 @@ const handleCategoryChange=()=>{
 	
 	 
 }
+handleCategoryChange();
 $("#searchCategory").on("change",handleCategoryChange);
 
 const selectPayment=()=>{

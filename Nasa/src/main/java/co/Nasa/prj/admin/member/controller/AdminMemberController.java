@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,8 +39,11 @@ public class AdminMemberController {
 	public String go_admin(Criteria cri,Model model) {
 
 		model.addAttribute("buyerList",memberDao.getListWithPaging(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, memberDao.getBuyerTotal()));
+		model.addAttribute("pageMaker", new PageDTO(cri, memberDao.searchBuyerTotal(cri)));
+		model.addAttribute("searchTotal", memberDao.searchBuyerTotal(cri));
 		model.addAttribute("totalBuyer",memberDao.getBuyerTotal());
+		model.addAttribute("todayNewBuyer", memberDao.todayNewBuyer());
+		model.addAttribute("withdraw", memberDao.todayWithdrawalBuyer());
 		return "admin/member/manageBuyer";
 	}
 	
@@ -51,7 +57,7 @@ public class AdminMemberController {
 		vo = memberDao.selectBuyer(vo.getB_email()); //구매자 상세정보
 		System.out.println(vo);
 		List<AdminAuthorVO> payment= memberDao.selectBuyerPayment(cri); //구매자 결제내역
-		PageDTO paging= new PageDTO(cri, memberDao.getSellerTotal());
+		PageDTO paging= new PageDTO(cri, memberDao.getSellerTotal(cri));
 		map.put("buyer", vo);
 		map.put("payment", payment);
 		map.put("paging", paging);
@@ -61,15 +67,23 @@ public class AdminMemberController {
 		return map;
 	}
 	
+//	@GetMapping("/excel")
+//	public void downloadExcel(HttpServletResponse resp) {
+//		List<AdminAuthorVO> list=memberDao.getListWithPaging(null);
+//		Workbook workbook = new HSSFWorkbook();
+//	}
+	
 	
 	
 	//판매자 전체목록
 	@RequestMapping("/manage_seller.do")
 	public String manage_seller(Model model,Criteria cri) {
 		model.addAttribute("sellerList", memberDao.sellerList(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, memberDao.getSellerTotal()));
-		model.addAttribute("totalSeller", memberDao.getSellerTotal());
-		System.out.println(cri.getS_rank());
+		model.addAttribute("pageMaker", new PageDTO(cri, memberDao.getSellerTotal(cri)));
+		model.addAttribute("searchTotalSeller", memberDao.getSellerTotal(cri));
+		model.addAttribute("total", memberDao.totalSeller());
+		model.addAttribute("todayNew", memberDao.todayNewSeller());
+		model.addAttribute("withdraw", memberDao.todayWithdrawalSeller());
 		return "admin/member/manageSeller";
 	}
 	

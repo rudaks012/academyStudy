@@ -1,6 +1,5 @@
 package co.Nasa.prj.promotion.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import co.Nasa.prj.comm.VO.PromotionVO;
@@ -29,4 +28,9 @@ public interface PromotionMapper {
 	
 	List<PromotionVO> promotionListY(PromotionVO vo);
 	int countPagingPromotionY(PromotionVO vo);
+	
+	int DirectPromCancel(PromotionVO vo);
+	int DirectPromEnd(PromotionVO vo);
+	
+	PromotionVO goingSelectPromo(String ser_code);
 }

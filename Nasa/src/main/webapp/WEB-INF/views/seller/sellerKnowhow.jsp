@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,25 +44,28 @@
 							<h4 class="widget_title">MYPAGE MENU</h4>
 							<ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
-										<p>서비스관리</p>
+									<p >서비스 관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
-										<p>프로모션관리</p>
+										<p>프로모션 관리</p>
+								</a></li>
+								<li><a href="powerservice.do" class="d-flex">
+										<p>파워서비스 내역</p>
 								</a></li>
 								<li><a href="sellerCalendar.do" class="d-flex">
-										<p>일정관리</p>
+										<p>일정 관리</p>
 								</a></li>
-								<li><a href="sellerReview.do" class="d-flex">
-										<p>리뷰관리</p>
+								<li><a href="sellerReview.do?scode=0" class="d-flex">
+										<p>리뷰 관리</p>
 								</a></li>
 								<li><a href="sellerPayment.do" class="d-flex">
-										<p>결제조회</p>
+										<p>결제 조회</p>
 								</a></li>
 								<li><a href="sellerSales.do" class="d-flex">
-										<p>매출확인</p>
+										<p>매출 확인</p>
 								</a></li>
 								<li><a href="sellerReport.do" class="d-flex">
-										<p>신고관리</p>
+										<p>신고 관리</p>
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p style="font-weight: bold;">판매자 노하우</p>
@@ -84,6 +88,9 @@
 										<div class="container">
 											
 											<div class="row">
+												<c:if test="${empty knowhows}">
+													<img src="resources/user/assets/img/nodata.jpg" style="width: 100%">
+												</c:if>
 												<c:forEach items="${knowhows }" var="knowhow">
 												<c:if test="${knowhow.no_id eq id }">
 													<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
@@ -92,7 +99,7 @@
 																<img src="editor/${knowhow.no_img }" alt="" style="width: 238px; height: 238px;">
 															</div>
 															<div class="team-caption">
-																<span>${knowhow.no_title }</span>
+																<span>${knowhow.s_nickname }</span>
 																<h3>
 																	<a href="knowhowDetail.do?no_code=${knowhow.no_code } ">${knowhow.no_title }</a>
 																</h3>

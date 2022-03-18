@@ -1,9 +1,7 @@
 package co.Nasa.prj.payment.service;
 
 import java.util.HashMap;
-import java.sql.Date;
 import java.util.List;
-import java.util.Map;
 
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.PaymonthVO;
@@ -11,6 +9,9 @@ import co.Nasa.prj.comm.VO.PaymonthVO;
 public interface PaymentService {
    // 구매자 개인 구매내역 조회
    public List<PaymentVO> buyerPaymentList(PaymentVO vo);
+   public List<PaymentVO> sellerPaymentDList(PaymentVO vo);
+   public List<PaymentVO> endPaymentList(PaymentVO vo);
+   public int paycomplete(PaymentVO vo);
    
    // 구매자 paging lisg select
    public List<PaymentVO> selectPagingBuyerPaymentList(PaymentVO vo);
@@ -66,7 +67,7 @@ public interface PaymentService {
    
    int sellercountservice(HashMap<String, String> hmap);
    PaymonthVO sellerTotalservice(HashMap<String, String> totalmap);
-   
+   PaymonthVO sellerTotalservice2(HashMap<String, String> totalmap);
    
    
    public int countPagingSellerPayment(PaymentVO vo);
@@ -74,4 +75,19 @@ public interface PaymentService {
    public List<PaymentVO> sellersixmonthSearch(PaymentVO vo);
    public List<PaymentVO> selleryearSearch(PaymentVO vo);
    public List<PaymentVO> sellerselectdateSearch(PaymentVO vo);
+   
+   public int countsellermonthSearch(PaymentVO vo);
+   public int countsellersixmonthSearch(PaymentVO vo);
+   public int countselleryearSearch(PaymentVO vo);
+   public int countsellerselectdateSearch(PaymentVO vo);
+   
+   List<PaymentVO> CalendarList(String id);
+   List<PaymentVO> CalendarListS(String id);
+   
+   int purchaseconfirm();
+
+   PaymentVO selectBuyerCalendar(PaymentVO vo);
+   PaymentVO selectSellerCalendar(PaymentVO vo);
+   
+   public int countReviewPayment(PaymentVO vo);
 }

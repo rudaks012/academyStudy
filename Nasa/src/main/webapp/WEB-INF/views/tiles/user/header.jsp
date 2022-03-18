@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                    <a href="home.do"><img src="resources/user/assets/img/logo/logo.png" alt=""></a>
+                                    <a href="home.do"><img src="resources/user/assets/img/nasalogo2.png" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-8">
@@ -39,13 +40,35 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="homeCategory.do">서비스 찾기</a></li>
-                                            <li><a href="goSellerMypage.do">판매자마페</a></li>
-                                            <li><a href="goBuyerMypage.do">구매자마페</a></li>
-                                            <li><a href="go_admin.do">관리자</a></li>
-                                            <li><a href="buyerJoin.do">구매자 회원가입</a></li>
-                                            <li><a href="sellerJoin.do">판매자 회원가입</a></li>
-                                              <li><a href="chatting.do">채팅하기</a></li>
-                                            <li class="login"><a href="Login.do"> <i class="ti-user"></i> 로그인</a></li>
+                                            <li><a href="go_knowhowlist.do">판매자의 노하우</a></li>
+                                            <!--가입-->
+                                            <c:if test="${empty id }">
+                                                <li><a>회원가입</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="buyerJoin.do" style="text-shadow: 1px 1px 2px #5c5a5a, 0 0 10px #5c5a5a, 0 0 5px #5c5a5a;">구매자</a></li>
+                                                        <li><a href="sellerJoin.do" style="text-shadow: 1px 1px 2px #5c5a5a, 0 0 10px #5c5a5a, 0 0 5px #5c5a5a;">판매자</a></li>
+                                                    </ul>
+                                                </li>
+                                            </c:if>                                            
+                                            <c:if test="${not empty id }">
+                                                <li><a href="chatting.do">채팅하기</a></li>
+                                            </c:if>
+                                            <!--회원유형-->
+                                            <c:if test="${author eq 'S' }">
+                                                <li><a href="goSellerMypage.do">마이페이지</a></li>
+                                            </c:if>
+                                            <c:if test="${author eq 'B' }">
+                                                <li><a href="goBuyerMypage.do">마이페이지</a></li>
+                                            </c:if>
+                                            <c:if test="${author eq 'ad' }">
+                                                <li><a href="go_admin.do">관리자</a></li>
+                                            </c:if>                                           
+                                            <c:if test="${empty id }">
+                                                <li class="login"><a href="Login.do"><i class="ti-user"></i>로그인</a></li>
+                                            </c:if>
+                                            <c:if test="${not empty id }">
+                                                <li><a href="logout.do"><i class="ti-user"></i> ${nickname } 님 || 로그아웃</a></li>
+                                            </c:if>
                                         </ul>
                                     </nav>
                                 </div>

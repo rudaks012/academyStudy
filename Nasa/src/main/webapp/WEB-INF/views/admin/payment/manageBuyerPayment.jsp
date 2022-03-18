@@ -79,7 +79,7 @@
 	                                        	</div>
 	                                        	<span class="mx-2"><i class="fas fa-minus"></i></span>
 	                                        	<div class="col-3 p-0">
-	                                        	<input type="date" name="pay_date2" class="form-control" >
+	                                        	<input type="date" name="pay_date2" class="form-control" value='<c:out value="${pageMaker.cri.pay_date2 }"/>' >
 	                                        	</div>
                                         	</div>
                                         </td>
@@ -119,6 +119,7 @@
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
+		                          <c:if test="${!empty paymentLists }">
 		                            <c:forEach var="payment" items="${paymentLists }">
 			                             <tr class="paymentList" onclick="javascript:clickTrRow(this);">
 			                                <td>${payment.pay_code }</td>
@@ -132,6 +133,10 @@
 			                                </c:if>
 			                             </tr>
 		                             </c:forEach>
+		                            </c:if>
+		                             <c:if test="${empty paymentLists }">
+		                             	<td colspan="5">조회 된 데이터가 없습니다.</td>
+		                            </c:if>
 		                        </tbody>
 		                     </table>
 		
@@ -216,7 +221,7 @@
                                             		<input class="form-control custom-shadow " id="ser_cate" name="" value="" type="text" readonly>
                                             	</div>
                                             	<div class="col-6 ml-3 p-0">
-                                            		<input class="form-control custom-shadow " id="sub_cate" name="" value="" type="text" readonly>
+                                            		<input class="form-control custom-shadow " id="sub_name" name="" value="" type="text" readonly>
                                             	</div>
                                                </div>
                                             
@@ -274,6 +279,8 @@ let startDate =$("input[name='pay_date']");
 let endDate =$("input[name='pay_date2']");
 const handlePayDate =()=>{
 	$(endDate).val($(startDate).val())
+	$(endDate).attr("min",$(startDate).val())
+
 }
 
 $("input[name='pay_date']").on("change",handlePayDate);
@@ -345,7 +352,7 @@ const handleCategoryChange=()=>{
 	let optionType=$("#sub_cate");
 	optionType.empty();
 	
-	let val=event.target.value;
+	let val=$("#searchCategory").val();
 	
 	 if(val=="CAT1"){
 		for(prop in arrType["CAT1"]){
@@ -381,6 +388,8 @@ const handleCategoryChange=()=>{
 	
 	 
 }
+
+handleCategoryChange();
 $("#searchCategory").on("change",handleCategoryChange);
 
 
@@ -403,14 +412,14 @@ const selectPayment=()=>{
 		pay_enddate!=null?$("#pay_enddate").val("확정대기"):$("#pay_enddate").val(pay_end)
 		$("#s_code").val(result.s_code)
 		$("#ser_cate").val(result.cat_name)
-		$("#sub_cate").val(result.sub_name)
+		$("#sub_name").val(result.sub_name)
 		$("#s_author").val(result.s_author)
 		$("#ser_title").val(result.ser_title)
 		$("#s_email").val(result.s_email)
 		$("#ser_team").val(result.ser_team)
 		$("#pay_price").val(result.pay_price)
 		let coupon= result.pay_coupon;
-		coupon!=null?$("#pay_coupon").val("없음"):$("#pay_coupon").val(result.pay_coupon)
+		coupon!=null?$("#pay_coupon").val(result.pay_coupon+"% 쿠폰"):$("#pay_coupon").val("없음")
 	})
 }
 

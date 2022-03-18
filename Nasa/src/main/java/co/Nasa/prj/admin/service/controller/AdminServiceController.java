@@ -31,8 +31,11 @@ public class AdminServiceController {
 	@RequestMapping("/manage_service.do")
 	public String manage_service(Model model, Criteria cri) {
 		model.addAttribute("serviceLists", adminServiceDao.getServiceListWithPaging(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, adminServiceDao.getTotalService(cri)));
-		model.addAttribute("total", adminServiceDao.getTotalService(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, adminServiceDao.searchTotalService(cri)));
+		model.addAttribute("searchTotal", adminServiceDao.searchTotalService(cri));
+		model.addAttribute("total", adminServiceDao.totalService());
+		model.addAttribute("today", adminServiceDao.todayService());
+		
 		return "admin/service/manageService";
 	}
 	
@@ -43,6 +46,7 @@ public class AdminServiceController {
 		map.put("serviceInfo",adminServiceDao.detailedService(vo));
 		map.put("totalPay", adminServiceDao.totalPay(s_code));
 		map.put("totalReview", adminServiceDao.totalReview(scode));
+		map.put("promotion", adminServiceDao.promotionService(vo.getSer_code()));
 		return map;
 	}
 	@RequestMapping("/manage_powerService.do")

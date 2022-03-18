@@ -22,13 +22,12 @@
   
   <select id="getReportListWithPaging" resultType="co.Nasa.prj.comm.VO.ReportVO">
   <![CDATA[
-  	 SELECT *
-  	 FROM 
+  	 SELECT *FROM 
   	     (
   	     SELECT rownum rn, r.*
   	     FROM (SELECT * 
-                            FROM report
-                            ORDER BY re_code) r
+               FROM report
+               ORDER BY re_code DESC) r
   	     WHERE
   	      rownum <=#{pageNum} * #{amount} 
   	  ]]> 
@@ -37,7 +36,7 @@
   	   <![CDATA[  
   	     )
   	 WHERE rn > (#{pageNum}-1 )* #{amount}
-  	 ORDER BY re_date DESC
+ 
   	 ]]>
   	  
   </select>
@@ -58,6 +57,16 @@
   	  
   </select>
   
+  <select id="todayPermanentStop" resultType="int">
+    SELECT count(*) FROM vw_blacklist 
+	WHERE status='D'AND to_char(blackdate,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')
+  </select>
+  
+    <select id="todayBlackListMember" resultType="int">
+    SELECT count(*) FROM vw_blacklist 
+	WHERE status='M'AND to_char(blackdate,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')
+  </select>
+  
   
   <select id="totalReportWait" resultType="int">
   	select count(*) from report where re_result is null
@@ -74,13 +83,13 @@
   	      SELECT rownum rn, r.*
   	     FROM (SELECT * 
                FROM report
-               ORDER BY re_code) r
+               ORDER BY re_code desc) r
   	     WHERE re_result is null AND rownum <=#{pageNum} * #{amount}
   	     
   	     ]]>
   	     <include refid="criteria"></include>
   	 <![CDATA[    
-  	 	 ORDER BY re_code DESC
+  	 	
   	     )
   	 WHERE rn > (#{pageNum}-1 )* #{amount}
   	]]>
@@ -129,13 +138,14 @@
   	     SELECT rownum rn, r.*
   	     FROM (SELECT * 
                FROM report
-               ORDER BY re_code) r
-  	     WHERE re_result ='Y' AND rownum <=#{pageNum} * #{amount}
+               WHERE re_result ='Y'
+               ORDER BY re_code DESC) r
+  	     WHERE rownum <=#{pageNum} * #{amount}
   	     
   	     ]]>
   	     <include refid="criteria"></include>
   	 <![CDATA[    
-  	 	 ORDER BY re_code DESC
+  	 	 
   	     )
   	 WHERE rn > (#{pageNum}-1 )* #{amount}
   	]]>
@@ -167,13 +177,13 @@
   	     SELECT rownum rn, r.*
   	     FROM (SELECT * 
                FROM report
-               ORDER BY re_code) r
+               ORDER BY re_code desc) r
   	     WHERE re_result ='D' AND rownum <=#{pageNum} * #{amount}
   	     
   	     ]]>
   	     <include refid="criteria"></include>
   	 <![CDATA[    
-  	 	 ORDER BY re_code DESC
+  	 	 
   	     )
   	 WHERE rn > (#{pageNum}-1 )* #{amount}
   	]]>
@@ -192,7 +202,10 @@
   <![CDATA[
   	update seller
     set s_status = 'U',blacklistdate=''
-    where s_report=5 and s_email IN (
+
+
+    where s_status='M' and s_email IN (
+
                                       select distinct r.re_res  
                                       from report r join seller s 
                                       on (ADD_MONTHS(r.re_rpoertdate,1) < sysdate and r.re_res=s.s_email)
@@ -204,7 +217,8 @@
   <![CDATA[
   	update buyer
     set b_status = 'U',blacklistdate=''
-    where b_report=5 and b_email IN (
+
+    where b_status='M' and b_email IN (
                                       select distinct r.re_res  
                                       from report r join buyer b 
                                       on (ADD_MONTHS(r.re_rpoertdate,1) < sysdate and r.re_res=b.b_email)
@@ -232,7 +246,12 @@
 	  	<if test="gb!=null and !gb.equals('')">
 	  	     AND gb like '%'||#{gb}||'%'
 	  	</if>
-
+	  	
+	  	<if test="blackdate!=null and !blackdate.equals('')">
+	  	   <![CDATA[
+	  	     AND to_char(blackdate,'yyyymmdd') between #{blackdate} and #{blackdate2}
+	  	  ]]>   
+	     </if>
 	</sql>
   
   
@@ -270,6 +289,8 @@
 	   FROM VW_BLACKLIST
   </select>
   
+
+  
   
   <select id="detailBlackMember" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
     SELECT *
@@ -277,6 +298,18 @@
     WHERE email=#{email}
   </select>
   
+  
+  <select id="todayReportTotal" resultType="int">
+  	select count(*) from report where to_char(re_date,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')
+  </select>
+  
+  <select id="waitReportTotal" resultType="int">
+  	select count(*) from report where re_result is null
+  </select>
+  
+  <select id="realTotalReport" resultType="int">
+  	select count(*) from report
+  </select>
   
   
 

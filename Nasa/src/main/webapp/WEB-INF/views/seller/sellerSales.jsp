@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <style>
 .nice-select {
 	width: 300px;
@@ -34,6 +34,10 @@ hr{
  	border-bottom : 1px solid #d5c9ea !important;
    	margin: 10px !important;
 }
+.sales{
+	color : red;
+	font-size: 13px;
+}
 </style>
 </head>
 <body>
@@ -59,25 +63,28 @@ hr{
 							<h4 class="widget_title">MYPAGE MENU</h4>
 							<ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
-										<p>서비스관리</p>
+									<p >서비스 관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
-										<p>프로모션관리</p>
+										<p>프로모션 관리</p>
+								</a></li>
+								<li><a href="powerservice.do" class="d-flex">
+										<p>파워서비스 내역</p>
 								</a></li>
 								<li><a href="sellerCalendar.do" class="d-flex">
-										<p>일정관리</p>
+										<p>일정 관리</p>
 								</a></li>
-								<li><a href="sellerReview.do" class="d-flex">
-										<p>리뷰관리</p>
+								<li><a href="sellerReview.do?scode=0" class="d-flex">
+										<p>리뷰 관리</p>
 								</a></li>
 								<li><a href="sellerPayment.do" class="d-flex">
-										<p>결제조회</p>
+										<p>결제 조회</p>
 								</a></li>
 								<li><a href="sellerSales.do" class="d-flex">
-										<p style="font-weight: bold;">매출확인</p>
+										<p style="font-weight: bold;">매출 확인</p>
 								</a></li>
 								<li><a href="sellerReport.do" class="d-flex">
-										<p>신고관리</p>
+										<p>신고 관리</p>
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p>판매자 노하우</p>
@@ -95,8 +102,6 @@ hr{
 								</a>
 								<hr class="hr"/>
 								<div class="blog_details">
-								
-										
 												<table class="table caption-top table-bordered  text-center">
 													<tbody>
 														<tr>
@@ -137,6 +142,7 @@ hr{
 												<div style="width: 100%;">
 													<canvas id="myChart"></canvas>
 													<br /><br />
+													<span class="sales">* 판매금액 및 수수료는 구매자가 구매확정한 거래에 대해서만 합산됩니다.</span>
 													<table class="table table-bordered thead-light  text-center">
 													<thead>
 														<tr>
@@ -392,8 +398,20 @@ hr{
 				data: {scode:temp, year:temp2},
 				success: function (data) {
 					document.querySelector(".totalcount").innerText = data.totalcount;
-					document.querySelector(".totalsum").innerText = data.totalsum;
-					document.querySelector(".totalsusu").innerText = data.totalsusu;
+				},
+				error: function (data) {
+					console.log(data);
+				}
+			})
+			
+			$.ajax({
+				url: "sellerTotalservice2.do",
+				dataType: "json",
+				type: "POST",
+				data: {scode:temp, year:temp2},
+				success: function (data) {
+					document.querySelector(".totalsum").innerText = data.totalsum.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+					document.querySelector(".totalsusu").innerText = data.totalsusu.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 					
 				},
 				error: function (data) {
@@ -420,18 +438,18 @@ hr{
 	    			}
 	    		});	
 	    		console.log("list = " + list);
-	    		document.querySelector("#sum1").innerHTML = list[0]
-				document.querySelector("#sum2").innerHTML = list[1]
-				document.querySelector("#sum3").innerHTML = list[2]
-				document.querySelector("#sum4").innerHTML = list[3]
-				document.querySelector("#sum5").innerHTML = list[4]
-				document.querySelector("#sum6").innerHTML = list[5]
-				document.querySelector("#sum7").innerHTML = list[6]
-				document.querySelector("#sum8").innerHTML = list[7]
-				document.querySelector("#sum9").innerHTML = list[8]
-				document.querySelector("#sum10").innerHTML = list[9]
-				document.querySelector("#sum11").innerHTML = list[10]
-				document.querySelector("#sum12").innerHTML = list[11]
+	    		document.querySelector("#sum1").innerHTML = list[0].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum2").innerHTML = list[1].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum3").innerHTML = list[2].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum4").innerHTML = list[3].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum5").innerHTML = list[4].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum6").innerHTML = list[5].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum7").innerHTML = list[6].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum8").innerHTML = list[7].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum9").innerHTML = list[8].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum10").innerHTML = list[9].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum11").innerHTML = list[10].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+				document.querySelector("#sum12").innerHTML = list[11].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
 	    		return list;
 			
 		}
@@ -456,18 +474,18 @@ hr{
     		});	
 			console.log("list2 = " + list2);
 			
-			document.querySelector("#susu1").innerHTML = list2[0];
-			document.querySelector("#susu2").innerHTML = list2[1];
-			document.querySelector("#susu3").innerHTML = list2[2];
-			document.querySelector("#susu4").innerHTML = list2[3];
-			document.querySelector("#susu5").innerHTML = list2[4];
-			document.querySelector("#susu6").innerHTML = list2[5];
-			document.querySelector("#susu7").innerHTML = list2[6];
-			document.querySelector("#susu8").innerHTML = list2[7];
-			document.querySelector("#susu9").innerHTML = list2[8];
-			document.querySelector("#susu10").innerHTML = list2[9];
-			document.querySelector("#susu11").innerHTML = list2[10];
-			document.querySelector("#susu12").innerHTML = list2[11];
+			document.querySelector("#susu1").innerHTML = list2[0].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu2").innerHTML = list2[1].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu3").innerHTML = list2[2].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu4").innerHTML = list2[3].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu5").innerHTML = list2[4].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu6").innerHTML = list2[5].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu7").innerHTML = list2[6].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu8").innerHTML = list2[7].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu9").innerHTML = list2[8].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu10").innerHTML = list2[9].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu11").innerHTML = list2[10].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.querySelector("#susu12").innerHTML = list2[11].replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 			
 			return list2;
 		}

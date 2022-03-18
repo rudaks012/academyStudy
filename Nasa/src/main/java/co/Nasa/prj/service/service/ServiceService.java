@@ -2,6 +2,7 @@ package co.Nasa.prj.service.service;
 
 import java.util.List;
 
+import co.Nasa.prj.comm.VO.PromotionVO;
 import co.Nasa.prj.comm.VO.ServiceVO;
 
 public interface ServiceService {
@@ -19,7 +20,7 @@ public interface ServiceService {
 
 	int schEndDateCheck();
 	
-	List<ServiceVO> servicePromotion(String s_email);
+	List<ServiceVO> servicePromotion(ServiceVO vo);
 
 	
 	List<ServiceVO> homeCategorySelect(ServiceVO vo);
@@ -38,4 +39,15 @@ public interface ServiceService {
 	List<ServiceVO> notBuyerRandomService();
 	
 	int countPagingSellerService(ServiceVO vo);
+	
+	List<ServiceVO> sellerMainServiceListU(ServiceVO vo);
+	int countPagingSellerServiceU(ServiceVO vo);
+	
+	List<ServiceVO> sellerMainServiceListY(ServiceVO vo);
+	int countPagingSellerServiceY(ServiceVO vo);
+	
+	int DirectendService(ServiceVO vo);
+	
+	// 메인페이지 랜덤 프로모션 표시
+	List<ServiceVO> randomPromotion();
 }

@@ -192,7 +192,7 @@
                 <div class="col-9">
                     <div class="position-relative d-flex justify-content-between">
                         <div class="ml-4" style="margin-bottom: 10px;">
-                            <h3 id="cat-title" style="font-weight: bold;"></h3>
+                            <h3 id="cat-title" style="font-weight: bold; border-bottom: 5px solid #7d64aa;"></h3>
                         </div>
                         <select class="mr-3" name="column" onchange="selectList()">
                             <option value="" <c:if test="${param.column eq ''}">selected</c:if>>등록 순</option>
@@ -229,16 +229,16 @@
                                                                 ${cate.nickname }
                                                             </td>
                                                             <c:choose>
-                                                                <c:when test="${not empty cate.pro_code }">
+                                                                <c:when test="${not empty cate.pro_status }">
                                                                     <td class="position-relative tableprice" style="text-align: right; color: red;">
                                                                         <span style="text-decoration: line-through; font-weight: bold; font-size: 23px; color: rgb(58, 57, 57);">
-                                                                            ${cate.ser_price }원
-                                                                        </span><br>${cate.ser_sale }원!
+                                                                            ${cate.ser_price_com }원
+                                                                        </span><br>${cate.ser_sale_com }원!
                                                                     </td>
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <td class="position-relative tableprice" style="text-align: right;">
-                                                                        ${cate.ser_price }원
+                                                                        ${cate.ser_price_com }원
                                                                     </td>
                                                                 </c:otherwise>
                                                             </c:choose>
@@ -249,7 +249,7 @@
                                                             </td>
                                                             <td class="tablewish"></td>
                                                             <td class="tablebtn">
-                                                                <c:if test="${not empty cate.pro_code }">
+                                                                <c:if test="${not empty cate.pro_status }">
                                                                     <img src="resources/user/assets/img/promotion.png" style="width: 100px;">
                                                                 </c:if>
                                                             </td>
@@ -301,9 +301,9 @@
             if (p) {
                 frm.pageNum.value = p;
             }
-            // selectVal = $("select[name=column] option:selected").val();
-            // $('#column').val(selectVal)
-            // frm.submit()
+            selectVal = $("select[name=column] option:selected").val();
+            $('#column').val(selectVal)
+            frm.submit()
         };
 
         if (window.location.search.split("=")[1] == 'CAT1') {

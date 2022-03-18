@@ -97,5 +97,25 @@ public class ReviewServiceImpl implements ReviewService {
 		return map.countReviewandReviewComment(vo);
 	}
 
+	@Override
+	public int countScodeReview(ReviewVO vo) {
+		return map.countScodeReview(vo);
+	}
+
+	@Override
+	public int countSellerDetailReview(ReviewVO vo) {
+		return map.countSellerDetailReview(vo);
+	}
+
+	@Override
+	public List<ReviewVO> sellerDetailReview(ReviewVO vo) {
+		return map.sellerDetailReview(vo);
+	}
+
+	@Override
+	public int countAllSellerDetailReview(ReviewVO vo) {
+		return map.countAllSellerDetailReview(vo);
+	}
+
 	
 }

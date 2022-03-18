@@ -50,7 +50,12 @@
  
  <select id="getBuyerPaymentTotal" resultType="int">
     SELECT COUNT(*) FROM PAYMENT
+    <trim prefix="WHERE" prefixOverrides="AND">
+    	 <include refid="buyerPaymentCriteria"></include> 
+    </trim>
  </select>
+ 
+
  
  <select id="detailBuyerPayment" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
  	SELECT
@@ -81,7 +86,9 @@
   	<if test="ser_cate!=null and !ser_cate.equals('')">
   	     AND ser_cate like '%'||#{ser_cate}||'%'
   	</if>
-  	
+  	 <if test="ser_team!=null and !ser_team.equals('')">
+  	     AND ser_team = #{ser_team}
+  	</if>
   	<if test="ser_sub_cate!=null and !ser_sub_cate.equals('')">
   	     AND ser_sub_cate like '%'||#{ser_sub_cate}||'%'
   	</if>
@@ -98,14 +105,14 @@
 			  FROM 
 					 (
 					   select rownum rn,P.*
-                       from(select p.power_code, p.s_email, p.ser_code, p.power_start,p.power_end,p.power_date, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(p.power_price)), '([0-9]{3})','\1,')), '^,',''),
-					       		   s.ser_title,s.ser_cate,s.ser_sub_cate,
+                       from(SELECT p.power_code, p.s_email, p.ser_code, p.power_start,p.power_end,p.power_date, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(p.power_price)), '([0-9]{3})','\1,')), '^,',''),
+					       		   s.ser_title,s.ser_cate,s.ser_sub_cate,s.ser_team,
 					       		   (select s_name from seller where p.s_email=s_email) as s_name,
 					               (select s_author from seller where p.s_email=s_email) as s_author,
 					               (select cat_name from category where s.ser_cate=cat_no) as cat_name,
 					               (select sub_name from sub_category where s.ser_sub_cate=sub_no) as sub_name
-							from powerservice p join service s
-						    on (p.ser_code=s.ser_code)
+							FROM powerservice p join service s
+						    ON (p.ser_code=s.ser_code)
 						    order by p.power_code desc)p
 					   WHERE ROWNUM <=#{pageNum} * #{amount}
            ]]>
@@ -119,7 +126,12 @@
  </select>
  
  <select id="getSellerPaymentTotal" resultType="int">
-     SELECT COUNT(*) FROM powerservice
+     SELECT count(*)
+	 FROM powerservice p join service s
+	 ON (p.ser_code=s.ser_code)
+     <trim prefix="WHERE" prefixOverrides="AND">
+     	 <include refid="sellerPaymentCriteria"></include> 
+     </trim>
  </select>
  
  <select id="detailSellerPayment" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">

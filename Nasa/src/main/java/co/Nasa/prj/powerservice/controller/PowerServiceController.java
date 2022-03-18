@@ -55,7 +55,7 @@ public class PowerServiceController {
 		pagingdto.setTotal(powerDao.countPagingPowerservice(vo));
 		
 		model.addAttribute("powerList", powerList);
-		model.addAttribute("sellerMainServiceList", serviceDao.sellerMainServiceList(vo2));
+		model.addAttribute("sellerMainServiceList", serviceDao.servicePromotion(vo2));
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		
 		return "seller/sellerPower";
@@ -64,18 +64,20 @@ public class PowerServiceController {
 	@ResponseBody
 	@RequestMapping("/powerServiceCount.do")
 	public String powerServiceCount(@RequestParam("power_start") String power_start, @RequestParam("ser_code") String ser_code) {
-		int n = powerDao.powerServiceCount(power_start);
+		Integer n = powerDao.powerServiceCount(power_start);
 		System.out.println(n);
-		if(n == 8) {
-			return "full";
-		}else {
-			PowerServiceVO vo = new PowerServiceVO();
-			vo.setSer_code(ser_code);
-			vo.setPower_start(power_start);
-			vo = powerDao.powerServiceOverlap(vo);
-			if(vo != null) {
-				System.out.println("overlap");
-				return "overlap";
+		if(n != null) {	
+			if(n == 8) {
+				return "full";
+			}else {
+				PowerServiceVO vo = new PowerServiceVO();
+				vo.setSer_code(ser_code);
+				vo.setPower_start(power_start);
+				vo = powerDao.powerServiceOverlap(vo);
+				if(vo != null) {
+					System.out.println("overlap");
+					return "overlap";
+				}
 			}
 		}
 		return "T";

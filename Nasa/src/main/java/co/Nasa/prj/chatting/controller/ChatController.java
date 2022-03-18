@@ -233,8 +233,10 @@ public class ChatController {
     	
     room.setUserid(userid);
     room.setUsernickname(buyer.getB_nickname());
+    room.setB_img(buyer.getB_img());
     room.setMasterid(svo.getS_email());
     room.setMasternickname(svo.getS_nickname());
+    room.setS_img(svo.getS_img());
     	
     ChatRoom exist = cService.searchChatRoom(room);
     	

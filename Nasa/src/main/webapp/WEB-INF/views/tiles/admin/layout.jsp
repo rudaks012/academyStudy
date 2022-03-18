@@ -45,6 +45,27 @@
 		</div>
 		<div class="page-wrapper">
 			<tiles:insertAttribute name="body" />
+			
+				<!-- Modal -->
+				   <div id="logOutModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dark-header-modalLabel" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header modal-colored-header bg-primary">
+                                                <h4 class="modal-title" id="dark-header-modalLabel">LOG OUT</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                               	<div class="mb-2">로그아웃 하시겠습니까?</div>
+                                               	메인으로 돌아갑니다.	                        
+                                  
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" id="logBtn" class="btn btn-outline-primary">LOG OUT</button>
+                                                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">취소</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div>
 		</div>
 		<div id="footer">
 			<tiles:insertAttribute name="footer" />
@@ -53,7 +74,13 @@
 	 
 	 
 	 
-	
+	<script>
+	const handleLogOut=()=>{
+		location.href="logout.do"
+	    $("#logBtn").attr("data-dismiss","modal");
+	}
+	$("#logBtn").on("click",handleLogOut);
+	</script>
     
     
     <!-- apps -->

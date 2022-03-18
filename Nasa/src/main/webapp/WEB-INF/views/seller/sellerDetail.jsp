@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,6 +87,25 @@
        font-weight: 700;
        font-size: 25px;
     }
+   .wishplus {
+      color: pink;
+      cursor: pointer;
+   }
+
+   .wishplus:hover {
+      color: black;
+   }
+
+   .wishminus:hover {
+      color: black;
+   }
+
+   #knohowlink {
+      color:black !important;
+   }
+   .modal-open {
+		padding-right:0px !important;
+	}
 </style>
 </head>
 <body>
@@ -111,7 +132,7 @@
                         <a href="#">
 
 
-                           <h4 style="display: inline;" id="detailname">${sellerInfo.s_name }</h4>
+                           <h4 style="display: inline;" id="detailname" class="sellernick">${sellerInfo.s_nickname }</h4>
 
                         </a>
 
@@ -150,21 +171,47 @@
 
                      <div class="blog_details">
                         <nav class="fables-single-nav">
-                           <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                              <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
-                                 id="nav-desc-tab" data-toggle="tab" href="#nav-desc" role="tab"
-                                 aria-controls="nav-desc" aria-selected="true">소개</a>
-                              <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-                                 id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab"
-                                 aria-controls="nav-info" aria-selected="false">받은평가</a>
-                              <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
-                                 id="nav-review-tab" data-toggle="tab" href="#nav-review" role="tab"
-                                 aria-controls="nav-review" aria-selected="false">서비스</a>
-                           </div>
+                           <c:choose>
+                              <c:when test="${tabcode eq 'r'}">
+                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 rounded-0 py-3"
+                                       id="nav-desc-tab" data-toggle="tab" href="#nav-desc" role="tab"
+                                       aria-controls="nav-desc" aria-selected="false">소개</a>
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3 active"
+                                       id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab"
+                                       aria-controls="nav-info" aria-selected="true">받은평가</a>
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+                                       id="nav-review-tab" data-toggle="tab" href="#nav-review" role="tab"
+                                       aria-controls="nav-review" aria-selected="false">서비스</a>
+                                 </div>
+                              </c:when>
+                              <c:otherwise>
+                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 rounded-0 py-3 active"
+                                       id="nav-desc-tab" data-toggle="tab" href="#nav-desc" role="tab"
+                                       aria-controls="nav-desc" aria-selected="true">소개</a>
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+                                       id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab"
+                                       aria-controls="nav-info" aria-selected="false">받은평가</a>
+                                    <a class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
+                                       id="nav-review-tab" data-toggle="tab" href="#nav-review" role="tab"
+                                       aria-controls="nav-review" aria-selected="false">서비스</a>
+                                 </div>                           
+                              </c:otherwise>
+                           </c:choose>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                           <div class="tab-pane fade show active" id="nav-desc" role="tabpanel"
+                           <c:choose>
+                              <c:when test="${tabcode eq 'r'}">
+                                 <div class="tab-pane fade" id="nav-desc" role="tabpanel"
                               aria-labelledby="nav-desc-tab">
+                              </c:when>
+                              <c:otherwise>
+                                 <div class="tab-pane fade show active" id="nav-desc" role="tabpanel"
+                              aria-labelledby="nav-desc-tab">
+                              </c:otherwise>
+                           </c:choose>
+                           
                               <div class="row justify-content-center">
                                 
                                  <p class="excert">
@@ -172,119 +219,131 @@
                                  </p>
                               </div>
                            </div>
-                           <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+                           <c:choose>
+                              <c:when test="${tabcode eq 'r'}">
+                                 <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+                              </c:when>
+                              <c:otherwise>
+                                 <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+                              </c:otherwise>
+                           </c:choose>
+                           
                               
                               <br /><br />
-                              <div class="revtext">
-                                 <h5>서비스 리뷰</h5>
-                                 <i class="fa fa-star"></i>
-                                 <i class="fa fa-star"></i>
-                                 <i class="fa fa-star"></i>
-                                 <i class="fa fa-star"></i>
-                                 <i class="fa fa-star"></i>
-                                 || 총 4개의 리뷰
-                              </div>
-                              <div class="row justify-content-center">
+                              <c:choose>
+                                 <c:when test="${cntReviews > 0}">
+                                    <div class="revtext" style="margin-top:20px;">
+                                    <h5>서비스 리뷰</h5>
+                                    <!--<i class="fa fa-star" style="color: gold;"></i>-->
+                                    <c:set var="sum" value="0"></c:set>
+                                    <c:forEach items="${reviewList}" var="calc">
+                                          <c:set var="sum" value="${sum + calc.rev_rate}"></c:set>
+                                    </c:forEach>
+                                       평점 : <fmt:formatNumber type="number" pattern="0.00" value="${ (((sum/fn:length(reviewList))*100) - (((sum/fn:length(reviewList))*100)%1)) * (1/100)   }"></fmt:formatNumber> 점
+                                      || 총 ${cntReviews}개의 리뷰</div>
+                                 </c:when>
+                                 <c:otherwise>
+                                    <div class="revtext" style="margin-top:20px;">
+                                       <h5>서비스 리뷰</h5>
+                                       <!--<i class="fa fa-star" style="color: gold;"></i>-->
+                                       등록된 리뷰가 없습니다.  
+                                    </div>
+                                 </c:otherwise>
+                              </c:choose>
+
                                  <div class="comments-area">
-                                    <div class="comment-list">
-                                       <div class="single-comment justify-content-between d-flex">
-                                          <div class="user justify-content-between d-flex">
-                                             <div class="thumb">
-                                                <img src="assets/img/comment/comment_1.png" alt="">
+                                    <c:forEach items="${reviewList}" var="review">
+                                       <div id="rvcode-${review.rev_code }" class="comment-list">
+                                          <div class="single-comment justify-content-between d-flex">
+                                             <div class="user justify-content-between d-flex">
+                                                <c:choose>
+                                                   <c:when test="${not empty review.b_img }">
+                                                      <div class="thumb">
+                                                         <img class = "profileimg" src="${review.b_img }" alt="" style="width:70px; height:70px;">
+                                                      </div>
+                                                   </c:when>
+                                                   <c:otherwise>
+                                                      <div class="thumb">
+                                                         <img class = "profileimg" src="resources/user/assets/img/profile/search-default-profile.jpg" alt="" style="width:70px; height:70px;">
+                                                      </div>
+                                                   </c:otherwise>
+                                                </c:choose>
+                                                <div class="desc" style="width:450px;">
+                                                   <span>${review.rev_ser_name }</span><br>
+                                                   <span>${review.rev_name }</span>
+                                                   <span class="ml-4">평점 : ${review.rev_rate }</span>
+                                                   <span class="date">${fn:substring(review.rev_date,0,10) } </span>
+                                                   <div style="word-break:break-all;">
+                                                      <p class="comment">${review.rev_sub }</p>
+                                                   </div>
+                                                         <c:if test="${not empty author && review.rev_id ne id}">
+                                                            <span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-revtp="r" data-report_code="${review.rev_code }"
+                                                            style="cursor: pointer;">신고</span>
+                                                         </c:if>
+                                                </div>
                                              </div>
-                                             <div class="desc">
-                                                <span>Emilly Blunt</span> <span class="date">December 4,
-                                                   2017 at 3:12 pm </span>
-                                                   <span class="star">평점 : 4.5</span>
-                                                   <span class="star">|| 웹개발1 </span>
-                                                <p class="comment">Never say goodbye till the end comes!</p>
-                                                <a href="" class="btn-reply text-uppercase">신고</a>
-                                             </div>
+                                             <c:if test="${not empty review.rev_img }">
+                                                <div style="width:200px;height:100px; margin-left:10px;">
+                                                   <img class="revimg" src="${review.rev_img }" style="width:200px;height:100px;">
+                                                </div>
+                                             </c:if>
                                           </div>
                                        </div>
-                                    </div>
-                                    <div class="comment-list">
-                                       <div class="single-comment justify-content-between d-flex">
-                                          <div class="user justify-content-between d-flex">
-                                             <div class="thumb">
-                                                <img src="assets/img/comment/comment_2.png" alt="">
-                                             </div>
-                                             <div class="desc">
-                                                <span>Emilly Blunt</span> <span class="date">December 4,
-                                                   2017 at 3:12 pm </span>
-                                                   <span class="star">평점 : 4.5</span>
-                                                   <span class="star">|| 웹개발1 </span>
-                                                <p class="comment"> Multiply sea night grass fourth day sea lesser rule
-                                                   open subdue female fill which them
-                                                   Blessed, give fill lesser bearing multiply sea night grass fourth day
-                                                   sea lesser</p>
-                                                <a href="" class="btn-reply text-uppercase">신고</a>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="comment-list">
-                                       <div class="single-comment justify-content-between d-flex">
-                                          <div class="user justify-content-between d-flex">
-                                             <div class="thumb">
-                                                <img src="assets/img/comment/comment_3.png" alt="">
-                                             </div>
-                                             <div class="desc">
-                                                <span>Emilly Blunt</span> <span class="date">December 4,
-                                                   2017 at 3:12 pm </span>
-                                                   <span class="star">평점 : 4.5</span>
-                                                   <span class="star">|| 앱개발2 </span>
-                                                <p class="comment"> Multiply sea night grass fourth day sea lesser rule
-                                                   open subdue female fill which them
-                                                   Blessed, give fill lesser bearing multiply sea night grass fourth day
-                                                   sea lesser</p>
-                                                <a href="" class="btn-reply text-uppercase">신고</a>
+                                       <c:if test="${not empty review.rere_code }">
+                                          <div id="rvcode-${review.review_code }" class="comment-list left-padding">
+                                             <div class="single-comment justify-content-between d-flex">
+                                                <div class="user justify-content-between d-flex">
+                                                   <c:choose>
+                                                      <c:when test="${not empty sellerInfo.s_img }">
+                                                         <div class="thumb">
+                                                            <img src="${sellerInfo.s_img}" class = "profileimg" alt="">
+                                                         </div>
+                                                      </c:when>
+                                                      <c:otherwise>
+                                                         <div class="thumb">
+                                                            <img src="resources/user/assets/img/profile/search-default-profile.jpg" class = "profileimg" alt="">
+                                                         </div>
+                                                      </c:otherwise>
+                                                   </c:choose>
+                                                   <div class="desc">
+                                                      <span>${review.rere_sel_name }</span>
+                                                      <span class="date">${fn:substring(review.rere_date, 0 , 10) } </span>
+                                                      <div style="word-break:break-all;">
+                                                         <p class="comment">${review.rere_sel_sub }</p>
+                                                      </div>
+                                                            <c:if test="${not empty author && review.rere_sel_id ne id}">
+                                                               <span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-revtp="rc" data-report_code="${review.rere_code }"
+                                                               style="cursor: pointer;">신고</span>
+                                                            </c:if>
+                                                   </div>
+                                                </div>
                                              </div>
                                           </div>
-                                       </div>
-                                    </div>
-
-
-                                    <div class="comment-list">
-                                       <div class="single-comment justify-content-between d-flex">
-                                          <div class="user justify-content-between d-flex">
-                                             <div class="thumb">
-                                                <img src="assets/img/comment/comment_1.png" alt="">
-                                             </div>
-                                             <div class="desc">
-                                                <span>Emilly Blunt</span> <span class="date">December 4,
-                                                   2017 at 3:12 pm </span>
-                                                   <span class="star">평점 : 4.5</span>
-                                                   <span class="star">|| 데이터베이스 </span>
-                                                <p class="comment">MCSE boot camps have its supporters and its
-                                                   detractors. Some people do not understand why you
-                                                   should have to spend money on boot camp when you can get the MCSE
-                                                   study materials yourself at a
-                                                   fraction of the camp price. However, who has the willpower</p>
-                                                <a href="" class="btn-reply text-uppercase">신고</a>
-                                             </div>
-                                          </div>
-                                          <img class="revimg" src="assets/img/gallery/list1.png">
-                                       </div>
-                                    </div>
-                                    <div class="comment-list left-padding" style="background-color: rgb(240, 239, 239);">
-                                       <div class="single-comment justify-content-between d-flex">
-                                          <div class="user justify-content-between d-flex">
-                                             <div class="thumb">
-                                                <img src="assets/img/comment/comment_2.png" alt="">
-                                             </div>
-                                             <div class="desc">
-                                                <span>홍길동</span> <span class="date">December 4, 2017 at 3:12 pm </span>
-                                                <p class="comment">Never say goodbye till the end comes!</p>
-                                                <span class="btn-reply1">수정</span>
-                                                <span class="btn-reply1">삭제</span>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
+                                       </c:if>
+                                    </c:forEach>
                                  </div>
-
-                              </div>
+                                 <div class="row justify-content-center mt-10">
+                                    <nav aria-label="Page navigation example">
+                                      <ul class="pagination">
+                                         <c:if test="${paging.prev }">
+                                            <li class="page-item"><a class="page-link" href="sellerDetail.do?s_email=${sellerInfo.s_email}&pageNum=${paging.startPage - 1 }&amount=${paging.amount}&pagestatus=r">&lt;</a></li>
+                                         </c:if>
+                                         <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+                                            <c:choose>
+                                               <c:when test="${p == paging.pageNum }">
+                                                  <li class="page-item"><b class="page-link">${p }</b></li>
+                                               </c:when>
+                                               <c:when test="${p != paging.pageNum }">
+                                                  <li class="page-item"><a class="page-link" href="sellerDetail.do?s_email=${sellerInfo.s_email}&pageNum=${p }&amount=${paging.amount}&pagestatus=r">${p }</a></li>
+                                               </c:when>
+                                            </c:choose>
+                                         </c:forEach>
+                                         <c:if test="${paging.next }">
+                                            <li class="page-item"><a class="page-link" href="sellerDetail.do?s_email=${sellerInfo.s_email}&pageNum=${paging.endPage+1 }&amount=${paging.amount}&pagestatus=r">&gt;</a></li>
+                                         </c:if>
+                                      </ul>
+                                    </nav>
+                                 </div>
                            </div>
                            <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-info-tab">
                               <br /><br />
@@ -329,7 +388,19 @@
                   <div class="blog_right_sidebar">
                      <aside class="single_sidebar_widget author_widget">
 
-                        <h4>판매자 정보</h4><br/>
+                        <h4>
+                           판매자 정보
+                           <c:if test="${author eq 'B'}">
+                              <c:if test="${wish eq 'exist'}">
+                                 <i class="fa fa-heart wishplus" data-toggle="tooltip" data-placement="top" title="위시리스트 추가" onclick="wishplus(this, '${sellerInfo.s_nickname}')" style="display:none"></i>
+                                 <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${sellerInfo.s_nickname}')"></i>
+                              </c:if>
+                              <c:if test="${wish eq 'no'}">
+                                 <i class="fa fa-heart wishplus" data-toggle="tooltip" data-placement="top" title="위시리스트 추가" onclick="wishplus(this, '${sellerInfo.s_nickname}')"></i>
+                                 <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${sellerInfo.s_nickname}')" style="display:none"></i>
+                              </c:if>
+                           </c:if>
+                        </h4><br/>
                         <h5>활동정보</h5>
                         <div>회원구분 : ${sellerInfo.s_author }</div>
                        <!--  <div>총 작업수 : 12건</div> -->
@@ -341,7 +412,7 @@
                         <div>한국생산성본부·ICDL Start Certificate·2012.11</div> -->
                         <div style="white-space:pre-line;">${sellerInfo.s_carrer }</div>
                         <div style="margin-top: 20px; text-align: center;">
-                           <button class="genric-btn primary e-large" onclick="">문의하기</button>
+                           <button class="genric-btn primary e-large" onclick="chatingcheck()">문의하기</button>
                         </div>
                      </aside>
 
@@ -350,5 +421,156 @@
             </div>
          </div>
       </section>
+      <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">신고</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form>
+               <div class="form-group">
+                  <label><input type="radio" name="reportType" value="욕설/비방" onclick="radiodisabled()"> 욕설/비방</label><br>
+                  <label><input type="radio" name="reportType" value="음란물" onclick="radiodisabled()"> 음란물</label><br>
+                  <label><input type="radio" name="reportType" value="스팸/부적절한 광고" onclick="radiodisabled()"> 스팸/부적절한 광고</label><br>
+                  <label><input type="radio" name="reportType" value="혐오/잔인한 사진" onclick="radiodisabled()"> 혐오/잔인한 사진</label><br>
+                  <div class="form-group">
+                     <label><input type="radio" name="reportType" value="기타사유" onclick="radioactive()"> 기타사유</label>
+                     <textarea class="form-control" id="reportSubject" name="reportSubject"
+                        disabled></textarea>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <div class="modal-footer">
+            <a href="#" class="genric-btn danger radius" data-dismiss="modal" onclick="reportReview()">신고</a>
+            <a href="#" class="genric-btn primary radius" data-dismiss="modal" onclick="radiodisabled();disradio();">취소</a>
+         </div>
+      </div>
+   </div>
+</div>
+      <script>
+         $(document).ready(function () {
+            $("#reportModal").on("show.bs.modal", function (event) {
+				report_code = $(event.relatedTarget).data("report_code");
+            report_tcp = $(event.relatedTarget).data("revtp");
+			});
+         })
+
+         function radiodisabled() {
+			$("#reportSubject").attr("disabled", true);
+			$("#reportSubject").val("");
+		}
+
+		function radioactive() {
+			$("#reportSubject").attr("disabled", false);
+		}
+		
+		function disradio() {
+			$("input:radio[name='reportType']").prop("checked", false);
+			console.log("disradio");
+		}
+
+      function reportReview() {
+			console.log(report_code);
+			var re_type = $('input[name="reportType"]:checked').val();
+			console.log(re_type);
+			var re_subject = $("#reportSubject").val();
+         console.log(report_tcp);
+			
+			if(report_tcp == "r"){
+            // reportcontroller
+            $.ajax({
+               url: "reportReview.do",
+               type:"post",
+               data:{rev_code : report_code,
+                     re_type : re_type,
+                     re_subject : re_subject},
+               success: function() {
+                  console.log("신고함!");
+                  alert("신고하였습니다.");
+               },
+               error: function() {
+                  console.log("신고에러")
+               }
+            })
+         }
+         if(report_tcp == "rc") {
+            // reportcontroller
+            $.ajax({
+               url: "reportReview_comment.do",
+               type:"post",
+               data:{rere_code : report_code,
+                  re_type : re_type,
+                  re_subject : re_subject},
+               success: function() {
+                  console.log("신고함!");
+                  alert("신고하였습니다.");
+               },
+               error: function() {
+                  console.log("신고에러")
+               }
+            })
+         }
+		}
+      //채팅이동
+      function chatingcheck() {
+          //판매자 닉네임
+          var chatnick = document.querySelector(".sellernick").innerHTML;
+          //서비스코드
+          var ser_code = 0;
+          $.ajax({
+          url:"mainchatting.do",
+          type:"post",   
+          data:{
+              chatnick:chatnick
+          },
+          success: function(code) {
+                 location.replace('chatting.do');
+        	  }
+      		})
+   	}
+
+
+      $(document).ready(function(){
+	          $('[data-toggle="tooltip"]').tooltip();   
+    });
+    function wishplus(event, nickname) {
+        $.ajax({
+            url:"wishplus.do",
+            type:"post",
+            data:{
+                nickname:nickname
+            },
+            success: function(code) {
+                if(code == "plus") {
+                    $(event).hide();
+                    console.log(event.nextSibling);
+                    $(event.nextElementSibling).show();
+                }
+            }
+        })
+    }
+
+    function wishminus(event, nickname) {
+        $.ajax({
+            url:"wishminus.do",
+            type:"post",
+            data:{
+                nickname:nickname
+            },
+            success: function(code) {
+                if(code == "minus") {
+                    $(event).hide();
+                    $(event.previousElementSibling).show();
+                }
+            }
+        })
+    }
+      </script>
 </body>
 </html>

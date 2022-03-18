@@ -1,6 +1,5 @@
 package co.Nasa.prj.promotion.serviceImpl;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,5 +94,19 @@ public class PromotionServiceImpl implements PromotionService {
 		return map.countPagingPromotionY(vo);
 	}
 
+	@Override
+	public int DirectPromCancel(PromotionVO vo) {
+		return map.DirectPromCancel(vo);
+	}
+
+	@Override
+	public int DirectPromEnd(PromotionVO vo) {
+		return map.DirectPromEnd(vo);
+	}
+
+	@Override
+	public PromotionVO goingSelectPromo(String ser_code) {
+		return map.goingSelectPromo(ser_code);
+	}	
 	
 }

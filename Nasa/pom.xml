@@ -181,6 +181,14 @@
 			<version>1.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>4.1.2</version>
+		</dependency>
+		
 
 		<!-- AspectJ -->
 		<dependency>
@@ -355,11 +363,19 @@
 	</dependencies>
 
 	<build>
+		<resources> 
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource> <resource> <directory>src/main/java</directory>
+			<includes> <include>**/*.xml</include>
+			</includes> </resource> </resources>
+
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>
 				<configuration>
+					
 					<additionalProjectnatures>
 						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
 					</additionalProjectnatures>
@@ -379,6 +395,7 @@
 					<target>11</target>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
+					<encoding>UTF-8</encoding>
 					<showDeprecation>true</showDeprecation>
 				</configuration>
 			</plugin>

@@ -77,25 +77,28 @@ p {
 							<h4 class="widget_title">MYPAGE MENU</h4>
 							<ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
-										<p>서비스관리</p>
+									<p >서비스 관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
-										<p>프로모션관리</p>
+										<p>프로모션 관리</p>
+								</a></li>
+								<li><a href="powerservice.do" class="d-flex">
+										<p>파워서비스 내역</p>
 								</a></li>
 								<li><a href="sellerCalendar.do" class="d-flex">
-										<p>일정관리</p>
+										<p>일정 관리</p>
 								</a></li>
-								<li><a href="sellerReview.do" class="d-flex">
-										<p>리뷰관리</p>
+								<li><a href="sellerReview.do?scode=0" class="d-flex">
+										<p>리뷰 관리</p>
 								</a></li>
 								<li><a href="sellerPayment.do" class="d-flex">
-										<p>결제조회</p>
+										<p>결제 조회</p>
 								</a></li>
 								<li><a href="sellerSales.do" class="d-flex">
-										<p>매출확인</p>
+										<p>매출 확인</p>
 								</a></li>
 								<li><a href="sellerReport.do" class="d-flex">
-										<p>신고관리</p>
+										<p>신고 관리</p>
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p style="font-weight: bold;">판매자 노하우</p>
@@ -126,7 +129,7 @@ p {
 													</td>
 												</tr>
 												<tr>
-													<td class="align-middle table-primary knowtd" colspan="2">메인이미지
+													<td class="align-middle table-primary knowtd" colspan="2">썸네일
 														<span class="spanstar">*</span>
 													</td>
 													<td><input type="file" id="file" name="file"
@@ -235,6 +238,17 @@ p {
 		})
 	
 		$("#knowhowUbtn").on("click", function(){
+			if($("#no_title").val() == ''){
+				alert('제목을 입력해주세요.');
+				return;
+			}else if($("#file").val() == ''){
+				alert('썸네일을 선택해주세요.');
+				return;
+			}else if($("#summernote").val() == ''){
+				alert('내용을 입력해주세요.');
+				return;
+			}
+			
 			var form = $("form")[0];
 			var formData = new FormData(form);
 		

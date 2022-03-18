@@ -35,7 +35,7 @@
          <div class="container">
             <div class="row justify-content-center">
             
-               <div class="col-lg-8 posts-list"  style="border: 1px solid #d5c9ea; padding: 3em">
+               <div class="col-lg-8 posts-list"  padding: 3em">
                   <div class="single-post">
 
                         <div class="feature-img">
@@ -69,7 +69,7 @@
             
                            <div class="media-body">
                               <a href="#">
-                                 <h4>${sellerInfo.s_nickname }</h4>
+                                 <h4 id="sellernick">${sellerInfo.s_nickname }</h4>
                               </a> &nbsp;&nbsp;&nbsp; <span>  <c:choose>
 								<c:when test="${sellerInfo.s_rank eq '1' }">
 									등급 : 별
@@ -87,7 +87,9 @@
 									<p>등급 : 등급확인 불가</p>
 								</c:otherwise>
 							</c:choose></span>
-                              <button class="genric-btn primary small startbtn" id="stbtn" style="float: right;" data-toggle="modal" data-target="#chatModal">견적 요청</button>
+
+                              <button class="genric-btn primary small startbtn" id="stbtn" style="float: right;" data-toggle="modal" data-target="#chatModal" onclick="chatingcheck()">채팅</button>
+
                               <p>${sellerInfo.s_me }</p>
                            </div>
                         </div>
@@ -120,6 +122,23 @@
       			});
       		}
       	})
+		
+  function chatingcheck() {
+       //판매자 닉네임
+       var chatnick = document.querySelector("#sellernick").innerHTML;
+       //서비스코드
+       var ser_code = 0;
+       $.ajax({
+       url:"mainchatting.do",
+       type:"post",   
+       data:{
+           chatnick:chatnick
+       },
+       success: function(code) {
+              location.replace('chatting.do');
+     	  }
+   		})
+	}
       </script>
 </body>
 </html>

@@ -19,7 +19,7 @@ public interface ServiceMapper {
 
 	int schEndDateCheck();
 	
-	List<ServiceVO> servicePromotion(String s_email);
+	List<ServiceVO> servicePromotion(ServiceVO vo);
 
 	
 	List<ServiceVO> homeCategorySelect(ServiceVO vo);
@@ -36,6 +36,16 @@ public interface ServiceMapper {
 	List<ServiceVO> notBuyerRandomService();
 	
 	List<ServiceVO> sellerMainServiceList(ServiceVO vo);
-	
 	int countPagingSellerService(ServiceVO vo);
+	
+	List<ServiceVO> sellerMainServiceListU(ServiceVO vo);
+	int countPagingSellerServiceU(ServiceVO vo);
+	
+	List<ServiceVO> sellerMainServiceListY(ServiceVO vo);
+	int countPagingSellerServiceY(ServiceVO vo);
+	
+	int DirectendService(ServiceVO vo);
+	
+	// 메인페이지 랜덤 프로모션 표시
+	List<ServiceVO> randomPromotion();
 }

@@ -374,7 +374,6 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 </head>
 <body>
-<div id="bmail">${id }</div>
 <!-- Hero Start-->
 <div class="hero-area2short  slider-height2 hero-overly2 d-flex align-items-center ">
 </div>
@@ -406,36 +405,41 @@ Remove or comment-out the code block below to see how the browser will fall-back
 							<!-- data-toggle="tooltip" data-placement="top" title="등급" -->
 								<c:choose>
 									<c:when test="${buyerinfo.b_rank eq '1' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 별">등급 : 별</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+										<span class="profile-real-name">등급 : 별</span>
 									</c:when>
 									<c:when test="${buyerinfo.b_rank eq '2' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 달">등급 : 달</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+										<span class="profile-real-name">등급 : 달</span>
 									</c:when>
 									<c:when test="${buyerinfo.b_rank eq '3' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 태양">등급 : 태양</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+										<span class="profile-real-name">등급 : 태양</span>
 									</c:when>
 									<c:when test="${buyerinfo.b_rank eq '4' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 지구">등급 : 지구</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
+										<span class="profile-real-name">등급 : 지구</span>
 									</c:when>
 									<c:otherwise>
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 확인불가">등급 : 등급확인불가</span> <a class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</a>
-									</c:otherwise>
+
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 확인불가">등급 : 등급확인불가</span>
+									</c:otherwise>                                   
+
 								</c:choose>
 								<c:choose>
-									<c:when test="${buyerinfo.buyer_coupon eq '0' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="쿠폰을 이미 사용하였습니다.">쿠폰을 이미 사용하였습니다.</span>
+                                    <c:when test="${empty buyerinfo.buyer_coupon }">
+                                        <span class="profile-real-name"> / 쿠폰이 없습니다.</span>
+                                    </c:when>
+									<c:when test="${buyerinfo.buyer_coupon eq '0' }">   
+										<span class="profile-real-name"> / 쿠폰을 이미 사용하였습니다.</span>
 									</c:when>
 									<c:when test="${buyerinfo.buyer_coupon eq '1' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="2%할인 쿠폰 보유중">쿠폰 보유 중</span>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="2%할인 쿠폰 보유중"> / 쿠폰 보유 중</span>
 									</c:when>
 									<c:when test="${buyerinfo.buyer_coupon eq '2' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="5%할인 쿠폰 보유중">쿠폰 보유 중</span>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="5%할인 쿠폰 보유중"> / 쿠폰 보유 중</span>
 									</c:when>
 									<c:when test="${buyerinfo.buyer_coupon eq '3' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="7%할인 쿠폰 보유중">쿠폰 보유 중</span>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="7%할인 쿠폰 보유중"> / 쿠폰 보유 중</span>
 									</c:when>
 									<c:when test="${buyerinfo.buyer_coupon eq '4' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="10%할인 쿠폰 보유중">쿠폰 보유 중</span>
+										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="10%할인 쿠폰 보유중"> / 쿠폰 보유 중</span>
 									</c:when>
 								</c:choose>
 							</li>
@@ -570,20 +574,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 		function passconfirm() {
 			var pcfrm = $("#passwordconfirm").val()
-			console.log(pcfrm);
-            /* if (pcfrm == '1234') {
-            	window.alert("탈퇴되었습니다.");
-                location.href="home.do";
-            } else if(pcfrm == ""){
-            	window.alert("비밀번호를 입력해주세요!");
-            } else if(pcfrm == "1") {
-            	$("#passConfirmModal").modal('hide');
-            	$("#noservice").modal('show');
-            	$("#passwordconfirm").val("");
-            } else {r
-            	window.alert("비밀번호가 틀렸습니다!");
-            } */
-            
+			console.log(pcfrm);       
             if(pcfrm == "") {
             	alert("비밀번호를 입력해주세요");
             }else {
@@ -604,7 +595,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	                    	$("#passwordconfirm").val("");
 	            		} else if(data == "codeD") {
 	            			sessionStorage.clear();
-	            			location.href = "home.do"
+	            			location.href = "logout.do"
 	            			alert("탈퇴되었습니다.");
 	            		}
 	            	}

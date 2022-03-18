@@ -31,7 +31,7 @@ public class PowerServiceServiceImpl implements PowerServiceService {
 	}
 
 	@Override
-	public int powerServiceCount(String power_start) {
+	public Integer powerServiceCount(String power_start) {
 		return map.powerServiceCount(power_start);
 	}
 

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -73,7 +74,9 @@ public class BuyerController {
 //	@Autowired
 //	private PasswordEncoder passwordEncoder;
 
-
+	@Value("#{upload['profileupload']}")
+	private String profileupload;
+	
 	// 구매자 마이페이지로 이동
 	@RequestMapping("/goBuyerMypage.do")
 	public String goBuyerMypage(HttpSession session, HttpServletResponse response, HttpServletRequest request,
@@ -89,19 +92,25 @@ public class BuyerController {
 		vo = buyerDao.selectBuyer(vo);
 		
 		// 마이페이지에 관심 카테고리 정보 전달(구매자 테이블에 관련 정보가 서브카테고리밖에 없어서 다른 VO 가져와야함)
-		scvo.setSub_no(vo.getField_code());
-		scvo = sub_categoryDao.selectSub_category(scvo);
-		
-		cvo.setCat_no(scvo.getCat_no());
-		cvo = categoryDao.selectCategory(cvo);
-		
-		String categoryName = cvo.getCat_name();
-		String subcategoryName = scvo.getSub_name();
+		if(vo.getField_code() == null) {
+			model.addAttribute("categoryName", "미설정");
+			model.addAttribute("subcategoryName", "계정설정에서 변경 가능");
+		} else {
+			scvo.setSub_no(vo.getField_code());
+			scvo = sub_categoryDao.selectSub_category(scvo);
+			
+			cvo.setCat_no(scvo.getCat_no());
+			cvo = categoryDao.selectCategory(cvo);
+			
+			String categoryName = cvo.getCat_name();
+			String subcategoryName = scvo.getSub_name();
+
+			model.addAttribute("categoryName", categoryName);
+			model.addAttribute("subcategoryName", subcategoryName);
+		}
 		
 		// 모델
 		model.addAttribute("buyerinfo", vo);
-		model.addAttribute("categoryName", categoryName);
-		model.addAttribute("subcategoryName", subcategoryName);
 		
 		return "buyer/buyerMypage";
 	}
@@ -109,7 +118,7 @@ public class BuyerController {
 	@RequestMapping("/deleteBuyer.do")
 	@ResponseBody
 	public String deleteBuyer(Model model, HttpSession session, HttpServletResponse response,
-			HttpServletRequest request, @Param("dPassword") String dPassword) {
+			HttpServletRequest request, @Param("dPassword") String dPassword, BCryptPasswordEncoder passwordEncoder) {
 		// 값 넘어왔는지 체크
 		System.out.println(dPassword);
 
@@ -129,8 +138,8 @@ public class BuyerController {
 		buyervo = buyerDao.selectBuyer(buyervo);
 
 		// 탈퇴 조건 실행
-		// 1. 입력한 비밀번호와 일치하는가?
-		if (!buyervo.getB_password().equals(dPassword)) {
+		// 1. 입력한 비밀번호와 일치하는가? !buyervo.getB_password().equals(dPassword)
+		if (!passwordEncoder.matches(dPassword, buyervo.getB_password())) {
 			System.out.println(buyervo.getB_password());
 			deleteStatus = "codeP";
 			return deleteStatus;
@@ -181,6 +190,14 @@ public class BuyerController {
 		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
 		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		List<PaymentVO> paymentList = paymentDao.selectPagingBuyerPaymentList(paymentvo);
+		List<PaymentVO> endpayList = paymentDao.endPaymentList(paymentvo);
+		for(int i = 0; i < paymentList.size(); i++) {
+			for(int j = 0; j < endpayList.size(); j++) {
+				if(paymentList.get(i).getPay_code().equals(endpayList.get(j).getPay_code())) {
+					paymentList.get(i).setEvent_end("notend");
+				}
+			}
+		}
 		pagingdto.setTotal(paymentDao.countPagingBuyerPayment(paymentvo));
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		model.addAttribute("paymentList", paymentList);
@@ -197,6 +214,7 @@ public class BuyerController {
 				paysum += pmvo.getPay_price();
 			}
 		}
+		
 		DecimalFormat formatter = new DecimalFormat("###,###");
 		String upgrademoneyform = "";
 		switch (buyervo.getB_rank()) {
@@ -661,7 +679,7 @@ public class BuyerController {
 
 	@RequestMapping(value = "/profileUpdate.do", produces = "text/plain;charset=UTF-8")
 	public String profileUpdate(BuyerVO vo, MultipartFile imgupload, HttpSession session, HttpServletResponse response,
-			HttpServletRequest request) {
+			HttpServletRequest request, BCryptPasswordEncoder passwordEncoder) {
 		if(vo.getField_code() == null) {
 			BuyerVO bvo = new BuyerVO();
 			bvo.setB_email((String) session.getAttribute("id"));
@@ -670,6 +688,24 @@ public class BuyerController {
 		}
 		System.out.println(vo.getField_code());
 		
+		System.out.println("처음 들어온 패스워드" + vo.getB_password());
+		String changePassword = "";
+		if(vo.getB_password().equals("")) {
+			System.out.println("1번 if");
+			BuyerVO buyervo = new BuyerVO();
+			buyervo.setB_email((String) session.getAttribute("id"));
+			buyervo = buyerDao.selectBuyer(buyervo);
+			changePassword = buyervo.getB_password();
+		}
+		
+		if(!vo.getB_password().equals("")) {
+			System.out.println("2번 if");
+			changePassword = passwordEncoder.encode(vo.getB_password());
+		}
+		System.out.println(changePassword);
+		vo.setB_password(changePassword);
+		
+		System.out.println("설정 끝난 패스워드" + vo.getB_password());
 		// img upload
 		BuyerVO voforimg = new BuyerVO();
 		voforimg.setB_email((String) session.getAttribute("id"));
@@ -682,11 +718,12 @@ public class BuyerController {
 		} else {
 			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
 			String saveFileName = UUID.randomUUID() + extension;
-			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+			String saveurl = profileupload;
+			// String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
 			String savepath = saveurl + saveFileName;
 			System.out.println(savepath);
-			
-			String b_img = "resources/user/assets/img/profile/" + saveFileName;
+			String b_img = "/upload/profile/" + saveFileName;
+			//String b_img = "resources/user/assets/img/profile/" + saveFileName;
 			
 			vo.setB_img(b_img);
 			System.out.println(vo.getB_img());
@@ -779,11 +816,7 @@ public class BuyerController {
 	@RequestMapping("/ajaxBjoin.do")
 	@ResponseBody
 	public String ajaxBjoin(BuyerVO vo, BCryptPasswordEncoder passwordEncoder) {
-		vo.setB_rank("1");
-		vo.setB_author("구매자");
-		vo.setB_status("사용자");
-		//vo.setToken("t");
-		vo.setField_code("1");
+		
 		String encodedPassword = passwordEncoder.encode(vo.getB_password());
 		vo.setB_password(encodedPassword);
 		System.out.println(vo.getB_password());

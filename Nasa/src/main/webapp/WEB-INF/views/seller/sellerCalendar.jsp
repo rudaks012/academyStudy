@@ -54,25 +54,28 @@
                         <h4 class="widget_title">MYPAGE MENU</h4>
                         <ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
-										<p>서비스관리</p>
+									    <p>서비스 관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
-										<p>프로모션관리</p>
+										<p>프로모션 관리</p>
+								</a></li>
+								<li><a href="powerservice.do" class="d-flex">
+										<p>파워서비스 내역</p>
 								</a></li>
 								<li><a href="sellerCalendar.do" class="d-flex">
-										<p style="font-weight: bold;">일정관리</p>
+										<p style="font-weight: bold;">일정 관리</p>
 								</a></li>
-								<li><a href="sellerReview.do" class="d-flex">
-										<p>리뷰관리</p>
+								<li><a href="sellerReview.do?scode=0" class="d-flex">
+										<p>리뷰 관리</p>
 								</a></li>
 								<li><a href="sellerPayment.do" class="d-flex">
-										<p>결제조회</p>
+										<p>결제 조회</p>
 								</a></li>
 								<li><a href="sellerSales.do" class="d-flex">
-										<p>매출확인</p>
+										<p>매출 확인</p>
 								</a></li>
 								<li><a href="sellerReport.do" class="d-flex">
-										<p>신고관리</p>
+										<p>신고 관리</p>
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p>판매자 노하우</p>
@@ -90,29 +93,34 @@
                                 <div id='calendar'></div>
                                 <br>
                                 <a class="d-inline-block">
-                                    <h2>현재 진행중인 서비스</h2>
+                                    <h2>일정 조회</h2>
                                 </a>
                                 <table class="servicetable">
                                     <tbody>
-                                        <tr class="thtext position-relative">
-                                            <th rowspan="4" class="imgtd"><img src="resources/user/assets/img/search-default-profile.jpg" style="height: 150px; width: 150px;"></td>
-                                            <th>서비스 명</th>
-                                            <th colspan="2">판매자명</th>                                                
+                                        
+                                        <tr>
+                                            <th rowspan="5" class="imgtd" style="text-align: center;"><img id="ser_img"
+                                                    src="resources/user/assets/img/search-default-profile.jpg"
+                                                    style="height: 175px; width: 175px; border-radius: 8px;"></th>
+                                            <th>구 매 자 : </th>
+                                            <td id="b_nickname"></td>
                                         </tr>
-                                        <tr class="tdtext position-relative">
-                                            <td>웹개발해드립니다</td>
-                                            <td colspan="2">IT고수</td>                                                
+                                        <tr>
+                                            <th>서 비 스 : </th>
+                                            <td><a id="ser_title"></a></th>                                            
                                         </tr>
-                                        <tr class="thtext position-relative">
-                                            <th>진행 상황</th>
-                                            <th>거래 기간</th>
-                                            <th>거래 금액</th>                                            
+                                        <tr>
+                                            <th>카테고리 : </th>
+                                            <td id="cate"></td>
                                         </tr>
-                                        <tr class="tdtext position-relative">
-                                            <td>진행 중</td>
-                                            <td>2022-01-14~2022-01-15</td>
-                                            <td>10,000,000원</td>
-                                        </tr>                                        
+                                        <tr>
+                                            <th>가  격 : </th>
+                                            <td id="pay_price_tochar"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>거래기간 : </th>
+                                            <td id="paydate"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>                                                       
@@ -122,23 +130,63 @@
             </div>            
         </div>
     </div>
+    <input type="hidden" name="pay_code_input" value="">
+    <input type="hidden" name="s_code_input" value="">
 </section>
 <script>
     // 수정할 것...
-    document.addEventListener('DOMContentLoaded', function () {
+   document.addEventListener('DOMContentLoaded', function () {
         let xhtp = new XMLHttpRequest();
-        xhtp.open('get', 'CalendarList.do');
+        xhtp.open('get', 'CalendarListS.do');
         xhtp.send();
         xhtp.onload = function () {
             let dbData = JSON.parse(xhtp.responseText);
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
+
                 initialView: 'dayGridMonth',
-                dayMaxEvents: true, // allow "more" link when too many events
+                dayMaxEvents: true, // allow "more" link when too many events               
+                locale: 'kor',
+                eventClick: function (ev) {
+                    console.log(ev.event.extendedProps.pay_code);
+                    console.log(ev.event.extendedProps.s_code);
+                    $('input[name=pay_code_input]').attr('value', ev.event.extendedProps.pay_code);
+                    $('input[name=s_code_input]').attr('value', ev.event.extendedProps.s_code);   
+                    getCalServList();
+                },
                 events: dbData
             });
             calendar.render();
+            console.log(dbData);
+
+            function getCalServList() {
+                var b_nickname = $(event.target).text();
+                var pay_code = $('input[name=pay_code_input]').val();
+                var s_code = $('input[name=s_code_input]').val();
+
+                $.ajax({
+                    url: "ajaxGetCalServListS.do",
+                    type: "post",
+                    data: {
+                        "b_nickname": b_nickname,
+                        "pay_code": pay_code,
+                        "s_code": s_code,
+                    },
+                    success: function (data) {                        
+                        console.log(data);
+                        $("#ser_img").attr("src", "fileupload/" + data.ser_img);
+                        $("#b_nickname").text(data.b_nickname);
+                        $("#ser_title").text(data.ser_title);
+                        $("#ser_title").attr("onclick", "location.href='serviceDetail.do?ser_code=" + data.s_code + "'");
+                        $("#ser_title").attr("style", "cursor:pointer; background-color: #dddddd;");  
+                        $("#cate").text(data.category + " > " + data.sub_category);                      
+                        $("#pay_price_tochar").text(data.pay_price_tochar + "원");
+                        $("#paydate").text(data.event_start + " ~ " + data.event_end_original);
+
+                    }
+                })
+            }
         }
     });
 </script>

@@ -75,25 +75,28 @@ input[type="radio"] {
 							<h4 class="widget_title">MYPAGE MENU</h4>
 							<ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
-										<p style="font-weight: bold;">서비스관리</p>
+									<p style="font-weight: bold;">서비스 관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
-										<p>프로모션관리</p>
+										<p>프로모션 관리</p>
+								</a></li>
+								<li><a href="powerservice.do" class="d-flex">
+										<p>파워서비스 내역</p>
 								</a></li>
 								<li><a href="sellerCalendar.do" class="d-flex">
-										<p>일정관리</p>
+										<p>일정 관리</p>
 								</a></li>
-								<li><a href="sellerReview.do" class="d-flex">
-										<p>리뷰관리</p>
+								<li><a href="sellerReview.do?scode=0" class="d-flex">
+										<p>리뷰 관리</p>
 								</a></li>
 								<li><a href="sellerPayment.do" class="d-flex">
-										<p>결제조회</p>
+										<p>결제 조회</p>
 								</a></li>
 								<li><a href="sellerSales.do" class="d-flex">
-										<p>매출확인</p>
+										<p>매출 확인</p>
 								</a></li>
 								<li><a href="sellerReport.do" class="d-flex">
-										<p>신고관리</p>
+										<p>신고 관리</p>
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p>판매자 노하우</p>
@@ -123,7 +126,7 @@ input[type="radio"] {
 												<tr>
 													<td>서비스명 <span class="spanstar">*</span></td>
 													<td colspan="3"><input type="text" id="sname"
-														name="ser_title" required></td>
+														name="ser_title" required="required"></td>
 												</tr>
 												<tr>
 													<td>1차 카테고리<span class="spanstar">*</span></td>
@@ -181,7 +184,7 @@ input[type="radio"] {
 												</tr>
 												<tr>
 													<td>서비스방식<span class="spanstar">*</span></td>
-													<td colspan="3"><input type="radio" name="ser_line"
+													<td colspan="3"><input type="radio" name="ser_line" 
 														value="온라인" checked="checked">온라인 <input
 														type="radio" name="ser_line" value="오프라인">오프라인 <input
 														type="radio" name="ser_line" value="온/오프라인">온/오프라인</td>
@@ -269,6 +272,7 @@ input[type="radio"] {
 							ul.removeChild(ul.firstChild);
 						}
 						ul.innerHTML = "<li data-value class='option selected'>선택하세요.</li>";
+						$('#ser_sub_cate').append("<option value=''>선택하세요.</option>");
 						for(data of datas){
 							$('#ser_sub_cate').append("<option value='"+ data.sub_no+"'>" + data.sub_name + "</option>");
 							
@@ -336,28 +340,30 @@ input[type="radio"] {
 		} */
 
 		
-		$('#ser_start').click(function(){
-			var today = new Date();
-			var year = today.getFullYear();
-			var month = ('0' + (today.getMonth() + 1)).slice(-2);
-			var day = ('0' + today.getDate()).slice(-2);
-
-			var dateString = year + '-' + month  + '-' + day;
-			$('#ser_start').attr("min", dateString);
-			
-		})
-		
 		
 		/*
 		 * 폼 submit 로직
 		 */
 		function registerAction() {
 			console.log($('#ser_cate').val());
-			if($('#ser_cate').val() == '' ){
-				alert('1차 카테고리를 선택해주세요!');
+			console.log($('#ser_sub_cate').val());
+			if($("#sname").val() == ''){
+				alert('서비스명을 입력해주세요!');
 				return;
 			}else if($('#ser_cate').val() == '' ){
+				alert('1차 카테고리를 선택해주세요!');
+				return;
+			}else if($('#ser_sub_cate').val() == '' ){
 				alert('2차 카테고리를 선택해주세요!');
+				return;
+			}else if($('#ser_price').val() == '' ){
+				alert('가격을 입력해주세요!');
+				return;
+			}else if($('#ser_sub').val() == '' ){
+				alert('서비스에 대한 설명을 입력해주세요!');
+				return;
+			}else if($('#file').val() == '' ){
+				alert('메인이미지를 선택해주세요!');
 				return;
 			}
 			
@@ -380,9 +386,9 @@ input[type="radio"] {
 					data = JSON.parse(data);
 					if (data.result == "OK") {
 						alert("서비스 등록이 완료되었습니다.");
-						setTimeout(function() {
+						//setTimeout(function() {
 							location.href="sellerService.do";
-						}, 4000);
+						//}, 4000);
 						
 					} else{
 						alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");

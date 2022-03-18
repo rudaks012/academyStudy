@@ -15,10 +15,10 @@
    font-family: "Nunito", sans-serif;
 }
 
-html, body {
+/* html, body {
    background: linear-gradient(120deg, #443d43, #ed8ffa);
    overflow: hidden;
-}
+} */
 
 .container {
    background: rgba(255, 255, 255, 0.05);
@@ -33,7 +33,7 @@ html, body {
    border-bottom-right-radius: 0.2em;
 }
 
-.chatBottom {
+/*.chatBottom {
    background: rgba(255, 255, 255, 0.03);
    position: absolute;
    bottom: 0;
@@ -45,11 +45,11 @@ html, body {
    outline: none;
    color: rgba(255, 255, 255, 0.9);
    font-weight: 300;
-}
+}*/
 
-textarea::placeholder {
+/*textarea::placeholder {
    color: white;
-}
+}*/
 
 .chatBottom>textarea {
    background: rgba(255, 255, 255, 0.03);
@@ -168,8 +168,10 @@ chat_wrap .chatMiddle ul li>div {
 
 
 .chatList_box, .chatList_box2 {
-   margin: 2px;
-   border: 2px solid silver;
+    margin: 10px 0px;
+   padding-bottom:18px;
+   border-bottom: 2px solid rgba(228, 234, 242,0.8);
+   
 }
 
 .chatMiddle:nth-of-type(odd).right:after {
@@ -195,7 +197,7 @@ chat_wrap .chatMiddle ul li>div {
         opacity: 0;
     }
 }
-.w-btn-neon2 {
+/*.w-btn-neon2 {
    position: relative;
    border: none;
    min-width: 70px;
@@ -208,16 +210,16 @@ chat_wrap .chatMiddle ul li>div {
    font-weight: 700;
    transition: 0.3s;
    margin-right: 10px;
-}
+}*/
 
-.w-btn-neon2:hover {
+/*.w-btn-neon2:hover {
    color: #f44a40;
    border: 1px solid #f44a40;
    background: #fff;
    transform: scale(1.2);
-}
+}*/
 
-.w-btn-neon2:hover::after {
+/*.w-btn-neon2:hover::after {
    content: "";
    width: 30px;
    height: 30px;
@@ -229,7 +231,7 @@ chat_wrap .chatMiddle ul li>div {
    left: 50%;
    transform: translate(-50%, -50%);
    animation: ring 1.5s infinite;
-}
+}*/
 .powerbtn, .modal-header {
    background-color: #d5c9ea  !important;
 }
@@ -308,11 +310,33 @@ input[type=date] {
    background-color : #d5c9ea !important;
    color: white;
 }
+
+
+.hero-area2 {
+	min-height:100px
+}
+
+.w-btn-neon2 {
+   
+   border: none;
+   
+   border-radius: 3px;
+   
+   padding:5px;
+   cursor: pointer;
+   font-weight: 700;
+   
+}
+
+.genric-btn.danger-border {
+    color: #f44a40;
+    border: 1px solid #f44a40;
+    background: #fff;
+}
 </style>
 
 
-<link rel="stylesheet" href="./resources/chat/css/chat.css" />
-
+ <link rel="stylesheet" href="./resources/chat/css/chat.css" /> 
 
 <script
    src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
@@ -320,41 +344,51 @@ input[type=date] {
 
 
 <body>
-   <div class="listing-area pt-120 pb-120">
-      <div class="container" ng-cloak ng-app="chatApp" style="height: 500px";>
-         <div class="row channer" style="border-radius: 2px; height: 600px;">
-            <div class="col-4 col-lg-3 col-md-6 channer left1">
+  <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
+   </div>
+   <div class="" style="margin-top:50px; margin-bottom:100px ;margin-left:200px "><!-- listing-area -->
+      <div class="container" ng-cloak ng-app="chatApp" style="max-width: 2000px" >
+         <div class="row channer" style="border-radius: 2px; height: 750px;">
+            <div class="col-3 channer" style="box-shadow: 0px 15px 14px  rgba(178 178 194 / 64%);border-radius: 20px;">
                <div class="row">
-                  <div class="col-12">
-                     <div class="small-section-tittle2 mb-45">
-                        <h4>LIST</h4>
-                     </div>
+                  <div class="col-12 mb-4" style="background-color:#0D0F36; padding:10px 0px;border-radius: 15px 15px 0px 0px;">
+                        <h4 class="text-center" style="color:white">Chat List</h4>
                   </div>
                </div>
                <!-- 채팅 리스트 -->
                <div class="chatList"></div>
+               
+               
             </div>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-
-            <div class="col-8 col-lg-8 col-md-6 channer right1">
-               <div class="row">
-                  <div class="col-lg-12">
-                     <div class="count mb-35">
-                        <span>list</span>
-                        <button type="button" id="chatout" class="w-btn-neon2"
-                           style="float: right; display: none;">채팅나가기</button>
-
-                        <button type="button" data-toggle="modal"
-                        data-target="#payModal" id="payement" class="w-btn-neon2"
-                           style="float: right; display: none;"onclick="paymentconfirm();sercodecheck();promotioncheck();selrankcheck()">결제하기</button>
-                        <button type="button" data-toggle="modal"
-                           data-target="#reportModal" id="Chatreport" class="w-btn-neon2"
-                           style="float: right; display: none;">신고하기</button>
-                     </div>
+            
+            <div class="col-8 ml-2 " style="box-shadow: 10px 15px 20px rgba(178 178 194 / 64%);border-radius: 30px;">
+               <div class="row" >
+                  <div class="col-12 py-2 d-flex" style="background-color:#0D0F36;border-radius: 15px 15px 0px 0px;">
+                     
+                       <!-- <span>list</span> -->
+                       <div class="col-3">
+                        <button type="button" id="chatout" class="genric-btn danger-border circle mr-2 px-3"
+                           style="float: left; display: none; font-size:15px;">채팅나가기</button>
+                        </div>
+                        <div class="col-5"></div>
+						<div class="col-4 ">
+	                       
+	                        <button type="button" data-toggle="modal"
+	                           data-target="#reportModal" id="Chatreport" class="genric-btn danger circle arrow ml-2 px-3"
+	                           style="float: right; display: none; font-size:15px;">신고하기</button>
+	                         
+	                         <c:if test="${author eq 'B' }">
+		                         <button type="button" data-toggle="modal"
+			                        data-target="#payModal" id="payement" class="genric-btn primary-border circle mr-2 px-3"
+			                           style="float: right; display: none; font-size:15px; border-radius:30px" 
+		                           onclick="paymentconfirm();sercodecheck();promotioncheck();selrankcheck()">결제하기</button>
+                        	 </c:if>
+                        </div>
+                     
                   </div>
                </div>
                <!-- 채팅 창 -->
-               <div class="chat_wrap " style="padding: 3px">
+               <div class="chat_wrap " >
 
                   <!--    <div class="floatLeft" id="loginOn">
                   <img class="profile_img" id="setPic">
@@ -370,14 +404,19 @@ input[type=date] {
                         <!-- 동적 생성 -->
                      </ul>
                   </div>
-                  <div class="col-xl-8 col-lg-8 col-md-6 chatBottom">
-                     <textarea placeholder="메세지를 입력해 주세요."></textarea>
+                  <div class="chatBottom">
+                     <textarea placeholder="메세지를 입력해 주세요." style="border-radius:20px; border:1px solid #c3c5ea"></textarea>
                   </div>
                </div>
 
             </div>
+
+            
          </div>
       </div>
+     </div>
+   
+     
       <!-- 여기끝남 -->
 
 
@@ -482,7 +521,7 @@ input[type=date] {
       <!-- 결제 모달-->
       <div class="modal fade" id="payModal" tabindex="-1" role="dialog"
       aria-labelledby="payModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document" style="max-width: 400px;">
+      <div class="modal-dialog modal-lg" role="document" style="max-width: 400px;">
          <div class="modal-content">
             <div class="modal-header">
                <h5 class="modal-title" id="exampleModalLabel"
@@ -528,13 +567,6 @@ input[type=date] {
                         <!-- <input type="radio" name="paymethod"
                         value="kakaopay">카카오페이</td> -->
                   </tr>
-				  <tr>
-					  <td>프로모션</td>
-					  <td>
-						  <input type="radio" name="promotion" value="promotion" id="adminpromotion">전체 이벤트
-						  <input type="radio" name="promotion" value="promotion" id="sellerpromo">판매자 이벤트 
-					</td>
-				  </tr>
                   <tr>
                      <td>쿠폰</td>
                      <td id="coupontest">
@@ -557,7 +589,7 @@ input[type=date] {
                   <span style="font-weight: 200;" id="lastmoney">--원</span>
                </div>
                <div class="br">
-                  <span><input type="checkbox">개인정보수집 및 이용동의(필수)</span> <a
+                  <span><input type="checkbox" id="primary-checkbox">개인정보수집 및 이용동의(필수)</span> <a
                      style="float: right;" data-toggle="modal" data-target="#useModal">보기</a>
                </div>
 
@@ -644,6 +676,7 @@ input[type=date] {
                         dataType : "json",
                         success : function(data) {
                            for (var i = 0; i < data.length; i++) {
+                               console.log("로그인유저",data[i]);
                               loginList += data[i];
                               console.log(data[i]);
                            }
@@ -662,11 +695,12 @@ input[type=date] {
                         countAll = 0;
 
                         // 태그 동적 추가
-                        console.log(data);
+                        console.log("태그동적추카",data);
                         for ( var i in data) {
                            var $span; // 2단계
                            // 자신이 구매자 입장일 때
                            if (data[i].userid == "${loginMember.s_email}") {
+                               var s_img = data[i].s_img;
                               console.log("구매자 아이디 :::"
                                     + data[i].userid
                                     + "판매자 아이디 :::"
@@ -678,7 +712,7 @@ input[type=date] {
                                           data[i].masterid)
 										  .attr("ser_code", data[i].ser_code)
 										  ;
-                              $img = $("<img class='profile_img' src='resources/img/buzz.png'>");
+                              $img = $("<img class='profile_img' src='"+data[i].s_img+"'>");
                                    //$img = $("<img class='profile_img' src='resources/user/assets/img/profile/${loginMember.s_img}.png'>");
                               $div.append($img);
                               $divs = $("<span class='userNameId'>")
@@ -701,7 +735,7 @@ input[type=date] {
                                     .attr("id", data[i].roomid)
                                     .attr("userId", data[i].userid);
                               //$img = $("<img class='profile_img' src='/resources/images/temp-profile.png'>");
-                              $img = $("<img class='profile_img' src='resources/img/buzz.png'>");
+                              $img = $("<img class='profile_img' src='"+data[i].s_img+"'>");
                               $div.append($img);
                               $divs = $("<span class='userNameId'>")
                                     .text(data[i].userid);
@@ -850,7 +884,7 @@ input[type=date] {
          console.log("엔터룸 기멤버" + re_member); 
          document.querySelector("#paycheckId").innerHTML = re_member;
 
-         //$(obj).attr("clickable", "false");
+         $(obj).attr("clickable", "false");
          //}
       }// 채팅방 클릭 시 방번호 배정후 웹소켓 연결
       // 채팅 방 클릭 시 방번호 배정 후 웹소켓 연결
@@ -923,6 +957,7 @@ input[type=date] {
          let jsonData = JSON.stringify(data);
          websocket.send(jsonData);
          console.log("웹소켓 연결되었을때 ::::" + websocket);
+         console.log("웹소켓 연결되었을때123123123 ::::" + jsonData);
       }
 
       // * 1 메시지 전송
@@ -1134,8 +1169,20 @@ input[type=date] {
 		 console.log("서비스카테고리",ser_cate);
 		 var sub_cate = document.getElementById('sub_cate').value; //서비스코드 히든임
 		 console.log("서비스하위카테고리",sub_cate);
-		 var adminpay = document.getElementById('sellerrank').value; // 판매자 등급
-		 console.log("판매자 등급",adminpay);
+		//  var adminpay = document.getElementById('sellerrank').innerText; // 판매자 등급
+		//  console.log("판매자 등급",adminpay);
+       var adminpay = document.getElementById('sellerrank'); // 판매자 등급
+		 console.log("판매자 등급",adminpay.innerText);
+		 if(adminpay.innerText == "1" ){
+		 $('#sellerrank').val(servicemoney / 8) ;
+		 }else if(adminpay.innerText == "2"){
+		 $('#sellerrank').val(servicemoney / 5) ;
+		 }else if (adminpay.innerText == "3"){
+		 $('#sellerrank').val(servicemoney / 3) ;
+		 }else if (adminpay.innerText == "4"){
+		 $('#sellerrank').val(servicemoney / 1) ;
+		 }
+       var adminpat1 = adminpay.value;
 
 
 
@@ -1157,7 +1204,10 @@ input[type=date] {
             //결제완료후 이동할 페이지
             m_redirect_url : 'http://localhost:8080/project/chat/chatPayComplete.do'
          }, function(rsp) {
-            if ( rsp.success ) { // 결제 성공시
+            if (!($('#primary-checkbox').is(':checked'))) {
+			alert("약관에 동의하지 않으면 결제할 수 없습니다.");
+		}
+           else if ( rsp.success ) { // 결제 성공시
                var msg = '결제가 완료되었습니다.';
 
                var result = {
@@ -1172,7 +1222,7 @@ input[type=date] {
                      "s_code" : servicecode,
 					 "pay_cate" : ser_cate,
 					 "pay_cate1" : sub_cate,
-					 "pay_com" : adminpay
+					 "pay_com" : adminpat1
 
                }
                console.log("결제완료",result);
@@ -1254,21 +1304,21 @@ input[type=date] {
             dataType : "json",
             success: function(data){
                var couponval = document.querySelector("#couponrank");
+               $('#couponspan').text('');
                console.log("서버에서 받은 데이터 : " + data.coupon); // data.coupon 1
                if(data.coupon == '1' ){
                $("#coupontest").val('5');
                   couponval.value = "2";
-                 var check =  $("#coupontest").append('2% 할인 사용하기') ;
-				$('#couponspan').text('');
+				$('#couponspan').text('2% 할인 사용하기');
                }else if(data.coupon == '2'){
                   couponval.value = "5";
-                  $("#coupontest").append('5% 할인 사용하기') ;
+              	$('#couponspan').text('5% 할인 사용하기');
                }else if(data.coupon == '3'){
                   couponval.value = "7";
-                  $("#coupontest").append('7% 할인 사용하기') ;
+                  $('#couponspan').text('7% 할인 사용하기');
                }else if(data.coupon == '4'){
                   couponval.value = "10";
-                  $("#coupontest").append('10% 할인 사용하기') ;
+                  $('#couponspan').text('10% 할인 사용하기');
                }else if(data.coupon == '0'){
                 $("#couponrank").remove();
                }
@@ -1298,13 +1348,13 @@ input[type=date] {
          console.log("최종금액2",lastmoney);
 		 var adminpay = document.getElementById('sellerrank'); // 판매자 등급
 		 console.log("판매자 등급",adminpay.innerText);
-		 if(adminpay.innerText == "별" ){
+		 if(adminpay.innerText == "1" ){
 		 $('#sellerrank').val(servicemoney / 8) ;
-		 }else if(adminpay.innerText == "달"){
+		 }else if(adminpay.innerText == "2"){
 		 $('#sellerrank').val(servicemoney / 5) ;
-		 }else if (adminpay.innerText == "해"){
+		 }else if (adminpay.innerText == "3"){
 		 $('#sellerrank').val(servicemoney / 3) ;
-		 }else if (adminpay.innerText == "지구"){
+		 }else if (adminpay.innerText == "4"){
 		 $('#sellerrank').val(servicemoney / 1) ;
 		 }
 

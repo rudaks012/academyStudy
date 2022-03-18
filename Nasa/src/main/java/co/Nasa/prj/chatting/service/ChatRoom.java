@@ -25,4 +25,7 @@ public class ChatRoom {
     
     private int unReadCount;    // 안 읽은 메세지 수
     private String ser_code;	//서비스코드
+    
+    private String s_img; // 판매자 이미지
+    private String b_img; //구매자 이미지
 }

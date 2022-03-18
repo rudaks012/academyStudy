@@ -109,7 +109,7 @@ p {
 						<article class="blog_item">
 							<div class="justify-content-center">
 								<a class="d-inline-block" style="margin-top:20px;">
-										<h3>노하우 등록</h3>
+										<h3>판매자 노하우 등록</h3>
 									</a>
 								<hr class="hr"/>
 								<div class="blog_details">
@@ -128,7 +128,8 @@ p {
 														<span class="spanstar">*</span>
 													</td>
 													<td><input type="file" id="file" name="file"
-														class="sname" required="required"></td>
+														class="sname" required="required">	
+													</td>
 												</tr>
 												<tr>
 													<td colspan="3" style="padding: 1rem">
@@ -157,6 +158,24 @@ p {
 		</div>
 	</section>
 	<script>
+		/* function readImage(input) {
+			if(input.files && input.files[0]) {
+				const reader = new FileReader();
+				
+				reader.onload = e => {
+					const previewImage = document.getElementById("imgpreview");
+					previewImage.src = e.target.result;
+				}
+				reader.readAsDataURL(input.files[0]);                 
+			}
+		}
+		
+		const inputImage = document.getElementById("file");
+		inputImage.addEventListener("change", e => {
+			readImage(e.target);
+		}); */
+	
+	
 		$('#summernote').summernote(
 				{
 					height : 300, // 에디터 높이
@@ -225,6 +244,18 @@ p {
 		}
 		
 		$("#knowhowbtn").click(function(){
+			if($("#no_title").val() == ''){
+				alert('제목을 입력해주세요.');
+				return;
+			}else if($("#file").val() == ''){
+				alert('썸네일을 선택해주세요.');
+				return;
+			}else if($("#summernote").val() == ''){
+				alert('내용을 입력해주세요.');
+				return;
+			}
+			
+			
 			var form = $("form")[0];
 			var formData = new FormData(form);
 		

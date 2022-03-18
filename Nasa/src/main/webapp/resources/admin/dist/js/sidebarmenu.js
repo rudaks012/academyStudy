@@ -9,7 +9,13 @@ File: js
 // ============================================================== 
 $(function() {
     "use strict";
-     var url = window.location + "";
+     var temp = window.location + "";
+	 var url;
+	 if(temp.indexOf('?') != -1){
+		url = temp.substring(0, temp.indexOf('?'));
+	}else{
+		url = temp;
+	}
         var path = url.replace(window.location.protocol + "//" + window.location.host + "/", "");
         var element = $('ul#sidebarnav a').filter(function() {
             return this.href === url || this.href === path;// || url.href.indexOf(this.href) === 0;

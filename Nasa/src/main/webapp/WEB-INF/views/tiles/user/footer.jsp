@@ -17,7 +17,7 @@
                         <div class="single-footer-caption mb-30">
                             <!-- logo -->
                             <div class="footer-logo">
-                                <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                                <a href="index.html"><img src="resources/user/assets/img/nasalogo2.png" alt=""></a>
                             </div>
                         </div>
                     </div>

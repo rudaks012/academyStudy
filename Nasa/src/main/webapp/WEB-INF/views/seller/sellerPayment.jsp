@@ -25,11 +25,11 @@
 input[type=date] {
 	border: 1px solid lightgray;
 	color: lightgray;
-	margin-right: 10px;
+	margin-right: 2px;
 }
 
 .paybtn {
-	margin-right: 10px;
+	margin-right: 5px;
 }
 .hr{
  	background-color : #d5c9ea !important;
@@ -42,6 +42,10 @@ td, th {
 }
 .bemail{
 	color: gray;
+}
+.sales{
+	color : red;
+	font-size: 13px;
 }
 </style>
 </head>
@@ -69,32 +73,31 @@ td, th {
 							<h4 class="widget_title">MYPAGE MENU</h4>
 							<ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
-										<p>서비스관리</p>
+									<p >서비스 관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
-										<p>프로모션관리</p>
+										<p>프로모션 관리</p>
 								</a></li>
-								<li><a href="#" class="d-flex">
-										<p>일정관리</p>
+								<li><a href="powerservice.do" class="d-flex">
+										<p>파워서비스 내역</p>
 								</a></li>
-								<li><a href="sellerReview.do" class="d-flex">
-										<p>리뷰관리</p>
+								<li><a href="sellerCalendar.do" class="d-flex">
+										<p>일정 관리</p>
+								</a></li>
+								<li><a href="sellerReview.do?scode=0" class="d-flex">
+										<p>리뷰 관리</p>
 								</a></li>
 								<li><a href="sellerPayment.do" class="d-flex">
-										<p style="font-weight: bold;">결제조회</p>
+										<p style="font-weight: bold;">결제 조회</p>
 								</a></li>
 								<li><a href="sellerSales.do" class="d-flex">
-										<p>매출확인</p>
+										<p>매출 확인</p>
 								</a></li>
 								<li><a href="sellerReport.do" class="d-flex">
-										<p>신고관리</p>
+										<p>신고 관리</p>
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p>판매자 노하우</p>
-								</a></li>
-								<li><a href="" class="d-flex" data-toggle="modal"
-									data-target="#WithdrawalModal">
-										<p>회원탈퇴</p>
 								</a></li>
 							</ul>
 						</aside>
@@ -116,11 +119,11 @@ td, th {
 													<a
 														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after px-3 px-md-5 font-15 semi-font border-0 active rounded-0 py-3"
 														id="nav-info-tab" href="sellerPayment.do">정산
-														완료 거래</a><a
+														완료</a><a
 														class="fables-single-item nav-link fables-forth-text-color fables-second-active fables-second-hover-color fables-forth-after border-0 px-3 px-md-5 font-15 semi-font rounded-0 py-3"
 														id="nav-desc-tab" href="sellerPaymentN.do"
 														>정산
-														대기 거래</a> 
+														대기</a> 
 												</div>
 											</nav>
 											<div class="tab-content" id="nav-tabContent">
@@ -130,16 +133,24 @@ td, th {
 											<div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
 												<br />
 												<br />
-												<div class="row justify-content-center">
-
-													<button class="genric-btn danger-border radius paybtn" onclick="location.href = 'sellermonthSearch.do'">1개월</button>
-													<button class="genric-btn danger-border radius paybtn" onclick="location.href = 'sixmonthSearch.do'">6개월</button>
-													<button class="genric-btn danger-border radius paybtn" onclick="location.href = 'yearSearch.do'">1년</button>
-													<form action="selectdateSearch.do" method="get" onsubmit="return selectdate()">
-													<input type="date" id="firstDate" name="firstDate"> - <input type="date" id="secondDate" name="secondDate"
-														style="margin-left: 10px;">
+												<span class="sales">* 현재일 기준으로 검색됩니다.</span>
+												<div class="row ">
+													<button class="genric-btn danger-border circle paybtn" onclick="location.href = 'sellerPayment.do'">전체</button>			
+													<button class="genric-btn danger-border circle paybtn" onclick="location.href = 'sellermonthSearch.do'">1개월</button>
+													<button class="genric-btn danger-border circle paybtn" onclick="location.href = 'sellersixmonthSearch.do'">6개월</button>
+													<button class="genric-btn danger-border circle paybtn" onclick="location.href = 'selleryearSearch.do'" style="margin-right:8px;">1년</button>
+													<form action="sellerselectdateSearch.do" method="get" onsubmit="return selectdate()">
+														<input type="date" id="first" name="firstDate"> - <input type="date" id="second" name="secondDate"
+															style="margin-left: 5px;">
 													<button type="submit" class="genric-btn danger-border radius">기간검색</button>
 													</form>
+
+													<c:if test="${empty sellerPayList}">
+														<img src="resources/user/assets/img/nodata.jpg" style="width: 100%">
+													</c:if>
+													<c:if test="${not empty sellerPayList}">
+														
+												
 													<table id="paymentTable"
 														class="table table-bordered thead-light  text-center"
 														style="margin-top: 40px;">
@@ -161,22 +172,28 @@ td, th {
 																		<td>${fn:substring(sellerPay.pay_date,0,10) }</td>
 																		<td>${sellerPay.ser_title }</td>
 																		<td>${sellerPay.b_nickname } <br /><span class="bemail">${sellerPay.b_email }</span></td>
-																		<td><fmt:formatNumber value="${sellerPay.pay_originp }" pattern="###,###"/></td>
-																		<td>${sellerPay.pay_coupon }</td>
-																		<td><fmt:formatNumber value="${sellerPay.pay_com }" pattern="###,###"/></td>
-																		<td><fmt:formatNumber value="${sellerPay.pay_price }" pattern="###,###"/></td>
+																		<td><fmt:formatNumber value="${sellerPay.pay_originp }" pattern="###,###"/>원</td>
+																		<c:if test="${sellerPay.pay_coupon eq 'coupon'}">
+																			<td>-</td>
+																		</c:if>
+																		<c:if test="${sellerPay.pay_coupon ne 'coupon'}">
+																			<td>${sellerPay.pay_coupon }%</td>
+																		</c:if>
+																		<td><fmt:formatNumber value="${sellerPay.pay_com }" pattern="###,###"/>원</td>
+																		<td><fmt:formatNumber value="${sellerPay.pay_price }" pattern="###,###"/>원</td>
 																		<td>${fn:substring(sellerPay.pay_enddate,0,10) }</td>
 																		
 																	</tr>
 															</c:forEach>
 														</tbody>
 													</table>
+													</c:if>
 												</div>
 												<div class="row justify-content-center mt-10">
 													<nav aria-label="Page navigation example">
 													  <ul class="pagination">
 														  <c:if test="${paging.prev }">
-															  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
+															  <li class="page-item"><a class="page-link" href="${address }?pageNum=${paging.startPage - 1 }&amount=${paging.amount}">&lt;</a></li>
 														  </c:if>
 														  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 															  <c:choose>
@@ -184,12 +201,12 @@ td, th {
 																	  <li class="page-item"><b class="page-link">${p }</b></li>
 																  </c:when>
 																  <c:when test="${p != paging.pageNum }">
-																	  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
+																	  <li class="page-item"><a class="page-link" href="${address }?pageNum=${p }&amount=${paging.amount}">${p }</a></li>
 																  </c:when>
 															  </c:choose>
 														  </c:forEach>
 														  <c:if test="${paging.next }">
-															  <li class="page-item"><a class="page-link" href="sellerPayment.do?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
+															  <li class="page-item"><a class="page-link" href="${address }?pageNum=${paging.endPage+1 }&amount=${paging.amount}">&gt;</a></li>
 														  </c:if>
 													  </ul>
 													</nav>
@@ -211,8 +228,8 @@ td, th {
 
 <script>
 function selectdate() {
-	var firstDate = $("#firstDate").val();
-	var secondDate = $("#secondDate").val();
+	var firstDate = $("#first").val();
+	var secondDate = $("#second").val();
 	console.log(firstDate);
 	console.log(secondDate);
 	

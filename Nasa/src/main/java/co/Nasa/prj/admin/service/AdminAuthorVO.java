@@ -23,7 +23,7 @@ public class AdminAuthorVO {
 	String filed_code;
 	String buyer_coupon;
 	String b_name;
-	
+	String field_code;
 	
 	//판매자
 	
@@ -74,8 +74,8 @@ public class AdminAuthorVO {
 	String ser_sub;
 	String ser_cate;
 	String ser_sub_cate;
-	int ser_price;
-	int ser_sale;
+	String ser_price;
+	String ser_sale;
 	String filecode;
 	String ser_img;
 	String ser_offer;
@@ -134,10 +134,16 @@ public class AdminAuthorVO {
 	String name;
 	String status;
 	String report;
-	String date;
+	String blackdate;
 	String nickname;
 	String rank;
 	String joindate;
+	
+	String pro_status;
+	String prodiscount;
+	String ser_sale_com;
+	String pro_start;
+	String pro_end;
 	
 	int start; // 쿼리에 쓸 start
 	int end; 

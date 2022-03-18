@@ -35,5 +35,10 @@ public class AdmimBoardServiceImpl implements AdminBoardService{
 		// TODO Auto-generated method stub
 		return map.getBoardInfo(code);
 	}
+	@Override
+	public int todayTotalBoard() {
+		// TODO Auto-generated method stub
+		return map.todayTotalBoard();
+	}
 
 }

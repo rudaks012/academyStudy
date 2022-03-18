@@ -54,6 +54,34 @@
 	width: 753px;
 	height: 375px;
 }
+.subimg{
+	max-width: 100%
+}
+.comment {
+   white-space: pre-line;
+}
+
+.wishplus {
+   color: pink;
+   cursor: pointer;
+}
+
+.wishplus:hover {
+   color: black;
+}
+
+.wishminus:hover {
+   color: black;
+}
+.price img{
+	width: 100px;
+	height: 28px;
+}
+.price{
+	float: right;
+	font-size: 25px !important;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -76,7 +104,7 @@
 				<div class="col-lg-8 posts-list">
 					<div class="single-post">
                      <div class="feature-img">
-                        <img class="img-fluid" src="fileupload/${detailS.ser_img }" alt="">
+                        <img class="img-fluid" src="${detailS.ser_img }" alt="">
                      </div>
                      <div class="blog_details">
                         <nav class="fables-single-nav">
@@ -127,10 +155,9 @@
                                  </p>
                                  <c:if test="${detailS.ser_subimg ne null || detailS.ser_subimg2 ne null || detailS.ser_subimg3 ne null}">
                              		<h5><u>서비스 이미지</u></h5>
-                             		<p><img src="fileupload/${detailS.ser_subimg }"></p>
-                             		<p><img src="fileupload/${detailS.ser_subimg2 }"></p>
-                             		<p><img src="fileupload/${detailS.ser_subimg3 }"></p>
-                             		<hr />
+                             		<c:if test="${detailS.ser_subimg ne null}"><p><img class="subimg" src="${detailS.ser_subimg }"></p></c:if>
+                             		<c:if test="${detailS.ser_subimg2 ne null}"><p><img class="subimg" src="${detailS.ser_subimg2 }"></p></c:if>
+                             		<c:if test="${detailS.ser_subimg3 ne null}"><p><img class="subimg" src="${detailS.ser_subimg3 }"></p></c:if>
                              	</c:if>
                                  <hr />
                              	<h5><u>기술수준</u></h5>
@@ -196,11 +223,11 @@
                               <br /><br />
                               <!-- 여기에 바이어 로그인 돼 있으면 리뷰작성 뜨게 작성 -->
                               <c:if test="${author eq 'B'}">
-                                 <form action="writeReview.do" method="post", enctype="multipart/form-data">
+                                 <form id = "reviewform" action="writeReview.do" method="post" enctype="multipart/form-data">
                                     <div id="writeReview">
                                        <h5>리뷰 작성</h5>
                                        <div class="d-flex">
-                                          <input type="hidden" name="scode" value="${detailS.ser_code}">
+                                          <input type="hidden" id="hscode" name="scode" value="${detailS.ser_code}">
                                           <input type="hidden" name="rev_ser_name" value="${detailS.ser_title}">
                                           <h5 style="font-size:15px; margin-right:10px; margin-top:10px;">평점</h5>
                                           <select id="rev_rate" name="rev_rate" style="width:200px;">
@@ -216,12 +243,12 @@
                                           <input type="file" id="reviewimgUpload" name="reviewimg" accept="image/*" style="display:none;">
                                           <label class="genric-btn primary" for="reviewimgUpload">사진등록</label>
                                           <img id="reviewimg" alt="" style="width: 42px; height:42px; margin-left:10px; overflow: hidden; border-color:white;">
-                                          <button type="submit" class="genric-btn primary float-right">리뷰 작성</button>
+                                          <button type="button" class="genric-btn primary float-right" onclick = "reviewQualifications('${detailS.ser_code}')">리뷰 작성</button>
                                        </div>                
                                     </div>
                                  </form>
                               </c:if>
-                              <form action="writeReview.do" method="post", enctype="multipart/form-data" style="display:none;">
+                              <form style="display:none;">
                                  <div id="writeReview">
                                     <h5>리뷰 작성</h5>
                                     <div class="d-flex">
@@ -255,7 +282,7 @@
                                           <c:set var="sum" value="${sum + calc.rev_rate}"></c:set>
                                     </c:forEach>
                                        평점 : <fmt:formatNumber type="number" pattern="0.00" value="${ (((sum/fn:length(reviewList))*100) - (((sum/fn:length(reviewList))*100)%1)) * (1/100)   }"></fmt:formatNumber> 점
-                                      || 총 ${fn:length(reviewList)}개의 리뷰</div>
+                                      || 총 ${cntReviews}개의 리뷰</div>
                                  </c:when>
                                  <c:otherwise>
                                     <div class="revtext" style="margin-top:20px;">
@@ -287,7 +314,7 @@
                                                    <span>${review.rev_ser_name }</span><br>
                                                    <span>${review.rev_name }</span>
                                                    <span class="ml-4">평점 : ${review.rev_rate }</span>
-                                                   <span class="date">${review.rev_date } </span>
+                                                   <span class="date">${fn:substring(review.rev_date,0,10) } </span>
                                                    <div style="word-break:break-all;">
                                                       <p class="comment">${review.rev_sub }</p>
                                                    </div>
@@ -347,7 +374,7 @@
                                                    </c:choose>
                                                    <div class="desc">
                                                       <span>${review.rere_sel_name }</span>
-                                                      <span class="date">${review.rere_date } </span>
+                                                      <span class="date">${fn:substring(review.rere_date, 0 , 10) } </span>
                                                       <div style="word-break:break-all;">
                                                          <p class="comment">${review.rere_sel_sub }</p>
                                                       </div>
@@ -360,8 +387,10 @@
                                                                   data-target="#deleteReviewcommentModal" data-deletecode="${review.rere_code }">삭제</span>
                                                          </c:when>
                                                          <c:otherwise>
-                                                            <span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-revtp="rc" data-report_code="${review.rere_code }"
-                                                            style="cursor: pointer;">신고</span>
+                                                            <c:if test="${not empty author}">
+                                                               <span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-revtp="rc" data-report_code="${review.rere_code }"
+                                                               style="cursor: pointer;">신고</span>
+                                                            </c:if>
                                                          </c:otherwise>
                                                       </c:choose>
                                                    </div>
@@ -408,7 +437,18 @@
 								<br/><br/>
 								<h1>${detailS.ser_title }</h1>
 								<br /><br />
-								<span style="font-size:25px; font-weight: bold;">가격 : ${detailS.ser_price }원 ~ </span>
+								<c:if test="${empty goingPromo }">
+									<span style="font-size:25px; font-weight: bold; float: right;">
+										₩<fmt:formatNumber value="${detailS.ser_price }" pattern="###,###"/> ~ 
+									</span>
+								</c:if>
+								<c:if test="${not empty goingPromo }">
+									<span style="font-size:25px; font-weight: bold; float: right;">
+										₩<del><fmt:formatNumber value="${detailS.ser_price }" pattern="###,###"/>~ <del> 
+									</span><br /><br />
+									<div class="price" style="color:red; float: right;"><img src="resources/user/assets/img/promotion.png"> ₩<fmt:formatNumber value="${goingPromo.prodiscount }" pattern="###,###"/></div>
+								</c:if>
+								
 								<br /><br />
 							</div>
 							<!-- /input-group -->
@@ -425,8 +465,21 @@
 							</c:otherwise>
 						</c:choose>
 							<br /><br />
-							<h4 id="sellernick">${sellerInfo.s_nickname }</h4>
-							
+                     <div class="d-flex justify-content-center">
+                        <h4 id="sellernick">${sellerInfo.s_nickname }</h4>
+                        <h4>
+                           <c:if test="${author eq 'B'}">
+                              <c:if test="${wish eq 'exist'}">
+                                 <i class="fa fa-heart wishplus" data-toggle="tooltip" data-placement="top" title="위시리스트 추가" onclick="wishplus(this, '${sellerInfo.s_nickname}')" style="display:none"></i>
+                                 <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${sellerInfo.s_nickname}')"></i>
+                              </c:if>
+                              <c:if test="${wish eq 'no'}">
+                                 <i class="fa fa-heart wishplus" data-toggle="tooltip" data-placement="top" title="위시리스트 추가" onclick="wishplus(this, '${sellerInfo.s_nickname}')"></i>
+                                 <i class="fa fa-heart wishminus" data-toggle="tooltip" data-placement="top" title="위시리스트 제거" onclick="wishminus(this, '${sellerInfo.s_nickname}')" style="display:none"></i>
+                              </c:if>
+                           </c:if>
+                        </h4>
+							</div>
 							<c:choose>
 								<c:when test="${sellerInfo.s_rank eq '1' }">
 									<p>등급 : 별</p>
@@ -444,7 +497,7 @@
 									<p>등급 : 등급확인 불가</p>
 								</c:otherwise>
 							</c:choose>
-							<p>${sellerInfo.s_me }</p>
+							<p style="white-space:pre-line;">${sellerInfo.s_me }</p>
 							<button class="genric-btn primary small startbtn" onclick="chatingcheck()">채팅</button>
 							<div class="br"></div>
 						</aside>
@@ -629,7 +682,41 @@
 <!-- Modal End -->
 	
 	<script>
+      $(document).ready(function(){
+	          $('[data-toggle="tooltip"]').tooltip();   
+    });
+    function wishplus(event, nickname) {
+        $.ajax({
+            url:"wishplus.do",
+            type:"post",
+            data:{
+                nickname:nickname
+            },
+            success: function(code) {
+                if(code == "plus") {
+                    $(event).hide();
+                    console.log(event.nextSibling);
+                    $(event.nextElementSibling).show();
+                }
+            }
+        })
+    }
 
+    function wishminus(event, nickname) {
+        $.ajax({
+            url:"wishminus.do",
+            type:"post",
+            data:{
+                nickname:nickname
+            },
+            success: function(code) {
+                if(code == "minus") {
+                    $(event).hide();
+                    $(event.previousElementSibling).show();
+                }
+            }
+        })
+    }
 		function readImage(input) {
 			if(input.files && input.files[0]) {
 				const reader = new FileReader();
@@ -720,6 +807,7 @@
                      re_subject : re_subject},
                success: function() {
                   console.log("신고함!");
+                  alert("신고하였습니다.");
                },
                error: function() {
                   console.log("신고에러")
@@ -736,6 +824,7 @@
                   re_subject : re_subject},
                success: function() {
                   console.log("신고함!");
+                  alert("신고하였습니다.");
                },
                error: function() {
                   console.log("신고에러")
@@ -783,6 +872,10 @@
 		/* 리뷰 삭제 기능 test 함수 */
 
         function chatingcheck() {
+			if(${author ne 'B'}){
+				alert('구매자만 채팅 요청할 수 있습니다.');
+				return;
+			}
             //판매자 닉네임
             var chatnick = document.querySelector("#sellernick").innerHTML;
             //서비스코드
@@ -803,8 +896,30 @@
 				}
 			});
 		}
-		
-       
+      
+      function reviewQualifications(scode) {
+         var submitcode = "";
+         $.ajax({
+            url:"reviewQualifications.do",
+            data:{scode : scode},
+            dataType:"text",
+            success: function(result) {
+               console.log(result);
+               if(result == "OK") {
+                  console.log("ifOK");
+                  submitcode = "OK";
+                  alert("리뷰를 작성하였습니다.");
+                  $("#reviewform").submit();               
+               } else if(result=="NO") {
+                  console.log("ifNO");
+                  submitcode = "NO";
+                  alert("구매한 서비스만 리뷰를 작성할 수 있습니다.")
+               }
+            }
+         });
+
+         
+      }
 	</script>
 	
 </body>

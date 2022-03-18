@@ -398,19 +398,19 @@ Remove or comment-out the code block below to see how the browser will fall-back
 							<li id="gradeinfo" style="font-size: 15px;">
 								<c:choose>
 									<c:when test="${sellerInfo.s_rank eq '1' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 별">등급 : 별</span><button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 2% 감면혜택</span> 
+										<span class="profile-real-name" >등급 : 별</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="des">수수료 2% 감면혜택</span> 
 									</c:when>
 									<c:when test="${sellerInfo.s_rank eq '2' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 달">등급 : 달</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 5% 감면혜택</span> 
+										<span class="profile-real-name" >등급 : 달</span>&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;<span class="des">수수료 5% 감면혜택</span> 
 									</c:when>
 									<c:when test="${sellerInfo.s_rank eq '3' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 태양">등급 : 태양</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 7% 감면혜택</span> 
+										<span class="profile-real-name" >등급 : 태양</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="des">수수료 7% 감면혜택</span> 
 									</c:when>
 									<c:when test="${sellerInfo.s_rank eq '4' }">
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 지구">등급 : 지구</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button> &nbsp;&nbsp;&nbsp;<span class="des">수수료 10% 감면혜택</span> 
+										<span class="profile-real-name" >등급 : 지구</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="des">수수료 10% 감면혜택</span> 
 									</c:when>
 									<c:otherwise>
-										<span class="profile-real-name" data-toggle="tooltip" data-placement="top" title="등급 : 확인불가">등급 : 등급확인불가</span> <button class="genric-btn primary-border circle arrow" style="width: 30px; height: 20px;">?</button>
+										<span class="profile-real-name" >등급 : 등급확인불가</span>&nbsp;&nbsp; 
 									</c:otherwise>
 								</c:choose>
 								</li>
@@ -437,34 +437,34 @@ Remove or comment-out the code block below to see how the browser will fall-back
 						<h4 class="widget_title">MYPAGE MENU</h4>
 						<ul class="list cat-list">
 							<li><a href="sellerService.do" class="d-flex">
-									<p>서비스관리</p>
+									<p>서비스 관리</p>
+							</a></li>
+							<li><a href="sellerPromotion.do" class="d-flex">
+									<p>프로모션 관리</p>
 							</a></li>
 							<li><a href="powerservice.do" class="d-flex">
 									<p>파워서비스 내역</p>
 							</a></li>
-							<li><a href="sellerPromotion.do" class="d-flex">
-									<p>프로모션관리</p>
-							</a></li>
 							<li><a href="sellerCalendar.do" class="d-flex">
-									<p>일정관리</p>
+									<p>일정 관리</p>
 							</a></li>
-							<li><a href="sellerReview.do" class="d-flex">
-									<p>리뷰관리</p>
+							<li><a href="sellerReview.do?scode=0" class="d-flex">
+									<p>리뷰 관리</p>
 							</a></li>
 							<li><a href="sellerPayment.do" class="d-flex">
-									<p>결제조회</p>
+									<p>결제 조회</p>
 							</a></li>
 							<li><a href="sellerSales.do" class="d-flex">
-									<p>매출확인</p>
+									<p>매출 확인</p>
 							</a></li>
 							<li><a href="sellerReport.do" class="d-flex">
-									<p>신고관리</p>
+									<p>신고 관리</p>
 							</a></li>
 							<li><a href="sellerKnowhow.do" class="d-flex">
 									<p>판매자 노하우</p>
 							</a></li>
 							<li><a href="" class="d-flex" data-toggle="modal" data-target="#WithdrawalModal">
-									<p>회원탈퇴</p>
+									<p>회원 탈퇴</p>
 							</a></li>
 						</ul>
 					</aside>
@@ -548,21 +548,36 @@ Remove or comment-out the code block below to see how the browser will fall-back
          $('[data-toggle="tooltip"]').tooltip();   
      });
 	 
-		function passconfirm() {
+     function passconfirm() {
 			var pcfrm = $("#passwordconfirm").val()
-			console.log(pcfrm);
-            if (pcfrm == '1234') {
-            	window.alert("탈퇴되었습니다.")
-                location.href="home.do";
-            } else if(pcfrm == ""){
-            	window.alert("비밀번호를 입력해주세요!")
-            } else if(pcfrm == "1") {
-            	$("#passConfirmModal").modal('hide');
-            	$("#noservice").modal('show');
-            	$("#passwordconfirm").val("");
-            } else {
-                $("#passConfirmModal").modal('hide');
+			console.log(pcfrm);       
+            if(pcfrm == "") {
+            	alert("비밀번호를 입력해주세요");
+            }else {
+	            $.ajax ({
+	            	url: "deleteSeller.do",
+	            	type: "POST",
+	            	data: {
+	            		dPassword: pcfrm
+	            	},
+	            	dataType: "text",
+	            	success: function(data) {
+	            		console.log(data);
+	            		if(data == "codeP") {
+	            			alert("비밀번호가 틀렸습니다.");
+	            		} else if(data == "codeS") {
+	            			$("#passConfirmModal").modal('hide');
+	                    	$("#noservice").modal('show');
+	                    	$("#passwordconfirm").val("");
+	            		} else if(data == "codeD") {
+	            			sessionStorage.clear();
+	            			location.href = "home.do"
+	            			alert("탈퇴되었습니다.");
+	            		}
+	            	}
+	            })            	
             }
+            
 		}
 	</script>
 <!-- Modal End -->

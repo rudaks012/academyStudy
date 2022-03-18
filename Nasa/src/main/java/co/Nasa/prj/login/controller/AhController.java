@@ -71,81 +71,111 @@ public class AhController {
 	@RequestMapping("/main.do")
 	public String main(LoginVO Loginvo, AdminVO avo, SellerVO svo, HttpServletResponse response, HttpSession session,
 			@RequestParam("id") String id, @RequestParam("pw") String password, Model model,
-			BCryptPasswordEncoder passwordEncoder) throws IOException {
+			BCryptPasswordEncoder passwordEncoder
+			) throws IOException {
 		logger.info("debug - login");
 		String path = "";
-		avo = new AdminVO();
-		avo.setAid(id);
-		//vo 아이디 값 찾아서 한행 나오면
 		
-		avo.setApassword(password);
-		System.out.println("check|||||||||||||||||||||||||||||||" + avo.getApassword());
-		avo = LoginDao.selectadmin(avo);
-		if (avo == null) {
+		Loginvo = new LoginVO();
+		Loginvo.setB_email(id);
+		Loginvo = LoginDao.selectbuyer(Loginvo);
+		
+		if(Loginvo == null) {
 			svo = new SellerVO();
 			svo.setS_email(id);
-			svo.setS_password(password);
 			svo = LoginDao.selectseller(svo);
-			if (svo == null) {
-				Loginvo.setB_email(id);
-				Loginvo.setB_password(password);
-//				LoginVO loginUser = LoginDao.loginUser(Loginvo);
-				Loginvo = LoginDao.selectbuyer(Loginvo);
-				if (Loginvo != null) {
-					session.setAttribute("id", Loginvo.getB_email());
-					session.setAttribute("password", Loginvo.getB_password());
-					session.setAttribute("status", Loginvo.getToken());
-					session.setAttribute("nickname", Loginvo.getB_nickname());
-					session.setAttribute("author", Loginvo.getB_author());
-					cSession.addLoginUser(Loginvo.getB_email());
-					System.out.println("구매자");
-					path = "redirect:home.do";
+			if(svo == null ) {
+				avo = new AdminVO();
+				avo.setAid(id);
+				avo = LoginDao.selectadmin(avo);
+				if(avo != null) {
+					if(password.equals("1234")) {
+						session.setAttribute("id", avo.getAid());
+						session.setAttribute("password", avo.getApassword());
+						session.setAttribute("aname", avo.getAname());
+						session.setAttribute("author", "ad");
+						session.setAttribute("nickname", "관리자");
+						System.out.println("관리자");
+						path = "redirect:home.do";
+						
+					}else {
+						response.setContentType("text/html; charset=UTF-8");
+						PrintWriter out = response.getWriter();
+						out.print("<script>alert('비밀번호를 확인해주세요.');</script>");
+						out.flush();
+						return "user/Login";
+					}
 				}
-			} else {
-				session.setAttribute("id", svo.getS_email());
-				session.setAttribute("password", svo.getS_password());
-				session.setAttribute("status", svo.getS_status());
-				session.setAttribute("nickname", svo.getS_nickname());
-				session.setAttribute("author", "S");
-				cSession.addLoginUser(svo.getS_email());
-				System.out.println("판매자");
-				path = "redirect:home.do";
+				
+			}else {
+				if(passwordEncoder.matches(password, svo.getS_password())) {
+					session.setAttribute("id", svo.getS_email());
+					session.setAttribute("password", svo.getS_password());
+					session.setAttribute("status", svo.getS_status());
+					session.setAttribute("nickname", svo.getS_nickname());
+					session.setAttribute("author", "S");
+					cSession.addLoginUser(svo.getS_email());
+					System.out.println("판매자");
+					path = "redirect:home.do";
+					
+				}else {
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.print("<script>alert('비밀번호를 확인해주세요.');</script>");
+					out.flush();
+					return "user/Login";
+				}
+				
 			}
-		} else {
-			session.setAttribute("id", avo.getAid());
-			session.setAttribute("password", avo.getApassword());
-			session.setAttribute("aname", avo.getAname());
-			System.out.println("관리자");
-			path = "redirect:home.do";
+			
+			
+		}else {
+			if(passwordEncoder.matches(password, Loginvo.getB_password())) {
+				session.setAttribute("id", Loginvo.getB_email());
+				session.setAttribute("password", Loginvo.getB_password());
+				session.setAttribute("status", Loginvo.getToken());
+				session.setAttribute("nickname", Loginvo.getB_nickname());
+				session.setAttribute("author", Loginvo.getB_author());
+				cSession.addLoginUser(Loginvo.getB_email());
+				System.out.println("구매자");
+				path = "redirect:home.do";
+			}else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.print("<script>alert('비밀번호를 확인해주세요.');</script>");
+				out.flush();
+				return "user/Login";
+			}
 		}
-		if (path == "") {
+	
+		if(path == "") {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print("<script>alert('로그인 정보를 확인해주세요.');</script>");
 			out.flush();
 
 			return "user/Login";
-		} else {
+		}else {
 			return path;
-
 		}
-
+		
 	}
 
 	 @RequestMapping("/logout.do")
-	    public String logout(HttpSession session) {
+	    public String logout(LoginVO loginVO, HttpSession session) {
 	        
 	        /* 채팅 */
-	        LoginVO loginvo =  (LoginVO) session.getAttribute("loginUser");
-	        SellerVO svo = (SellerVO) session.getAttribute("loginUser");
-	        AdminVO avo = (AdminVO) session.getAttribute("loginUser");
-	        
+	        //LoginVO loginvo = (LoginVO) session.getAttribute("loginUser") ;
+//	        SellerVO svo = (SellerVO) session.getAttribute("loginUser");
+//	        AdminVO avo = (AdminVO) session.getAttribute("loginUser");
+	        session.invalidate();
 	                
 	        /* 채팅 */
 	        // 로그아웃한 User를 채팅 Session ArrayList에서 삭제.
-	        cSession.removeLoginUser(svo.getS_email());
-	        cSession.removeLoginUser(avo.getAid());
-	        cSession.removeLoginUser(loginvo.getB_email());
+	      //  System.out.println("찾아보자"+loginvo.getB_email());
+	       // cSession.removeLoginUser(loginvo.getB_email());
+	       //cSession.removeLoginUser(avo.getAid());
+	        //cSession.removeLoginUser(svo.getS_email());
 	        
 			return "user/Login";
 	    }

@@ -13,8 +13,7 @@
   	</select>
 
 	<select id="SellerEmailCheck" resultType="int">
-		select count(*) from seller
-		where s_email=#{s_email}
+		select count(email) from vw_member_report where email=#{s_email}
 	</select>
 	
 	<insert id="SellerInsert" parameterType="co.Nasa.prj.comm.VO.SellerVO">
@@ -25,7 +24,7 @@
 	<update id="SellerUpdate" parameterType="co.Nasa.prj.comm.VO.SellerVO">
 		update seller
 		set
-		s_me = #{s_me}, s_school = #{s_school}, s_major = #{s_major}, s_grad = #{s_grad}, s_img = #{s_img}
+		s_me = #{s_me}, s_school = #{s_school}, s_major = #{s_major}, s_carrer = #{s_carrer}, s_grad = #{s_grad}, s_img = #{s_img}
 		where s_email = #{s_email}
 	</update>
 	
@@ -83,4 +82,10 @@
 				GROUP BY S.S_EMAIL ORDER BY COUNT(*) DESC) 
 		WHERE S_EMAIL = #{s_email}
 	</select>
+	
+	<update id = "deleteSeller" parameterType="co.Nasa.prj.comm.VO.SellerVO">
+		UPDATE	SELLER
+		SET		S_STATUS = 'D'
+		WHERE	S_EMAIL = #{s_email}
+	</update>
 </mapper>

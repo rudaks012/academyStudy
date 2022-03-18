@@ -33,10 +33,23 @@
   	  ]]>   
      </if>
    </sql>
+   
+   <select id="todayNewBuyer" resultType="int">
+  		SELECT COUNT(*) FROM BUYER WHERE to_char(b_date,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd') 
+    </select>
+    
+   <select id="todayWithdrawalBuyer" resultType="int">
+   		SELECT count(*) FROM buyer WHERE b_status='B'
+   </select>
  
 	
 	<select id="selectBuyer" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
-		SELECT * FROM BUYER
+		 SELECT b_email,b_rank,b_password,b_nickname,substr(b_tel,1,3)||'-'||substr(b_tel,4,4)||'-'||substr(b_tel,8) as b_tel,
+		        b_address,b_zipcode,b_detailaddress,b_author,b_img,
+				b_status,b_date,b_report,token,
+                (select c.cat_name from category c join sub_category s on(c.cat_no=s.cat_no) where buyer.field_code=s.sub_no) as cat_name,
+                (select sub_name from sub_category where sub_no=buyer.field_code)as field_code, buyer_coupon,b_name,blacklistdate
+		FROM buyer
 		WHERE B_EMAIL= #{b_email}
 		
 	</select>
@@ -46,7 +59,10 @@
 		  SELECT *
 			FROM 
 			    (
-			    select rownum rn, b.*
+			    select rownum rn, b.pay_code, b.b_email, b.s_email, b.s_code,b.pay_date,b.pay_cate, b.pay_cate1,b.pay_type,b.pay_coupon,
+			                      b.pay_price,b.pay_enddate,b.event_start,b.event_end,
+			                      b.ser_code,b.pro_code,b.ser_start,b.ser_title,b.ser_sub,b.ser_price,
+			                      b.ser_sale,b.ser_date,b.ser_line,b.ser_team
 			    from v_buyerpayment b
 			    WHERE b_email=#{b_email} AND ROWNUM <=#{pageNum} * #{amount}
 			    )
@@ -104,7 +120,14 @@
 		     (
 		      SELECT rownum rn, s.*
 		      FROM
-		        seller s
+		           (
+		             select s_email, s_rank,s_nickname,substr(s_tel,1,3)||'-'||substr(s_tel,4,4)||'-'||substr(s_tel,8) as s_tel,s_address,
+		                    s_zipcode,s_detailaddress,s_author,s_img,
+					        s_business,s_status,s_report,s_school,s_major,s_grad, s_carrer,s_me,s_name,s_date,blacklistdate
+					 from seller
+					 where s_status!='B'
+					 order by s_email 
+					 )s
 		      where
 			   rownum <= #{pageNum} * #{amount}
 			   
@@ -135,15 +158,24 @@
 
 	</select>
 	
-	<select id="getListWithPaging" resultType="co.Nasa.prj.comm.VO.BuyerVO">
+	<select id="getListWithPaging" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
 		<![CDATA[
 		 SELECT *
 		 FROM 
 		     (
 		      SELECT rownum rn, b.*
-		      FROM
-		        buyer b
-		      where
+		      FROM 
+		          (  SELECT b_email,b_rank,b_password,b_nickname,substr(b_tel,1,3)||'-'||substr(b_tel,4,4)||'-'||substr(b_tel,8) as b_tel,
+		                    b_address,b_zipcode,b_detailaddress,b_author,b_img,
+					        b_status,b_date,b_report,token,
+                            (select c.cat_name from category c join sub_category s on(c.cat_no=s.cat_no) where buyer.field_code=s.sub_no) as cat_name,
+                            (select sub_name from sub_category where sub_no=buyer.field_code)as field_code, buyer_coupon,b_name,blacklistdate
+					 FROM buyer
+					 WHERE b_status !='B'
+					 ORDER BY b_email
+				  )b
+		          
+		      WHERE
 			   rownum <= #{pageNum} * #{amount}
 			   
 	    ]]>
@@ -158,7 +190,16 @@
 	</select>
 	
 	<select id="getBuyerTotal" resultType="int">
-		select count(*) as total from buyer
+		select count(*) as total from buyer where b_status !='B'
+	</select>
+	
+	<select id="searchBuyerTotal" resultType="int">
+		select count(*)
+		from buyer
+		where  b_status !='B'
+		
+		<include refid="buyerCriteria"></include>
+		
 	</select>
 	
 	<select id="selectSeller" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
@@ -169,9 +210,23 @@
 	
 	<select id="getSellerTotal" resultType="int">
 		select count(*) as total from seller
-		 <trim prefix="where" prefixOverrides="AND">
-		    <include refid="sellerCriteria"></include>	
-		 </trim>
+		where s_status!='B'
+		
+		<include refid="sellerCriteria"></include>	
+		
+	</select>
+	
+	<select id="totalSeller" resultType="int">
+		select count(*) from seller
+		where s_status!='B'
+	</select>
+	
+	<select id="todayNewSeller" resultType="int">
+	  SELECT COUNT(*) FROM SELLER WHERE to_char(s_date,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd') 
+	</select>
+	
+	<select id="todayWithdrawalSeller" resultType="int">
+	  SELECT COUNT(*) FROM SELLER WHERE s_status='B'
 	</select>
 	
 	<update id="updateMemberRank" parameterType="co.Nasa.prj.comm.VO.BuyerVO">
@@ -187,4 +242,8 @@
 		where s_email=#{s_email}
 	
 	</update>
+	
+	<select id="buyerAllList" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+		
+	</select>
 </mapper>

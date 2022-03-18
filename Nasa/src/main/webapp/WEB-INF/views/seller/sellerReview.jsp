@@ -33,6 +33,7 @@
 
 .comments-area {
 	margin-top: 0px;
+	border-top: 1px solid #a5a4a4;
 }
 
 .hr {
@@ -48,6 +49,12 @@
     color: #999999;
     margin-bottom: 0;
     margin-left: 0px;
+}
+.comments-area .comment-list.left-padding{
+	padding-left: 60px;
+}
+.comments-area .thumb img{
+	height: 70px;
 }
 </style>
 </head>
@@ -74,25 +81,28 @@
 							<h4 class="widget_title">MYPAGE MENU</h4>
 							<ul class="list cat-list">
 								<li><a href="sellerService.do" class="d-flex">
-										<p>서비스관리</p>
+									<p >서비스 관리</p>
 								</a></li>
 								<li><a href="sellerPromotion.do" class="d-flex">
-										<p>프로모션관리</p>
+										<p>프로모션 관리</p>
+								</a></li>
+								<li><a href="powerservice.do" class="d-flex">
+										<p>파워서비스 내역</p>
 								</a></li>
 								<li><a href="sellerCalendar.do" class="d-flex">
-										<p>일정관리</p>
+										<p>일정 관리</p>
 								</a></li>
-								<li><a href="sellerReview.do" class="d-flex">
-										<p style="font-weight: bold;">리뷰관리</p>
+								<li><a href="sellerReview.do?scode=0" class="d-flex">
+										<p style="font-weight: bold;">리뷰 관리</p>
 								</a></li>
 								<li><a href="sellerPayment.do" class="d-flex">
-										<p>결제조회</p>
+										<p>결제 조회</p>
 								</a></li>
 								<li><a href="sellerSales.do" class="d-flex">
-										<p>매출확인</p>
+										<p>매출 확인</p>
 								</a></li>
 								<li><a href="sellerReport.do" class="d-flex">
-										<p>신고관리</p>
+										<p>신고 관리</p>
 								</a></li>
 								<li><a href="sellerKnowhow.do" class="d-flex">
 										<p>판매자 노하우</p>
@@ -117,9 +127,9 @@
 												<tr>
 													<th class="align-middle table-primary">서비스 선택</th>
 													<td><select id="reviewChange" onchange="change()">
-															<option value="">전체</option>
+															<option value="0" <c:if test="${scode eq 0}">selected</c:if>>전체</option>
 															<c:forEach items="${serviceList }" var="service">
-																<option value="${service.ser_code }">${service.ser_title }</option>
+																<option value="${service.ser_code }" <c:if test="${service.ser_code eq scode}">selected</c:if>>${service.ser_title }</option>
 															</c:forEach>
 													</select></td>
 												</tr>
@@ -129,20 +139,27 @@
 
 
 									<br />
-
+									<c:if test="${empty reviewList}">
+										<img src="resources/user/assets/img/nodata.jpg" style="width: 100%">
+									</c:if>
 									<c:forEach items="${reviewList}" var="review">
 										<div class="comments-area" id="c${review.rev_code }">
 											<div class="comment-list">
 												<div class="single-comment justify-content-between d-flex">
 													<div class="user justify-content-between d-flex">
 														<div class="thumb">
-															<img src="assets/img/comment/comment_1.png" alt="">
+															<c:if test="${empty review.b_img }">
+																<img src="resources/user/assets/img/profile/search-default-profile.jpg" alt="">
+															</c:if>
+															<c:if test="${not empty review.b_img }">
+																<img src="${review.b_img }" alt="">
+															</c:if>
 														</div>
 														<div class="desc" id="re${review.rev_code }" >
 															<span class="date1">서비스 : ${review.rev_ser_name }</span><br> 
 															<span>${review.rev_name }</span>
 															<span class="ml-4">평점 : ${review.rev_rate }</span> 
-															<span class="date">${review.rev_date }</span>
+															<span class="date">${review.rev_date }</span>	
 															<p class="comment" >${review.rev_sub }</p>
 																<span class="btn-reply1" data-toggle="modal" data-target="#reportModal" 
 																data-rere_code="${review.rev_code }"
@@ -166,7 +183,12 @@
 														<div class="single-comment justify-content-between d-flex">
 															<div class="user justify-content-between d-flex">
 																<div class="thumb">
-																	<img src="assets/img/comment/comment_2.png" alt="">
+																	<c:if test="${empty review.s_img }">
+																		<img src="resources/user/assets/img/profile/search-default-profile.jpg" alt="">
+																	</c:if>
+																	<c:if test="${empty review.s_img }">
+																		<img src="${review.s_img }" alt="">
+																	</c:if>																	
 																</div>
 																<div class="desc">
 																	<span>${review.rere_sel_name }</span> 
@@ -234,7 +256,7 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label><input type="radio" name="reportType" value="욕설/비방" onclick="radiodisabled()"> 욕설/비방</label><br>
+							<label><input type="radio" name="reportType" value="욕설/비방" onclick="radiodisabled()" checked="checked"> 욕설/비방</label><br>
 							<label><input type="radio" name="reportType" value="음란물" onclick="radiodisabled()"> 음란물</label><br>
 							<label><input type="radio" name="reportType" value="스팸/부적절한 광고" onclick="radiodisabled()"> 스팸/부적절한 광고</label><br>
 							<label><input type="radio" name="reportType" value="혐오/잔인한 사진" onclick="radiodisabled()"> 혐오/잔인한 사진</label><br>
@@ -247,7 +269,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="genric-btn danger radius" data-dismiss="modal" onclick="reportReview()">신고</a>
+					<a href="#" class="genric-btn danger radius" data-toggle="modal" onclick="reportReview()">신고</a>
 					<a href="#" class="genric-btn primary radius" data-dismiss="modal" onclick="radiodisabled();disradio();">취소</a>
 				</div>
 			</div>
@@ -262,12 +284,12 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<input type="hidden" id="del_rerecode">
-					<h5 class="modal-title" id="exampleModalLabel">리뷰 삭제</h5>
+					<h5 class="modal-title" id="exampleModalLabel">댓글 삭제</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">리뷰가 삭제됩니다!</div>
+				<div class="modal-body">댓글이 삭제됩니다!</div>
 				<div class="modal-footer">
 					<a href="#" class="genric-btn danger radius" onclick="deleteReview()" data-dismiss="modal">삭제</a>
 					<a href="#" class="genric-btn primary radius" data-dismiss="modal">취소</a>
@@ -283,7 +305,7 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">리뷰 수정</h5>
+					<h5 class="modal-title" id="exampleModalLabel">댓글 수정</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -296,7 +318,7 @@
 	              		
 					</div>
 					<div class="modal-footer">
-						<button type="button" id="upbtn" class="genric-btn danger radius" data-dismiss="modal">수정</button>
+						<button type="button" id="upbtn" class="genric-btn danger radius">수정</button>
 						<button class="genric-btn primary radius" data-dismiss="modal">취소</button>
 					</div>
 				</form>
@@ -447,6 +469,8 @@
 			});
 			
 			$("#reportModal").on("show.bs.modal", function (event) {
+				$("input:radio[name='reportType']:radio[value='욕설/비방']").prop('checked', true); 
+				$("#reportSubject").val('');
 				rere_code = $(event.relatedTarget).data("rere_code");
 			});
 			
@@ -458,6 +482,11 @@
 		$("#upbtn").on("click", function(){
 			var rere_code = $("#hidden_rerecode").val();
 			var rere_sub = $("#modal_rev_sub").val();
+			
+			if(rere_sub == ''){
+				alert('내용을 입력해주세요.');
+				return;
+			}
 			
 			$.ajax({
 				url : "sellerReviewUpdate.do",
@@ -506,6 +535,7 @@
 			console.log(re_type);
 			console.log(re_subject);
 			
+			
 			 $.ajax({
 				url: "sellerReviewReport.do",
 				type:"post",
@@ -514,6 +544,7 @@
 					re_subject : re_subject},
 				success: function() {
 					alert("신고되었습니다.");
+					location.reload();
 				},
 				error: function() {
 					console.log("신고에러")

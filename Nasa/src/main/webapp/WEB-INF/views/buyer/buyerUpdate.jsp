@@ -100,8 +100,32 @@
 							<input class="form-control col-lg-3" name="b_detailaddress" id="b_detailaddress" type="text" placeholder="${buyerinfo.b_detailaddress }" value="${buyerinfo.b_detailaddress }" style="display: inline;margin-top: 5px;" required>
 						</div>
 					</div>
+
+					<div style="margin-top: 20px;">
+						<p>비밀번호 변경</p>
+						<input type="radio" name="pwCheck" id="basic" value="basic" checked="checked">기존 비밀번호 
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="pwCheck" id="new" value="new">새로운 비밀번호
+					</div>
+					<div style="display: none;" id="newpwdiv">
+						<div style="margin-top: 20px;" id="pwdiv">
+							<p>새로운 비밀번호</p>
+							<div class="form-group">
+								<input class="form-control" name="b_password" id="b_password"
+									type="password" placeholder="새로운 비밀번호">
+							</div>
+						</div>
+	
+						<div style="margin-top: 20px;" id="pwchkdiv">
+							<p>새로운 비밀번호 확인</p>
+							<div class="form-group">
+								<input class="form-control" name="pwchk" id="pwchk"
+									type="password" placeholder="새로운 비밀번호">
+							</div>
+						</div>
+					</div>
 				
-					<div id="pwdiv" style="margin-top: 20px;">
+					<!-- <div id="pwdiv" style="margin-top: 20px;">
 						<p>새로운 비밀번호</p>
 						<div class="form-group">
 							<input class="form-control" name="b_password" id="b_password" type="password" value=${buyerinfo.b_password } required>
@@ -113,9 +137,9 @@
 						<div class="form-group">
 							<input class="form-control" name="newpassword" id="newpassword2" type="password" value=${buyerinfo.b_password } required>
 						</div>
-					</div>
+					</div> -->
 				
-					<div class="row justify-content-center" style="margin-bottom: 50px;">
+					<div class="row justify-content-center" style="margin-bottom: 50px; margin-top: 50px;">
 						<button type="submit" class="genric-btn info-border">수정</button>
 						<!-- onclick="updateProfile()" -->
 						<a href="goBuyerMypage.do" class="genric-btn danger-border" style="margin-left: 10px;">취소</a>
@@ -126,6 +150,27 @@
 	</section>
       
 	<script>
+
+		$("input[name=pwCheck]").click(function(e){
+			console.log($(e.target).val());
+			if($(e.target).val() == 'new'){
+				$("input:radio[id='new']").attr("checked", true); 
+				$("input:radio[id='basic']").attr("checked", false);
+				$('#newpwdiv').attr('style','display: block;');
+				$("#b_password").val("");
+				$("#pwchk").val("");
+				$("#b_password").attr("required", true);
+				$("#pwchk").attr("required", true);
+			}else{
+				$("input:radio[id='basic']").attr("checked", true); 
+				$("input:radio[id='new']").attr("checked", false);
+				$('#newpwdiv').attr('style','display: none;');
+				$("#b_password").val("");
+				$("#pwchk").val("");
+				$("#b_password").removeAttr("required");
+				$("#pwchk").removeAttr("required");
+			}
+		})
 		function readImage(input) {
 			if(input.files && input.files[0]) {
 				const reader = new FileReader();
@@ -144,15 +189,20 @@
 		});
 		
 		function passwordCheck() {
-			var pwc = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-			var pwck = pwreg.test($("#b_password").val());
+			var pwc = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+			var pwck = pwc.test($("#b_password").val());
+			if($("#basic").is(':checked')) {
+				console.log('chkif');
+				return true;
+			}
+
 			if(!pwck) {
-				window.alert("비밀번호는 영문+숫자 조합 8자리 이상이어야 합니다.");
+				window.alert("비밀번호는 영문,숫자,특수문자 조합 8자리 이상이어야 합니다.");
 				return false;
 			}
 
 			var newpwd1 = document.getElementById("b_password").value;
-			var newpwd2 = document.getElementById("newpassword2").value; 
+			var newpwd2 = document.getElementById("pwchk").value; 
 			
 			if(newpwd1 != newpwd2) {
 				window.alert("입력한 비밀번호가 일치하지 않습니다.");
@@ -191,7 +241,7 @@
 			
 		})
 
-	// 비밀번호 설정
+	/* // 비밀번호 설정
 	var pwreg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 	$("#b_password")
@@ -226,7 +276,7 @@
 						'<label id="pwchklabel">비밀번호가 일치하지 않습니다.</label>');
 					$("#pwchklabel").css("color", "red");
 				}
-	})
+	}) */
 		
 		/* function updateProfile() {
 			var newpwd1 = document.getElementById("b_password").value;
