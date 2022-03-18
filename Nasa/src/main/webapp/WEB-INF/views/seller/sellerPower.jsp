@@ -187,7 +187,7 @@ input[type=date] {
 									<img src="resources/user/assets/img/nodata.jpg" style="width: 100%; height: 100%">
 								</c:if>
 								<c:if test="${not empty powerList }">
-								<table class="table caption-top table-bordered thead-light  text-center" style="margin-top:40px; font-size:12px;">
+								<table class="table caption-top table-bordered thead-light  text-center" style="margin-top:40px;">
 									<thead class="thead-light">
 										<tr>
 											<th>결제일</th>

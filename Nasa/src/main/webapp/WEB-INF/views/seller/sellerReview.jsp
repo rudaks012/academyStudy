@@ -186,7 +186,7 @@
 																	<c:if test="${empty review.s_img }">
 																		<img src="resources/user/assets/img/profile/search-default-profile.jpg" alt="">
 																	</c:if>
-																	<c:if test="${empty review.s_img }">
+																	<c:if test="${not empty review.s_img }">
 																		<img src="${review.s_img }" alt="">
 																	</c:if>																	
 																</div>

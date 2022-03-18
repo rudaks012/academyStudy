@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,9 @@ public class NoticeController {
 	private NoticeService NoticeDao;
 	@Autowired
 	private SellerService sellerDAO;
+	
+	@Value("#{upload['editorfile']}")
+	private String upload;
 	
 	@RequestMapping("/sellerKnowhow.do")
 	public String sellerKnowhow(Model model, HttpSession session, PagingDTO pagingdto) {
@@ -70,18 +74,22 @@ public class NoticeController {
 			if(file.getSize() > 0 && !file.getOriginalFilename().equals("")) {
 				
 				
-				fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\editor\\";
-				System.out.println(fileRoot);
+				//fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\editor\\";
+				//System.out.println(fileRoot);
+				
+				fileRoot =upload;
 				
 				String originalFileName = file.getOriginalFilename();	//오리지날 파일명
 				String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 				String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
 				
+				String r_img = "/upload/editorfile/" + originalFileName;
+				
 				File targetFile = new File(fileRoot + savedFileName);	
 				try {
 					InputStream fileStream = file.getInputStream();
 					FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
-					vo.setNo_img(savedFileName); //uuid
+					vo.setNo_img(r_img); //uuid
 					vo.setNo_originimg((originalFileName)); //원본
 					
 				} catch (Exception e) {
@@ -107,7 +115,7 @@ public class NoticeController {
 		vo.setNo_subject(s);
 		if(s.indexOf("src=")!=-1) {
 			System.out.println(s);
-			s = s.replaceAll("/prj/resources/fileupload", "editor");
+			s = s.replaceAll(req.getContextPath() +"/resources/fileupload",  upload);
 			System.out.println(s);
 			vo.setNo_subject(s);
 		}
@@ -148,35 +156,34 @@ public class NoticeController {
 		NoticeVO vo2 = new NoticeVO();
 		vo2 = NoticeDao.knowhowSelect(vo.getNo_code());
 		
-		String fileRoot;
 		
 		try {
 			// 파일이 있을때 탄다.
 			if (file.getSize() > 0 && !file.getOriginalFilename().equals("")) {
 
-				fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\editor\\";
-				System.out.println(fileRoot);
-
+				//fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\editor\\";
+				//System.out.println(fileRoot);
+				//fileRoot = upload;
+				
 				String originalFileName = file.getOriginalFilename(); // 오리지날 파일명
 				String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 				String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
 
-				File targetFile = new File(fileRoot + savedFileName);
-				File targetFile2 = new File(fileRoot + vo2.getNo_img());
-				// 이미있는파일 삭제
-				if (targetFile2.exists()) {
-					targetFile2.delete();
-				}
+				
+				String savepath = upload + savedFileName;
+				String r_img = "/upload/service/" + savedFileName;
+				//uuid
+				vo.setNo_img(r_img);
+				
+				//원본파일명
+				vo.setNo_originimg(originalFileName);
+				
 				
 				try {
-					InputStream fileStream = file.getInputStream();
-					FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-					vo.setNo_img(savedFileName); // uuid
-					vo.setNo_originimg(originalFileName); // 원본
-
-				} catch (Exception e) {
-					// 파일삭제
-					FileUtils.deleteQuietly(targetFile); // 저장된 현재 파일 삭제
+					file.transferTo(new File(savepath));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
