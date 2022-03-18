@@ -31,7 +31,7 @@
 	SELECT MAX(PRO_END) 
 	FROM PROMOTION 
 	WHERE PRO_SERVICE = #{pro_service}
-	AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < PRO_END]]>
+	AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < TO_CHAR(PRO_END, 'YYYY-MM-DD')]]>
 </select>
 
 <select id="promotionCheck" resultType="co.Nasa.prj.comm.VO.PromotionVO">
@@ -166,4 +166,11 @@
 	AND PRO_STATUS = 'U'
 	AND S_EMAIL = #{s_email}
 </delete>
+
+<select id="goingSelectPromo" resultType="co.Nasa.prj.comm.VO.PromotionVO">
+	SELECT TRUNC(S.SER_PRICE-(SER_PRICE * (PRODISCOUNT / 100))) AS PRODISCOUNT
+	FROM PROMOTION P JOIN SERVICE S
+    ON P.PRO_SERVICE = S.SER_CODE
+	WHERE PRO_SERVICE = #{ser_code} AND PRO_STATUS = 'N'
+</select>
 </mapper>

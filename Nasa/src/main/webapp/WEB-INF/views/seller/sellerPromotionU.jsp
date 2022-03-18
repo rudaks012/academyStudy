@@ -134,7 +134,10 @@
 													<div class="listing-details-area">
 														<div class="container">
 															<div class="row">
-
+																<c:if test="${empty promotions}">
+																	<img src="resources/user/assets/img/nodata.jpg" style="width: 100%; height: 100%">
+																</c:if>
+																<c:if test="${not empty promotions}">
 																<c:forEach items="${promotions }" var="promotion">
 																		<div class="col-lg-6">
 																			<div class="single-listing mb-30">
@@ -162,7 +165,7 @@
 																			</div>
 																		</div>
 																</c:forEach>
-																
+																</c:if>
 															</div>
 														</div>
 													</div>
