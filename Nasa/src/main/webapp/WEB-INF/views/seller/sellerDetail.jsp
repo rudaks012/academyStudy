@@ -103,6 +103,9 @@
    #knohowlink {
       color:black !important;
    }
+   .modal-open {
+		padding-right:0px !important;
+	}
 </style>
 </head>
 <body>
@@ -308,7 +311,7 @@
                                                       <div style="word-break:break-all;">
                                                          <p class="comment">${review.rere_sel_sub }</p>
                                                       </div>
-                                                            <c:if test="${not empty author && review.rev_id ne id}">
+                                                            <c:if test="${not empty author && review.rere_sel_id ne id}">
                                                                <span class="btn-reply1" data-toggle="modal" data-target="#reportModal" data-revtp="rc" data-report_code="${review.rere_code }"
                                                                style="cursor: pointer;">신고</span>
                                                             </c:if>
@@ -418,8 +421,102 @@
             </div>
          </div>
       </section>
-      
+      <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">신고</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form>
+               <div class="form-group">
+                  <label><input type="radio" name="reportType" value="욕설/비방" onclick="radiodisabled()"> 욕설/비방</label><br>
+                  <label><input type="radio" name="reportType" value="음란물" onclick="radiodisabled()"> 음란물</label><br>
+                  <label><input type="radio" name="reportType" value="스팸/부적절한 광고" onclick="radiodisabled()"> 스팸/부적절한 광고</label><br>
+                  <label><input type="radio" name="reportType" value="혐오/잔인한 사진" onclick="radiodisabled()"> 혐오/잔인한 사진</label><br>
+                  <div class="form-group">
+                     <label><input type="radio" name="reportType" value="기타사유" onclick="radioactive()"> 기타사유</label>
+                     <textarea class="form-control" id="reportSubject" name="reportSubject"
+                        disabled></textarea>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <div class="modal-footer">
+            <a href="#" class="genric-btn danger radius" data-dismiss="modal" onclick="reportReview()">신고</a>
+            <a href="#" class="genric-btn primary radius" data-dismiss="modal" onclick="radiodisabled();disradio();">취소</a>
+         </div>
+      </div>
+   </div>
+</div>
       <script>
+         $(document).ready(function () {
+            $("#reportModal").on("show.bs.modal", function (event) {
+				report_code = $(event.relatedTarget).data("report_code");
+            report_tcp = $(event.relatedTarget).data("revtp");
+			});
+         })
+
+         function radiodisabled() {
+			$("#reportSubject").attr("disabled", true);
+			$("#reportSubject").val("");
+		}
+
+		function radioactive() {
+			$("#reportSubject").attr("disabled", false);
+		}
+		
+		function disradio() {
+			$("input:radio[name='reportType']").prop("checked", false);
+			console.log("disradio");
+		}
+
+      function reportReview() {
+			console.log(report_code);
+			var re_type = $('input[name="reportType"]:checked').val();
+			console.log(re_type);
+			var re_subject = $("#reportSubject").val();
+         console.log(report_tcp);
+			
+			if(report_tcp == "r"){
+            // reportcontroller
+            $.ajax({
+               url: "reportReview.do",
+               type:"post",
+               data:{rev_code : report_code,
+                     re_type : re_type,
+                     re_subject : re_subject},
+               success: function() {
+                  console.log("신고함!");
+                  alert("신고하였습니다.");
+               },
+               error: function() {
+                  console.log("신고에러")
+               }
+            })
+         }
+         if(report_tcp == "rc") {
+            // reportcontroller
+            $.ajax({
+               url: "reportReview_comment.do",
+               type:"post",
+               data:{rere_code : report_code,
+                  re_type : re_type,
+                  re_subject : re_subject},
+               success: function() {
+                  console.log("신고함!");
+                  alert("신고하였습니다.");
+               },
+               error: function() {
+                  console.log("신고에러")
+               }
+            })
+         }
+		}
       //채팅이동
       function chatingcheck() {
           //판매자 닉네임
