@@ -465,11 +465,11 @@ public class ServiceController {
 			String r_img = "/upload/service/" + savedFileName;
 			
 			File targetFile = new File(r_img);
-			File targetFile2 = new File(vo2.getSer_img());
-			// 이미있는파일 삭제
-			if (targetFile2.exists()) {
-				targetFile2.delete();
-			}
+//			File targetFile2 = new File(vo2.getSer_img());
+//			// 이미있는파일 삭제
+//			if (targetFile2.exists()) {
+//				targetFile2.delete();
+//			}
 
 			try {
 				file.transferTo(new File(savepath));
@@ -506,12 +506,7 @@ public class ServiceController {
 			String r_img = "/upload/service/" + savedFileName;
 			
 			File targetFile = new File(r_img);
-			File targetFile2 = new File(vo2.getSer_subimg());
-			// 이미있는파일 삭제
-			if (targetFile2.exists()) {
-				targetFile2.delete();
-			}
-
+			
 			try {
 				subfile.transferTo(new File(savepath));
 				
@@ -531,11 +526,7 @@ public class ServiceController {
 			} else {
 				vo.setSer_subimg(null);
 				vo.setSer_originsub(null);
-				File targetFile2 = new File(vo2.getSer_subimg());
-				// 이미있는파일 삭제
-				if (targetFile2.exists()) {
-					targetFile2.delete();
-				}
+				
 			}
 		}
 
@@ -551,11 +542,6 @@ public class ServiceController {
 			String r_img = "/upload/service/" + savedFileName;
 			
 			File targetFile = new File(r_img);
-			File targetFile2 = new File(vo2.getSer_subimg2());
-			// 이미있는파일 삭제
-			if (targetFile2.exists()) {
-				targetFile2.delete();
-			}
 
 			try {
 				subfile2.transferTo(new File(savepath));
@@ -578,11 +564,7 @@ public class ServiceController {
 			} else {
 				vo.setSer_subimg2(null);
 				vo.setSer_originsub2(null);
-				File targetFile2 = new File(vo2.getSer_subimg2());
-				// 이미있는파일 삭제
-				if (targetFile2.exists()) {
-					targetFile2.delete();
-				}
+				
 			}
 		}
 
@@ -599,12 +581,7 @@ public class ServiceController {
 			String r_img = "/upload/service/" + savedFileName;
 			
 			File targetFile = new File(r_img);
-			File targetFile2 = new File(vo2.getSer_subimg3());
-			// 이미있는파일 삭제
-			if (targetFile2.exists()) {
-				targetFile2.delete();
-			}
-
+			
 			try {
 				subfile3.transferTo(new File(savepath));
 				
@@ -626,11 +603,7 @@ public class ServiceController {
 			} else {
 				vo.setSer_subimg3(null);
 				vo.setSer_originsub3(null);
-				File targetFile2 = new File(vo2.getSer_subimg3());
-				// 이미있는파일 삭제
-				if (targetFile2.exists()) {
-					targetFile2.delete();
-				}
+				
 			}
 		}
 

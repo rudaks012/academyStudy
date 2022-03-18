@@ -147,9 +147,9 @@ hr{
 													<thead>
 														<tr>
 															<th></th>
-															<th colspan="4" class="table-primary">판매수량</th>
-															<th colspan="4" class="table-primary">판매금액</th>
-															<th colspan="4" class="table-primary">판매수수료</th>
+															<th colspan="4" class="table-primary">판매수량(건)</th>
+															<th colspan="4" class="table-primary">판매금액(원)</th>
+															<th colspan="4" class="table-primary">판매수수료(원)</th>
 														</tr>
 													</thead>
 													<tbody>

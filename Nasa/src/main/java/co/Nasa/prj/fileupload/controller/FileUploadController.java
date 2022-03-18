@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,9 @@ public class FileUploadController {
 	NoticeService NoticeDao;
 	
 	
+	@Value("#{upload['editorfile']}")
+	private String upload;
+	
 	 //이미지 보여주기 밑 이미지 업로드 아작스.
 	   @RequestMapping(value="/uploadSummernoteImageFile.do", produces = "application/json; charset=utf8")
 	   @ResponseBody
@@ -42,8 +46,9 @@ public class FileUploadController {
 	        
 	      //경로 할 때 마다 계속 바꿔줘야함 아니면 절대 에디터 이미지 업로드 안됨.
 	        //Eclipse 파일 물리 경로 방식 (이클립스 내부에 저장)
-	      String SAVE_PATH = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\editor\\";
-	      
+	      //String SAVE_PATH = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\editor\\";
+	      String SAVE_PATH = upload;
+
 	      // 내부경로로 저장
 	      String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
 	      System.out.println("컨택트" + contextRoot);
@@ -64,7 +69,7 @@ public class FileUploadController {
 	         InputStream fileStream = multipartFile.getInputStream();
 	         FileUtils.copyInputStreamToFile(fileStream, targetFile);   //파일 저장
 	         multipartFile.transferTo(mtargetFile); //다운로드 컨트롤러 만들고 뒤에 파일명 넣어주면 해당경로 파일을 다운로드해준다.
-	         jsonObject.addProperty("url", "/prj/resources/fileupload/"+savedFileName); 
+	         jsonObject.addProperty("url", request.getContextPath() + "/resources/fileupload/"+savedFileName); 
 	         // contextroot + resources + 저장할 내부 폴더명
 	         jsonObject.addProperty("responseCode", "success");
 	            
