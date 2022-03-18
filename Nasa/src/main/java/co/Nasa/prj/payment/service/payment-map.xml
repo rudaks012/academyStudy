@@ -139,13 +139,13 @@
    <select id="selectpaymenttable" resultType="int" parameterType="int">
       SELECT NVL(SUM(PAY_PRICE),0)
       FROM PAYMENT
-      WHERE SUBSTR(PAY_DATE,4,2) =#{num}
+      WHERE SUBSTR(TO_DATE(PAY_DATE,'YY-MM-DD'),4,2) =#{num}
    </select>
    
    <select id="countservice" resultType="int" parameterType="int">
       SELECT COUNT(*) 
       FROM PAYMENT
-      WHERE SUBSTR(PAY_DATE,4,2) =#{num}
+      WHERE SUBSTR(TO_DATE(PAY_DATE,'YY-MM-DD'),4,2) =#{num}
    </select>
    
    <!-- 연도별 차트 입력 -->
@@ -157,14 +157,14 @@
    <select id="selectYearchart" resultType="int" parameterType="int">
       SELECT NVL(SUM(PAY_PRICE),0)
        FROM PAYMENT
-       WHERE SUBSTR(PAY_DATE,0,2) = #{num}
+       WHERE SUBSTR(TO_DATE(PAY_DATE,'YY-MM-DD'),0,2) = #{num}
    </select>
    
    <!-- 연도별 누적 판매 수량 -->
    <select id="countYearChart" resultType="int" parameterType="int">
        SELECT COUNT(*)
           FROM PAYMENT
-        WHERE SUBSTR(PAY_DATE,0,2) = #{num}
+        WHERE SUBSTR(TO_DATE(PAY_DATE,'YY-MM-DD'),0,2) = #{num}
    </select>
    
 
