@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -47,7 +48,10 @@ public class SellerController {
 	WishlistMapper wishlistDao;
 	@Autowired
 	ReviewMapper reviewDao;
-
+	
+	@Value("#{upload['profileupload']}")
+	private String profileupload;
+	
 	@RequestMapping("/goSellerMypage.do")
 	public String goSellerMypage(HttpSession session, Model model) {
 		model.addAttribute("sellerInfo", sellerDAO.SellerSelect((String) session.getAttribute("id")));
@@ -332,11 +336,11 @@ public class SellerController {
 		if (originalFileName.equals("")) {
 			vo.setS_img(beforimg);
 		} else {
-			String saveurl = "C:\\nasa\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+			String saveurl = profileupload;
 			String savepath = saveurl + originalFileName;
 			System.out.println(savepath);
 
-			String b_img = "resources/user/assets/img/profile/" + originalFileName;
+			String b_img = "/upload/profile/" + originalFileName;
 
 			vo.setS_img(b_img);
 

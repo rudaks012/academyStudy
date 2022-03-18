@@ -449,29 +449,32 @@ public class ServiceController {
 		vo2 = serviceDao.serviceSelect(vo.getSer_code());
 		System.out.println("=================" + vo2);
 		System.out.println("=================" + vo2.getSer_img());
-		String fileRoot = upload;
+		String saveurl = upload;
 		// 메인이미지 새로 등록했을때
 		if (file.getSize() > 0 && !file.getOriginalFilename().equals("")) {
 
 			// fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
-			System.out.println(fileRoot);
+			//System.out.println(fileRoot);
 
 			String originalFileName = file.getOriginalFilename(); // 오리지날 파일명
 			String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 			String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
-
-			File targetFile = new File(fileRoot + savedFileName);
-			File targetFile2 = new File(fileRoot + vo2.getSer_img());
+			
+			String savepath =saveurl + savedFileName;
+			
+			String r_img = "/upload/service/" + savedFileName;
+			
+			File targetFile = new File(r_img);
+			File targetFile2 = new File(vo2.getSer_img());
 			// 이미있는파일 삭제
 			if (targetFile2.exists()) {
 				targetFile2.delete();
 			}
 
 			try {
-				InputStream fileStream = file.getInputStream();
-				FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
+				file.transferTo(new File(savepath));
 				
-				vo.setSer_img(savedFileName); // uuid
+				vo.setSer_img(r_img); // uuid
 				vo.setSer_imgorigin(originalFileName); // 원본
 
 			} catch (Exception e) {
@@ -479,6 +482,7 @@ public class ServiceController {
 				FileUtils.deleteQuietly(targetFile); // 저장된 현재 파일 삭제
 				e.printStackTrace();
 			}
+			
 		}
 		// 메인이미지 null일때
 		else {
@@ -491,23 +495,27 @@ public class ServiceController {
 		if (subfile.getSize() > 0 && !subfile.getOriginalFilename().equals("")) {
 
 			// fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
-			System.out.println(fileRoot);
+			//System.out.println(fileRoot);
 
 			String originalFileName = subfile.getOriginalFilename(); // 오리지날 파일명
 			String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 			String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
-
-			File targetFile = new File(fileRoot + savedFileName);
-			File targetFile2 = new File(fileRoot + vo2.getSer_subimg());
+			
+			String savepath =saveurl + savedFileName;
+			
+			String r_img = "/upload/service/" + savedFileName;
+			
+			File targetFile = new File(r_img);
+			File targetFile2 = new File(vo2.getSer_subimg());
 			// 이미있는파일 삭제
 			if (targetFile2.exists()) {
 				targetFile2.delete();
 			}
 
 			try {
-				InputStream fileStream = subfile.getInputStream();
-				FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-				vo.setSer_subimg(savedFileName); // uuid
+				subfile.transferTo(new File(savepath));
+				
+				vo.setSer_subimg(r_img); // uuid
 				vo.setSer_originsub(originalFileName); // 원본
 
 			} catch (Exception e) {
@@ -521,7 +529,9 @@ public class ServiceController {
 				vo.setSer_subimg(vo2.getSer_subimg());
 				vo.setSer_originsub(vo2.getSer_originsub());
 			} else {
-				File targetFile2 = new File(fileRoot + vo2.getSer_subimg());
+				vo.setSer_subimg(null);
+				vo.setSer_originsub(null);
+				File targetFile2 = new File(vo2.getSer_subimg());
 				// 이미있는파일 삭제
 				if (targetFile2.exists()) {
 					targetFile2.delete();
@@ -532,24 +542,25 @@ public class ServiceController {
 		// 서브2
 		if (subfile2.getSize() > 0 && !subfile2.getOriginalFilename().equals("")) {
 
-			fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
-			System.out.println(fileRoot);
-
 			String originalFileName = subfile2.getOriginalFilename(); // 오리지날 파일명
 			String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 			String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
-
-			File targetFile = new File(fileRoot + savedFileName);
-			File targetFile2 = new File(fileRoot + vo2.getSer_subimg2());
+			
+			String savepath =saveurl + savedFileName;
+			
+			String r_img = "/upload/service/" + savedFileName;
+			
+			File targetFile = new File(r_img);
+			File targetFile2 = new File(vo2.getSer_subimg2());
 			// 이미있는파일 삭제
 			if (targetFile2.exists()) {
 				targetFile2.delete();
 			}
 
 			try {
-				InputStream fileStream = subfile2.getInputStream();
-				FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-				vo.setSer_subimg2(savedFileName); // uuid
+				subfile2.transferTo(new File(savepath));
+				
+				vo.setSer_subimg2(r_img); // uuid
 				vo.setSer_originsub2(originalFileName); // 원본
 
 			} catch (Exception e) {
@@ -565,7 +576,9 @@ public class ServiceController {
 				vo.setSer_subimg2(vo2.getSer_subimg2());
 				vo.setSer_originsub2(vo2.getSer_originsub2());
 			} else {
-				File targetFile2 = new File(fileRoot + vo2.getSer_subimg2());
+				vo.setSer_subimg2(null);
+				vo.setSer_originsub2(null);
+				File targetFile2 = new File(vo2.getSer_subimg2());
 				// 이미있는파일 삭제
 				if (targetFile2.exists()) {
 					targetFile2.delete();
@@ -576,24 +589,26 @@ public class ServiceController {
 		// 서브3
 		if (subfile3.getSize() > 0 && !subfile3.getOriginalFilename().equals("")) {
 
-			fileRoot = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\fileupload\\";
-			System.out.println(fileRoot);
-
 			String originalFileName = subfile3.getOriginalFilename(); // 오리지날 파일명
 			String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 			String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
-
-			File targetFile = new File(fileRoot + savedFileName);
-			File targetFile2 = new File(fileRoot + vo2.getSer_subimg3());
+			
+			String savepath =saveurl + savedFileName;
+			System.out.println(savepath);
+			
+			String r_img = "/upload/service/" + savedFileName;
+			
+			File targetFile = new File(r_img);
+			File targetFile2 = new File(vo2.getSer_subimg3());
 			// 이미있는파일 삭제
 			if (targetFile2.exists()) {
 				targetFile2.delete();
 			}
 
 			try {
-				InputStream fileStream = subfile3.getInputStream();
-				FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-				vo.setSer_subimg3(savedFileName); // uuid
+				subfile3.transferTo(new File(savepath));
+				
+				vo.setSer_subimg3(r_img); // uuid
 				vo.setSer_originsub3(originalFileName); // 원본
 
 			} catch (Exception e) {
@@ -611,7 +626,7 @@ public class ServiceController {
 			} else {
 				vo.setSer_subimg3(null);
 				vo.setSer_originsub3(null);
-				File targetFile2 = new File(fileRoot + vo2.getSer_subimg3());
+				File targetFile2 = new File(vo2.getSer_subimg3());
 				// 이미있는파일 삭제
 				if (targetFile2.exists()) {
 					targetFile2.delete();
