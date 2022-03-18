@@ -87,6 +87,11 @@
 		FROM REVIEW
 		WHERE scode=#{scode}
 	</select>
+	
+	<select id="powerService" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
+	
+		
+	</select>
 
 
 </mapper>

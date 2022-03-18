@@ -46,4 +46,7 @@ public interface ReviewService {
 	List<ReviewVO> calcRateList();
 	
 	public int countScodeReview(ReviewVO vo);
+	public int countAllSellerDetailReview(ReviewVO vo);
+	public int countSellerDetailReview(ReviewVO vo);
+	public List<ReviewVO> sellerDetailReview(ReviewVO vo);
 }
