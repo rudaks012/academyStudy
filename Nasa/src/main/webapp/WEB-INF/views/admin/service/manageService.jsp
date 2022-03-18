@@ -130,6 +130,7 @@
                    </div>
                </div>
                 
+             
                 <div class="row mt-5">
                 	<div class="col-6">
                 	   <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">
@@ -166,26 +167,33 @@
 		                         	</tr>
 		                         </thead>
 		                         <tbody>
-		                          <c:forEach var="service" items="${serviceLists }">
-		                             <tr class="serviceList" onclick="javascript:clickTrRow(this);">
-		                                <td>${service.ser_code}</td>
-		                                <td>${service.s_email }</td>
-		                                <c:choose>
-		                                	<c:when test="${fn:length(service.ser_title)>11 }">
-		                                		<td>${fn:substring(service.ser_title,0,10) }...</td>
-		                                	</c:when>
-		                                	<c:otherwise>
-		                                		<td>${service.ser_title }</td>
-		                                	</c:otherwise>
-		                                </c:choose>
-		                                <c:if test="${empty service.ser_end }">
-		                                	<td>진행</td>
-		                                </c:if>
-		                                <c:if test="${!empty service.ser_end }">
-		                                	<td class="text-danger">종료</td>
-		                                </c:if>
-		                             </tr>
-		                          </c:forEach>
+		                           <c:if test="${!empty serviceLists }">
+			                          <c:forEach var="service" items="${serviceLists }">
+			                             <tr class="serviceList" onclick="javascript:clickTrRow(this);">
+			                                <td>${service.ser_code}</td>
+			                                <td>${service.s_email }</td>
+			                                <c:choose>
+			                                	<c:when test="${fn:length(service.ser_title)>11 }">
+			                                		<td>${fn:substring(service.ser_title,0,10) }...</td>
+			                                	</c:when>
+			                                	<c:otherwise>
+			                                		<td>${service.ser_title }</td>
+			                                	</c:otherwise>
+			                                </c:choose>
+			                                <c:if test="${empty service.ser_end }">
+			                                	<td>진행</td>
+			                                </c:if>
+			                                <c:if test="${!empty service.ser_end }">
+			                                	<td class="text-danger">종료</td>
+			                                </c:if>
+			                             </tr>
+			                          </c:forEach>
+			                         </c:if>
+			                         <c:if test="${empty serviceLists }">
+			                         	<tr>
+			                         		<td colspan="4">조회된 데이터가 없습니다.</td>
+			                         	</tr>
+			                         </c:if>
                                      
 		                        </tbody>
 		                     </table>

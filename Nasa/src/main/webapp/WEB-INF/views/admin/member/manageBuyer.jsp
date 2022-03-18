@@ -127,8 +127,10 @@
             </form>
         </div>
     </div>
+    
 
-    <div class="row my-5">
+
+    <div class="row">
         <div class="col-6">
             <h5 class="mt-3 p-3 text-white bg-dark d-flex justify-content-between" style="border-radius: 5px;">회원조회</h5>
             <div class="card">
@@ -136,7 +138,7 @@
                     <div class=" mb-3">
                         총 <span class="mx-1 text-danger">${searchTotal } </span>건
                     </div>
-                    <table class="table table-bordered thead-light text-center table-hover">
+                    <table class="table table-bordered thead-light text-center table-hover" id="table01">
                         <thead class="table-active">
                             <tr>
                                 <th>아이디</th>
@@ -204,6 +206,10 @@
                     </div>
                 </div>
             </div>
+               <div class="mt-5">
+          <button class="btn waves-effect waves-light btn-success" onclick="download();">EXCEL</button>
+          <!-- <button class="btn waves-effect waves-light btn-danger" id="savePdfBtn">PDF</button> -->
+      </div>
         </div>
 
         <form id="actionForm" action="go_admin.do" method="get">
@@ -226,6 +232,7 @@
                 </div>
                 <div class="card-body">
                     <form id="buyerInfo">
+                     <div id="pdfDiv">
                         <table class="table caption-top table-bordered thead-light  text-center">
                             <tbody>
                                 <tr>
@@ -333,6 +340,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                       </div>
                     </form>
 
                 </div>
@@ -402,6 +410,9 @@
 
 
 <script src="resources/admin/dist/js/jquery.twbsPagination.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 <script type="text/javascript">
 //신고날짜 변경
 let startDate =$("input[name='b_date']");
@@ -731,4 +742,79 @@ $("#searchBtn").on("click",searchReport);
         }
     }
     modifyBtn.addEventListener("click", modifyeMemberRank);
+    
+    var doc = new jsPDF();
+    var specialElementHandlers = {
+        '#editor': function(element, renderer) {
+            return true;
+        }
+    }
+     
+    $('#savePdfBtn').click(function() {
+        html2canvas($("#pdfDiv"), {
+            onrendered : function(canvas) {   // 한글깨짐현상때문에 jpeg->jspdf 전환
+                var imgData = canvas.toDataURL('image/jpeg');
+                var pageWidth = 210;
+                var pageHeight = pageWidth * 1.414;
+                var imgWidth = pageWidth - 20;
+                var imgHeight = $('#pdfDiv').height() * imgWidth / $('#pdfDiv').width();
+                var doc = new jsPDF('p','mm',[pageHeight, pageWidth]);
+                doc.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+                doc.save('화면.pdf');
+            }
+        });
+    });
+    
+    
+    
+    
+    /** * 엑셀 다운로드 * @param fileName 엑셀파일명 (ex. excel.xls) * @param sheetName 시트명 * @param headers 시트내용(html - table) */
+    function _excelDown(fileName, sheetName, sheetHtml) {
+       var html = '';
+       html += '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
+       html += ' <head>';
+       html += ' <meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">';
+       html += ' <xml>';
+       html += ' <x:ExcelWorkbook>';
+       html += ' <x:ExcelWorksheets>';
+       html += ' <x:ExcelWorksheet>'
+       html += ' <x:Name>' + sheetName +
+          '</x:Name>'; // 시트이름 
+       html += ' <x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions>';
+       html += ' </x:ExcelWorksheet>';
+       html += ' </x:ExcelWorksheets>';
+       html += ' </x:ExcelWorkbook>';
+       html += ' </xml>';
+       html += ' </head>';
+       html +=
+          ' <body>'; 
+             // ----------------- 시트 내용 부분 ----------------- 
+       html += sheetHtml; // ----------------- 
+       //시트 내용 부분 ----------------- 
+       html += ' </body>';
+       html += '</html>';
+       // 데이터 타입 
+       var data_type = 'data:application/vnd.ms-excel';
+       var ua = window.navigator.userAgent;
+       var blob = new Blob([html], {
+          type: "application/csv;charset=utf-8;"
+       });
+       if ((ua.indexOf("MSIE ") > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) && window.navigator
+          .msSaveBlob) { // ie이고 msSaveBlob 기능을 지원하는 경우 
+          navigator.msSaveBlob(blob, fileName);
+       } else { // ie가 아닌 경우 (바로 다운이 되지 않기 때문에 클릭 버튼을 만들어 클릭을 임의로 수행하도록 처리) 
+          var anchor = window.document.createElement('a');
+          anchor.href = window.URL.createObjectURL(blob);
+          anchor.download = fileName;
+          document.body.appendChild(anchor);
+          anchor.click(); // 클릭(다운) 후 요소 제거
+          document.body.removeChild(anchor);
+       }
+    }
+    
+    function download(){ // 대상 테이블을 가져옴 
+			var table = document.getElementById("table01"); if(table){ 
+				// CASE 대상 테이블이 존재하는 경우 
+				// 엑셀다운 (엑셀파일명, 시트명, 내부데이터HTML) 
+				_excelDown("엑셀파일명.xls", "시트명", table.outerHTML) } }
 </script>

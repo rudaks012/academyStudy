@@ -202,7 +202,10 @@
   <![CDATA[
   	update seller
     set s_status = 'U',blacklistdate=''
+
+
     where s_status='M' and s_email IN (
+
                                       select distinct r.re_res  
                                       from report r join seller s 
                                       on (ADD_MONTHS(r.re_rpoertdate,1) < sysdate and r.re_res=s.s_email)
@@ -214,6 +217,7 @@
   <![CDATA[
   	update buyer
     set b_status = 'U',blacklistdate=''
+
     where b_status='M' and b_email IN (
                                       select distinct r.re_res  
                                       from report r join buyer b 
