@@ -332,7 +332,7 @@ html, body {
         <div class="box__description">
           <div class="box__description-container">
             <div class="box__description-title">Whoops!</div>
-            <div class="box__description-text">서버에 문제가 생겼습니다..</div>
+            <div class="box__description-text">존재하지 않는 페이지입니다..</div>
           </div>
           
           <a href="home.do" target="_blank" class="box__button">홈으로</a>
