@@ -712,7 +712,7 @@ input[type=date] {
                                           data[i].masterid)
 										  .attr("ser_code", data[i].ser_code)
 										  ;
-                              $img = $("<img class='profile_img' src=''${s_img}''>");
+                              $img = $("<img class='profile_img' src='"+data[i].s_img+"'>");
                                    //$img = $("<img class='profile_img' src='resources/user/assets/img/profile/${loginMember.s_img}.png'>");
                               $div.append($img);
                               $divs = $("<span class='userNameId'>")
@@ -735,7 +735,7 @@ input[type=date] {
                                     .attr("id", data[i].roomid)
                                     .attr("userId", data[i].userid);
                               //$img = $("<img class='profile_img' src='/resources/images/temp-profile.png'>");
-                              $img = $("<img class='profile_img' src='resources/img/buzz.png'>");
+                              $img = $("<img class='profile_img' src='"+data[i].s_img+"'>");
                               $div.append($img);
                               $divs = $("<span class='userNameId'>")
                                     .text(data[i].userid);
