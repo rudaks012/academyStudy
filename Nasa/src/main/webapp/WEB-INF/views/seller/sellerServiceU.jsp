@@ -311,7 +311,7 @@ input[type=date] {
 																							href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
 																					</h3>
 																					<div>서비스코드 : s${service.ser_code }</div>
-																				
+																					<div>서비스 종료예정일: ${fn:substring(service.ser_end,0,10) }</div>
 																					<c:if test="${not empty service.prodiscount }">
 																						<div class="price">₩ <del><fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></del> </div>
 																						<div class="price" style="color:red;"><img src="resources/user/assets/img/promotion.png"> ₩<fmt:formatNumber value="${service.prodiscount }" pattern="###,###"/></div>
