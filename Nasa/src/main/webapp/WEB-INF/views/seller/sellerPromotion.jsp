@@ -35,6 +35,13 @@
 	width: 354px;
 	height: 256px;
 }
+.promotiona {
+	width: 308px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+	white-space: nowrap;
+}
 </style>
 </head>
 <body>
@@ -146,20 +153,22 @@
 														
 														<c:forEach items="${promotions }" var="promotion">
 														
-															<div class="col-lg-6 ">
+															<div class="col-lg-6 " style="width:388px;">
 																<div class="single-listing mb-30">
 																	<div class="list-img">
-																		<img src="fileupload/${promotion.ser_img }" alt="">
+																		<img src="${promotion.ser_img }" alt="">
 																		<!-- <span>Open</span> -->
 																	</div>
 																	<div class="list-caption">
 																		<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${promotion.pro_service }'">Open</span>
-																		<h3>
-																			<a href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
-																		</h3>
-																		<p>프로모션 코드 : p${promotion.pro_code }</p>
-																		<div>프로모션 일자 : ${fn:substring(promotion.pro_start,0,10) } ~ ${fn:substring(promotion.pro_end,0,10) }</div>
-																		<div>할인율: ${promotion.prodiscount }%</div>
+																		<div class="promotiontitle">
+																			<h3>
+																				<a class = "promotiona" href="serviceDetail.do?ser_code=${promotion.pro_service }">${promotion.ser_title }</a>
+																			</h3>
+																		</div>
+																		<p><b>프로모션 코드 :</b> p${promotion.pro_code }</p>
+																		<div><b>프로모션 일자 :</b> ${fn:substring(promotion.pro_start,0,10) } ~ ${fn:substring(promotion.pro_end,0,10) }</div>
+																		<div><b>할인율 :</b> ${promotion.prodiscount }%</div>
 																		<div class="list-footer" style="display: block;">
 																			<ul>
 																				<li>
