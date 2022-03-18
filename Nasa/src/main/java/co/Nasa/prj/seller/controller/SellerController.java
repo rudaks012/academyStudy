@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import co.Nasa.prj.comm.VO.BuyerVO;
 import co.Nasa.prj.comm.VO.PagingDTO;
 import co.Nasa.prj.comm.VO.PaymentVO;
 import co.Nasa.prj.comm.VO.ReviewVO;
@@ -51,7 +50,7 @@ public class SellerController {
 	
 	@Value("#{upload['profileupload']}")
 	private String profileupload;
-	
+
 	@RequestMapping("/goSellerMypage.do")
 	public String goSellerMypage(HttpSession session, Model model) {
 		model.addAttribute("sellerInfo", sellerDAO.SellerSelect((String) session.getAttribute("id")));
@@ -285,12 +284,13 @@ public class SellerController {
 
 		// img upload
 		String originalFileName = imgupload.getOriginalFilename();
-		String saveurl = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
+		String saveurl = profileupload;
+//		String saveurl = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\resources\\user\\assets\\img\\profile\\";
 		String savepath = saveurl + originalFileName;
 		System.out.println(savepath);
 
-		String img = "resources/user/assets/img/profile/" + originalFileName;
-
+//		String img = "resources/user/assets/img/profile/" + originalFileName;
+		String img = "/upload/profile/" + originalFileName;
 		vo.setS_img(img);
 		System.out.println("***이미지*** : " + vo.getS_img());
 
