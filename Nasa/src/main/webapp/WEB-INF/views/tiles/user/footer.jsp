@@ -12,56 +12,45 @@
     <div class="container"style="padding-top: 30px;">
         <div class="footer-top">
             <div class="row justify-content-between">
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="single-footer-caption mb-50">
-                        <div class="single-footer-caption mb-30">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6" style="margin-left: 100px;">
+                    <div class="single-footer-caption">
+                        <div class="single-footer-caption">
                             <!-- logo -->
-                            <div class="footer-logo">
-                                <a href="index.html"><img src="resources/user/assets/img/nasalogo2.png" alt=""></a>
+                            <div class="footer-logo" style="margin-bottom: 13px;">
+                                <a href="index.html"><img style="bottom: 10px;" class="position-relative" src="resources/user/assets/img/nasalogo2.png" alt=""></a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
-                    <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
-                            <h4>Quick Link</h4>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Listing</a></li>                                        
+                                <li>안경만 . 이소정 . 이정은</li>
+                                <li>위정아 . 정민규</li>                                       
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <div style="margin-right: 100px;">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
-                            <h4>Categories</h4>
+                            <h4>Nado IT Sajang !</h4>
                             <ul>
-                                <li><a href="#">Reasonable Hotel</a></li>
-                                <li><a href="#">Popular Restaurant</a></li>                                        
+                                <li>대구광역시 중구 중앙대로 403 5층</li>
+                                <li>053-421-2460</li>                                       
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div >
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Quick Link</h4>
+                            <ul>
+                                <li><a href="homeCategory.do">서비스 찾기</a></li>
+                                <li><a href="go_knowhowlist.do">판매자의 노하우</a></li>                                        
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-footer-caption mb-50">
-                        <div class="footer-tittle">
-                            <h4>안경만</h4>
-                            <ul>
-                                <li><button onclick="location.href='ckeditor.do'" style="background-color: black;">썸머</button></li>
-                                <!--  <li ><button onclick="location.href='chatting.do'" style="background-color: black;" id="chatbtn">채팅</button>
-  -->                              <button onclick="location.href='fileupload.do'" style="background-color: black;">파일</button>
-                                  <button onclick="location.href='bis.do'" style="background-color: black;">공공</button>
-                                </li>  
-                                                       
-                            </ul>                            
-                        </div>
-					<!-- <div class="chatList"
-								style="height: 20px; width: 100px; background-color: wheat;">
-								<h4>리스트</h4>
-							//</div> -->	
-						</div>
                 </div>
             </div>
         </div>               

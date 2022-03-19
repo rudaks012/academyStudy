@@ -164,11 +164,11 @@
                     success: function (data) {
                         console.log("여기주목밑에밑에");
                         console.log(data);
-                        $("#ser_title").text(data.ser_title);
+                        $("#ser_title").text(data.ser_title + "(클릭 시 서비스 상세정보 이동)");
                         $("#ser_title").attr("onclick", "location.href='serviceDetail.do?ser_code=" + data.s_code + "'");
                         $("#ser_title").attr("style", "cursor:pointer; background-color: #dddddd;");  
                         $("#cate").text(data.category + " > " + data.sub_category);
-                        $("#s_nickname").text(data.s_nickname);
+                        $("#s_nickname").text(data.s_nickname + "(클릭 시 판매자 상세정보 이동)");
                         $("#s_nickname").attr("onclick", "location.href='sellerDetail.do?s_email=" + data.s_email + "'");
                         $("#s_nickname").attr("style", "cursor:pointer; background-color: #dddddd;");  
                         $("#pay_price_tochar").text(data.pay_price_tochar + "원");
