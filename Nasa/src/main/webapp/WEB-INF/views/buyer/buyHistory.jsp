@@ -13,6 +13,10 @@
 		.pageClick {
 			font-weight: 900;
 		}
+
+		tr:hover {
+			background-color: rgb(206, 206, 206);
+		}
 	</style>
 	<link rel="stylesheet" href="resources/user/assets/css/buyHistoryCard.css">
 </head>
@@ -162,7 +166,7 @@
 										</tr>
 									</c:if>
 									<c:forEach items="${paymentList }" var="payment">
-										<tr>
+										<tr onclick="location.href='serviceDetail.do?ser_code=${payment.s_code}'" data-toggle="tooltip" data-placement="top" title="구매한 서비스로 이동" style="cursor: pointer;">
 											<td class="paymentdate">${fn:substring(payment.pay_date,0,10) }</td>
 											<td>${payment.s_email }</td>
 											<td>
