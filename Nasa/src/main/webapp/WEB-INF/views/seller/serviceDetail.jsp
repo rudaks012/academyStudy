@@ -268,7 +268,7 @@
 
                         <div class="quote-wrapper"
                            style="padding: 10px !important; color: #10285D; font-style: normal;">
-                           <div class="quotes" style="color: #2f1f48; white-space: pre-line;">
+                           <div class="quotes" style="color: #2f1f48;">
                               ${detailS.ser_sub }
                            </div>
                         </div>
@@ -364,8 +364,7 @@
                         총 작업량의 1/2 경과 전 : 이미 납부한 요금의 1/2해당액<br>
                         총 작업량의 1/2 경과 후 : 반환하지 않음</div>
 
-                        </div>
-                        
+                        </div>                     
 
                            
                         </div>
@@ -911,6 +910,13 @@
    <!-- Modal End -->
 
    <script>
+   function searchFrm(p){
+       if(p){
+           frm.pageNum.value = p;
+       }
+		frm.submit()
+	};
+   
       $(document).ready(function () {
          $('[data-toggle="tooltip"]').tooltip();
       });
