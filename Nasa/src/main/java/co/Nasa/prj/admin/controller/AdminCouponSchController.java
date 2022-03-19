@@ -33,5 +33,10 @@ public class AdminCouponSchController {
 	public void gradeUpgrade() {
 		AdminDao.schrankupdate();
 	}
+	
+	@Scheduled(cron = "0 0 2 1 * ?")
+	public void sellergradeUpgrade() {
+		AdminDao.sellerschrankupdate();
+	}
 
 }

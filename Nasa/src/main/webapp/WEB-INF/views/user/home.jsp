@@ -298,7 +298,7 @@
                                     <span class="flaticon-travel"></span>
                                 </div>
                                 <div class="visit-cap">
-                                    <h4>${rs.ser_title}</h4>
+                                    <h4 style="font-size: 25px;">${rs.ser_title}</h4>
                                     <p>[${rs.cat_name}] - [${rs.sub_name}]</p>
                                     <p>판매자 ${rs.s_nickname}</p>
                                     <br>
@@ -356,18 +356,14 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-listing mb-30">
                         <div class="list-img">
-                            <img src="fileupload/${bestservice.ser_img }" alt="" style="width: 370px; height: 258px;">
+                            <img src="${bestservice.ser_img }" alt="" style="width: 370px; height: 258px;">
                             <!-- <span>Open</span> -->
                         </div>
                         <div class="list-caption" style="width: 370px; height: 200px;">
                             <span>BEST!</span>
-
-                             <h3 class = "sertitleh" style="padding: 0px"><a href="serviceDetail.do?ser_code=${bestservice.ser_code }">${bestservice.ser_title }</a></h3>
-
                              <a href="serviceDetail.do?ser_code=${bestservice.ser_code }">
                              	<h3 style="padding: 0px; overflow: hidden; text-overflow: ellipsis;
                              	white-space: nowrap; font-weight: bold; font-size: 23px;">${bestservice.ser_title }</h3></a>
-
                             <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 30px;">${bestservice.ser_sub }</p>
                             <div class="list-footer">
                                 <ul>
@@ -448,7 +444,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                     <div class="single-team mb-30">
                         <div class="team-img">
-                            <img src="editor/${knowhow.no_img }" alt="" style="width: 370px; height: 440px;">
+                            <img src="${knowhow.no_img }" alt="" style="width: 370px; height: 440px;">
                         </div>
                         <div class="team-caption">
                             <span>${knowhow.s_nickname }</span>
