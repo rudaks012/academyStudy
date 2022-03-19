@@ -83,7 +83,7 @@ public class NoticeController {
 				String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 				String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
 				
-				String r_img = "/upload/editorfile/" + originalFileName;
+				String r_img = "/upload/editorfile/" + savedFileName;
 				
 				File targetFile = new File(fileRoot + savedFileName);	
 				try {
@@ -115,7 +115,7 @@ public class NoticeController {
 		vo.setNo_subject(s);
 		if(s.indexOf("src=")!=-1) {
 			System.out.println(s);
-			s = s.replaceAll(req.getContextPath() +"/resources/fileupload",  upload);
+			s = s.replaceAll(req.getContextPath() +"/resources/fileupload/",  upload);
 			System.out.println(s);
 			vo.setNo_subject(s);
 		}
