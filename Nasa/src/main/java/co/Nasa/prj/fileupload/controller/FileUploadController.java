@@ -47,7 +47,7 @@ public class FileUploadController {
 	      //경로 할 때 마다 계속 바꿔줘야함 아니면 절대 에디터 이미지 업로드 안됨.
 	        //Eclipse 파일 물리 경로 방식 (이클립스 내부에 저장)
 	      //String SAVE_PATH = "C:\\NASA\\NASA02\\Nasa\\src\\main\\webapp\\editor\\";
-	      String SAVE_PATH = upload;
+	      String SAVE_PATH = "/upload/editorfile/";
 
 	      // 내부경로로 저장
 	      String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
