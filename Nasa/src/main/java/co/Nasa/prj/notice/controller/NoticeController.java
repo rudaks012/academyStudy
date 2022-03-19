@@ -115,7 +115,7 @@ public class NoticeController {
 		vo.setNo_subject(s);
 		if(s.indexOf("src=")!=-1) {
 			System.out.println(s);
-			s = s.replaceAll(req.getContextPath() +"/resources/fileupload/",  upload);
+			s = s.replaceAll(req.getContextPath() +"/resources/fileupload/",  "/upload/editorfile/");
 			System.out.println(s);
 			vo.setNo_subject(s);
 		}
