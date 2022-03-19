@@ -50,6 +50,13 @@
        .rprp {
            text-shadow: 1px 1px 2px #7d64aa, 0 0 10px #7d64aa, 0 0 5px #7d64aa;
        }
+
+       .sertitleh {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        white-space: nowrap;
+       }
    </style>
 </head>
 <body>
@@ -353,7 +360,7 @@
                         </div>
                         <div class="list-caption" style="width: 370px; height: 200px;">
                             <span>BEST!</span>
-                             <h3 style="padding: 0px"><a href="serviceDetail.do?ser_code=${bestservice.ser_code }">${bestservice.ser_title }</a></h3>
+                             <h3 class = "sertitleh" style="padding: 0px"><a href="serviceDetail.do?ser_code=${bestservice.ser_code }">${bestservice.ser_title }</a></h3>
                             <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 30px;">${bestservice.ser_sub }</p>
                             <div class="list-footer">
                                 <ul>
