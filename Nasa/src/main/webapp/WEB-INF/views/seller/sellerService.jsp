@@ -282,7 +282,7 @@ input[type=date] {
 														<div class="container">
 															<div class="row">
 																<c:if test="${empty sellerMainServiceList}">
-																	<img src="resources/user/assets/img/nodata.jpg" style="width: 100%">
+																	<img src="resources/user/assets/img/nodata.jpg" style="width: 100%; height: 100%;">
 																</c:if>
 																<c:if test="${not empty sellerMainServiceList}">
 																<c:forEach items="${sellerMainServiceList }" var="service">

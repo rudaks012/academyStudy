@@ -246,7 +246,7 @@ input[type=date] {
 								<a class="d-inline-block" style="margin-top: 20px;">
 									<h3>서비스 관리</h3>
 								</a>
-								<a href="serviceInsert.do" class="genric-btn danger circle">서비스 등록</a>
+								<button onclick="location.href='serviceInsert.do'" class="genric-btn danger circle">서비스 등록</button>
 								<hr class="hr" />
 								<!-- <a href="" class="genric-btn danger" data-toggle="modal"
 									data-target="#PowerModal">파워서비스 등록</a>  -->
@@ -300,7 +300,7 @@ input[type=date] {
 														<div class="container">
 															<div class="row">
 																<c:if test="${empty sellerMainServiceList}">
-																	<img src="resources/user/assets/img/nodata.jpg" style="width: 100%">
+																	<img src="resources/user/assets/img/nodata.jpg" style="width: 100%; height: 100%;">
 																</c:if>
 																<c:if test="${not empty sellerMainServiceList}">
 																<c:forEach items="${sellerMainServiceList }" var="service">

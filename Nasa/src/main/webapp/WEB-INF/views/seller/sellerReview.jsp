@@ -56,6 +56,7 @@
 .comments-area .thumb img{
 	height: 70px;
 }
+
 </style>
 </head>
 <body>

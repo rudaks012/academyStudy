@@ -47,6 +47,20 @@ td, th {
 	color : red;
 	font-size: 13px;
 }
+.nav-link.active{
+	background-color: #d5c9ea !important;
+	color: white !important;
+}
+.genric-btn.danger-border:hover {
+	background-color: #d5c9ea !important;
+	color: white !important;
+	border: 1px solid #d5c9ea !important;
+}
+.genric-btn.danger-border{
+	background-color: white;
+	color:#9e68ff !important;
+	border: 1px solid #9e68ff !important;
+}
 </style>
 </head>
 <body>

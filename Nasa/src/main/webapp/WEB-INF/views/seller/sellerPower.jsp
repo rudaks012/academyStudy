@@ -24,11 +24,6 @@
 	font-size: 12px;
 }
 
-.endservtb td {
-	width: 180px;
-	height: 50px;
-	font-size: 12px;
-}
 
 .powerbtn, .modal-header {
 	background-color: #d5c9ea !important;
@@ -57,15 +52,6 @@
 	border-bottom: 1px solid #999294;
 }
 
-.paytb td {
-	width: 120px;
-	height: 50px;
-	font-size: 12px;
-}
-
-.paytb td:nth-child(2) {
-	width: 200px;
-}
 
 .category-listing {
 	height: 350px !important;
@@ -86,10 +72,6 @@
 
 input[type=date] {
 	border: 1px solid lightgray;
-	margin-right: 10px;
-}
-
-.paybtn {
 	margin-right: 10px;
 }
 
@@ -116,6 +98,13 @@ input[type=date] {
 	margin-top: 15px;
 	float: right;
 	background: #e0d6f2;
+}
+.nice-select{
+	width: 124px;
+}
+.price{
+	width: 124px;
+	text-align: right;
 }
 </style>
 </head>
@@ -305,8 +294,9 @@ input[type=date] {
 							</tr>
 							<tr>
 								<td>비용</td>
-								<td><input type="text" value="500000" disabled>
+								<td><input type="text" class="price" value="<fmt:formatNumber value="500000" pattern="###,###"/>"  disabled>
 								<input type="hidden" name="power_price" value="500000">
+								
 								</td>
 							</tr>
 						</table>

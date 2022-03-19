@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <style>
 .nice-select {
-	width: 300px;
+	width: 500px;
 }
 
 .fables-counter {
@@ -37,6 +37,19 @@ hr{
 .sales{
 	color : red;
 	font-size: 13px;
+}
+.table-primary{
+	background-color: #d5c9ea !important;
+}
+.genric-btn.danger-border:hover {
+	background-color: #d5c9ea !important;
+	color: white !important;
+	border: 1px solid #d5c9ea !important;
+}
+.genric-btn.danger-border{
+	background-color: white;
+	color:#9e68ff !important;
+	border: 1px solid #9e68ff !important;
 }
 </style>
 </head>
@@ -133,8 +146,10 @@ hr{
 										
 								
 
-								
-
+									<c:if test="${empty serviceList }">
+										<img src="resources/user/assets/img/nodata.jpg" style="width: 100%; height: 100%">
+									</c:if>
+									<c:if test="${not empty serviceList }">
 									<div style="margin-top: 40px;">
 										<div class="card">
 											<div class="card-body" id="myChartContainer">
@@ -237,6 +252,7 @@ hr{
 											</div>
 										</div>
 									</div>
+									</c:if>
 								</div>
 							</div>
 

@@ -42,6 +42,16 @@
 	display: block;
 	white-space: nowrap;
 }
+.genric-btn:hover {
+	background-color: white;
+	color:#9e68ff !important;
+	border: 1px solid #9e68ff !important;
+}
+.genric-btn.danger{
+	margin-top: 15px;
+	float: right;
+	background: #e0d6f2;
+}
 </style>
 </head>
 <body>
@@ -107,8 +117,8 @@
 								<a class="d-inline-block" style="margin-top: 20px;">
 									<h3>프로모션 관리</h3>
 								</a>
+								<button onclick="location.href='promotionInsert.do'" class="genric-btn danger circle">프로모션 등록</button>
 								<hr class="hr" />
-								<a href="promotionInsert.do" class="genric-btn danger">프로모션 등록</a>
 								<div class="blog_details">
 									<div class="container">
 										<nav class="fables-single-nav">
@@ -146,7 +156,7 @@
 													<div class="container">
 														<div class="row">
 														<c:if test="${empty promotions}">
-															<img src="resources/user/assets/img/nodata.jpg" style="width: 100%">
+															<img src="resources/user/assets/img/nodata.jpg" style="width: 100%; height: 100%;">
 														</c:if>
 														<c:if test="${not empty promotions}">
 															

@@ -43,6 +43,10 @@ td, th {
 .bemail{
 	color: gray;
 }
+.nav-link.active{
+	background-color: #d5c9ea !important;
+	color: white !important;
+}
 </style>
 </head>
 <body>
