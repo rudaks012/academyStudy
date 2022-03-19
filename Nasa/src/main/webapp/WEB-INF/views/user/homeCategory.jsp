@@ -210,7 +210,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <td rowspan="4" class="tableimg">
-                                                                <img class="tableimgs" src="fileupload/${cate.ser_img }">
+                                                                <img class="tableimgs" src="${cate.ser_img }">
                                                             </td>
                                                             <td colspan="2" class="position-relative tablecategory">
                                                                 ${cate.category } > ${cate.sub_category }
