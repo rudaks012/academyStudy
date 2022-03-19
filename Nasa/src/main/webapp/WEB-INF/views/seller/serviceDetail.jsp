@@ -1110,7 +1110,36 @@
       }
       /* 리뷰 삭제 기능 test 함수 */
 
+      function reviewQualifications(scode) {
+         var submitcode = "";
+         $.ajax({
+            url: "reviewQualifications.do",
+            data: {
+               scode: scode
+            },
+            dataType: "text",
+            success: function (result) {
+               console.log(result);
+               if (result == "OK") {
+                  console.log("ifOK");
+                  submitcode = "OK";
+                  alert("리뷰를 작성하였습니다.");
+                  $("#reviewform").submit();
+                  location.reload();
+               } else if (result == "NO") {
+                  console.log("ifNO");
+                  submitcode = "NO";
+                  alert("구매한 서비스만 리뷰를 작성할 수 있습니다.")
+               }
+            }
+         });
+
+
+      }
+
       function chatingcheck() {
+
+
     	  if (${empty id}) {
               alert('로그인 후 이용할 수 있습니다.');
                return;
@@ -1119,6 +1148,7 @@
                alert('구매자만 채팅 요청할 수 있습니다.');
                return;
             }
+
          //판매자 닉네임
          var chatnick = document.querySelector("#sellernick").innerHTML;
          //서비스코드
@@ -1141,31 +1171,7 @@
          });
       }
 
-      function reviewQualifications(scode) {
-         var submitcode = "";
-         $.ajax({
-            url: "reviewQualifications.do",
-            data: {
-               scode: scode
-            },
-            dataType: "text",
-            success: function (result) {
-               console.log(result);
-               if (result == "OK") {
-                  console.log("ifOK");
-                  submitcode = "OK";
-                  alert("리뷰를 작성하였습니다.");
-                  $("#reviewform").submit();
-               } else if (result == "NO") {
-                  console.log("ifNO");
-                  submitcode = "NO";
-                  alert("구매한 서비스만 리뷰를 작성할 수 있습니다.")
-               }
-            }
-         });
-
-
-      }
+   
    </script>
 
 </body>
