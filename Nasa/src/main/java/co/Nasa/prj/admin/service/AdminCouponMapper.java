@@ -10,5 +10,7 @@ public interface AdminCouponMapper {
 	
 	// 매월 1일 구매자 등급 업데이트
 	public int schrankupdate();
-
+	
+	// 매월 1일 판매자 등급 업데이트
+	public int sellerschrankupdate();
 }

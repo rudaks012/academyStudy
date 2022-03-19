@@ -348,7 +348,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-listing mb-30">
                         <div class="list-img">
-                            <img src="fileupload/${bestservice.ser_img }" alt="" style="width: 370px; height: 258px;">
+                            <img src="${bestservice.ser_img }" alt="" style="width: 370px; height: 258px;">
                             <!-- <span>Open</span> -->
                         </div>
                         <div class="list-caption" style="width: 370px; height: 200px;">
@@ -434,7 +434,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                     <div class="single-team mb-30">
                         <div class="team-img">
-                            <img src="editor/${knowhow.no_img }" alt="" style="width: 370px; height: 440px;">
+                            <img src="${knowhow.no_img }" alt="" style="width: 370px; height: 440px;">
                         </div>
                         <div class="team-caption">
                             <span>${knowhow.s_nickname }</span>

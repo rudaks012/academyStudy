@@ -43,4 +43,10 @@ public class AdminCouponServiceImpl implements AdminCouponService {
 		return map.schcoupondelete();
 	}
 
+	@Override
+	public int sellerschrankupdate() {
+		// TODO Auto-generated method stub
+		return map.sellerschrankupdate();
+	}
+
 }
