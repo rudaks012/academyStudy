@@ -171,7 +171,7 @@ public class NoticeController {
 
 				
 				String savepath = upload + savedFileName;
-				String r_img = "/upload/service/" + savedFileName;
+				String r_img = "/upload/editorfile/" + savedFileName;
 				//uuid
 				vo.setNo_img(r_img);
 				
@@ -202,7 +202,7 @@ public class NoticeController {
 		vo.setNo_subject(s);
 		if(s.indexOf("src=")!=-1) {
 			System.out.println(s);
-			s = s.replaceAll("/prj/resources/fileupload", "editor");
+			s = s.replaceAll(request.getContextPath() +"/resources/fileupload/", "/upload/editorfile/");
 			System.out.println(s);
 			vo.setNo_subject(s);
 		}

@@ -519,6 +519,15 @@
 		}
       //채팅이동
       function chatingcheck() {
+    	  if (${empty id}) {
+              alert('로그인 후 이용할 수 있습니다.');
+               return;
+            }
+            if (${author ne 'B' }) {
+               alert('구매자만 채팅 요청할 수 있습니다.');
+               return;
+            }
+            
           //판매자 닉네임
           var chatnick = document.querySelector(".sellernick").innerHTML;
           //서비스코드

@@ -57,7 +57,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                     <div class="single-team mb-30">
                         <div class="team-img">
-                            <img src="editor/${knowhow.no_img }" alt="" style="width: 370px; height: 400px;">
+                            <img src="${knowhow.no_img }" alt="" style="width: 370px; height: 400px;">
                         </div>
                         <div class="team-caption" style="margin-top : 20px;">
                             <span>${knowhow.s_nickname }</span>
