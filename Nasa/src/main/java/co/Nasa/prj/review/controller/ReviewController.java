@@ -58,7 +58,7 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/writeReview.do")
-	public void writeReview(ReviewVO vo, MultipartFile reviewimg, HttpSession session, 
+	public String writeReview(ReviewVO vo, MultipartFile reviewimg, HttpSession session, 
 							  HttpServletResponse response, HttpServletRequest request) {
 		BuyerVO buyervo = new BuyerVO();
 		buyervo.setB_email((String) session.getAttribute("id"));
@@ -89,10 +89,10 @@ public class ReviewController {
 				e.printStackTrace();
 			} // try end
 		}
-		
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + vo);
 		reviewDao.insertReview(vo);
 		
-		//return "redirect:" + request.getHeader("Referer");
+		return "redirect:" + request.getHeader("Referer");
 	}
 	
 	@RequestMapping(value = "/reviewUpdate.do", produces = "text/plain;charset=UTF-8")
