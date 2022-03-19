@@ -61,5 +61,20 @@ where b_email in (select b_email
 	</update>
 <!-- 구매자 등급 업데이트 -->
 
-
+	<update id="sellerschrankupdate">
+		UPDATE SELLER s
+		SET S_RANK = (
+						SELECT	CASE WHEN <![CDATA[price < 5000000]]>	THEN '1'
+										 WHEN <![CDATA[price < 10000000]]>	THEN '2'
+										 WHEN <![CDATA[price < 20000000]]>	THEN '3'
+										 WHEN <![CDATA[price >= 30000000]]>	THEN '4'
+									END
+									
+						  FROM		(
+						  			 SELECT	NVL(SUM(PAY_PRICE),0) AS price
+						  			 FROM	PAYMENT
+						  			 WHERE	S_EMAIL = s.S_EMAIL AND PAY_ENDDATE IS NOT NULL
+						  			)
+						  )
+	</update>
 </mapper>
