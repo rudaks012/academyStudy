@@ -13,11 +13,15 @@
  	background-color : #d5c9ea !important;
    	margin: 10px !important;
 }
-.knowbtn{
-	display: block;
-	background-color : #d5c9ea !important;
-	margin: auto;
-	width: 300px;
+.genric-btn:hover {
+	background-color: white;
+	color:#9e68ff !important;
+	border: 1px solid #9e68ff !important;
+}
+.genric-btn.danger{
+	margin-top: 15px;
+	float: right;
+	background: #e0d6f2;
 }
 </style>
 </head>
@@ -80,8 +84,8 @@
 							<div class="justify-content-center">
 								<div class="d-inline-block" style="margin-top:20px;">
 									<h3>판매자 노하우</h3>
-									<button class="genric-btn danger knowbtn" onclick="location.href='knowhowInsertForm.do'">글 등록</button>
 								</div>
+								<button class="genric-btn danger circle" onclick="location.href='knowhowInsertForm.do'">글 등록</button>
 								<hr class="hr"/>
 								<div class="blog_details">
 									<div class="home-blog-area section">
