@@ -39,7 +39,7 @@
                   <div class="single-post">
 
                         <div class="feature-img">
-                           <img class="img-fluid" src="fileupload/${knowhowDetail.no_img }" alt="">
+                           <img class="img-fluid" src="${knowhowDetail.no_img }" alt="">
                         </div>
                      
                         <div class="blog_details">
@@ -87,9 +87,9 @@
 									<p>등급 : 등급확인 불가</p>
 								</c:otherwise>
 							</c:choose></span>
-
+								
                               <button class="genric-btn primary small startbtn" id="stbtn" style="float: right;" data-toggle="modal" data-target="#chatModal" onclick="chatingcheck()">채팅</button>
-
+								
                               <p>${sellerInfo.s_me }</p>
                            </div>
                         </div>
@@ -124,6 +124,14 @@
       	})
 		
   function chatingcheck() {
+ 		if (${empty id}) {
+           alert('로그인 후 이용할 수 있습니다.');
+            return;
+         }
+         if (${author ne 'B' }) {
+            alert('구매자만 채팅 요청할 수 있습니다.');
+            return;
+         }
        //판매자 닉네임
        var chatnick = document.querySelector("#sellernick").innerHTML;
        //서비스코드

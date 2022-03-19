@@ -241,9 +241,6 @@ p {
 			if($("#no_title").val() == ''){
 				alert('제목을 입력해주세요.');
 				return;
-			}else if($("#file").val() == ''){
-				alert('썸네일을 선택해주세요.');
-				return;
 			}else if($("#summernote").val() == ''){
 				alert('내용을 입력해주세요.');
 				return;
