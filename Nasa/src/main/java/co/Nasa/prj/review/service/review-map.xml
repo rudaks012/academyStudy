@@ -22,7 +22,7 @@
 	
 	<insert id="insertReview" parameterType="co.Nasa.prj.comm.VO.ReviewVO">
 		INSERT INTO REVIEW(REV_CODE, SCODE, REV_NAME, REV_SUB, REV_ID, REV_SER_NAME, REV_IMG, REV_RATE, REV_DATE)
-		VALUES ((SELECT MAX(NVL(TO_NUMBER(REV_CODE), 0)) + 1 FROM REVIEW)
+		VALUES ((SELECT NVL(MAX(TO_NUMBER(REV_CODE)), 0) + 1 FROM REVIEW)
 				, #{scode}
 				, #{rev_name}
 				, #{rev_sub}

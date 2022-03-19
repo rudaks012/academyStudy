@@ -1125,7 +1125,7 @@
                   submitcode = "OK";
                   alert("리뷰를 작성하였습니다.");
                   $("#reviewform").submit();
-                  location.reload();
+                  //location.reload();
                } else if (result == "NO") {
                   console.log("ifNO");
                   submitcode = "NO";
