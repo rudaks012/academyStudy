@@ -21,16 +21,14 @@
                         <!-- Logo icon -->
                         <a href="home.do">
                             <b class="logo-icon">
-                                <img src="resources/user/assets/img/logo/loder.jpg" alt="">
+                                <img src="resources/admin/assets/images/adminlogo.png" alt="">
                             </b>
                             <!--End Logo icon -->
-                            <!-- Logo text -->
+                            <!-- Logo text 
                             <span class="logo-text">
-                                <!-- dark Logo text -->
                                 <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo text -->
                                 <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
-                            </span>
+                            </span> -->
                         </a>
                     </div>
                     <!-- ============================================================== -->
