@@ -268,7 +268,7 @@
 
                         <div class="quote-wrapper"
                            style="padding: 10px !important; color: #10285D; font-style: normal;">
-                           <div class="quotes" style="color: #2f1f48;">
+                           <div class="quotes" style="color: #2f1f48; white-space: pre-line;">
                               ${detailS.ser_sub }
                            </div>
                         </div>
@@ -329,7 +329,7 @@
                            <c:if test="${detailS.ser_offer ne null}">
                               <div class="serviceinfoo">
                                  <div class="serviceinfo">제공절차</div>
-                                 <p>ㆍ${detailS.ser_offer }</p> 
+                                 <p style="white-space: pre-line;">ㆍ${detailS.ser_offer }</p> 
                               </div>                                                          
                            </c:if>
                         </div>
@@ -1138,12 +1138,17 @@
       }
 
       function chatingcheck() {
-         if ($({
-               author ne 'B'
-            }) {
-            alert('구매자만 채팅 요청할 수 있습니다.');
-            return;
-         }
+
+
+    	  if (${empty id}) {
+              alert('로그인 후 이용할 수 있습니다.');
+               return;
+            }
+            if (${author ne 'B' }) {
+               alert('구매자만 채팅 요청할 수 있습니다.');
+               return;
+            }
+
          //판매자 닉네임
          var chatnick = document.querySelector("#sellernick").innerHTML;
          //서비스코드

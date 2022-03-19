@@ -58,6 +58,7 @@
         white-space: nowrap;
        }
    </style>
+   
 </head>
 <body>
 
@@ -360,7 +361,13 @@
                         </div>
                         <div class="list-caption" style="width: 370px; height: 200px;">
                             <span>BEST!</span>
+
                              <h3 class = "sertitleh" style="padding: 0px"><a href="serviceDetail.do?ser_code=${bestservice.ser_code }">${bestservice.ser_title }</a></h3>
+
+                             <a href="serviceDetail.do?ser_code=${bestservice.ser_code }">
+                             	<h3 style="padding: 0px; overflow: hidden; text-overflow: ellipsis;
+                             	white-space: nowrap; font-weight: bold; font-size: 23px;">${bestservice.ser_title }</h3></a>
+
                             <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 30px;">${bestservice.ser_sub }</p>
                             <div class="list-footer">
                                 <ul>
