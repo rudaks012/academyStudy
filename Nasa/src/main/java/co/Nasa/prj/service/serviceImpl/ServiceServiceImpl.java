@@ -140,5 +140,10 @@ public class ServiceServiceImpl implements ServiceService {
 		return map.randomPromotion();
 	}
 
+	@Override
+	public List<ServiceVO> sellerDetailService(ServiceVO vo) {
+		return map.sellerDetailService(vo);
+	}
+
 
 }

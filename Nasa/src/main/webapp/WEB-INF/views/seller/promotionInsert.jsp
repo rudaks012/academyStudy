@@ -257,6 +257,20 @@ p {
 	width: 250px;
 	height: 183px;
 }
+.promotiona {
+	width: 210px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+	white-space: nowrap;
+}
+.promotiona2 {
+	width: 308px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+	white-space: nowrap;
+}
 </style>
 <script>
     // 수정할 것...
@@ -373,11 +387,11 @@ p {
 																				<div class="col-lg-4">
 																					<div class="single-listing mb-30">
 																						<div class="list-img first">
-																							<img src="fileupload/${service.ser_img }" alt="" class="${service.ser_code }">
+																							<img src="${service.ser_img }" alt="" class="${service.ser_code }">
 																						</div>
 																						<div class="list-caption">
 																							<h3>
-																								<a href="" class="${service.ser_code }">${service.ser_title }</a>
+																								<a href=""  class="${service.ser_code } promotiona">${service.ser_title }</a>
 																							</h3>
 																							<p>서비스번호: s${service.ser_code }</p>
 																							<input type="hidden" id="st${service.ser_code }" value="${service.ser_start }">
@@ -429,7 +443,7 @@ p {
 																				</div>
 																				<div class="list-caption final">
 																					<h3>
-																						<a href="" id="finaltitle"></a>
+																						<a href="" id="finaltitle" class="promotiona2"></a>
 																					</h3>
 																					<p id="finalno"></p>
 																					<p id="finaldate"></p>
