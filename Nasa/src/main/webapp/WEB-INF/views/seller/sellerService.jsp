@@ -317,12 +317,16 @@ input[type=date] {
 																					<c:if test="${not empty service.prodiscount }">
 																						<div class="price">₩ <del><fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></del> </div>
 																						<div class="price" style="color:red;"><img src="resources/user/assets/img/promotion.png"> ₩<fmt:formatNumber value="${service.prodiscount }" pattern="###,###"/></div>
+																						<br /><br /><br />
 																			
 																					</c:if>
 																					<c:if test="${empty service.prodiscount }">
-																						<div style="height: 37.5px;"></div>
+																						<div style="height: 39.5px;"></div>
 																						<div class="price"> ₩ <fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></div>
+																						<br />
 																					</c:if>
+																					
+																					
 																					<div class="list-footer">
 																						<ul>
 																							<li >
