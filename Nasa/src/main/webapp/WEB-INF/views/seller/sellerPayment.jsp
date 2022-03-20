@@ -61,6 +61,9 @@ td, th {
 	color:#9e68ff !important;
 	border: 1px solid #9e68ff !important;
 }
+.table .thead-light th{
+	background-color: #d5c9ea;
+}
 </style>
 </head>
 <body>

@@ -198,7 +198,7 @@ input[type=date] {
 											<td>${power.ser_title }</td>
 											<td>${fn:substring(power.power_start,0,11) }</td>
 											<td>${fn:substring(power.power_end,0,11) }</td>
-											<td>${power.power_price }</td>
+											<td><fmt:formatNumber value="${power.power_price }" pattern="###,###"/>원</td>
 											<c:if test="${fn:substring(power.power_start,0,10) <= today && fn:substring(power.power_end,0,10) >= today}">
 												<td>제공 중</td>
 											</c:if>
@@ -395,7 +395,7 @@ input[type=date] {
  								참고하세요.
  								나중에 포스팅 해볼게요.
  								 */
- 								name : '주문명:결제테스트',
+ 								name : '주문명:파워서비스 결제',
  								//결제창에서 보여질 이름
  								amount : 100,
  								//가격

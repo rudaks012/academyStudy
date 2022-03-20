@@ -41,7 +41,7 @@ public class PowerServiceController {
 		vo.setS_email((String)session.getAttribute("id"));
 		
 		powerDao.powerserviceInsert(vo);
-		return "redirect:sellerService.do";
+		return "redirect:powerservice.do";
 	}
 	
 	@RequestMapping("/powerservice.do")
