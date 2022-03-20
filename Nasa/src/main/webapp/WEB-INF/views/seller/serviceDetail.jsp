@@ -543,14 +543,14 @@
                                           <c:choose>
                                              <c:when test="${not empty sellerInfo.s_img }">
                                                 <div class="thumb">
-                                                   <img src="${sellerInfo.s_img}" class="profileimg" alt="">
+                                                   <img src="${sellerInfo.s_img}" class="profileimg" alt="" style="width:70px; height:70px;">
                                                 </div>
                                              </c:when>
                                              <c:otherwise>
                                                 <div class="thumb">
                                                    <img
                                                       src="resources/user/assets/img/profile/search-default-profile.jpg"
-                                                      class="profileimg" alt="">
+                                                      class="profileimg" alt="" style="width:70px; height:70px;">
                                                 </div>
                                              </c:otherwise>
                                           </c:choose>
