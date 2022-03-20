@@ -172,7 +172,7 @@
                         $("#s_nickname").attr("onclick", "location.href='sellerDetail.do?s_email=" + data.s_email + "'");
                         $("#s_nickname").attr("style", "cursor:pointer; background-color: #dddddd;");  
                         $("#pay_price_tochar").text(data.pay_price_tochar + "원");
-                        $("#ser_img").attr("src", "fileupload/" + data.ser_img);
+                        $("#ser_img").attr("src", data.ser_img);
                         $("#paydate").text(data.event_start + " ~ " + data.event_end_original);
 
                     }

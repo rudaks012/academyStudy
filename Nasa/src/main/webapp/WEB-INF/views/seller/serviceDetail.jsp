@@ -167,9 +167,9 @@
          <div class="row">
             <div class="col-lg-8 posts-list">
                <div class="single-post">
-                  <%-- <div class="feature-img">
+                  <div class="feature-img">
                      <img class="img-fluid" src="${detailS.ser_img }" alt="">
-                  </div> --%>
+                  </div>
                   <div class="blog_details">
                      <nav class="fables-single-nav">
                         <c:choose>
