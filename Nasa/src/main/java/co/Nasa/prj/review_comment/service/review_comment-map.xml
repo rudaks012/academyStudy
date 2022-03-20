@@ -49,7 +49,7 @@
 								   , RERE_SEL_ID
 								   , RERE_SEL_SUB
 								   , RERE_DATE)
-		VALUES		((SELECT MAX(TO_NUMBER(NVL(RERE_CODE, 0))) + 1 FROM REVIEW_COMMENT)
+		VALUES		((SELECT NVL(MAX(TO_NUMBER(RERE_CODE)), 0) + 1 + 1 FROM REVIEW_COMMENT)
 					, #{review_code}
 					, (SELECT S_NICKNAME FROM SELLER WHERE S_EMAIL = #{rere_sel_id})
 					, #{rere_sel_id}
