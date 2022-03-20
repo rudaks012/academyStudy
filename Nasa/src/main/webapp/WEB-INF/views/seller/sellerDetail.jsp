@@ -182,6 +182,16 @@
          <div class="col-lg-12" style="padding: 0px;">
             <div class="blog-author col-lg-6" style="padding: 25px; margin: 0px;">
                <div class="media align-items-center">
+                  <c:choose>
+							<c:when test="${empty sellerInfo.s_img }">
+								<img src="resources/user/assets/img/profile/search-default-profile.jpg" alt=""
+                        style="width: 230px; height: 230px; border-radius: 8px; margin-right: 30px;">
+							</c:when>
+							<c:otherwise>
+								<img src="${sellerInfo.s_img }" alt=""
+                        style="width: 230px; height: 230px; border-radius: 8px; margin-right: 30px;">
+							</c:otherwise>
+						</c:choose>
                   <img src="${sellerInfo.s_img }" alt=""
                      style="width: 230px; height: 230px; border-radius: 8px; margin-right: 30px;">
                   <div class="media-body">
