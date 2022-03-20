@@ -167,9 +167,9 @@
          <div class="row">
             <div class="col-lg-8 posts-list">
                <div class="single-post">
-                  <%-- <div class="feature-img">
+                  <div class="feature-img">
                      <img class="img-fluid" src="${detailS.ser_img }" alt="">
-                  </div> --%>
+                  </div>
                   <div class="blog_details">
                      <nav class="fables-single-nav">
                         <c:choose>
@@ -214,7 +214,7 @@
                         </c:choose>
 
                         
-
+						
                         <c:if
                            test="${detailS.ser_subimg ne null || detailS.ser_subimg2 ne null || detailS.ser_subimg3 ne null}">
                            <div class="h1-testimonial-active" style="text-align: center;">
@@ -268,7 +268,7 @@
 
                         <div class="quote-wrapper"
                            style="padding: 10px !important; color: #10285D; font-style: normal;">
-                           <div class="quotes" style="color: #2f1f48;">
+                           <div class="quotes" style="color: #2f1f48;white-space:pre-line;">
                               ${detailS.ser_sub }
                            </div>
                         </div>

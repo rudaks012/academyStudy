@@ -100,7 +100,7 @@ input[type=date] {
 	background: #e0d6f2;
 }
 .nice-select{
-	width: 124px;
+	width: 350px;
 }
 .price{
 	width: 124px;
@@ -397,7 +397,7 @@ input[type=date] {
  								 */
  								name : '주문명:결제테스트',
  								//결제창에서 보여질 이름
- 								amount : 500000,
+ 								amount : 100,
  								//가격
  								//bank_name : null,
  								buyer_email : 'iamport@siot.do',

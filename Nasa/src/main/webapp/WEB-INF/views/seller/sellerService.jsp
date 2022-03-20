@@ -152,10 +152,12 @@ input[type=date] {
 	justify-content: right;
 } */
 
-.price{
-	text-align: right;
-	font-size: 25px !important;
-	font-weight: bold;
+.promotiona {
+	width: 308px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+	white-space: nowrap;
 }
 .category{
 	font-size: 13px;
@@ -179,6 +181,13 @@ input[type=date] {
 	margin-top: 15px;
 	float: right;
 	background: #e0d6f2;
+}
+
+
+.price {
+   float: right;
+   font-size: 25px !important;
+   font-weight: bold;
 }
 </style>
 </head>
@@ -293,14 +302,14 @@ input[type=date] {
 																					<img src="${service.ser_img }"
 																						id="prvimg" alt="">
 																				</div>
-																				<div class="list-caption">
+																				<div class="list-caption" >
 																				<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${service.ser_code  }'">Open</span>
 																					<div class="category">* ${service.category } > ${service.sub_category }</div>
 																					<div class="line"> <div>${service.ser_line }</div>
 																					<div>${service.reviewcount }개의 리뷰</div></div>
 																					<br/>
 																					<h3>
-																						<a
+																						<a class = "promotiona"
 																							href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
 																							 
 																					</h3>

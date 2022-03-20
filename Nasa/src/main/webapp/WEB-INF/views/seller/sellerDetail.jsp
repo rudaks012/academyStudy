@@ -76,7 +76,13 @@
       /* .blog-author {
          background-color: rgb(240, 239, 239) !important;
       } */
-
+		.promotiona {
+			width: 210px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: block;
+			white-space: nowrap;
+		}
       .br {
          border-top: 1px solid #999294;
          margin-top: 20px;
@@ -104,7 +110,10 @@
          width: 236px;
          height: 251px;
       }
-
+	 .blog_details img {
+			width: 354px;
+			height: 256px;
+		}
       .serctitle {
          color: #1c1930;
          font-size: 18px;
@@ -127,10 +136,30 @@
       #knohowlink {
          color: black !important;
       }
-
+		
+		.category{
+			font-size: 13px;
+			color: gray;
+		}
+		.line{
+			text-align: right;
+			color: gray;
+			font-size: 13px;
+		}
       .modal-open {
          padding-right: 0px !important;
       }
+      
+      .price img{
+		width: 100px;
+		height: 28px;
+	}
+	.price {
+         float: right;
+         font-size: 20px !important;
+         font-weight: bold;
+      }
+     
    </style>
 </head>
 
@@ -153,8 +182,16 @@
          <div class="col-lg-12" style="padding: 0px;">
             <div class="blog-author col-lg-6" style="padding: 25px; margin: 0px;">
                <div class="media align-items-center">
-                  <img src="${sellerInfo.s_img }" alt=""
-                     style="width: 230px; height: 230px; border-radius: 8px; margin-right: 30px;">
+                  <c:choose>
+							<c:when test="${empty sellerInfo.s_img }">
+								<img src="resources/user/assets/img/profile/search-default-profile.jpg" alt=""
+                        style="width: 230px; height: 230px; border-radius: 8px; margin-right: 30px;">
+							</c:when>
+							<c:otherwise>
+								<img src="${sellerInfo.s_img }" alt=""
+                        style="width: 230px; height: 230px; border-radius: 8px; margin-right: 30px;">
+							</c:otherwise>
+						</c:choose>                  
                   <div class="media-body">
                      <div class="d-flex">
                         <div class="position-relative">
@@ -394,30 +431,69 @@
                   </div>
                   <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-info-tab">
                      <br><br>
+                     <div class="listing-details-area">
                      <div class="row justify-content-center">
                         <div class="container">
                            <div class="row">
                               <c:forEach items="${serviceList }" var="service">
                                  <c:if test="${service.ser_status eq 'N'}">
-                                    <div class="col-lg-4">
-                                       <div class="single-listing mb-30">
-                                          <div class="list-img">
-                                             <img src="fileupload/${service.ser_img}" alt="" class="sercimg">
-                                          </div>
-                                          <div class="list-caption">
-                                             <a href="serviceDetail.do?ser_code=${service.ser_code }"
-                                                   class="serctitle">${service.ser_title}</a>
-                                             <div style="margin-top: 30px;">
-                                                <div>서비스 코드 : s${service.ser_code}</div>
-                                                <div>₩ <fmt:formatNumber value="${service.ser_price}" pattern="###,###" /> ~</div>
-                                             </div>                                                                                                                                       
-                                          </div>
-                                       </div>
-                                    </div>
+                                   <div class="col-lg-4" >
+										<div class="single-listing mb-30">
+											<div class="list-img">
+												<img src="${service.ser_img }"
+													id="prvimg" alt="">
+											</div>
+											<div class="list-caption">
+												<span style="cursor: pointer;" onclick="location.href='serviceDetail.do?ser_code=${service.ser_code  }'">Open</span>
+												<div class="category">* ${service.category } > ${service.sub_category }</div>
+												<div class="line"> <div>${service.ser_line }</div>
+												<div>${service.reviewcount }개의 리뷰</div></div>
+												<br/>
+												<h3>
+													<a class = "promotiona"
+														href="serviceDetail.do?ser_code=${service.ser_code }">${service.ser_title }</a>
+														 
+												</h3>
+												
+												<c:if test="${not empty service.prodiscount }">
+													<div class="price">₩ <del><fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></del> </div>
+													<br/>
+													<div class="price" style="color:red; margin-left: 20px;"><img src="resources/user/assets/img/promotion.png"> ₩<fmt:formatNumber value="${service.prodiscount }" pattern="###,###"/></div>
+													
+												</c:if>
+												<c:if test="${empty service.prodiscount }">
+													<div style="height: 37.5px;"></div>
+													<div class="price"> ₩ <fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></div>
+												</c:if>
+												<br/>
+												<%-- <div class="list-footer">
+													<ul>
+														<li >
+															<button type="button"
+																onclick="location.href='serviceUpdateForm.do?ser_code=${service.ser_code }'"
+																class="genric-btn danger-border circle">수정</button>
+														</li>
+														<li>
+															<button type="button"
+																class="genric-btn danger-border circle"
+																data-toggle="modal" data-target="#endModal"
+																data-sercode="${service.ser_code }"
+																data-sertitle="${service.ser_title }"
+																data-end="${service.pay_max }"
+																data-promax="${service.pro_max }"
+																data-powermax="${service.power_max }">종료</button>
+
+														</li>
+													</ul>
+												</div> --%>
+											</div>
+										</div>
+									</div>
                                  </c:if>
                               </c:forEach>
                            </div>
                         </div>
+                     </div>
                      </div>
                   </div>
                </div>

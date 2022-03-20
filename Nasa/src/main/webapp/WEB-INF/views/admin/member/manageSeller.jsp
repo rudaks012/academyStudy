@@ -580,15 +580,9 @@ $("#searchBtn").on("click",searchReport);
                 $("#s_name").val(result.seller.s_name);
                 $("#s_nickname").val(result.seller.s_nickname);
                 
-                let tel=result.seller.s_tel;
-                let phone=""
-                phone += tel.substr(0, 3); 
-                phone += "-"; 
-                phone += tel.substr(3, 4); 
-                phone += "-"; 
-                phone += tel.substr(7);
+           
 
-                $("#s_tel").val(phone);
+                $("#s_tel").val(result.seller.s_tel);
 
                 let report = result.seller.s_report; //신고횟수
             
