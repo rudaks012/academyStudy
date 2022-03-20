@@ -40,7 +40,12 @@
 			<div style="width: 550px;">
 				<form method="post" id="sellerProfileU" enctype="multipart/form-data">
 					<div id="profileThumnail" class="justify-content-center" style="text-align: center;">
-						<img id="prvimg" src="${sellerInfo.s_img }" alt="" style="width: 150px; height: 150px; border-radius: 70%; overflow: hidden;"><br>
+						<c:if test="${empty sellerInfo.s_img }">
+							<img id="prvimg" src="resources/user/assets/img/profile/search-default-profile.jpg" alt="" style="width: 150px; height: 150px; border-radius: 70%; overflow: hidden;"><br>
+						</c:if>
+						<c:if test="${not empty sellerInfo.s_img }">
+							<img id="prvimg" src="${sellerInfo.s_img }" alt="" style="width: 150px; height: 150px; border-radius: 70%; overflow: hidden;"><br>
+						</c:if>
 						<input type="file" id="imgupload" name="imgupload" accept="image/*" style="display: none;"> 
 						<label class="genric-btn primary radius" for="imgupload" style="margin-top: 7px;">사진 수정</label>
 					</div>
