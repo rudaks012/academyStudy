@@ -180,7 +180,7 @@
 												</c:choose>
 											</td>
 											<td><fmt:formatNumber value="${payment.pay_price }" pattern="###,###"/></td>
-											<td>
+											<td onclick = "event.cancelBubble = true;">
 												<c:choose>
 													<c:when test="${payment.event_end eq 'notend'}">
 														<button class = "genric-btn primary-border small" onclick="paycomplete('${payment.pay_code}')">구매확정</button>
