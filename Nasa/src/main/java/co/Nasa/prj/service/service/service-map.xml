@@ -334,4 +334,25 @@
 		SER_REASON = #{ser_reason}, SER_END = sysdate, SER_STATUS = 'Y'
 		WHERE SER_CODE = #{ser_code}
 	</update>
+	
+	<select id="sellerDetailService" resultType="co.Nasa.prj.comm.VO.ServiceVO">
+		<![CDATA[
+		select
+		serv."SER_CODE",serv."S_EMAIL",serv."SER_START",serv."SER_TITLE",serv."SER_SUB",serv."SER_CATE",
+		serv."SER_SUB_CATE",serv."SER_PRICE",serv."SER_IMG", serv."SER_LINE",serv."SER_STATUS",serv."SER_END",
+		(select count(scode) from review where scode=serv.ser_code) as reviewcount,
+		(select avg(rev_rate) from review where scode=serv.ser_code) as reviewavg, 
+		(select cat_name from category where cat_no=serv.ser_cate) as category,
+		(select pro_start from promotion where pro_service = ser_code and pro_status='N'  ) as pro_start,
+		(select pro_end from promotion where pro_service = ser_code and pro_status='N'  ) as pro_end,
+		(select trunc(ser_price-(ser_price * (prodiscount / 100)))  from promotion where pro_service = ser_code and pro_status='N'  ) as prodiscount,
+		(SELECT MAX(EVENT_END) FROM PAYMENT GROUP BY S_CODE HAVING s_code=serv.ser_code) as PAY_MAX,
+		(SELECT MAX(PRO_END) FROM PROMOTION  WHERE PRO_SERVICE = serv.ser_code AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < TO_CHAR(PRO_END, 'YYYY-MM-DD') AND pro_status <> 'Y') as PRO_MAX,
+		(SELECT MAX(POWER_END) FROM POWERSERVICE  WHERE SER_CODE = serv.ser_code  AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') < TO_CHAR(POWER_END, 'YYYY-MM-DD')) as power_max,
+		SUB.SUB_NAME AS SUB_CATEGORY
+		FROM SERVICE SERV, SUB_CATEGORY SUB
+		WHERE SERV.SER_SUB_CATE = SUB.SUB_NO
+		AND S_EMAIL = #{s_email} AND SER_STATUS = 'N'
+		ORDER BY SER_START DESC]]>
+	</select>
 </mapper>

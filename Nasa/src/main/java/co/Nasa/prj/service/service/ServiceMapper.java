@@ -48,4 +48,6 @@ public interface ServiceMapper {
 	
 	// 메인페이지 랜덤 프로모션 표시
 	List<ServiceVO> randomPromotion();
+	
+	List<ServiceVO> sellerDetailService(ServiceVO vo);
 }

@@ -132,7 +132,7 @@ public class SellerController {
 			model.addAttribute("tabcode", pagestatus);
 		}
 		model.addAttribute("wish", w);
-		model.addAttribute("serviceList", serviceDao.servicePromotion(vo));
+		model.addAttribute("serviceList", serviceDao.sellerDetailService(vo));
 		return "seller/sellerDetail";
 	}
 	
