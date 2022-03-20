@@ -83,9 +83,10 @@
                                 <!-- 달력 자리 -->
                                 <div id='calendar' style="margin-bottom: 30px;"></div>
                                 <br>
-                                <a class="d-inline-block">
-                                    <h2>일정 상세정보 조회</h2>
-                                </a>
+                                <div class="d-inline-block" style="margin-bottom: 25px;">
+                                    <h2 style="margin-bottom: 5px;">일정 조회</h2>
+                                    <div style="font-size: 13px;">서비스 제목이나 판매자 닉네임을 클릭하면 관련 정보를 확인할 수 있습니다.</div>
+                                </div>
                                 <table class="servicetable">
                                     <tbody>
                                         <tr>
@@ -164,11 +165,11 @@
                     success: function (data) {
                         console.log("여기주목밑에밑에");
                         console.log(data);
-                        $("#ser_title").text(data.ser_title + "(클릭 시 서비스 상세정보 이동)");
+                        $("#ser_title").text(data.ser_title);
                         $("#ser_title").attr("onclick", "location.href='serviceDetail.do?ser_code=" + data.s_code + "'");
                         $("#ser_title").attr("style", "cursor:pointer; background-color: #dddddd;");  
                         $("#cate").text(data.category + " > " + data.sub_category);
-                        $("#s_nickname").text(data.s_nickname + "(클릭 시 판매자 상세정보 이동)");
+                        $("#s_nickname").text(data.s_nickname);
                         $("#s_nickname").attr("onclick", "location.href='sellerDetail.do?s_email=" + data.s_email + "'");
                         $("#s_nickname").attr("style", "cursor:pointer; background-color: #dddddd;");  
                         $("#pay_price_tochar").text(data.pay_price_tochar + "원");
