@@ -284,6 +284,14 @@ public class BuyerController {
 		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
 		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		List<PaymentVO> paymentList = paymentDao.monthSearch(paymentvo);
+		List<PaymentVO> endpayList = paymentDao.endPaymentList(paymentvo);
+		for(int i = 0; i < paymentList.size(); i++) {
+			for(int j = 0; j < endpayList.size(); j++) {
+				if(paymentList.get(i).getPay_code().equals(endpayList.get(j).getPay_code())) {
+					paymentList.get(i).setEvent_end("notend");
+				}
+			}
+		}
 		pagingdto.setTotal(paymentDao.countMonthSearch(paymentvo));
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		model.addAttribute("paymentList", paymentList);
@@ -367,6 +375,14 @@ public class BuyerController {
 		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
 		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		List<PaymentVO> paymentList = paymentDao.sixmonthSearch(paymentvo);
+		List<PaymentVO> endpayList = paymentDao.endPaymentList(paymentvo);
+		for(int i = 0; i < paymentList.size(); i++) {
+			for(int j = 0; j < endpayList.size(); j++) {
+				if(paymentList.get(i).getPay_code().equals(endpayList.get(j).getPay_code())) {
+					paymentList.get(i).setEvent_end("notend");
+				}
+			}
+		}
 		pagingdto.setTotal(paymentDao.countSixmonthSearch(paymentvo));
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		model.addAttribute("paymentList", paymentList);
@@ -450,6 +466,14 @@ public class BuyerController {
 		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
 		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		List<PaymentVO> paymentList = paymentDao.yearSearch(paymentvo);
+		List<PaymentVO> endpayList = paymentDao.endPaymentList(paymentvo);
+		for(int i = 0; i < paymentList.size(); i++) {
+			for(int j = 0; j < endpayList.size(); j++) {
+				if(paymentList.get(i).getPay_code().equals(endpayList.get(j).getPay_code())) {
+					paymentList.get(i).setEvent_end("notend");
+				}
+			}
+		}
 		pagingdto.setTotal(paymentDao.countYearSearch(paymentvo));
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		model.addAttribute("paymentList", paymentList);
@@ -540,6 +564,14 @@ public class BuyerController {
 		//List<PaymentVO> paymentList = paymentDao.buyerPaymentList(paymentvo);
 		paymentvo.calcStartEnd(pagingdto.getPageNum(), pagingdto.getAmount());
 		List<PaymentVO> paymentList = paymentDao.selectdateSearch(paymentvo);
+		List<PaymentVO> endpayList = paymentDao.endPaymentList(paymentvo);
+		for(int i = 0; i < paymentList.size(); i++) {
+			for(int j = 0; j < endpayList.size(); j++) {
+				if(paymentList.get(i).getPay_code().equals(endpayList.get(j).getPay_code())) {
+					paymentList.get(i).setEvent_end("notend");
+				}
+			}
+		}
 		pagingdto.setTotal(paymentDao.countSelectdateSearch(paymentvo));
 		model.addAttribute("paging", new PagingDTO(pagingdto.getTotal(), pagingdto.getPageNum()));
 		model.addAttribute("paymentList", paymentList);
