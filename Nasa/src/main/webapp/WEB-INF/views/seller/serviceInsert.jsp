@@ -12,15 +12,15 @@
 }
 
 td:first-child:not(.sertb) {
-	background-color: #d5c9ea;
+	background-color: rgb(229, 231, 253);
 	color: #1f2b7b;
+	width: 100%;
 }
 
 td {
 	height: 50px;
 	padding: 10px;
 }
-
 .sercate {
 	width: 150px;
 }
@@ -140,7 +140,7 @@ input[type="radio"] {
 															<option value="CAT5">기술지원</option>
 															<option value="CAT6">기획</option>
 													</select></td>
-													<td style="background-color: #d5c9ea;">2차
+													<td style="background-color: rgb(229, 231, 253);">2차
 														카테고리<span class="spanstar">*</span>
 													</td>
 													<td><select name="ser_sub_cate" id="ser_sub_cate"
