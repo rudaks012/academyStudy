@@ -459,6 +459,7 @@
 													<div class="price">₩ <del><fmt:formatNumber value="${service.ser_price }" pattern="###,###"/></del> </div>
 													<br/>
 													<div class="price" style="color:red; margin-left: 20px;"><img src="resources/user/assets/img/promotion.png"> ₩<fmt:formatNumber value="${service.prodiscount }" pattern="###,###"/></div>
+													<br />
 													
 												</c:if>
 												<c:if test="${empty service.prodiscount }">
