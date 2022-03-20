@@ -118,7 +118,7 @@
 							<c:if test="${email eq null}">
 								<div id="emailchkdiv" class="form-group">
 									이메일 인증
-									<input class="form-control valid" name="emailchk" id="emailchk" placeholder="인증코드를 확인해주세요">
+									<input disabled class="form-control valid" name="emailchk" id="emailchk" placeholder="인증코드를 확인해주세요">
 									<input type="button" value="확인" class="position-relative genric-btn primary radius"
 										onclick="emailSendCheck()" style="float: right; bottom: 45px;">
 								</div>
@@ -126,7 +126,7 @@
 							<c:if test="${email ne null}">
 								<div id="emailchkdiv" class="form-group">
 									이메일 인증
-									<input class="form-control valid" name="emailchk" id="emailchk" readonly style="background-color: #e5e8eb">
+									<input disabled class="form-control valid" name="emailchk" id="emailchk" readonly style="background-color: #e5e8eb">
 									<input type="button" value="완료" class="position-relative genric-btn primary radius" style="float: right; bottom: 45px;">
 									<label id="emailchklabelok">인증번호가 확인되었습니다.</label>
 								</div>
@@ -258,27 +258,36 @@
 	// 닉네임 중복 체크
 	function nicknameCheck() {
 		var nickname = $('#b_nickname').val();
-		$.ajax({
-			url: "ajaxBnickCheck.do",
-			type: "post",
-			data: { b_nickname: nickname },
-			dataType: "text",
-			success: function (data) {
-				if (data == 'T') {
-					$("label").remove('#nicklabel');
-					$("label").remove('#nicklabelok');
-					$("#nickdiv").append('<label id="nicklabelok">사용 가능한 닉네임입니다.</label>');
-				} else {
-					$("label").remove('#nicklabel');
-					$("label").remove('#nicklabelok');
-					$("#nickdiv").append('<label id="nicklabel">이미 사용하고 있는 닉네임입니다.</label>');
-					$("#nicklabel").css("color", "red");
+		if (nickname == "") { // 닉네임에 아무것도 적혀있지 않으면
+			$("label").remove('#nicklabel');
+			$("label").remove('#nicklabelok');
+			$("#nickdiv").append('<label id="nicklabel">닉네임은 필수 입력값입니다.</label>');
+			$("#nicklabel").css("color", "red");
+		} else {
+			$.ajax({
+				url: "ajaxBnickCheck.do",
+				type: "post",
+				data: { b_nickname: nickname },
+				dataType: "text",
+				success: function (data) {
+					console.log(data);
+					if (data == 'T') {
+						$("label").remove('#nicklabel');
+						$("label").remove('#nicklabelok');
+						$("#nickdiv").append('<label id="nicklabelok">사용 가능한 닉네임입니다.</label>');
+					} else {
+						$("label").remove('#nicklabel');
+						$("label").remove('#nicklabelok');
+						$("#nickdiv").append('<label id="nicklabel">이미 사용하고 있는 닉네임입니다.</label>');
+						$("#nicklabel").css("color", "red");
+					}
+				},
+				error: function () {
+					console.log("실패");
 				}
-			},
-			error: function () {
-				console.log("실패");
-			}
-		});
+			});
+		}
+		
 	};
 
 	// 이메일 필수 입력		
@@ -305,7 +314,7 @@
 		if (!emailchk) {
 			$("label").remove('#emaillabel');
 			$("label").remove('#emaillabelok');
-			$("#emaildiv").append('<label id="emaillabel">올바르지 않은 형식의 이메일입니다.</label>');
+			$("#emaildiv").append('<label id="emaillabel">올바른 이메일을 입력해 주세요.</label>');
 			$("#emaillabel").css("color", "red");
 		} else {
 			var email = ($('#b_email').val());
@@ -329,6 +338,8 @@
 								code = data;
 							}
 						});
+						$("#emailchk").attr("disabled", false);
+						$('#emailchk').focus();
 					} else {
 						$("label").remove('#emaillabel');
 						$("label").remove('#emaillabelok');
@@ -385,7 +396,12 @@
 
 	// 비밀번호 확인
 	$("#pwchk").blur(function () {
-		if ($("#b_password").val() == $("#pwchk").val()) {
+		if ($("#pwchk").val() == "") {
+			$("label").remove('#pwchklabel');
+			$("label").remove('#pwchklabelok');
+			$("#pwchkdiv").append('<label id="pwchklabel">비밀번호를 한 번 더 입력해주세요.</label>');
+			$("#pwchklabel").css("color", "red");
+		} else if ($("#b_password").val() == $("#pwchk").val()) {
 			$("label").remove('#pwchklabel');
 			$("label").remove('#pwchklabelok');
 			$("#pwchkdiv").append('<label id="pwchklabelok">비밀번호가 확인되었습니다.</label>');
