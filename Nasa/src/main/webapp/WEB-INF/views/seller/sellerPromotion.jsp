@@ -47,10 +47,15 @@
 	color:#9e68ff !important;
 	border: 1px solid #9e68ff !important;
 }
-.genric-btn.danger{
-	margin-top: 15px;
-	float: right;
-	background: #e0d6f2;
+.genric-btn.danger-border:hover {
+	background-color: #d5c9ea !important;
+	color: white;
+}
+
+.genric-btn.danger-border{
+	background-color: white;
+	color:#9e68ff !important;
+	border: 1px solid #9e68ff !important;
 }
 </style>
 </head>

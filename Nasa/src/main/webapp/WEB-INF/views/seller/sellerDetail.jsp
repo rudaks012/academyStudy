@@ -415,8 +415,7 @@
                                     </c:when>
                                     <c:when test="${p != paging.pageNum }">
                                        <li class="page-item"><a class="page-link"
-                                             href="sellerDetail.do?s_email=${sellerInfo.s_email}&pageNum=${p }&amount=${paging.amount}&pagestatus=r">${p
-                                             }</a></li>
+                                             href="sellerDetail.do?s_email=${sellerInfo.s_email}&pageNum=${p }&amount=${paging.amount}&pagestatus=r">${p}</a></li>
                                     </c:when>
                                  </c:choose>
                               </c:forEach>
@@ -460,7 +459,6 @@
 													<br/>
 													<div class="price" style="color:red; margin-left: 20px;"><img src="resources/user/assets/img/promotion.png"> ₩<fmt:formatNumber value="${service.prodiscount }" pattern="###,###"/></div>
 													<br />
-													
 												</c:if>
 												<c:if test="${empty service.prodiscount }">
 													<div style="height: 37.5px;"></div>
