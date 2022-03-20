@@ -502,6 +502,7 @@ $("#searchBtn").on("click",searchReport);
                     "b_email": buyerId
                 },
                 success: function (result) {
+                	
                     let totalCount = result.length; // 글의 총 수 
                     let pageSize = 5; // 페이지 크기 [1]~[10] 또는 [1]~[5]
                     let nowPage = 1; // 현재 페이지 
@@ -533,9 +534,24 @@ $("#searchBtn").on("click",searchReport);
                     for (var j = startRow; j < endRow; j++) {
                         let tr = document.createElement('tr');
                         innerHtml += "<td>" + result[j].s_code + "</td>";
-                        innerHtml += "<td>" + result[j].ser_title + "</td>";
+                        if(result[j].ser_title.length>21){
+                        	let ser_title = result[j].ser_title.substr(0,20)
+                        	innerHtml += "<td>" + ser_title + "... </td>";
+                        }else{
+                        	innerHtml += "<td>" + result[j].ser_title + "</td>";
+                        }
                         innerHtml += "<td>" + result[j].s_email + "</td>";
-                        innerHtml += "<td>" + result[j].event_start + " ~ " + result[j].event_end + "</td>";
+                        if(result[j].event_start!=null&&result[j].event_end!=null){
+                        	let start= result[j].event_start.substr(0,11)
+                        	let end = result[j].event_end.substr(0,11)
+                        	innerHtml += "<td>" + start + " ~ " + end + "</td>";	
+                        }else if(result[j].event_start==null&&result[j].event_end==null ){
+                        	innerHtml+="<td>" + "협의 중"+ "</td>";
+                        }else if(result[j].event_start!=null && result[j].event_end==null){
+                        	let start= result[j].event_start.substr(0,11)
+                        	innerHtml += "<td>" + start + " ~ 협의 중"+ "</td>";
+                        }
+                        
                          
                         let price=result[j].pay_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //금액 정규식
                         
@@ -616,15 +632,9 @@ $("#searchBtn").on("click",searchReport);
                 $("#b_name").val(result.buyer.b_name);
                 $("#b_nickname").val(result.buyer.b_nickname);
                 
-                let tel=result.buyer.b_tel;
-                let phone=""
-                phone += tel.substr(0, 3); 
-                phone += "-"; 
-                phone += tel.substr(3, 4); 
-                phone += "-"; 
-                phone += tel.substr(7);
+                
 
-                $("#b_tel").val(phone);
+                $("#b_tel").val(result.buyer.b_tel);
 
                 let report = result.buyer.b_report; //신고횟수
                 if(report >= "5"){

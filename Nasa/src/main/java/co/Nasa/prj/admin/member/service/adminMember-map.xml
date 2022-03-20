@@ -44,7 +44,7 @@
  
 	
 	<select id="selectBuyer" parameterType="String" resultType="co.Nasa.prj.admin.service.AdminAuthorVO">
-		 SELECT b_email,b_rank,b_password,b_nickname,substr(b_tel,1,3)||'-'||substr(b_tel,4,4)||'-'||substr(b_tel,8) as b_tel,
+		 SELECT b_email,b_rank,b_password,b_nickname,b_tel,
 		        b_address,b_zipcode,b_detailaddress,b_author,b_img,
 				b_status,b_date,b_report,token,
                 (select c.cat_name from category c join sub_category s on(c.cat_no=s.cat_no) where buyer.field_code=s.sub_no) as cat_name,
@@ -121,7 +121,7 @@
 		      SELECT rownum rn, s.*
 		      FROM
 		           (
-		             select s_email, s_rank,s_nickname,substr(s_tel,1,3)||'-'||substr(s_tel,4,4)||'-'||substr(s_tel,8) as s_tel,s_address,
+		             select s_email, s_rank,s_tel,s_address,s_nickname
 		                    s_zipcode,s_detailaddress,s_author,s_img,
 					        s_business,s_status,s_report,s_school,s_major,s_grad, s_carrer,s_me,s_name,s_date,blacklistdate
 					 from seller
@@ -165,7 +165,7 @@
 		     (
 		      SELECT rownum rn, b.*
 		      FROM 
-		          (  SELECT b_email,b_rank,b_password,b_nickname,substr(b_tel,1,3)||'-'||substr(b_tel,4,4)||'-'||substr(b_tel,8) as b_tel,
+		          (  SELECT b_email,b_rank,b_password,b_nickname,b_tel,
 		                    b_address,b_zipcode,b_detailaddress,b_author,b_img,
 					        b_status,b_date,b_report,token,
                             (select c.cat_name from category c join sub_category s on(c.cat_no=s.cat_no) where buyer.field_code=s.sub_no) as cat_name,
