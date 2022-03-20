@@ -366,7 +366,12 @@
 
 	// 이메일 인증번호 확인
 	function emailSendCheck() {
-		if ($("#emailchk").val() == code) {
+		if ($("#emailchk").val() == "") {
+			$("label").remove('#emailchklabel');
+			$("label").remove('#emailchklabelok');
+			$("#emailchkdiv").append('<label id="emailchklabel">인증번호를 입력해 주세요.</label>');
+			$("#emaillabel").css("color", "red");
+		} else if ($("#emailchk").val() == code) {
 			$("label").remove('#emailchklabel');
 			$("label").remove('#emailchklabelok');
 			$("#emailchkdiv").append('<label id="emailchklabelok">인증번호가 확인되었습니다.</label>');

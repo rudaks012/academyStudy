@@ -66,6 +66,7 @@
                   <div class="single-post">
 
                         <div class="feature-img">
+                           
                            <img class="img-fluid" src="${knowhowDetail.no_img }" alt="">
                         </div>
                      
@@ -92,8 +93,16 @@
                   <div class="navigation-top">
                      <div class="blog-author">
                         <div class="media align-items-center">
-                           <img src="${sellerInfo.s_img }" style="cursor: pointer;" onclick="location.href='sellerDetail.do?s_email=${sellerInfo.s_email}'">
-            
+                           <c:choose>
+                              <c:when test="${empty sellerInfo.s_img }">
+                                 <img src="resources/user/assets/img/profile/search-default-profile.jpg" alt=""
+                                 style="cursor: pointer;" onclick="location.href='sellerDetail.do?s_email=${sellerInfo.s_email}'">
+                              </c:when>
+                              <c:otherwise>
+                                 <img src="${sellerInfo.s_img }" alt=""
+                                 style="cursor: pointer;" onclick="location.href='sellerDetail.do?s_email=${sellerInfo.s_email}'">
+                              </c:otherwise>
+						         </c:choose>            
                            <div class="media-body">
                               <a href="#">
                                  <h4 id="sellernick">${sellerInfo.s_nickname }</h4>
