@@ -713,7 +713,7 @@ input[type=date] {
                                           data[i].masterid)
 										  .attr("ser_code", data[i].ser_code)
 										  ;
-                              $img = $("<img class='profile_img' src='"+data[i].s_img+"'>");
+                              $img = $("<img class='profile_img' src='"+"webapps/"+data[i].s_img+"'>");
                              $("#sellerpay").attr("src","data[i].s_img");
                               
                                    //$img = $("<img class='profile_img' src='resources/user/assets/img/profile/${loginMember.s_img}.png'>");
