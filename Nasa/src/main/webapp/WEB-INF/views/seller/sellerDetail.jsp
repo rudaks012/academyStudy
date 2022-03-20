@@ -191,9 +191,7 @@
 								<img src="${sellerInfo.s_img }" alt=""
                         style="width: 230px; height: 230px; border-radius: 8px; margin-right: 30px;">
 							</c:otherwise>
-						</c:choose>
-                  <img src="${sellerInfo.s_img }" alt=""
-                     style="width: 230px; height: 230px; border-radius: 8px; margin-right: 30px;">
+						</c:choose>                  
                   <div class="media-body">
                      <div class="d-flex">
                         <div class="position-relative">
