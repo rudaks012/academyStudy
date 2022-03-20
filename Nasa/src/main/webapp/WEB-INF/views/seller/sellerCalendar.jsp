@@ -175,7 +175,7 @@
                     },
                     success: function (data) {                        
                         console.log(data);
-                        $("#ser_img").attr("src", "fileupload/" + data.ser_img);
+                        $("#ser_img").attr("src", data.ser_img);
                         $("#b_nickname").text(data.b_nickname);
                         $("#ser_title").text(data.ser_title + "(클릭 시 서비스 상세정보 이동)");
                         $("#ser_title").attr("onclick", "location.href='serviceDetail.do?ser_code=" + data.s_code + "'");
