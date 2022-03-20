@@ -1264,6 +1264,7 @@ input[type=date] {
                   console.log("판매자 등급",data);
 				  document.getElementById('sellerrank').innerText = data.s_rank;
               $("#sellerpay").attr("src",data.s_img);
+              $("#sellerpay").attr("style","width:100px;height:100px;");
 			  } 
 		   });
 		}
