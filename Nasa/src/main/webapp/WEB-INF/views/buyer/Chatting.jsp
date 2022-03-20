@@ -713,7 +713,7 @@ input[type=date] {
                                           data[i].masterid)
 										  .attr("ser_code", data[i].ser_code)
 										  ;
-                              $img = $("<img class='profile_img' src='"+"webapps/"+data[i].s_img+"'>");
+                              $img = $("<img class='profile_img' src='"+data[i].s_img+"'>");
                              $("#sellerpay").attr("src","data[i].s_img");
                               
                                    //$img = $("<img class='profile_img' src='resources/user/assets/img/profile/${loginMember.s_img}.png'>");
@@ -1160,9 +1160,8 @@ input[type=date] {
          console.log("서비스날짜 끝",endservice);
          var coupon = $('input[name="coupon"]:checked').val(); // 쿠폰 사용 여부
          console.log("쿠폰",coupon);
-         var servicemoney2= document.querySelector("#copchatmoney1").textContent;
-         var servicemoney = servicemoney2.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") // 서비스 금액
-         console.log("서비스 금액",servicemoney);
+         var servicemoney= document.querySelector("#copchatmoney1").textContent;// 서비스 금액
+        console.log("서비스 금액",servicemoney);
          var couponmoney = document.querySelector("#couponmoney").textContent; // 쿠폰 금액
          console.log("쿠폰 금액",couponmoney);
          var lastmoney = document.querySelector("#lastmoney").textContent;
@@ -1337,30 +1336,33 @@ input[type=date] {
       //결제금액 확인
       function couponcheck(){
          var servicemoney = document.querySelector("#copchatmoney1").textContent;
+         var servicemoneysplit = document.querySelector("#copchatmoney1").textContent.split(",").join("");
          console.log("서비스머니",servicemoney);
          var couponmoney = document.querySelector("#couponmoney").textContent;
+         var couponmoneysplit = document.querySelector("#couponmoney").textContent.split(",").join("");
          console.log("쿠폰머니",couponmoney);
          var lastmoney = document.querySelector("#lastmoney").textContent;
+         var lastmoneysplit = document.querySelector("#lastmoney").textContent.split(",").join("");
          console.log("최종금액",lastmoney);
          var couponper = document.querySelector("#couponrank").value;
          console.log("쿠폰확율",couponper);
 		 
-         var check = document.querySelector("#couponmoney").innerHTML = servicemoney / 100 * couponper;
+         var check = document.querySelector("#couponmoney").innerHTML = servicemoneysplit / 100 * couponper;
          console.log(check);
          console.log("쿠폰머니2",couponmoney);
-         document.querySelector("#lastmoney").innerText = servicemoney - check ;
+         document.querySelector("#lastmoney").innerText = servicemoneysplit - check ;
 		 
          console.log("최종금액2",lastmoney);
 		 var adminpay = document.getElementById('sellerrank'); // 판매자 등급
 		 console.log("판매자 등급",adminpay.innerText);
 		 if(adminpay.innerText == "1" ){
-		 $('#sellerrank').val(servicemoney / 8) ;
+		 $('#sellerrank').val(servicemoneysplit / 8) ;
 		 }else if(adminpay.innerText == "2"){
-		 $('#sellerrank').val(servicemoney / 5) ;
+		 $('#sellerrank').val(servicemoneysplit / 5) ;
 		 }else if (adminpay.innerText == "3"){
-		 $('#sellerrank').val(servicemoney / 3) ;
+		 $('#sellerrank').val(servicemoneysplit / 3) ;
 		 }else if (adminpay.innerText == "4"){
-		 $('#sellerrank').val(servicemoney / 1) ;
+		 $('#sellerrank').val(servicemoneysplit / 1) ;
 		 }
 
 		 }
