@@ -19,7 +19,9 @@
         width: 200px;
         height: 200px;
     }
-
+    th {
+        width: 80px;
+    }
     .thtext {
         top: 10px;
         font-size: 20px;
@@ -92,12 +94,12 @@
                                 <!-- 달력 자리 -->
                                 <div id='calendar'></div>
                                 <br>
-                                <a class="d-inline-block">
-                                    <h2>일정 조회</h2>
-                                </a>
+                                <div class="d-inline-block" style="margin-bottom: 25px;">
+                                    <h2 style="margin-bottom: 5px;">일정 조회</h2>
+                                    <div style="font-size: 13px;">서비스 제목을 클릭하면 관련 정보를 확인할 수 있습니다.</div>
+                                </div>
                                 <table class="servicetable">
-                                    <tbody>
-                                        
+                                    <tbody>                                        
                                         <tr>
                                             <th rowspan="5" class="imgtd" style="text-align: center;"><img id="ser_img"
                                                     src="resources/user/assets/img/search-default-profile.jpg"
@@ -177,7 +179,7 @@
                         console.log(data);
                         $("#ser_img").attr("src", data.ser_img);
                         $("#b_nickname").text(data.b_nickname);
-                        $("#ser_title").text(data.ser_title + "(클릭 시 서비스 상세정보 이동)");
+                        $("#ser_title").text(data.ser_title);
                         $("#ser_title").attr("onclick", "location.href='serviceDetail.do?ser_code=" + data.s_code + "'");
                         $("#ser_title").attr("style", "cursor:pointer; background-color: #dddddd;");  
                         $("#cate").text(data.category + " > " + data.sub_category);                      
