@@ -835,8 +835,8 @@
                   <textarea id="modal_rev_sub" name="rev_sub" style="width:100%; height:100px; margin-top:5px"
                      required></textarea>
                   <div class="d-flex">
-                     <input type="file" id="reviewimg" name="revimg" accept="image/*" style="display:none;">
-                     <label class="genric-btn primary radius" for="reviewimg" style="margin-top: 7px;">사진 첨부</label>
+                     <input type="file" id="reviewuimg" name="revimg" accept="image/*" style="display:none;">
+                     <label class="genric-btn primary radius" for="reviewuimg" style="margin-top: 7px;">사진 첨부</label>
                      <img id="reviewimgpreview" alt=""
                         style="width: 42px; height:42px; margin-left:10px;margin-top: 7px; overflow: hidden; border-color:white;">
                   </div>
