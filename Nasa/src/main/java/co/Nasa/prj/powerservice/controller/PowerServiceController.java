@@ -67,7 +67,7 @@ public class PowerServiceController {
 		Integer n = powerDao.powerServiceCount(power_start);
 		System.out.println(n);
 		if(n != null) {	
-			if(n == 8) {
+			if(n > 8) {
 				return "full";
 			}else {
 				PowerServiceVO vo = new PowerServiceVO();
