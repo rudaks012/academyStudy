@@ -25,8 +25,15 @@ public class Criteria {
 	private String s_rank;
 	private String s_date;
 	private String s_date2;
+	private String s_grad;
 	
 	
+	public String getS_grad() {
+		return s_grad;
+	}
+	public void setS_grad(String s_grad) {
+		this.s_grad = s_grad;
+	}
 	private String re_type;
 	private String re_reporter;
 	private String re_date;

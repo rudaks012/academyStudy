@@ -49,7 +49,9 @@
  </select>
  
  <select id="getBuyerPaymentTotal" resultType="int">
-    SELECT COUNT(*) FROM PAYMENT
+         SELECT count(*)
+		 FROM powerservice p join service s
+		 ON (p.ser_code=s.ser_code)
     <trim prefix="WHERE" prefixOverrides="AND">
     	 <include refid="buyerPaymentCriteria"></include> 
     </trim>

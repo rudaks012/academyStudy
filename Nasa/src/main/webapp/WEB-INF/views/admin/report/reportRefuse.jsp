@@ -259,7 +259,7 @@
                                         </tr>
                                         <tr>
 											<td colspan="4" >
-												<textarea rows="10" class="form-control" id="re_subject" readonly></textarea>
+												<textarea rows="5" class="form-control" id="re_subject" readonly></textarea>
 											
 											</td>                                 
                                         </tr>
@@ -374,7 +374,8 @@ const selectReport=()=>{
 		//신고처리날짜
 		$("#re_rpoertdate").val(result.re_rpoertdate);
 	    //신고내용
-		$("#re_subject").val(result.re_subject)
+		 let subject= result.re_subject;
+	    subject!=null?$("#re_subject").val(result.re_subject):$("#re_subject").val("없음")
 		console.log(result.filecode);
 		//파일
 		let filecode= result.filecode
