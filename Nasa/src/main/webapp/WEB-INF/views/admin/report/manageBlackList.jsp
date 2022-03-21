@@ -41,7 +41,7 @@
                                         <tbody>
                                             <tr>
                                                 <th class="align-middle table-primary">아이디</th>
-                                                <td><input class="form-control custom-shadow" id="" name="email" type="text" value='<c:out value="${pageMaker.cri.email }"/>'></td>
+                                                <td colspan="3"><input class="form-control custom-shadow" id="" name="email" type="text" value='<c:out value="${pageMaker.cri.email }"/>'></td>
                                                 
                                             </tr>
                                             <tr>
