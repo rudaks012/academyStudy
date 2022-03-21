@@ -351,7 +351,7 @@
                                             <th class="table-primary align-middle">졸업사항</th>
                                             <td colspan="3">
                                                 <div class="col-4 p-0">
-                                                   <input class="form-control custom-shadow " id=s_grad" name="s_grad" value="" type="text" readonly></td>
+                                                   <input class="form-control custom-shadow " id="s_grade" name="s_grad" value="" type="text" readonly></td>
                                         		</div>
                                         </tr>
                                         
@@ -619,12 +619,18 @@ $("#searchBtn").on("click",searchReport);
                 //프로필
                 let s_img = result.seller.s_img;
                 s_img!=null? $("#s_img").attr("src",s_img):$("#s_img").attr("src","resources/user/assets/img/search-default-profile-s.jpg")
-
-                $("#s_school").val(result.seller.s_school); 
-                $("#s_major").val(result.seller.s_major); 
-                $("#s_grad").val(result.seller.s_grad);   
-                $("#s_carrer").val(result.seller.s_carrer);   
-                $("#s_me").val(result.seller.s_me);   
+				let school =result.seller.s_school;
+                school!=null? $("#s_school").val(result.seller.s_school):$("#s_school").val("없음")
+                let major = result.seller.s_major;
+                major!=null? $("#s_major").val(result.seller.s_major):$("#s_major").val("없음")
+                let grad = result.seller.s_grad;
+                console.log(grad)
+                grad!=null?$("#s_grade").val(result.seller.s_grad):$("#s_grade").val("없음")
+                let carrer= result.seller.s_carrer;
+                carrer!=null?$("#s_carrer").val(result.seller.s_carrer):$("#s_grad").val("없음")
+                let me = result.seller.s_me;
+                me!=null?$("#s_me").val(result.seller.s_me):$("#s_me").val("없음")
+                   
                 
 
             })

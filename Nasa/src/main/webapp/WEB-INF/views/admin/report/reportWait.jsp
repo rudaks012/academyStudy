@@ -265,7 +265,7 @@
                                         </tr>
                                         <tr>
 											<td colspan="4" >
-												<textarea rows="10" class="form-control" id="re_subject" readonly></textarea>
+												<textarea rows="5" class="form-control" id="re_subject" readonly></textarea>
 											
 											</td>                                 
                                         </tr>
@@ -431,8 +431,9 @@ const reCode=event.target.parentElement.firstElementChild.innerText;
 		//신고처리날짜
 		$("#re_rpoertdate").val("대기");
 	    //신고내용
-		$("#re_subject").val(result.re_subject)
-		console.log(result.filecode);
+		 let subject= result.re_subject;
+	    subject!=null?$("#re_subject").val(result.re_subject):$("#re_subject").val("없음")
+		
 		//파일
 		let filecode= result.filecode
 		let img = "<img src='"+filecode+"' style='width:300px'>"

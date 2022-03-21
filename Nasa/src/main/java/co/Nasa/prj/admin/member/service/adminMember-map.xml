@@ -121,7 +121,7 @@
 		      SELECT rownum rn, s.*
 		      FROM
 		           (
-		             select s_email, s_rank,s_tel,s_address,s_nickname
+		             select s_email, s_rank,s_tel,s_address,s_nickname,
 		                    s_zipcode,s_detailaddress,s_author,s_img,
 					        s_business,s_status,s_report,s_school,s_major,s_grad, s_carrer,s_me,s_name,s_date,blacklistdate
 					 from seller
@@ -148,7 +148,7 @@
 				  SELECT *
 					FROM 
 					    (
-					    select rownum rn, s.*
+					    select rownum rn, s.*,(select s_grad from seller where s.s_email=s_email)as s_grade
 					    from v_sellerservicelist s
 					    WHERE s_email=#{s_email} AND ROWNUM <=#{pageNum} * #{amount}
 					    )
