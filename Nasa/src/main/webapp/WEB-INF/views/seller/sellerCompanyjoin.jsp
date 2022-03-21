@@ -607,12 +607,6 @@
 			$("label").remove('#addresslabel');
 		})
 
-		// 페이지 이동
-		function nextPage() {
-			document.getElementById("page1").style.display = "none";
-			document.getElementById("page2").style.display = "block";
-		}
-
 		// 회원가입
 		function sellerPersonJoin() {
 			if (!($("#nicklabelok").length)) {
