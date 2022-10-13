@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.Movie.man.service.MoviePostMapper">
+	<select id="moviePostSelectList"
+		resultType="co.yedam.Movie.comm.MovieVO">
+		SELECT a.*
+		FROM(select * from movie order by opendate desc) a
+		<![CDATA[WHERE rownum<=3]]>
+	</select>
+
+</mapper>

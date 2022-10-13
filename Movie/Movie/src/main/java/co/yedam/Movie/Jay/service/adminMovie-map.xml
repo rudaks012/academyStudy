@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.Movie.Jay.service.AdminMovieMapper">
+	
+	<select id="adminMovieSelectList"
+	resultType="co.yedam.Movie.comm.MovieVO">
+	SELECT * FROM MOVIE
+	ORDER BY OPENDATE DESC
+	</select>
+	
+	<insert id="adminMovieInsert" 
+	parameterType="co.yedam.Movie.comm.MovieVO">
+	INSERT INTO MOVIE
+	VALUES(#{mcode},#{mtitle},#{opendate},#{grade},#{rate},#{dolby},#{mx},#{likeit},#{comments},#{filename},#{pfilename})
+	</insert>
+	
+	<select id="adminMovieSelect"
+	resultType="co.yedam.Movie.comm.MovieVO">
+	SELECT * FROM MOVIE
+	WHERE MCODE = #{mcode}
+	</select>
+	
+	<update id="adminMovieUpdate"
+	parameterType="co.yedam.Movie.comm.MovieVO">
+	UPDATE MOVIE 
+		<set>
+		<if test="mtitle != null and mtitle != '' ">MTITLE = #{mtitle},</if>
+		<if test="opendate != null and opendate != '' ">OPENDATE = #{opendate},</if>
+		<if test="grade != null and grade != '' ">GRADE = #{grade},</if>
+		<if test="rate != null and rate != '' ">RATE = #{rate},</if>
+		<if test="mx != null and mx != '' ">MX = #{mx},</if>
+		<if test="likeit != null and likeit != '' ">LIKEIT = #{likeit},</if>
+		<if test="comments != null and comments != '' ">COMMENTS = #{comments},</if>
+		<if test="dolby != null and dolby != '' ">DOLBY = #{dolby},</if>
+		</set>
+	WHERE MCODE = #{mcode}
+	</update>
+</mapper>

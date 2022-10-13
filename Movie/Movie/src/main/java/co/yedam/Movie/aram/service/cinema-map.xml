@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.Movie.aram.service.CinemaMapper">
+
+	<select id="cinemaAreaList" resultType="co.yedam.Movie.comm.CinemaVO">
+		SELECT CINAREA, COUNT(*) AS COUNT
+		FROM CINEMA
+		GROUP BY CINAREA
+		HAVING COUNT(*) > 1
+	</select>
+	
+	<select id="cinemaSelectList" resultType="co.yedam.Movie.comm.CinemaVO">
+		SELECT CINNAME 
+		FROM CINEMA 
+		WHERE CINAREA = #{cinArea}
+	</select>
+
+</mapper>
